@@ -1,5 +1,5 @@
 Package: rdev
-Title: What the Package Does (One Line, Title Case)
+Title: R Development Tools
 Version: 0.0.0.9000
 Authors@R: 
     person(given = "John",
@@ -7,7 +7,7 @@ Authors@R:
            role = c("aut", "cre"),
            email = "jbenninghoff@mac.com",
            comment = c(ORCID = "YOUR-ORCID-ID"))
-Description: What the package does (one paragraph).
+Description: A package that loads my personalized list of development tools and utility functions.
 License: MIT + file LICENSE
 Encoding: UTF-8
 LazyData: true
