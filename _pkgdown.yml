@@ -1,1 +1,18 @@
 url: https://jabenninghoff.github.io/rdev/
+
+reference:
+
+- title: "Package Maintenance"
+  contents:
+  - check_renv
+
+- title: "Continous Integration"
+  contents:
+  - ci
+  - style_all
+  - lint_all
+
+- title: "Utilities"
+  contents:
+  - sort_file
+  - sort_rbuildignore
