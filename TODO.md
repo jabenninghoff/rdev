@@ -9,7 +9,7 @@
 ## Package
 
 - [x] Write a utility function to sort `.Rbuildignore`
-- [ ] Implement [pkgdown](https://pkgdown.r-lib.org)
+- [x] Implement [pkgdown](https://pkgdown.r-lib.org)
 - [ ] Add tests for `check_renv()`, `ci()`, `sort_file()` ?
 - [ ] Improved tests for `style_all()`, `lint_all()`
 
