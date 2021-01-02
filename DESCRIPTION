@@ -9,6 +9,7 @@ Authors@R:
            comment = c(ORCID = "0000-0002-6230-4742"))
 Description: My personalized collection of development packages, tools and utility functions.
 License: MIT + file LICENSE
+URL: https://jabenninghoff.github.io/rdev/, https://github.com/jabenninghoff/rdev
 Encoding: UTF-8
 LazyData: true
 Roxygen: list(markdown = TRUE)
