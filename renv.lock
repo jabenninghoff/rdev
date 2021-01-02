@@ -631,9 +631,9 @@
       "RemoteUsername": "r-lib",
       "RemoteRepo": "styler",
       "RemoteRef": "master",
-      "RemoteSha": "713992f7bc101340e6e23ab9caa96db1d1d358fe",
+      "RemoteSha": "e1688f5295b187151ade45483344028c2124963a",
       "RemoteHost": "api.github.com",
-      "Hash": "8bd424b8d6ebc022c9a7b49f782bc6db"
+      "Hash": "da1d84af00a35df4f008d63f3ff69ecd"
     },
     "sys": {
       "Package": "sys",
