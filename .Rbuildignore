@@ -1,6 +1,6 @@
-^renv$
-^renv\.lock$
-^rdev\.Rproj$
+^\.lintr$
 ^\.Rproj\.user$
 ^LICENSE\.md$
-^\.lintr$
+^rdev\.Rproj$
+^renv\.lock$
+^renv$
