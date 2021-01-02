@@ -1,3 +1,4 @@
+^\.github$
 ^\.lintr$
 ^\.Rproj\.user$
 ^LICENSE\.md$
@@ -6,4 +7,3 @@
 ^renv\.lock$
 ^renv$
 ^TODO\.md$
-^\.github$
