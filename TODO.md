@@ -19,6 +19,7 @@
 - [x] Set up [GitHub Actions](https://usethis.r-lib.org/reference/github_actions.html)
   - [x] Use [standard](https://github.com/r-lib/actions/blob/master/examples/check-standard.yaml) `R CMD check`
   - [x] Use [lintr](https://github.com/r-lib/actions/blob/master/examples/lint.yaml)
+- [ ] Skip CI checks for changes in only the `docs/` directory
 - [ ] Run [test coverage](https://github.com/r-lib/actions/blob/master/examples/test-coverage.yaml)
 - [ ] Add GitHub Action for html/link checking using something like [htmlproofer](https://github.com/gjtorikian/html-proofer)
 - [ ] Switch to  [full](https://github.com/r-lib/actions/blob/master/examples/check-full.yaml) `R CMD check` ?
