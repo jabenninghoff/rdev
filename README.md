@@ -10,8 +10,8 @@
 
 **R Development Tools:**
 
-A package that loads my personalized list of development tools and
-utility functions.
+My personalized collection of development packages, tools and utility
+functions.
 
 Feel free to use and/or fork this project!
 
@@ -63,7 +63,7 @@ ci()
 #> * building ‘rdev_0.0.0.9000.tar.gz’
 #> 
 #> ── R CMD check ─────────────────────────────────────────────────────────────────
-#> * using log directory ‘/private/var/folders/4v/k12n8ksn77l4_bcsvc6kfgk00000gn/T/RtmpV3jI4z/filef07052c3453d/rdev.Rcheck’
+#> * using log directory ‘/private/var/folders/4v/k12n8ksn77l4_bcsvc6kfgk00000gn/T/RtmpfxdRXk/file103901ee6bb6a/rdev.Rcheck’
 #> * using R version 4.0.3 (2020-10-10)
 #> * using platform: x86_64-apple-darwin18.7.0 (64-bit)
 #> * using session charset: UTF-8
@@ -117,7 +117,7 @@ ci()
 #> 
 #> Status: OK
 #> ── R CMD check results ──────────────────────────────────── rdev 0.0.0.9000 ────
-#> Duration: 7.7s
+#> Duration: 7.5s
 #> 
 #> 0 errors ✓ | 0 warnings ✓ | 0 notes ✓
 ```

@@ -7,7 +7,7 @@ Authors@R:
            role = c("aut", "cre"),
            email = "jbenninghoff@mac.com",
            comment = c(ORCID = "YOUR-ORCID-ID"))
-Description: A package that loads my personalized list of development tools and utility functions.
+Description: My personalized collection of development packages, tools and utility functions.
 License: MIT + file LICENSE
 Encoding: UTF-8
 LazyData: true
@@ -18,7 +18,8 @@ Imports:
     lintr (>= 2.0.1.9000),
     rcmdcheck,
     renv
-X-rtraining-comment: use "Suggests" for development packages, per https://rstudio.github.io/renv/articles/faq.html#how-should-i-handle-development-dependencies-
+X-rtraining-comment: use "Suggests" for development packages, per
+    https://rstudio.github.io/renv/articles/faq.html#how-should-i-handle-development-dependencies-
 Suggests: 
     miniUI,
     devtools,
