@@ -18,7 +18,11 @@ Imports:
     lintr (>= 2.0.1.9000),
     rcmdcheck,
     renv
+X-rtraining-comment: use "Suggests" for development packages, per https://rstudio.github.io/renv/articles/faq.html#how-should-i-handle-development-dependencies-
 Suggests: 
+    miniUI,
+    devtools,
+    rmarkdown,
     tibble,
     testthat (>= 3.0.0)
 Config/testthat/edition: 3
