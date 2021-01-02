@@ -1,7 +1,10 @@
+^_pkgdown\.yml$
 ^\.github$
 ^\.lintr$
 ^\.Rproj\.user$
+^docs$
 ^LICENSE\.md$
+^pkgdown$
 ^rdev\.Rproj$
 ^README\.Rmd$
 ^renv\.lock$
