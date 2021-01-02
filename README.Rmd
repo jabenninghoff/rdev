@@ -19,9 +19,9 @@ knitr::opts_chunk$set(
 [![R-CMD-check](https://github.com/jabenninghoff/rdev/workflows/R-CMD-check/badge.svg)](https://github.com/jabenninghoff/rdev/actions)
 <!-- badges: end -->
 
-**`r packageDescription("rdev", fields = "Title")`:**
+## Overview
 
-`r packageDescription("rdev", fields = "Description")`
+**`r packageDescription("rdev", fields = "Title")`:** `r packageDescription("rdev", fields = "Description")`
 
 Feel free to use and/or fork this project!
 
@@ -32,6 +32,13 @@ You can install the development version from [GitHub](https://github.com/) with:
 ``` r
 # install.packages("devtools")
 devtools::install_github("jabenninghoff/rdev")
+```
+
+Or using renv:
+
+``` r
+# install.packages("renv")
+renv::install("jabenninghoff/rdev")
 ```
 
 ## Examples

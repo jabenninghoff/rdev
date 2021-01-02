@@ -8,10 +8,10 @@
 [![R-CMD-check](https://github.com/jabenninghoff/rdev/workflows/R-CMD-check/badge.svg)](https://github.com/jabenninghoff/rdev/actions)
 <!-- badges: end -->
 
-**R Development Tools:**
+## Overview
 
-My personalized collection of development packages, tools and utility
-functions.
+**R Development Tools:** My personalized collection of development
+packages, tools and utility functions.
 
 Feel free to use and/or fork this project!
 
@@ -23,6 +23,13 @@ You can install the development version from
 ``` r
 # install.packages("devtools")
 devtools::install_github("jabenninghoff/rdev")
+```
+
+Or using renv:
+
+``` r
+# install.packages("renv")
+renv::install("jabenninghoff/rdev")
 ```
 
 ## Examples
@@ -63,7 +70,7 @@ ci()
 #> * building ‘rdev_0.0.0.9000.tar.gz’
 #> 
 #> ── R CMD check ─────────────────────────────────────────────────────────────────
-#> * using log directory ‘/private/var/folders/4v/k12n8ksn77l4_bcsvc6kfgk00000gn/T/RtmpfxdRXk/file103901ee6bb6a/rdev.Rcheck’
+#> * using log directory ‘/private/var/folders/4v/k12n8ksn77l4_bcsvc6kfgk00000gn/T/RtmptPIcDo/file11a9e17518209/rdev.Rcheck’
 #> * using R version 4.0.3 (2020-10-10)
 #> * using platform: x86_64-apple-darwin18.7.0 (64-bit)
 #> * using session charset: UTF-8
@@ -117,7 +124,7 @@ ci()
 #> 
 #> Status: OK
 #> ── R CMD check results ──────────────────────────────────── rdev 0.0.0.9000 ────
-#> Duration: 7.5s
+#> Duration: 7.7s
 #> 
 #> 0 errors ✓ | 0 warnings ✓ | 0 notes ✓
 ```
