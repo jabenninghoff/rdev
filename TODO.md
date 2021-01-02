@@ -2,8 +2,8 @@
 
 ## Content
 
-- [ ] Add README.Rmd
-- [ ] Update `DESCRIPTION` and use description data in `README.Rmd`
+- [x] Add README.Rmd
+- [x] Update `DESCRIPTION` and use description data in `README.Rmd`
 
 ## Package
 

@@ -1,0 +1,50 @@
+---
+output: github_document
+---
+
+<!-- README.md is generated from README.Rmd. Please edit that file -->
+
+```{r, include = FALSE}
+knitr::opts_chunk$set(
+  collapse = TRUE,
+  comment = "#>",
+  fig.path = "man/figures/README-",
+  out.width = "100%"
+)
+```
+
+# rdev
+
+<!-- badges: start -->
+<!-- badges: end -->
+
+**`r packageDescription("rdev", fields = "Title")`:**
+
+`r packageDescription("rdev", fields = "Description")`
+
+Feel free to use and/or fork this project!
+
+## Installation
+
+You can install the development version from [GitHub](https://github.com/) with:
+
+``` r
+# install.packages("devtools")
+devtools::install_github("jabenninghoff/rdev")
+```
+
+## Examples
+
+For my workflow, I typically check renv when I start:
+
+```{r example}
+library(rdev)
+
+check_renv()
+```
+
+I also have a `ci()` function to run all my continuous integration tests locally:
+
+```{r}
+ci()
+```
