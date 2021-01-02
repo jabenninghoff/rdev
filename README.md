@@ -4,6 +4,8 @@
 # rdev
 
 <!-- badges: start -->
+
+[![R-CMD-check](https://github.com/jabenninghoff/rdev/workflows/R-CMD-check/badge.svg)](https://github.com/jabenninghoff/rdev/actions)
 <!-- badges: end -->
 
 **R Development Tools:**
@@ -58,12 +60,10 @@ ci()
 #> * checking DESCRIPTION meta-information ... OK
 #> * checking for LF line-endings in source and make files and shell scripts
 #> * checking for empty or unneeded directories
-#> Removed empty directory ‘rdev/.github/workflows’
-#> Removed empty directory ‘rdev/.github’
 #> * building ‘rdev_0.0.0.9000.tar.gz’
 #> 
 #> ── R CMD check ─────────────────────────────────────────────────────────────────
-#> * using log directory ‘/private/var/folders/4v/k12n8ksn77l4_bcsvc6kfgk00000gn/T/Rtmpljdv17/fileea3629ef9202/rdev.Rcheck’
+#> * using log directory ‘/private/var/folders/4v/k12n8ksn77l4_bcsvc6kfgk00000gn/T/RtmpV3jI4z/filef07052c3453d/rdev.Rcheck’
 #> * using R version 4.0.3 (2020-10-10)
 #> * using platform: x86_64-apple-darwin18.7.0 (64-bit)
 #> * using session charset: UTF-8
@@ -117,7 +117,7 @@ ci()
 #> 
 #> Status: OK
 #> ── R CMD check results ──────────────────────────────────── rdev 0.0.0.9000 ────
-#> Duration: 7.4s
+#> Duration: 7.7s
 #> 
 #> 0 errors ✓ | 0 warnings ✓ | 0 notes ✓
 ```

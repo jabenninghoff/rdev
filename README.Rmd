@@ -16,6 +16,7 @@ knitr::opts_chunk$set(
 # rdev
 
 <!-- badges: start -->
+[![R-CMD-check](https://github.com/jabenninghoff/rdev/workflows/R-CMD-check/badge.svg)](https://github.com/jabenninghoff/rdev/actions)
 <!-- badges: end -->
 
 **`r packageDescription("rdev", fields = "Title")`:**

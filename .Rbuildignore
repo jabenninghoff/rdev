@@ -6,3 +6,4 @@
 ^renv\.lock$
 ^renv$
 ^TODO\.md$
+^\.github$
