@@ -3,4 +3,6 @@
 export(check_renv)
 export(ci)
 export(lint_all)
+export(sort_file)
+export(sort_rbuildignore)
 export(style_all)

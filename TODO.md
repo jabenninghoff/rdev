@@ -7,7 +7,7 @@
 
 ## Package
 
-- [ ] Write a utility function to sort `.Rbuildignore`
+- [x] Write a utility function to sort `.Rbuildignore`
 - [ ] Implement [pkgdown](https://pkgdown.r-lib.org)
 
 ## GitHub
