@@ -7,13 +7,14 @@
 ci(styler = FALSE, lintr = TRUE, rcmdcheck = TRUE)
 }
 \arguments{
-\item{styler}{style all files: \code{styler::style_dir(".", exclude_dirs = c("renv"))}}
+\item{styler}{style all files:
+\code{\link[styler:style_dir]{styler::style_dir(".", exclude_dirs = c("renv"))}}}
 
 \item{lintr}{lint all files:
-\code{lintr::lint_dir(path = ".", exclusions = list(".git", ".github", "packrat", "renv"))}}
+\code{\link[lintr:lint_dir]{lintr::lint_dir(path = ".", exclusions = list(".git", ".github", "packrat", "renv"))}}}
 
-\item{rcmdcheck}{run \code{R CMD check} using
-\code{rcmdcheck::rcmdcheck(args = "--no-manual", error_on = "error")}}
+\item{rcmdcheck}{run \code{R CMD check} using:
+\code{\link[rcmdcheck:rcmdcheck]{rcmdcheck::rcmdcheck(args = "--no-manual", error_on = "warning")}}}
 }
 \description{
 Run continuous integration tests locally.

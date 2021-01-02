@@ -2,11 +2,14 @@
 #'
 #' Run continuous integration tests locally.
 #'
-#' @param styler style all files: \code{styler::style_dir(".", exclude_dirs = c("renv"))}
+#' @param styler style all files:
+#'   [`styler::style_dir(".", exclude_dirs = c("renv"))`][styler::style_dir]
 #' @param lintr lint all files:
-#'   \code{lintr::lint_dir(path = ".", exclusions = list(".git", ".github", "packrat", "renv"))}
-#' @param rcmdcheck run \code{R CMD check} using
-#'   \code{rcmdcheck::rcmdcheck(args = "--no-manual", error_on = "error")}
+# nolint start
+#'   [`lintr::lint_dir(path = ".", exclusions = list(".git", ".github", "packrat", "renv"))`][lintr::lint_dir]
+# nolint end
+#' @param rcmdcheck run \code{R CMD check} using:
+#'   [`rcmdcheck::rcmdcheck(args = "--no-manual", error_on = "warning")`][rcmdcheck::rcmdcheck]
 #' @export ci
 #' @examples
 #' \dontrun{
@@ -24,6 +27,6 @@ ci <- function(styler = FALSE, lintr = TRUE, rcmdcheck = TRUE) {
   }
 
   if (rcmdcheck) {
-    rcmdcheck::rcmdcheck(args = "--no-manual", error_on = "error")
+    rcmdcheck::rcmdcheck(args = "--no-manual", error_on = "warning")
   }
 }

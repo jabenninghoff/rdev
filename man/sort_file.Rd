@@ -10,10 +10,13 @@ sort_file(name)
 \item{name}{file to be sorted}
 }
 \description{
-Sorts a file (like unix \code{sort}) using R \code{sort}.
+Sorts a file using R \code{\link[=sort]{sort()}}.
 }
 \examples{
 \dontrun{
 sort_file(".Rbuildignore")
 }
+}
+\seealso{
+\code{\link[=sort_rbuildignore]{sort_rbuildignore()}}
 }
