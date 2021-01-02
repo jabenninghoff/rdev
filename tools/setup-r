@@ -1,0 +1,21 @@
+#!/bin/sh
+# install development packages to site repository
+# thanks to https://blog.sellorm.com/2017/10/21/quick-script-to-install-an-r-package-from-the-command-line/
+# and https://github.com/Homebrew/homebrew-core/blob/HEAD/Formula/r.rb
+# designed to work with homebrew: `brew install --formula r && brew install --cask rstudio`
+set -ex # halt script on error, echo on
+
+PREFIX=`brew --prefix`
+RVERSION=`${PREFIX}/bin/Rscript -e 'cat(as.character(getRversion()[1,1:2]))'`
+SITELIB="${PREFIX}/lib/R/${RVERSION}/site-library"
+DEVPKG='c("renv", "styler", "lintr", "miniUI", "devtools", "available")'
+
+if [ ! -d "${SITELIB}" ]
+then
+	echo "fatal error: ${SITELIB} does not exist - not using \`brew install --formula r\`?"
+	exit 1
+fi
+
+brew install libgit2 # required by devtools
+
+echo "install.packages(${DEVPKG}, repos=\"https://cran.rstudio.com\", lib=\"${SITELIB}\")" | R --no-save
