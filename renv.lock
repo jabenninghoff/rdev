@@ -628,12 +628,12 @@
       "Version": "1.3.2.9000",
       "Source": "GitHub",
       "RemoteType": "github",
-      "RemoteHost": "api.github.com",
       "RemoteUsername": "r-lib",
       "RemoteRepo": "styler",
       "RemoteRef": "master",
-      "RemoteSha": "d5b8b0e854042b5ba9449e220a06a818235ffcc9",
-      "Hash": "36337b24dd5cc2041f4768bceaefcb4a"
+      "RemoteSha": "713992f7bc101340e6e23ab9caa96db1d1d358fe",
+      "RemoteHost": "api.github.com",
+      "Hash": "8bd424b8d6ebc022c9a7b49f782bc6db"
     },
     "sys": {
       "Package": "sys",
