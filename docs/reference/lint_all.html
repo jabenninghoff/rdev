@@ -40,8 +40,8 @@
 
 
 <meta property="og:title" content="Lint all files — lint_all" />
-<meta property="og:description" content="Lint all files in a project. Implemented as a wrapper for lintr::lint_dir() that excludes .git,
-.github, packrat, and renv by default." />
+<meta property="og:description" content="Lint all files in a project. Implemented as a wrapper for lintr::lint_dir() that excludes
+.git, .github, packrat, and renv by default." />
 
 
 
@@ -73,7 +73,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">rdev</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.1.0</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.1.1</span>
       </span>
     </div>
 
@@ -110,8 +110,8 @@
     </div>
 
     <div class="ref-description">
-    <p>Lint all files in a project. Implemented as a wrapper for lintr::lint_dir() that excludes .git,
-.github, packrat, and renv by default.</p>
+    <p>Lint all files in a project. Implemented as a wrapper for <code><a href='https://rdrr.io/pkg/lintr/man/lint_dir.html'>lintr::lint_dir()</a></code> that excludes
+<code>.git</code>, <code>.github</code>, <code>packrat</code>, and <code>renv</code> by default.</p>
     </div>
 
     <pre class="usage"><span class='fu'>lint_all</span><span class='op'>(</span>path <span class='op'>=</span> <span class='st'>"."</span>, exclusions <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/list.html'>list</a></span><span class='op'>(</span><span class='st'>".git"</span>, <span class='st'>".github"</span>, <span class='st'>"packrat"</span>, <span class='st'>"renv"</span><span class='op'>)</span><span class='op'>)</span></pre>
@@ -126,7 +126,7 @@ it will be searched in the parent directories of the current directory.</p></td>
     </tr>
     <tr>
       <th>exclusions</th>
-      <td><p>exclusions for <code><a href='https://rdrr.io/pkg/lintr/man/exclude.html'>exclude</a></code>, relative to the
+      <td><p>exclusions for <code><a href='https://rdrr.io/pkg/lintr/man/exclude.html'>lintr::exclude()</a></code>, relative to the
 package path.</p></td>
     </tr>
     </table>
