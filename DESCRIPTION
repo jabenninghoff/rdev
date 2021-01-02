@@ -6,7 +6,7 @@ Authors@R:
            family = "Benninghoff",
            role = c("aut", "cre"),
            email = "jbenninghoff@mac.com",
-           comment = c(ORCID = "YOUR-ORCID-ID"))
+           comment = c(ORCID = "0000-0002-6230-4742"))
 Description: My personalized collection of development packages, tools and utility functions.
 License: MIT + file LICENSE
 Encoding: UTF-8
