@@ -1,7 +1,7 @@
 #' Style all files
 #'
-#' Style all files in a project. Implemented as a wrapper for styler::style_dir() that styles .R and
-#'   .Rmd filetypes, and excludes .git, .github, packrat, and renv by default.
+#' Style all files in a project. Implemented as a wrapper for [styler::style_dir()] that styles `.R`
+#'  and `.Rmd` filetypes, and excludes `.git`, `.github`, `packrat`, and `renv` by default.
 #'
 #' @param path Path to a directory with files to transform.
 #' @param exclude_dirs Character vector with directories to exclude

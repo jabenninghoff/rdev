@@ -1,9 +1,10 @@
 #' Sort file
 #'
-#' Sorts a file (like unix \code{sort}) using R \code{sort}.
+#' Sorts a file using R [sort()].
 #'
 #' @param name file to be sorted
 #' @export sort_file
+#' @seealso [sort_rbuildignore()]
 #' @examples
 #' \dontrun{
 #' sort_file(".Rbuildignore")
@@ -17,7 +18,7 @@ sort_file <- function(name) {
 
 #' Sort .Rbuildignore file
 #'
-#' Sorts the .Rbuildignore file using R \code{sort}.
+#' Sorts the .Rbuildignore file using [sort_file()].
 #'
 #' @export sort_rbuildignore
 #' @examples

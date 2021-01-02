@@ -7,10 +7,11 @@
 check_renv(update = TRUE)
 }
 \arguments{
-\item{update}{run \code{renv::update} (default \code{TRUE})}
+\item{update}{run \code{\link[renv:update]{renv::update()}}}
 }
 \description{
-Checks \code{renv} \code{status()}, \code{clean()}, and optionally \code{update()}
+Checks \code{\link[renv:renv-package]{renv}} \code{\link[renv:status]{status()}}, \code{\link[renv:clean]{clean()}}, and
+optionally \code{\link[renv:update]{update()}}
 }
 \examples{
 \dontrun{

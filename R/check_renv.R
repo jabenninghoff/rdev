@@ -1,8 +1,9 @@
 #' Check renv
 #'
-#' Checks \code{renv} \code{status()}, \code{clean()}, and optionally \code{update()}
+#' Checks [`renv`][renv::renv-package] [`status()`][renv::status()], [`clean()`][renv::clean()], and
+#'   optionally [`update()`][renv::update()]
 #'
-#' @param update run \code{renv::update} (default \code{TRUE})
+#' @param update run [renv::update()]
 #' @export check_renv
 #' @examples
 #' \dontrun{

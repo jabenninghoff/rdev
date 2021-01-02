@@ -10,7 +10,7 @@
 
 - [x] Write a utility function to sort `.Rbuildignore`
 - [x] Implement [pkgdown](https://pkgdown.r-lib.org)
-- [ ] Add links / update [Rd formatting](https://roxygen2.r-lib.org/articles/rd-formatting.html) for all function documentation.
+- [x] Add links / update [Rd formatting](https://roxygen2.r-lib.org/articles/rd-formatting.html) for all function documentation.
 - [ ] Add tests for `check_renv()`, `ci()`, `sort_file()` ?
 - [ ] Improved tests for `style_all()`, `lint_all()`
 

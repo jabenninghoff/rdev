@@ -22,8 +22,8 @@ standardization) are: "r", "rprofile", "rmd", "rnw".}
 (recursively).}
 }
 \description{
-Style all files in a project. Implemented as a wrapper for styler::style_dir() that styles .R and
-.Rmd filetypes, and excludes .git, .github, packrat, and renv by default.
+Style all files in a project. Implemented as a wrapper for \code{\link[styler:style_dir]{styler::style_dir()}} that styles \code{.R}
+and \code{.Rmd} filetypes, and excludes \code{.git}, \code{.github}, \code{packrat}, and \code{renv} by default.
 }
 \examples{
 \dontrun{
