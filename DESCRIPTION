@@ -14,17 +14,16 @@ Encoding: UTF-8
 LazyData: true
 Roxygen: list(markdown = TRUE)
 RoxygenNote: 7.1.1
+X-rdev-comment: include all development packages in "Imports" to enable installation through rdev
 Imports: 
     styler (>= 1.3.2.9000),
     lintr (>= 2.0.1.9000),
     rcmdcheck,
-    renv
-X-rdev-comment: use "Suggests" for development packages, per
-    https://rstudio.github.io/renv/articles/faq.html#how-should-i-handle-development-dependencies-
-Suggests: 
+    renv,
     miniUI,
     devtools,
-    rmarkdown,
+    rmarkdown
+Suggests: 
     tibble,
     testthat (>= 3.0.0)
 Config/testthat/edition: 3
