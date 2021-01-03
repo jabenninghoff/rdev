@@ -6,7 +6,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>TODO • rdev</title>
+<title>rdev: R Development Tools — rdev-package • rdev</title>
 
 
 <!-- jquery -->
@@ -18,8 +18,8 @@
 <script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.4.1/js/bootstrap.min.js" integrity="sha256-nuL8/2cJ5NDSSwnKD8VqreErSWHtnEP9E7AySL+1ev4=" crossorigin="anonymous"></script>
 
 <!-- bootstrap-toc -->
-<link rel="stylesheet" href="bootstrap-toc.css">
-<script src="bootstrap-toc.js"></script>
+<link rel="stylesheet" href="../bootstrap-toc.css">
+<script src="../bootstrap-toc.js"></script>
 
 <!-- Font Awesome icons -->
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.12.1/css/all.min.css" integrity="sha256-mmgLkCYLUQbXn0B1SRqzHar6dCnv9oZFPEC1g1cwlkk=" crossorigin="anonymous" />
@@ -33,13 +33,14 @@
 <script src="https://cdnjs.cloudflare.com/ajax/libs/headroom/0.11.0/jQuery.headroom.min.js" integrity="sha256-ZX/yNShbjqsohH1k95liqY9Gd8uOiE1S4vZc+9KQ1K4=" crossorigin="anonymous"></script>
 
 <!-- pkgdown -->
-<link href="pkgdown.css" rel="stylesheet">
-<script src="pkgdown.js"></script>
+<link href="../pkgdown.css" rel="stylesheet">
+<script src="../pkgdown.js"></script>
 
 
 
 
-<meta property="og:title" content="TODO" />
+<meta property="og:title" content="rdev: R Development Tools — rdev-package" />
+<meta property="og:description" content="My personalized collection of development packages, tools and utility functions." />
 
 
 
@@ -58,7 +59,7 @@
   </head>
 
   <body data-spy="scroll" data-target="#toc">
-    <div class="container template-title-body">
+    <div class="container template-reference-topic">
       <header>
       <div class="navbar navbar-default navbar-fixed-top" role="navigation">
   <div class="container">
@@ -70,7 +71,7 @@
         <span class="icon-bar"></span>
       </button>
       <span class="navbar-brand">
-        <a class="navbar-link" href="index.html">rdev</a>
+        <a class="navbar-link" href="../index.html">rdev</a>
         <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.2.0</span>
       </span>
     </div>
@@ -78,16 +79,16 @@
     <div id="navbar" class="navbar-collapse collapse">
       <ul class="nav navbar-nav">
         <li>
-  <a href="index.html">
+  <a href="../index.html">
     <span class="fas fa-home fa-lg"></span>
      
   </a>
 </li>
 <li>
-  <a href="reference/index.html">Reference</a>
+  <a href="../reference/index.html">Reference</a>
 </li>
 <li>
-  <a href="news/index.html">Changelog</a>
+  <a href="../news/index.html">Changelog</a>
 </li>
       </ul>
       <ul class="nav navbar-nav navbar-right">
@@ -108,108 +109,38 @@
       </header>
 
 <div class="row">
-  <div class="contents col-md-9">
+  <div class="col-md-9 contents">
     <div class="page-header">
-      <h1>TODO</h1>
+    <h1>rdev: R Development Tools</h1>
+    <small class="dont-index">Source: <a href='https://github.com/jabenninghoff/rdev/blob/master/R/rdev.R'><code>R/rdev.R</code></a></small>
+    <div class="hidden name"><code>rdev-package.Rd</code></div>
     </div>
 
-<div id="todo" class="section level1">
+    <div class="ref-description">
+    <p>My personalized collection of development packages, tools and utility functions.</p>
+    </div>
 
-<div id="content" class="section level2">
-<h2 class="hasAnchor">
-<a href="#content" class="anchor"></a>Content</h2>
-<ul class="task-list">
-<li>
-<input type="checkbox" disabled checked>
-Add README.Rmd</li>
-<li>
-<input type="checkbox" disabled checked>
-Update <code>DESCRIPTION</code> and use description data in <code>README.Rmd</code>
-</li>
-<li>
-<input type="checkbox" disabled checked>
-Add ORCID</li>
+
+
+    <h2 class="hasAnchor" id="see-also"><a class="anchor" href="#see-also"></a>See also</h2>
+
+    <div class='dont-index'><p>Useful links:</p><ul>
+<li><p><a href='https://jabenninghoff.github.io/rdev/'>https://jabenninghoff.github.io/rdev/</a></p></li>
+<li><p><a href='https://github.com/jabenninghoff/rdev'>https://github.com/jabenninghoff/rdev</a></p></li>
 </ul>
+
 </div>
-<div id="package" class="section level2">
-<h2 class="hasAnchor">
-<a href="#package" class="anchor"></a>Package</h2>
-<ul class="task-list">
-<li>
-<input type="checkbox" disabled checked>
-Write a utility function to sort <code>.Rbuildignore</code>
-</li>
-<li>
-<input type="checkbox" disabled checked>
-Implement <a href="https://pkgdown.r-lib.org">pkgdown</a>
-</li>
-<li>
-<input type="checkbox" disabled checked>
-Add links / update <a href="https://roxygen2.r-lib.org/articles/rd-formatting.html">Rd formatting</a> for all function documentation.</li>
-<li>
-<input type="checkbox" disabled checked>
-Add dummy imports to silence R CMD check note per <a href="https://github.com/tidyverse/tidyverse/blob/master/R/tidyverse.R">tidyverse</a>
-</li>
-<li>
-<input type="checkbox" disabled>
-Add tests for <code><a href="reference/check_renv.html">check_renv()</a></code>, <code><a href="reference/ci.html">ci()</a></code>, <code><a href="reference/sort_file.html">sort_file()</a></code> ?</li>
-<li>
-<input type="checkbox" disabled>
-Improved tests for <code><a href="reference/style_all.html">style_all()</a></code>, <code><a href="reference/lint_all.html">lint_all()</a></code>
-</li>
-</ul>
-</div>
-<div id="github" class="section level2">
-<h2 class="hasAnchor">
-<a href="#github" class="anchor"></a>GitHub</h2>
-<ul class="task-list">
-<li>
-<input type="checkbox" disabled checked>
-Set up <a href="https://usethis.r-lib.org/reference/github_actions.html">GitHub Actions</a><ul class="task-list">
-<li>
-<input type="checkbox" disabled checked>
-Use <a href="https://github.com/r-lib/actions/blob/master/examples/check-standard.yaml">standard</a> <code>R CMD check</code>
-</li>
-<li>
-<input type="checkbox" disabled checked>
-Use <a href="https://github.com/r-lib/actions/blob/master/examples/lint.yaml">lintr</a>
-</li>
-</ul>
-</li>
-<li>
-<input type="checkbox" disabled>
-Skip CI checks for changes in only the <code>docs/</code> directory</li>
-<li>
-<input type="checkbox" disabled>
-Faster CI checks</li>
-<li>
-<input type="checkbox" disabled>
-Run <a href="https://github.com/r-lib/actions/blob/master/examples/test-coverage.yaml">test coverage</a>
-</li>
-<li>
-<input type="checkbox" disabled>
-Add GitHub Action for html/link checking using something like <a href="https://github.com/gjtorikian/html-proofer">htmlproofer</a>
-</li>
-<li>
-<input type="checkbox" disabled>
-Switch to <a href="https://github.com/r-lib/actions/blob/master/examples/check-full.yaml">full</a> <code>R CMD check</code> ?</li>
-<li>
-<input type="checkbox" disabled>
-Autobuild <code>docs/</code> like <a href="https://github.com/r-lib/actions/blob/master/examples/pkgdown.yaml">pkgdown</a> ?</li>
-</ul>
-</div>
-</div>
+    <h2 class="hasAnchor" id="author"><a class="anchor" href="#author"></a>Author</h2>
+
+    <p><strong>Maintainer</strong>: John Benninghoff <a href='mailto:jbenninghoff@mac.com'>jbenninghoff@mac.com</a> (<a href='https://orcid.org/0000-0002-6230-4742'>ORCID</a>)</p>
 
   </div>
-
   <div class="col-md-3 hidden-xs hidden-sm" id="pkgdown-sidebar">
     <nav id="toc" data-toggle="toc" class="sticky-top">
       <h2 data-toc-skip>Contents</h2>
     </nav>
   </div>
-
 </div>
-
 
 
       <footer>
