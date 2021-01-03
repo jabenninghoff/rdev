@@ -2,6 +2,10 @@ url: https://jabenninghoff.github.io/rdev/
 
 reference:
 
+- title: "rdev-package"
+  contents:
+  - rdev-package
+
 - title: "Package Maintenance"
   contents:
   - check_renv
