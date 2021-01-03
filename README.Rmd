@@ -41,6 +41,11 @@ Or using renv:
 renv::install("jabenninghoff/rdev")
 ```
 
+## Development
+
+- Changelog: [NEWS](NEWS.md)
+- Planned: [TODO](TODO.md)
+
 ## Examples
 
 For my workflow, I typically check renv when I start:
@@ -56,7 +61,3 @@ I also have a `ci()` function to run all my continuous integration tests locally
 ```{r}
 ci()
 ```
-
-## Future Development
-
-[TODO](TODO.md)
