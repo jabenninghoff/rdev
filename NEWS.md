@@ -1,3 +1,7 @@
+# rdev 0.2.0
+
+* installing rdev will now automatically install preferred development tools like tidyverse, including: styler, lintr, rcmdcheck, renv, miniUI (for RStudio Addin support), devtools, and rmarkdown
+
 # rdev 0.1.2
 
 * minor updates to package and site (https://jabenninghoff.github.io/rdev/)
