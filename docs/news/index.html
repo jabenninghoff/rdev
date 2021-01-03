@@ -6,7 +6,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>License • rdev</title>
+<title>Changelog • rdev</title>
 
 
 <!-- jquery -->
@@ -18,8 +18,8 @@
 <script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.4.1/js/bootstrap.min.js" integrity="sha256-nuL8/2cJ5NDSSwnKD8VqreErSWHtnEP9E7AySL+1ev4=" crossorigin="anonymous"></script>
 
 <!-- bootstrap-toc -->
-<link rel="stylesheet" href="bootstrap-toc.css">
-<script src="bootstrap-toc.js"></script>
+<link rel="stylesheet" href="../bootstrap-toc.css">
+<script src="../bootstrap-toc.js"></script>
 
 <!-- Font Awesome icons -->
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.12.1/css/all.min.css" integrity="sha256-mmgLkCYLUQbXn0B1SRqzHar6dCnv9oZFPEC1g1cwlkk=" crossorigin="anonymous" />
@@ -33,13 +33,13 @@
 <script src="https://cdnjs.cloudflare.com/ajax/libs/headroom/0.11.0/jQuery.headroom.min.js" integrity="sha256-ZX/yNShbjqsohH1k95liqY9Gd8uOiE1S4vZc+9KQ1K4=" crossorigin="anonymous"></script>
 
 <!-- pkgdown -->
-<link href="pkgdown.css" rel="stylesheet">
-<script src="pkgdown.js"></script>
+<link href="../pkgdown.css" rel="stylesheet">
+<script src="../pkgdown.js"></script>
 
 
 
 
-<meta property="og:title" content="License" />
+<meta property="og:title" content="Changelog" />
 
 
 
@@ -58,7 +58,7 @@
   </head>
 
   <body data-spy="scroll" data-target="#toc">
-    <div class="container template-title-body">
+    <div class="container template-news">
       <header>
       <div class="navbar navbar-default navbar-fixed-top" role="navigation">
   <div class="container">
@@ -70,7 +70,7 @@
         <span class="icon-bar"></span>
       </button>
       <span class="navbar-brand">
-        <a class="navbar-link" href="index.html">rdev</a>
+        <a class="navbar-link" href="../index.html">rdev</a>
         <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.1.2</span>
       </span>
     </div>
@@ -78,16 +78,16 @@
     <div id="navbar" class="navbar-collapse collapse">
       <ul class="nav navbar-nav">
         <li>
-  <a href="index.html">
+  <a href="../index.html">
     <span class="fas fa-home fa-lg"></span>
      
   </a>
 </li>
 <li>
-  <a href="reference/index.html">Reference</a>
+  <a href="../reference/index.html">Reference</a>
 </li>
 <li>
-  <a href="news/index.html">Changelog</a>
+  <a href="../news/index.html">Changelog</a>
 </li>
       </ul>
       <ul class="nav navbar-nav navbar-right">
@@ -108,15 +108,50 @@
       </header>
 
 <div class="row">
-  <div class="contents col-md-9">
+  <div class="col-md-9 contents">
     <div class="page-header">
-      <h1>License</h1>
+      <h1 data-toc-skip>Changelog <small></small></h1>
+      <small>Source: <a href='https://github.com/jabenninghoff/rdev/blob/master/NEWS.md'><code>NEWS.md</code></a></small>
     </div>
 
-<pre>YEAR: 2021
-COPYRIGHT HOLDER: rdev authors
-</pre>
-
+    <div id="rdev-012" class="section level1">
+<h1 class="page-header" data-toc-text="0.1.2">
+<a href="#rdev-012" class="anchor"></a>rdev 0.1.2</h1>
+<ul>
+<li>minor updates to package and site (<a href="https://jabenninghoff.github.io/rdev/" class="uri">https://jabenninghoff.github.io/rdev/</a>)</li>
+</ul>
+</div>
+    <div id="rdev-011" class="section level1">
+<h1 class="page-header" data-toc-text="0.1.1">
+<a href="#rdev-011" class="anchor"></a>rdev 0.1.1</h1>
+<p>Maintenance release</p>
+<div id="updates" class="section level2">
+<h2 class="hasAnchor">
+<a href="#updates" class="anchor"></a>Updates</h2>
+<ul>
+<li><p><code><a href="../reference/ci.html">ci()</a></code>: updated to match my preferred GitHub workflow: <code>use_github_action_check_standard()</code> with <code>--as-cran</code> removed</p></li>
+<li><p>documentation updates for all functions (style, links)</p></li>
+</ul>
+</div>
+</div>
+    <div id="rdev-010" class="section level1">
+<h1 class="page-header" data-toc-text="0.1.0">
+<a href="#rdev-010" class="anchor"></a>rdev 0.1.0</h1>
+<p>Initial GitHub release</p>
+<div id="new-features" class="section level2">
+<h2 class="hasAnchor">
+<a href="#new-features" class="anchor"></a>New Features</h2>
+<ul>
+<li><p><code>./tools/setup-r</code>: shell script to install development packages to site repository on macOS + Homebrew</p></li>
+<li><p><code><a href="../reference/check_renv.html">check_renv()</a></code>: convenience function that runs <code>renv</code> <code>status()</code>, <code>clean()</code>, and optionally <code><a href="https://rdrr.io/r/stats/update.html">update()</a></code> (on by default).</p></li>
+<li><p><code><a href="../reference/style_all.html">style_all()</a></code>: style all <code>.R</code> and <code>.Rmd</code> files in a project using <code>styler</code></p></li>
+<li><p><code><a href="../reference/lint_all.html">lint_all()</a></code>: lint all <code>.R</code> and <code>.Rmd</code> files in a project using <code>lintr</code></p></li>
+<li><p><code><a href="../reference/sort_file.html">sort_file()</a></code>: sort a file using R <code><a href="https://rdrr.io/r/base/sort.html">sort()</a></code>, similar to the unix <code>sort</code> command</p></li>
+<li><p><code><a href="../reference/sort_rbuildignore.html">sort_rbuildignore()</a></code>: sort the <code>.Rbuildignore</code> file using <code><a href="../reference/sort_file.html">sort_file()</a></code>, because unsorted is annoying</p></li>
+<li><p><code><a href="../reference/ci.html">ci()</a></code>: run continuous integration tests locally: lint, R CMD check, and style (off by default).</p></li>
+</ul>
+</div>
+</div>
   </div>
 
   <div class="col-md-3 hidden-xs hidden-sm" id="pkgdown-sidebar">
@@ -126,7 +161,6 @@ COPYRIGHT HOLDER: rdev authors
   </div>
 
 </div>
-
 
 
       <footer>
