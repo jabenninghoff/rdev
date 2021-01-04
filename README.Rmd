@@ -43,7 +43,7 @@ renv::install("jabenninghoff/rdev")
 
 ## Development
 
-- Changelog: [NEWS](NEWS.md)
+- Changelog: See "Changelog" or `NEWS.md`.
 - Planned: [TODO](TODO.md)
 
 ## Examples

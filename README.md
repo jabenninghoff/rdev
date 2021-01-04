@@ -34,7 +34,7 @@ renv::install("jabenninghoff/rdev")
 
 ## Development
 
--   Changelog: [NEWS](NEWS.md)
+-   Changelog: See “Changelog” or `NEWS.md`.
 -   Planned: [TODO](TODO.md)
 
 ## Examples
@@ -72,16 +72,16 @@ ci()
 #> * checking DESCRIPTION meta-information ... OK
 #> * checking for LF line-endings in source and make files and shell scripts
 #> * checking for empty or unneeded directories
-#> * building ‘rdev_0.1.2.9000.tar.gz’
+#> * building ‘rdev_0.2.0.9000.tar.gz’
 #> 
 #> ── R CMD check ─────────────────────────────────────────────────────────────────
-#> * using log directory ‘/private/var/folders/4v/k12n8ksn77l4_bcsvc6kfgk00000gn/T/RtmpTEan6u/file1461a74441f46/rdev.Rcheck’
+#> * using log directory ‘/private/var/folders/4v/k12n8ksn77l4_bcsvc6kfgk00000gn/T/RtmpKaXjxL/file73b269842e47/rdev.Rcheck’
 #> * using R version 4.0.3 (2020-10-10)
 #> * using platform: x86_64-apple-darwin18.7.0 (64-bit)
 #> * using session charset: UTF-8
 #> * using option ‘--no-manual’
 #> * checking for file ‘rdev/DESCRIPTION’ ... OK
-#> * this is package ‘rdev’ version ‘0.1.2.9000’
+#> * this is package ‘rdev’ version ‘0.2.0.9000’
 #> * package encoding: UTF-8
 #> * checking package namespace information ... OK
 #> * checking package dependencies ... OK
@@ -128,8 +128,8 @@ ci()
 #> * DONE
 #> 
 #> Status: OK
-#> ── R CMD check results ──────────────────────────────────── rdev 0.1.2.9000 ────
-#> Duration: 7.5s
+#> ── R CMD check results ──────────────────────────────────── rdev 0.2.0.9000 ────
+#> Duration: 20s
 #> 
 #> 0 errors ✓ | 0 warnings ✓ | 0 notes ✓
 ```
