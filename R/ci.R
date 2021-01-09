@@ -17,6 +17,8 @@
 #' ci(styler = TRUE)
 #' ci(styler = TRUE, lintr = FALSE, rcmdcheck = FALSE)
 #' }
+# add tests using local_create_package() per https://testthat.r-lib.org/articles/test-fixtures.html
+# test styler and lintr, don't test rcmdcheck
 ci <- function(styler = FALSE, lintr = TRUE, rcmdcheck = TRUE) {
   if (styler) {
     styler::style_dir(".", exclude_dirs = c("renv"))

@@ -21,6 +21,7 @@
 #' )
 #' }
 #' @export
+# add tests using local_create_package() per https://testthat.r-lib.org/articles/test-fixtures.html
 style_all <- function(path = ".", filetype = c("R", "Rprofile", "Rmd"),
                       exclude_dirs = c(".git", ".github", "packrat", "renv")) {
   styler::style_dir(path = path, filetype = filetype, exclude_dirs = exclude_dirs)

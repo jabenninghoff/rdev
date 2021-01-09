@@ -18,6 +18,7 @@
 #' )
 #' }
 #' @export
+# add tests using local_create_package() per https://testthat.r-lib.org/articles/test-fixtures.html
 lint_all <- function(path = ".", exclusions = list(".git", ".github", "packrat", "renv")) {
   lintr::lint_dir(path = path, exclusions = exclusions)
 }
