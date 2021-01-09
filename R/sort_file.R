@@ -9,6 +9,7 @@
 #' \dontrun{
 #' sort_file(".Rbuildignore")
 #' }
+# add tests using test fixtures per https://testthat.r-lib.org/articles/test-fixtures.html
 sort_file <- function(name) {
   con <- file(name)
   v <- sort(readLines(con))
