@@ -14,6 +14,7 @@
 - [x] Add dummy imports to silence R CMD check note per [tidyverse](https://github.com/tidyverse/tidyverse/blob/master/R/tidyverse.R)
 - [ ] Update Roxygen comments after reading package book, documentation
 - [ ] Add tests per comments in `R/` after reading package book, documentation
+- [ ] Switch from development versions of `styler` (1.3.2.9000) and `lintr` (2.0.1.9000) when a new release becomes available - both were needed to address bugs in the current release versions, 1.3.2 and 2.0.1.
 
 ## GitHub
 
