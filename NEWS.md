@@ -1,3 +1,7 @@
+# rdev 0.2.2
+
+* minor updates, maintenance
+
 # rdev 0.2.1
 
 * bug fixes
