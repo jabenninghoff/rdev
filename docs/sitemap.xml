@@ -1,27 +1,27 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   <url>
-    <loc>https://jabenninghoff.github.io/rdev//index.html</loc>
+    <loc>https://jabenninghoff.github.io/rdev/index.html</loc>
   </url>
   <url>
-    <loc>https://jabenninghoff.github.io/rdev//reference/check_renv.html</loc>
+    <loc>https://jabenninghoff.github.io/rdev/reference/check_renv.html</loc>
   </url>
   <url>
-    <loc>https://jabenninghoff.github.io/rdev//reference/ci.html</loc>
+    <loc>https://jabenninghoff.github.io/rdev/reference/ci.html</loc>
   </url>
   <url>
-    <loc>https://jabenninghoff.github.io/rdev//reference/lint_all.html</loc>
+    <loc>https://jabenninghoff.github.io/rdev/reference/lint_all.html</loc>
   </url>
   <url>
-    <loc>https://jabenninghoff.github.io/rdev//reference/rdev-package.html</loc>
+    <loc>https://jabenninghoff.github.io/rdev/reference/rdev-package.html</loc>
   </url>
   <url>
-    <loc>https://jabenninghoff.github.io/rdev//reference/sort_file.html</loc>
+    <loc>https://jabenninghoff.github.io/rdev/reference/sort_file.html</loc>
   </url>
   <url>
-    <loc>https://jabenninghoff.github.io/rdev//reference/sort_rbuildignore.html</loc>
+    <loc>https://jabenninghoff.github.io/rdev/reference/sort_rbuildignore.html</loc>
   </url>
   <url>
-    <loc>https://jabenninghoff.github.io/rdev//reference/style_all.html</loc>
+    <loc>https://jabenninghoff.github.io/rdev/reference/style_all.html</loc>
   </url>
 </urlset>
