@@ -103,7 +103,10 @@ build_analysis_site <- function(pkg = ".", ...) {
   rmarkdown::render_site(tmp_dir)
 
   # move rendered files to docs/, do not overwrite, skip data/
-  fs::dir_delete(paste0(tmp_dir, "/docs/data"))
+  tmp_data <- paste0(tmp_dir, "/docs/data")
+  if (fs::dir_exists(tmp_data)) {
+    fs::dir_delete(tmp_data)
+  }
   fs::dir_copy(paste0(tmp_dir, "/docs"), pkg)
 }
 
