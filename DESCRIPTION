@@ -16,13 +16,18 @@ Roxygen: list(markdown = TRUE)
 RoxygenNote: 7.1.1
 X-rdev-comment: include all development packages in "Imports" to enable installation through rdev
 Imports: 
-    styler (>= 1.3.2.9000),
+    desc,
+    fs,
     lintr (>= 2.0.1.9000),
+    pkgdown,
+    purrr,
     rcmdcheck,
-    renv,
-    miniUI,
+    rmarkdown,
+    styler (>= 1.3.2.9000),
+    yaml,
     devtools,
-    rmarkdown
+    miniUI,
+    renv
 Suggests: 
     tibble,
     testthat (>= 3.0.0)
