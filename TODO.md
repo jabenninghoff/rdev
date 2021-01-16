@@ -12,7 +12,7 @@
 - [x] Implement [pkgdown](https://pkgdown.r-lib.org)
 - [x] Add links / update [Rd formatting](https://roxygen2.r-lib.org/articles/rd-formatting.html) for all function documentation.
 - [x] Add dummy imports to silence R CMD check note per [tidyverse](https://github.com/tidyverse/tidyverse/blob/master/R/tidyverse.R)
-- [ ] Migrate `build_analysis_site()` to rdev
+- [x] Migrate `build_analysis_site()` to rdev
 - [ ] Add messages, warnings to `build_analysis_site()` to report on progress
 - [ ] Update Roxygen comments after reading package book, documentation
 - [ ] Add tests per comments in `R/` after reading package book, documentation
