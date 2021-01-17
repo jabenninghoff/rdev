@@ -6,7 +6,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>Lint all files — lint_all • rdev</title>
+<title>Build Analysis Site — build_analysis_site • rdev</title>
 
 
 <!-- jquery -->
@@ -39,9 +39,9 @@
 
 
 
-<meta property="og:title" content="Lint all files — lint_all" />
-<meta property="og:description" content="Lint all files in a project. Implemented as a wrapper for lintr::lint_dir() that excludes
-.git, .github, packrat, and renv by default." />
+<meta property="og:title" content="Build Analysis Site — build_analysis_site" />
+<meta property="og:description" content="build_analysis_site() is a wrapper for pkgdown::build_site() that adds an 'Analysis' menu
+containing rendered versions of all .Rmd files in analysis/." />
 
 
 
@@ -112,45 +112,57 @@
 <div class="row">
   <div class="col-md-9 contents">
     <div class="page-header">
-    <h1>Lint all files</h1>
-    <small class="dont-index">Source: <a href='https://github.com/jabenninghoff/rdev/blob/master/R/lint_all.R'><code>R/lint_all.R</code></a></small>
-    <div class="hidden name"><code>lint_all.Rd</code></div>
+    <h1>Build Analysis Site</h1>
+    <small class="dont-index">Source: <a href='https://github.com/jabenninghoff/rdev/blob/master/R/build_analysis_site.R'><code>R/build_analysis_site.R</code></a></small>
+    <div class="hidden name"><code>build_analysis_site.Rd</code></div>
     </div>
 
     <div class="ref-description">
-    <p>Lint all files in a project. Implemented as a wrapper for <code><a href='https://rdrr.io/pkg/lintr/man/lint_dir.html'>lintr::lint_dir()</a></code> that excludes
-<code>.git</code>, <code>.github</code>, <code>packrat</code>, and <code>renv</code> by default.</p>
+    <p><code>build_analysis_site()</code> is a wrapper for <code><a href='https://pkgdown.r-lib.org/reference/build_site.html'>pkgdown::build_site()</a></code> that adds an 'Analysis' menu
+containing rendered versions of all .Rmd files in <code>analysis/</code>.</p>
     </div>
 
-    <pre class="usage"><span class='fu'>lint_all</span><span class='op'>(</span>path <span class='op'>=</span> <span class='st'>"."</span>, exclusions <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/list.html'>list</a></span><span class='op'>(</span><span class='st'>".git"</span>, <span class='st'>".github"</span>, <span class='st'>"packrat"</span>, <span class='st'>"renv"</span><span class='op'>)</span><span class='op'>)</span></pre>
+    <pre class="usage"><span class='fu'>build_analysis_site</span><span class='op'>(</span>pkg <span class='op'>=</span> <span class='st'>"."</span>, <span class='va'>...</span><span class='op'>)</span></pre>
 
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
     <table class="ref-arguments">
     <colgroup><col class="name" /><col class="desc" /></colgroup>
     <tr>
-      <th>path</th>
-      <td><p>the path to the base directory, by default,
-it will be searched in the parent directories of the current directory.</p></td>
+      <th>pkg</th>
+      <td><p>Path to package.</p></td>
     </tr>
     <tr>
-      <th>exclusions</th>
-      <td><p>exclusions for <code><a href='https://rdrr.io/pkg/lintr/man/exclude.html'>lintr::exclude()</a></code>, relative to the
-package path.</p></td>
+      <th>...</th>
+      <td><p>additional arguments passed to <code><a href='https://pkgdown.r-lib.org/reference/build_site.html'>pkgdown::build_site()</a></code></p></td>
     </tr>
     </table>
 
-    <h2 class="hasAnchor" id="value"><a class="anchor" href="#value"></a>Value</h2>
+    <h2 class="hasAnchor" id="details"><a class="anchor" href="#details"></a>Details</h2>
 
-    <p>A list of lint objects.</p>
+    <p>When run, <code>build_analysis_site()</code>:</p><ol>
+<li><p>Reads base pkgdown settings from <code>pkgdown/_base.yml</code></p></li>
+<li><p>Writes base settings to <code>pkgdown/_pkgdown.yml</code></p></li>
+<li><p>Creates a template using <code><a href='https://pkgdown.r-lib.org/reference/templates.html'>pkgdown::template_navbar()</a></code> and inserts an <code>analysis</code> menu with
+links to html versions of each .Rmd file in <code>analysis/</code></p></li>
+<li><p>Writes the template to <code>pkgdown/_pkgdown.yml</code></p></li>
+<li><p>Runs <code><a href='https://pkgdown.r-lib.org/reference/clean_site.html'>pkgdown::clean_site()</a></code> and <code><a href='https://pkgdown.r-lib.org/reference/build_site.html'>pkgdown::build_site()</a></code></p></li>
+<li><p>Creates a <code>_site.yml</code> file based on the final <code>_pkgdown.yml</code> that clones the pkgdown navbar
+in a temporary build directory</p></li>
+<li><p>Copies the following from <code>analysis/</code> into the build directory: <code>*.Rmd</code>, <code>data/</code>, <code>assets/</code>,
+<code>rendered/</code></p></li>
+<li><p>Changes <code>*.Rmd</code> from <code>html_notebook</code> to <code>html_document</code> using <code><a href='to_document.html'>to_document()</a></code></p></li>
+<li><p>Builds a site using <code><a href='https://rdrr.io/pkg/rmarkdown/man/render_site.html'>rmarkdown::render_site()</a></code> using modified <code>html_document</code> output settings
+to render files with the look and feel of <code>html_notebook</code></p></li>
+<li><p>Moves the rendered files to <code>docs/</code>: <code>*.html</code>, <code>data/</code>, <code>assets/</code>, without overwriting</p></li>
+</ol>
+
+<p><code>build_analysis_site()</code> will fail with an error if there are no files in <code>analysis/*.Rmd</code>.</p>
+<p><strong>Warning:</strong> <code>build_analysis_site()</code> is currently considered Experimental. Currently only
+<code>build_analysis_site(pkg = ".")</code> is supported.</p>
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
     <pre class="examples"><div class='input'><span class='kw'>if</span> <span class='op'>(</span><span class='cn'>FALSE</span><span class='op'>)</span> <span class='op'>{</span>
-<span class='fu'>lint_all</span><span class='op'>(</span><span class='op'>)</span>
-<span class='fu'>lint_all</span><span class='op'>(</span><span class='st'>"notebooks"</span><span class='op'>)</span>
-<span class='fu'>lint_all</span><span class='op'>(</span>
-  path <span class='op'>=</span> <span class='st'>"./inst"</span>,
-  exclusions <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/list.html'>list</a></span><span class='op'>(</span><span class='st'>"inst/example/bad.R"</span><span class='op'>)</span>
-<span class='op'>)</span>
+<span class='fu'>build_analysis_site</span><span class='op'>(</span><span class='op'>)</span>
 <span class='op'>}</span>
 </div></pre>
   </div>

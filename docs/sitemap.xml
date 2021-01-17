@@ -4,6 +4,9 @@
     <loc>https://jabenninghoff.github.io/rdev/index.html</loc>
   </url>
   <url>
+    <loc>https://jabenninghoff.github.io/rdev/reference/build_analysis_site.html</loc>
+  </url>
+  <url>
     <loc>https://jabenninghoff.github.io/rdev/reference/check_renv.html</loc>
   </url>
   <url>
@@ -23,5 +26,8 @@
   </url>
   <url>
     <loc>https://jabenninghoff.github.io/rdev/reference/style_all.html</loc>
+  </url>
+  <url>
+    <loc>https://jabenninghoff.github.io/rdev/reference/to_document.html</loc>
   </url>
 </urlset>
