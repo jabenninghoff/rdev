@@ -9,6 +9,8 @@ reference:
 - title: "Package Maintenance"
   contents:
   - check_renv
+  - build_analysis_site
+  - to_document
 
 - title: "Continous Integration"
   contents:
