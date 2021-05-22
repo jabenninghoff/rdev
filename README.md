@@ -49,16 +49,14 @@ check_renv()
 #> * The project is already synchronized with the lockfile.
 #> 
 #> renv::clean()
-#> * No stale lockfiles were found.
+#> * No stale package locks were found.
 #> * No temporary directories were found in the project library.
-#> * No non-system packages were discovered in the system library.
-#> * No unused packages were found in the project library.
-#> * The project is already clean.
+#> * The project has been cleaned.
 #> 
 #> renv::update()
 #> * Querying repositories for available source packages ... Done!
 #> * Checking for updated packages ... Done!
-#> * All packages are up-to-date.
+#> * All packages appear to be up-to-date.
 ```
 
 I also have a `ci()` function to run all my continuous integration tests
@@ -72,16 +70,17 @@ ci()
 #> * checking DESCRIPTION meta-information ... OK
 #> * checking for LF line-endings in source and make files and shell scripts
 #> * checking for empty or unneeded directories
-#> * building ‘rdev_0.2.2.tar.gz’
+#> Omitted ‘LazyData’ from DESCRIPTION
+#> * building ‘rdev_0.3.1.tar.gz’
 #> 
 #> ── R CMD check ─────────────────────────────────────────────────────────────────
-#> * using log directory ‘/private/var/folders/4v/k12n8ksn77l4_bcsvc6kfgk00000gn/T/RtmpuzU27s/file121ab4f5bba36/rdev.Rcheck’
-#> * using R version 4.0.3 (2020-10-10)
+#> * using log directory ‘/private/var/folders/4v/k12n8ksn77l4_bcsvc6kfgk00000gn/T/RtmpllTDfm/filecb40228e5aa1/rdev.Rcheck’
+#> * using R version 4.1.0 (2021-05-18)
 #> * using platform: x86_64-apple-darwin18.7.0 (64-bit)
 #> * using session charset: UTF-8
 #> * using option ‘--no-manual’
 #> * checking for file ‘rdev/DESCRIPTION’ ... OK
-#> * this is package ‘rdev’ version ‘0.2.2’
+#> * this is package ‘rdev’ version ‘0.3.1’
 #> * package encoding: UTF-8
 #> * checking package namespace information ... OK
 #> * checking package dependencies ... OK
@@ -128,8 +127,8 @@ ci()
 #> * DONE
 #> 
 #> Status: OK
-#> ── R CMD check results ───────────────────────────────────────── rdev 0.2.2 ────
-#> Duration: 20.1s
+#> ── R CMD check results ───────────────────────────────────────── rdev 0.3.1 ────
+#> Duration: 18.5s
 #> 
 #> 0 errors ✓ | 0 warnings ✓ | 0 notes ✓
 ```
