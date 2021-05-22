@@ -1,8 +1,8 @@
-pandoc: 2.11.3.2
+pandoc: '2.13'
 pkgdown: 1.6.1
 pkgdown_sha: ~
 articles: {}
-last_built: 2021-01-17T01:00Z
+last_built: 2021-05-22T15:47Z
 urls:
   reference: https://jabenninghoff.github.io/rdev/reference
   article: https://jabenninghoff.github.io/rdev/articles
