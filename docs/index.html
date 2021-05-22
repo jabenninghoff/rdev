@@ -31,7 +31,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="index.html">rdev</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.3.0</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.3.1</span>
       </span>
     </div>
 
@@ -113,16 +113,14 @@
 <span class="co">#&gt; * The project is already synchronized with the lockfile.</span>
 <span class="co">#&gt; </span>
 <span class="co">#&gt; renv::clean()</span>
-<span class="co">#&gt; * No stale lockfiles were found.</span>
+<span class="co">#&gt; * No stale package locks were found.</span>
 <span class="co">#&gt; * No temporary directories were found in the project library.</span>
-<span class="co">#&gt; * No non-system packages were discovered in the system library.</span>
-<span class="co">#&gt; * No unused packages were found in the project library.</span>
-<span class="co">#&gt; * The project is already clean.</span>
+<span class="co">#&gt; * The project has been cleaned.</span>
 <span class="co">#&gt; </span>
 <span class="co">#&gt; renv::update()</span>
 <span class="co">#&gt; * Querying repositories for available source packages ... Done!</span>
 <span class="co">#&gt; * Checking for updated packages ... Done!</span>
-<span class="co">#&gt; * All packages are up-to-date.</span></code></pre></div>
+<span class="co">#&gt; * All packages appear to be up-to-date.</span></code></pre></div>
 <p>I also have a <code><a href="reference/ci.html">ci()</a></code> function to run all my continuous integration tests locally:</p>
 <div class="sourceCode" id="cb4"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="fu"><a href="reference/ci.html">ci</a></span><span class="op">(</span><span class="op">)</span>
@@ -132,16 +130,17 @@
 <span class="co">#&gt; * checking DESCRIPTION meta-information ... OK</span>
 <span class="co">#&gt; * checking for LF line-endings in source and make files and shell scripts</span>
 <span class="co">#&gt; * checking for empty or unneeded directories</span>
-<span class="co">#&gt; * building ‘rdev_0.2.2.tar.gz’</span>
+<span class="co">#&gt; Omitted ‘LazyData’ from DESCRIPTION</span>
+<span class="co">#&gt; * building ‘rdev_0.3.1.tar.gz’</span>
 <span class="co">#&gt; </span>
 <span class="co">#&gt; ── R CMD check ─────────────────────────────────────────────────────────────────</span>
-<span class="co">#&gt; * using log directory ‘/private/var/folders/4v/k12n8ksn77l4_bcsvc6kfgk00000gn/T/RtmpuzU27s/file121ab4f5bba36/rdev.Rcheck’</span>
-<span class="co">#&gt; * using R version 4.0.3 (2020-10-10)</span>
+<span class="co">#&gt; * using log directory ‘/private/var/folders/4v/k12n8ksn77l4_bcsvc6kfgk00000gn/T/RtmpllTDfm/filecb40228e5aa1/rdev.Rcheck’</span>
+<span class="co">#&gt; * using R version 4.1.0 (2021-05-18)</span>
 <span class="co">#&gt; * using platform: x86_64-apple-darwin18.7.0 (64-bit)</span>
 <span class="co">#&gt; * using session charset: UTF-8</span>
 <span class="co">#&gt; * using option ‘--no-manual’</span>
 <span class="co">#&gt; * checking for file ‘rdev/DESCRIPTION’ ... OK</span>
-<span class="co">#&gt; * this is package ‘rdev’ version ‘0.2.2’</span>
+<span class="co">#&gt; * this is package ‘rdev’ version ‘0.3.1’</span>
 <span class="co">#&gt; * package encoding: UTF-8</span>
 <span class="co">#&gt; * checking package namespace information ... OK</span>
 <span class="co">#&gt; * checking package dependencies ... OK</span>
@@ -188,8 +187,8 @@
 <span class="co">#&gt; * DONE</span>
 <span class="co">#&gt; </span>
 <span class="co">#&gt; Status: OK</span>
-<span class="co">#&gt; ── R CMD check results ───────────────────────────────────────── rdev 0.2.2 ────</span>
-<span class="co">#&gt; Duration: 20.1s</span>
+<span class="co">#&gt; ── R CMD check results ───────────────────────────────────────── rdev 0.3.1 ────</span>
+<span class="co">#&gt; Duration: 18.5s</span>
 <span class="co">#&gt; </span>
 <span class="co">#&gt; 0 errors ✓ | 0 warnings ✓ | 0 notes ✓</span></code></pre></div>
 </div>
