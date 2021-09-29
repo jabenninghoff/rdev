@@ -8,7 +8,7 @@ test_that("style_all returns the correct columns", {
   expect_equal(colnames(style_test), c("file", "changed"))
 })
 
-test_that("style_all tests R and and Rmd files", {
+test_that("style_all tests R and Rmd files", {
   expect_equal(nrow(style_test), 3)
 })
 
