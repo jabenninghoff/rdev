@@ -56,12 +56,8 @@ lint_all <- function(path = ".", exclusions = list(".git", ".github", "packrat",
 #'
 #' Run continuous integration tests locally.
 #'
-#' @param styler style all files:
-#'   [`styler::style_dir(".", exclude_dirs = c("renv"))`][styler::style_dir]
-#' @param lintr lint all files:
-# nolint start
-#'   [`lintr::lint_dir(path = ".", exclusions = list(".git", ".github", "packrat", "renv"))`][lintr::lint_dir]
-# nolint end
+#' @param styler style all files using [style_all()]
+#' @param lintr lint all files using [lint_all()]
 #' @param rcmdcheck run \code{R CMD check} using:
 #'   [`rcmdcheck::rcmdcheck(args = "--no-manual", error_on = "warning")`][rcmdcheck::rcmdcheck]
 #' @export ci
@@ -75,11 +71,11 @@ lint_all <- function(path = ".", exclusions = list(".git", ".github", "packrat",
 # test styler and lintr, don't test rcmdcheck
 ci <- function(styler = FALSE, lintr = TRUE, rcmdcheck = TRUE) {
   if (styler) {
-    styler::style_dir(".", exclude_dirs = c("renv"))
+    style_all()
   }
 
   if (lintr) {
-    lintr::lint_dir(path = ".", exclusions = list(".git", ".github", "packrat", "renv"))
+    lint_all()
   }
 
   if (rcmdcheck) {
