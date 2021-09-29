@@ -50,7 +50,7 @@ renv::install("jabenninghoff/rdev")
 
 For my workflow, I typically check renv when I start:
 
-```{r example}
+```{r check_renv}
 library(rdev)
 
 check_renv()
@@ -58,6 +58,6 @@ check_renv()
 
 I also have a `ci()` function to run all my continuous integration tests locally:
 
-```{r}
+```{r ci}
 ci()
 ```
