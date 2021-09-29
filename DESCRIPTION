@@ -31,7 +31,9 @@ Imports:
     renv
 Suggests: 
     tibble,
-    testthat (>= 3.0.0)
+    testthat (>= 3.0.0),
+    knitr
 Config/testthat/edition: 3
 Remotes: 
     jimhester/lintr
+VignetteBuilder: knitr
