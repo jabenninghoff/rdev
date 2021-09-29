@@ -58,6 +58,7 @@ lint_all <- function(path = ".", exclusions = list(".git", ".github", "packrat",
 #'
 #' @param styler style all files using [style_all()]
 #' @param lintr lint all files using [lint_all()]
+#' @param document run [devtools::document()]
 #' @param rcmdcheck run \code{R CMD check} using:
 #'   [`rcmdcheck::rcmdcheck(args = "--no-manual", error_on = "warning")`][rcmdcheck::rcmdcheck]
 #' @export ci
@@ -69,13 +70,17 @@ lint_all <- function(path = ".", exclusions = list(".git", ".github", "packrat",
 #' }
 # add tests using local_create_package() per https://testthat.r-lib.org/articles/test-fixtures.html
 # test styler and lintr, don't test rcmdcheck
-ci <- function(styler = FALSE, lintr = TRUE, rcmdcheck = TRUE) {
+ci <- function(styler = FALSE, lintr = TRUE, document = TRUE, rcmdcheck = TRUE) {
   if (styler) {
     style_all()
   }
 
   if (lintr) {
     lint_all()
+  }
+
+  if (document) {
+    devtools::document()
   }
 
   if (rcmdcheck) {
