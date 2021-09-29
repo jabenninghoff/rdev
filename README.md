@@ -64,23 +64,29 @@ locally:
 
 ``` r
 ci()
+#> ℹ Updating rdev documentation
+#> ℹ Loading rdev
+#> Writing NAMESPACE
+#> Writing NAMESPACE
 #> ── R CMD build ─────────────────────────────────────────────────────────────────
 #> * checking for file ‘.../DESCRIPTION’ ... OK
 #> * preparing ‘rdev’:
 #> * checking DESCRIPTION meta-information ... OK
+#> * installing the package to build vignettes
+#> * creating vignettes ... OK
 #> * checking for LF line-endings in source and make files and shell scripts
 #> * checking for empty or unneeded directories
 #> Omitted ‘LazyData’ from DESCRIPTION
-#> * building ‘rdev_0.3.1.tar.gz’
+#> * building ‘rdev_0.3.1.9000.tar.gz’
 #> 
 #> ── R CMD check ─────────────────────────────────────────────────────────────────
-#> * using log directory ‘/private/var/folders/4v/k12n8ksn77l4_bcsvc6kfgk00000gn/T/RtmpllTDfm/filecb40228e5aa1/rdev.Rcheck’
-#> * using R version 4.1.0 (2021-05-18)
+#> * using log directory ‘/private/var/folders/4v/k12n8ksn77l4_bcsvc6kfgk00000gn/T/Rtmp5pVOr0/file107216d4b69fa/rdev.Rcheck’
+#> * using R version 4.1.1 (2021-08-10)
 #> * using platform: x86_64-apple-darwin18.7.0 (64-bit)
 #> * using session charset: UTF-8
 #> * using option ‘--no-manual’
 #> * checking for file ‘rdev/DESCRIPTION’ ... OK
-#> * this is package ‘rdev’ version ‘0.3.1’
+#> * this is package ‘rdev’ version ‘0.3.1.9000’
 #> * package encoding: UTF-8
 #> * checking package namespace information ... OK
 #> * checking package dependencies ... OK
@@ -93,6 +99,7 @@ ci()
 #> * checking whether package ‘rdev’ can be installed ... OK
 #> * checking installed package size ... OK
 #> * checking package directory ... OK
+#> * checking ‘build’ directory ... OK
 #> * checking DESCRIPTION meta-information ... OK
 #> * checking top-level files ... OK
 #> * checking for left-over files ... OK
@@ -119,16 +126,23 @@ ci()
 #> * checking Rd \usage sections ... OK
 #> * checking Rd contents ... OK
 #> * checking for unstated dependencies in examples ... OK
+#> * checking installed files from ‘inst/doc’ ... OK
+#> * checking files in ‘vignettes’ ... OK
 #> * checking examples ... OK
 #> * checking for unstated dependencies in ‘tests’ ... OK
 #> * checking tests ...
 #>   Running ‘testthat.R’
 #>  OK
+#> * checking for unstated dependencies in vignettes ... OK
+#> * checking package vignettes in ‘inst/doc’ ... OK
+#> * checking running R code from vignettes ...
+#>   ‘analysis-package-layout.Rmd’ using ‘UTF-8’... OK
+#>  NONE
+#> * checking re-building of vignette outputs ... OK
 #> * DONE
-#> 
 #> Status: OK
-#> ── R CMD check results ───────────────────────────────────────── rdev 0.3.1 ────
-#> Duration: 18.5s
+#> ── R CMD check results ──────────────────────────────────── rdev 0.3.1.9000 ────
+#> Duration: 20.1s
 #> 
 #> 0 errors ✓ | 0 warnings ✓ | 0 notes ✓
 ```
