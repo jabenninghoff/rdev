@@ -71,7 +71,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="index.html">rdev</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.3.1</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.4.0</span>
       </span>
     </div>
 
@@ -85,6 +85,18 @@
 </li>
 <li>
   <a href="reference/index.html">Reference</a>
+</li>
+<li class="dropdown">
+  <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
+    Articles
+     
+    <span class="caret"></span>
+  </a>
+  <ul class="dropdown-menu" role="menu">
+    <li>
+      <a href="articles/analysis-package-layout.html">Analysis Package Layout</a>
+    </li>
+  </ul>
 </li>
 <li>
   <a href="news/index.html">Changelog</a>
@@ -168,6 +180,16 @@ Switch from development version of <code>styler</code> (1.3.2.9000) when a new r
 <li>
 <input type="checkbox" disabled>
 Switch from development versions of <code>styler</code> (1.3.2.9000) and <code>lintr</code> (2.0.1.9000) when a new release becomes available - both were needed to address bugs in the current release versions, 1.3.2 and 2.0.1.</li>
+<li>
+<input type="checkbox" disabled>
+Automate release process</li>
+<li>
+<input type="checkbox" disabled>
+Handle <code>.Rmd</code> files that already have an <code>html_document</code> section</li>
+<li>
+<input type="checkbox" disabled>
+Validate that <code>lint_all</code> works as expected within <code>ci</code>
+</li>
 </ul>
 </div>
 <div id="github" class="section level2">
@@ -208,6 +230,33 @@ Switch to <a href="https://github.com/r-lib/actions/blob/master/examples/check-f
 <input type="checkbox" disabled>
 Autobuild <code>docs/</code> like <a href="https://github.com/r-lib/actions/blob/master/examples/pkgdown.yaml">pkgdown</a> ?</li>
 </ul>
+</div>
+<div id="analysis-package-release-process" class="section level2">
+<h2 class="hasAnchor">
+<a href="#analysis-package-release-process" class="anchor"></a>Analysis package release process</h2>
+<p>Notes on manually releasing an analysis package for future automation.</p>
+<p>Prior to release:</p>
+<ul>
+<li>Update release notes (<code>NEWS.md</code>) [TODO: verify and extract version and release notes using release script]</li>
+<li>Add new notebooks to <code>README.md</code> [TODO: generate list of files in <code>analysis</code> using R code]</li>
+<li>Merge all changes to <code>main</code>
+</li>
+</ul>
+<p>Creating a release (0.7.1):</p>
+<ol>
+<li>Create release branch</li>
+<li>Update <code>Version</code> field in <code>DESCRIPTION</code> to <code>0.7.1</code>
+</li>
+<li>Commit: <code>GitHub release 0.7.1</code>
+</li>
+<li>Run build_analysis_site()</li>
+<li>Commit: <code>build_analysis_site() for release 0.7.1</code>
+</li>
+<li>Open Pull Request [TODO: include release notes]</li>
+<li>Rebase and merge</li>
+<li>Delete branch</li>
+<li>Publish new GitHub release. Name: <code>0.7.1</code>, Title: <code>0.7.1</code>, Target commit: <code>build_analysis_site() for release 0.7.1</code>, Description: blank [TODO: use release notes]</li>
+</ol>
 </div>
 </div>
 
