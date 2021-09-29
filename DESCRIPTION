@@ -19,6 +19,7 @@ Imports:
     desc,
     fs,
     lintr (>= 2.0.1.9000),
+    markdown,
     pkgdown,
     purrr,
     rcmdcheck,
