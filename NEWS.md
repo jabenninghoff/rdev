@@ -1,3 +1,15 @@
+# rdev 0.4.0
+
+* Add [`devtools::document()`](https://devtools.r-lib.org/reference/document.html) option to `ci()`, turned on by default
+
+* Add R Analysis Package layout definition, migrated from [rtraining](https://jabenninghoff.github.io/rtraining/)
+
+* Update `ci()` to use `style_all()` and `lint_all()` for consistency
+
+* Add `import` directory to `build_analysis_site()`
+
+* minor updates, improved tests, maintenance
+
 # rdev 0.3.1
 
 * maintenance release, updated for R 4.1.0
@@ -24,7 +36,7 @@
 
 # rdev 0.1.1
 
-Maintenance release
+* maintenance release
 
 ## Updates
 
