@@ -94,19 +94,17 @@ build_analysis_site <- function(pkg = ".", ...) {
   yaml::write_yaml(site_yml, paste0(tmp_dir, "/_site.yml"))
 
   # copy files from analysis/ into build directory, changing html_notebook to html_document
-  # warning: assumes assets, data, and rendered are directories
-  analysis_dirs <- fs::dir_ls("analysis", regexp = "/(assets|data|rendered)$")
+  # warning: will fail if assets, imports, data, and rendered are not directories
+  analysis_dirs <- fs::dir_ls("analysis", regexp = "/(assets|data|import|rendered)$")
   purrr::walk(analysis_dirs, fs::dir_copy, tmp_dir)
   purrr::walk(notebooks, to_document, tmp_dir)
 
   # run render_site()
   rmarkdown::render_site(tmp_dir)
 
-  # move rendered files to docs/, do not overwrite, skip data/
-  tmp_data <- paste0(tmp_dir, "/docs/data")
-  if (fs::dir_exists(tmp_data)) {
-    fs::dir_delete(tmp_data)
-  }
+  # move rendered files to docs/, do not overwrite, skip data/, import/
+  fs::dir_delete(paste0(tmp_dir, "/docs/data"))
+  fs::dir_delete(paste0(tmp_dir, "/docs/import"))
   fs::dir_copy(paste0(tmp_dir, "/docs"), pkg)
 }
 
