@@ -4,12 +4,14 @@
 \alias{ci}
 \title{Local CI}
 \usage{
-ci(styler = FALSE, lintr = TRUE, rcmdcheck = TRUE)
+ci(styler = FALSE, lintr = TRUE, document = TRUE, rcmdcheck = TRUE)
 }
 \arguments{
 \item{styler}{style all files using \code{\link[=style_all]{style_all()}}}
 
 \item{lintr}{lint all files using \code{\link[=lint_all]{lint_all()}}}
+
+\item{document}{run \code{\link[devtools:document]{devtools::document()}}}
 
 \item{rcmdcheck}{run \code{R CMD check} using:
 \code{\link[rcmdcheck:rcmdcheck]{rcmdcheck::rcmdcheck(args = "--no-manual", error_on = "warning")}}}
