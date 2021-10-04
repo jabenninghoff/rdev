@@ -4,11 +4,7 @@
 \alias{style_all}
 \title{Style all files}
 \usage{
-style_all(
-  path = ".",
-  filetype = c("R", "Rprofile", "Rmd"),
-  exclude_dirs = c(".git", ".github", "packrat", "renv")
-)
+style_all(path = ".", filetype = c("R", "Rprofile", "Rmd", "Rnw"), ...)
 }
 \arguments{
 \item{path}{Path to a directory with files to transform.}
@@ -16,23 +12,44 @@ style_all(
 \item{filetype}{Vector of file extensions indicating which file types should
 be styled. Case is ignored, and the \code{.} is optional, e.g.
 \code{c(".R", ".Rmd")}, or \code{c("r", "rmd")}. Supported values (after
-standardization) are: "r", "rprofile", "rmd", "rnw".}
+standardization) are: "r", "rprofile", "rmd", "rmarkdown", "rnw". Rmarkdown is treated as Rmd.}
 
-\item{exclude_dirs}{Character vector with directories to exclude
+\item{...}{
+  Arguments passed on to \code{\link[styler:style_dir]{styler::style_dir}}
+  \describe{
+    \item{\code{style}}{A function that creates a style guide to use, by default
+\code{\link[styler:tidyverse_style]{tidyverse_style()}} (without the parentheses). Not used
+further except to construct the argument \code{transformers}. See
+\code{\link[styler:style_guides]{style_guides()}} for details.}
+    \item{\code{transformers}}{A set of transformer functions. This argument is most
+conveniently constructed via the \code{style} argument and \code{...}. See
+'Examples'.}
+    \item{\code{recursive}}{A logical value indicating whether or not files in subdirectories
+of \code{path} should be styled as well.}
+    \item{\code{exclude_files}}{Character vector with paths to files that should be
+excluded from styling.}
+    \item{\code{exclude_dirs}}{Character vector with directories to exclude
 (recursively).}
+    \item{\code{include_roxygen_examples}}{Whether or not to style code in roxygen
+examples.}
+    \item{\code{base_indention}}{Integer scalar indicating by how many spaces the whole
+output text should be indented. Note that this is not the same as splitting
+by line and add a \code{base_indention} spaces before the code in the case
+multi-line strings are present. See 'Examples'.}
+    \item{\code{dry}}{To indicate whether styler should run in \emph{dry} mode, i.e. refrain
+from writing back to files .\code{"on"} and \code{"fail"} both don't write back, the
+latter returns an error if the input code is not identical to the result
+of styling. "off", the default, writes back if the input and output of
+styling are not identical.}
+  }}
 }
 \description{
-Style all files in a project. Implemented as a wrapper for \code{\link[styler:style_dir]{styler::style_dir()}} that styles \code{.R}
-and \code{.Rmd} filetypes, and excludes \code{.git}, \code{.github}, \code{packrat}, and \code{renv} by default.
+Style all files in a project. Implemented as a wrapper for \code{\link[styler:style_dir]{styler::style_dir()}} that styles
+\code{.R}, \code{.Rprofile}, \code{.Rmd}, and \code{.Rnw} files by default.
 }
 \examples{
 \dontrun{
 style_all()
-style_all("notebooks")
-style_all(
-  path = "./inst",
-  filetype = "r",
-  exclude_dirs = c("inst/example/bad.R")
-)
+style_all("analysis", filetype = "Rmd")
 }
 }
