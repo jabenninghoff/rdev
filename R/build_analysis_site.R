@@ -12,12 +12,12 @@
 #' 1. Runs [pkgdown::clean_site()] and [pkgdown::build_site()]
 #' 1. Creates a `_site.yml` file based on the final `_pkgdown.yml` that clones the [pkgdown] navbar
 #'   in a temporary build directory
-#' 1. Copies the following from `analysis/` into the build directory: `*.Rmd`, `data/`, `assets/`,
-#'   `rendered/`
+#' 1. Copies the following from `analysis/` into the build directory: `*.Rmd`, `assets/`, `data/`,
+#'   `import/`, `rendered/`
 #' 1. Changes `*.Rmd` from `html_notebook` to `html_document` using [to_document()]
 #' 1. Builds a site using [rmarkdown::render_site()] using modified `html_document` output settings
 #'   to render files with the look and feel of `html_notebook`
-#' 1. Moves the rendered files to `docs/`: `*.html`, `data/`, `assets/`, without overwriting
+#' 1. Moves the rendered files to `docs/`: `*.html`, `assets/`, `rendered/`, without overwriting
 #'
 #' `build_analysis_site()` will fail with an error if there are no files in `analysis/*.Rmd`.
 #'

@@ -26,12 +26,12 @@ links to html versions of each .Rmd file in \verb{analysis/}
 \item Runs \code{\link[pkgdown:clean_site]{pkgdown::clean_site()}} and \code{\link[pkgdown:build_site]{pkgdown::build_site()}}
 \item Creates a \verb{_site.yml} file based on the final \verb{_pkgdown.yml} that clones the \link{pkgdown} navbar
 in a temporary build directory
-\item Copies the following from \verb{analysis/} into the build directory: \verb{*.Rmd}, \verb{data/}, \verb{assets/},
-\verb{rendered/}
+\item Copies the following from \verb{analysis/} into the build directory: \verb{*.Rmd}, \verb{assets/}, \verb{data/},
+\verb{import/}, \verb{rendered/}
 \item Changes \verb{*.Rmd} from \code{html_notebook} to \code{html_document} using \code{\link[=to_document]{to_document()}}
 \item Builds a site using \code{\link[rmarkdown:render_site]{rmarkdown::render_site()}} using modified \code{html_document} output settings
 to render files with the look and feel of \code{html_notebook}
-\item Moves the rendered files to \verb{docs/}: \verb{*.html}, \verb{data/}, \verb{assets/}, without overwriting
+\item Moves the rendered files to \verb{docs/}: \verb{*.html}, \verb{assets/}, \verb{rendered/}, without overwriting
 }
 
 \code{build_analysis_site()} will fail with an error if there are no files in \verb{analysis/*.Rmd}.
