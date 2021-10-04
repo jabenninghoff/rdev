@@ -35,13 +35,13 @@ Path                     | R | g | Function
 .gitignore               |`x`|`x`| git exclusions based on [GitHub R](https://github.com/github/gitignore/blob/master/R.gitignore). Generated files outside of `docs` (used by GitHub Pages) are excluded.
 .lintr                   |   |`x`| [lintr](https://github.com/jimhester/lintr) default linters with 100 columns: `linters: with_defaults(line_length_linter(100))`
 DESCRIPTION              |`x`|`x`| Package metadata. Use "Suggests" for development tools, per [renv](https://rstudio.github.io/renv/articles/faq.html#how-should-i-handle-development-dependencies-)
-LICENSE                  |`x`|`x`| Generated with [`use_mit_license()`](https://usethis.r-lib.org/reference/licenses.html)
+LICENSE                  |`x`|`x`| Generated with `usethis::use_mit_license()`
 LICENSE.md               |   |`x`| See above, used by [pkgdown](https://pkgdown.r-lib.org)
 NAMESPACE                |`x`|`x`| Automatically generated with [roxygen2](https://roxygen2.r-lib.org)
 NEWS.md                  |   |`x`| Release notes, used by [pkgdown](https://pkgdown.r-lib.org)
 R                        |`x`|`x`| All project functions go here, with [roxygen2](https://roxygen2.r-lib.org) comments
-README.Rmd               |`x`|`x`| Generated with [`use_readme_md()`](https://usethis.r-lib.org/reference/use_readme_rmd.html)
-README.md                |`x`|`x`| Generated with [`build_readme()`](https://devtools.r-lib.org/reference/build_rmd.html)
+README.Rmd               |`x`|`x`| Generated with `usethis::use_readme_md()`
+README.md                |`x`|`x`| Generated with `devtools::build_readme()`
 TODO.md                  |   |`x`| To-do list, inspired by <https://github.com/rstudio/renv/blob/master/TODO.md>
 analysis                 |   |`x`| Exploratory data analysis in R Notebooks and R Presentations. Include functions from the R directory using `library(name)`, not `source("rscript.R")`.
 analysis/assets          |   |`x`| External assets (images, other files) included in R Notebooks
@@ -49,7 +49,7 @@ analysis/data            |   |`x`| Used to store small data sets used for analys
 analysis/import          |   |   | Used for local storage of large data sets
 analysis/rendered        |   |   | Manually rendered versions of `analysis/` files to be included in `docs/`, like [.Rpres files](https://stackoverflow.com/questions/27930127/render-r-presentation-from-the-command-line)
 demos                    |`x`|   | Not used, as recommended by [R Packages](https://r-pkgs.org/misc.html)
-docs                     |   |`x`| Used by [`build_analysis_site()`](https://jabenninghoff.github.io/rdev/reference/build_analysis_site.html) to render the R Package and Notebooks for GitHub Pages
+docs                     |   |`x`| Used by `build_analysis_site()` to render the R Package and Notebooks for GitHub Pages
 exec                     |`x`|   | Command line executable scripts - not used
 inst/rmarkdown/templates |`x`|`x`| [R Markdown Templates](https://rstudio.github.io/rstudio-extensions/rmarkdown_templates.html)
 man                      |`x`|`x`| Automatically generated with [roxygen2](https://roxygen2.r-lib.org)
