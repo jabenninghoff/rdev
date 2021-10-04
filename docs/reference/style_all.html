@@ -40,8 +40,8 @@
 
 
 <meta property="og:title" content="Style all files — style_all" />
-<meta property="og:description" content="Style all files in a project. Implemented as a wrapper for styler::style_dir() that styles .R
-and .Rmd filetypes, and excludes .git, .github, packrat, and renv by default." />
+<meta property="og:description" content="Style all files in a project. Implemented as a wrapper for styler::style_dir() that styles
+.R, .Rprofile, .Rmd, and .Rnw files by default." />
 
 
 
@@ -73,7 +73,7 @@ and .Rmd filetypes, and excludes .git, .github, packrat, and renv by default." /
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">rdev</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.4.0</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.4.1</span>
       </span>
     </div>
 
@@ -130,15 +130,11 @@ and .Rmd filetypes, and excludes .git, .github, packrat, and renv by default." /
     </div>
 
     <div class="ref-description">
-    <p>Style all files in a project. Implemented as a wrapper for <code><a href='https://styler.r-lib.org/reference/style_dir.html'>styler::style_dir()</a></code> that styles <code>.R</code>
-and <code>.Rmd</code> filetypes, and excludes <code>.git</code>, <code>.github</code>, <code>packrat</code>, and <code>renv</code> by default.</p>
+    <p>Style all files in a project. Implemented as a wrapper for <code><a href='https://styler.r-lib.org/reference/style_dir.html'>styler::style_dir()</a></code> that styles
+<code>.R</code>, <code>.Rprofile</code>, <code>.Rmd</code>, and <code>.Rnw</code> files by default.</p>
     </div>
 
-    <pre class="usage"><span class='fu'>style_all</span><span class='op'>(</span>
-  path <span class='op'>=</span> <span class='st'>"."</span>,
-  filetype <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span><span class='op'>(</span><span class='st'>"R"</span>, <span class='st'>"Rprofile"</span>, <span class='st'>"Rmd"</span><span class='op'>)</span>,
-  exclude_dirs <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span><span class='op'>(</span><span class='st'>".git"</span>, <span class='st'>".github"</span>, <span class='st'>"packrat"</span>, <span class='st'>"renv"</span><span class='op'>)</span>
-<span class='op'>)</span></pre>
+    <pre class="usage"><span class='fu'>style_all</span><span class='op'>(</span>path <span class='op'>=</span> <span class='st'>"."</span>, filetype <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span><span class='op'>(</span><span class='st'>"R"</span>, <span class='st'>"Rprofile"</span>, <span class='st'>"Rmd"</span>, <span class='st'>"Rnw"</span><span class='op'>)</span>, <span class='va'>...</span><span class='op'>)</span></pre>
 
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
     <table class="ref-arguments">
@@ -152,12 +148,37 @@ and <code>.Rmd</code> filetypes, and excludes <code>.git</code>, <code>.github</
       <td><p>Vector of file extensions indicating which file types should
 be styled. Case is ignored, and the <code>.</code> is optional, e.g.
 <code><a href='https://rdrr.io/r/base/c.html'>c(".R", ".Rmd")</a></code>, or <code><a href='https://rdrr.io/r/base/c.html'>c("r", "rmd")</a></code>. Supported values (after
-standardization) are: "r", "rprofile", "rmd", "rnw".</p></td>
+standardization) are: "r", "rprofile", "rmd", "rmarkdown", "rnw". Rmarkdown is treated as Rmd.</p></td>
     </tr>
     <tr>
-      <th>exclude_dirs</th>
-      <td><p>Character vector with directories to exclude
-(recursively).</p></td>
+      <th>...</th>
+      <td><p>Arguments passed on to <code><a href='https://styler.r-lib.org/reference/style_dir.html'>styler::style_dir</a></code></p><dl>
+    <dt><code>style</code></dt><dd><p>A function that creates a style guide to use, by default
+<code><a href='https://styler.r-lib.org/reference/tidyverse_style.html'>tidyverse_style()</a></code> (without the parentheses). Not used
+further except to construct the argument <code>transformers</code>. See
+<code><a href='https://styler.r-lib.org/reference/style_guides.html'>style_guides()</a></code> for details.</p></dd>
+    <dt><code>transformers</code></dt><dd><p>A set of transformer functions. This argument is most
+conveniently constructed via the <code>style</code> argument and <code>...</code>. See
+'Examples'.</p></dd>
+    <dt><code>recursive</code></dt><dd><p>A logical value indicating whether or not files in subdirectories
+of <code>path</code> should be styled as well.</p></dd>
+    <dt><code>exclude_files</code></dt><dd><p>Character vector with paths to files that should be
+excluded from styling.</p></dd>
+    <dt><code>exclude_dirs</code></dt><dd><p>Character vector with directories to exclude
+(recursively).</p></dd>
+    <dt><code>include_roxygen_examples</code></dt><dd><p>Whether or not to style code in roxygen
+examples.</p></dd>
+    <dt><code>base_indention</code></dt><dd><p>Integer scalar indicating by how many spaces the whole
+output text should be indented. Note that this is not the same as splitting
+by line and add a <code>base_indention</code> spaces before the code in the case
+multi-line strings are present. See 'Examples'.</p></dd>
+    <dt><code>dry</code></dt><dd><p>To indicate whether styler should run in <em>dry</em> mode, i.e. refrain
+from writing back to files .<code>"on"</code> and <code>"fail"</code> both don't write back, the
+latter returns an error if the input code is not identical to the result
+of styling. "off", the default, writes back if the input and output of
+styling are not identical.</p></dd>
+  
+</dl></td>
     </tr>
     </table>
 
@@ -165,12 +186,7 @@ standardization) are: "r", "rprofile", "rmd", "rnw".</p></td>
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
     <pre class="examples"><div class='input'><span class='kw'>if</span> <span class='op'>(</span><span class='cn'>FALSE</span><span class='op'>)</span> <span class='op'>{</span>
 <span class='fu'>style_all</span><span class='op'>(</span><span class='op'>)</span>
-<span class='fu'>style_all</span><span class='op'>(</span><span class='st'>"notebooks"</span><span class='op'>)</span>
-<span class='fu'>style_all</span><span class='op'>(</span>
-  path <span class='op'>=</span> <span class='st'>"./inst"</span>,
-  filetype <span class='op'>=</span> <span class='st'>"r"</span>,
-  exclude_dirs <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span><span class='op'>(</span><span class='st'>"inst/example/bad.R"</span><span class='op'>)</span>
-<span class='op'>)</span>
+<span class='fu'>style_all</span><span class='op'>(</span><span class='st'>"analysis"</span>, filetype <span class='op'>=</span> <span class='st'>"Rmd"</span><span class='op'>)</span>
 <span class='op'>}</span>
 </div></pre>
   </div>

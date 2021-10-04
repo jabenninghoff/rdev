@@ -73,7 +73,7 @@ containing rendered versions of all .Rmd files in analysis/." />
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">rdev</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.4.0</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.4.1</span>
       </span>
     </div>
 
@@ -160,15 +160,16 @@ links to html versions of each .Rmd file in <code>analysis/</code></p></li>
 <li><p>Runs <code><a href='https://pkgdown.r-lib.org/reference/clean_site.html'>pkgdown::clean_site()</a></code> and <code><a href='https://pkgdown.r-lib.org/reference/build_site.html'>pkgdown::build_site()</a></code></p></li>
 <li><p>Creates a <code>_site.yml</code> file based on the final <code>_pkgdown.yml</code> that clones the pkgdown navbar
 in a temporary build directory</p></li>
-<li><p>Copies the following from <code>analysis/</code> into the build directory: <code>*.Rmd</code>, <code>data/</code>, <code>assets/</code>,
-<code>rendered/</code></p></li>
+<li><p>Copies the following from <code>analysis/</code> into the build directory: <code>*.Rmd</code>, <code>assets/</code>, <code>data/</code>,
+<code>import/</code>, <code>rendered/</code></p></li>
 <li><p>Changes <code>*.Rmd</code> from <code>html_notebook</code> to <code>html_document</code> using <code><a href='to_document.html'>to_document()</a></code></p></li>
 <li><p>Builds a site using <code><a href='https://pkgs.rstudio.com/rmarkdown/reference/render_site.html'>rmarkdown::render_site()</a></code> using modified <code>html_document</code> output settings
 to render files with the look and feel of <code>html_notebook</code></p></li>
-<li><p>Moves the rendered files to <code>docs/</code>: <code>*.html</code>, <code>data/</code>, <code>assets/</code>, without overwriting</p></li>
+<li><p>Moves the rendered files to <code>docs/</code>: <code>*.html</code>, <code>assets/</code>, <code>rendered/</code>, without overwriting</p></li>
 </ol>
 
-<p><code>build_analysis_site()</code> will fail with an error if there are no files in <code>analysis/*.Rmd</code>.</p>
+<p><code>build_analysis_site()</code> will fail with an error if there are no files in <code>analysis/*.Rmd</code>, or if
+<code>pkgdown/_base.yml</code> does not exist.</p>
 <p><strong>Warning:</strong> <code>build_analysis_site()</code> is currently considered Experimental. Currently only
 <code>build_analysis_site(pkg = ".")</code> is supported.</p>
 
