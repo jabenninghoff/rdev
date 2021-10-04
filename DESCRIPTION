@@ -1,7 +1,7 @@
 Package: rdev
 Title: R Development Tools
 Version: 0.4.0.9000
-Authors@R: 
+Authors@R:
     person(given = "John",
            family = "Benninghoff",
            role = c("aut", "cre"),
@@ -15,7 +15,7 @@ LazyData: true
 Roxygen: list(markdown = TRUE)
 RoxygenNote: 7.1.2
 X-rdev-comment: include all development packages in "Imports" to enable installation through rdev
-Imports: 
+Imports:
     desc,
     fs,
     lintr (>= 2.0.1.9000),
@@ -29,11 +29,11 @@ Imports:
     devtools,
     miniUI,
     renv
-Suggests: 
+Suggests:
     tibble,
     testthat (>= 3.0.0),
     knitr
 Config/testthat/edition: 3
-Remotes: 
+Remotes:
     jimhester/lintr
 VignetteBuilder: knitr

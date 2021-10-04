@@ -23,7 +23,7 @@ The table below documents the complete R Analysis Package layout:
 - **g**: Stored in git
 - **Function**: The function of the file or directory
 
-Path                     | R | g | Function 
+Path                     | R | g | Function
 :------------------------|:--|:--|:-----------------------------------------------------------------------------------------------------------------------------------------------------
 .Rbuildignore            |`x`|`x`| Files excluded from the package, sorted using `sort_rbuildignore()`
 .RData                   |   |   | Saved workspace - not used
