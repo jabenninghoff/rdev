@@ -111,9 +111,13 @@ build_analysis_site <- function(pkg = ".", ...) {
   rmarkdown::render_site(tmp_dir)
 
   # move rendered files to docs/, do not overwrite, skip data/, import/
-  # fails if data or import don't exist
-  fs::dir_delete(paste0(tmp_dir, "/docs/data"))
-  fs::dir_delete(paste0(tmp_dir, "/docs/import"))
+  dir_check_delete <- function(path) {
+    if (fs::dir_exists(path)) {
+      fs::dir_delete(path)
+    }
+  }
+  dir_check_delete(paste0(tmp_dir, "/docs/data"))
+  dir_check_delete(paste0(tmp_dir, "/docs/import"))
   fs::dir_copy(paste0(tmp_dir, "/docs"), pkg)
 }
 
