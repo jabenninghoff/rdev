@@ -34,7 +34,8 @@ to render files with the look and feel of \code{html_notebook}
 \item Moves the rendered files to \verb{docs/}: \verb{*.html}, \verb{assets/}, \verb{rendered/}, without overwriting
 }
 
-\code{build_analysis_site()} will fail with an error if there are no files in \verb{analysis/*.Rmd}.
+\code{build_analysis_site()} will fail with an error if there are no files in \verb{analysis/*.Rmd}, or if
+\verb{pkgdown/_base.yml} does not exist.
 
 \strong{Warning:} \code{build_analysis_site()} is currently considered Experimental. Currently only
 \code{build_analysis_site(pkg = ".")} is supported.

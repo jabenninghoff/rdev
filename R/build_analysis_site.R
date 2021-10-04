@@ -19,7 +19,8 @@
 #'   to render files with the look and feel of `html_notebook`
 #' 1. Moves the rendered files to `docs/`: `*.html`, `assets/`, `rendered/`, without overwriting
 #'
-#' `build_analysis_site()` will fail with an error if there are no files in `analysis/*.Rmd`.
+#' `build_analysis_site()` will fail with an error if there are no files in `analysis/*.Rmd`, or if
+#'   `pkgdown/_base.yml` does not exist.
 #'
 #' **Warning:** `build_analysis_site()` is currently considered Experimental. Currently only
 #'   `build_analysis_site(pkg = ".")` is supported.
@@ -42,6 +43,9 @@ build_analysis_site <- function(pkg = ".", ...) {
   }
 
   # read base settings, write to pkgdown
+  if (!fs::file_exists("pkgdown/_base.yml")) {
+    stop("pkgdown/_base.yml does not exist")
+  }
   pkg_yml <- yaml::read_yaml("pkgdown/_base.yml")
   fs::file_copy("pkgdown/_base.yml", "pkgdown/_pkgdown.yml", overwrite = TRUE)
 
