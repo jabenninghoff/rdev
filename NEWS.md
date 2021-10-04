@@ -1,3 +1,7 @@
+# rdev 0.4.1
+
+* bug fixes, maintenance
+
 # rdev 0.4.0
 
 * Add [`devtools::document()`](https://devtools.r-lib.org/reference/document.html) option to `ci()`, turned on by default
