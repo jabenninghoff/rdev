@@ -98,9 +98,13 @@ build_analysis_site <- function(pkg = ".", ...) {
   yaml::write_yaml(site_yml, paste0(tmp_dir, "/_site.yml"))
 
   # copy files from analysis/ into build directory, changing html_notebook to html_document
-  # warning: will fail if assets, data, import, and rendered are not directories
   analysis_dirs <- fs::dir_ls("analysis", regexp = "/(assets|data|import|rendered)$")
-  purrr::walk(analysis_dirs, fs::dir_copy, tmp_dir)
+  dir_check_copy <- function(path, new_path) {
+    if (fs::is_dir(path)) {
+      fs::dir_copy(path, new_path)
+    }
+  }
+  purrr::walk(analysis_dirs, dir_check_copy, tmp_dir)
   purrr::walk(notebooks, to_document, tmp_dir)
 
   # run render_site()
