@@ -4,29 +4,35 @@
 \alias{lint_all}
 \title{Lint all files}
 \usage{
-lint_all(path = ".", exclusions = list(".git", ".github", "packrat", "renv"))
+lint_all(path = ".", ...)
 }
 \arguments{
 \item{path}{the path to the base directory, by default,
 it will be searched in the parent directories of the current directory.}
 
-\item{exclusions}{exclusions for \code{\link[lintr:exclude]{lintr::exclude()}}, relative to the
+\item{...}{
+  Arguments passed on to \code{\link[lintr:lint_dir]{lintr::lint_dir}}
+  \describe{
+    \item{\code{relative_path}}{if \code{TRUE}, file paths are printed using their path
+relative to the base directory.  If \code{FALSE}, use the full
+absolute path.}
+    \item{\code{exclusions}}{exclusions for \code{\link[lintr]{exclude}}, relative to the
 package path.}
+    \item{\code{pattern}}{pattern for files, by default it will take files with any of
+the extensions .R, .Rmd, .Rnw, .Rhtml, .Rrst, .Rtex, .Rtxt allowing for
+lowercase r (.r, ...)}
+    \item{\code{parse_settings}}{whether to try and parse the settings.}
+  }}
 }
 \value{
 A list of lint objects.
 }
 \description{
-Lint all files in a project. Implemented as a wrapper for \code{\link[lintr:lint_dir]{lintr::lint_dir()}} that excludes
-\code{.git}, \code{.github}, \code{packrat}, and \code{renv} by default.
+Lint all files in a project. Implemented as a wrapper for \code{\link[lintr:lint_dir]{lintr::lint_dir()}}.
 }
 \examples{
 \dontrun{
 lint_all()
-lint_all("notebooks")
-lint_all(
-  path = "./inst",
-  exclusions = list("inst/example/bad.R")
-)
+lint_all("analysis")
 }
 }

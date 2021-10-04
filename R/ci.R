@@ -18,27 +18,20 @@ style_all <- function(path = ".", filetype = c("R", "Rprofile", "Rmd", "Rnw"), .
 
 #' Lint all files
 #'
-#' Lint all files in a project. Implemented as a wrapper for [lintr::lint_dir()] that excludes
-#' `.git`, `.github`, `packrat`, and `renv` by default.
+#' Lint all files in a project. Implemented as a wrapper for [lintr::lint_dir()].
 #'
-#' @param path the path to the base directory, by default,
-#'   it will be searched in the parent directories of the current directory.
-#' @param exclusions exclusions for [lintr::exclude()], relative to the
-#'   package path.
+#' @inheritParams lintr::lint_dir
+#' @inheritDotParams lintr::lint_dir
 #' @return A list of lint objects.
 #' @examples
 #' \dontrun{
 #' lint_all()
-#' lint_all("notebooks")
-#' lint_all(
-#'   path = "./inst",
-#'   exclusions = list("inst/example/bad.R")
-#' )
+#' lint_all("analysis")
 #' }
 #' @export
 # add tests using local_create_package() per https://testthat.r-lib.org/articles/test-fixtures.html
-lint_all <- function(path = ".", exclusions = list(".git", ".github", "packrat", "renv")) {
-  lintr::lint_dir(path = path, exclusions = exclusions)
+lint_all <- function(path = ".", ...) {
+  lintr::lint_dir(path = path, ...)
 }
 
 #' Local CI
