@@ -1,3 +1,7 @@
+# rdev 0.4.2
+
+* maintenance release, update README and GitHub Actions
+
 # rdev 0.4.1
 
 * bug fixes, maintenance
