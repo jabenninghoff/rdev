@@ -28,11 +28,11 @@
   - [x] Use [standard](https://github.com/r-lib/actions/blob/master/examples/check-standard.yaml) `R CMD check`
   - [x] Use [lintr](https://github.com/r-lib/actions/blob/master/examples/lint.yaml)
 - [x] Faster CI checks
-- [ ] Update GitHub Actions from r-lib [examples](https://github.com/r-lib/actions/tree/master/examples)
+- [x] Update GitHub Actions from r-lib [examples](https://github.com/r-lib/actions/tree/master/examples)
 - [ ] Skip CI checks for changes in only the `docs/` directory
 - [ ] Run [test coverage](https://github.com/r-lib/actions/blob/master/examples/test-coverage.yaml)
 - [ ] Add GitHub Action for html/link checking using something like [htmlproofer](https://github.com/gjtorikian/html-proofer)
-- [ ] Switch to  [full](https://github.com/r-lib/actions/blob/master/examples/check-full.yaml) `R CMD check` ?
+- [x] Switch to  [full](https://github.com/r-lib/actions/blob/master/examples/check-full.yaml) `R CMD check` ?
 - [ ] Autobuild `docs/` like [pkgdown](https://github.com/r-lib/actions/blob/master/examples/pkgdown.yaml) ?
 
 ## Analysis package release process
