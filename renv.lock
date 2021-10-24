@@ -360,9 +360,9 @@
       "RemoteUsername": "jimhester",
       "RemoteRepo": "lintr",
       "RemoteRef": "master",
-      "RemoteSha": "7100188e10a6f60bb652b613885abd795fe366eb",
+      "RemoteSha": "2b69c745024a4018c070cb553de72963571e3e48",
       "RemoteHost": "api.github.com",
-      "Hash": "42f95071313d5b7c8cf611d4c1549769"
+      "Hash": "539ca5ac836bd458b9acd06ac16f7d71"
     },
     "magrittr": {
       "Package": "magrittr",
@@ -408,10 +408,10 @@
     },
     "pillar": {
       "Package": "pillar",
-      "Version": "1.6.3",
+      "Version": "1.6.4",
       "Source": "Repository",
       "Repository": "CRAN",
-      "Hash": "3323bc1a0988d63b5c65771ba0d3935d"
+      "Hash": "60200b6aa32314ac457d3efbb5ccbd98"
     },
     "pkgbuild": {
       "Package": "pkgbuild",
@@ -436,10 +436,10 @@
     },
     "pkgload": {
       "Package": "pkgload",
-      "Version": "1.2.2",
+      "Version": "1.2.3",
       "Source": "Repository",
       "Repository": "CRAN",
-      "Hash": "53139eedf68b98eecd5289664969c3f2"
+      "Hash": "302276471121c41f47380243b82d5882"
     },
     "praise": {
       "Package": "praise",
@@ -534,10 +534,10 @@
     },
     "rlang": {
       "Package": "rlang",
-      "Version": "0.4.11",
+      "Version": "0.4.12",
       "Source": "Repository",
       "Repository": "CRAN",
-      "Hash": "515f341d3affe0de9e4a7f762efb0456"
+      "Hash": "0879f5388fe6e4d56d7ef0b7ccb031e5"
     },
     "rmarkdown": {
       "Package": "rmarkdown",
@@ -632,10 +632,10 @@
     },
     "systemfonts": {
       "Package": "systemfonts",
-      "Version": "1.0.2",
+      "Version": "1.0.3",
       "Source": "Repository",
       "Repository": "CRAN",
-      "Hash": "f2e17ba09737e2e7e2ec40fc1f9b6e08"
+      "Hash": "5be9fcf8ef6763e8cb13ab009e273a1d"
     },
     "testthat": {
       "Package": "testthat",
@@ -646,10 +646,10 @@
     },
     "textshaping": {
       "Package": "textshaping",
-      "Version": "0.3.5",
+      "Version": "0.3.6",
       "Source": "Repository",
       "Repository": "CRAN",
-      "Hash": "6bb7e974b464fe72f192e51b4dab67f2"
+      "Hash": "1ab6223d3670fac7143202cb6a2d43d5"
     },
     "tibble": {
       "Package": "tibble",
@@ -667,10 +667,10 @@
     },
     "usethis": {
       "Package": "usethis",
-      "Version": "2.0.1",
+      "Version": "2.1.0",
       "Source": "Repository",
       "Repository": "CRAN",
-      "Hash": "360e904f9e623286e1a0c6ca0a98c5f6"
+      "Hash": "90e84e0a3cd3851442c9af04a74c2d5a"
     },
     "utf8": {
       "Package": "utf8",
@@ -709,10 +709,10 @@
     },
     "xfun": {
       "Package": "xfun",
-      "Version": "0.26",
+      "Version": "0.27",
       "Source": "Repository",
       "Repository": "CRAN",
-      "Hash": "a270216f7ffda25e53298293046d1d05"
+      "Hash": "12b69332f085d350fc1f2ea6cca58397"
     },
     "xml2": {
       "Package": "xml2",
