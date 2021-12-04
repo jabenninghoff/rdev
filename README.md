@@ -45,7 +45,7 @@ For my workflow, I typically check renv when I start:
 ``` r
 library(rdev)
 
-check_renv()
+check_renv(update = FALSE)
 #> renv::status()
 #> * The project is already synchronized with the lockfile.
 #> 
@@ -53,11 +53,6 @@ check_renv()
 #> * No stale package locks were found.
 #> * No temporary directories were found in the project library.
 #> * The project has been cleaned.
-#> 
-#> renv::update()
-#> * Querying repositories for available source packages ... Done!
-#> * Checking for updated packages ... Done!
-#> * All packages appear to be up-to-date.
 ```
 
 I also have a `ci()` function to run all my continuous integration tests
@@ -78,16 +73,16 @@ ci()
 #> * checking for LF line-endings in source and make files and shell scripts
 #> * checking for empty or unneeded directories
 #> Omitted ‘LazyData’ from DESCRIPTION
-#> * building ‘rdev_0.4.2.tar.gz’
+#> * building ‘rdev_0.4.3.tar.gz’
 #> 
 #> ── R CMD check ─────────────────────────────────────────────────────────────────
-#> * using log directory ‘/private/var/folders/vn/cw5f9gws42v9m8mdsds_zbl00000gp/T/RtmpSwlQsh/filee74c792aa0d7/rdev.Rcheck’
-#> * using R version 4.1.1 (2021-08-10)
+#> * using log directory ‘/private/var/folders/vn/cw5f9gws42v9m8mdsds_zbl00000gp/T/RtmpWCjRXF/filec95d17786898/rdev.Rcheck’
+#> * using R version 4.1.2 (2021-11-01)
 #> * using platform: x86_64-apple-darwin19.6.0 (64-bit)
 #> * using session charset: UTF-8
 #> * using option ‘--no-manual’
 #> * checking for file ‘rdev/DESCRIPTION’ ... OK
-#> * this is package ‘rdev’ version ‘0.4.2’
+#> * this is package ‘rdev’ version ‘0.4.3’
 #> * package encoding: UTF-8
 #> * checking package namespace information ... OK
 #> * checking package dependencies ... OK
@@ -142,8 +137,8 @@ ci()
 #> * checking re-building of vignette outputs ... OK
 #> * DONE
 #> Status: OK
-#> ── R CMD check results ───────────────────────────────────────── rdev 0.4.2 ────
-#> Duration: 26.5s
+#> ── R CMD check results ───────────────────────────────────────── rdev 0.4.3 ────
+#> Duration: 26.6s
 #> 
 #> 0 errors ✓ | 0 warnings ✓ | 0 notes ✓
 ```

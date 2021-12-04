@@ -54,7 +54,7 @@ For my workflow, I typically check renv when I start:
 ```{r check_renv}
 library(rdev)
 
-check_renv()
+check_renv(update = FALSE)
 ```
 
 I also have a `ci()` function to run all my continuous integration tests locally:
