@@ -20,7 +20,7 @@ Imports:
     fs,
     lintr (>= 2.0.1.9000),
     markdown,
-    pkgdown,
+    pkgdown (< 2.0.0),
     purrr,
     rcmdcheck,
     rmarkdown,
