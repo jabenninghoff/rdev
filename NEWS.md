@@ -1,3 +1,7 @@
+# rdev 0.4.3
+
+* maintenance, update TODO with steps for manually setting up an Analysis Package
+
 # rdev 0.4.2
 
 * maintenance release, update README and GitHub Actions
