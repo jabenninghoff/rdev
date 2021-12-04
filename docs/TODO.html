@@ -71,7 +71,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="index.html">rdev</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.4.2</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.4.3</span>
       </span>
     </div>
 
@@ -253,7 +253,8 @@ Autobuild <code>docs/</code> like <a href="https://github.com/r-lib/actions/blob
 </li>
 <li>Commit: <code>GitHub release 0.7.1</code>
 </li>
-<li>Run build_analysis_site()</li>
+<li>Run <code><a href="reference/build_analysis_site.html">build_analysis_site()</a></code>
+</li>
 <li>Commit: <code>build_analysis_site() for release 0.7.1</code>
 </li>
 <li>Open Pull Request [TODO: include release notes]</li>
@@ -261,6 +262,69 @@ Autobuild <code>docs/</code> like <a href="https://github.com/r-lib/actions/blob
 <li>Delete branch</li>
 <li>Publish new GitHub release. Name: <code>0.7.1</code>, Title: <code>0.7.1</code>, Target commit: <code>build_analysis_site() for release 0.7.1</code>, Description: blank [TODO: use release notes]</li>
 </ol>
+</div>
+<div id="analysis-package-creation-process" class="section level2">
+<h2 class="hasAnchor">
+<a href="#analysis-package-creation-process" class="anchor"></a>Analysis package creation process</h2>
+<p>Notes on manually creating an analysis package for future automation.</p>
+<ol>
+<li>Use <code>available::available()</code> to check package name</li>
+<li>Create repo on GitHub - Add README, .gitignore (R), MIT License</li>
+<li>Configure repo - enable pages (main, root/), enable Dependabot (Security &amp; analysis), branch protection for main: require pull request, status checks, linear history</li>
+<li>Run <code><a href="https://usethis.r-lib.org/reference/create_from_github.html">usethis::create_from_github()</a></code> outside the project, commit changes</li>
+<li>Run <code><a href="https://usethis.r-lib.org/reference/create_package.html">usethis::create_package()</a></code> outside the project, commit changes</li>
+<li>Run <code><a href="https://rstudio.github.io/renv/reference/init.html">renv::init()</a></code> inside the project, commit changes</li>
+<li>Run <code><a href="https://usethis.r-lib.org/reference/licenses.html">usethis::use_mit_license()</a></code>, do not overwrite</li>
+<li>Edit DESCRIPTION and add a Title and Description</li>
+<li>Run <code><a href="https://usethis.r-lib.org/reference/use_github_links.html">usethis::use_github_links()</a></code>
+</li>
+<li>Add Add GitHub pages URL to DESCRIPTION</li>
+<li>Run <code>usethis::use_package("devtools", type = "Suggests")</code>
+</li>
+<li>Run <code>renv::install("jabenninghoff/rdev")</code>, <code>usethis::use_dev_package("rdev", type = "Suggests")</code>
+</li>
+<li>Add lines to .Rprofile per below</li>
+<li>Create .lintr: <code>linters: with_defaults(line_length_linter(100))</code>
+</li>
+<li>Run <code><a href="https://usethis.r-lib.org/reference/use_news_md.html">usethis::use_news_md()</a></code>
+</li>
+<li>Create TODO.md per below</li>
+<li>Create R/package.R per below</li>
+<li>Run <code><a href="https://usethis.r-lib.org/reference/use_readme_rmd.html">usethis::use_readme_rmd()</a></code>, copy README from template, run <code><a href="https://usethis.r-lib.org/reference/use_readme_rmd.html">usethis::use_readme_rmd()</a></code>
+</li>
+<li>Create analysis directories: <code>$ mkdir analysis; cd analysis; mkdir assets data import rendered</code>, update .gitignore</li>
+<li>Run <code><a href="https://usethis.r-lib.org/reference/use_testthat.html">usethis::use_testthat()</a></code>
+</li>
+<li>Create pkgdown/_base.yml with <code>url: &lt;github-pages-url&gt;</code>
+</li>
+<li>Run <code>usethis::use_build_ignore(c(".github", ".lintr", "analysis", "docs", "pkgdown", "TODO.md"))</code>, <code><a href="reference/sort_rbuildignore.html">sort_rbuildignore()</a></code>
+</li>
+<li>Run <code><a href="https://devtools.r-lib.org/reference/document.html">devtools::document()</a></code>
+</li>
+<li>Run <code><a href="reference/style_all.html">rdev::style_all()</a></code>, <code><a href="reference/lint_all.html">rdev::lint_all()</a></code>, <code><a href="reference/ci.html">rdev::ci()</a></code> to validate package</li>
+<li>Create first Notebook, run <code><a href="reference/build_analysis_site.html">build_analysis_site()</a></code> to validate build</li>
+<li>Run <code><a href="https://rstudio.github.io/renv/reference/snapshot.html">renv::snapshot()</a></code>
+</li>
+<li>Install .github workflows</li>
+<li>Create 1.0.0 release</li>
+</ol>
+<p><strong>.Rprofile</strong></p>
+<p>Add the following lines to the project <code>.Rprofile</code>:</p>
+<div class="sourceCode" id="cb1"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="co"># attach devtools and set options per https://r-pkgs.org/setup.html</span>
+<span class="kw">if</span> <span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/interactive.html">interactive</a></span><span class="op">(</span><span class="op">)</span><span class="op">)</span> <span class="op">{</span>
+  <span class="fu"><a href="https://rdrr.io/r/base/message.html">suppressMessages</a></span><span class="op">(</span><span class="kw"><a href="https://rdrr.io/r/base/library.html">require</a></span><span class="op">(</span><span class="va"><a href="https://devtools.r-lib.org/">devtools</a></span><span class="op">)</span><span class="op">)</span>
+  <span class="fu"><a href="https://rdrr.io/r/base/message.html">suppressMessages</a></span><span class="op">(</span><span class="kw"><a href="https://rdrr.io/r/base/library.html">require</a></span><span class="op">(</span><span class="va"><a href="https://jabenninghoff.github.io/rdev/">rdev</a></span><span class="op">)</span><span class="op">)</span>
+<span class="op">}</span></code></pre></div>
+<p><strong>TODO.md</strong></p>
+<pre><code># TODO
+
+- [ ] Add TODO items here</code></pre>
+<p><strong>R/package.R</strong></p>
+<p>Create as &lt;packagename&gt;.R:</p>
+<div class="sourceCode" id="cb3"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="co">#' @keywords internal</span>
+<span class="st">"_PACKAGE"</span></code></pre></div>
 </div>
 </div>
 
