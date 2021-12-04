@@ -31,7 +31,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="index.html">rdev</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.4.2</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.4.3</span>
       </span>
     </div>
 
@@ -98,7 +98,7 @@
 <p>You can install the development version from <a href="https://github.com/">GitHub</a> with:</p>
 <div class="sourceCode" id="cb1"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="co"># install.packages("devtools")</span>
-<span class="fu">devtools</span><span class="fu">::</span><span class="fu"><a href="https://devtools.r-lib.org//reference/remote-reexports.html">install_github</a></span><span class="op">(</span><span class="st">"jabenninghoff/rdev"</span><span class="op">)</span></code></pre></div>
+<span class="fu">devtools</span><span class="fu">::</span><span class="fu"><a href="https://devtools.r-lib.org/reference/remote-reexports.html">install_github</a></span><span class="op">(</span><span class="st">"jabenninghoff/rdev"</span><span class="op">)</span></code></pre></div>
 <p>Or using renv:</p>
 <div class="sourceCode" id="cb2"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="co"># install.packages("renv")</span>
@@ -120,19 +120,14 @@
 <div class="sourceCode" id="cb3"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://jabenninghoff.github.io/rdev/">rdev</a></span><span class="op">)</span>
 
-<span class="fu"><a href="reference/check_renv.html">check_renv</a></span><span class="op">(</span><span class="op">)</span>
+<span class="fu"><a href="reference/check_renv.html">check_renv</a></span><span class="op">(</span>update <span class="op">=</span> <span class="cn">FALSE</span><span class="op">)</span>
 <span class="co">#&gt; renv::status()</span>
 <span class="co">#&gt; * The project is already synchronized with the lockfile.</span>
 <span class="co">#&gt; </span>
 <span class="co">#&gt; renv::clean()</span>
 <span class="co">#&gt; * No stale package locks were found.</span>
 <span class="co">#&gt; * No temporary directories were found in the project library.</span>
-<span class="co">#&gt; * The project has been cleaned.</span>
-<span class="co">#&gt; </span>
-<span class="co">#&gt; renv::update()</span>
-<span class="co">#&gt; * Querying repositories for available source packages ... Done!</span>
-<span class="co">#&gt; * Checking for updated packages ... Done!</span>
-<span class="co">#&gt; * All packages appear to be up-to-date.</span></code></pre></div>
+<span class="co">#&gt; * The project has been cleaned.</span></code></pre></div>
 <p>I also have a <code><a href="reference/ci.html">ci()</a></code> function to run all my continuous integration tests locally:</p>
 <div class="sourceCode" id="cb4"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="fu"><a href="reference/ci.html">ci</a></span><span class="op">(</span><span class="op">)</span>
@@ -149,16 +144,16 @@
 <span class="co">#&gt; * checking for LF line-endings in source and make files and shell scripts</span>
 <span class="co">#&gt; * checking for empty or unneeded directories</span>
 <span class="co">#&gt; Omitted ‘LazyData’ from DESCRIPTION</span>
-<span class="co">#&gt; * building ‘rdev_0.4.2.tar.gz’</span>
+<span class="co">#&gt; * building ‘rdev_0.4.3.tar.gz’</span>
 <span class="co">#&gt; </span>
 <span class="co">#&gt; ── R CMD check ─────────────────────────────────────────────────────────────────</span>
-<span class="co">#&gt; * using log directory ‘/private/var/folders/vn/cw5f9gws42v9m8mdsds_zbl00000gp/T/RtmpSwlQsh/filee74c792aa0d7/rdev.Rcheck’</span>
-<span class="co">#&gt; * using R version 4.1.1 (2021-08-10)</span>
+<span class="co">#&gt; * using log directory ‘/private/var/folders/vn/cw5f9gws42v9m8mdsds_zbl00000gp/T/RtmpWCjRXF/filec95d17786898/rdev.Rcheck’</span>
+<span class="co">#&gt; * using R version 4.1.2 (2021-11-01)</span>
 <span class="co">#&gt; * using platform: x86_64-apple-darwin19.6.0 (64-bit)</span>
 <span class="co">#&gt; * using session charset: UTF-8</span>
 <span class="co">#&gt; * using option ‘--no-manual’</span>
 <span class="co">#&gt; * checking for file ‘rdev/DESCRIPTION’ ... OK</span>
-<span class="co">#&gt; * this is package ‘rdev’ version ‘0.4.2’</span>
+<span class="co">#&gt; * this is package ‘rdev’ version ‘0.4.3’</span>
 <span class="co">#&gt; * package encoding: UTF-8</span>
 <span class="co">#&gt; * checking package namespace information ... OK</span>
 <span class="co">#&gt; * checking package dependencies ... OK</span>
@@ -213,8 +208,8 @@
 <span class="co">#&gt; * checking re-building of vignette outputs ... OK</span>
 <span class="co">#&gt; * DONE</span>
 <span class="co">#&gt; Status: OK</span>
-<span class="co">#&gt; ── R CMD check results ───────────────────────────────────────── rdev 0.4.2 ────</span>
-<span class="co">#&gt; Duration: 26.5s</span>
+<span class="co">#&gt; ── R CMD check results ───────────────────────────────────────── rdev 0.4.3 ────</span>
+<span class="co">#&gt; Duration: 26.6s</span>
 <span class="co">#&gt; </span>
 <span class="co">#&gt; 0 errors ✓ | 0 warnings ✓ | 0 notes ✓</span></code></pre></div>
 </div>
