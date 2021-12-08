@@ -75,13 +75,26 @@ build_analysis_site <- function(pkg = ".", ...) {
   pkgdown::build_site()
 
   # create _site.yml from _pkgdown.yml in temporary build directory
-  # warning: this assumes that there is only one element on the right, all others on the left
   desc <- desc::description$new(pkg)
   title <- paste0(desc$get("Package")[[1]], " notebooks")
-  left_nav <- unname(pkg_yml$navbar$components[-length(pkg_yml$navbar$components)])
-  right_nav <- unname(pkg_yml$navbar$components[length(pkg_yml$navbar$components)])
+
+  get_component <- function(str_component, list_pkg) {
+    list_pkg$navbar$components[[str_component]]
+  }
+
+  left_struct <- pkg_yml$navbar$structure$left
+  left_nav <- purrr::map(left_struct, get_component, pkg_yml)
+  names(left_nav) <- left_struct
+  left_nav <- purrr::compact(left_nav)
+
+  right_struct <- pkg_yml$navbar$structure$right
+  right_nav <- purrr::map(right_struct, get_component, pkg_yml)
+  names(right_nav) <- right_struct
+  right_nav <- purrr::compact(right_nav)
+
   site_yml <- list(
     output_dir = "docs",
+    # warning: this assumes at least one element in left_nav and right_nav
     navbar = list(title = title, type = "default", left = left_nav, right = right_nav),
     # simulate html_notebook output
     output = list(html_document = list(
