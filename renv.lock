@@ -485,10 +485,10 @@
     },
     "ragg": {
       "Package": "ragg",
-      "Version": "1.2.0",
+      "Version": "1.2.1",
       "Source": "Repository",
       "Repository": "CRAN",
-      "Hash": "5755f91f5fb68fb8cb8a3cf78808222e"
+      "Hash": "4577b3859de34ffb2938d9a878dcf384"
     },
     "rappdirs": {
       "Package": "rappdirs",
@@ -583,10 +583,10 @@
     },
     "sessioninfo": {
       "Package": "sessioninfo",
-      "Version": "1.2.1",
+      "Version": "1.2.2",
       "Source": "Repository",
       "Repository": "CRAN",
-      "Hash": "19ab8539771d727754c178f2ef892615"
+      "Hash": "3f9796a8d0a0e8c6eb49a4b029359d1f"
     },
     "shiny": {
       "Package": "shiny",
