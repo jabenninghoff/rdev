@@ -1,7 +1,31 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   <url>
+    <loc>https://jabenninghoff.github.io/rdev/404.html</loc>
+  </url>
+  <url>
+    <loc>https://jabenninghoff.github.io/rdev/LICENSE-text.html</loc>
+  </url>
+  <url>
+    <loc>https://jabenninghoff.github.io/rdev/LICENSE.html</loc>
+  </url>
+  <url>
+    <loc>https://jabenninghoff.github.io/rdev/TODO.html</loc>
+  </url>
+  <url>
+    <loc>https://jabenninghoff.github.io/rdev/articles/analysis-package-layout.html</loc>
+  </url>
+  <url>
+    <loc>https://jabenninghoff.github.io/rdev/articles/index.html</loc>
+  </url>
+  <url>
+    <loc>https://jabenninghoff.github.io/rdev/authors.html</loc>
+  </url>
+  <url>
     <loc>https://jabenninghoff.github.io/rdev/index.html</loc>
+  </url>
+  <url>
+    <loc>https://jabenninghoff.github.io/rdev/news/index.html</loc>
   </url>
   <url>
     <loc>https://jabenninghoff.github.io/rdev/reference/build_analysis_site.html</loc>
@@ -11,6 +35,9 @@
   </url>
   <url>
     <loc>https://jabenninghoff.github.io/rdev/reference/ci.html</loc>
+  </url>
+  <url>
+    <loc>https://jabenninghoff.github.io/rdev/reference/index.html</loc>
   </url>
   <url>
     <loc>https://jabenninghoff.github.io/rdev/reference/lint_all.html</loc>
@@ -29,8 +56,5 @@
   </url>
   <url>
     <loc>https://jabenninghoff.github.io/rdev/reference/to_document.html</loc>
-  </url>
-  <url>
-    <loc>https://jabenninghoff.github.io/rdev/articles/analysis-package-layout.html</loc>
   </url>
 </urlset>
