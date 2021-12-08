@@ -19,6 +19,8 @@
 <![endif]-->
 </head>
 <body data-spy="scroll" data-target="#toc">
+    
+
     <div class="container template-article">
       <header><div class="navbar navbar-default navbar-fixed-top" role="navigation">
   <div class="container">
@@ -31,18 +33,12 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">rdev</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.4.3</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="">0.4.4</span>
       </span>
     </div>
 
     <div id="navbar" class="navbar-collapse collapse">
       <ul class="nav navbar-nav">
-<li>
-  <a href="../index.html">
-    <span class="fas fa-home fa-lg"></span>
-     
-  </a>
-</li>
 <li>
   <a href="../reference/index.html">Reference</a>
 </li>
@@ -64,7 +60,7 @@
       </ul>
 <ul class="nav navbar-nav navbar-right">
 <li>
-  <a href="https://github.com/jabenninghoff/rdev/">
+  <a href="https://github.com/jabenninghoff/rdev/" class="external-link">
     <span class="fab fa-github fa-lg"></span>
      
   </a>
@@ -79,20 +75,20 @@
 
       
 
-      </header><script src="analysis-package-layout_files/header-attrs-2.11/header-attrs.js"></script><div class="row">
+      </header><div class="row">
   <div class="col-md-9 contents">
     <div class="page-header toc-ignore">
       <h1 data-toc-skip>Analysis Package Layout</h1>
             
       
-      <small class="dont-index">Source: <a href="https://github.com/jabenninghoff/rdev/blob/master/vignettes/analysis-package-layout.Rmd"><code>vignettes/analysis-package-layout.Rmd</code></a></small>
+      <small class="dont-index">Source: <a href="https://github.com/jabenninghoff/rdev/blob/HEAD/vignettes/analysis-package-layout.Rmd" class="external-link"><code>vignettes/analysis-package-layout.Rmd</code></a></small>
       <div class="hidden name"><code>analysis-package-layout.Rmd</code></div>
 
     </div>
 
     
     
-<p>R Analysis Packages are an extension of the standard R package layout designed to support publishing a collection of R notebooks used for data analysis as static html, typically using <a href="https://pages.github.com">GitHub Pages</a>.</p>
+<p>R Analysis Packages are an extension of the standard R package layout designed to support publishing a collection of R notebooks used for data analysis as static html, typically using <a href="https://pages.github.com" class="external-link">GitHub Pages</a>.</p>
 <p>The table below documents the complete R Analysis Package layout:</p>
 <ul>
 <li>
@@ -141,7 +137,7 @@
 <td align="left">.Rprofile</td>
 <td align="left"><code>x</code></td>
 <td align="left"><code>x</code></td>
-<td align="left">Used by <code>renv</code> and to <a href="https://r-pkgs.org/setup.html?#personal-startup-configuration">attach development tools</a>
+<td align="left">Used by <code>renv</code> and to <a href="https://r-pkgs.org/setup.html?#personal-startup-configuration" class="external-link">attach development tools</a>
 </td>
 </tr>
 <tr class="odd">
@@ -166,83 +162,83 @@
 <td align="left">.gitignore</td>
 <td align="left"><code>x</code></td>
 <td align="left"><code>x</code></td>
-<td align="left">git exclusions based on <a href="https://github.com/github/gitignore/blob/master/R.gitignore">GitHub R</a>. Generated files outside of <code>docs</code> (used by GitHub Pages) are excluded.</td>
+<td align="left">git exclusions based on <a href="https://github.com/github/gitignore/blob/master/R.gitignore" class="external-link">GitHub R</a>. Generated files outside of <code>docs</code> (used by GitHub Pages) are excluded.</td>
 </tr>
 <tr class="odd">
 <td align="left">.lintr</td>
 <td align="left"></td>
 <td align="left"><code>x</code></td>
 <td align="left">
-<a href="https://github.com/jimhester/lintr">lintr</a> default linters with 100 columns: <code>linters: with_defaults(line_length_linter(100))</code>
+<a href="https://github.com/jimhester/lintr" class="external-link">lintr</a> default linters with 100 columns: <code>linters: with_defaults(line_length_linter(100))</code>
 </td>
 </tr>
 <tr class="even">
 <td align="left">DESCRIPTION</td>
 <td align="left"><code>x</code></td>
 <td align="left"><code>x</code></td>
-<td align="left">Package metadata. Use “Suggests” for development tools, per <a href="https://rstudio.github.io/renv/articles/faq.html#how-should-i-handle-development-dependencies-">renv</a>
+<td align="left">Package metadata. Use “Suggests” for development tools, per <a href="https://rstudio.github.io/renv/articles/faq.html#how-should-i-handle-development-dependencies-" class="external-link">renv</a>
 </td>
 </tr>
 <tr class="odd">
 <td align="left">LICENSE</td>
 <td align="left"><code>x</code></td>
 <td align="left"><code>x</code></td>
-<td align="left">Generated with <code><a href="https://usethis.r-lib.org/reference/licenses.html">usethis::use_mit_license()</a></code>
+<td align="left">Generated with <code><a href="https://usethis.r-lib.org/reference/licenses.html" class="external-link">usethis::use_mit_license()</a></code>
 </td>
 </tr>
 <tr class="even">
 <td align="left">LICENSE.md</td>
 <td align="left"></td>
 <td align="left"><code>x</code></td>
-<td align="left">See above, used by <a href="https://pkgdown.r-lib.org">pkgdown</a>
+<td align="left">See above, used by <a href="https://pkgdown.r-lib.org" class="external-link">pkgdown</a>
 </td>
 </tr>
 <tr class="odd">
 <td align="left">NAMESPACE</td>
 <td align="left"><code>x</code></td>
 <td align="left"><code>x</code></td>
-<td align="left">Automatically generated with <a href="https://roxygen2.r-lib.org">roxygen2</a>
+<td align="left">Automatically generated with <a href="https://roxygen2.r-lib.org" class="external-link">roxygen2</a>
 </td>
 </tr>
 <tr class="even">
 <td align="left">NEWS.md</td>
 <td align="left"></td>
 <td align="left"><code>x</code></td>
-<td align="left">Release notes, used by <a href="https://pkgdown.r-lib.org">pkgdown</a>
+<td align="left">Release notes, used by <a href="https://pkgdown.r-lib.org" class="external-link">pkgdown</a>
 </td>
 </tr>
 <tr class="odd">
 <td align="left">R</td>
 <td align="left"><code>x</code></td>
 <td align="left"><code>x</code></td>
-<td align="left">All project functions go here, with <a href="https://roxygen2.r-lib.org">roxygen2</a> comments</td>
+<td align="left">All project functions go here, with <a href="https://roxygen2.r-lib.org" class="external-link">roxygen2</a> comments</td>
 </tr>
 <tr class="even">
 <td align="left">README.Rmd</td>
 <td align="left"><code>x</code></td>
 <td align="left"><code>x</code></td>
-<td align="left">Generated with <code><a href="https://usethis.r-lib.org/reference/use_readme_rmd.html">usethis::use_readme_md()</a></code>
+<td align="left">Generated with <code><a href="https://usethis.r-lib.org/reference/use_readme_rmd.html" class="external-link">usethis::use_readme_md()</a></code>
 </td>
 </tr>
 <tr class="odd">
 <td align="left">README.md</td>
 <td align="left"><code>x</code></td>
 <td align="left"><code>x</code></td>
-<td align="left">Generated with <code><a href="https://devtools.r-lib.org/reference/build_rmd.html">devtools::build_readme()</a></code>
+<td align="left">Generated with <code><a href="https://devtools.r-lib.org/reference/build_rmd.html" class="external-link">devtools::build_readme()</a></code>
 </td>
 </tr>
 <tr class="even">
 <td align="left">TODO.md</td>
 <td align="left"></td>
 <td align="left"><code>x</code></td>
-<td align="left">To-do list, inspired by <a href="https://github.com/rstudio/renv/blob/master/TODO.md" class="uri">https://github.com/rstudio/renv/blob/master/TODO.md</a>
+<td align="left">To-do list, inspired by <a href="https://github.com/rstudio/renv/blob/master/TODO.md" class="external-link uri">https://github.com/rstudio/renv/blob/master/TODO.md</a>
 </td>
 </tr>
 <tr class="odd">
 <td align="left">analysis</td>
 <td align="left"></td>
 <td align="left"><code>x</code></td>
-<td align="left">Exploratory data analysis in R Notebooks and R Presentations. Include functions from the R directory using <code><a href="https://rdrr.io/r/base/library.html">library(name)</a></code>, not <code>source("rscript.R")</code>.</td>
+<td align="left">Exploratory data analysis in R Notebooks and R Presentations. Include functions from the R directory using <code><a href="https://rdrr.io/r/base/library.html" class="external-link">library(name)</a></code>, not <code>source("rscript.R")</code>.</td>
 </tr>
 <tr class="even">
 <td align="left">analysis/assets</td>
@@ -266,14 +262,14 @@
 <td align="left">analysis/rendered</td>
 <td align="left"></td>
 <td align="left"></td>
-<td align="left">Manually rendered versions of <code>analysis/</code> files to be included in <code>docs/</code>, like <a href="https://stackoverflow.com/questions/27930127/render-r-presentation-from-the-command-line">.Rpres files</a>
+<td align="left">Manually rendered versions of <code>analysis/</code> files to be included in <code>docs/</code>, like <a href="https://stackoverflow.com/questions/27930127/render-r-presentation-from-the-command-line" class="external-link">.Rpres files</a>
 </td>
 </tr>
 <tr class="even">
 <td align="left">demos</td>
 <td align="left"><code>x</code></td>
 <td align="left"></td>
-<td align="left">Not used, as recommended by <a href="https://r-pkgs.org/misc.html">R Packages</a>
+<td align="left">Not used, as recommended by <a href="https://r-pkgs.org/misc.html" class="external-link">R Packages</a>
 </td>
 </tr>
 <tr class="odd">
@@ -292,13 +288,13 @@
 <td align="left">inst/rmarkdown/templates</td>
 <td align="left"><code>x</code></td>
 <td align="left"><code>x</code></td>
-<td align="left"><a href="https://rstudio.github.io/rstudio-extensions/rmarkdown_templates.html">R Markdown Templates</a></td>
+<td align="left"><a href="https://rstudio.github.io/rstudio-extensions/rmarkdown_templates.html" class="external-link">R Markdown Templates</a></td>
 </tr>
 <tr class="even">
 <td align="left">man</td>
 <td align="left"><code>x</code></td>
 <td align="left"><code>x</code></td>
-<td align="left">Automatically generated with <a href="https://roxygen2.r-lib.org">roxygen2</a>
+<td align="left">Automatically generated with <a href="https://roxygen2.r-lib.org" class="external-link">roxygen2</a>
 </td>
 </tr>
 <tr class="odd">
@@ -311,33 +307,33 @@
 <td align="left">pkgdown</td>
 <td align="left"></td>
 <td align="left"><code>x</code></td>
-<td align="left">Store all <a href="https://pkgdown.r-lib.org">pkgdown</a> files here</td>
+<td align="left">Store all <a href="https://pkgdown.r-lib.org" class="external-link">pkgdown</a> files here</td>
 </tr>
 <tr class="odd">
 <td align="left">po</td>
 <td align="left"><code>x</code></td>
 <td align="left"><code>x</code></td>
-<td align="left">Used for <a href="https://cran.rstudio.com/doc/manuals/r-devel/R-exts.html#Internationalization">Internationalization</a> if needed</td>
+<td align="left">Used for <a href="https://cran.rstudio.com/doc/manuals/r-devel/R-exts.html#Internationalization" class="external-link">Internationalization</a> if needed</td>
 </tr>
 <tr class="even">
 <td align="left">renv</td>
 <td align="left"></td>
 <td align="left"><code>x</code></td>
-<td align="left">Used by <a href="https://rstudio.github.io/renv/">renv</a>
+<td align="left">Used by <a href="https://rstudio.github.io/renv/" class="external-link">renv</a>
 </td>
 </tr>
 <tr class="odd">
 <td align="left">renv.lock</td>
 <td align="left"></td>
 <td align="left"><code>x</code></td>
-<td align="left">renv <a href="https://rstudio.github.io/renv/reference/lockfiles.html">lockfile</a>
+<td align="left">renv <a href="https://rstudio.github.io/renv/reference/lockfiles.html" class="external-link">lockfile</a>
 </td>
 </tr>
 <tr class="even">
 <td align="left">tests</td>
 <td align="left"><code>x</code></td>
 <td align="left"><code>x</code></td>
-<td align="left">Tests using <a href="https://testthat.r-lib.org">testthat</a>
+<td align="left">Tests using <a href="https://testthat.r-lib.org" class="external-link">testthat</a>
 </td>
 </tr>
 <tr class="odd">
@@ -366,11 +362,13 @@
 
 
       <footer><div class="copyright">
-  <p>Developed by John Benninghoff.</p>
+  <p></p>
+<p>Developed by John Benninghoff.</p>
 </div>
 
 <div class="pkgdown">
-  <p>Site built with <a href="https://pkgdown.r-lib.org/">pkgdown</a> 1.6.1.</p>
+  <p></p>
+<p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.0.1.</p>
 </div>
 
       </footer>
@@ -378,6 +376,8 @@
 
   
 
+
+  
 
   </body>
 </html>
