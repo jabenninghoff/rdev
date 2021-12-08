@@ -1,3 +1,7 @@
+# rdev 0.4.4
+
+* Update `build_analysis_site()` to work with `pkgdown` version 2
+
 # rdev 0.4.3
 
 * maintenance, update TODO with steps for manually setting up an Analysis Package
