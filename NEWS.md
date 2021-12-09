@@ -1,3 +1,7 @@
+# rdev 0.4.5
+
+* maintenance release, update GitHub Actions
+
 # rdev 0.4.4
 
 * Update `build_analysis_site()` to work with `pkgdown` version 2
