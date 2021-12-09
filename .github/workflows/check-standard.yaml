@@ -39,12 +39,6 @@ jobs:
           http-user-agent: ${{ matrix.config.http-user-agent }}
           use-public-rspm: true
 
-      # workaround for vignettes until https://github.com/rstudio/renv/issues/833 is fixed
-      - name: Install vignettes libraries
-        run: |
-          install.packages(c("devtools", "markdown", "miniUI", "rmarkdown"), repos="https://cran.rstudio.com")
-        shell: Rscript "--no-init-file" {0}
-
       - uses: r-lib/actions/setup-renv@v1
       - name: Install rcmdcheck
         run: |
