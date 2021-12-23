@@ -18,6 +18,11 @@ reference:
   - style_all
   - lint_all
 
+- title: "ggplot2 Style"
+  contents:
+  - theme_quo
+  - viridis_quo
+
 - title: "Utilities"
   contents:
   - sort_file
