@@ -15,7 +15,6 @@ To reset the default theme and color scales, restart the R session.
 }
 \examples{
 \dontrun{
-
 viridis_quo()
 }
 }

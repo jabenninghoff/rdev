@@ -49,7 +49,6 @@ theme_quo <- function() {
 #'
 #' @examples
 #' \dontrun{
-#'
 #' viridis_quo()
 #' }
 viridis_quo <- function() {
