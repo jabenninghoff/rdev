@@ -8,7 +8,7 @@ theme_quo()
 }
 \description{
 An opinionated \link[ggplot2:ggplot2-package]{ggplot2} theme based on \code{\link[ggplot2:ggtheme]{ggplot2::theme_bw()}}. Quo can
-be added to individual plots or set as the default theme using \code{viridis_quo()}.
+be added to individual plots or set as the default theme using \code{\link[=viridis_quo]{viridis_quo()}}.
 }
 \details{
 Quo requires \href{https://www.latofonts.com}{Lato}, which can be installed on macOS using
