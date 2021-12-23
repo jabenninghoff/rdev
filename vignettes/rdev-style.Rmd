@@ -1,0 +1,71 @@
+---
+title: "rdev ggplot2 style"
+output: rmarkdown::html_vignette
+vignette: >
+  %\VignetteIndexEntry{rdev ggplot2 style}
+  %\VignetteEngine{knitr::rmarkdown}
+  %\VignetteEncoding{UTF-8}
+---
+
+```{r, include = FALSE}
+knitr::opts_chunk$set(
+  collapse = TRUE,
+  comment = "#>"
+)
+```
+
+```{r setup}
+library(rdev)
+library(ggplot2)
+```
+
+`rdev` includes functions to change the style of [ggplot2](https://ggplot2.tidyverse.org) plots. The included theme, quo, can be added to individual plots using `theme_quo()`. `viridis_quo()` sets the default theme to `theme_quo()` and the default color palettes to `viridis`, and is normally invoked in the `setup` block in an rmarkdown file.
+
+## Quo Theme
+
+The quo theme applied to the venerable `mtcars` dataset. Example adapted from `ggplot2::theme_bw()`:
+
+```{r p1}
+p1 <- ggplot(mtcars, aes(x = wt, y = mpg, color = factor(cyl))) +
+  geom_point() +
+  labs(
+    title = "Fuel economy declines as weight increases",
+    subtitle = "(1973-74)",
+    caption = "Data from the 1974 Motor Trend US magazine.",
+    tag = "Figure 1",
+    x = "Weight (1000 lbs)",
+    y = "Fuel economy (mpg)",
+    color = "Gears"
+  )
+
+p1
+p1 + theme_quo()
+```
+
+## Viridis Quo
+
+Invoking `viridis_quo()` will change the style of all plots. Examples adapted from `ggplot2::scale_colour_viridis_d`:
+
+Sample plots using the default theme and color scales.
+
+```{r txsamp}
+txsamp <- subset(txhousing, city %in% c("Houston", "Fort Worth", "San Antonio", "Dallas", "Austin"))
+
+(d <- ggplot(data = txsamp, aes(x = sales, y = median)) +
+  geom_point(aes(colour = city)))
+(p <- ggplot(txsamp, aes(x = median, fill = city)) +
+  geom_histogram(position = "dodge", binwidth = 15000))
+(v <- ggplot(faithfuld) +
+  geom_tile(aes(waiting, eruptions, fill = density)))
+```
+
+The same plots after running `viridis_quo()`:
+
+```{r viridis_quo}
+viridis_quo()
+
+d
+p
+v
+```
+
