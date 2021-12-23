@@ -18,6 +18,7 @@ X-rdev-comment: include all development packages in "Imports" to enable installa
 Imports:
     desc,
     fs,
+    ggplot2,
     lintr (>= 2.0.1.9000),
     markdown,
     pkgdown,
