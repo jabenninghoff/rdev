@@ -9,10 +9,12 @@
 #' @export
 #'
 #' @examples
-#' \dontrun{
-#'
 #' # adapted from ggplot2::theme_bw()
 #' library(ggplot2)
+#' library(showtext)
+#'
+#' font_add_google("Lato", "Lato")
+#' showtext_auto()
 #'
 #' ggplot(mtcars, aes(x = wt, y = mpg, color = factor(cyl))) +
 #'   geom_point() +
@@ -26,13 +28,12 @@
 #'     color = "Gears"
 #'   ) +
 #'   theme_quo()
-#' }
 theme_quo <- function() {
   ggplot2::theme_bw() +
     ggplot2::theme(
       text = ggplot2::element_text(family = "Lato"),
-      plot.title = ggplot2::element_text(family = "Lato Bold"),
-      plot.subtitle = ggplot2::element_text(family = "Lato Bold"),
+      plot.title = ggplot2::element_text(face = "bold"),
+      plot.subtitle = ggplot2::element_text(face = "bold"),
       plot.caption = ggplot2::element_text(hjust = 0)
     )
 }
