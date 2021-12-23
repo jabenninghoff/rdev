@@ -15,10 +15,12 @@ Quo requires \href{https://www.latofonts.com}{Lato}, which can be installed on m
 \verb{brew install font-lato}.
 }
 \examples{
-\dontrun{
-
 # adapted from ggplot2::theme_bw()
 library(ggplot2)
+library(showtext)
+
+font_add_google("Lato", "Lato")
+showtext_auto()
 
 ggplot(mtcars, aes(x = wt, y = mpg, color = factor(cyl))) +
   geom_point() +
@@ -32,5 +34,4 @@ ggplot(mtcars, aes(x = wt, y = mpg, color = factor(cyl))) +
     color = "Gears"
   ) +
   theme_quo()
-}
 }
