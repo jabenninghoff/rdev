@@ -1,7 +1,7 @@
 #' Quo Theme
 #'
 #' An opinionated [ggplot2][ggplot2::ggplot2-package] theme based on [ggplot2::theme_bw()]. Quo can
-#'   be added to individual plots or set as the default theme using `viridis_quo()`.
+#'   be added to individual plots or set as the default theme using [viridis_quo()].
 #'
 #' Quo requires [Lato](https://www.latofonts.com), which can be installed on macOS using
 #'   `brew install font-lato`.
@@ -35,4 +35,27 @@ theme_quo <- function() {
       plot.subtitle = ggplot2::element_text(family = "Lato Bold"),
       plot.caption = ggplot2::element_text(hjust = 0)
     )
+}
+
+#' Viridis Quo
+#'
+#' Sets the default theme to [theme_quo()] and the default color scales to
+#'   [`viridis`][ggplot2::scale_colour_viridis_d()].
+#'
+#' To reset the default theme and color scales, restart the R session.
+#'
+#' @export
+#'
+#' @examples
+#' \dontrun{
+#'
+#' viridis_quo()
+#' }
+viridis_quo <- function() {
+  ggplot2::theme_set(theme_quo())
+
+  options(ggplot2.continuous.colour = "viridis")
+  options(ggplot2.continuous.fill = "viridis")
+  options(ggplot2.discrete.colour = ggplot2::scale_colour_viridis_d)
+  options(ggplot2.discrete.fill = ggplot2::scale_fill_viridis_d)
 }
