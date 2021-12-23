@@ -38,5 +38,10 @@ vignettes/*.pdf
 # R Environment Variables
 .Renviron
 
+# macOS, vim
+.DS_Store
+*.swp
+~$*
+
 # Other exclusions
 inst/doc
