@@ -1,3 +1,11 @@
+# rdev 0.5.0
+
+* Added `theme_quo()`: [ggplot2](https://ggplot2.tidyverse.org) theme based on `ggplot2::theme_bw()` and font [Lato](https://www.latofonts.com)
+
+* Added `viridis_quo()`: Sets the default theme to `theme_quo()` and the default color scales to `viridis`
+
+* maintenance
+
 # rdev 0.4.5
 
 * maintenance release, update GitHub Actions
