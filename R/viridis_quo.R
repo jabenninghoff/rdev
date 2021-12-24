@@ -15,6 +15,8 @@
 #'
 #' font_add_google("Lato", "Lato")
 #' showtext_auto()
+#' # workaround for https://github.com/yixuan/showtext/issues/51
+#' showtext_opts(dpi = 192)
 #'
 #' ggplot(mtcars, aes(x = wt, y = mpg, color = factor(cyl))) +
 #'   geom_point() +
