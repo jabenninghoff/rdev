@@ -14,9 +14,12 @@ knitr::opts_chunk$set(
 )
 ```
 
-```{r setup}
+```{r setup, message = FALSE, warning = FALSE}
 library(rdev)
 library(ggplot2)
+library(showtext)
+
+font_add_google("Lato", "Lato")
 ```
 
 `rdev` includes functions to change the style of [ggplot2](https://ggplot2.tidyverse.org) plots. The included theme, quo, can be added to individual plots using `theme_quo()`. `viridis_quo()` sets the default theme to `theme_quo()` and the default color palettes to `viridis`, and is normally invoked in the `setup` block in an rmarkdown file.
@@ -25,7 +28,7 @@ library(ggplot2)
 
 The quo theme applied to the venerable `mtcars` dataset. Example adapted from `ggplot2::theme_bw()`:
 
-```{r p1}
+```{r p1, fig.showtext = TRUE}
 p1 <- ggplot(mtcars, aes(x = wt, y = mpg, color = factor(cyl))) +
   geom_point() +
   labs(
@@ -61,7 +64,7 @@ txsamp <- subset(txhousing, city %in% c("Houston", "Fort Worth", "San Antonio", 
 
 The same plots after running `viridis_quo()`:
 
-```{r viridis_quo}
+```{r viridis_quo, fig.showtext = TRUE}
 viridis_quo()
 
 d
