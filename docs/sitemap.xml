@@ -19,6 +19,9 @@
     <loc>https://jabenninghoff.github.io/rdev/articles/index.html</loc>
   </url>
   <url>
+    <loc>https://jabenninghoff.github.io/rdev/articles/rdev-style.html</loc>
+  </url>
+  <url>
     <loc>https://jabenninghoff.github.io/rdev/authors.html</loc>
   </url>
   <url>
@@ -55,6 +58,12 @@
     <loc>https://jabenninghoff.github.io/rdev/reference/style_all.html</loc>
   </url>
   <url>
+    <loc>https://jabenninghoff.github.io/rdev/reference/theme_quo.html</loc>
+  </url>
+  <url>
     <loc>https://jabenninghoff.github.io/rdev/reference/to_document.html</loc>
+  </url>
+  <url>
+    <loc>https://jabenninghoff.github.io/rdev/reference/viridis_quo.html</loc>
   </url>
 </urlset>
