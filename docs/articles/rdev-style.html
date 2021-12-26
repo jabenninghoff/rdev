@@ -33,7 +33,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">rdev</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="">0.5.0</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="">0.5.1</span>
       </span>
     </div>
 
@@ -120,38 +120,58 @@
 <div class="sourceCode" id="cb3"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="va">p1</span> <span class="op">+</span> <span class="fu"><a href="../reference/theme_quo.html">theme_quo</a></span><span class="op">(</span><span class="op">)</span></code></pre></div>
 <p><img src="rdev-style_files/figure-html/p1-2.png" width="700"></p>
+<p>The viridis color scheme can be added manually using <code><a href="https://ggplot2.tidyverse.org/reference/scale_viridis.html" class="external-link">ggplot2::scale_color_viridis_d()</a></code>:</p>
+<div class="sourceCode" id="cb4"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="va">p1</span> <span class="op">+</span>
+  <span class="fu"><a href="../reference/theme_quo.html">theme_quo</a></span><span class="op">(</span><span class="op">)</span> <span class="op">+</span>
+  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/scale_viridis.html" class="external-link">scale_color_viridis_d</a></span><span class="op">(</span><span class="op">)</span></code></pre></div>
+<p><img src="rdev-style_files/figure-html/p1_viridis-1.png" width="700"></p>
 </div>
 <div class="section level2">
 <h2 id="viridis-quo">Viridis Quo<a class="anchor" aria-label="anchor" href="#viridis-quo"></a>
 </h2>
 <p>Invoking <code><a href="../reference/viridis_quo.html">viridis_quo()</a></code> will change the style of all plots. Examples adapted from <code><a href="https://ggplot2.tidyverse.org/reference/scale_viridis.html" class="external-link">ggplot2::scale_colour_viridis_d</a></code>:</p>
 <p>Sample plots using the default theme and color scales.</p>
-<div class="sourceCode" id="cb4"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb5"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="va">txsamp</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/subset.html" class="external-link">subset</a></span><span class="op">(</span><span class="va">txhousing</span>, <span class="va">city</span> <span class="op"><a href="https://rdrr.io/r/base/match.html" class="external-link">%in%</a></span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"Houston"</span>, <span class="st">"Fort Worth"</span>, <span class="st">"San Antonio"</span>, <span class="st">"Dallas"</span>, <span class="st">"Austin"</span><span class="op">)</span><span class="op">)</span>
 
 <span class="op">(</span><span class="va">d</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggplot.html" class="external-link">ggplot</a></span><span class="op">(</span>data <span class="op">=</span> <span class="va">txsamp</span>, <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/aes.html" class="external-link">aes</a></span><span class="op">(</span>x <span class="op">=</span> <span class="va">sales</span>, y <span class="op">=</span> <span class="va">median</span><span class="op">)</span><span class="op">)</span> <span class="op">+</span>
   <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/geom_point.html" class="external-link">geom_point</a></span><span class="op">(</span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/aes.html" class="external-link">aes</a></span><span class="op">(</span>colour <span class="op">=</span> <span class="va">city</span><span class="op">)</span><span class="op">)</span><span class="op">)</span></code></pre></div>
 <p><img src="rdev-style_files/figure-html/txsamp-1.png" width="700"></p>
-<div class="sourceCode" id="cb5"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb6"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="op">(</span><span class="va">p</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggplot.html" class="external-link">ggplot</a></span><span class="op">(</span><span class="va">txsamp</span>, <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/aes.html" class="external-link">aes</a></span><span class="op">(</span>x <span class="op">=</span> <span class="va">median</span>, fill <span class="op">=</span> <span class="va">city</span><span class="op">)</span><span class="op">)</span> <span class="op">+</span>
   <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/geom_histogram.html" class="external-link">geom_histogram</a></span><span class="op">(</span>position <span class="op">=</span> <span class="st">"dodge"</span>, binwidth <span class="op">=</span> <span class="fl">15000</span><span class="op">)</span><span class="op">)</span></code></pre></div>
 <p><img src="rdev-style_files/figure-html/txsamp-2.png" width="700"></p>
-<div class="sourceCode" id="cb6"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb7"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="op">(</span><span class="va">v</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggplot.html" class="external-link">ggplot</a></span><span class="op">(</span><span class="va">faithfuld</span><span class="op">)</span> <span class="op">+</span>
   <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/geom_tile.html" class="external-link">geom_tile</a></span><span class="op">(</span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/aes.html" class="external-link">aes</a></span><span class="op">(</span><span class="va">waiting</span>, <span class="va">eruptions</span>, fill <span class="op">=</span> <span class="va">density</span><span class="op">)</span><span class="op">)</span><span class="op">)</span></code></pre></div>
 <p><img src="rdev-style_files/figure-html/txsamp-3.png" width="700"></p>
 <p>The same plots after running <code><a href="../reference/viridis_quo.html">viridis_quo()</a></code>:</p>
-<div class="sourceCode" id="cb7"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb8"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="fu"><a href="../reference/viridis_quo.html">viridis_quo</a></span><span class="op">(</span><span class="op">)</span>
 
 <span class="va">d</span></code></pre></div>
 <p><img src="rdev-style_files/figure-html/viridis_quo-1.png" width="700"></p>
-<div class="sourceCode" id="cb8"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb9"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="va">p</span></code></pre></div>
 <p><img src="rdev-style_files/figure-html/viridis_quo-2.png" width="700"></p>
-<div class="sourceCode" id="cb9"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb10"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="va">v</span></code></pre></div>
 <p><img src="rdev-style_files/figure-html/viridis_quo-3.png" width="700"></p>
+</div>
+<div class="section level2">
+<h2 id="gridlines">Gridlines<a class="anchor" aria-label="anchor" href="#gridlines"></a>
+</h2>
+<p>Gridlines can be selectively disabled using <code><a href="../reference/theme_quo.html">theme_quo()</a></code>:</p>
+<div class="sourceCode" id="cb11"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="va">d</span></code></pre></div>
+<p><img src="rdev-style_files/figure-html/panel.grid-1.png" width="700"></p>
+<div class="sourceCode" id="cb12"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="va">p</span> <span class="op">+</span> <span class="fu"><a href="../reference/theme_quo.html">theme_quo</a></span><span class="op">(</span>major.x <span class="op">=</span> <span class="cn">FALSE</span>, minor.x <span class="op">=</span> <span class="cn">FALSE</span><span class="op">)</span></code></pre></div>
+<p><img src="rdev-style_files/figure-html/panel.grid-2.png" width="700"></p>
+<div class="sourceCode" id="cb13"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="va">v</span> <span class="op">+</span> <span class="fu"><a href="../reference/theme_quo.html">theme_quo</a></span><span class="op">(</span>major <span class="op">=</span> <span class="cn">FALSE</span>, minor <span class="op">=</span> <span class="cn">FALSE</span><span class="op">)</span></code></pre></div>
+<p><img src="rdev-style_files/figure-html/panel.grid-3.png" width="700"></p>
 </div>
   </div>
 
