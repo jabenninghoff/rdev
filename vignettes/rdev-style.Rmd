@@ -72,3 +72,12 @@ p
 v
 ```
 
+## Gridlines
+
+Gridlines can be selectively disabled using `theme_quo()`:
+
+```{r panel.grid, fig.showtext = TRUE}
+d
+p + theme_quo(major.x = FALSE, minor.x = FALSE)
+v + theme_quo(major = FALSE, minor = FALSE)
+```

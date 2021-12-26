@@ -4,7 +4,18 @@
 \alias{theme_quo}
 \title{Quo Theme}
 \usage{
-theme_quo()
+theme_quo(
+  major = TRUE,
+  major.x = TRUE,
+  major.y = TRUE,
+  minor = TRUE,
+  minor.x = TRUE,
+  minor.y = TRUE
+)
+}
+\arguments{
+\item{major, major.x, major.y, minor, minor.x, minor.y}{set to FALSE to disable grid lines by setting
+the appropriate panel.grid element to \code{\link[ggplot2:element]{ggplot2::element_blank()}}.}
 }
 \description{
 An opinionated \link[ggplot2:ggplot2-package]{ggplot2} theme based on \code{\link[ggplot2:ggtheme]{ggplot2::theme_bw()}}. Quo can
