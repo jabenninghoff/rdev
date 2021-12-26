@@ -31,9 +31,8 @@
 #'   ) +
 #'   theme_quo()
 theme_quo <- function() {
-  ggplot2::theme_bw() +
+  ggplot2::theme_minimal(base_family = "Lato") +
     ggplot2::theme(
-      text = ggplot2::element_text(family = "Lato"),
       plot.title = ggplot2::element_text(face = "bold"),
       plot.subtitle = ggplot2::element_text(face = "bold"),
       plot.caption = ggplot2::element_text(hjust = 0)
