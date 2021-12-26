@@ -1,3 +1,7 @@
+# rdev 0.5.1
+
+* Updated `theme_quo()`: set base theme to `ggplot2::theme_minimal()` and add parameters for disabling grid lines
+
 # rdev 0.5.0
 
 * Added `theme_quo()`: [ggplot2](https://ggplot2.tidyverse.org) theme based on `ggplot2::theme_bw()` and font [Lato](https://www.latofonts.com)
