@@ -47,7 +47,7 @@ p1 + theme_quo()
 
 The viridis color scheme can be added manually using `ggplot2::scale_color_viridis_d()`:
 
-```{r p1_viridis}
+```{r p1_viridis, fig.showtext = TRUE}
 p1 +
   theme_quo() +
   scale_color_viridis_d()
