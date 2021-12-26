@@ -46,5 +46,6 @@ ggplot(mtcars, aes(x = wt, y = mpg, color = factor(cyl))) +
     y = "Fuel economy (mpg)",
     color = "Gears"
   ) +
-  theme_quo()
+  theme_quo() +
+  scale_color_viridis_d()
 }
