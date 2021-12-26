@@ -31,7 +31,8 @@
 #'     y = "Fuel economy (mpg)",
 #'     color = "Gears"
 #'   ) +
-#'   theme_quo()
+#'   theme_quo() +
+#'   scale_color_viridis_d()
 # nolint start: snake_case_linter
 theme_quo <- function(major = TRUE,
                       major.x = TRUE,
