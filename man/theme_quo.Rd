@@ -18,15 +18,15 @@ theme_quo(
 the appropriate panel.grid element to \code{\link[ggplot2:element]{ggplot2::element_blank()}}.}
 }
 \description{
-An opinionated \link[ggplot2:ggplot2-package]{ggplot2} theme based on \code{\link[ggplot2:ggtheme]{ggplot2::theme_bw()}}. Quo can
-be added to individual plots or set as the default theme using \code{\link[=viridis_quo]{viridis_quo()}}.
+An opinionated \link[ggplot2:ggplot2-package]{ggplot2} theme based on \code{\link[ggplot2:ggtheme]{ggplot2::theme_minimal()}}.
+Quo can be added to individual plots or set as the default theme using \code{\link[=viridis_quo]{viridis_quo()}}.
 }
 \details{
 Quo requires \href{https://www.latofonts.com}{Lato}, which can be installed on macOS using
 \verb{brew install font-lato}.
 }
 \examples{
-# adapted from ggplot2::theme_bw()
+# adapted from ggplot2::theme_minimal()
 library(ggplot2)
 library(showtext)
 

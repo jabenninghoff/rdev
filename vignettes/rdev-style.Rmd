@@ -26,7 +26,7 @@ font_add_google("Lato", "Lato")
 
 ## Quo Theme
 
-The quo theme applied to the venerable `mtcars` dataset. Example adapted from `ggplot2::theme_bw()`:
+The quo theme applied to the venerable `mtcars` dataset. Example adapted from `ggplot2::theme_minimal()`:
 
 ```{r p1, fig.showtext = TRUE}
 p1 <- ggplot(mtcars, aes(x = wt, y = mpg, color = factor(cyl))) +
