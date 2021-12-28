@@ -48,11 +48,11 @@ lint_all <- function(path = ".", ...) {
 #' \dontrun{
 #' ci()
 #' ci(styler = TRUE)
-#' ci(styler = TRUE, lintr = FALSE, rcmdcheck = FALSE)
+#' ci(styler = TRUE, lintr = TRUE, rcmdcheck = FALSE)
 #' }
 # add tests using local_create_package() per https://testthat.r-lib.org/articles/test-fixtures.html
 # test styler and lintr, don't test rcmdcheck
-ci <- function(styler = FALSE, lintr = TRUE, document = TRUE, rcmdcheck = TRUE) {
+ci <- function(styler = FALSE, lintr = FALSE, document = TRUE, rcmdcheck = TRUE) {
   if (styler) {
     style_all()
   }

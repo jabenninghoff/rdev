@@ -4,7 +4,7 @@
 \alias{ci}
 \title{Local CI}
 \usage{
-ci(styler = FALSE, lintr = TRUE, document = TRUE, rcmdcheck = TRUE)
+ci(styler = FALSE, lintr = FALSE, document = TRUE, rcmdcheck = TRUE)
 }
 \arguments{
 \item{styler}{style all files using \code{\link[=style_all]{style_all()}}}
@@ -23,6 +23,6 @@ Run continuous integration tests locally.
 \dontrun{
 ci()
 ci(styler = TRUE)
-ci(styler = TRUE, lintr = FALSE, rcmdcheck = FALSE)
+ci(styler = TRUE, lintr = TRUE, rcmdcheck = FALSE)
 }
 }
