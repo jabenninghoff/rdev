@@ -1,3 +1,9 @@
+# rdev 0.5.2
+
+* Disable `lintr` by default in `ci()`, since the normal workflow is `style_all()`, `lint_all()`, then `ci()`
+
+* Documentation fixes
+
 # rdev 0.5.1
 
 * Updated `theme_quo()`: set base theme to `ggplot2::theme_minimal()` and add parameters for disabling grid lines
