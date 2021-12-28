@@ -1,7 +1,7 @@
 #' Quo Theme
 #'
-#' An opinionated [ggplot2][ggplot2::ggplot2-package] theme based on [ggplot2::theme_bw()]. Quo can
-#'   be added to individual plots or set as the default theme using [viridis_quo()].
+#' An opinionated [ggplot2][ggplot2::ggplot2-package] theme based on [ggplot2::theme_minimal()].
+#'   Quo can be added to individual plots or set as the default theme using [viridis_quo()].
 #'
 #' Quo requires [Lato](https://www.latofonts.com), which can be installed on macOS using
 #'   `brew install font-lato`.
@@ -11,7 +11,7 @@
 #' @export
 #'
 #' @examples
-#' # adapted from ggplot2::theme_bw()
+#' # adapted from ggplot2::theme_minimal()
 #' library(ggplot2)
 #' library(showtext)
 #'
