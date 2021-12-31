@@ -22,7 +22,7 @@ library(showtext)
 font_add_google("Lato", "Lato")
 ```
 
-`rdev` includes functions to change the style of [ggplot2](https://ggplot2.tidyverse.org) plots. The included theme, quo, can be added to individual plots using `theme_quo()`. `viridis_quo()` sets the default theme to `theme_quo()` and the default color palettes to `viridis`, and is normally invoked in the `setup` block in an rmarkdown file.
+`rdev` includes functions to change the style of [ggplot2](https://ggplot2.tidyverse.org) plots. The included theme, quo, can be added to individual plots using `theme_quo()`. `viridis_quo()` sets the default theme to `theme_quo()` and the default color palettes to `viridis`, and can be invoked automatically in `.Rprofile`.
 
 ## Quo Theme
 
