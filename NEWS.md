@@ -1,3 +1,7 @@
+# rdev 0.5.3
+
+* Add options to `theme_quo()` to disable both `panel.grid.major` and `panel.grid.minor` for `x` and `y`
+
 # rdev 0.5.2
 
 * Disable `lintr` by default in `ci()`, since the normal workflow is `style_all()`, `lint_all()`, then `ci()`
