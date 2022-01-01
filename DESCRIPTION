@@ -2,34 +2,32 @@ Package: rdev
 Title: R Development Tools
 Version: 0.5.3.9000
 Authors@R:
-    person(given = "John",
-           family = "Benninghoff",
-           role = c("aut", "cre"),
-           email = "jbenninghoff@mac.com",
+    person("John", "Benninghoff", email = "jbenninghoff@mac.com", role = c("aut", "cre"),
            comment = c(ORCID = "0000-0002-6230-4742"))
 Description: My personalized collection of development packages, tools and utility functions.
 License: MIT + file LICENSE
-URL: https://jabenninghoff.github.io/rdev/, https://github.com/jabenninghoff/rdev
+URL: https://jabenninghoff.github.io/rdev/,
+    https://github.com/jabenninghoff/rdev
+BugReports: https://github.com/jabenninghoff/rdev/issues
 Encoding: UTF-8
-LazyData: true
 Roxygen: list(markdown = TRUE)
 RoxygenNote: 7.1.2
 X-rdev-comment: include all development packages in "Imports" to enable installation through rdev
 Imports:
     desc,
+    devtools,
     fs,
     ggplot2,
     lintr (>= 2.0.1.9000),
-    markdown,
     pkgdown,
     purrr,
     rcmdcheck,
     rmarkdown,
     styler (>= 1.4.0),
+    renv,
     yaml,
-    devtools,
-    miniUI,
-    renv
+    markdown,
+    miniUI
 Suggests:
     showtext,
     tibble,
