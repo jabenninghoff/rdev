@@ -1,6 +1,3 @@
-# declare variables for lintr, R CMD check
-utils::globalVariables(c("pattern", "create", "gitignore", "rbuildignore"))
-
 #' Use Analysis Package Layout
 #'
 # nolint start: line_length_linter
@@ -11,7 +8,6 @@ utils::globalVariables(c("pattern", "create", "gitignore", "rbuildignore"))
 #' When run, `use_analysis_package()` creates analysis package directories and updates both
 #'   .gitignore and .Rbuildignore.
 #'
-#' @importFrom magrittr `%>%`
 #' @export
 #'
 #' @examples
@@ -19,6 +15,9 @@ utils::globalVariables(c("pattern", "create", "gitignore", "rbuildignore"))
 #' use_analysis_package()
 #' }
 use_analysis_package <- function() {
+  # workaround for lintr, R CMD check
+  pattern <- create <- gitignore <- rbuildignore <- NULL
+
   analysis_layout <- tibble::tribble(
     ~pattern, ~create, ~gitignore, ~rbuildignore,
     "analysis", TRUE, FALSE, FALSE,
@@ -36,21 +35,15 @@ use_analysis_package <- function() {
     "pkgdown/_pkgdown.yml", FALSE, TRUE, FALSE,
   )
 
-  analysis_dirs <- analysis_layout %>%
-    dplyr::filter(create) %>%
-    dplyr::pull(pattern)
+  analysis_dirs <- subset(analysis_layout, create, pattern)
 
-  analysis_gitignore <- analysis_layout %>%
-    dplyr::filter(gitignore) %>%
-    dplyr::pull(pattern)
+  analysis_gitignore <- subset(analysis_layout, gitignore, pattern)
 
-  analysis_rbuildignore <- analysis_layout %>%
-    dplyr::filter(rbuildignore) %>%
-    dplyr::mutate(pattern = gsub("\\.", "\\\\.", pattern)) %>%
-    dplyr::mutate(pattern = gsub("/$", "", pattern)) %>%
-    dplyr::mutate(pattern = gsub("\\*", ".\\*", pattern)) %>%
-    dplyr::mutate(pattern = paste0("^", pattern, "$")) %>%
-    dplyr::pull(pattern)
+  analysis_rbuildignore <- subset(analysis_layout, rbuildignore, pattern)
+  analysis_rbuildignore <- gsub("\\.", "\\\\.", analysis_rbuildignore)
+  analysis_rbuildignore <- gsub("/$", "", analysis_rbuildignore)
+  analysis_rbuildignore <- gsub("\\*", ".\\*", analysis_rbuildignore)
+  analysis_rbuildignore <- paste0("^", analysis_rbuildignore, "$")
 
   fs::dir_create(analysis_dirs)
 
@@ -61,5 +54,5 @@ use_analysis_package <- function() {
   usethis::use_git_ignore(analysis_gitignore)
 
   usethis::use_build_ignore(analysis_rbuildignore, escape = FALSE)
-  sort_rbuildignore()
+  rdev::sort_rbuildignore()
 }
