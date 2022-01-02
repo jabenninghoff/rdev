@@ -18,6 +18,10 @@ reference:
   - style_all
   - lint_all
 
+- title: "Analysis Package"
+  contents:
+  - use_analysis_package
+
 - title: "ggplot2 Style"
   contents:
   - theme_quo
