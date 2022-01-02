@@ -46,6 +46,10 @@ use_analysis_package <- function() {
 
   analysis_rbuildignore <- analysis_layout %>%
     dplyr::filter(rbuildignore) %>%
+    dplyr::mutate(pattern = gsub("\\.", "\\\\.", pattern)) %>%
+    dplyr::mutate(pattern = gsub("/$", "", pattern)) %>%
+    dplyr::mutate(pattern = gsub("\\*", ".\\*", pattern)) %>%
+    dplyr::mutate(pattern = paste0("^", pattern, "$")) %>%
     dplyr::pull(pattern)
 
   fs::dir_create(analysis_dirs)
@@ -56,6 +60,6 @@ use_analysis_package <- function() {
   ))
   usethis::use_git_ignore(analysis_gitignore)
 
-  usethis::use_build_ignore(analysis_rbuildignore)
+  usethis::use_build_ignore(analysis_rbuildignore, escape = FALSE)
   sort_rbuildignore()
 }
