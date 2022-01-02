@@ -1,3 +1,7 @@
+# rdev 0.6.1
+
+* Critical bugfix for `use_analysis_package()`
+
 # rdev 0.6.0
 
 * Added `use_analysis_package()`: Add the [Analysis Package Layout](https://jabenninghoff.github.io/rdev/articles/analysis-package-layout.html) to the current package
