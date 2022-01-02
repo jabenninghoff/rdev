@@ -1,3 +1,7 @@
+# rdev 0.6.2
+
+* Add functionality to `use_analysis_package()`: Create `_base.yml` in `pkgdown` from the first `URL` in the package `DESCRIPTION` file.
+
 # rdev 0.6.1
 
 * Critical bugfix for `use_analysis_package()`
