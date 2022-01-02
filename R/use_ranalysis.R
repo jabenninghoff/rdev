@@ -16,7 +16,7 @@
 #' }
 use_analysis_package <- function() {
   # workaround for lintr, R CMD check
-  pattern <- create <- gitignore <- rbuildignore <- NULL
+  create <- gitignore <- rbuildignore <- NULL
 
   analysis_layout <- tibble::tribble(
     ~pattern, ~create, ~gitignore, ~rbuildignore,
@@ -35,11 +35,11 @@ use_analysis_package <- function() {
     "pkgdown/_pkgdown.yml", FALSE, TRUE, FALSE,
   )
 
-  analysis_dirs <- subset(analysis_layout, create, pattern)
+  analysis_dirs <- subset(analysis_layout, create)$pattern
 
-  analysis_gitignore <- subset(analysis_layout, gitignore, pattern)
+  analysis_gitignore <- subset(analysis_layout, gitignore)$pattern
 
-  analysis_rbuildignore <- subset(analysis_layout, rbuildignore, pattern)
+  analysis_rbuildignore <- subset(analysis_layout, rbuildignore)$pattern
   analysis_rbuildignore <- gsub("\\.", "\\\\.", analysis_rbuildignore)
   analysis_rbuildignore <- gsub("/$", "", analysis_rbuildignore)
   analysis_rbuildignore <- gsub("\\*", ".\\*", analysis_rbuildignore)
