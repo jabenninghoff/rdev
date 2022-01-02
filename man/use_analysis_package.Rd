@@ -11,8 +11,9 @@ Add the \href{https://jabenninghoff.github.io/rdev/articles/analysis-package-lay
 to the current package.
 }
 \details{
-When run, \code{use_analysis_package()} creates analysis package directories and updates both
-.gitignore and .Rbuildignore.
+When run, \code{use_analysis_package()} creates analysis package directories, adds exclusions to
+.gitignore and .Rbuildignore, and creates \verb{_base.yml} in \code{pkgdown} from the first \code{URL} in
+\code{DESCRIPTION}.
 }
 \examples{
 \dontrun{
