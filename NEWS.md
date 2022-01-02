@@ -1,3 +1,7 @@
+# rdev 0.6.0
+
+* Added `use_analysis_package()`: Add the [Analysis Package Layout](https://jabenninghoff.github.io/rdev/articles/analysis-package-layout.html) to the current package 
+
 # rdev 0.5.3
 
 * Add options to `theme_quo()` to disable both `panel.grid.major` and `panel.grid.minor` for `x` and `y`
