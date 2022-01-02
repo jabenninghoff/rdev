@@ -5,8 +5,9 @@
 # nolint end
 #'   to the current package.
 #'
-#' When run, `use_analysis_package()` creates analysis package directories and updates both
-#'   .gitignore and .Rbuildignore.
+#' When run, `use_analysis_package()` creates analysis package directories, adds exclusions to
+#'   .gitignore and .Rbuildignore, and creates `_base.yml` in `pkgdown` from the first `URL` in
+#'   `DESCRIPTION`.
 #'
 #' @export
 #'
@@ -55,4 +56,9 @@ use_analysis_package <- function() {
 
   usethis::use_build_ignore(analysis_rbuildignore, escape = FALSE)
   rdev::sort_rbuildignore()
+
+  urls <- desc::desc_get_urls()
+  if (length(urls) >= 1 & !fs::file_exists("pkgdown/_base.yml")) {
+    yaml::write_yaml(list(url = urls[1]), "pkgdown/_base.yml")
+  }
 }
