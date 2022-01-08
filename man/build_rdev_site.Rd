@@ -23,8 +23,3 @@ When run, \code{build_rdev_site()} calls:
 \item \code{\link[pkgdown:build_site]{pkgdown::build_site()}}
 }
 }
-\examples{
-\dontrun{
-build_rdev_site()
-}
-}

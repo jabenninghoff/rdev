@@ -9,8 +9,3 @@ sort_rbuildignore()
 \description{
 Sorts the .Rbuildignore file using \code{\link[=sort_file]{sort_file()}}.
 }
-\examples{
-\dontrun{
-sort_rbuildignore()
-}
-}

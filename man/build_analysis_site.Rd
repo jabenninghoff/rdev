@@ -40,8 +40,3 @@ to render files with the look and feel of \code{html_notebook}
 \strong{Warning:} \code{build_analysis_site()} is currently considered Experimental. Currently only
 \code{build_analysis_site(pkg = ".")} is supported.
 }
-\examples{
-\dontrun{
-build_analysis_site()
-}
-}

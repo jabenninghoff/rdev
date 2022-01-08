@@ -8,7 +8,6 @@
 #'
 #' @param major,major.x,major.y,minor,minor.x,minor.y,x,y set to FALSE to disable grid lines by
 #'   setting the appropriate panel.grid element to [ggplot2::element_blank()].
-#' @export
 #'
 #' @examples
 #' # adapted from ggplot2::theme_minimal()
@@ -33,6 +32,7 @@
 #'   ) +
 #'   theme_quo() +
 #'   scale_color_viridis_d()
+#' @export
 # nolint start: snake_case_linter
 theme_quo <- function(major = TRUE,
                       major.x = TRUE,
@@ -76,11 +76,6 @@ theme_quo <- function(major = TRUE,
 #' To reset the default theme and color scales, restart the R session.
 #'
 #' @export
-#'
-#' @examples
-#' \dontrun{
-#' viridis_quo()
-#' }
 viridis_quo <- function() {
   ggplot2::theme_set(theme_quo())
 

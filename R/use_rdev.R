@@ -7,10 +7,6 @@
 #'
 #' @param directory Directory relative to active project to update .Rprofile
 #'
-#' @examples
-#' \dontrun{
-#' use_rdev_rprofile()
-#' }
 #' @export
 use_rdev_rprofile <- function(directory = ".") {
   rprofile <- c(
@@ -51,11 +47,6 @@ use_lintr <- function(directory = ".") {
 #'   `DESCRIPTION`.
 #'
 #' @export
-#'
-#' @examples
-#' \dontrun{
-#' use_analysis_package()
-#' }
 use_analysis_package <- function() {
   # workaround for lintr, R CMD check
   create <- gitignore <- rbuildignore <- NULL
