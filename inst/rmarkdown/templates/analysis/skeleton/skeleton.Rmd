@@ -1,0 +1,39 @@
+---
+title: "TEMPLATE Analysis"
+date: '2022-00-00'
+output:
+  html_notebook:
+    toc: yes
+    toc_float:
+      collapsed: no
+      smooth_scroll: no
+---
+
+One sentence description of the analysis contained in the notebook. Save this file to the "analysis" directory using the [Analysis Package Layout](https://jabenninghoff.github.io/rdev/articles/analysis-package-layout.html), and add title and description to the package README.
+
+# Questions/TODO
+
+- [ ] Questions/TODO list here
+
+```{r setup, message = FALSE, warning = FALSE}
+library(readr)
+library(dplyr)
+library(ggplot2)
+library(rdev)
+```
+
+# Import
+
+Import data (typically from external CSV).
+
+# Tidy/Transform
+
+Clean and Tidy data.
+
+# Explore
+
+Graph and model data to ask and answer questions.
+
+# Communicate
+
+Communicate results.

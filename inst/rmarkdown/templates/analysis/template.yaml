@@ -1,0 +1,4 @@
+name: Analysis Notebook
+description: >
+  R Notebook for exploratory data analysis based on "R for Data Science"
+create_dir: FALSE
