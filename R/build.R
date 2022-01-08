@@ -9,7 +9,7 @@
 #' 1. [pkgdown::build_site()]
 #'
 #' @param pkg Path to package. Currently, only `pkg = "."` is supported.
-#' @param ... additional arguments passed to [pkgdown::build_site()]
+#' @param ... additional arguments passed to [pkgdown::build_site()] (not implemented)
 #'
 #' @examples
 #' \dontrun{
@@ -80,7 +80,7 @@ to_document <- function(file_path, new_path, overwrite = FALSE) {
 #' **Warning:** `build_analysis_site()` is currently considered Experimental. Currently only
 #'   `build_analysis_site(pkg = ".")` is supported.
 #' @param pkg Path to package.
-#' @param ... additional arguments passed to [pkgdown::build_site()]
+#' @param ... additional arguments passed to [pkgdown::build_site()] (not implemented)
 #'
 #' @examples
 #' \dontrun{
