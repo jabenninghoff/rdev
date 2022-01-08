@@ -1,24 +1,12 @@
 #' Use rdev .Rprofile
 #'
-#' Update .Rprofile to attach devtools and rdev when in an interactive session.
+#' Install rdev .Rprofile template using [usethis::use_template()]
 #'
-#' **Warning:** `use_rdev_rprofile()` won't work properly if some (but not all) of the added
-#'   lines are already present in .Rprofile
-#'
-#' @param directory Directory relative to active project to update .Rprofile
+#' @inheritParams usethis::use_template
 #'
 #' @export
-use_rdev_rprofile <- function(directory = ".") {
-  rprofile <- c(
-    "",
-    "# attach devtools and set options per https://r-pkgs.org/setup.html",
-    "if (interactive()) {",
-    "  suppressMessages(require(devtools))",
-    "  suppressMessages(require(rdev))",
-    "}"
-  )
-
-  usethis::write_union(usethis::proj_path(directory, ".Rprofile"), rprofile)
+use_rdev_rprofile <- function(open = FALSE) {
+  usethis::use_template(".Rprofile", package = "rdev", open = open)
 }
 
 #' Use rdev .lintr

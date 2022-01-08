@@ -4,15 +4,12 @@
 \alias{use_rdev_rprofile}
 \title{Use rdev .Rprofile}
 \usage{
-use_rdev_rprofile(directory = ".")
+use_rdev_rprofile(open = FALSE)
 }
 \arguments{
-\item{directory}{Directory relative to active project to update .Rprofile}
+\item{open}{Open the newly created file for editing? Happens in RStudio, if
+applicable, or via \code{\link[utils:file.edit]{utils::file.edit()}} otherwise.}
 }
 \description{
-Update .Rprofile to attach devtools and rdev when in an interactive session.
-}
-\details{
-\strong{Warning:} \code{use_rdev_rprofile()} won't work properly if some (but not all) of the added
-lines are already present in .Rprofile
+Install rdev .Rprofile template using \code{\link[usethis:use_template]{usethis::use_template()}}
 }
