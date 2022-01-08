@@ -1,3 +1,30 @@
+#' Use rdev .Rprofile
+#'
+#' Update .Rprofile to attach devtools and rdev when in an interactive session.
+#'
+#' **Warning:** `use_rdev_rprofile()` won't work properly if some (but not all) of the added
+#'   lines are already present in .Rprofile
+#'
+#' @param directory Directory relative to active project to update .Rprofile
+#'
+#' @examples
+#' \dontrun{
+#' use_rdev_rprofile()
+#' }
+#' @export
+use_rdev_rprofile <- function(directory = ".") {
+  rprofile <- c(
+    "",
+    "# attach devtools and set options per https://r-pkgs.org/setup.html",
+    "if (interactive()) {",
+    "  suppressMessages(require(devtools))",
+    "  suppressMessages(require(rdev))",
+    "}"
+  )
+
+  usethis::write_union(usethis::proj_path(directory, ".Rprofile"), rprofile)
+}
+
 #' Use Analysis Package Layout
 #'
 # nolint start: line_length_linter
