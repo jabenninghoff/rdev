@@ -9,7 +9,7 @@ build_analysis_site(pkg = ".", ...)
 \arguments{
 \item{pkg}{Path to package.}
 
-\item{...}{additional arguments passed to \code{\link[pkgdown:build_site]{pkgdown::build_site()}}}
+\item{...}{additional arguments passed to \code{\link[pkgdown:build_site]{pkgdown::build_site()}} (not implemented)}
 }
 \description{
 \code{build_analysis_site()} is a wrapper for \code{\link[pkgdown:build_site]{pkgdown::build_site()}} that adds an 'Analysis' menu

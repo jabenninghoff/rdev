@@ -9,7 +9,7 @@ build_rdev_site(pkg = ".", ...)
 \arguments{
 \item{pkg}{Path to package. Currently, only \code{pkg = "."} is supported.}
 
-\item{...}{additional arguments passed to \code{\link[pkgdown:build_site]{pkgdown::build_site()}}}
+\item{...}{additional arguments passed to \code{\link[pkgdown:build_site]{pkgdown::build_site()}} (not implemented)}
 }
 \description{
 \code{build_rdev_site()} is a wrapper for \code{\link[pkgdown:build_site]{pkgdown::build_site()}} optimized for rdev workflow that
