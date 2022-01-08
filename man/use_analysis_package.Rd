@@ -15,8 +15,3 @@ When run, \code{use_analysis_package()} creates analysis package directories, ad
 .gitignore and .Rbuildignore, and creates \verb{_base.yml} in \code{pkgdown} from the first \code{URL} in
 \code{DESCRIPTION}.
 }
-\examples{
-\dontrun{
-use_analysis_package()
-}
-}

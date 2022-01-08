@@ -13,8 +13,3 @@ Sets the default theme to \code{\link[=theme_quo]{theme_quo()}} and the default 
 \details{
 To reset the default theme and color scales, restart the R session.
 }
-\examples{
-\dontrun{
-viridis_quo()
-}
-}

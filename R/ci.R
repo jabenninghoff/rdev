@@ -5,6 +5,7 @@
 #'
 #' @inheritParams styler::style_dir
 #' @inheritDotParams styler::style_dir
+#'
 #' @examples
 #' \dontrun{
 #' style_all()
@@ -22,7 +23,9 @@ style_all <- function(path = ".", filetype = c("R", "Rprofile", "Rmd", "Rnw"), .
 #'
 #' @inheritParams lintr::lint_dir
 #' @inheritDotParams lintr::lint_dir
+#'
 #' @return A list of lint objects.
+#'
 #' @examples
 #' \dontrun{
 #' lint_all()
@@ -43,13 +46,14 @@ lint_all <- function(path = ".", ...) {
 #' @param document run [devtools::document()]
 #' @param rcmdcheck run \code{R CMD check} using:
 #'   [`rcmdcheck::rcmdcheck(args = "--no-manual", error_on = "warning")`][rcmdcheck::rcmdcheck]
-#' @export ci
+#'
 #' @examples
 #' \dontrun{
 #' ci()
 #' ci(styler = TRUE)
 #' ci(styler = TRUE, lintr = TRUE, rcmdcheck = FALSE)
 #' }
+#' @export
 # add tests using local_create_package() per https://testthat.r-lib.org/articles/test-fixtures.html
 # test styler and lintr, don't test rcmdcheck
 ci <- function(styler = FALSE, lintr = FALSE, document = TRUE, rcmdcheck = TRUE) {

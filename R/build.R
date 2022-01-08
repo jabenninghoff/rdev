@@ -11,10 +11,6 @@
 #' @param pkg Path to package. Currently, only `pkg = "."` is supported.
 #' @param ... additional arguments passed to [pkgdown::build_site()] (not implemented)
 #'
-#' @examples
-#' \dontrun{
-#' build_rdev_site()
-#' }
 #' @export
 build_rdev_site <- function(pkg = ".", ...) {
   if (pkg != ".") {
@@ -32,6 +28,7 @@ build_rdev_site <- function(pkg = ".", ...) {
 #'   without changing the output type.
 #'
 #' **Warning:** `to_document()` is currently considered Experimental.
+#'
 #' @param file_path A string path to the source file
 #' @param new_path A string path to copy the converted file using [fs::file_copy()]
 #' @param overwrite Overwrite files if they exist, passed to [fs::file_copy()]
@@ -79,13 +76,10 @@ to_document <- function(file_path, new_path, overwrite = FALSE) {
 #'
 #' **Warning:** `build_analysis_site()` is currently considered Experimental. Currently only
 #'   `build_analysis_site(pkg = ".")` is supported.
+#'
 #' @param pkg Path to package.
 #' @param ... additional arguments passed to [pkgdown::build_site()] (not implemented)
 #'
-#' @examples
-#' \dontrun{
-#' build_analysis_site()
-#' }
 #' @export
 build_analysis_site <- function(pkg = ".", ...) {
   if (pkg != ".") {

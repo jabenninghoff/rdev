@@ -4,12 +4,13 @@
 #'   optionally [`update()`][renv::update()]
 #'
 #' @param update run [renv::update()]
-#' @export check_renv
+#'
 #' @examples
 #' \dontrun{
 #' check_renv()
 #' check_renv(update = FALSE)
 #' }
+#' @export
 check_renv <- function(update = TRUE) {
   writeLines("renv::status()")
   renv::status()

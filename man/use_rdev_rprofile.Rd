@@ -16,8 +16,3 @@ Update .Rprofile to attach devtools and rdev when in an interactive session.
 \strong{Warning:} \code{use_rdev_rprofile()} won't work properly if some (but not all) of the added
 lines are already present in .Rprofile
 }
-\examples{
-\dontrun{
-use_rdev_rprofile()
-}
-}
