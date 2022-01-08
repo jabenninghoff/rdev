@@ -1,3 +1,31 @@
+#' Convert R Notebook to `html_document`
+#'
+#' Copies a file using [fs::file_copy()], and changes the output type in the yaml front matter from
+#'   `html_notebook` to `html_document`. If the file is not type `html_notebook`, it is copied
+#'   without changing the output type.
+#'
+#' **Warning:** `to_document()` is currently considered Experimental.
+#' @param file_path A string path to the source file
+#' @param new_path A string path to copy the converted file using [fs::file_copy()]
+#' @param overwrite Overwrite files if they exist, passed to [fs::file_copy()]
+#'
+#' @examples
+#' \dontrun{
+#' to_document("notebook.Rmd", "document.Rmd")
+#' to_document("notebooks_dir/notebook.Rmd", "documents_dir")
+#' }
+#' @export
+to_document <- function(file_path, new_path, overwrite = FALSE) {
+  new_file <- fs::file_copy(file_path, new_path, overwrite = overwrite)
+  notebook <- readLines(new_file)
+
+  # warning: assumes the document has valid front matter bounded by ^---$
+  header <- grep("^---$", notebook)
+  notebook[header[1]:header[2]] <-
+    gsub("html_notebook", "html_document", notebook[header[1]:header[2]])
+  writeLines(notebook, new_file)
+}
+
 #' Build Analysis Site
 #'
 #' `build_analysis_site()` is a wrapper for [pkgdown::build_site()] that adds an 'Analysis' menu
@@ -132,32 +160,4 @@ build_analysis_site <- function(pkg = ".", ...) {
   dir_check_delete(paste0(tmp_dir, "/docs/data"))
   dir_check_delete(paste0(tmp_dir, "/docs/import"))
   fs::dir_copy(paste0(tmp_dir, "/docs"), pkg)
-}
-
-#' Convert R Notebook to `html_document`
-#'
-#' Copies a file using [fs::file_copy()], and changes the output type in the yaml front matter from
-#'   `html_notebook` to `html_document`. If the file is not type `html_notebook`, it is copied
-#'   without changing the output type.
-#'
-#' **Warning:** `to_document()` is currently considered Experimental.
-#' @param file_path A string path to the source file
-#' @param new_path A string path to copy the converted file using [fs::file_copy()]
-#' @param overwrite Overwrite files if they exist, passed to [fs::file_copy()]
-#'
-#' @examples
-#' \dontrun{
-#' to_document("notebook.Rmd", "document.Rmd")
-#' to_document("notebooks_dir/notebook.Rmd", "documents_dir")
-#' }
-#' @export
-to_document <- function(file_path, new_path, overwrite = FALSE) {
-  new_file <- fs::file_copy(file_path, new_path, overwrite = overwrite)
-  notebook <- readLines(new_file)
-
-  # warning: assumes the document has valid front matter bounded by ^---$
-  header <- grep("^---$", notebook)
-  notebook[header[1]:header[2]] <-
-    gsub("html_notebook", "html_document", notebook[header[1]:header[2]])
-  writeLines(notebook, new_file)
 }
