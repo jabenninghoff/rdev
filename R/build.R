@@ -1,3 +1,30 @@
+#' Build rdev Site
+#'
+#' `build_rdev_site()` is a wrapper for [pkgdown::build_site()] optimized for rdev workflow that
+#'   updates `README.md` and performs a clean build using `pkgdown`.
+#'
+#' When run, `build_rdev_site()` calls:
+#' 1. [devtools::build_readme()]
+#' 1. [pkgdown::clean_site()]
+#' 1. [pkgdown::build_site()]
+#'
+#' @param pkg Path to package. Currently, only `pkg = "."` is supported.
+#' @param ... additional arguments passed to [pkgdown::build_site()]
+#'
+#' @examples
+#' \dontrun{
+#' build_rdev_site()
+#' }
+#' @export
+build_rdev_site <- function(pkg = ".", ...) {
+  if (pkg != ".") {
+    stop('currently only build_analysis_site(pkg = ".") is supported')
+  }
+  devtools::build_readme()
+  pkgdown::clean_site()
+  pkgdown::build_site()
+}
+
 #' Convert R Notebook to `html_document`
 #'
 #' Copies a file using [fs::file_copy()], and changes the output type in the yaml front matter from
