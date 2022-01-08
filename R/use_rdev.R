@@ -25,6 +25,20 @@ use_rdev_rprofile <- function(directory = ".") {
   usethis::write_union(usethis::proj_path(directory, ".Rprofile"), rprofile)
 }
 
+#' Use rdev .lintr
+#'
+#' Add .lintr file with 'linters: with_defaults(line_length_linter(100))' to current project
+#'
+#' @param directory Directory relative to active project to update .lintr
+#'
+#' @export
+use_lintr <- function(directory = ".") {
+  lintr <- c("linters: with_defaults(line_length_linter(100))")
+
+  usethis::write_union(usethis::proj_path(directory, ".lintr"), lintr)
+  usethis::use_build_ignore(".lintr")
+}
+
 #' Use Analysis Package Layout
 #'
 # nolint start: line_length_linter
