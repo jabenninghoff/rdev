@@ -10,6 +10,7 @@ reference:
   contents:
   - check_renv
   - build_analysis_site
+  - build_rdev_site
   - to_document
 
 - title: "Continous Integration"
@@ -18,9 +19,15 @@ reference:
   - style_all
   - lint_all
 
-- title: "Analysis Package"
+- title: "Use rdev Conventions"
   contents:
+  - create_github_repo
   - use_analysis_package
+  - use_lintr
+  - use_package_r
+  - use_rdev_package
+  - use_rprofile
+  - use_todo
 
 - title: "ggplot2 Style"
   contents:
