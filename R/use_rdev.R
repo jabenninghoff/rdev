@@ -85,6 +85,14 @@ use_rdev_package <- function() {
   usethis::use_readme_rmd()
   usethis::use_mit_license()
 
+  # add macOS/vim gitignores
+  usethis::use_git_ignore(c(
+    "# macOS, vim",
+    ".DS_Store",
+    "*.swp",
+    "~$*"
+  ))
+
   # activate github pages, add github URLs to DESCRIPTION
   gh_repo <- get_github_repo
   gh_pages <- usethis::use_github_pages(branch = usethis::git_default_branch(), path = "/docs")
