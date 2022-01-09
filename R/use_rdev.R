@@ -167,6 +167,14 @@ use_rdev_package <- function() {
   desc::desc_set_urls(c(pages_url, gh_url))
   desc::desc_set("BugReports", gh_issues)
 
+  # warning: assumes repo is on github.com
+  gh::gh(
+    "PATCH /repos/{owner}/{repo}",
+    owner = gh_repo$username,
+    repo = gh_repo$repo,
+    homepage = pages_url
+  )
+
   # update dependencies, activate renv
   usethis::use_package("devtools", type = "Suggests")
   renv::install("jabenninghoff/rdev")
