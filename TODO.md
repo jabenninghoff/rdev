@@ -13,6 +13,7 @@
 - [x] Add links / update [Rd formatting](https://roxygen2.r-lib.org/articles/rd-formatting.html) for all function documentation.
 - [x] Add dummy imports to silence R CMD check note per [tidyverse](https://github.com/tidyverse/tidyverse/blob/master/R/tidyverse.R)
 - [x] Migrate `build_analysis_site()` to rdev
+- [ ] Add 'create package' workflow example to README, remove TODO section "Analysis package creation process"
 - [ ] Move `_pkgdown.yml` to repository root to make projects discoverable by the [pgkdown](https://pkgdown.r-lib.org) GitHub [query](https://github.com/search?q=filename%3Apkgdown.yml+path%3A%2F&type=Code)
 - [ ] Update `README.Rmd` template to dynamically generate list of notebooks in `analysis`
 - [ ] Add messages, warnings to `build_analysis_site()` to report on progress
