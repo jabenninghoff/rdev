@@ -14,5 +14,5 @@ applicable, or via \code{\link[utils:file.edit]{utils::file.edit()}} otherwise.}
 Install rdev package.R template using \code{\link[usethis:use_template]{usethis::use_template()}}
 }
 \details{
-package.R is saved as "R/\emph{packageName}.R".
+package.R is saved as "R/package.R".
 }
