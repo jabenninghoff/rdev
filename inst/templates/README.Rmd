@@ -1,0 +1,50 @@
+---
+output: github_document
+---
+
+<!-- README.md is generated from README.Rmd. Please edit that file -->
+
+```{r setup, include = FALSE}
+knitr::opts_chunk$set(
+  collapse = TRUE,
+  comment = "#>",
+  fig.path = "man/figures/README-",
+  out.width = "100%"
+)
+```
+
+# {{{ repo }}}
+
+<!-- badges: start -->
+[![R-CMD-check](https://github.com/{{{ username }}}/{{{ repo }}}/workflows/R-CMD-check/badge.svg)](https://github.com/{{{ username }}}/{{{ repo }}}/actions)
+[![lint](https://github.com/{{{ username }}}/{{{ repo }}}/workflows/lint/badge.svg)](https://github.com/{{{ username }}}/{{{ repo }}}/actions)
+<!-- badges: end -->
+
+## Overview
+
+**`r packageDescription("{{{ repo }}}", fields = "Title")`:** `r packageDescription("{{{ repo }}}", fields = "Description")`
+
+Notebooks:
+
+* Add notebooks here
+
+## Installation
+
+You can install the development version of {{{ repo }}} from [GitHub](https://github.com/) with:
+
+``` r
+# install.packages("devtools")
+devtools::install_github("{{{ username }}}/{{{ repo }}}")
+```
+
+Or using renv:
+
+``` r
+# install.packages("renv")
+renv::install("{{{ username }}}/{{{ repo }}}")
+```
+
+## Development
+
+- Changelog: See "Changelog" or `NEWS.md`.
+- Planned: [TODO](TODO.md)

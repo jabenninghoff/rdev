@@ -49,6 +49,21 @@ use_package_r <- function(open = FALSE) {
   )
 }
 
+#' Get GitHub username and repository
+#'
+#' Retrieve and parse the GitHub remote to identify username and repo name.
+#'
+#' @return List with members: username, repo, subdir ref, pull, release, some which will be empty.
+#'
+#' @keywords internal
+#' @noRd
+get_github_repo <- function() {
+  # warning: assumes that the first remote is correct
+  url <- gert::git_remote_list()$url[1]
+
+  remotes::parse_github_url(url)
+}
+
 #' Use Analysis Package Layout
 #'
 # nolint start: line_length_linter
@@ -57,8 +72,8 @@ use_package_r <- function(open = FALSE) {
 #'   to the current package.
 #'
 #' When run, `use_analysis_package()` creates analysis package directories, adds exclusions to
-#'   .gitignore and .Rbuildignore, and creates `_base.yml` in `pkgdown` from the first `URL` in
-#'   `DESCRIPTION`.
+#'   .gitignore and .Rbuildignore, creates `_base.yml` in `pkgdown` from the first `URL` in
+#'   `DESCRIPTION`, and installs the `README.Rmd` template.
 #'
 #' @export
 use_analysis_package <- function() {
@@ -107,4 +122,12 @@ use_analysis_package <- function() {
   if (length(urls) >= 1 & !fs::file_exists("pkgdown/_base.yml")) {
     yaml::write_yaml(list(url = urls[1]), "pkgdown/_base.yml")
   }
+
+  usethis::use_template(
+    "README.Rmd",
+    package = "rdev",
+    data = get_github_repo(),
+    ignore = TRUE,
+    open = rlang::is_interactive()
+  )
 }
