@@ -20,6 +20,17 @@ use_lintr <- function(open = FALSE) {
   usethis::use_template("lintr", save_as = ".lintr", package = "rdev", ignore = TRUE, open = open)
 }
 
+#' Use rdev TODO.md
+#'
+#' Install rdev TODO.md template using [usethis::use_template()]
+#'
+#' @inheritParams usethis::use_template
+#'
+#' @export
+use_todo <- function(open = rlang::is_interactive()) {
+  usethis::use_template("TODO.md", package = "rdev", ignore = TRUE, open = open)
+}
+
 #' Use Analysis Package Layout
 #'
 # nolint start: line_length_linter
