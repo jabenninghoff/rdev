@@ -6,7 +6,7 @@
 #'
 #' @export
 use_rdev_rprofile <- function(open = FALSE) {
-  usethis::use_template(".Rprofile", package = "rdev", open = open)
+  usethis::use_template("Rprofile", save_as = ".Rprofile", package = "rdev", open = open)
 }
 
 #' Use rdev .lintr
