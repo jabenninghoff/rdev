@@ -115,11 +115,14 @@ create_github_repo <- function(repo_name, repo_desc = "", host = NULL) {
 
   writeLines(paste0("\n", "Repository created at: ", create$html_url))
   writeLines(paste0("Open the repository by executing: $ github ", fs_path))
+  writeLines(paste0(
+    "\n", "Manually add any branch protection at: ", create$html_url, "/settings/branches"
+  ))
   writeLines("Apply rdev conventions within the new project with use_rdev_package(),")
   writeLines("and use either use_analysis_package() or usethis::use_pkgdown() for GitHub Pages.")
 
   if (Sys.info()["sysname"] == "Darwin" & rlang::is_interactive()) {
-    system(paste0("open ", create$html_url))
+    system(paste0("open ", create$html_url, "/settings/branches"))
     system(paste0("github ", fs_path))
   }
 
