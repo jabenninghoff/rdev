@@ -4,11 +4,12 @@
 \alias{use_lintr}
 \title{Use rdev .lintr}
 \usage{
-use_lintr(directory = ".")
+use_lintr(open = FALSE)
 }
 \arguments{
-\item{directory}{Directory relative to active project to update .lintr}
+\item{open}{Open the newly created file for editing? Happens in RStudio, if
+applicable, or via \code{\link[utils:file.edit]{utils::file.edit()}} otherwise.}
 }
 \description{
-Add .lintr file with 'linters: with_defaults(line_length_linter(100))' to current project
+Install rdev .lintr template using \code{\link[usethis:use_template]{usethis::use_template()}}
 }

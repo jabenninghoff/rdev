@@ -11,16 +11,13 @@ use_rdev_rprofile <- function(open = FALSE) {
 
 #' Use rdev .lintr
 #'
-#' Add .lintr file with 'linters: with_defaults(line_length_linter(100))' to current project
+#' Install rdev .lintr template using [usethis::use_template()]
 #'
-#' @param directory Directory relative to active project to update .lintr
+#' @inheritParams usethis::use_template
 #'
 #' @export
-use_lintr <- function(directory = ".") {
-  lintr <- c("linters: with_defaults(line_length_linter(100))")
-
-  usethis::write_union(usethis::proj_path(directory, ".lintr"), lintr)
-  usethis::use_build_ignore(".lintr")
+use_lintr <- function(open = FALSE) {
+  usethis::use_template("lintr", save_as = ".lintr", package = "rdev", ignore = TRUE, open = open)
 }
 
 #' Use Analysis Package Layout
