@@ -35,7 +35,7 @@ use_todo <- function(open = rlang::is_interactive()) {
 #'
 #' Install rdev package.R template using [usethis::use_template()]
 #'
-#' package.R is saved as "R/*packageName*.R".
+#' package.R is saved as "R/package.R".
 #'
 #' @inheritParams usethis::use_template
 #'
@@ -43,7 +43,7 @@ use_todo <- function(open = rlang::is_interactive()) {
 use_package_r <- function(open = FALSE) {
   usethis::use_template(
     "package.R",
-    save_as = paste0("R/", utils::packageName(), ".R"),
+    save_as = "R/package.R",
     package = "rdev",
     open = open
   )
@@ -103,6 +103,8 @@ create_github_repo <- function(repo_name, repo_desc = "", host = NULL) {
   # add branch protection using rdev main (requires json)
   # use: gh::gh("GET /repos/{owner}/{repo}/branches/{branch}/protection", owner = "jabenninghoff", repo = "rdev", branch = "main") # nolint: line_length_linter
 
+  # warning: assumes directory doesn't already exist
+  # warning: duplicates .Rproj.user in .gitignore
   fs_path <- usethis::create_from_github(
     paste0(create$owner$login, "/", create$name),
     open = FALSE,
@@ -160,7 +162,7 @@ use_rdev_package <- function() {
   ))
 
   # activate github pages, add github URLs to DESCRIPTION
-  gh_repo <- get_github_repo
+  gh_repo <- get_github_repo()
   gh_pages <- usethis::use_github_pages(branch = usethis::git_default_branch(), path = "/docs")
 
   pages_url <- sub("/$", "", gh_pages$html_url)
@@ -183,8 +185,8 @@ use_rdev_package <- function() {
   renv::install("jabenninghoff/rdev")
   usethis::use_dev_package("rdev", type = "Suggests")
   usethis::use_testthat()
-  sort_rbuildignore()
   renv::init()
+  sort_rbuildignore()
 }
 
 #' Use Analysis Package Layout
