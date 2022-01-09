@@ -31,6 +31,24 @@ use_todo <- function(open = rlang::is_interactive()) {
   usethis::use_template("TODO.md", package = "rdev", ignore = TRUE, open = open)
 }
 
+#' Use rdev package.R
+#'
+#' Install rdev package.R template using [usethis::use_template()]
+#'
+#' package.R is saved as "R/*packageName*.R".
+#'
+#' @inheritParams usethis::use_template
+#'
+#' @export
+use_package_r <- function(open = FALSE) {
+  usethis::use_template(
+    "package.R",
+    save_as = paste0("R/", utils::packageName(), ".R"),
+    package = "rdev",
+    open = open
+  )
+}
+
 #' Use Analysis Package Layout
 #'
 # nolint start: line_length_linter
