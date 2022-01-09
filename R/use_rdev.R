@@ -63,6 +63,69 @@ get_github_repo <- function() {
   remotes::parse_github_url(url)
 }
 
+#' Create rdev GitHub repository
+#'
+#' Create new GitHub repository following rdev conventions in the active user's account using
+#'   [gh::gh()], activates Dependabot alerts, Dependabot security updates, clones the repository
+#'   locally with [usethis::create_from_github()], and creates a basic package using
+#'   [usethis::create_package()]. If running interactively on macOS, the repository will
+#'   automatically be opened in RStudio, GitHub Desktop, and the default browser.
+#'
+#' @inheritParams usethis::use_github
+#' @param repo_name The name of the GitHub repository to create
+#' @param repo_desc The description of the GitHub repository to create
+#'
+#' @return return value from [gh::gh()] creating the repository, invisibly
+#' @export
+create_github_repo <- function(repo_name, repo_desc = "", host = NULL) {
+  create <- gh::gh(
+    "POST /user/repos",
+    name = repo_name,
+    description = repo_desc,
+    gitignore_template = "R",
+    license_template = "mit",
+    .api_url = host
+  )
+
+  gh::gh(
+    "PUT /repos/{owner}/{repo}/vulnerability-alerts",
+    owner = create$owner$login,
+    repo = create$name,
+    .api_url = host
+  )
+  gh::gh(
+    "PUT /repos/{owner}/{repo}/automated-security-fixes",
+    owner = create$owner$login,
+    repo = create$name,
+    .api_url = host
+  )
+
+  # add branch protection using rdev main (requires json)
+  # use: gh::gh("GET /repos/{owner}/{repo}/branches/{branch}/protection", owner = "jabenninghoff", repo = "rdev", branch = "main") # nolint: line_length_linter
+
+  fs_path <- usethis::create_from_github(
+    paste0(create$owner$login, "/", create$name),
+    open = FALSE,
+    host = host
+  )
+  # delete the .Rproj file so create_package doesn't prompt to overwrite
+  fs::file_delete(paste0(fs_path, "/", create$name, ".Rproj"))
+
+  usethis::create_package(fs_path)
+
+  writeLines(paste0("\n", "Repository created at: ", create$html_url))
+  writeLines(paste0("Open the repository by executing: $ github ", fs_path))
+  writeLines("Apply rdev conventions within the new project with use_rdev_package(),")
+  writeLines("and use either use_analysis_package() or usethis::use_pkgdown() for GitHub Pages.")
+
+  if (Sys.info()["sysname"] == "Darwin" & rlang::is_interactive()) {
+    system(paste0("open ", create$html_url))
+    system(paste0("github ", fs_path))
+  }
+
+  invisible(create)
+}
+
 #' Use rdev package conventions
 #'
 #' Add rdev templates and settings within the active package. Normally invoked when first setting
