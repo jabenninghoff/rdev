@@ -63,6 +63,48 @@ get_github_repo <- function() {
   remotes::parse_github_url(url)
 }
 
+#' Use rdev package conventions
+#'
+#' Add rdev templates and settings within the active package. Normally invoked when first setting
+#'   up a package.
+#'
+#' @export
+use_rdev_package <- function() {
+  # add templates
+  use_rprofile()
+  use_lintr()
+  use_package_r()
+  usethis::use_github_action(
+    url = "https://github.com/jabenninghoff/rdev/blob/main/.github/workflows/check-standard.yaml"
+  )
+  usethis::use_github_action(
+    url = "https://github.com/jabenninghoff/rdev/blob/main/.github/workflows/lint.yaml"
+  )
+  use_todo()
+  usethis::use_news_md()
+  usethis::use_readme_rmd()
+  usethis::use_mit_license()
+
+  # activate github pages, add github URLs to DESCRIPTION
+  gh_repo <- get_github_repo
+  gh_pages <- usethis::use_github_pages(branch = usethis::git_default_branch(), path = "/docs")
+
+  pages_url <- sub("/$", "", gh_pages$html_url)
+  gh_url <- paste0("https://github.com/", gh_repo$username, "/", gh_repo$repo)
+  gh_issues <- paste0(gh_url, "/issues")
+
+  desc::desc_set_urls(c(pages_url, gh_url))
+  desc::desc_set("BugReports", gh_issues)
+
+  # update dependencies, activate renv
+  usethis::use_package("devtools", type = "Suggests")
+  renv::install("jabenninghoff/rdev")
+  usethis::use_dev_package("rdev", type = "Suggests")
+  usethis::use_testthat()
+  sort_rbuildignore()
+  renv::init()
+}
+
 #' Use Analysis Package Layout
 #'
 # nolint start: line_length_linter
