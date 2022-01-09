@@ -58,8 +58,7 @@ use_package_r <- function(open = FALSE) {
 #' @keywords internal
 #' @noRd
 get_github_repo <- function() {
-  # warning: assumes that the first remote is correct
-  url <- gert::git_remote_list()$url[1]
+  url <- usethis::git_remotes()$origin
 
   remotes::parse_github_url(url)
 }
