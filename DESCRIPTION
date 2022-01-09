@@ -18,6 +18,7 @@ Imports:
     devtools,
     fs,
     ggplot2,
+    gh,
     lintr (>= 2.0.1.9000),
     pkgdown,
     purrr,
