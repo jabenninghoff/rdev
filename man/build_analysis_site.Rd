@@ -19,10 +19,10 @@ containing rendered versions of all .Rmd files in \verb{analysis/}.
 When run, \code{build_analysis_site()}:
 \enumerate{
 \item Reads base \link{pkgdown} settings from \verb{pkgdown/_base.yml}
-\item Writes base settings to \verb{pkgdown/_pkgdown.yml}
+\item Writes base settings to \verb{_pkgdown.yml}
 \item Creates a template using \code{\link[pkgdown:templates]{pkgdown::template_navbar()}} and inserts an \code{analysis} menu with
 links to html versions of each .Rmd file in \verb{analysis/}
-\item Writes the template to \verb{pkgdown/_pkgdown.yml}
+\item Writes the template to \verb{_pkgdown.yml}
 \item Runs \code{\link[pkgdown:clean_site]{pkgdown::clean_site()}} and \code{\link[pkgdown:build_site]{pkgdown::build_site()}}
 \item Creates a \verb{_site.yml} file based on the final \verb{_pkgdown.yml} that clones the \link{pkgdown} navbar
 in a temporary build directory

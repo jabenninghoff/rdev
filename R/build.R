@@ -57,10 +57,10 @@ to_document <- function(file_path, new_path, overwrite = FALSE) {
 #'
 #' When run, `build_analysis_site()`:
 #' 1. Reads base [pkgdown] settings from `pkgdown/_base.yml`
-#' 1. Writes base settings to `pkgdown/_pkgdown.yml`
+#' 1. Writes base settings to `_pkgdown.yml`
 #' 1. Creates a template using [pkgdown::template_navbar()] and inserts an `analysis` menu with
 #'   links to html versions of each .Rmd file in `analysis/`
-#' 1. Writes the template to `pkgdown/_pkgdown.yml`
+#' 1. Writes the template to `_pkgdown.yml`
 #' 1. Runs [pkgdown::clean_site()] and [pkgdown::build_site()]
 #' 1. Creates a `_site.yml` file based on the final `_pkgdown.yml` that clones the [pkgdown] navbar
 #'   in a temporary build directory
@@ -82,7 +82,6 @@ to_document <- function(file_path, new_path, overwrite = FALSE) {
 #'
 #' @export
 build_analysis_site <- function(pkg = ".", ...) {
-  # RELEASE: refactor to use /_pkgdown.yml
   if (pkg != ".") {
     stop('currently only build_analysis_site(pkg = ".") is supported')
   }
@@ -97,7 +96,7 @@ build_analysis_site <- function(pkg = ".", ...) {
     stop("pkgdown/_base.yml does not exist")
   }
   pkg_yml <- yaml::read_yaml("pkgdown/_base.yml")
-  fs::file_copy("pkgdown/_base.yml", "pkgdown/_pkgdown.yml", overwrite = TRUE)
+  fs::file_copy("pkgdown/_base.yml", "_pkgdown.yml", overwrite = TRUE)
 
   # create navbar template and insert analysis menu
   pkg_yml <- append(pkg_yml, pkgdown::template_navbar())
@@ -118,7 +117,7 @@ build_analysis_site <- function(pkg = ".", ...) {
   )
 
   # write template
-  yaml::write_yaml(pkg_yml, "pkgdown/_pkgdown.yml")
+  yaml::write_yaml(pkg_yml, "_pkgdown.yml")
 
   # run clean_site() and build_site()
   pkgdown::clean_site()
