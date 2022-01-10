@@ -223,7 +223,6 @@ use_analysis_package <- function() {
   # workaround for lintr, R CMD check
   create <- gitignore <- rbuildignore <- NULL
 
-  # RELEASE: refactor to use /_pkgdown.yml
   analysis_layout <- tibble::tribble(
     ~pattern, ~create, ~gitignore, ~rbuildignore,
     "analysis", TRUE, FALSE, FALSE,
@@ -238,7 +237,7 @@ use_analysis_package <- function() {
     "analysis/rendered", TRUE, TRUE, TRUE,
     "docs", TRUE, FALSE, TRUE,
     "pkgdown", TRUE, FALSE, TRUE,
-    "pkgdown/_pkgdown.yml", FALSE, TRUE, FALSE,
+    "_pkgdown.yml", FALSE, TRUE, TRUE,
   )
 
   analysis_dirs <- subset(analysis_layout, create)$pattern
