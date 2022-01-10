@@ -82,6 +82,7 @@ to_document <- function(file_path, new_path, overwrite = FALSE) {
 #'
 #' @export
 build_analysis_site <- function(pkg = ".", ...) {
+  # refactor to use /_pkgdown.yml
   if (pkg != ".") {
     stop('currently only build_analysis_site(pkg = ".") is supported')
   }
