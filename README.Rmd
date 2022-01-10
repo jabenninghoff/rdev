@@ -47,6 +47,24 @@ renv::install("jabenninghoff/rdev")
 - Changelog: See "Changelog" or `NEWS.md`.
 - Planned: [TODO](TODO.md)
 
+## Creating Packages
+
+rdev supports creation of new R packages following rdev conventions as well as new [R Analysis](https://jabenninghoff.github.io/rdev/articles/analysis-package-layout.html) packages. The typical setup workflow is:
+
+1. Use `available::available()` to check package name
+1. Create new base package using `create_github_repo()`
+1. Manually set branch protection as needed (main: require status checks, linear history)
+1. Add new package to GitHub Desktop
+1. Commit to git `create_github_repo()`
+1. Run `use_rdev_package()` within new project to add remaining templates and settings
+1. Commit to git `use_rdev_package()`
+1. Run either use_analysis_package() or usethis::use_pkgdown() for GitHub Pages
+1. Commit to git
+1. Edit DESCRIPTION and add a Title and Description
+1. Update TODO.md, NEWS.md, README.Rmd, and DESCRIPTION as needed
+1. Run `check_renv()`, `style_all()`, `lint_all()`, `ci()` to validate package
+1. Commit to git and begin development
+
 ## Examples
 
 For my workflow, I typically check renv when I start:
