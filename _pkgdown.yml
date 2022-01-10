@@ -29,11 +29,6 @@ reference:
   - use_rprofile
   - use_todo
 
-- title: "ggplot2 Style"
-  contents:
-  - theme_quo
-  - viridis_quo
-
 - title: "Utilities"
   contents:
   - sort_file
