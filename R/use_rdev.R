@@ -237,7 +237,7 @@ use_analysis_package <- function() {
     "analysis/rendered", TRUE, TRUE, TRUE,
     "docs", TRUE, FALSE, TRUE,
     "pkgdown", TRUE, FALSE, TRUE,
-    "_pkgdown.yml", FALSE, TRUE, TRUE,
+    "_pkgdown.yml", FALSE, FALSE, TRUE,
   )
 
   analysis_dirs <- subset(analysis_layout, create)$pattern
