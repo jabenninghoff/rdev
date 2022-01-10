@@ -33,7 +33,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="index.html">rdev</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="">0.6.2</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="">0.7.0</span>
       </span>
     </div>
 
@@ -51,9 +51,6 @@
   <ul class="dropdown-menu" role="menu">
 <li>
       <a href="articles/analysis-package-layout.html">Analysis Package Layout</a>
-    </li>
-    <li>
-      <a href="articles/rdev-style.html">rdev ggplot2 style</a>
     </li>
   </ul>
 </li>
@@ -113,6 +110,29 @@
 </ul>
 </div>
 <div class="section level2">
+<h2 id="creating-packages">Creating Packages<a class="anchor" aria-label="anchor" href="#creating-packages"></a>
+</h2>
+<p>rdev supports creation of new R packages following rdev conventions as well as new <a href="https://jabenninghoff.github.io/rdev/articles/analysis-package-layout.html">R Analysis</a> packages. The typical setup workflow is:</p>
+<ol style="list-style-type: decimal">
+<li>Use <code><a href="https://rdrr.io/pkg/available/man/available.html" class="external-link">available::available()</a></code> to check package name</li>
+<li>Create new base package using <code><a href="reference/create_github_repo.html">create_github_repo()</a></code>
+</li>
+<li>Manually set branch protection as needed (main: require status checks, linear history)</li>
+<li>Add new package to GitHub Desktop</li>
+<li>Commit to git <code><a href="reference/create_github_repo.html">create_github_repo()</a></code>
+</li>
+<li>Run <code><a href="reference/use_rdev_package.html">use_rdev_package()</a></code> within new project to add remaining templates and settings</li>
+<li>Commit to git <code><a href="reference/use_rdev_package.html">use_rdev_package()</a></code>
+</li>
+<li>Run either use_analysis_package() or usethis::use_pkgdown() for GitHub Pages</li>
+<li>Commit to git</li>
+<li>Edit DESCRIPTION and add a Title and Description</li>
+<li>Update TODO.md, NEWS.md, README.Rmd, and DESCRIPTION as needed</li>
+<li>Run <code><a href="reference/check_renv.html">check_renv()</a></code>, <code><a href="reference/style_all.html">style_all()</a></code>, <code><a href="reference/lint_all.html">lint_all()</a></code>, <code><a href="reference/ci.html">ci()</a></code> to validate package</li>
+<li>Commit to git and begin development</li>
+</ol>
+</div>
+<div class="section level2">
 <h2 id="examples">Examples<a class="anchor" aria-label="anchor" href="#examples"></a>
 </h2>
 <p>For my workflow, I typically check renv when I start:</p>
@@ -147,16 +167,16 @@
 <span class="co">#&gt; * creating vignettes ... OK</span>
 <span class="co">#&gt; * checking for LF line-endings in source and make files and shell scripts</span>
 <span class="co">#&gt; * checking for empty or unneeded directories</span>
-<span class="co">#&gt; * building ‘rdev_0.6.2.tar.gz’</span>
+<span class="co">#&gt; * building ‘rdev_0.7.0.tar.gz’</span>
 <span class="co">#&gt; </span>
 <span class="co">#&gt; ── R CMD check ─────────────────────────────────────────────────────────────────</span>
-<span class="co">#&gt; * using log directory ‘/private/var/folders/vn/cw5f9gws42v9m8mdsds_zbl00000gp/T/RtmpOoYpjl/filea02557d67e1c/rdev.Rcheck’</span>
+<span class="co">#&gt; * using log directory ‘/private/var/folders/vn/cw5f9gws42v9m8mdsds_zbl00000gp/T/RtmpH8lQVK/file12d195bb7aefd/rdev.Rcheck’</span>
 <span class="co">#&gt; * using R version 4.1.2 (2021-11-01)</span>
 <span class="co">#&gt; * using platform: x86_64-apple-darwin19.6.0 (64-bit)</span>
 <span class="co">#&gt; * using session charset: UTF-8</span>
 <span class="co">#&gt; * using option ‘--no-manual’</span>
 <span class="co">#&gt; * checking for file ‘rdev/DESCRIPTION’ ... OK</span>
-<span class="co">#&gt; * this is package ‘rdev’ version ‘0.6.2’</span>
+<span class="co">#&gt; * this is package ‘rdev’ version ‘0.7.0’</span>
 <span class="co">#&gt; * package encoding: UTF-8</span>
 <span class="co">#&gt; * checking package namespace information ... OK</span>
 <span class="co">#&gt; * checking package dependencies ... OK</span>
@@ -207,13 +227,13 @@
 <span class="co">#&gt; * checking package vignettes in ‘inst/doc’ ... OK</span>
 <span class="co">#&gt; * checking running R code from vignettes ...</span>
 <span class="co">#&gt;   ‘analysis-package-layout.Rmd’ using ‘UTF-8’... OK</span>
-<span class="co">#&gt;   ‘rdev-style.Rmd’ using ‘UTF-8’... OK</span>
 <span class="co">#&gt;  NONE</span>
 <span class="co">#&gt; * checking re-building of vignette outputs ... OK</span>
 <span class="co">#&gt; * DONE</span>
+<span class="co">#&gt; </span>
 <span class="co">#&gt; Status: OK</span>
-<span class="co">#&gt; ── R CMD check results ───────────────────────────────────────── rdev 0.6.2 ────</span>
-<span class="co">#&gt; Duration: 23.8s</span>
+<span class="co">#&gt; ── R CMD check results ───────────────────────────────────────── rdev 0.7.0 ────</span>
+<span class="co">#&gt; Duration: 16.3s</span>
 <span class="co">#&gt; </span>
 <span class="co">#&gt; 0 errors ✓ | 0 warnings ✓ | 0 notes ✓</span></code></pre></div>
 </div>

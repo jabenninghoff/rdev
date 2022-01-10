@@ -17,7 +17,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="index.html">rdev</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="">0.6.2</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="">0.7.0</span>
       </span>
     </div>
 
@@ -33,9 +33,6 @@
   </a>
   <ul class="dropdown-menu" role="menu"><li>
       <a href="articles/analysis-package-layout.html">Analysis Package Layout</a>
-    </li>
-    <li>
-      <a href="articles/rdev-style.html">rdev ggplot2 style</a>
     </li>
   </ul></li>
 <li>
@@ -95,6 +92,17 @@ Add dummy imports to silence R CMD check note per <a href="https://github.com/ti
 <input type="checkbox" disabled checked>
 Migrate <code><a href="reference/build_analysis_site.html">build_analysis_site()</a></code> to rdev</li>
 <li>
+<input type="checkbox" disabled checked>
+Add ‘create package’ workflow example to README, remove TODO section “Analysis package creation process”</li>
+<li>
+<input type="checkbox" disabled checked>
+Move <code>_pkgdown.yml</code> to repository root to make projects discoverable by the <a href="https://pkgdown.r-lib.org" class="external-link">pgkdown</a> GitHub <a href="https://github.com/search?q=filename%3Apkgdown.yml+path%3A%2F&amp;type=Code" class="external-link">query</a>
+</li>
+<li>
+<input type="checkbox" disabled>
+Update <code>README.Rmd</code> template to dynamically generate list of notebooks in <code>analysis</code>
+</li>
+<li>
 <input type="checkbox" disabled>
 Add messages, warnings to <code><a href="reference/build_analysis_site.html">build_analysis_site()</a></code> to report on progress</li>
 <li>
@@ -116,8 +124,7 @@ Automate release process</li>
 <input type="checkbox" disabled>
 Handle <code>.Rmd</code> files that already have an <code>html_document</code> section</li>
 <li>
-<input type="checkbox" disabled>
-Validate that <code>lint_all</code> works as expected within <code>ci</code>
+<input type="checkbox" disabled checked><del>Validate that <code>lint_all</code> works as expected within <code>ci</code></del>
 </li>
 </ul></div>
 <div class="section level2">
@@ -181,66 +188,6 @@ Autobuild <code>docs/</code> like <a href="https://github.com/r-lib/actions/blob
 <li>Delete branch</li>
 <li>Publish new GitHub release. Name: <code>0.7.1</code>, Title: <code>0.7.1</code>, Target commit: <code>build_analysis_site() for release 0.7.1</code>, Description: blank [TODO: use release notes]</li>
 </ol></div>
-<div class="section level2">
-<h2 id="analysis-package-creation-process">Analysis package creation process<a class="anchor" aria-label="anchor" href="#analysis-package-creation-process"></a></h2>
-<p>Notes on manually creating an analysis package for future automation.</p>
-<ol style="list-style-type: decimal"><li>Use <code>available::available()</code> to check package name</li>
-<li>Create repo on GitHub - Add README, .gitignore (R), MIT License</li>
-<li>Configure repo - enable pages (main, root/), enable Dependabot (Security &amp; analysis), branch protection for main: require pull request, status checks, linear history</li>
-<li>Run <code><a href="https://usethis.r-lib.org/reference/create_from_github.html" class="external-link">usethis::create_from_github()</a></code> outside the project, commit changes</li>
-<li>Run <code><a href="https://usethis.r-lib.org/reference/create_package.html" class="external-link">usethis::create_package()</a></code> outside the project, commit changes</li>
-<li>Run <code><a href="https://rstudio.github.io/renv/reference/init.html" class="external-link">renv::init()</a></code> inside the project, commit changes</li>
-<li>Run <code><a href="https://usethis.r-lib.org/reference/licenses.html" class="external-link">usethis::use_mit_license()</a></code>, do not overwrite</li>
-<li>Edit DESCRIPTION and add a Title and Description</li>
-<li>Run <code><a href="https://usethis.r-lib.org/reference/use_github_links.html" class="external-link">usethis::use_github_links()</a></code>
-</li>
-<li>Add Add GitHub pages URL to DESCRIPTION</li>
-<li>Run <code>usethis::use_package("devtools", type = "Suggests")</code>
-</li>
-<li>Run <code>renv::install("jabenninghoff/rdev")</code>, <code>usethis::use_dev_package("rdev", type = "Suggests")</code>
-</li>
-<li>Add lines to .Rprofile per below</li>
-<li>Create .lintr: <code>linters: with_defaults(line_length_linter(100))</code>
-</li>
-<li>Run <code><a href="https://usethis.r-lib.org/reference/use_news_md.html" class="external-link">usethis::use_news_md()</a></code>
-</li>
-<li>Create TODO.md per below</li>
-<li>Create R/package.R per below</li>
-<li>Run <code><a href="https://usethis.r-lib.org/reference/use_readme_rmd.html" class="external-link">usethis::use_readme_rmd()</a></code>, copy README from template, run <code><a href="https://usethis.r-lib.org/reference/use_readme_rmd.html" class="external-link">usethis::use_readme_rmd()</a></code>
-</li>
-<li>Create analysis directories: <code>$ mkdir analysis; cd analysis; mkdir assets data import rendered</code>, update .gitignore</li>
-<li>Run <code><a href="https://usethis.r-lib.org/reference/use_testthat.html" class="external-link">usethis::use_testthat()</a></code>
-</li>
-<li>Create pkgdown/_base.yml with <code>url: &lt;github-pages-url&gt;</code>
-</li>
-<li>Run <code>usethis::use_build_ignore(c(".github", ".lintr", "analysis", "docs", "pkgdown", "TODO.md"))</code>, <code><a href="reference/sort_rbuildignore.html">sort_rbuildignore()</a></code>
-</li>
-<li>Run <code><a href="https://devtools.r-lib.org/reference/document.html" class="external-link">devtools::document()</a></code>
-</li>
-<li>Run <code><a href="reference/style_all.html">rdev::style_all()</a></code>, <code><a href="reference/lint_all.html">rdev::lint_all()</a></code>, <code><a href="reference/ci.html">rdev::ci()</a></code> to validate package</li>
-<li>Create first Notebook, run <code><a href="reference/build_analysis_site.html">build_analysis_site()</a></code> to validate build</li>
-<li>Run <code><a href="https://rstudio.github.io/renv/reference/snapshot.html" class="external-link">renv::snapshot()</a></code>
-</li>
-<li>Install .github workflows</li>
-<li>Create 1.0.0 release</li>
-</ol><p><strong>.Rprofile</strong></p>
-<p>Add the following lines to the project <code>.Rprofile</code>:</p>
-<div class="sourceCode" id="cb1"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="co"># attach devtools and set options per https://r-pkgs.org/setup.html</span>
-<span class="kw">if</span> <span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/interactive.html" class="external-link">interactive</a></span><span class="op">(</span><span class="op">)</span><span class="op">)</span> <span class="op">{</span>
-  <span class="fu"><a href="https://rdrr.io/r/base/message.html" class="external-link">suppressMessages</a></span><span class="op">(</span><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">require</a></span><span class="op">(</span><span class="va"><a href="https://devtools.r-lib.org/" class="external-link">devtools</a></span><span class="op">)</span><span class="op">)</span>
-  <span class="fu"><a href="https://rdrr.io/r/base/message.html" class="external-link">suppressMessages</a></span><span class="op">(</span><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">require</a></span><span class="op">(</span><span class="va"><a href="https://jabenninghoff.github.io/rdev">rdev</a></span><span class="op">)</span><span class="op">)</span>
-<span class="op">}</span></code></pre></div>
-<p><strong>TODO.md</strong></p>
-<pre><code># TODO
-
-- [ ] Add TODO items here</code></pre>
-<p><strong>R/package.R</strong></p>
-<p>Create as &lt;packagename&gt;.R:</p>
-<div class="sourceCode" id="cb3"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="co">#' @keywords internal</span>
-<span class="st">"_PACKAGE"</span></code></pre></div>
-</div>
 </div>
 
   </div>
