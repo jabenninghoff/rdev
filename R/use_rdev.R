@@ -186,7 +186,7 @@ use_rdev_package <- function() {
   usethis::use_dev_package("rdev", type = "Suggests")
   usethis::use_testthat()
   renv::init()
-  sort_rbuildignore()
+  rdev::sort_rbuildignore()
 }
 
 #' Use Analysis Package Layout
