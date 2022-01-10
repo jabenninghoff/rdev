@@ -25,6 +25,7 @@ Imports:
     remotes,
     rmarkdown,
     styler (>= 1.4.0),
+    tibble,
     renv,
     rlang,
     usethis,
@@ -32,7 +33,6 @@ Imports:
     markdown,
     miniUI
 Suggests:
-    tibble,
     testthat (>= 3.0.0),
     knitr
 Config/testthat/edition: 3
