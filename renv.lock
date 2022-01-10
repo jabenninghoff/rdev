@@ -328,10 +328,10 @@
     },
     "fansi": {
       "Package": "fansi",
-      "Version": "0.5.0",
+      "Version": "1.0.0",
       "Source": "Repository",
       "Repository": "CRAN",
-      "Hash": "d447b40982c576a72b779f0a3b3da227",
+      "Hash": "ae34c3d1fdfac1566ca17c1b5d8f2613",
       "Requirements": []
     },
     "fastmap": {
