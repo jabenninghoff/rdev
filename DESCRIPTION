@@ -17,7 +17,6 @@ Imports:
     desc,
     devtools,
     fs,
-    ggplot2,
     gh,
     lintr (>= 2.0.1.9000),
     pkgdown,
@@ -33,7 +32,6 @@ Imports:
     markdown,
     miniUI
 Suggests:
-    showtext,
     tibble,
     testthat (>= 3.0.0),
     knitr
