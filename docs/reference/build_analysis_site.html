@@ -18,7 +18,7 @@ containing rendered versions of all .Rmd files in analysis/."><!-- mathjax --><s
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">rdev</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="">0.6.2</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="">0.7.0</span>
       </span>
     </div>
 
@@ -34,9 +34,6 @@ containing rendered versions of all .Rmd files in analysis/."><!-- mathjax --><s
   </a>
   <ul class="dropdown-menu" role="menu"><li>
       <a href="../articles/analysis-package-layout.html">Analysis Package Layout</a>
-    </li>
-    <li>
-      <a href="../articles/rdev-style.html">rdev ggplot2 style</a>
     </li>
   </ul></li>
 <li>
@@ -58,7 +55,7 @@ containing rendered versions of all .Rmd files in analysis/."><!-- mathjax --><s
   <div class="col-md-9 contents">
     <div class="page-header">
     <h1>Build Analysis Site</h1>
-    <small class="dont-index">Source: <a href="https://github.com/jabenninghoff/rdev/blob/HEAD/R/build_analysis_site.R" class="external-link"><code>R/build_analysis_site.R</code></a></small>
+    <small class="dont-index">Source: <a href="https://github.com/jabenninghoff/rdev/blob/HEAD/R/build.R" class="external-link"><code>R/build.R</code></a></small>
     <div class="hidden name"><code>build_analysis_site.Rd</code></div>
     </div>
 
@@ -76,15 +73,15 @@ containing rendered versions of all .Rmd files in <code>analysis/</code>.</p>
     <dl><dt>pkg</dt>
 <dd><p>Path to package.</p></dd>
 <dt>...</dt>
-<dd><p>additional arguments passed to <code><a href="https://pkgdown.r-lib.org/reference/build_site.html" class="external-link">pkgdown::build_site()</a></code></p></dd>
+<dd><p>additional arguments passed to <code><a href="https://pkgdown.r-lib.org/reference/build_site.html" class="external-link">pkgdown::build_site()</a></code> (not implemented)</p></dd>
 </dl></div>
     <div id="details">
     <h2>Details</h2>
     <p>When run, <code>build_analysis_site()</code>:</p><ol><li><p>Reads base pkgdown settings from <code>pkgdown/_base.yml</code></p></li>
-<li><p>Writes base settings to <code>pkgdown/_pkgdown.yml</code></p></li>
+<li><p>Writes base settings to <code>_pkgdown.yml</code></p></li>
 <li><p>Creates a template using <code><a href="https://pkgdown.r-lib.org/reference/templates.html" class="external-link">pkgdown::template_navbar()</a></code> and inserts an <code>analysis</code> menu with
 links to html versions of each .Rmd file in <code>analysis/</code></p></li>
-<li><p>Writes the template to <code>pkgdown/_pkgdown.yml</code></p></li>
+<li><p>Writes the template to <code>_pkgdown.yml</code></p></li>
 <li><p>Runs <code><a href="https://pkgdown.r-lib.org/reference/clean_site.html" class="external-link">pkgdown::clean_site()</a></code> and <code><a href="https://pkgdown.r-lib.org/reference/build_site.html" class="external-link">pkgdown::build_site()</a></code></p></li>
 <li><p>Creates a <code>_site.yml</code> file based on the final <code>_pkgdown.yml</code> that clones the pkgdown navbar
 in a temporary build directory</p></li>
@@ -100,13 +97,6 @@ to render files with the look and feel of <code>html_notebook</code></p></li>
 <code>build_analysis_site(pkg = ".")</code> is supported.</p>
     </div>
 
-    <div id="ref-examples">
-    <h2>Examples</h2>
-    <div class="sourceCode"><pre class="sourceCode r"><code><span class="r-in"><span class="kw">if</span> <span class="op">(</span><span class="cn">FALSE</span><span class="op">)</span> <span class="op">{</span></span>
-<span class="r-in"><span class="fu">build_analysis_site</span><span class="op">(</span><span class="op">)</span></span>
-<span class="r-in"><span class="op">}</span></span>
-</code></pre></div>
-    </div>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="pkgdown-sidebar">
     <nav id="toc" data-toggle="toc" class="sticky-top"><h2 data-toc-skip>Contents</h2>

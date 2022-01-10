@@ -33,7 +33,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">rdev</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="">0.6.2</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="">0.7.0</span>
       </span>
     </div>
 
@@ -51,9 +51,6 @@
   <ul class="dropdown-menu" role="menu">
 <li>
       <a href="../articles/analysis-package-layout.html">Analysis Package Layout</a>
-    </li>
-    <li>
-      <a href="../articles/rdev-style.html">rdev ggplot2 style</a>
     </li>
   </ul>
 </li>
@@ -118,56 +115,64 @@
 </tr></thead>
 <tbody>
 <tr class="odd">
+<td align="left">_pkgdown.yml</td>
+<td align="left"></td>
+<td align="left"><code>x</code></td>
+<td align="left">
+<a href="https://pkgdown.r-lib.org" class="external-link">pkgdown</a> metadata, stored in the project root to make it more <a href="https://github.com/search?q=filename%3Apkgdown.yml+path%3A%2F&amp;type=Code" class="external-link">discoverable</a>
+</td>
+</tr>
+<tr class="even">
 <td align="left">.Rbuildignore</td>
 <td align="left"><code>x</code></td>
 <td align="left"><code>x</code></td>
 <td align="left">Files excluded from the package, sorted using <code><a href="../reference/sort_rbuildignore.html">sort_rbuildignore()</a></code>
 </td>
 </tr>
-<tr class="even">
+<tr class="odd">
 <td align="left">.RData</td>
 <td align="left"></td>
 <td align="left"></td>
 <td align="left">Saved workspace - not used</td>
 </tr>
-<tr class="odd">
+<tr class="even">
 <td align="left">.Rhistory</td>
 <td align="left"></td>
 <td align="left"></td>
 <td align="left">R command history</td>
 </tr>
-<tr class="even">
+<tr class="odd">
 <td align="left">.Rprofile</td>
 <td align="left"><code>x</code></td>
 <td align="left"><code>x</code></td>
 <td align="left">Used by <code>renv</code> and to <a href="https://r-pkgs.org/setup.html?#personal-startup-configuration" class="external-link">attach development tools</a>
 </td>
 </tr>
-<tr class="odd">
+<tr class="even">
 <td align="left">.Rproj.user</td>
 <td align="left"></td>
 <td align="left"></td>
 <td align="left">RStudio local project files</td>
 </tr>
-<tr class="even">
+<tr class="odd">
 <td align="left">.git</td>
 <td align="left"></td>
 <td align="left"></td>
 <td align="left">git version control</td>
 </tr>
-<tr class="odd">
+<tr class="even">
 <td align="left">.github</td>
 <td align="left"></td>
 <td align="left"><code>x</code></td>
 <td align="left">GitHub templates and workflows</td>
 </tr>
-<tr class="even">
+<tr class="odd">
 <td align="left">.gitignore</td>
 <td align="left"><code>x</code></td>
 <td align="left"><code>x</code></td>
 <td align="left">git exclusions based on <a href="https://github.com/github/gitignore/blob/master/R.gitignore" class="external-link">GitHub R</a>. Generated files outside of <code>docs</code> (used by GitHub Pages) are excluded.</td>
 </tr>
-<tr class="odd">
+<tr class="even">
 <td align="left">.lintr</td>
 <td align="left"></td>
 <td align="left"><code>x</code></td>
@@ -175,178 +180,178 @@
 <a href="https://github.com/jimhester/lintr" class="external-link">lintr</a> default linters with 100 columns: <code>linters: with_defaults(line_length_linter(100))</code>
 </td>
 </tr>
-<tr class="even">
+<tr class="odd">
 <td align="left">DESCRIPTION</td>
 <td align="left"><code>x</code></td>
 <td align="left"><code>x</code></td>
 <td align="left">Package metadata. Use “Suggests” for development tools, per <a href="https://rstudio.github.io/renv/articles/faq.html#how-should-i-handle-development-dependencies-" class="external-link">renv</a>
 </td>
 </tr>
-<tr class="odd">
+<tr class="even">
 <td align="left">LICENSE</td>
 <td align="left"><code>x</code></td>
 <td align="left"><code>x</code></td>
 <td align="left">Generated with <code><a href="https://usethis.r-lib.org/reference/licenses.html" class="external-link">usethis::use_mit_license()</a></code>
 </td>
 </tr>
-<tr class="even">
+<tr class="odd">
 <td align="left">LICENSE.md</td>
 <td align="left"></td>
 <td align="left"><code>x</code></td>
 <td align="left">See above, used by <a href="https://pkgdown.r-lib.org" class="external-link">pkgdown</a>
 </td>
 </tr>
-<tr class="odd">
+<tr class="even">
 <td align="left">NAMESPACE</td>
 <td align="left"><code>x</code></td>
 <td align="left"><code>x</code></td>
 <td align="left">Automatically generated with <a href="https://roxygen2.r-lib.org" class="external-link">roxygen2</a>
 </td>
 </tr>
-<tr class="even">
+<tr class="odd">
 <td align="left">NEWS.md</td>
 <td align="left"></td>
 <td align="left"><code>x</code></td>
 <td align="left">Release notes, used by <a href="https://pkgdown.r-lib.org" class="external-link">pkgdown</a>
 </td>
 </tr>
-<tr class="odd">
+<tr class="even">
 <td align="left">R</td>
 <td align="left"><code>x</code></td>
 <td align="left"><code>x</code></td>
 <td align="left">All project functions go here, with <a href="https://roxygen2.r-lib.org" class="external-link">roxygen2</a> comments</td>
 </tr>
-<tr class="even">
+<tr class="odd">
 <td align="left">README.Rmd</td>
 <td align="left"><code>x</code></td>
 <td align="left"><code>x</code></td>
 <td align="left">Generated with <code><a href="https://usethis.r-lib.org/reference/use_readme_rmd.html" class="external-link">usethis::use_readme_md()</a></code>
 </td>
 </tr>
-<tr class="odd">
+<tr class="even">
 <td align="left">README.md</td>
 <td align="left"><code>x</code></td>
 <td align="left"><code>x</code></td>
 <td align="left">Generated with <code><a href="https://devtools.r-lib.org/reference/build_rmd.html" class="external-link">devtools::build_readme()</a></code>
 </td>
 </tr>
-<tr class="even">
+<tr class="odd">
 <td align="left">TODO.md</td>
 <td align="left"></td>
 <td align="left"><code>x</code></td>
 <td align="left">To-do list, inspired by <a href="https://github.com/rstudio/renv/blob/master/TODO.md" class="external-link uri">https://github.com/rstudio/renv/blob/master/TODO.md</a>
 </td>
 </tr>
-<tr class="odd">
+<tr class="even">
 <td align="left">analysis</td>
 <td align="left"></td>
 <td align="left"><code>x</code></td>
 <td align="left">Exploratory data analysis in R Notebooks and R Presentations. Include functions from the R directory using <code><a href="https://rdrr.io/r/base/library.html" class="external-link">library(name)</a></code>, not <code>source("rscript.R")</code>.</td>
 </tr>
-<tr class="even">
+<tr class="odd">
 <td align="left">analysis/assets</td>
 <td align="left"></td>
 <td align="left"><code>x</code></td>
 <td align="left">External assets (images, other files) included in R Notebooks</td>
 </tr>
-<tr class="odd">
+<tr class="even">
 <td align="left">analysis/data</td>
 <td align="left"></td>
 <td align="left"><code>x</code></td>
 <td align="left">Used to store small data sets used for analysis and exported data as <code>csv</code> files</td>
 </tr>
-<tr class="even">
+<tr class="odd">
 <td align="left">analysis/import</td>
 <td align="left"></td>
 <td align="left"></td>
 <td align="left">Used for local storage of large data sets</td>
 </tr>
-<tr class="odd">
+<tr class="even">
 <td align="left">analysis/rendered</td>
 <td align="left"></td>
 <td align="left"></td>
 <td align="left">Manually rendered versions of <code>analysis/</code> files to be included in <code>docs/</code>, like <a href="https://stackoverflow.com/questions/27930127/render-r-presentation-from-the-command-line" class="external-link">.Rpres files</a>
 </td>
 </tr>
-<tr class="even">
+<tr class="odd">
 <td align="left">demos</td>
 <td align="left"><code>x</code></td>
 <td align="left"></td>
 <td align="left">Not used, as recommended by <a href="https://r-pkgs.org/misc.html" class="external-link">R Packages</a>
 </td>
 </tr>
-<tr class="odd">
+<tr class="even">
 <td align="left">docs</td>
 <td align="left"></td>
 <td align="left"><code>x</code></td>
 <td align="left">Used by <code><a href="../reference/build_analysis_site.html">build_analysis_site()</a></code> to render the R Package and Notebooks for GitHub Pages</td>
 </tr>
-<tr class="even">
+<tr class="odd">
 <td align="left">exec</td>
 <td align="left"><code>x</code></td>
 <td align="left"></td>
 <td align="left">Command line executable scripts - not used</td>
 </tr>
-<tr class="odd">
+<tr class="even">
 <td align="left">inst/rmarkdown/templates</td>
 <td align="left"><code>x</code></td>
 <td align="left"><code>x</code></td>
 <td align="left"><a href="https://rstudio.github.io/rstudio-extensions/rmarkdown_templates.html" class="external-link">R Markdown Templates</a></td>
 </tr>
-<tr class="even">
+<tr class="odd">
 <td align="left">man</td>
 <td align="left"><code>x</code></td>
 <td align="left"><code>x</code></td>
 <td align="left">Automatically generated with <a href="https://roxygen2.r-lib.org" class="external-link">roxygen2</a>
 </td>
 </tr>
-<tr class="odd">
+<tr class="even">
 <td align="left">package.Rproj</td>
 <td align="left"></td>
 <td align="left"><code>x</code></td>
 <td align="left">Use the same name for the package, .Rproj, directory, and GitHub repository</td>
 </tr>
-<tr class="even">
+<tr class="odd">
 <td align="left">pkgdown</td>
 <td align="left"></td>
 <td align="left"><code>x</code></td>
 <td align="left">Store all <a href="https://pkgdown.r-lib.org" class="external-link">pkgdown</a> files here</td>
 </tr>
-<tr class="odd">
+<tr class="even">
 <td align="left">po</td>
 <td align="left"><code>x</code></td>
 <td align="left"><code>x</code></td>
 <td align="left">Used for <a href="https://cran.rstudio.com/doc/manuals/r-devel/R-exts.html#Internationalization" class="external-link">Internationalization</a> if needed</td>
 </tr>
-<tr class="even">
+<tr class="odd">
 <td align="left">renv</td>
 <td align="left"></td>
 <td align="left"><code>x</code></td>
 <td align="left">Used by <a href="https://rstudio.github.io/renv/" class="external-link">renv</a>
 </td>
 </tr>
-<tr class="odd">
+<tr class="even">
 <td align="left">renv.lock</td>
 <td align="left"></td>
 <td align="left"><code>x</code></td>
 <td align="left">renv <a href="https://rstudio.github.io/renv/reference/lockfiles.html" class="external-link">lockfile</a>
 </td>
 </tr>
-<tr class="even">
+<tr class="odd">
 <td align="left">tests</td>
 <td align="left"><code>x</code></td>
 <td align="left"><code>x</code></td>
 <td align="left">Tests using <a href="https://testthat.r-lib.org" class="external-link">testthat</a>
 </td>
 </tr>
-<tr class="odd">
+<tr class="even">
 <td align="left">tools</td>
 <td align="left"><code>x</code></td>
 <td align="left"><code>x</code></td>
 <td align="left">Used for shell scripts that support development, like <code>setup-r</code>
 </td>
 </tr>
-<tr class="even">
+<tr class="odd">
 <td align="left">vignettes</td>
 <td align="left"><code>x</code></td>
 <td align="left"><code>x</code></td>

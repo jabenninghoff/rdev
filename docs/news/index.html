@@ -17,7 +17,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">rdev</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="">0.6.2</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="">0.7.0</span>
       </span>
     </div>
 
@@ -33,9 +33,6 @@
   </a>
   <ul class="dropdown-menu" role="menu"><li>
       <a href="../articles/analysis-package-layout.html">Analysis Package Layout</a>
-    </li>
-    <li>
-      <a href="../articles/rdev-style.html">rdev ggplot2 style</a>
     </li>
   </ul></li>
 <li>
@@ -61,6 +58,25 @@
     </div>
 
     <div class="section level2">
+<h2 class="page-header" data-toc-text="0.7.0" id="rdev-070">rdev 0.7.0<a class="anchor" aria-label="anchor" href="#rdev-070"></a></h2>
+<div class="section level3">
+<h3 id="create-package-automation-0-7-0">‘Create Package’ Automation<a class="anchor" aria-label="anchor" href="#create-package-automation-0-7-0"></a></h3>
+<p>Added functions to automate steps when creating new packages following rdev and optionally analysis package conventions:</p>
+<ul><li><p><code><a href="../reference/create_github_repo.html">create_github_repo()</a></code>: Create new GitHub repository following rdev conventions in the active user’s account and create a basic package</p></li>
+<li><p><code><a href="../reference/use_rdev_package.html">use_rdev_package()</a></code>: Add rdev templates and settings within the active package. Normally invoked when first setting up a package.</p></li>
+<li><p>Install templates using <code><a href="https://usethis.r-lib.org/reference/use_template.html" class="external-link">usethis::use_template()</a></code>: <code><a href="../reference/use_rprofile.html">use_rprofile()</a></code>, <code><a href="../reference/use_lintr.html">use_lintr()</a></code>, <code><a href="../reference/use_todo.html">use_todo()</a></code>, <code><a href="../reference/use_package_r.html">use_package_r()</a></code></p></li>
+<li><p>Add functionality to <code><a href="../reference/use_analysis_package.html">use_analysis_package()</a></code>: also install the analysis package <code>README.Rmd</code> template</p></li>
+<li><p>Changed both <code><a href="../reference/use_analysis_package.html">use_analysis_package()</a></code> and <code><a href="../reference/build_analysis_site.html">build_analysis_site()</a></code> to write <code>_pkgdown.yml</code> to the project root and to store in GitHub to make projects <a href="https://github.com/search?q=filename%3Apkgdown.yml+path%3A%2F&amp;type=Code" class="external-link">discoverable</a> by <a href="https://pkgdown.r-lib.org" class="external-link">pkgdown</a>.</p></li>
+<li><p>Updated <code>setup-r</code> to install rdev and dependencies in <code>site_library</code></p></li>
+</ul></div>
+<div class="section level3">
+<h3 id="other-changes-0-7-0">Other Changes<a class="anchor" aria-label="anchor" href="#other-changes-0-7-0"></a></h3>
+<ul><li><p>Added <code><a href="../reference/build_rdev_site.html">build_rdev_site()</a></code>, a wrapper for <code><a href="https://pkgdown.r-lib.org/reference/build_site.html" class="external-link">pkgdown::build_site()</a></code> optimized for rdev workflow that updates <code>README.md</code> and performs a clean build using pkgdown</p></li>
+<li><p>Added ‘Analysis Notebook’ R markdown template for RStudio (File &gt; New File &gt; Rmarkdown &gt; From Template)</p></li>
+<li><p>Migrated ggplot2 themes/styles (<code>theme_quo()</code>, <code>viridis_quo()</code>) to new package, <code>jabenninghoff/jbplot</code></p></li>
+</ul></div>
+</div>
+    <div class="section level2">
 <h2 class="page-header" data-toc-text="0.6.2" id="rdev-062">rdev 0.6.2<a class="anchor" aria-label="anchor" href="#rdev-062"></a></h2>
 <ul><li>Add functionality to <code><a href="../reference/use_analysis_package.html">use_analysis_package()</a></code>: Create <code>_base.yml</code> in <code>pkgdown</code> from the first <code>URL</code> in the package <code>DESCRIPTION</code> file.</li>
 </ul></div>
@@ -75,7 +91,7 @@
 </ul></div>
     <div class="section level2">
 <h2 class="page-header" data-toc-text="0.5.3" id="rdev-053">rdev 0.5.3<a class="anchor" aria-label="anchor" href="#rdev-053"></a></h2>
-<ul><li>Add options to <code><a href="../reference/theme_quo.html">theme_quo()</a></code> to disable both <code>panel.grid.major</code> and <code>panel.grid.minor</code> for <code>x</code> and <code>y</code>
+<ul><li>Add options to <code>theme_quo()</code> to disable both <code>panel.grid.major</code> and <code>panel.grid.minor</code> for <code>x</code> and <code>y</code>
 </li>
 </ul></div>
     <div class="section level2">
@@ -85,12 +101,12 @@
 </ul></div>
     <div class="section level2">
 <h2 class="page-header" data-toc-text="0.5.1" id="rdev-051">rdev 0.5.1<a class="anchor" aria-label="anchor" href="#rdev-051"></a></h2>
-<ul><li>Updated <code><a href="../reference/theme_quo.html">theme_quo()</a></code>: set base theme to <code><a href="https://ggplot2.tidyverse.org/reference/ggtheme.html" class="external-link">ggplot2::theme_minimal()</a></code> and add parameters for disabling grid lines</li>
+<ul><li>Updated <code>theme_quo()</code>: set base theme to <code>ggplot2::theme_minimal()</code> and add parameters for disabling grid lines</li>
 </ul></div>
     <div class="section level2">
 <h2 class="page-header" data-toc-text="0.5.0" id="rdev-050">rdev 0.5.0<a class="anchor" aria-label="anchor" href="#rdev-050"></a></h2>
-<ul><li><p>Added <code><a href="../reference/theme_quo.html">theme_quo()</a></code>: <a href="https://ggplot2.tidyverse.org" class="external-link">ggplot2</a> theme based on <code><a href="https://ggplot2.tidyverse.org/reference/ggtheme.html" class="external-link">ggplot2::theme_bw()</a></code> and font <a href="https://www.latofonts.com" class="external-link">Lato</a></p></li>
-<li><p>Added <code><a href="../reference/viridis_quo.html">viridis_quo()</a></code>: Sets the default theme to <code><a href="../reference/theme_quo.html">theme_quo()</a></code> and the default color scales to <code>viridis</code></p></li>
+<ul><li><p>Added <code>theme_quo()</code>: <a href="https://ggplot2.tidyverse.org" class="external-link">ggplot2</a> theme based on <code>ggplot2::theme_bw()</code> and font <a href="https://www.latofonts.com" class="external-link">Lato</a></p></li>
+<li><p>Added <code>viridis_quo()</code>: Sets the default theme to <code>theme_quo()</code> and the default color scales to <code>viridis</code></p></li>
 <li><p>maintenance</p></li>
 </ul></div>
     <div class="section level2">
@@ -151,7 +167,7 @@
 <ul><li>maintenance release</li>
 </ul><div class="section level3">
 <h3 id="updates-0-1-1">Updates<a class="anchor" aria-label="anchor" href="#updates-0-1-1"></a></h3>
-<ul><li><p><code><a href="../reference/ci.html">ci()</a></code>: updated to match my preferred GitHub workflow: <code><a href="https://usethis.r-lib.org/reference/github_actions.html" class="external-link">use_github_action_check_standard()</a></code> with <code>--as-cran</code> removed</p></li>
+<ul><li><p><code><a href="../reference/ci.html">ci()</a></code>: updated to match my preferred GitHub workflow: <code>use_github_action_check_standard()</code> with <code>--as-cran</code> removed</p></li>
 <li><p>documentation updates for all functions (style, links)</p></li>
 </ul></div>
 </div>

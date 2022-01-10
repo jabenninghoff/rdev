@@ -19,9 +19,6 @@
     <loc>https://jabenninghoff.github.io/rdev/articles/index.html</loc>
   </url>
   <url>
-    <loc>https://jabenninghoff.github.io/rdev/articles/rdev-style.html</loc>
-  </url>
-  <url>
     <loc>https://jabenninghoff.github.io/rdev/authors.html</loc>
   </url>
   <url>
@@ -34,10 +31,16 @@
     <loc>https://jabenninghoff.github.io/rdev/reference/build_analysis_site.html</loc>
   </url>
   <url>
+    <loc>https://jabenninghoff.github.io/rdev/reference/build_rdev_site.html</loc>
+  </url>
+  <url>
     <loc>https://jabenninghoff.github.io/rdev/reference/check_renv.html</loc>
   </url>
   <url>
     <loc>https://jabenninghoff.github.io/rdev/reference/ci.html</loc>
+  </url>
+  <url>
+    <loc>https://jabenninghoff.github.io/rdev/reference/create_github_repo.html</loc>
   </url>
   <url>
     <loc>https://jabenninghoff.github.io/rdev/reference/index.html</loc>
@@ -58,15 +61,24 @@
     <loc>https://jabenninghoff.github.io/rdev/reference/style_all.html</loc>
   </url>
   <url>
-    <loc>https://jabenninghoff.github.io/rdev/reference/theme_quo.html</loc>
-  </url>
-  <url>
     <loc>https://jabenninghoff.github.io/rdev/reference/to_document.html</loc>
   </url>
   <url>
     <loc>https://jabenninghoff.github.io/rdev/reference/use_analysis_package.html</loc>
   </url>
   <url>
-    <loc>https://jabenninghoff.github.io/rdev/reference/viridis_quo.html</loc>
+    <loc>https://jabenninghoff.github.io/rdev/reference/use_lintr.html</loc>
+  </url>
+  <url>
+    <loc>https://jabenninghoff.github.io/rdev/reference/use_package_r.html</loc>
+  </url>
+  <url>
+    <loc>https://jabenninghoff.github.io/rdev/reference/use_rdev_package.html</loc>
+  </url>
+  <url>
+    <loc>https://jabenninghoff.github.io/rdev/reference/use_rprofile.html</loc>
+  </url>
+  <url>
+    <loc>https://jabenninghoff.github.io/rdev/reference/use_todo.html</loc>
   </url>
 </urlset>
