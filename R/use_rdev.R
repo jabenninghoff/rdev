@@ -78,7 +78,22 @@ get_github_repo <- function() {
 #' @return return value from [gh::gh()] creating the repository, invisibly
 #' @export
 create_github_repo <- function(repo_name, repo_desc = "", host = NULL) {
-  # RELEASE: determine target dir for create_from_github() and verify it doesn't exist before calling gh
+  # workaround for ::: per https://stat.ethz.ch/pipermail/r-devel/2013-August/067210.html
+  `%:::%` <- function(pkg, fun) {
+    get(fun,
+      envir = asNamespace(pkg),
+      inherits = FALSE
+    )
+  }
+  conspicuous_place <- "usethis" %:::% "conspicuous_place"
+  user_path_prep <- "usethis" %:::% "user_path_prep"
+
+  # determine target dir for create_from_github() and verify it doesn't exist before calling gh
+  ut_destdir <- paste0(user_path_prep(conspicuous_place()), "/", repo_name)
+  if (fs::dir_exists(ut_destdir)) {
+    stop(paste0("create_from_github() target, '", ut_destdir, "' already exists"))
+  }
+
   create <- gh::gh(
     "POST /user/repos",
     name = repo_name,
