@@ -1,3 +1,29 @@
+# rdev 0.7.0
+
+## 'Create Package' Automation
+
+Added functions to automate steps when creating new packages following rdev and optionally analysis package conventions:
+
+* `create_github_repo()`: Create new GitHub repository following rdev conventions in the active user's account and create a basic package
+
+* `use_rdev_package()`: Add rdev templates and settings within the active package. Normally invoked when first setting up a package.
+
+* Install templates using `usethis::use_template()`: `use_rprofile()`, `use_lintr()`, `use_todo()`, `use_package_r()`
+
+* Add functionality to `use_analysis_package()`: also install the analysis package `README.Rmd` template
+
+* Changed both `use_analysis_package()` and `build_analysis_site()` to write `_pkgdown.yml` to the project root and to store in GitHub to make projects [discoverable](https://github.com/search?q=filename%3Apkgdown.yml+path%3A%2F&type=Code) by [pkgdown](https://pkgdown.r-lib.org).
+
+* Updated `setup-r` to install rdev and dependencies in `site_library`
+
+## Other Changes
+
+* Added `build_rdev_site()`, a wrapper for `pkgdown::build_site()` optimized for rdev workflow that updates `README.md` and performs a clean build using pkgdown
+
+* Added 'Analysis Notebook' R markdown template for RStudio (File > New File > Rmarkdown > From Template)
+
+* Migrated ggplot2 themes/styles (`theme_quo()`, `viridis_quo()`) to new package, `jabenninghoff/jbplot`
+
 # rdev 0.6.2
 
 * Add functionality to `use_analysis_package()`: Create `_base.yml` in `pkgdown` from the first `URL` in the package `DESCRIPTION` file.
