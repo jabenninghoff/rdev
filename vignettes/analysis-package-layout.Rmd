@@ -25,6 +25,7 @@ The table below documents the complete R Analysis Package layout:
 
 Path                     | R | g | Function
 :------------------------|:--|:--|:-----------------------------------------------------------------------------------------------------------------------------------------------------
+_pkgdown.yml             |   |`x`| [pkgdown](https://pkgdown.r-lib.org) metadata, stored in the project root to make it more [discoverable](https://github.com/search?q=filename%3Apkgdown.yml+path%3A%2F&type=Code)
 .Rbuildignore            |`x`|`x`| Files excluded from the package, sorted using `sort_rbuildignore()`
 .RData                   |   |   | Saved workspace - not used
 .Rhistory                |   |   | R command history
