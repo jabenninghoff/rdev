@@ -78,7 +78,7 @@ get_github_repo <- function() {
 #' @return return value from [gh::gh()] creating the repository, invisibly
 #' @export
 create_github_repo <- function(repo_name, repo_desc = "", host = NULL) {
-  # determine target dir for create_from_github() and verify it doesn't exist before calling gh
+  # RELEASE: determine target dir for create_from_github() and verify it doesn't exist before calling gh
   create <- gh::gh(
     "POST /user/repos",
     name = repo_name,
@@ -208,7 +208,7 @@ use_analysis_package <- function() {
   # workaround for lintr, R CMD check
   create <- gitignore <- rbuildignore <- NULL
 
-  # refactor to use /_pkgdown.yml
+  # RELEASE: refactor to use /_pkgdown.yml
   analysis_layout <- tibble::tribble(
     ~pattern, ~create, ~gitignore, ~rbuildignore,
     "analysis", TRUE, FALSE, FALSE,
