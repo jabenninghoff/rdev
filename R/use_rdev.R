@@ -138,7 +138,8 @@ create_github_repo <- function(repo_name, repo_desc = "", host = NULL) {
 #'
 #' @export
 use_rdev_package <- function() {
-  # set non-interactive to disable usethis prompts: rlang::local_interactive(value = FALSE)
+  # set non-interactive to disable usethis prompts
+  rlang::local_interactive(value = FALSE)
 
   # add templates
   use_rprofile()
