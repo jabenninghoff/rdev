@@ -38,6 +38,31 @@ renv::install("jabenninghoff/rdev")
 -   Changelog: See “Changelog” or `NEWS.md`.
 -   Planned: [TODO](TODO.md)
 
+## Creating Packages
+
+rdev supports creation of new R packages following rdev conventions as
+well as new [R
+Analysis](https://jabenninghoff.github.io/rdev/articles/analysis-package-layout.html)
+packages. The typical setup workflow is:
+
+1.  Use `available::available()` to check package name
+2.  Create new base package using `create_github_repo()`
+3.  Manually set branch protection as needed (main: require status
+    checks, linear history)
+4.  Add new package to GitHub Desktop
+5.  Commit to git `create_github_repo()`
+6.  Run `use_rdev_package()` within new project to add remaining
+    templates and settings
+7.  Commit to git `use_rdev_package()`
+8.  Run either use_analysis_package() or usethis::use_pkgdown() for
+    GitHub Pages
+9.  Commit to git
+10. Edit DESCRIPTION and add a Title and Description
+11. Update TODO.md, NEWS.md, README.Rmd, and DESCRIPTION as needed
+12. Run `check_renv()`, `style_all()`, `lint_all()`, `ci()` to validate
+    package
+13. Commit to git and begin development
+
 ## Examples
 
 For my workflow, I typically check renv when I start:
@@ -77,16 +102,16 @@ ci()
 #> * creating vignettes ... OK
 #> * checking for LF line-endings in source and make files and shell scripts
 #> * checking for empty or unneeded directories
-#> * building ‘rdev_0.6.2.tar.gz’
+#> * building ‘rdev_0.6.2.9000.tar.gz’
 #> 
 #> ── R CMD check ─────────────────────────────────────────────────────────────────
-#> * using log directory ‘/private/var/folders/vn/cw5f9gws42v9m8mdsds_zbl00000gp/T/RtmpOoYpjl/filea02557d67e1c/rdev.Rcheck’
+#> * using log directory ‘/private/var/folders/vn/cw5f9gws42v9m8mdsds_zbl00000gp/T/RtmpfxPjhY/file1149d6704b3a9/rdev.Rcheck’
 #> * using R version 4.1.2 (2021-11-01)
 #> * using platform: x86_64-apple-darwin19.6.0 (64-bit)
 #> * using session charset: UTF-8
 #> * using option ‘--no-manual’
 #> * checking for file ‘rdev/DESCRIPTION’ ... OK
-#> * this is package ‘rdev’ version ‘0.6.2’
+#> * this is package ‘rdev’ version ‘0.6.2.9000’
 #> * package encoding: UTF-8
 #> * checking package namespace information ... OK
 #> * checking package dependencies ... OK
@@ -137,13 +162,12 @@ ci()
 #> * checking package vignettes in ‘inst/doc’ ... OK
 #> * checking running R code from vignettes ...
 #>   ‘analysis-package-layout.Rmd’ using ‘UTF-8’... OK
-#>   ‘rdev-style.Rmd’ using ‘UTF-8’... OK
 #>  NONE
 #> * checking re-building of vignette outputs ... OK
 #> * DONE
 #> Status: OK
-#> ── R CMD check results ───────────────────────────────────────── rdev 0.6.2 ────
-#> Duration: 23.8s
+#> ── R CMD check results ──────────────────────────────────── rdev 0.6.2.9000 ────
+#> Duration: 18.2s
 #> 
 #> 0 errors ✓ | 0 warnings ✓ | 0 notes ✓
 ```
