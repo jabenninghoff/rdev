@@ -33,7 +33,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">rdev</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="">0.7.1</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="">0.7.2</span>
       </span>
     </div>
 
@@ -89,6 +89,7 @@
     
     
 <p>R Analysis Packages are an extension of the standard R package layout designed to support publishing a collection of R notebooks used for data analysis as static html, typically using <a href="https://pages.github.com" class="external-link">GitHub Pages</a>.</p>
+<p><a href="https://bookdown.org/yihui/rmarkdown/notebook.html" class="external-link">R Notebooks</a> include a YAML header and <a href="https://github.com/rstudio/rmarkdown" class="external-link">R Markdown</a> body. The Analysis Package Layout follows the convention that the first non-blank line in the body of an R notebook serves as a brief description of the work. <code>rdev</code> includes an “Analysis Notebook” RStudio R Markdown template (File &gt; New File &gt; Rmarkdown &gt; From Template) and a <code>README.Rmd</code> template optionally installed with <code><a href="../reference/use_analysis_package.html">use_analysis_package()</a></code> that dynamically builds a list of notebooks and descriptions when <a href="https://devtools.r-lib.org/reference/build_rmd.html" class="external-link"><code>devtools:build_readme()</code></a> is run.</p>
 <p>The table below documents the complete R Analysis Package layout:</p>
 <ul>
 <li>
