@@ -16,6 +16,8 @@ knitr::opts_chunk$set(
 
 R Analysis Packages are an extension of the standard R package layout designed to support publishing a collection of R notebooks used for data analysis as static html, typically using [GitHub Pages](https://pages.github.com).
 
+[R Notebooks](https://bookdown.org/yihui/rmarkdown/notebook.html) include a YAML header and [R Markdown](https://github.com/rstudio/rmarkdown) body. The Analysis Package Layout follows the convention that the first non-blank line in the body of an R notebook serves as a brief description of the work. `rdev` includes an "Analysis Notebook" RStudio R Markdown template (File > New File > Rmarkdown > From Template) and a `README.Rmd` template optionally installed with `use_analysis_package()` that dynamically builds a list of notebooks and descriptions when `devtools:build_readme()` is run.
+
 The table below documents the complete R Analysis Package layout:
 
 - **Path**: Path to the file or directory relative to the package root
