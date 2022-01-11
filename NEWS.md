@@ -1,3 +1,7 @@
+# rdev 0.7.1
+
+* Updated `use_analysis_package()`: add dynamic notebook list to `README.Rmd` template
+
 # rdev 0.7.0
 
 ## 'Create Package' Automation
