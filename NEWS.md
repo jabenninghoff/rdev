@@ -1,3 +1,7 @@
+# rdev 0.7.2
+
+* Added info on dynamic notebook list to notebook template and Analysis Package Layout [vignette](https://jabenninghoff.github.io/rdev/articles/analysis-package-layout.html)
+
 # rdev 0.7.1
 
 * Updated `use_analysis_package()`: add dynamic notebook list to `README.Rmd` template
