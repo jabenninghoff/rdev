@@ -61,6 +61,8 @@ to_document <- function(file_path, new_path, overwrite = FALSE) {
 #' 1. Creates a template using [pkgdown::template_navbar()] and inserts an `analysis` menu with
 #'   links to html versions of each .Rmd file in `analysis/`
 #' 1. Writes the template to `_pkgdown.yml`
+#' 1. Updates `README.md` by running [devtools::build_readme()] (if `README.Rmd` exists) to update
+#'   the list of notebooks
 #' 1. Runs [pkgdown::clean_site()] and [pkgdown::build_site()]
 #' 1. Creates a `_site.yml` file based on the final `_pkgdown.yml` that clones the [pkgdown] navbar
 #'   in a temporary build directory
@@ -118,6 +120,11 @@ build_analysis_site <- function(pkg = ".", ...) {
 
   # write template
   yaml::write_yaml(pkg_yml, "_pkgdown.yml")
+
+  # rebuild REAMDE.md
+  if (fs::file_exists("README.Rmd")) {
+    devtools::build_readme(pkg)
+  }
 
   # run clean_site() and build_site()
   pkgdown::clean_site()
