@@ -1,3 +1,9 @@
+# rdev 0.7.3
+
+* Updated `build_analysis_site()` to run `devtools::build_readme()` to regenerate the dynamic list of notebooks (in case new notebooks were added)
+
+* Important update from renv 0.15.0 to [0.15.1](https://rstudio.github.io/renv/news/index.html#renv-0151)
+
 # rdev 0.7.2
 
 * Added info on dynamic notebook list to notebook template and Analysis Package Layout [vignette](https://jabenninghoff.github.io/rdev/articles/analysis-package-layout.html)
