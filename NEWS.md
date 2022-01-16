@@ -14,6 +14,8 @@
 
 # rdev 0.7.0
 
+Major release adding automation for creating rdev and R analysis packages.
+
 ## 'Create Package' Automation
 
 Added functions to automate steps when creating new packages following rdev and optionally analysis package conventions:
