@@ -1,35 +1,42 @@
 url: https://jabenninghoff.github.io/rdev
 
 reference:
-
-- title: "rdev-package"
-  contents:
-  - rdev-package
-
-- title: "Package Maintenance"
-  contents:
-  - check_renv
-  - build_analysis_site
-  - build_rdev_site
-  - to_document
-
-- title: "Continous Integration"
-  contents:
-  - ci
-  - style_all
-  - lint_all
-
-- title: "Use rdev Conventions"
-  contents:
-  - create_github_repo
-  - use_analysis_package
-  - use_lintr
-  - use_package_r
-  - use_rdev_package
-  - use_rprofile
-  - use_todo
-
-- title: "Utilities"
-  contents:
-  - sort_file
-  - sort_rbuildignore
+  - title: Release Automation
+    desc: >
+      Stage and create GitHub releases and GitHub pages
+    contents:
+    - build_analysis_site
+    - build_rdev_site
+    - stage_release
+    - get_release
+    - to_document
+  - title: Continous Integration
+    desc: >
+      Local continous integration checks and dependency management
+    contents:
+    - check_renv
+    - style_all
+    - lint_all
+    - ci
+  - title: Package Setup
+    desc: >
+      Package setup tasks, typically performed once
+    contents:
+    - create_github_repo
+    - use_analysis_package
+    - use_lintr
+    - use_package_r
+    - use_rdev_package
+    - use_rprofile
+    - use_todo
+  - title: Utilities
+    desc: >
+      Clean and tidy package files
+    contents:
+    - sort_file
+    - sort_rbuildignore
+  - title: rdev Package
+    desc: >
+      rdev package documentation
+    contents:
+    - rdev-package
