@@ -12,6 +12,10 @@ Added functions to automate workflow for staging and creating releases on GitHub
 
 * `merge_release()`: Merge a staged pull request and create a new GitHub release
 
+## Other Changes
+
+* Updated and reorganized pkgdown reference page
+
 # rdev 0.7.3
 
 * Updated `build_analysis_site()` to run `devtools::build_readme()` to regenerate the dynamic list of notebooks (in case new notebooks were added)
