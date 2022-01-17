@@ -1,3 +1,17 @@
+# rdev 0.8.0
+
+Major update adding automation for GitHub releases.
+
+## Release Automation
+
+Added functions to automate workflow for staging and creating releases on GitHub:
+
+* `stage_release()`: Open a GitHub pull request for a new release from NEWS.md
+
+* `get_release()`: Extract release version and release notes from NEWS.md. Called by `stage_release()` and `merge_release()`.
+
+* `merge_release()`: Merge a staged pull request and create a new GitHub release
+
 # rdev 0.7.3
 
 * Updated `build_analysis_site()` to run `devtools::build_readme()` to regenerate the dynamic list of notebooks (in case new notebooks were added)
