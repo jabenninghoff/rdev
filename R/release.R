@@ -136,7 +136,7 @@ stage_release <- function(pkg = ".", filename = "NEWS.md", host = NULL) {
     title = paste0(rel$package, " ", rel$version),
     head = gert::git_branch(),
     base = usethis::git_default_branch(),
-    body = rel$notes,
+    body = paste0(rel$notes, collapse = "\n"),
     .api_url = host
   )
 
