@@ -66,11 +66,21 @@ get_release <- function(pkg = ".", filename = "NEWS.md") {
 #' 1. Checks for uncommitted changes and stops if any exist using [gert::git_diff_patch()]
 #' 1. Creates a new branch if on the default branch ([gert::git_branch()] `==`
 #'   [usethis::git_default_branch()]) using [gert::git_branch_create()]
+#' 1. Updates `Version` in `DESCRIPTION` with [desc::desc_set_version()], commits and push to git
+#'   with message `"GitHub release <version>"` using [gert::git_add()], [gert::git_commit()] and
+#'   [gert::git_push()]
+#' 1. Runs [build_analysis_site()] (if `pkgdown/_base.yml` exists) or [build_rdev_site()], commits
+#'   and pushes changes to git with message `"<builder> for GitHub release <version>"`
+#' 1. Opens a pull request with the title `"<package> <version>"` and the release notes in the body
+#'   using [gh::gh()]
 #'
 #' @inheritParams get_release
+#' @inheritParams usethis::use_github
+#'
+#' @return results of GitHub pull request, invisibly
 #'
 #' @export
-stage_release <- function(pkg = ".", filename = "NEWS.md") {
+stage_release <- function(pkg = ".", filename = "NEWS.md", host = NULL) {
   if (pkg != ".") {
     stop('currently only build_analysis_site(pkg = ".") is supported')
   }
@@ -97,10 +107,33 @@ stage_release <- function(pkg = ".", filename = "NEWS.md") {
     gert::git_branch_create(new_branch)
   }
 
-  # update Version in DESCRIPTION
-  # commit DESCRIPTION with message: "<label> release <version>"
-  # run build_analysis_site() or build_rdev_site()
-  # commit changes with message: "<function> for <label> release <version>"
-  # push changes
-  # open pull request, "<package> <version>", body = release notes
+  desc::desc_set_version(rel$version, file = pkg)
+  gert::git_add("DESCRIPTION")
+  gert::git_commit(paste0("GitHub release ", rel$version))
+  gert::git_push()
+
+  if (fs::file_exists("pkgdown/_base.yml")) {
+    builder <- "build_analysis_site()"
+    build_analysis_site()
+  } else {
+    builder <- "build_rdev_site()"
+    build_rdev_site()
+  }
+  gert::git_add(".")
+  gert::git_commit(paste0(builder, " for GitHub release ", rel$version))
+  gert::git_push()
+
+  gh_remote <- remotes::parse_github_url(gert::git_remote_info()$url)
+  pr <- gh::gh(
+    "POST /repos/{owner}/{repo}/pulls",
+    owner = gh_remote$username,
+    repo = gh_remote$repo,
+    title = paste0(rel$package, " ", rel$version),
+    head = gert::git_branch(),
+    base = usethis::git_default_branch(),
+    body = rel$notes,
+    .api_url = host
+  )
+
+  invisible(pr)
 }

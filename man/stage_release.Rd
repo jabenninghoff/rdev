@@ -4,12 +4,24 @@
 \alias{stage_release}
 \title{Stage a GitHub release}
 \usage{
-stage_release(pkg = ".", filename = "NEWS.md")
+stage_release(pkg = ".", filename = "NEWS.md", host = NULL)
 }
 \arguments{
 \item{pkg}{path to package. Currently, only \code{pkg = "."} is supported.}
 
 \item{filename}{name of file containing release notes, defaults to \code{NEWS.md}.}
+
+\item{host}{GitHub host to target, passed to the \code{.api_url} argument of
+\code{\link[gh:gh]{gh::gh()}}. If unspecified, gh defaults to "https://api.github.com",
+although gh's default can be customised by setting the GITHUB_API_URL
+environment variable.
+
+For a hypothetical GitHub Enterprise instance, either
+"https://github.acme.com/api/v3" or "https://github.acme.com" is
+acceptable.}
+}
+\value{
+results of GitHub pull request, invisibly
 }
 \description{
 Open a GitHub pull request for a new release from \code{NEWS.md}. Approve, merge, and create the
@@ -24,5 +36,12 @@ When run, \code{stage_release()}:
 \item Checks for uncommitted changes and stops if any exist using \code{\link[gert:git_diff]{gert::git_diff_patch()}}
 \item Creates a new branch if on the default branch (\code{\link[gert:git_branch]{gert::git_branch()}} \code{==}
 \code{\link[usethis:git-default-branch]{usethis::git_default_branch()}}) using \code{\link[gert:git_branch]{gert::git_branch_create()}}
+\item Updates \code{Version} in \code{DESCRIPTION} with \code{\link[desc:desc_set_version]{desc::desc_set_version()}}, commits and push to git
+with message \code{"GitHub release <version>"} using \code{\link[gert:git_commit]{gert::git_add()}}, \code{\link[gert:git_commit]{gert::git_commit()}} and
+\code{\link[gert:git_fetch]{gert::git_push()}}
+\item Runs \code{\link[=build_analysis_site]{build_analysis_site()}} (if \verb{pkgdown/_base.yml} exists) or \code{\link[=build_rdev_site]{build_rdev_site()}}, commits
+and pushes changes to git with message \code{"<builder> for GitHub release <version>"}
+\item Opens a pull request with the title \code{"<package> <version>"} and the release notes in the body
+using \code{\link[gh:gh]{gh::gh()}}
 }
 }
