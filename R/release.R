@@ -9,8 +9,8 @@
 #' @param pkg path to package. Currently, only `pkg = "."` is supported.
 #' @param filename name of file containing release notes, defaults to `NEWS.md`.
 #'
-#' @return list containing the version and release notes from the first release contained in
-#'   `NEWS.md`
+#' @return list containing the package, version and release notes from the first release contained
+#'   in `NEWS.md`
 #' @export
 get_release <- function(pkg = ".", filename = "NEWS.md") {
   if (pkg != ".") {
@@ -51,7 +51,7 @@ get_release <- function(pkg = ".", filename = "NEWS.md") {
     notes <- news_md[notes_start:notes_end]
   }
 
-  list(version = version, notes = notes)
+  list(package = pkg_obj$package, version = version, notes = notes)
 }
 
 #' Stage a GitHub release
@@ -64,6 +64,8 @@ get_release <- function(pkg = ".", filename = "NEWS.md") {
 #' 1. Validates version conforms to rdev conventions (#.#.#) and release notes aren't empty
 #' 1. Verifies that version tag doesn't already exist using [gert::git_tag_list()]
 #' 1. Checks for uncommitted changes and stops if any exist using [gert::git_diff_patch()]
+#' 1. Creates a new branch if on the default branch ([gert::git_branch()] `==`
+#'   [usethis::git_default_branch()]) using [gert::git_branch_create()]
 #'
 #' @inheritParams get_release
 #'
@@ -90,7 +92,11 @@ stage_release <- function(pkg = ".", filename = "NEWS.md") {
     stop("uncommitted changes present, aborting.")
   }
 
-  # create new branch if on default branch, otherwise use current branch
+  if (gert::git_branch() == usethis::git_default_branch()) {
+    new_branch <- paste0(rel$package, "-", gsub("\\.", "", rel$version))
+    gert::git_branch_create(new_branch)
+  }
+
   # update Version in DESCRIPTION
   # commit DESCRIPTION with message: "<label> release <version>"
   # run build_analysis_site() or build_rdev_site()

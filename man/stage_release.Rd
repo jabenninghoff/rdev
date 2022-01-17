@@ -22,5 +22,7 @@ When run, \code{stage_release()}:
 \item Validates version conforms to rdev conventions (#.#.#) and release notes aren't empty
 \item Verifies that version tag doesn't already exist using \code{\link[gert:git_tag]{gert::git_tag_list()}}
 \item Checks for uncommitted changes and stops if any exist using \code{\link[gert:git_diff]{gert::git_diff_patch()}}
+\item Creates a new branch if on the default branch (\code{\link[gert:git_branch]{gert::git_branch()}} \code{==}
+\code{\link[usethis:git-default-branch]{usethis::git_default_branch()}}) using \code{\link[gert:git_branch]{gert::git_branch_create()}}
 }
 }

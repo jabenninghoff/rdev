@@ -5,7 +5,7 @@ pkg_test <- structure(list(
   encoding = "UTF-8"
 ), class = "package")
 
-test_that("get_release returns correct release version and notes", {
+test_that("get_release returns correct package, release version and notes", {
   mockery::stub(get_release, "devtools::as.package", pkg_test)
   expected_notes <- c(
     "Major update.", "", "## New Features", "", "* `feature1()`: description", "",
@@ -13,6 +13,8 @@ test_that("get_release returns correct release version and notes", {
     "* Update one", "", "* Update two"
   )
   rel <- get_release()
+  expect_equal(length(rel), 3)
+  expect_equal(rel$package, "rdev")
   expect_equal(rel$version, "1.2.0")
   expect_equal(rel$notes, expected_notes)
 })

@@ -12,8 +12,8 @@ get_release(pkg = ".", filename = "NEWS.md")
 \item{filename}{name of file containing release notes, defaults to \code{NEWS.md}.}
 }
 \value{
-list containing the version and release notes from the first release contained in
-\code{NEWS.md}
+list containing the package, version and release notes from the first release contained
+in \code{NEWS.md}
 }
 \description{
 Extract release version and release notes from \code{NEWS.md}.
