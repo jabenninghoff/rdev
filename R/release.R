@@ -61,7 +61,9 @@ get_release <- function(pkg = ".", filename = "NEWS.md") {
 #'
 #' When run, `release_stage()`:
 #' 1. Extracts release version and release notes from `NEWS.md` using [get_release()]
-#' 1. Validates release notes and version
+#' 1. Validates version conforms to rdev conventions (#.#.#) and release notes aren't empty
+#' 1. Verifies that version tag doesn't already exist using [gert::git_tag_list()]
+#' 1. Checks for uncommitted changes and stops if any exist using [gert::git_diff_patch()]
 #'
 #' @inheritParams get_release
 #'
@@ -73,19 +75,21 @@ release_stage <- function(pkg = ".", filename = "NEWS.md") {
 
   rel <- get_release(pkg = pkg, filename = filename)
 
-  # enforce specific semantic version pattern (1.0.0)
   if (!grepl("^[0-9]*\\.[0-9]*\\.[0-9]*$", rel$version)) {
     stop("invalid package version: '", rel$version, "'")
   }
   if (length(rel$notes[rel$notes != ""]) < 1) {
     stop("no release notes found!")
   }
-  # stop if version tag already exists
+
   if (nrow(gert::git_tag_list(match = rel$version, repo = pkg)) > 0) {
     stop("release tag '", rel$version, "' already exists!")
   }
 
-  # stop if any uncommitted changes
+  if (length(gert::git_diff_patch()) != 0) {
+    stop("uncommitted changes present, aborting.")
+  }
+
   # create new branch if on default branch, otherwise use current branch
   # update Version in DESCRIPTION
   # commit DESCRIPTION with message: "<label> release <version>"
