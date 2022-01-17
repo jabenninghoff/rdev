@@ -17,6 +17,7 @@ Imports:
     desc,
     devtools,
     fs,
+    gert,
     gh,
     lintr (>= 2.0.1.9000),
     pkgdown,

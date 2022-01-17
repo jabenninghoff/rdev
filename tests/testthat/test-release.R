@@ -37,3 +37,39 @@ test_that("get_release returns valid but non-rdev version", {
   rel <- get_release(filename = "bad-version.md")
   expect_equal(rel$version, "1.1")
 })
+
+test_that('release_stage stops when pkg != "."', {
+  expect_error(
+    release_stage(pkg = "foo"),
+    regexp = 'currently only build_analysis_site\\(pkg = "\\."\\) is supported'
+  )
+})
+
+test_that("release_stage returns error on non-rdev version", {
+  mockery::stub(get_release, "devtools::as.package", pkg_test)
+  rel <- get_release(filename = "bad-version.md")
+  mockery::stub(release_stage, "get_release", rel)
+  expect_error(release_stage(filename = "bad-version.md"), regexp = "invalid package version")
+})
+
+test_that("release_stage returns error on empty release notes", {
+  mockery::stub(get_release, "devtools::as.package", pkg_test)
+  rel <- get_release(filename = "bad-notes.md")
+  mockery::stub(release_stage, "get_release", rel)
+  expect_error(release_stage(filename = "bad-notes.md"), regexp = "no release notes found")
+})
+
+test_that("release_stage returns error if git tag matching version exists", {
+  tag_12 <- structure(list(
+    name = "1.2.0", ref = "refs/tags/1.2.0",
+    commit = "a7422084c6e7f89206b37bd567f66e8111e7e219"
+  ), row.names = 1L, class = c(
+    "tbl_df",
+    "tbl", "data.frame"
+  ))
+  mockery::stub(get_release, "devtools::as.package", pkg_test)
+  rel <- get_release()
+  mockery::stub(release_stage, "get_release", rel)
+  mockery::stub(release_stage, "gert::git_tag_list", tag_12)
+  expect_error(release_stage(), regexp = "release tag .* already exists")
+})
