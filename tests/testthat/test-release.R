@@ -38,28 +38,28 @@ test_that("get_release returns valid but non-rdev version", {
   expect_equal(rel$version, "1.1")
 })
 
-test_that('release_stage stops when pkg != "."', {
+test_that('stage_release stops when pkg != "."', {
   expect_error(
-    release_stage(pkg = "foo"),
+    stage_release(pkg = "foo"),
     regexp = 'currently only build_analysis_site\\(pkg = "\\."\\) is supported'
   )
 })
 
-test_that("release_stage returns error on non-rdev version", {
+test_that("stage_release returns error on non-rdev version", {
   mockery::stub(get_release, "devtools::as.package", pkg_test)
   rel <- get_release(filename = "bad-version.md")
-  mockery::stub(release_stage, "get_release", rel)
-  expect_error(release_stage(filename = "bad-version.md"), regexp = "invalid package version")
+  mockery::stub(stage_release, "get_release", rel)
+  expect_error(stage_release(filename = "bad-version.md"), regexp = "invalid package version")
 })
 
-test_that("release_stage returns error on empty release notes", {
+test_that("stage_release returns error on empty release notes", {
   mockery::stub(get_release, "devtools::as.package", pkg_test)
   rel <- get_release(filename = "bad-notes.md")
-  mockery::stub(release_stage, "get_release", rel)
-  expect_error(release_stage(filename = "bad-notes.md"), regexp = "no release notes found")
+  mockery::stub(stage_release, "get_release", rel)
+  expect_error(stage_release(filename = "bad-notes.md"), regexp = "no release notes found")
 })
 
-test_that("release_stage returns error if git tag matching version exists", {
+test_that("stage_release returns error if git tag matching version exists", {
   tag_12 <- structure(list(
     name = "1.2.0", ref = "refs/tags/1.2.0",
     commit = "a7422084c6e7f89206b37bd567f66e8111e7e219"
@@ -69,20 +69,20 @@ test_that("release_stage returns error if git tag matching version exists", {
   ))
   mockery::stub(get_release, "devtools::as.package", pkg_test)
   rel <- get_release()
-  mockery::stub(release_stage, "get_release", rel)
-  mockery::stub(release_stage, "gert::git_tag_list", tag_12)
-  expect_error(release_stage(), regexp = "release tag .* already exists")
+  mockery::stub(stage_release, "get_release", rel)
+  mockery::stub(stage_release, "gert::git_tag_list", tag_12)
+  expect_error(stage_release(), regexp = "release tag .* already exists")
 })
 
 no_tags <- structure(list(name = character(0), ref = character(0), commit = character(0)),
   row.names = integer(0), class = c("tbl_df", "tbl", "data.frame")
 )
 
-test_that("release_stage returns error if uncommitted changes are present", {
+test_that("stage_release returns error if uncommitted changes are present", {
   mockery::stub(get_release, "devtools::as.package", pkg_test)
   rel <- get_release()
-  mockery::stub(release_stage, "get_release", rel)
-  mockery::stub(release_stage, "gert::git_tag_list", no_tags)
-  mockery::stub(release_stage, "gert::git_diff_patch", c("diff --git fake/1"))
-  expect_error(release_stage(), regexp = "uncommitted changes present, aborting")
+  mockery::stub(stage_release, "get_release", rel)
+  mockery::stub(stage_release, "gert::git_tag_list", no_tags)
+  mockery::stub(stage_release, "gert::git_diff_patch", c("diff --git fake/1"))
+  expect_error(stage_release(), regexp = "uncommitted changes present, aborting")
 })

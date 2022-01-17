@@ -57,9 +57,9 @@ get_release <- function(pkg = ".", filename = "NEWS.md") {
 #' Stage a GitHub release
 #'
 #' Open a GitHub pull request for a new release from `NEWS.md`. Approve, merge, and create the
-#'   release using `release_merge()`.
+#'   release using `merge_release()`.
 #'
-#' When run, `release_stage()`:
+#' When run, `stage_release()`:
 #' 1. Extracts release version and release notes from `NEWS.md` using [get_release()]
 #' 1. Validates version conforms to rdev conventions (#.#.#) and release notes aren't empty
 #' 1. Verifies that version tag doesn't already exist using [gert::git_tag_list()]
@@ -68,7 +68,7 @@ get_release <- function(pkg = ".", filename = "NEWS.md") {
 #' @inheritParams get_release
 #'
 #' @export
-release_stage <- function(pkg = ".", filename = "NEWS.md") {
+stage_release <- function(pkg = ".", filename = "NEWS.md") {
   if (pkg != ".") {
     stop('currently only build_analysis_site(pkg = ".") is supported')
   }
