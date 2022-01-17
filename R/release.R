@@ -57,7 +57,7 @@ get_release <- function(pkg = ".", filename = "NEWS.md") {
 #' Stage a GitHub release
 #'
 #' Open a GitHub pull request for a new release from `NEWS.md`. Approve, merge, and create the
-#'   release using `merge_release()`.
+#'   release using [merge_release()].
 #'
 #' When run, `stage_release()`:
 #' 1. Extracts release version and release notes from `NEWS.md` using [get_release()]
@@ -141,4 +141,74 @@ stage_release <- function(pkg = ".", filename = "NEWS.md", host = NULL) {
   )
 
   invisible(pr)
+}
+
+#' Merge staged GitHub release
+#'
+#' Merge a pull request staged with [stage_release()] and create a new release on GitHub.
+#'
+#' Manually verify that all status checks have completed before running `merge_release()`.
+#'
+#' When run, `merge_release()`:
+#' 1. Determines the staged release title from `NEWS.md` using [get_release()]
+#' 1. Selects the GitHub pull request that matches the staged release title, stops if there is more
+#'   or less than one matching PR
+#' 1. Verifies the staged pull request is ready to be merged by checking the locked, draft,
+#'   mergeable, and rebaseable flags
+#' 1. Merges the pull request into the default branch using "Rebase and merge"
+#'
+#' @inheritParams get_release
+#' @inheritParams usethis::use_github
+#'
+#' @return list containing results of pull request merge and GitHub release, invisibly
+#'
+#' @export
+merge_release <- function(pkg = ".", filename = "NEWS.md", host = NULL) {
+  if (pkg != ".") {
+    stop('currently only build_analysis_site(pkg = ".") is supported')
+  }
+
+  rel <- get_release(pkg = pkg, filename = filename)
+  pr_title <- paste0(rel$package, " ", rel$version)
+
+  gh_remote <- remotes::parse_github_url(gert::git_remote_info()$url)
+  pr_list <- gh::gh(
+    "GET /repos/{owner}/{repo}/pulls",
+    owner = gh_remote$username,
+    repo = gh_remote$repo,
+    .api_url = host
+  )
+  pr_list <- Filter(function(x) x$title == pr_title, pr_list)
+  if (length(pr_list) == 0) {
+    stop("found no open pull requests with the title '", pr_title, "', aborting.")
+  }
+  if (length(pr_list) > 1) {
+    stop("found more than one pull request with the title '", pr_title, "', aborting.")
+  }
+  staged_pr <- gh::gh(
+    "GET /repos/{owner}/{repo}/pulls/{pull_number}",
+    owner = gh_remote$username,
+    repo = gh_remote$repo,
+    pull_number = pr_list[[1]]$number,
+    .api_url = host
+  )
+  if (staged_pr$locked) {
+    stop("pull request is marked as locked: ", staged_pr$html_url)
+  }
+  if (staged_pr$draft) {
+    stop("pull request is marked as draft: ", staged_pr$html_url)
+  }
+  if (!(staged_pr$mergeable == TRUE)) {
+    stop("pull request is not marked as mergeable: ", staged_pr$html_url)
+  }
+  if (!(staged_pr$rebaseable == TRUE)) {
+    stop("pull request is not marked as rebaseable: ", staged_pr$html_url)
+  }
+  invisible(staged_pr)
+
+  # merge PR: rebase
+  # delete PR branch
+  # delete local branch
+  # change to default branch
+  # create release
 }
