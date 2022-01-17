@@ -6,7 +6,7 @@
 #'   of the format: `"# <package> <version>"` followed by the release notes, and expects the first
 #'   line of `NEWS.md` to be a release header.
 #'
-#' @param pkg Path to package. Currently, only `pkg = "."` is supported.
+#' @param pkg path to package. Currently, only `pkg = "."` is supported.
 #' @param filename name of file containing release notes, defaults to `NEWS.md`.
 #'
 #' @return list containing the version and release notes from the first release contained in
@@ -63,8 +63,7 @@ get_release <- function(pkg = ".", filename = "NEWS.md") {
 #' 1. Extracts release version and release notes from `NEWS.md` using [get_release()]
 #' 1. Validates release notes and version
 #'
-#' @param pkg Path to package. Currently, only `pkg = "."` is supported.
-#' @param filename name of file containing release notes, defaults to `NEWS.md`.
+#' @inheritParams get_release
 #'
 #' @export
 release_stage <- function(pkg = ".", filename = "NEWS.md") {

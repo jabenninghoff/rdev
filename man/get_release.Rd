@@ -7,7 +7,7 @@
 get_release(pkg = ".", filename = "NEWS.md")
 }
 \arguments{
-\item{pkg}{Path to package. Currently, only \code{pkg = "."} is supported.}
+\item{pkg}{path to package. Currently, only \code{pkg = "."} is supported.}
 
 \item{filename}{name of file containing release notes, defaults to \code{NEWS.md}.}
 }
