@@ -532,7 +532,7 @@
       "Source": "GitHub",
       "RemoteType": "github",
       "RemoteHost": "api.github.com",
-      "RemoteUsername": "jimhester",
+      "RemoteUsername": "r-lib",
       "RemoteRepo": "lintr",
       "RemoteRef": "master",
       "RemoteSha": "6e0d15257496421266f4f87700be16c8dd3f090b",

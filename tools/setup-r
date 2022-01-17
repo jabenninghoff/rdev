@@ -10,7 +10,7 @@ PREFIX=`brew --prefix`
 RVERSION=`${PREFIX}/bin/Rscript -e 'cat(as.character(getRversion()[1,1:2]))'`
 SITELIB="${PREFIX}/lib/R/${RVERSION}/site-library"
 DEVPKG='c("renv", "styler", "lintr", "miniUI", "markdown", "rmarkdown", "devtools", "available")'
-GITPKG='c("jimhester/lintr","jabenninghoff/rdev")'
+GITPKG='c("r-lib/lintr","jabenninghoff/rdev")'
 
 if [ ! -d "${SITELIB}" ]
 then
