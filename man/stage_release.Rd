@@ -25,7 +25,7 @@ results of GitHub pull request, invisibly
 }
 \description{
 Open a GitHub pull request for a new release from \code{NEWS.md}. Approve, merge, and create the
-release using \code{merge_release()}.
+release using \code{\link[=merge_release]{merge_release()}}.
 }
 \details{
 When run, \code{stage_release()}:
