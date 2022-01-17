@@ -107,6 +107,11 @@ stage_release <- function(pkg = ".", filename = "NEWS.md", host = NULL) {
     gert::git_branch_create(new_branch)
   }
 
+  # double-check we're not on the default branch before making commits
+  if (gert::git_branch() == usethis::git_default_branch()) {
+    stop("on default branch. This should never happen, aborting!")
+  }
+
   desc::desc_set_version(rel$version, file = pkg)
   gert::git_add("DESCRIPTION")
   gert::git_commit(paste0("GitHub release ", rel$version))
