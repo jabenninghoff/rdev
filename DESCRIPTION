@@ -39,5 +39,5 @@ Suggests:
     knitr
 Config/testthat/edition: 3
 Remotes:
-    jimhester/lintr
+    r-lib/lintr
 VignetteBuilder: knitr
