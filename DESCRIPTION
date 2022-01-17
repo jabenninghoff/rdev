@@ -34,6 +34,7 @@ Imports:
     miniUI
 Suggests:
     testthat (>= 3.0.0),
+    mockery,
     knitr
 Config/testthat/edition: 3
 Remotes:

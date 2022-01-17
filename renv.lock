@@ -598,6 +598,16 @@
         "shiny"
       ]
     },
+    "mockery": {
+      "Package": "mockery",
+      "Version": "0.4.2",
+      "Source": "Repository",
+      "Repository": "CRAN",
+      "Hash": "313fa6504824ba5aab9308412135fb5f",
+      "Requirements": [
+        "testthat"
+      ]
+    },
     "openssl": {
       "Package": "openssl",
       "Version": "1.4.6",
