@@ -156,6 +156,9 @@ stage_release <- function(pkg = ".", filename = "NEWS.md", host = NULL) {
 #' 1. Verifies the staged pull request is ready to be merged by checking the locked, draft,
 #'   mergeable, and rebaseable flags
 #' 1. Merges the pull request into the default branch using "Rebase and merge"
+#' 1. Deletes the pull request branch remotely and locally using [gert::git_branch_delete()]
+#' 1. Create the GitHub release using `"<version>"` as the tag and name, with the release notes in
+#'   the body of the release.
 #'
 #' @inheritParams get_release
 #' @inheritParams usethis::use_github
@@ -204,11 +207,41 @@ merge_release <- function(pkg = ".", filename = "NEWS.md", host = NULL) {
   if (!(staged_pr$rebaseable == TRUE)) {
     stop("pull request is not marked as rebaseable: ", staged_pr$html_url)
   }
-  invisible(staged_pr)
 
-  # merge PR: rebase
-  # delete PR branch
-  # delete local branch
-  # change to default branch
-  # create release
+  pr_merge <- gh::gh(
+    "PUT /repos/{owner}/{repo}/pulls/{pull_number}/merge",
+    owner = gh_remote$username,
+    repo = gh_remote$repo,
+    pull_number = staged_pr$number,
+    sha = staged_pr$head$sha,
+    merge_method = "rebase",
+    .api_url = host
+  )
+  if (!pr_merge$merged) {
+    stop("pull request merge failed: ", staged_pr$html_url)
+  }
+
+  gh::gh(
+    "DELETE /repos/{owner}/{repo}/git/refs/heads/{branch}",
+    owner = gh_remote$username,
+    repo = gh_remote$repo,
+    branch = staged_pr$head$ref,
+    .api_url = host
+  )
+  gert::git_branch_checkout(usethis::git_default_branch())
+  gert::git_branch_delete(staged_pr$head$ref)
+
+  gh_release <- gh::gh(
+    "POST /repos/{owner}/{repo}/releases",
+    owner = gh_remote$username,
+    repo = gh_remote$repo,
+    tag_name = rel$version,
+    # see https://stackoverflow.com/questions/23303549/what-are-commit-ish-and-tree-ish-in-git
+    target_commitish = paste0("HEAD^{/GitHub release ", rel$version, "}"),
+    name = rel$version,
+    body = paste0(rel$notes, collapse = "\n"),
+    .api_url = host
+  )
+
+  invisible(list(merge = pr_merge, release = gh_release))
 }

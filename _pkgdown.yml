@@ -8,6 +8,7 @@ reference:
     - build_analysis_site
     - build_rdev_site
     - stage_release
+    - merge_release
     - get_release
     - to_document
   - title: Continous Integration
