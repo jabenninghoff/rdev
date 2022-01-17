@@ -37,5 +37,8 @@ or less than one matching PR
 \item Verifies the staged pull request is ready to be merged by checking the locked, draft,
 mergeable, and rebaseable flags
 \item Merges the pull request into the default branch using "Rebase and merge"
+\item Deletes the pull request branch remotely and locally using \code{\link[gert:git_branch]{gert::git_branch_delete()}}
+\item Create the GitHub release using \code{"<version>"} as the tag and name, with the release notes in
+the body of the release.
 }
 }
