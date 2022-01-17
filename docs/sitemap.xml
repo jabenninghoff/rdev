@@ -43,6 +43,9 @@
     <loc>https://jabenninghoff.github.io/rdev/reference/create_github_repo.html</loc>
   </url>
   <url>
+    <loc>https://jabenninghoff.github.io/rdev/reference/get_release.html</loc>
+  </url>
+  <url>
     <loc>https://jabenninghoff.github.io/rdev/reference/index.html</loc>
   </url>
   <url>
@@ -56,6 +59,9 @@
   </url>
   <url>
     <loc>https://jabenninghoff.github.io/rdev/reference/sort_rbuildignore.html</loc>
+  </url>
+  <url>
+    <loc>https://jabenninghoff.github.io/rdev/reference/stage_release.html</loc>
   </url>
   <url>
     <loc>https://jabenninghoff.github.io/rdev/reference/style_all.html</loc>
