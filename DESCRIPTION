@@ -4,7 +4,8 @@ Version: 0.7.3.9000
 Authors@R:
     person("John", "Benninghoff", email = "jbenninghoff@mac.com", role = c("aut", "cre"),
            comment = c(ORCID = "0000-0002-6230-4742"))
-Description: My personalized collection of development packages, tools and utility functions.
+Description: My personalized collection of development packages, tools and utility functions, based
+    on usethis.
 License: MIT + file LICENSE
 URL: https://jabenninghoff.github.io/rdev,
     https://github.com/jabenninghoff/rdev
