@@ -19,6 +19,8 @@ release using \code{release_merge()}.
 When run, \code{release_stage()}:
 \enumerate{
 \item Extracts release version and release notes from \code{NEWS.md} using \code{\link[=get_release]{get_release()}}
-\item Validates release notes and version
+\item Validates version conforms to rdev conventions (#.#.#) and release notes aren't empty
+\item Verifies that version tag doesn't already exist using \code{\link[gert:git_tag]{gert::git_tag_list()}}
+\item Checks for uncommitted changes and stops if any exist using \code{\link[gert:git_diff]{gert::git_diff_patch()}}
 }
 }

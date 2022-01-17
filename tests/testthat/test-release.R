@@ -73,3 +73,16 @@ test_that("release_stage returns error if git tag matching version exists", {
   mockery::stub(release_stage, "gert::git_tag_list", tag_12)
   expect_error(release_stage(), regexp = "release tag .* already exists")
 })
+
+no_tags <- structure(list(name = character(0), ref = character(0), commit = character(0)),
+  row.names = integer(0), class = c("tbl_df", "tbl", "data.frame")
+)
+
+test_that("release_stage returns error if uncommitted changes are present", {
+  mockery::stub(get_release, "devtools::as.package", pkg_test)
+  rel <- get_release()
+  mockery::stub(release_stage, "get_release", rel)
+  mockery::stub(release_stage, "gert::git_tag_list", no_tags)
+  mockery::stub(release_stage, "gert::git_diff_patch", c("diff --git fake/1"))
+  expect_error(release_stage(), regexp = "uncommitted changes present, aborting")
+})
