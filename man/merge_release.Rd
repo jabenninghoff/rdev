@@ -34,12 +34,13 @@ When run, \code{merge_release()}:
 \enumerate{
 \item Determines the staged release title from \code{NEWS.md} using \code{\link[=get_release]{get_release()}}
 \item Selects the GitHub pull request that matches the staged release title, stops if there is more
-or less than one matching PR
+or less than one matching PR using \code{\link[gh:gh]{gh::gh()}}
 \item Verifies the staged pull request is ready to be merged by checking the locked, draft,
 mergeable, and rebaseable flags
-\item Merges the pull request into the default branch using "Rebase and merge"
-\item Deletes the pull request branch remotely and locally using \code{\link[gert:git_branch]{gert::git_branch_delete()}}
-\item Create the GitHub release using \code{"<version>"} as the tag and name, with the release notes in
-the body of the release.
+\item Merges the pull request into the default branch using "Rebase and merge" using \code{\link[gh:gh]{gh::gh()}}
+\item Deletes the pull request branch remotely and locally using \code{\link[gh:gh]{gh::gh()}} and
+\code{\link[gert:git_branch]{gert::git_branch_delete()}}
+\item Create the GitHub release from the existing \code{"<version>"} tag, named \code{"<version>"}, with the
+release notes in the body, using \code{\link[gh:gh]{gh::gh()}}
 }
 }
