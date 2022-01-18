@@ -63,6 +63,33 @@ packages. The typical setup workflow is:
     package
 13. Commit to git and begin development
 
+## GitHub Releases
+
+rdev automates the workflow for creating GitHub releases along with
+updating GitHub pages for either standard R packages or R analysis
+packages, using the release notes format in NEWS.md. A typical
+development workflow is:
+
+1.  Bump version using `desc::desc_bump_version("dev")`, commit to new
+    feature branch
+2.  *Write all the things*
+3.  Update the release notes for the new version in NEWS.md, following
+    the conventions described in `get_release()`
+4.  Finalize the release and merge all changes to git
+5.  Run `stage_release()` to create a new pull request on GitHub using
+    details derived from NEWS.md, including updating the README and
+    GitHub pages
+6.  After the pull request has been reviewed and passes all required
+    status checks, accept the staged release with `merge_release()`,
+    which merges the pull request, cleans up branches, and publishes a
+    new GitHub release
+
+Of course, feature branches can and should be merged without requiring a
+new release; `stage_release()` just requires that everything is
+committed, including new release notes in NEWS.md before running. When
+ready to release, `stage_release()` will use the existing branch if on a
+feature branch, and create a new release branch if on the default.
+
 ## Examples
 
 For my workflow, I typically check renv when I start:
@@ -102,16 +129,16 @@ ci()
 #> * creating vignettes ... OK
 #> * checking for LF line-endings in source and make files and shell scripts
 #> * checking for empty or unneeded directories
-#> * building ‘rdev_0.7.3.tar.gz’
+#> * building ‘rdev_0.7.3.9000.tar.gz’
 #> 
 #> ── R CMD check ─────────────────────────────────────────────────────────────────
-#> * using log directory ‘/private/var/folders/vn/cw5f9gws42v9m8mdsds_zbl00000gp/T/RtmpxjynqG/file3cb623160dcc/rdev.Rcheck’
+#> * using log directory ‘/private/var/folders/4v/k12n8ksn77l4_bcsvc6kfgk00000gn/T/RtmpHQv7vQ/filefe636fc4f2e2/rdev.Rcheck’
 #> * using R version 4.1.2 (2021-11-01)
-#> * using platform: x86_64-apple-darwin19.6.0 (64-bit)
+#> * using platform: x86_64-apple-darwin18.7.0 (64-bit)
 #> * using session charset: UTF-8
 #> * using option ‘--no-manual’
 #> * checking for file ‘rdev/DESCRIPTION’ ... OK
-#> * this is package ‘rdev’ version ‘0.7.3’
+#> * this is package ‘rdev’ version ‘0.7.3.9000’
 #> * package encoding: UTF-8
 #> * checking package namespace information ... OK
 #> * checking package dependencies ... OK
@@ -167,8 +194,8 @@ ci()
 #> * DONE
 #> 
 #> Status: OK
-#> ── R CMD check results ───────────────────────────────────────── rdev 0.7.3 ────
-#> Duration: 15.4s
+#> ── R CMD check results ──────────────────────────────────── rdev 0.7.3.9000 ────
+#> Duration: 13.4s
 #> 
 #> 0 errors ✓ | 0 warnings ✓ | 0 notes ✓
 ```
