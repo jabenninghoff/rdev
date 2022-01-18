@@ -147,7 +147,8 @@ stage_release <- function(pkg = ".", filename = "NEWS.md", host = NULL) {
 #'
 #' Merge a pull request staged with [stage_release()] and create a new release on GitHub.
 #'
-#' Manually verify that all status checks have completed before running `merge_release()`.
+#' Manually verify that all status checks have completed before running, as `merge_release()`
+#'  doesn't currently validate that status checks are successful.
 #'
 #' When run, `merge_release()`:
 #' 1. Determines the staged release title from `NEWS.md` using [get_release()]
@@ -231,13 +232,17 @@ merge_release <- function(pkg = ".", filename = "NEWS.md", host = NULL) {
   gert::git_branch_checkout(usethis::git_default_branch())
   gert::git_branch_delete(staged_pr$head$ref)
 
+  gert::git_tag_create(
+    name = rel$version, message = paste0("GitHub release ", rel$version),
+    # see https://stackoverflow.com/questions/23303549/what-are-commit-ish-and-tree-ish-in-git
+    ref = paste0("HEAD^{/GitHub release ", rel$version, "}")
+  )
+  gert::git_tag_push(rel$version)
   gh_release <- gh::gh(
     "POST /repos/{owner}/{repo}/releases",
     owner = gh_remote$username,
     repo = gh_remote$repo,
     tag_name = rel$version,
-    # see https://stackoverflow.com/questions/23303549/what-are-commit-ish-and-tree-ish-in-git
-    target_commitish = paste0("HEAD^{/GitHub release ", rel$version, "}"),
     name = rel$version,
     body = paste0(rel$notes, collapse = "\n"),
     .api_url = host
