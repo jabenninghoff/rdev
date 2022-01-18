@@ -69,6 +69,8 @@ get_release <- function(pkg = ".", filename = "NEWS.md") {
 #' 1. Updates `Version` in `DESCRIPTION` with [desc::desc_set_version()], commits and push to git
 #'   with message `"GitHub release <version>"` using [gert::git_add()], [gert::git_commit()] and
 #'   [gert::git_push()]
+#' 1. Adds the version tag to the `DESCRIPTION` commit with the message `"GitHub release <version>"`
+#'   with [gert::git_tag_create()] and pushes using [gert::git_tag_push()]
 #' 1. Runs [build_analysis_site()] (if `pkgdown/_base.yml` exists) or [build_rdev_site()], commits
 #'   and pushes changes to git with message `"<builder> for release <version>"`
 #' 1. Opens a pull request with the title `"<package> <version>"` and the release notes in the body
@@ -112,10 +114,14 @@ stage_release <- function(pkg = ".", filename = "NEWS.md", host = NULL) {
     stop("on default branch. This should never happen, aborting!")
   }
 
+  rel_message <- paste0("GitHub release ", rel$version)
   desc::desc_set_version(rel$version, file = pkg)
   gert::git_add("DESCRIPTION")
-  gert::git_commit(paste0("GitHub release ", rel$version))
+  gert::git_commit(rel_message)
   gert::git_push()
+
+  gert::git_tag_create(rel$version, rel_message)
+  gert::git_tag_push(rel$version)
 
   if (fs::file_exists("pkgdown/_base.yml")) {
     builder <- "build_analysis_site()"
@@ -153,13 +159,14 @@ stage_release <- function(pkg = ".", filename = "NEWS.md", host = NULL) {
 #' When run, `merge_release()`:
 #' 1. Determines the staged release title from `NEWS.md` using [get_release()]
 #' 1. Selects the GitHub pull request that matches the staged release title, stops if there is more
-#'   or less than one matching PR
+#'   or less than one matching PR using [gh::gh()]
 #' 1. Verifies the staged pull request is ready to be merged by checking the locked, draft,
 #'   mergeable, and rebaseable flags
-#' 1. Merges the pull request into the default branch using "Rebase and merge"
-#' 1. Deletes the pull request branch remotely and locally using [gert::git_branch_delete()]
-#' 1. Create the GitHub release using `"<version>"` as the tag and name, with the release notes in
-#'   the body of the release.
+#' 1. Merges the pull request into the default branch using "Rebase and merge" using [gh::gh()]
+#' 1. Deletes the pull request branch remotely and locally using [gh::gh()] and
+#'   [gert::git_branch_delete()]
+#' 1. Create the GitHub release from the existing `"<version>"` tag, named `"<version>"`, with the
+#'   release notes in the body, using [gh::gh()]
 #'
 #' @inheritParams get_release
 #' @inheritParams usethis::use_github
@@ -196,6 +203,7 @@ merge_release <- function(pkg = ".", filename = "NEWS.md", host = NULL) {
     pull_number = pr_list[[1]]$number,
     .api_url = host
   )
+
   if (staged_pr$locked) {
     stop("pull request is marked as locked: ", staged_pr$html_url)
   }
@@ -232,12 +240,6 @@ merge_release <- function(pkg = ".", filename = "NEWS.md", host = NULL) {
   gert::git_branch_checkout(usethis::git_default_branch())
   gert::git_branch_delete(staged_pr$head$ref)
 
-  gert::git_tag_create(
-    name = rel$version, message = paste0("GitHub release ", rel$version),
-    # see https://stackoverflow.com/questions/23303549/what-are-commit-ish-and-tree-ish-in-git
-    ref = paste0("HEAD^{/GitHub release ", rel$version, "}")
-  )
-  gert::git_tag_push(rel$version)
   gh_release <- gh::gh(
     "POST /repos/{owner}/{repo}/releases",
     owner = gh_remote$username,
