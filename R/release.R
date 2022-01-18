@@ -69,8 +69,6 @@ get_release <- function(pkg = ".", filename = "NEWS.md") {
 #' 1. Updates `Version` in `DESCRIPTION` with [desc::desc_set_version()], commits and push to git
 #'   with message `"GitHub release <version>"` using [gert::git_add()], [gert::git_commit()] and
 #'   [gert::git_push()]
-#' 1. Adds the version tag to the `DESCRIPTION` commit with the message `"GitHub release <version>"`
-#'   with [gert::git_tag_create()] and pushes using [gert::git_tag_push()]
 #' 1. Runs [build_analysis_site()] (if `pkgdown/_base.yml` exists) or [build_rdev_site()], commits
 #'   and pushes changes to git with message `"<builder> for release <version>"`
 #' 1. Opens a pull request with the title `"<package> <version>"` and the release notes in the body
@@ -120,9 +118,6 @@ stage_release <- function(pkg = ".", filename = "NEWS.md", host = NULL) {
   gert::git_commit(rel_message)
   gert::git_push()
 
-  gert::git_tag_create(rel$version, rel_message)
-  gert::git_tag_push(rel$version)
-
   if (fs::file_exists("pkgdown/_base.yml")) {
     builder <- "build_analysis_site()"
     rdev::build_analysis_site()
@@ -165,7 +160,10 @@ stage_release <- function(pkg = ".", filename = "NEWS.md", host = NULL) {
 #' 1. Merges the pull request into the default branch using "Rebase and merge" using [gh::gh()]
 #' 1. Deletes the pull request branch remotely and locally using [gh::gh()] and
 #'   [gert::git_branch_delete()]
-#' 1. Create the GitHub release from the existing `"<version>"` tag, named `"<version>"`, with the
+#' 1. Updates the default branch with [gert::git_pull()]
+#' 1. Adds the version tag to the `DESCRIPTION` commit with the message `"GitHub release <version>"`
+#'   with [gert::git_tag_create()] and pushes using [gert::git_tag_push()]
+#' 1. Create the GitHub release from the newly created tag, with the name `"<version>"` and the
 #'   release notes in the body, using [gh::gh()]
 #'
 #' @inheritParams get_release
@@ -239,6 +237,13 @@ merge_release <- function(pkg = ".", filename = "NEWS.md", host = NULL) {
   )
   gert::git_branch_checkout(usethis::git_default_branch())
   gert::git_branch_delete(staged_pr$head$ref)
+
+  gert::git_pull()
+
+  rel_message <- paste0("GitHub release ", rel$version)
+  # see https://stackoverflow.com/questions/23303549/what-are-commit-ish-and-tree-ish-in-git
+  gert::git_tag_create(rel$version, rel_message, ref = paste0("HEAD^{/", rel_message, "}"))
+  gert::git_tag_push(rel$version)
 
   gh_release <- gh::gh(
     "POST /repos/{owner}/{repo}/releases",
