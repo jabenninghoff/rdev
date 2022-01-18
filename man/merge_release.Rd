@@ -27,7 +27,8 @@ list containing results of pull request merge and GitHub release, invisibly
 Merge a pull request staged with \code{\link[=stage_release]{stage_release()}} and create a new release on GitHub.
 }
 \details{
-Manually verify that all status checks have completed before running \code{merge_release()}.
+Manually verify that all status checks have completed before running, as \code{merge_release()}
+doesn't currently validate that status checks are successful.
 
 When run, \code{merge_release()}:
 \enumerate{
