@@ -172,6 +172,8 @@ use_rdev_package <- function() {
   use_todo()
   usethis::use_news_md()
   usethis::use_readme_rmd()
+  # replace README.Rmd with new rdev template (rename existing to README-analysis.Rmd)
+  # change git hook to allow committing README.md without README.Rmd
   usethis::use_mit_license()
 
   # add macOS/vim gitignores
@@ -208,6 +210,9 @@ use_rdev_package <- function() {
   usethis::use_testthat()
   renv::init()
   rdev::sort_rbuildignore()
+
+  # run document()
+  # build REAMDE.md
 }
 
 #' Use Analysis Package Layout
