@@ -38,7 +38,7 @@ get_release <- function(pkg = ".", filename = "NEWS.md") {
 
   # assumes only one leading/trailing blank line at most
   notes_start <- releases[1] + 1
-  notes_end <- releases[2] - 1
+  notes_end <- ifelse(length(releases) > 1, releases[2] - 1, length(news_md))
   if (news_md[notes_start] == "") {
     notes_start <- notes_start + 1
   }

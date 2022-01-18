@@ -19,6 +19,15 @@ test_that("get_release returns correct package, release version and notes", {
   expect_equal(rel$notes, expected_notes)
 })
 
+test_that("get_release returns correct package, version, and notes for first release", {
+  mockery::stub(get_release, "devtools::as.package", pkg_test)
+  rel <- get_release(filename = "first-release.md")
+  expect_equal(length(rel), 3)
+  expect_equal(rel$package, "rdev")
+  expect_equal(rel$version, "1.0.0")
+  expect_equal(rel$notes, "Initial release.")
+})
+
 test_that('get_release stops when pkg != "."', {
   expect_error(
     get_release(pkg = "foo"),
