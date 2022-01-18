@@ -41,6 +41,9 @@ use_todo <- function(open = rlang::is_interactive()) {
 #'
 #' @export
 use_package_r <- function(open = FALSE) {
+  if (!fs::dir_exists("R")) {
+    fs::dir_create("R")
+  }
   usethis::use_template(
     "package.R",
     save_as = "R/package.R",
