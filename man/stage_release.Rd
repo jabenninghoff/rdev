@@ -40,7 +40,7 @@ When run, \code{stage_release()}:
 with message \code{"GitHub release <version>"} using \code{\link[gert:git_commit]{gert::git_add()}}, \code{\link[gert:git_commit]{gert::git_commit()}} and
 \code{\link[gert:git_fetch]{gert::git_push()}}
 \item Runs \code{\link[=build_analysis_site]{build_analysis_site()}} (if \verb{pkgdown/_base.yml} exists) or \code{\link[=build_rdev_site]{build_rdev_site()}}, commits
-and pushes changes to git with message \code{"<builder> for GitHub release <version>"}
+and pushes changes to git with message \code{"<builder> for release <version>"}
 \item Opens a pull request with the title \code{"<package> <version>"} and the release notes in the body
 using \code{\link[gh:gh]{gh::gh()}}
 }

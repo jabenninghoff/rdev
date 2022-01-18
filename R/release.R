@@ -70,7 +70,7 @@ get_release <- function(pkg = ".", filename = "NEWS.md") {
 #'   with message `"GitHub release <version>"` using [gert::git_add()], [gert::git_commit()] and
 #'   [gert::git_push()]
 #' 1. Runs [build_analysis_site()] (if `pkgdown/_base.yml` exists) or [build_rdev_site()], commits
-#'   and pushes changes to git with message `"<builder> for GitHub release <version>"`
+#'   and pushes changes to git with message `"<builder> for release <version>"`
 #' 1. Opens a pull request with the title `"<package> <version>"` and the release notes in the body
 #'   using [gh::gh()]
 #'
@@ -125,7 +125,7 @@ stage_release <- function(pkg = ".", filename = "NEWS.md", host = NULL) {
     rdev::build_rdev_site()
   }
   gert::git_add(".")
-  gert::git_commit(paste0(builder, " for GitHub release ", rel$version))
+  gert::git_commit(paste0(builder, " for release ", rel$version))
   gert::git_push()
 
   gh_remote <- remotes::parse_github_url(gert::git_remote_info()$url)
