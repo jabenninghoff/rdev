@@ -33,7 +33,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">rdev</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="">0.7.3</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="">0.8.0</span>
       </span>
     </div>
 
@@ -88,18 +88,31 @@
 
     
     
-<p>R Analysis Packages are an extension of the standard R package layout designed to support publishing a collection of R notebooks used for data analysis as static html, typically using <a href="https://pages.github.com" class="external-link">GitHub Pages</a>.</p>
-<p><a href="https://bookdown.org/yihui/rmarkdown/notebook.html" class="external-link">R Notebooks</a> include a YAML header and <a href="https://github.com/rstudio/rmarkdown" class="external-link">R Markdown</a> body. The Analysis Package Layout follows the convention that the first non-blank line in the body of an R notebook serves as a brief description of the work. <code>rdev</code> includes an “Analysis Notebook” RStudio R Markdown template (File &gt; New File &gt; Rmarkdown &gt; From Template) and a <code>README.Rmd</code> template optionally installed with <code><a href="../reference/use_analysis_package.html">use_analysis_package()</a></code> that dynamically builds a list of notebooks and descriptions when <a href="https://devtools.r-lib.org/reference/build_rmd.html" class="external-link"><code>devtools:build_readme()</code></a> is run.</p>
+<p>R Analysis Packages are an extension of the standard R package layout
+designed to support publishing a collection of R notebooks used for data
+analysis as static html, typically using <a href="https://pages.github.com" class="external-link">GitHub Pages</a>.</p>
+<p><a href="https://bookdown.org/yihui/rmarkdown/notebook.html" class="external-link">R
+Notebooks</a> include a YAML header and <a href="https://github.com/rstudio/rmarkdown" class="external-link">R Markdown</a> body. The
+Analysis Package Layout follows the convention that the first non-blank
+line in the body of an R notebook serves as a brief description of the
+work. <code>rdev</code> includes an “Analysis Notebook” RStudio R
+Markdown template (File &gt; New File &gt; Rmarkdown &gt; From Template)
+and a <code>README.Rmd</code> template optionally installed with
+<code><a href="../reference/use_analysis_package.html">use_analysis_package()</a></code> that dynamically builds a list of
+notebooks and descriptions when <a href="https://devtools.r-lib.org/reference/build_rmd.html" class="external-link"><code>devtools:build_readme()</code></a>
+is run.</p>
 <p>The table below documents the complete R Analysis Package layout:</p>
 <ul>
 <li>
-<strong>Path</strong>: Path to the file or directory relative to the package root</li>
+<strong>Path</strong>: Path to the file or directory relative to the
+package root</li>
 <li>
 <strong>R</strong>: Included in the R package definition</li>
 <li>
 <strong>g</strong>: Stored in git</li>
 <li>
-<strong>Function</strong>: The function of the file or directory</li>
+<strong>Function</strong>: The function of the file or
+directory</li>
 </ul>
 <table class="table">
 <colgroup>
@@ -120,14 +133,16 @@
 <td align="left"></td>
 <td align="left"><code>x</code></td>
 <td align="left">
-<a href="https://pkgdown.r-lib.org" class="external-link">pkgdown</a> metadata, stored in the project root to make it more <a href="https://github.com/search?q=filename%3Apkgdown.yml+path%3A%2F&amp;type=Code" class="external-link">discoverable</a>
+<a href="https://pkgdown.r-lib.org" class="external-link">pkgdown</a>
+metadata, stored in the project root to make it more <a href="https://github.com/search?q=filename%3Apkgdown.yml+path%3A%2F&amp;type=Code" class="external-link">discoverable</a>
 </td>
 </tr>
 <tr class="even">
 <td align="left">.Rbuildignore</td>
 <td align="left"><code>x</code></td>
 <td align="left"><code>x</code></td>
-<td align="left">Files excluded from the package, sorted using <code><a href="../reference/sort_rbuildignore.html">sort_rbuildignore()</a></code>
+<td align="left">Files excluded from the package, sorted using
+<code><a href="../reference/sort_rbuildignore.html">sort_rbuildignore()</a></code>
 </td>
 </tr>
 <tr class="odd">
@@ -146,7 +161,8 @@
 <td align="left">.Rprofile</td>
 <td align="left"><code>x</code></td>
 <td align="left"><code>x</code></td>
-<td align="left">Used by <code>renv</code> and to <a href="https://r-pkgs.org/setup.html?#personal-startup-configuration" class="external-link">attach development tools</a>
+<td align="left">Used by <code>renv</code> and to <a href="https://r-pkgs.org/setup.html?#personal-startup-configuration" class="external-link">attach
+development tools</a>
 </td>
 </tr>
 <tr class="even">
@@ -171,28 +187,34 @@
 <td align="left">.gitignore</td>
 <td align="left"><code>x</code></td>
 <td align="left"><code>x</code></td>
-<td align="left">git exclusions based on <a href="https://github.com/github/gitignore/blob/master/R.gitignore" class="external-link">GitHub R</a>. Generated files outside of <code>docs</code> (used by GitHub Pages) are excluded.</td>
+<td align="left">git exclusions based on <a href="https://github.com/github/gitignore/blob/master/R.gitignore" class="external-link">GitHub
+R</a>. Generated files outside of <code>docs</code> (used by GitHub
+Pages) are excluded.</td>
 </tr>
 <tr class="even">
 <td align="left">.lintr</td>
 <td align="left"></td>
 <td align="left"><code>x</code></td>
 <td align="left">
-<a href="https://github.com/jimhester/lintr" class="external-link">lintr</a> default linters with 100 columns: <code>linters: with_defaults(line_length_linter(100))</code>
+<a href="https://github.com/r-lib/lintr" class="external-link">lintr</a>
+default linters with 100 columns: <code>linters:
+with_defaults(line_length_linter(100))</code>
 </td>
 </tr>
 <tr class="odd">
 <td align="left">DESCRIPTION</td>
 <td align="left"><code>x</code></td>
 <td align="left"><code>x</code></td>
-<td align="left">Package metadata. Use “Suggests” for development tools, per <a href="https://rstudio.github.io/renv/articles/faq.html#how-should-i-handle-development-dependencies-" class="external-link">renv</a>
+<td align="left">Package metadata. Use “Suggests” for development tools,
+per <a href="https://rstudio.github.io/renv/articles/faq.html#how-should-i-handle-development-dependencies-" class="external-link">renv</a>
 </td>
 </tr>
 <tr class="even">
 <td align="left">LICENSE</td>
 <td align="left"><code>x</code></td>
 <td align="left"><code>x</code></td>
-<td align="left">Generated with <code><a href="https://usethis.r-lib.org/reference/licenses.html" class="external-link">usethis::use_mit_license()</a></code>
+<td align="left">Generated with
+<code><a href="https://usethis.r-lib.org/reference/licenses.html" class="external-link">usethis::use_mit_license()</a></code>
 </td>
 </tr>
 <tr class="odd">
@@ -226,14 +248,16 @@
 <td align="left">README.Rmd</td>
 <td align="left"><code>x</code></td>
 <td align="left"><code>x</code></td>
-<td align="left">Generated with <code><a href="https://usethis.r-lib.org/reference/use_readme_rmd.html" class="external-link">usethis::use_readme_md()</a></code>
+<td align="left">Generated with
+<code><a href="https://usethis.r-lib.org/reference/use_readme_rmd.html" class="external-link">usethis::use_readme_md()</a></code>
 </td>
 </tr>
 <tr class="even">
 <td align="left">README.md</td>
 <td align="left"><code>x</code></td>
 <td align="left"><code>x</code></td>
-<td align="left">Generated with <code><a href="https://devtools.r-lib.org/reference/build_rmd.html" class="external-link">devtools::build_readme()</a></code>
+<td align="left">Generated with
+<code><a href="https://devtools.r-lib.org/reference/build_rmd.html" class="external-link">devtools::build_readme()</a></code>
 </td>
 </tr>
 <tr class="odd">
@@ -247,19 +271,23 @@
 <td align="left">analysis</td>
 <td align="left"></td>
 <td align="left"><code>x</code></td>
-<td align="left">Exploratory data analysis in R Notebooks and R Presentations. Include functions from the R directory using <code><a href="https://rdrr.io/r/base/library.html" class="external-link">library(name)</a></code>, not <code>source("rscript.R")</code>.</td>
+<td align="left">Exploratory data analysis in R Notebooks and R
+Presentations. Include functions from the R directory using
+<code><a href="https://rdrr.io/r/base/library.html" class="external-link">library(name)</a></code>, not <code>source("rscript.R")</code>.</td>
 </tr>
 <tr class="odd">
 <td align="left">analysis/assets</td>
 <td align="left"></td>
 <td align="left"><code>x</code></td>
-<td align="left">External assets (images, other files) included in R Notebooks</td>
+<td align="left">External assets (images, other files) included in R
+Notebooks</td>
 </tr>
 <tr class="even">
 <td align="left">analysis/data</td>
 <td align="left"></td>
 <td align="left"><code>x</code></td>
-<td align="left">Used to store small data sets used for analysis and exported data as <code>csv</code> files</td>
+<td align="left">Used to store small data sets used for analysis and
+exported data as <code>csv</code> files</td>
 </tr>
 <tr class="odd">
 <td align="left">analysis/import</td>
@@ -271,7 +299,9 @@
 <td align="left">analysis/rendered</td>
 <td align="left"></td>
 <td align="left"></td>
-<td align="left">Manually rendered versions of <code>analysis/</code> files to be included in <code>docs/</code>, like <a href="https://stackoverflow.com/questions/27930127/render-r-presentation-from-the-command-line" class="external-link">.Rpres files</a>
+<td align="left">Manually rendered versions of <code>analysis/</code>
+files to be included in <code>docs/</code>, like <a href="https://stackoverflow.com/questions/27930127/render-r-presentation-from-the-command-line" class="external-link">.Rpres
+files</a>
 </td>
 </tr>
 <tr class="odd">
@@ -285,7 +315,8 @@
 <td align="left">docs</td>
 <td align="left"></td>
 <td align="left"><code>x</code></td>
-<td align="left">Used by <code><a href="../reference/build_analysis_site.html">build_analysis_site()</a></code> to render the R Package and Notebooks for GitHub Pages</td>
+<td align="left">Used by <code><a href="../reference/build_analysis_site.html">build_analysis_site()</a></code> to render
+the R Package and Notebooks for GitHub Pages</td>
 </tr>
 <tr class="odd">
 <td align="left">exec</td>
@@ -297,7 +328,8 @@
 <td align="left">inst/rmarkdown/templates</td>
 <td align="left"><code>x</code></td>
 <td align="left"><code>x</code></td>
-<td align="left"><a href="https://rstudio.github.io/rstudio-extensions/rmarkdown_templates.html" class="external-link">R Markdown Templates</a></td>
+<td align="left"><a href="https://rstudio.github.io/rstudio-extensions/rmarkdown_templates.html" class="external-link">R
+Markdown Templates</a></td>
 </tr>
 <tr class="odd">
 <td align="left">man</td>
@@ -310,7 +342,8 @@
 <td align="left">package.Rproj</td>
 <td align="left"></td>
 <td align="left"><code>x</code></td>
-<td align="left">Use the same name for the package, .Rproj, directory, and GitHub repository</td>
+<td align="left">Use the same name for the package, .Rproj, directory,
+and GitHub repository</td>
 </tr>
 <tr class="odd">
 <td align="left">pkgdown</td>
@@ -322,7 +355,8 @@
 <td align="left">po</td>
 <td align="left"><code>x</code></td>
 <td align="left"><code>x</code></td>
-<td align="left">Used for <a href="https://cran.rstudio.com/doc/manuals/r-devel/R-exts.html#Internationalization" class="external-link">Internationalization</a> if needed</td>
+<td align="left">Used for <a href="https://cran.rstudio.com/doc/manuals/r-devel/R-exts.html#Internationalization" class="external-link">Internationalization</a>
+if needed</td>
 </tr>
 <tr class="odd">
 <td align="left">renv</td>
@@ -349,14 +383,16 @@
 <td align="left">tools</td>
 <td align="left"><code>x</code></td>
 <td align="left"><code>x</code></td>
-<td align="left">Used for shell scripts that support development, like <code>setup-r</code>
+<td align="left">Used for shell scripts that support development, like
+<code>setup-r</code>
 </td>
 </tr>
 <tr class="odd">
 <td align="left">vignettes</td>
 <td align="left"><code>x</code></td>
 <td align="left"><code>x</code></td>
-<td align="left">Package vignettes and articles, written in R Markdown</td>
+<td align="left">Package vignettes and articles, written in R
+Markdown</td>
 </tr>
 </tbody>
 </table>
@@ -377,7 +413,8 @@
 
 <div class="pkgdown">
   <p></p>
-<p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.0.2.</p>
+<p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a>
+2.0.2.</p>
 </div>
 
       </footer>
