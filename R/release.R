@@ -1,3 +1,43 @@
+#' Start a new branch
+#'
+#' Create a new "feature" branch from the current or default branch of the project git repository
+#'   using [gert::git_branch_create()] and bump 'dev' version to 9000 with
+#'   [desc::desc_bump_version()].
+#'
+#' The new branch will be created and checked out if it does not exist on local or remote. If the
+#'   version in DESCRIPTION has 3 components (a release version) and `bump_ver` is `TRUE` (the
+#'   default), the fourth component, 'dev' will be bumped to 9000 and checked in to the new branch.
+#'
+#' If the version already has 4 components, it is not changed.
+#'
+#' If `current = FALSE` (the default), the new branch will be created from the default branch as
+#'   determined by [usethis::git_default_branch()].
+#'
+#' @param name name of the new branch.
+#' @param bump_ver if `TRUE`, bump 'dev' version to 9000, see details.
+#' @param current create new branch from the currently active branch (`TRUE`) or from the default
+#'   branch (`FALSE`), see details.
+#'
+#' @export
+new_branch <- function(name, bump_ver = TRUE, current = FALSE) {
+  if (gert::git_branch_exists(name, local = TRUE)) {
+    stop("local branch exists")
+  }
+  if (gert::git_branch_exists(paste0("origin/", name), local = FALSE)) {
+    stop("branch exists on remote (origin/", name, ")")
+  }
+  if (current == FALSE) {
+    gert::git_branch_checkout(usethis::git_default_branch())
+  }
+  gert::git_branch_create(name)
+
+  if (bump_ver & grepl("^[0-9]*\\.[0-9]*\\.[0-9]*$", desc::desc_get_version())) {
+    desc::desc_bump_version("dev")
+    gert::git_add("DESCRIPTION")
+    gert::git_commit("Bump version")
+  }
+}
+
 #' Get release details
 #'
 #' Extract release version and release notes from `NEWS.md`.
