@@ -33,7 +33,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="index.html">rdev</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="">0.8.0</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="">0.8.1</span>
       </span>
     </div>
 
@@ -162,12 +162,11 @@ status checks, accept the staged release with
 <code><a href="reference/merge_release.html">merge_release()</a></code>, which merges the pull request, cleans up
 branches, and publishes a new GitHub release</li>
 </ol>
-<p>Of course, feature branches can and should be merged without
-requiring a new release; <code><a href="reference/stage_release.html">stage_release()</a></code> just requires that
-everything is committed, including new release notes in NEWS.md before
-running. When ready to release, <code><a href="reference/stage_release.html">stage_release()</a></code> will use
-the existing branch if on a feature branch, and create a new release
-branch if on the default.</p>
+<p>Feature branches can be merged without starting a new release;
+<code><a href="reference/stage_release.html">stage_release()</a></code> just requires that everything is committed,
+including new release notes in NEWS.md before running. When ready to
+release, <code><a href="reference/stage_release.html">stage_release()</a></code> will use the existing branch if on
+a feature branch, and create a new release branch if on the default.</p>
 </div>
 <div class="section level2">
 <h2 id="examples">Examples<a class="anchor" aria-label="anchor" href="#examples"></a>
@@ -205,16 +204,16 @@ integration tests locally:</p>
 <span class="co">#&gt; * creating vignettes ... OK</span>
 <span class="co">#&gt; * checking for LF line-endings in source and make files and shell scripts</span>
 <span class="co">#&gt; * checking for empty or unneeded directories</span>
-<span class="co">#&gt; * building ‘rdev_0.8.0.tar.gz’</span>
+<span class="co">#&gt; * building ‘rdev_0.8.1.tar.gz’</span>
 <span class="co">#&gt; </span>
 <span class="co">#&gt; ── R CMD check ─────────────────────────────────────────────────────────────────</span>
-<span class="co">#&gt; * using log directory ‘/private/var/folders/vn/cw5f9gws42v9m8mdsds_zbl00000gp/T/RtmpOzRO0J/file173917045c2f5/rdev.Rcheck’</span>
+<span class="co">#&gt; * using log directory ‘/private/var/folders/vn/cw5f9gws42v9m8mdsds_zbl00000gp/T/RtmpykRo44/file3a1858f10947/rdev.Rcheck’</span>
 <span class="co">#&gt; * using R version 4.1.2 (2021-11-01)</span>
 <span class="co">#&gt; * using platform: x86_64-apple-darwin19.6.0 (64-bit)</span>
 <span class="co">#&gt; * using session charset: UTF-8</span>
 <span class="co">#&gt; * using option ‘--no-manual’</span>
 <span class="co">#&gt; * checking for file ‘rdev/DESCRIPTION’ ... OK</span>
-<span class="co">#&gt; * this is package ‘rdev’ version ‘0.8.0’</span>
+<span class="co">#&gt; * this is package ‘rdev’ version ‘0.8.1’</span>
 <span class="co">#&gt; * package encoding: UTF-8</span>
 <span class="co">#&gt; * checking package namespace information ... OK</span>
 <span class="co">#&gt; * checking package dependencies ... OK</span>
@@ -270,8 +269,8 @@ integration tests locally:</p>
 <span class="co">#&gt; * DONE</span>
 <span class="co">#&gt; </span>
 <span class="co">#&gt; Status: OK</span>
-<span class="co">#&gt; ── R CMD check results ───────────────────────────────────────── rdev 0.8.0 ────</span>
-<span class="co">#&gt; Duration: 17.2s</span>
+<span class="co">#&gt; ── R CMD check results ───────────────────────────────────────── rdev 0.8.1 ────</span>
+<span class="co">#&gt; Duration: 18.6s</span>
 <span class="co">#&gt; </span>
 <span class="co">#&gt; 0 errors ✓ | 0 warnings ✓ | 0 notes ✓</span></code></pre></div>
 </div>
