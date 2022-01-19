@@ -1,3 +1,7 @@
+# rdev 0.8.1 (unreleased)
+
+* Added `new_branch()`: Create a new feature branch, and (optionally) bump the version in DESCRIPTION
+
 # rdev 0.8.0
 
 Major update adding automation for GitHub releases.
