@@ -84,11 +84,11 @@ development workflow is:
     which merges the pull request, cleans up branches, and publishes a
     new GitHub release
 
-Of course, feature branches can and should be merged without requiring a
-new release; `stage_release()` just requires that everything is
-committed, including new release notes in NEWS.md before running. When
-ready to release, `stage_release()` will use the existing branch if on a
-feature branch, and create a new release branch if on the default.
+Feature branches can be merged without starting a new release;
+`stage_release()` just requires that everything is committed, including
+new release notes in NEWS.md before running. When ready to release,
+`stage_release()` will use the existing branch if on a feature branch,
+and create a new release branch if on the default.
 
 ## Examples
 
@@ -129,16 +129,16 @@ ci()
 #> * creating vignettes ... OK
 #> * checking for LF line-endings in source and make files and shell scripts
 #> * checking for empty or unneeded directories
-#> * building ‘rdev_0.8.0.tar.gz’
+#> * building ‘rdev_0.8.0.9000.tar.gz’
 #> 
 #> ── R CMD check ─────────────────────────────────────────────────────────────────
-#> * using log directory ‘/private/var/folders/vn/cw5f9gws42v9m8mdsds_zbl00000gp/T/RtmpOzRO0J/file173917045c2f5/rdev.Rcheck’
+#> * using log directory ‘/private/var/folders/vn/cw5f9gws42v9m8mdsds_zbl00000gp/T/Rtmpcv1ukt/file35097dcbb1a8/rdev.Rcheck’
 #> * using R version 4.1.2 (2021-11-01)
 #> * using platform: x86_64-apple-darwin19.6.0 (64-bit)
 #> * using session charset: UTF-8
 #> * using option ‘--no-manual’
 #> * checking for file ‘rdev/DESCRIPTION’ ... OK
-#> * this is package ‘rdev’ version ‘0.8.0’
+#> * this is package ‘rdev’ version ‘0.8.0.9000’
 #> * package encoding: UTF-8
 #> * checking package namespace information ... OK
 #> * checking package dependencies ... OK
@@ -192,10 +192,9 @@ ci()
 #>  NONE
 #> * checking re-building of vignette outputs ... OK
 #> * DONE
-#> 
 #> Status: OK
-#> ── R CMD check results ───────────────────────────────────────── rdev 0.8.0 ────
-#> Duration: 17.2s
+#> ── R CMD check results ──────────────────────────────────── rdev 0.8.0.9000 ────
+#> Duration: 18s
 #> 
 #> 0 errors ✓ | 0 warnings ✓ | 0 notes ✓
 ```
