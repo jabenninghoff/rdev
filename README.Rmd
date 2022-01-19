@@ -76,7 +76,7 @@ rdev automates the workflow for creating GitHub releases along with updating Git
 1. Run `stage_release()` to create a new pull request on GitHub using details derived from NEWS.md, including updating the README and GitHub pages
 1. After the pull request has been reviewed and passes all required status checks, accept the staged release with `merge_release()`, which merges the pull request, cleans up branches, and publishes a new GitHub release
 
-Of course, feature branches can and should be merged without requiring a new release; `stage_release()` just requires that everything is committed, including new release notes in NEWS.md before running. When ready to release, `stage_release()` will use the existing branch if on a feature branch, and create a new release branch if on the default.
+Feature branches can be merged without starting a new release; `stage_release()` just requires that everything is committed, including new release notes in NEWS.md before running. When ready to release, `stage_release()` will use the existing branch if on a feature branch, and create a new release branch if on the default.
 
 ## Examples
 
