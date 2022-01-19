@@ -7,6 +7,7 @@ reference:
     contents:
     - build_analysis_site
     - build_rdev_site
+    - new_branch
     - stage_release
     - merge_release
     - get_release
