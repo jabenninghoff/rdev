@@ -1,4 +1,4 @@
-# rdev 0.8.1 (unreleased)
+# rdev 0.8.1
 
 * Added `new_branch()`: Create a new feature branch, and (optionally) bump the version in DESCRIPTION
 
