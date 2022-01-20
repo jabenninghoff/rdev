@@ -156,7 +156,6 @@ stage_release <- function(pkg = ".", filename = "NEWS.md", host = NULL) {
   desc::desc_set_version(rel$version, file = pkg)
   gert::git_add("DESCRIPTION")
   gert::git_commit(rel_message)
-  gert::git_push()
 
   if (fs::file_exists("pkgdown/_base.yml")) {
     builder <- "build_analysis_site()"
