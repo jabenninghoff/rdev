@@ -7,7 +7,7 @@
 build_analysis_site(pkg = ".", ...)
 }
 \arguments{
-\item{pkg}{Path to package.}
+\item{pkg}{Path to package. Currently, only \code{pkg = "."} is supported.}
 
 \item{...}{additional arguments passed to \code{\link[pkgdown:build_site]{pkgdown::build_site()}} (not implemented)}
 }
@@ -39,6 +39,8 @@ to render files with the look and feel of \code{html_notebook}
 \code{build_analysis_site()} will fail with an error if there are no files in \verb{analysis/*.Rmd}, or if
 \verb{pkgdown/_base.yml} does not exist.
 
-\strong{Warning:} \code{build_analysis_site()} is currently considered Experimental. Currently only
-\code{build_analysis_site(pkg = ".")} is supported.
+Both \code{\link[=build_rdev_site]{build_rdev_site()}} and \code{build_analysis_site()} are meant to be used as part of a CI/CD
+workflow, and temporarily set the environment variable \code{CI == "TRUE"} so that the build will
+fail when non-internal topics are not included on the reference index page per
+\code{\link[pkgdown:build_reference]{pkgdown::build_reference()}}.
 }

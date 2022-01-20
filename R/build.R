@@ -8,6 +8,11 @@
 #' 1. [pkgdown::clean_site()]
 #' 1. [pkgdown::build_site()]
 #'
+#' Both `build_rdev_site()` and [build_analysis_site()] are meant to be used as part of a CI/CD
+#'   workflow, and temporarily set the environment variable `CI == "TRUE"` so that the build will
+#'   fail when non-internal topics are not included on the reference index page per
+#'   [pkgdown::build_reference()].
+#'
 #' @param pkg Path to package. Currently, only `pkg = "."` is supported.
 #' @param ... additional arguments passed to [pkgdown::build_site()] (not implemented)
 #'
@@ -18,7 +23,7 @@ build_rdev_site <- function(pkg = ".", ...) {
   }
   devtools::build_readme()
   pkgdown::clean_site()
-  pkgdown::build_site()
+  withr::with_envvar(c("CI" = "TRUE"), pkgdown::build_site())
 }
 
 #' Convert R Notebook to `html_document`
@@ -76,10 +81,12 @@ to_document <- function(file_path, new_path, overwrite = FALSE) {
 #' `build_analysis_site()` will fail with an error if there are no files in `analysis/*.Rmd`, or if
 #'   `pkgdown/_base.yml` does not exist.
 #'
-#' **Warning:** `build_analysis_site()` is currently considered Experimental. Currently only
-#'   `build_analysis_site(pkg = ".")` is supported.
+#' Both [build_rdev_site()] and `build_analysis_site()` are meant to be used as part of a CI/CD
+#'   workflow, and temporarily set the environment variable `CI == "TRUE"` so that the build will
+#'   fail when non-internal topics are not included on the reference index page per
+#'   [pkgdown::build_reference()].
 #'
-#' @param pkg Path to package.
+#' @param pkg Path to package. Currently, only `pkg = "."` is supported.
 #' @param ... additional arguments passed to [pkgdown::build_site()] (not implemented)
 #'
 #' @export
@@ -128,7 +135,7 @@ build_analysis_site <- function(pkg = ".", ...) {
 
   # run clean_site() and build_site()
   pkgdown::clean_site()
-  pkgdown::build_site()
+  withr::with_envvar(c("CI" = "TRUE"), pkgdown::build_site())
 
   # create _site.yml from _pkgdown.yml in temporary build directory
   desc <- desc::description$new(pkg)
