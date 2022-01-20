@@ -13,5 +13,5 @@ to the current package.
 \details{
 When run, \code{use_analysis_package()} creates analysis package directories, adds exclusions to
 .gitignore and .Rbuildignore, creates \verb{_base.yml} in \code{pkgdown} from the first \code{URL} in
-\code{DESCRIPTION}, and installs the \code{README.Rmd} template.
+\code{DESCRIPTION}, and installs the \code{README.Rmd} template for analysis packages.
 }
