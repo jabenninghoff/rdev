@@ -18,7 +18,7 @@ containing rendered versions of all .Rmd files in analysis/."><!-- mathjax --><s
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">rdev</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="">0.8.1</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="">0.8.2</span>
       </span>
     </div>
 
@@ -71,7 +71,7 @@ containing rendered versions of all .Rmd files in <code>analysis/</code>.</p>
     <div id="arguments">
     <h2>Arguments</h2>
     <dl><dt>pkg</dt>
-<dd><p>Path to package.</p></dd>
+<dd><p>Path to package. Currently, only <code>pkg = "."</code> is supported.</p></dd>
 <dt>...</dt>
 <dd><p>additional arguments passed to <code><a href="https://pkgdown.r-lib.org/reference/build_site.html" class="external-link">pkgdown::build_site()</a></code> (not implemented)</p></dd>
 </dl></div>
@@ -95,8 +95,10 @@ to render files with the look and feel of <code>html_notebook</code></p></li>
 <li><p>Moves the rendered files to <code>docs/</code>: <code>*.html</code>, <code>assets/</code>, <code>rendered/</code>, without overwriting</p></li>
 </ol><p><code>build_analysis_site()</code> will fail with an error if there are no files in <code>analysis/*.Rmd</code>, or if
 <code>pkgdown/_base.yml</code> does not exist.</p>
-<p><strong>Warning:</strong> <code>build_analysis_site()</code> is currently considered Experimental. Currently only
-<code>build_analysis_site(pkg = ".")</code> is supported.</p>
+<p>Both <code><a href="build_rdev_site.html">build_rdev_site()</a></code> and <code>build_analysis_site()</code> are meant to be used as part of a CI/CD
+workflow, and temporarily set the environment variable <code>CI == "TRUE"</code> so that the build will
+fail when non-internal topics are not included on the reference index page per
+<code><a href="https://pkgdown.r-lib.org/reference/build_reference.html" class="external-link">pkgdown::build_reference()</a></code>.</p>
     </div>
 
   </div>

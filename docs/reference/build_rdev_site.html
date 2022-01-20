@@ -18,7 +18,7 @@ updates README.md and performs a clean build using pkgdown."><!-- mathjax --><sc
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">rdev</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="">0.8.1</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="">0.8.2</span>
       </span>
     </div>
 
@@ -80,7 +80,11 @@ updates <code>README.md</code> and performs a clean build using <code>pkgdown</c
     <p>When run, <code>build_rdev_site()</code> calls:</p><ol><li><p><code><a href="https://devtools.r-lib.org/reference/build_rmd.html" class="external-link">devtools::build_readme()</a></code></p></li>
 <li><p><code><a href="https://pkgdown.r-lib.org/reference/clean_site.html" class="external-link">pkgdown::clean_site()</a></code></p></li>
 <li><p><code><a href="https://pkgdown.r-lib.org/reference/build_site.html" class="external-link">pkgdown::build_site()</a></code></p></li>
-</ol></div>
+</ol><p>Both <code>build_rdev_site()</code> and <code><a href="build_analysis_site.html">build_analysis_site()</a></code> are meant to be used as part of a CI/CD
+workflow, and temporarily set the environment variable <code>CI == "TRUE"</code> so that the build will
+fail when non-internal topics are not included on the reference index page per
+<code><a href="https://pkgdown.r-lib.org/reference/build_reference.html" class="external-link">pkgdown::build_reference()</a></code>.</p>
+    </div>
 
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="pkgdown-sidebar">
