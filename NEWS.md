@@ -1,3 +1,7 @@
+# rdev 0.8.2
+
+* Updated `build_rdev_site()` and `build_analysis_site()` to abort if there are missing topics in the [pkgdown reference section](https://pkgdown.r-lib.org/reference/build_reference.html)
+
 # rdev 0.8.1
 
 * Added `new_branch()`: Create a new feature branch, and (optionally) bump the version in DESCRIPTION
