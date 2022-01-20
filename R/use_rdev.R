@@ -224,7 +224,7 @@ use_rdev_package <- function() {
 #'
 #' When run, `use_analysis_package()` creates analysis package directories, adds exclusions to
 #'   .gitignore and .Rbuildignore, creates `_base.yml` in `pkgdown` from the first `URL` in
-#'   `DESCRIPTION`, and installs the `README.Rmd` template.
+#'   `DESCRIPTION`, and installs the `README.Rmd` template for analysis packages.
 #'
 #' @export
 use_analysis_package <- function() {
@@ -275,7 +275,8 @@ use_analysis_package <- function() {
   }
 
   usethis::use_template(
-    "README.Rmd",
+    "README-analysis.Rmd",
+    save_as = "README.Rmd",
     package = "rdev",
     data = get_github_repo(),
     ignore = TRUE,
