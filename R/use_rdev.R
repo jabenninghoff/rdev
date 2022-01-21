@@ -132,6 +132,7 @@ create_github_repo <- function(repo_name, repo_desc = "", host = NULL) {
   fs::file_delete(paste0(fs_path, "/", create$name, ".Rproj"))
 
   usethis::create_package(fs_path)
+  # TODO: discard changes to .gitignore
 
   writeLines(paste0("\n", "Repository created at: ", create$html_url))
   writeLines(paste0("Open the repository by executing: $ github ", fs_path))
@@ -160,7 +161,6 @@ use_rdev_package <- function() {
   rlang::local_interactive(value = FALSE)
 
   # add templates
-  use_rprofile()
   use_lintr()
   use_package_r()
   usethis::use_github_action(
@@ -225,13 +225,19 @@ use_rdev_package <- function() {
   renv::install("jabenninghoff/rdev")
   usethis::use_dev_package("rdev", type = "Suggests")
   usethis::use_testthat()
-  renv::init()
-  rdev::sort_rbuildignore()
+  # TODO: add an "example" test case so that ci() passes immediately after use_rdev_package() is run
 
   # run document() to create package .Rd file
   devtools::document()
-  # build REAMDE.md to allow commit immediately after use_rdev_package() is run
+  # build REAMDE.md so that modified git hook works as expected
   devtools::build_readme()
+
+  # use_rprofile() and sort_rbuildignore() need to run last, right before renv::init()
+  use_rprofile()
+  rdev::sort_rbuildignore()
+
+  # run renv::init() last to restart the session
+  renv::init()
 }
 
 #' Use Analysis Package Layout
