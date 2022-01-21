@@ -225,7 +225,8 @@ use_rdev_package <- function() {
   renv::install("jabenninghoff/rdev")
   usethis::use_dev_package("rdev", type = "Suggests")
   usethis::use_testthat()
-  # TODO: add an "example" test case so that ci() passes immediately after use_rdev_package() is run
+  # add a test for package.R so that ci() passes immediately after use_rdev_package() is run
+  usethis::use_test("package")
 
   # run document() to create package .Rd file
   devtools::document()
