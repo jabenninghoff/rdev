@@ -173,7 +173,24 @@ use_rdev_package <- function() {
   usethis::use_news_md()
   usethis::use_readme_rmd()
   # replace README.Rmd with new rdev template (rename existing to README-analysis.Rmd)
+  fs::file_delete("README.Rmd")
+  usethis::use_template(
+    "README-rdev.Rmd",
+    save_as = "README.Rmd",
+    package = "rdev",
+    data = get_github_repo(),
+    ignore = TRUE,
+    open = rlang::is_interactive()
+  )
   # change git hook to allow committing README.md without README.Rmd
+  fs::file_delete(".git/hooks/pre-commit")
+  usethis::use_template(
+    "pre-commit",
+    save_as = ".git/hooks/pre-commit",
+    package = "rdev",
+    ignore = FALSE,
+    open = FALSE
+  )
   usethis::use_mit_license()
 
   # add macOS/vim gitignores
@@ -211,8 +228,10 @@ use_rdev_package <- function() {
   renv::init()
   rdev::sort_rbuildignore()
 
-  # run document()
-  # build REAMDE.md
+  # run document() to create package .Rd file
+  devtools::document()
+  # build REAMDE.md to allow commit immediately after use_rdev_package() is run
+  devtools::build_readme()
 }
 
 #' Use Analysis Package Layout
