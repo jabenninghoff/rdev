@@ -1,3 +1,7 @@
+# rdev 0.8.3
+
+* Updated `use_rdev_package()` to better conform to rdev conventions (`README.Rmd`, `.git/hooks/pre-commit`), support committing and error-free `ci()` immediately after it is run
+
 # rdev 0.8.2
 
 * Updated `build_rdev_site()` and `build_analysis_site()` to abort if there are missing topics in the [pkgdown reference section](https://pkgdown.r-lib.org/reference/build_reference.html)
