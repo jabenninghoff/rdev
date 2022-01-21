@@ -185,13 +185,7 @@ use_rdev_package <- function() {
   )
   # change git hook to allow committing README.md without README.Rmd
   fs::file_delete(".git/hooks/pre-commit")
-  usethis::use_template(
-    "pre-commit",
-    save_as = ".git/hooks/pre-commit",
-    package = "rdev",
-    ignore = FALSE,
-    open = FALSE
-  )
+  usethis::use_git_hook("pre-commit", readLines("inst/templates/pre-commit"))
   usethis::use_mit_license()
 
   # add macOS/vim gitignores
