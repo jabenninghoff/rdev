@@ -33,7 +33,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="index.html">rdev</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="">0.8.2</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="">0.8.3</span>
       </span>
     </div>
 
@@ -92,7 +92,7 @@ development packages, tools and utility functions.</p>
 <div class="section level2">
 <h2 id="installation">Installation<a class="anchor" aria-label="anchor" href="#installation"></a>
 </h2>
-<p>You can install the development version from <a href="https://github.com/" class="external-link">GitHub</a> with:</p>
+<p>You can install the development version of rdev from <a href="https://github.com/" class="external-link">GitHub</a> with:</p>
 <div class="sourceCode" id="cb1"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="co"># install.packages("devtools")</span>
 <span class="fu">devtools</span><span class="fu">::</span><span class="fu"><a href="https://devtools.r-lib.org/reference/remote-reexports.html" class="external-link">install_github</a></span><span class="op">(</span><span class="st">"jabenninghoff/rdev"</span><span class="op">)</span></code></pre></div>
@@ -123,14 +123,14 @@ Analysis</a> packages. The typical setup workflow is:</p>
 <li>Manually set branch protection as needed (main: require status
 checks, linear history)</li>
 <li>Add new package to GitHub Desktop</li>
-<li>Commit to git <code><a href="reference/create_github_repo.html">create_github_repo()</a></code>
+<li>Commit to git with message: <code><a href="reference/create_github_repo.html">create_github_repo()</a></code>
 </li>
 <li>Run <code><a href="reference/use_rdev_package.html">use_rdev_package()</a></code> within new project to add
 remaining templates and settings</li>
-<li>Commit to git <code><a href="reference/use_rdev_package.html">use_rdev_package()</a></code>
+<li>Commit to git with message: <code><a href="reference/use_rdev_package.html">use_rdev_package()</a></code>
 </li>
-<li>Run either use_analysis_package() or usethis::use_pkgdown() for
-GitHub Pages</li>
+<li>Run either <code><a href="reference/use_analysis_package.html">use_analysis_package()</a></code> or
+<code><a href="https://usethis.r-lib.org/reference/use_pkgdown.html" class="external-link">usethis::use_pkgdown()</a></code> for GitHub Pages</li>
 <li>Commit to git</li>
 <li>Edit DESCRIPTION and add a Title and Description</li>
 <li>Update TODO.md, NEWS.md, README.Rmd, and DESCRIPTION as needed</li>
@@ -147,8 +147,9 @@ updating GitHub pages for either standard R packages or R analysis
 packages, using the release notes format in NEWS.md. A typical
 development workflow is:</p>
 <ol style="list-style-type: decimal">
-<li>Bump version using <code>desc::desc_bump_version("dev")</code>,
-commit to new feature branch</li>
+<li>Bump version and create new feature branch with
+<code><a href="reference/new_branch.html">new_branch()</a></code>
+</li>
 <li><em>Write all the things</em></li>
 <li>Update the release notes for the new version in NEWS.md, following
 the conventions described in <code><a href="reference/get_release.html">get_release()</a></code>
@@ -204,16 +205,16 @@ integration tests locally:</p>
 <span class="co">#&gt; * creating vignettes ... OK</span>
 <span class="co">#&gt; * checking for LF line-endings in source and make files and shell scripts</span>
 <span class="co">#&gt; * checking for empty or unneeded directories</span>
-<span class="co">#&gt; * building ‘rdev_0.8.2.tar.gz’</span>
+<span class="co">#&gt; * building ‘rdev_0.8.3.tar.gz’</span>
 <span class="co">#&gt; </span>
 <span class="co">#&gt; ── R CMD check ─────────────────────────────────────────────────────────────────</span>
-<span class="co">#&gt; * using log directory ‘/private/var/folders/vn/cw5f9gws42v9m8mdsds_zbl00000gp/T/RtmpqxgD3N/file4a0e30f7fb7b/rdev.Rcheck’</span>
+<span class="co">#&gt; * using log directory ‘/private/var/folders/vn/cw5f9gws42v9m8mdsds_zbl00000gp/T/Rtmpn7jRN4/file794f2bfff1c0/rdev.Rcheck’</span>
 <span class="co">#&gt; * using R version 4.1.2 (2021-11-01)</span>
 <span class="co">#&gt; * using platform: x86_64-apple-darwin19.6.0 (64-bit)</span>
 <span class="co">#&gt; * using session charset: UTF-8</span>
 <span class="co">#&gt; * using option ‘--no-manual’</span>
 <span class="co">#&gt; * checking for file ‘rdev/DESCRIPTION’ ... OK</span>
-<span class="co">#&gt; * this is package ‘rdev’ version ‘0.8.2’</span>
+<span class="co">#&gt; * this is package ‘rdev’ version ‘0.8.3’</span>
 <span class="co">#&gt; * package encoding: UTF-8</span>
 <span class="co">#&gt; * checking package namespace information ... OK</span>
 <span class="co">#&gt; * checking package dependencies ... OK</span>
@@ -267,10 +268,9 @@ integration tests locally:</p>
 <span class="co">#&gt;  NONE</span>
 <span class="co">#&gt; * checking re-building of vignette outputs ... OK</span>
 <span class="co">#&gt; * DONE</span>
-<span class="co">#&gt; </span>
 <span class="co">#&gt; Status: OK</span>
-<span class="co">#&gt; ── R CMD check results ───────────────────────────────────────── rdev 0.8.2 ────</span>
-<span class="co">#&gt; Duration: 16.5s</span>
+<span class="co">#&gt; ── R CMD check results ───────────────────────────────────────── rdev 0.8.3 ────</span>
+<span class="co">#&gt; Duration: 20.1s</span>
 <span class="co">#&gt; </span>
 <span class="co">#&gt; 0 errors ✓ | 0 warnings ✓ | 0 notes ✓</span></code></pre></div>
 </div>

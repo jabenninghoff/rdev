@@ -17,7 +17,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="index.html">rdev</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="">0.8.2</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="">0.8.3</span>
       </span>
     </div>
 
@@ -113,7 +113,7 @@ notebooks in <code>analysis</code>
 Add check to <code><a href="reference/stage_release.html">stage_release()</a></code> to look for missing topics in
 <code>_pkgdown.yml</code> reference section</li>
 <li>
-<input type="checkbox" disabled>
+<input type="checkbox" disabled checked>
 Update <code><a href="reference/use_rdev_package.html">use_rdev_package()</a></code>
 </li>
 <li>
@@ -121,6 +121,13 @@ Update <code><a href="reference/use_rdev_package.html">use_rdev_package()</a></c
 Automate creation of feature branches, including ‘Bump version’ using
 <code>desc::desc_bump_version("dev")</code>
 </li>
+<li>
+<input type="checkbox" disabled>
+Write a manual regression test script (notes with R commands) as a
+vignette to validate ‘Creating Packages’ and ‘GitHub Releases’</li>
+<li>
+<input type="checkbox" disabled>
+Automate branch protection</li>
 <li>
 <input type="checkbox" disabled>
 Review and merge duplicate Roxygen docs</li>
