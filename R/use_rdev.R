@@ -131,8 +131,9 @@ create_github_repo <- function(repo_name, repo_desc = "", host = NULL) {
   # delete the .Rproj file so create_package doesn't prompt to overwrite
   fs::file_delete(paste0(fs_path, "/", create$name, ".Rproj"))
 
+  # upstream issue: create_package adds `.Rproj.user` to `.gitignore` even when it's already there
+  # see https://github.com/r-lib/usethis/issues/1568
   usethis::create_package(fs_path)
-  # TODO: discard changes to .gitignore
 
   writeLines(paste0("\n", "Repository created at: ", create$html_url))
   writeLines(paste0("Open the repository by executing: $ github ", fs_path))
