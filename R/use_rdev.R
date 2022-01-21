@@ -173,6 +173,8 @@ use_rdev_package <- function() {
   use_todo()
   usethis::use_news_md()
   usethis::use_readme_rmd()
+  usethis::use_mit_license()
+
   # replace README.Rmd with new rdev template (rename existing to README-analysis.Rmd)
   fs::file_delete("README.Rmd")
   usethis::use_template(
@@ -186,7 +188,6 @@ use_rdev_package <- function() {
   # change git hook to allow committing README.md without README.Rmd
   fs::file_delete(".git/hooks/pre-commit")
   usethis::use_git_hook("pre-commit", readLines("inst/templates/pre-commit"))
-  usethis::use_mit_license()
 
   # add macOS/vim gitignores
   usethis::use_git_ignore(c(
