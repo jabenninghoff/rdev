@@ -18,7 +18,7 @@ Feel free to use and/or fork this project!
 
 ## Installation
 
-You can install the development version from
+You can install the development version of rdev from
 [GitHub](https://github.com/) with:
 
 ``` r
@@ -50,11 +50,11 @@ packages. The typical setup workflow is:
 3.  Manually set branch protection as needed (main: require status
     checks, linear history)
 4.  Add new package to GitHub Desktop
-5.  Commit to git `create_github_repo()`
+5.  Commit to git with message: `create_github_repo()`
 6.  Run `use_rdev_package()` within new project to add remaining
     templates and settings
-7.  Commit to git `use_rdev_package()`
-8.  Run either use_analysis_package() or usethis::use_pkgdown() for
+7.  Commit to git with message: `use_rdev_package()`
+8.  Run either `use_analysis_package()` or `usethis::use_pkgdown()` for
     GitHub Pages
 9.  Commit to git
 10. Edit DESCRIPTION and add a Title and Description
@@ -70,8 +70,7 @@ updating GitHub pages for either standard R packages or R analysis
 packages, using the release notes format in NEWS.md. A typical
 development workflow is:
 
-1.  Bump version using `desc::desc_bump_version("dev")`, commit to new
-    feature branch
+1.  Bump version and create new feature branch with `new_branch()`
 2.  *Write all the things*
 3.  Update the release notes for the new version in NEWS.md, following
     the conventions described in `get_release()`
@@ -129,16 +128,16 @@ ci()
 #> * creating vignettes ... OK
 #> * checking for LF line-endings in source and make files and shell scripts
 #> * checking for empty or unneeded directories
-#> * building ‘rdev_0.8.2.tar.gz’
+#> * building ‘rdev_0.8.3.tar.gz’
 #> 
 #> ── R CMD check ─────────────────────────────────────────────────────────────────
-#> * using log directory ‘/private/var/folders/vn/cw5f9gws42v9m8mdsds_zbl00000gp/T/RtmpqxgD3N/file4a0e30f7fb7b/rdev.Rcheck’
+#> * using log directory ‘/private/var/folders/vn/cw5f9gws42v9m8mdsds_zbl00000gp/T/Rtmpn7jRN4/file794f2bfff1c0/rdev.Rcheck’
 #> * using R version 4.1.2 (2021-11-01)
 #> * using platform: x86_64-apple-darwin19.6.0 (64-bit)
 #> * using session charset: UTF-8
 #> * using option ‘--no-manual’
 #> * checking for file ‘rdev/DESCRIPTION’ ... OK
-#> * this is package ‘rdev’ version ‘0.8.2’
+#> * this is package ‘rdev’ version ‘0.8.3’
 #> * package encoding: UTF-8
 #> * checking package namespace information ... OK
 #> * checking package dependencies ... OK
@@ -192,10 +191,9 @@ ci()
 #>  NONE
 #> * checking re-building of vignette outputs ... OK
 #> * DONE
-#> 
 #> Status: OK
-#> ── R CMD check results ───────────────────────────────────────── rdev 0.8.2 ────
-#> Duration: 16.5s
+#> ── R CMD check results ───────────────────────────────────────── rdev 0.8.3 ────
+#> Duration: 20.1s
 #> 
 #> 0 errors ✓ | 0 warnings ✓ | 0 notes ✓
 ```
