@@ -147,10 +147,10 @@
     },
     "cli": {
       "Package": "cli",
-      "Version": "3.1.0",
+      "Version": "3.1.1",
       "Source": "Repository",
       "Repository": "CRAN",
-      "Hash": "66a3834e54593c89d8beefb312347e58",
+      "Hash": "da5160e769a652e3ec7111d63883f9bc",
       "Requirements": [
         "glue"
       ]
@@ -536,7 +536,7 @@
       "RemoteRepo": "lintr",
       "RemoteRef": "master",
       "RemoteSha": "6e0d15257496421266f4f87700be16c8dd3f090b",
-      "Hash": "6937bdf774ff7559352664ff9efc80be",
+      "Hash": "09b37cd3ec9891a431c904a0650043b4",
       "Requirements": [
         "codetools",
         "crayon",
@@ -1038,10 +1038,10 @@
     },
     "testthat": {
       "Package": "testthat",
-      "Version": "3.1.1",
+      "Version": "3.1.2",
       "Source": "Repository",
       "Repository": "CRAN",
-      "Hash": "2a5c5646456762131ce40272964599d3",
+      "Hash": "32454e5780e8dbe31e4b61b13d8918fe",
       "Requirements": [
         "R6",
         "brio",
