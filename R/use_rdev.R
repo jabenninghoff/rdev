@@ -131,7 +131,7 @@ create_github_repo <- function(repo_name, repo_desc = "", host = NULL) {
   # delete the .Rproj file so create_package doesn't prompt to overwrite
   fs::file_delete(paste0(fs_path, "/", create$name, ".Rproj"))
 
-  # upstream issue: create_package adds `.Rproj.user` to `.gitignore` even when it's already there
+  # upstream issue: create_package adds `.Rproj.user` to `.gitignore` even when it's already present
   # see https://github.com/r-lib/usethis/issues/1568
   usethis::create_package(fs_path)
 
@@ -175,7 +175,7 @@ use_rdev_package <- function() {
   usethis::use_readme_rmd()
   usethis::use_mit_license()
 
-  # replace README.Rmd with new rdev template (rename existing to README-analysis.Rmd)
+  # replace README.Rmd with rdev template
   fs::file_delete("README.Rmd")
   usethis::use_template(
     "README-rdev.Rmd",
@@ -185,7 +185,7 @@ use_rdev_package <- function() {
     ignore = TRUE,
     open = rlang::is_interactive()
   )
-  # change git hook to allow committing README.md without README.Rmd
+  # replace pre-commit hook to allow committing README.md without README.Rmd
   fs::file_delete(".git/hooks/pre-commit")
   usethis::use_git_hook("pre-commit", readLines("inst/templates/pre-commit"))
 
