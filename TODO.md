@@ -17,7 +17,7 @@
 - [x] Move `_pkgdown.yml` to repository root to make projects discoverable by the [pgkdown](https://pkgdown.r-lib.org) GitHub [query](https://github.com/search?q=filename%3Apkgdown.yml+path%3A%2F&type=Code)
 - [x] Update `README.Rmd` template to dynamically generate list of notebooks in `analysis`
 - [x] Add check to `stage_release()` to look for missing topics in `_pkgdown.yml` reference section
-- [ ] Update `use_rdev_package()`
+- [x] Update `use_rdev_package()`
 - [x] Automate creation of feature branches, including 'Bump version' using `desc::desc_bump_version("dev")`
 - [ ] Review and merge duplicate Roxygen docs
 - [ ] Add messages, warnings to `build_analysis_site()` to report on progress
