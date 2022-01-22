@@ -7,23 +7,22 @@
 to_document(file_path, new_path, overwrite = FALSE)
 }
 \arguments{
-\item{file_path}{A string path to the source file}
+\item{file_path}{Path to the source file}
 
-\item{new_path}{A string path to copy the converted file using \code{\link[fs:copy]{fs::file_copy()}}}
+\item{new_path}{Path to the converted file}
 
-\item{overwrite}{Overwrite files if they exist, passed to \code{\link[fs:copy]{fs::file_copy()}}}
+\item{overwrite}{Overwrite file if it exists}
 }
 \description{
-Copies a file using \code{\link[fs:copy]{fs::file_copy()}}, and changes the output type in the yaml front matter from
-\code{html_notebook} to \code{html_document}. If the file is not type \code{html_notebook}, it is copied
-without changing the output type.
-}
-\details{
-\strong{Warning:} \code{to_document()} is currently considered Experimental.
+Copies a file and changes the output type in the yaml front matter from \code{html_notebook} to
+\code{html_document}, removing all other output types.
 }
 \examples{
 \dontrun{
 to_document("notebook.Rmd", "document.Rmd")
 to_document("notebooks_dir/notebook.Rmd", "documents_dir")
 }
+}
+\seealso{
+build_analysis_site
 }
