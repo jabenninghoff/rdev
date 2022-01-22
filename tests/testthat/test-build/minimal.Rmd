@@ -1,0 +1,31 @@
+---
+title: "Minimal Notebook"
+date: '2022-01-22'
+output: html_notebook
+---
+
+Valid Notebook with minimal `html_notebook` output
+
+# Questions/TODO
+
+- [ ] Questions/TODO list here
+
+```{r setup, message = FALSE, warning = FALSE}
+# setup code here
+```
+
+# Import
+
+Import data (typically from external CSV).
+
+# Tidy/Transform
+
+Clean and Tidy data.
+
+# Explore
+
+Graph and model data to ask and answer questions.
+
+# Communicate
+
+Communicate results.

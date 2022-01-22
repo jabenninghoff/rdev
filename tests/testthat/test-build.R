@@ -57,3 +57,13 @@ test_that("to_document converts `html_notebook` to `html_document`", {
   expect_null(yaml$output$html_notebook)
   expect_length(yaml$output$html_document, 2)
 })
+
+test_that("to_document converts minimal `html_notebook` to `html_document`", {
+  dest <- fs::file_temp(pattern = "notebook", ext = "Rmd")
+  withr::local_file(dest)
+
+  to_document("minimal.Rmd", dest)
+  yaml <- rmarkdown::yaml_front_matter(dest)
+
+  expect_equal(yaml$output, "html_document")
+})
