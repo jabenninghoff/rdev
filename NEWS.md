@@ -1,3 +1,7 @@
+# rdev 0.8.4
+
+* Updated `to_document()` to parse yaml front matter and add validate that source file is a valid R Notebook
+
 # rdev 0.8.3
 
 * Updated `use_rdev_package()` to better conform to rdev conventions (README.Rmd, .git/hooks/pre-commit), support committing and error-free `ci()` immediately after it is run
