@@ -1,0 +1,8 @@
+---
+---
+
+This may technically be a valid R Markdown file, but has no yaml front matter.
+
+# Markdown
+
+This is valid markdown.
