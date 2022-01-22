@@ -1,6 +1,6 @@
 # rdev 0.8.4
 
-* Updated `to_document()` to parse yaml front matter and add validate that source file is a valid R Notebook
+* Updated `to_document()` to parse yaml front matter and confirm the source file is a valid R Notebook
 
 # rdev 0.8.3
 
