@@ -28,7 +28,7 @@
 - [x] Switch from development version of `styler` (1.3.2.9000) when a new release becomes available
 - [ ] Switch from development versions of `styler` (1.3.2.9000) and `lintr` (2.0.1.9000) when a new release becomes available - both were needed to address bugs in the current release versions, 1.3.2 and 2.0.1.
 - [x] Automate release process
-- [ ] Handle `.Rmd` files that already have an `html_document` section
+- [x] Handle `.Rmd` files that already have an `html_document` section
 - [x] ~~Validate that `lint_all` works as expected within `ci`~~
 
 ## GitHub
