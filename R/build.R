@@ -28,16 +28,14 @@ build_rdev_site <- function(pkg = ".", ...) {
 
 #' Convert R Notebook to `html_document`
 #'
-#' Copies a file using [fs::file_copy()], and changes the output type in the yaml front matter from
-#'   `html_notebook` to `html_document`. If the file is not type `html_notebook`, it is copied
-#'   without changing the output type.
+#' Copies a file and changes the output type in the yaml front matter from `html_notebook` to
+#'   `html_document`, removing all other output types.
 #'
-#' **Warning:** `to_document()` is currently considered Experimental.
+#' @param file_path Path to the source file
+#' @param new_path Path to the converted file
+#' @param overwrite Overwrite file if it exists
 #'
-#' @param file_path A string path to the source file
-#' @param new_path A string path to copy the converted file using [fs::file_copy()]
-#' @param overwrite Overwrite files if they exist, passed to [fs::file_copy()]
-#'
+#' @seealso build_analysis_site
 #' @examples
 #' \dontrun{
 #' to_document("notebook.Rmd", "document.Rmd")
@@ -45,14 +43,36 @@ build_rdev_site <- function(pkg = ".", ...) {
 #' }
 #' @export
 to_document <- function(file_path, new_path, overwrite = FALSE) {
-  new_file <- fs::file_copy(file_path, new_path, overwrite = overwrite)
-  notebook <- readLines(new_file)
+  if (!(fs::path_ext(file_path) %in% c("Rmd", "rmd"))) {
+    stop("file_path, '", file_path, "' is not an R Markdown (*.Rmd) file!")
+  }
 
-  # warning: assumes the document has valid front matter bounded by ^---$
+  notebook <- readLines(file_path)
   header <- grep("^---$", notebook)
-  notebook[header[1]:header[2]] <-
-    gsub("html_notebook", "html_document", notebook[header[1]:header[2]])
-  writeLines(notebook, new_file)
+  yaml <- rmarkdown::yaml_front_matter(file_path)
+  if (length(header) < 2 | length(yaml) < 1) {
+    stop("file_path, '", file_path, "' is not a valid R Notebook!")
+  }
+  if (is.null(yaml$output$html_notebook)) {
+    stop("file_path, '", file_path, "' does not contain `output: html_notebook`!")
+  }
+  body_start <- header[2] + 1
+  body_end <- length(notebook)
+  nb_body <- notebook[body_start:body_end]
+  yaml$output <- list(html_document = yaml$output$html_notebook)
+
+  notebook <- c(
+    "---",
+    gsub("\\n$", "", yaml::as.yaml(yaml)),
+    "---",
+    nb_body
+  )
+
+  if (fs::file_exists(new_path) & !overwrite) {
+    message("new_path, '", new_path, "' exists, skipping")
+    return(invisible(NULL))
+  }
+  writeLines(notebook, new_path)
 }
 
 #' Build Analysis Site
