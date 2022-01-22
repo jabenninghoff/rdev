@@ -52,10 +52,11 @@ test_that("to_document converts `html_notebook` to `html_document`", {
   withr::local_file(dest)
 
   to_document("valid.Rmd", dest)
-  yaml <- rmarkdown::yaml_front_matter(dest)
+  nb_yaml <- rmarkdown::yaml_front_matter("valid.Rmd")
+  doc_yaml <- rmarkdown::yaml_front_matter(dest)
 
-  expect_null(yaml$output$html_notebook)
-  expect_length(yaml$output$html_document, 2)
+  expect_null(doc_yaml$output$html_notebook)
+  expect_equal(doc_yaml$output$html_document, nb_yaml$output$html_notebook)
 })
 
 test_that("to_document converts minimal `html_notebook` to `html_document`", {
