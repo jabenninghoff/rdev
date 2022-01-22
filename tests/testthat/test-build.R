@@ -5,7 +5,7 @@ test_that("to_document errors when file isn't a well-formed R markdown document"
   withr::local_file(dest)
 
   expect_error(to_document("test.txt", dest), "is not an R Markdown \\(\\*\\.Rmd\\) file")
-  expect_error(to_document("no-fm.Rmd", dest), "is not a valid R Notebook")
+  expect_error(to_document("no-front-matter.Rmd", dest), "is not a valid R Notebook")
   expect_error(to_document("no-yaml.Rmd", dest), "is not a valid R Notebook")
 })
 
