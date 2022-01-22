@@ -34,6 +34,9 @@ test_that("to_document errors when yaml front matter doesn't contain `html_noteb
   withr::local_file(dest)
 
   expect_error(to_document("document.Rmd", dest), "does not contain `output: html_notebook`")
+  expect_error(to_document(
+    "minimal-document.Rmd", dest), "does not contain `output: html_notebook`"
+  )
 })
 
 test_that("to_document removes all other output types", {
