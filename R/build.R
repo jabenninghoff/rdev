@@ -53,13 +53,24 @@ to_document <- function(file_path, new_path, overwrite = FALSE) {
   if (length(header) < 2 | length(yaml) < 1) {
     stop("file_path, '", file_path, "' is not a valid R Notebook!")
   }
-  if (is.null(yaml$output$html_notebook)) {
-    stop("file_path, '", file_path, "' does not contain `output: html_notebook`!")
+
+  if (is.character(yaml$output)) {
+    if (yaml$output != "html_notebook") {
+      stop("file_path, '", file_path, "' does not contain `output: html_notebook`!")
+    }
+    yaml$output <- "html_document"
+  } else if (is.list(yaml$output)) {
+    if (is.null(yaml$output$html_notebook)) {
+      stop("file_path, '", file_path, "' does not contain `output: html_notebook`!")
+    }
+    yaml$output <- list(html_document = yaml$output$html_notebook)
+  } else {
+    stop("unexpected object type for output: '", typeof(yaml$output), "'")
   }
+
   body_start <- header[2] + 1
   body_end <- length(notebook)
   nb_body <- notebook[body_start:body_end]
-  yaml$output <- list(html_document = yaml$output$html_notebook)
 
   notebook <- c(
     "---",
