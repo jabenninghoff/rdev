@@ -35,7 +35,7 @@ build_rdev_site <- function(pkg = ".", ...) {
 #' @param new_path Path to the converted file
 #' @param overwrite Overwrite file if it exists
 #'
-#' @seealso build_analysis_site
+#' @seealso [build_analysis_site()]
 #' @examples
 #' \dontrun{
 #' to_document("notebook.Rmd", "document.Rmd")

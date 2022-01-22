@@ -24,5 +24,5 @@ to_document("notebooks_dir/notebook.Rmd", "documents_dir")
 }
 }
 \seealso{
-build_analysis_site
+\code{\link[=build_analysis_site]{build_analysis_site()}}
 }
