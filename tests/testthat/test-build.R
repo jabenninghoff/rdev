@@ -71,3 +71,18 @@ test_that("to_document converts minimal `html_notebook` to `html_document`", {
 
   expect_equal(yaml$output, "html_document")
 })
+
+test_that("to_document copies source file to a directory", {
+  dest <- fs::path_temp()
+  if (fs::dir_exists(dest)) {
+    fs::dir_delete(dest)
+    fs::dir_create(dest)
+  }
+
+  new_file <- to_document("valid.Rmd", dest)
+  nb_yaml <- rmarkdown::yaml_front_matter("valid.Rmd")
+  doc_yaml <- rmarkdown::yaml_front_matter(new_file)
+
+  expect_null(doc_yaml$output$html_notebook)
+  expect_equal(doc_yaml$output$html_document, nb_yaml$output$html_notebook)
+})
