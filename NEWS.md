@@ -1,3 +1,7 @@
+# rdev 0.8.5
+
+* Critical bug fix for `to_document()`
+
 # rdev 0.8.4
 
 * Updated `to_document()` to parse yaml front matter and confirm the source file is a valid R Notebook
