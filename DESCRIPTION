@@ -38,7 +38,8 @@ Suggests:
     testthat (>= 3.0.0),
     mockery,
     knitr,
-    covr
+    covr,
+    DT
 Config/testthat/edition: 3
 Remotes:
     r-lib/lintr
