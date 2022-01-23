@@ -28,12 +28,14 @@ build_rdev_site <- function(pkg = ".", ...) {
 
 #' Convert R Notebook to `html_document`
 #'
-#' Copies a file and changes the output type in the yaml front matter from `html_notebook` to
-#'   `html_document`, removing all other output types.
+#' Copies a file using [fs::file_copy()], and changes the output type in the yaml front matter from
+#'   `html_notebook` to `html_document`, removing all other output types.
 #'
 #' @param file_path Path to the source file
-#' @param new_path Path to the converted file
-#' @param overwrite Overwrite file if it exists
+#' @param new_path Path to copy the converted file using [fs::file_copy()]
+#' @param overwrite Overwrite file if it exists, passed to [fs::file_copy()]
+#'
+#' @return Path to new file
 #'
 #' @seealso [build_analysis_site()]
 #' @examples
@@ -79,11 +81,9 @@ to_document <- function(file_path, new_path, overwrite = FALSE) {
     nb_body
   )
 
-  if (fs::file_exists(new_path) & !overwrite) {
-    message("new_path, '", new_path, "' exists, skipping")
-    return(invisible(NULL))
-  }
-  writeLines(notebook, new_path)
+  new_file <- fs::file_copy(file_path, new_path, overwrite = overwrite)
+  writeLines(notebook, new_file)
+  return(new_file)
 }
 
 #' Build Analysis Site
