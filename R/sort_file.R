@@ -11,12 +11,8 @@
 #' sort_file(".Rbuildignore")
 #' }
 #' @export
-# add tests using test fixtures per https://testthat.r-lib.org/articles/test-fixtures.html
 sort_file <- function(name) {
-  con <- file(name)
-  v <- sort(readLines(con))
-  writeLines(v, con)
-  close(con)
+  writeLines(sort(readLines(name)), name)
 }
 
 #' Sort .Rbuildignore file
