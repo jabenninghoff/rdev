@@ -28,7 +28,7 @@ build_rdev_site <- function(pkg = ".", ...) {
 
 #' Convert R Notebook to `html_document`
 #'
-#' Copies a file using [fs::file_copy()], and changes the output type in the yaml front matter from
+#' Copies a file using [fs::file_copy()] and changes the output type in the yaml front matter from
 #'   `html_notebook` to `html_document`, removing all other output types.
 #'
 #' @param file_path Path to the source file
