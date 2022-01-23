@@ -17,7 +17,7 @@ to_document(file_path, new_path, overwrite = FALSE)
 Path to new file
 }
 \description{
-Copies a file using \code{\link[fs:copy]{fs::file_copy()}}, and changes the output type in the yaml front matter from
+Copies a file using \code{\link[fs:copy]{fs::file_copy()}} and changes the output type in the yaml front matter from
 \code{html_notebook} to \code{html_document}, removing all other output types.
 }
 \examples{
