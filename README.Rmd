@@ -18,6 +18,7 @@ knitr::opts_chunk$set(
 <!-- badges: start -->
 [![R-CMD-check](https://github.com/jabenninghoff/rdev/workflows/R-CMD-check/badge.svg)](https://github.com/jabenninghoff/rdev/actions)
 [![lint](https://github.com/jabenninghoff/rdev/workflows/lint/badge.svg)](https://github.com/jabenninghoff/rdev/actions)
+[![Codecov test coverage](https://codecov.io/gh/jabenninghoff/rdev/branch/main/graph/badge.svg)](https://app.codecov.io/gh/jabenninghoff/rdev?branch=main)
 <!-- badges: end -->
 
 ## Overview

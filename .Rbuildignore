@@ -3,6 +3,7 @@
 ^\.lintr$
 ^\.renvignore$
 ^\.Rproj\.user$
+^codecov\.yml$
 ^docs$
 ^LICENSE\.md$
 ^pkgdown$
