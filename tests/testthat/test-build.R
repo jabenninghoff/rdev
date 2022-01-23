@@ -15,8 +15,8 @@ test_that("overwrite = FALSE prevents file from being overwritten", {
 
   fs::file_create(dest)
 
-  expect_message(to_document("valid.Rmd", dest), "exists, skipping")
-  expect_message(to_document("valid.Rmd", dest, overwrite = FALSE), "exists, skipping")
+  expect_error(to_document("valid.Rmd", dest), "file already exists")
+  expect_error(to_document("valid.Rmd", dest, overwrite = FALSE), "file already exists")
   expect_length(readLines(dest), 0)
 })
 
