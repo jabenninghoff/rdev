@@ -1,6 +1,7 @@
 withr::local_dir("test-ci")
 tmp_file <- withr::local_tempfile()
 
+# TODO: !getOption("styler.quiet", FALSE) will also suppress output for styler
 # use with_output_sink to suppress output
 style_test <- withr::with_output_sink(tmp_file, style_all())
 
@@ -16,6 +17,7 @@ test_that("style_all tests R and Rmd files", {
   expect_equal(nrow(style_test), 3)
 })
 
+# TODO: set interactive() to FALSE suppress output (?)
 # use with_output_sink to suppress output
 lint_test <- withr::with_output_sink(tmp_file, lint_all())
 
