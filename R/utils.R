@@ -2,7 +2,7 @@
 #'
 #' Sorts a file using R [sort()].
 #'
-#' @param name file to be sorted
+#' @param filename file to be sorted
 #'
 #' @seealso [sort_rbuildignore()]
 #'
@@ -11,8 +11,8 @@
 #' sort_file(".Rbuildignore")
 #' }
 #' @export
-sort_file <- function(name) {
-  writeLines(sort(readLines(name)), name)
+sort_file <- function(filename) {
+  writeLines(sort(readLines(filename)), filename)
 }
 
 #' Sort .Rbuildignore file

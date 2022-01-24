@@ -4,10 +4,10 @@
 \alias{sort_file}
 \title{Sort file}
 \usage{
-sort_file(name)
+sort_file(filename)
 }
 \arguments{
-\item{name}{file to be sorted}
+\item{filename}{file to be sorted}
 }
 \description{
 Sorts a file using R \code{\link[=sort]{sort()}}.
