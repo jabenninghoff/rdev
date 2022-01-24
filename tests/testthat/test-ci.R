@@ -32,3 +32,6 @@ test_that("lint_all checks all test files", {
   # use cran = FALSE as expect_snapshot only works when tests are run interactively
   expect_snapshot(lint_all(), cran = FALSE)
 })
+
+# TODO: create static test package, migrate testing from test-ci to test package,
+#   add snapshot tests for ci()
