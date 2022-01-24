@@ -1,3 +1,9 @@
+# rdev 0.8.6
+
+* Added code coverage using [codecov.io](https://app.codecov.io/gh/jabenninghoff/rdev), new tests for existing code
+
+* Refactored `sort_file()`
+
 # rdev 0.8.5
 
 * Critical bug fix for `to_document()`
