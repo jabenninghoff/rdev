@@ -58,18 +58,21 @@ lint_all <- function(path = ".", ...) {
 # test styler and lintr, don't test rcmdcheck
 ci <- function(styler = FALSE, lintr = FALSE, document = TRUE, rcmdcheck = TRUE) {
   if (styler) {
-    style_all()
+    write_eval("style_all()")
+    if (any(lintr, document, rcmdcheck)) writeLines("")
   }
 
   if (lintr) {
-    lint_all()
+    write_eval("lint_all()")
+    if (any(document, rcmdcheck)) writeLines("")
   }
 
   if (document) {
-    devtools::document()
+    write_eval("devtools::document()")
+    if (rcmdcheck) writeLines("")
   }
 
   if (rcmdcheck) {
-    rcmdcheck::rcmdcheck(args = "--no-manual", error_on = "warning")
+    write_eval('rcmdcheck::rcmdcheck(args = "--no-manual", error_on = "warning")')
   }
 }
