@@ -130,16 +130,16 @@ ci()
 #> * creating vignettes ... OK
 #> * checking for LF line-endings in source and make files and shell scripts
 #> * checking for empty or unneeded directories
-#> * building ‘rdev_0.8.5.9000.tar.gz’
+#> * building ‘rdev_0.8.6.tar.gz’
 #> 
 #> ── R CMD check ─────────────────────────────────────────────────────────────────
-#> * using log directory ‘/private/var/folders/4v/k12n8ksn77l4_bcsvc6kfgk00000gn/T/RtmpV8mkXb/file7d9b511cdb1b/rdev.Rcheck’
+#> * using log directory ‘/private/var/folders/vn/cw5f9gws42v9m8mdsds_zbl00000gp/T/Rtmp6O2gbi/filea8d1bd622b3/rdev.Rcheck’
 #> * using R version 4.1.2 (2021-11-01)
-#> * using platform: x86_64-apple-darwin18.7.0 (64-bit)
+#> * using platform: x86_64-apple-darwin19.6.0 (64-bit)
 #> * using session charset: UTF-8
 #> * using option ‘--no-manual’
 #> * checking for file ‘rdev/DESCRIPTION’ ... OK
-#> * this is package ‘rdev’ version ‘0.8.5.9000’
+#> * this is package ‘rdev’ version ‘0.8.6’
 #> * package encoding: UTF-8
 #> * checking package namespace information ... OK
 #> * checking package dependencies ... OK
@@ -193,10 +193,9 @@ ci()
 #>  NONE
 #> * checking re-building of vignette outputs ... OK
 #> * DONE
-#> 
 #> Status: OK
-#> ── R CMD check results ──────────────────────────────────── rdev 0.8.5.9000 ────
-#> Duration: 15s
+#> ── R CMD check results ───────────────────────────────────────── rdev 0.8.6 ────
+#> Duration: 17.3s
 #> 
 #> 0 errors ✓ | 0 warnings ✓ | 0 notes ✓
 ```
