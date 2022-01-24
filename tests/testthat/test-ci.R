@@ -27,4 +27,8 @@ test_that("lint_all returns the correct class", {
   expect_equal(class(lint_test), "lints")
 })
 
-# TODO: validate that lint_all tests all types by creating test files with linting failures
+test_that("lint_all checks all test files", {
+  # snapshot captures "..." for the 3 files tested
+  # use cran = FALSE as expect_snapshot only works when tests are run interactively
+  expect_snapshot(lint_all(), cran = FALSE)
+})
