@@ -29,7 +29,8 @@ test_that("lint_all returns the correct class", {
 
 test_that("lint_all checks all test files", {
   # snapshot captures "..." for the 3 files tested
-  # use cran = FALSE as expect_snapshot only works when tests are run interactively
+  # use cran = FALSE and skip_on_ci() as expect_snapshot only works when tests are run interactively
+  skip_on_ci()
   expect_snapshot(lint_all(), cran = FALSE)
 })
 
