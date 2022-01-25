@@ -12,7 +12,6 @@
 #' }
 #' @export
 check_renv <- function(update = TRUE) {
-  # TODO: migrate writeLines to internal "console()" function
   writeLines("renv::status()")
   renv::status()
 
