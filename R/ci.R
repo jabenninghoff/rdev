@@ -59,19 +59,26 @@ lint_all <- function(path = ".", ...) {
 ci <- function(styler = FALSE, lintr = FALSE, document = TRUE, rcmdcheck = TRUE) {
   # TODO: styler should be set to automatically run if there are no uncommitted changes
   if (styler) {
+    writeLines("style_all()")
     style_all()
+    if (any(lintr, document, rcmdcheck)) writeLines("")
   }
 
   # TODO: lintr should stop execution and open RStudio markers if any lints are found
   if (lintr) {
+    writeLines("lint_all()")
     lint_all()
+    if (any(document, rcmdcheck)) writeLines("")
   }
 
   if (document) {
+    writeLines("devtools::document()")
     devtools::document()
+    if (rcmdcheck) writeLines("")
   }
 
   if (rcmdcheck) {
+    writeLines('rcmdcheck::rcmdcheck(args = "--no-manual", error_on = "warning")')
     rcmdcheck::rcmdcheck(args = "--no-manual", error_on = "warning")
   }
 }
