@@ -57,7 +57,6 @@ lint_all <- function(path = ".", ...) {
 # add tests using local_create_package() per https://testthat.r-lib.org/articles/test-fixtures.html
 # test styler and lintr, don't test rcmdcheck
 ci <- function(styler = FALSE, lintr = FALSE, document = TRUE, rcmdcheck = TRUE) {
-  # TODO: annotate using internal "console()" function per 'Add write_eval() to ci()' commit
   # TODO: styler should be set to automatically run if there are no uncommitted changes
   if (styler) {
     style_all()
