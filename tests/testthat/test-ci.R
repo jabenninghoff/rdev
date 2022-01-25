@@ -1,5 +1,4 @@
 withr::local_dir("test-ci")
-tmp_file <- withr::local_tempfile()
 
 # set styler.quiet = FALSE to suppress output
 style_test <- withr::with_options(list(styler.quiet = TRUE), style_all())
@@ -16,9 +15,10 @@ test_that("style_all tests R and Rmd files", {
   expect_equal(nrow(style_test), 3)
 })
 
-# TODO: set interactive() to FALSE suppress output (?)
-# use with_output_sink to suppress output
-lint_test <- withr::with_output_sink(tmp_file, lint_all())
+# testthat suppresses messages but because lintr uses interactive() to control message output, there
+#   is no easy way to turn off the side-effect of ci being printed twice in the test() report,
+#   see: https://github.com/r-lib/lintr/blob/master/R/lint.R
+lint_test <- lint_all()
 
 test_that("lint_all returns the correct type", {
   expect_equal(typeof(lint_test), "list")
