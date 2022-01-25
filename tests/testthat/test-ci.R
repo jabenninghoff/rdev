@@ -1,9 +1,8 @@
 withr::local_dir("test-ci")
 tmp_file <- withr::local_tempfile()
 
-# TODO: !getOption("styler.quiet", FALSE) will also suppress output for styler
-# use with_output_sink to suppress output
-style_test <- withr::with_output_sink(tmp_file, style_all())
+# set styler.quiet = FALSE to suppress output
+style_test <- withr::with_options(list(styler.quiet = TRUE), style_all())
 
 test_that("style_all returns a tibble", {
   expect_equal(tibble::is_tibble(style_test), TRUE)
