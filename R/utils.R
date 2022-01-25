@@ -12,6 +12,7 @@
 #' }
 #' @export
 sort_file <- function(filename) {
+  if (!fs::file_exists(filename)) stop("cannot sort file, '", filename, "': no such file")
   writeLines(sort(readLines(filename)), filename)
 }
 

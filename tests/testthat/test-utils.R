@@ -1,4 +1,6 @@
-# TODO: test_that sort_file errors when file does not exist
+test_that("sort_file errors when file does not exist", {
+  expect_error(sort_file("nonexistant"), "^cannot sort file, '.*': no such file$")
+})
 
 test_that("sort_file sorts a file", {
   tmp_file <- withr::local_tempfile()
@@ -10,7 +12,9 @@ test_that("sort_file sorts a file", {
   expect_equal(readLines(tmp_file), sort(strings))
 })
 
-# TODO: test_that sort_rbuildignore errors when .Rbuildignore does not exist
+test_that("sort_rbuildignore errors when file does not exist", {
+  expect_error(sort_rbuildignore(), "^cannot sort file, '.Rbuildignore': no such file$")
+})
 
 test_that("sort_rbuildignore sorts .Rbuildignore", {
   withr::local_dir(withr::local_tempdir())
