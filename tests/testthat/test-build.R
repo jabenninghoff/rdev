@@ -69,6 +69,16 @@ test_that("to_document errors when yaml front matter doesn't contain `html_noteb
   )
 })
 
+test_that("to_document errors when output contains an unexpected object type", {
+  dest <- fs::file_temp(pattern = "notebook", ext = "Rmd")
+  withr::local_file(dest)
+
+  bad_object <- list(title = "Minimal Notebook", date = "2022-01-22", output = 42)
+  mockery::stub(to_document, "rmarkdown::yaml_front_matter", bad_object)
+
+  expect_error(to_document("minimal.Rmd", dest), "unexpected object type for output")
+})
+
 test_that("to_document removes all other output types", {
   dest <- fs::file_temp(pattern = "notebook", ext = "Rmd")
   withr::local_file(dest)
