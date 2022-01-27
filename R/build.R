@@ -21,8 +21,11 @@ build_rdev_site <- function(pkg = ".", ...) {
   if (pkg != ".") {
     stop('currently only build_analysis_site(pkg = ".") is supported')
   }
+  writeLines("devtools::build_readme()")
   devtools::build_readme()
+  writeLines("\npkgdown::clean_site()")
   pkgdown::clean_site()
+  writeLines("\npkgdown::build_site()")
   withr::with_envvar(c("CI" = "TRUE"), pkgdown::build_site())
 }
 
