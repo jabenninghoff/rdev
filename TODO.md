@@ -19,6 +19,8 @@
 - [x] Add check to `stage_release()` to look for missing topics in `_pkgdown.yml` reference section
 - [x] Update `use_rdev_package()`
 - [x] Automate creation of feature branches, including 'Bump version' using `desc::desc_bump_version("dev")`
+- [ ] Add code coverage to `use_rdev_package()` templates
+- [ ] Move `rmd_metadata()` from README-analysis.Rmd to rdev package (with test coverage)
 - [ ] Write a manual regression test script (notes with R commands) as a vignette to validate 'Creating Packages' and 'GitHub Releases'
 - [ ] Automate branch protection
 - [ ] Review and merge duplicate Roxygen docs
