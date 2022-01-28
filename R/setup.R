@@ -41,6 +41,7 @@ use_todo <- function(open = rlang::is_interactive()) {
 #'
 #' @export
 use_package_r <- function(open = FALSE) {
+  # warning: this assumes use_package_r is called from the package root directory
   if (!fs::dir_exists("R")) {
     fs::dir_create("R")
   }
