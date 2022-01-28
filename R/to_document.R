@@ -57,3 +57,22 @@ to_document <- function(file_path, new_path, overwrite = FALSE) {
   writeLines(notebook, new_file)
   return(new_file)
 }
+
+rmd_metadata <- function(filename) {
+  # get notebook yaml
+  yfm <- rmarkdown::yaml_front_matter(filename)
+
+  # get notebook 'description' line - first non-blank line after front matter
+  # warning: assumes the document has valid front matter bounded by ^---$
+  notebook <- readLines(filename)
+  header <- grep("^---$", notebook)
+  body_start <- header[2] + 1
+  body_end <- length(notebook)
+  desc_line <- grep("[:graph:]", notebook[body_start:body_end])[1] + header[2]
+
+  gh_url <- paste0(
+    desc::desc_get_urls()[1], "/", fs::path_ext_remove(fs::path_file(filename)), ".html"
+  )
+
+  list(title = yfm$title, url = gh_url, date = yfm$date, description = notebook[desc_line])
+}
