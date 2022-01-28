@@ -5,6 +5,7 @@ output: github_document
 <!-- README.md is generated from README.Rmd. Please edit that file -->
 
 ```{r setup, include = FALSE}
+library(rdev)
 library(fs)
 library(dplyr)
 library(purrr)
@@ -35,25 +36,6 @@ Feel free to use and/or fork this project!
 Notebooks in this package:
 
 ```{r notebooks, echo = FALSE, results = 'asis'}
-rmd_metadata <- function(filename) {
-  # get notebook yaml
-  yfm <- rmarkdown::yaml_front_matter(filename)
-
-  # get notebook 'description' line - first non-blank line after front matter
-  # warning: assumes the document has valid front matter bounded by ^---$
-  notebook <- readLines(filename)
-  header <- grep("^---$", notebook)
-  body_start <- header[2] + 1
-  body_end <- length(notebook)
-  desc_line <- grep("[:graph:]", notebook[body_start:body_end])[1] + header[2]
-
-  gh_url <- paste0(
-    desc::desc_get_urls()[1], "/", fs::path_ext_remove(fs::path_file(filename)), ".html"
-  )
-
-  list(title = yfm$title, url = gh_url, date = yfm$date, description = notebook[desc_line])
-}
-
 notebooks <- dir_ls("analysis", glob = "*.Rmd") |>
   map_dfr(rmd_metadata) |>
   mutate(bullet = paste0(
