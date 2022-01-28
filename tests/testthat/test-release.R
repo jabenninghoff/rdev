@@ -5,6 +5,8 @@ pkg_test <- structure(list(
   encoding = "UTF-8"
 ), class = "package")
 
+# get_release
+
 test_that("get_release returns correct package, release version and notes", {
   mockery::stub(get_release, "devtools::as.package", pkg_test)
   expected_notes <- c(
@@ -48,6 +50,8 @@ test_that("get_release returns valid but non-rdev version", {
   rel <- get_release(filename = "bad-version.md")
   expect_equal(rel$version, "1.1")
 })
+
+# stage_release
 
 test_that('stage_release stops when pkg != "."', {
   expect_error(

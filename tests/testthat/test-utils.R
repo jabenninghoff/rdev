@@ -1,3 +1,5 @@
+# sort_file
+
 test_that("sort_file errors when file does not exist", {
   expect_error(sort_file("nonexistant"), "^cannot sort file, '.*': no such file$")
 })
@@ -11,6 +13,8 @@ test_that("sort_file sorts a file", {
 
   expect_equal(readLines(tmp_file), sort(strings))
 })
+
+# sort_rbuildignore
 
 test_that("sort_rbuildignore errors when file does not exist", {
   expect_error(sort_rbuildignore(), "^cannot sort file, '.Rbuildignore': no such file$")
