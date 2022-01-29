@@ -1,3 +1,7 @@
+# rdev 0.8.8
+
+* Added `proof-docs` script to tools, checks docs directory using [htmlproofer](https://github.com/gjtorikian/html-proofer)
+
 # rdev 0.8.7
 
 * Moved `rmd_metadata()` from README-analysis.Rmd to rdev package
