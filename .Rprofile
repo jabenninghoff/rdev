@@ -7,4 +7,4 @@ if (interactive()) {
 
 # auto-activate renv in R CMD INSTALL per
 #   https://rstudio.github.io/renv/news/index.html#renv-0-14-0-unreleased
-Sys.setenv(RENV_ACTIVATE_PROJECT = "TRUE")
+# Sys.setenv(RENV_ACTIVATE_PROJECT = "TRUE")
