@@ -17,7 +17,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="index.html">rdev</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="">0.8.7</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="">0.8.8</span>
       </span>
     </div>
 
@@ -95,6 +95,14 @@ Add dummy imports to silence R CMD check note per <a href="https://github.com/ti
 Migrate <code><a href="reference/build_analysis_site.html">build_analysis_site()</a></code> to rdev</li>
 <li>
 <input type="checkbox" disabled checked>
+Switch from development version of <code>styler</code> (1.3.2.9000) when
+a new release becomes available</li>
+<li>
+<input type="checkbox" disabled checked><del>Validate that <code>lint_all</code> works as expected within
+<code>ci</code></del>
+</li>
+<li>
+<input type="checkbox" disabled checked>
 Add ‘create package’ workflow example to README, remove TODO section
 “Analysis package creation process”</li>
 <li>
@@ -110,6 +118,14 @@ notebooks in <code>analysis</code>
 </li>
 <li>
 <input type="checkbox" disabled checked>
+Automate release process</li>
+<li>
+<input type="checkbox" disabled checked>
+Automate creation of feature branches, including ‘Bump version’ using
+<code>desc::desc_bump_version("dev")</code>
+</li>
+<li>
+<input type="checkbox" disabled checked>
 Add check to <code><a href="reference/stage_release.html">stage_release()</a></code> to look for missing topics in
 <code>_pkgdown.yml</code> reference section</li>
 <li>
@@ -118,38 +134,16 @@ Update <code><a href="reference/use_rdev_package.html">use_rdev_package()</a></c
 </li>
 <li>
 <input type="checkbox" disabled checked>
-Automate creation of feature branches, including ‘Bump version’ using
-<code>desc::desc_bump_version("dev")</code>
-</li>
+Handle <code>.Rmd</code> files that already have an
+<code>html_document</code> section</li>
 <li>
 <input type="checkbox" disabled checked>
 Move <code><a href="reference/rmd_metadata.html">rmd_metadata()</a></code> from README-analysis.Rmd to rdev
 package</li>
 <li>
-<input type="checkbox" disabled>
-Write a manual regression test script (notes with R commands) as a
-vignette to validate ‘Creating Packages’ and ‘GitHub Releases’</li>
-<li>
-<input type="checkbox" disabled>
-Automate branch protection</li>
-<li>
-<input type="checkbox" disabled>
-Review and merge duplicate Roxygen docs</li>
-<li>
-<input type="checkbox" disabled>
-Add messages, warnings to <code><a href="reference/build_analysis_site.html">build_analysis_site()</a></code> to report
-on progress</li>
-<li>
-<input type="checkbox" disabled>
-Update Roxygen comments after reading package book, documentation</li>
-<li>
-<input type="checkbox" disabled>
+<input type="checkbox" disabled checked>
 Add tests per comments in <code>R/</code> after reading package book,
 documentation</li>
-<li>
-<input type="checkbox" disabled checked>
-Switch from development version of <code>styler</code> (1.3.2.9000) when
-a new release becomes available</li>
 <li>
 <input type="checkbox" disabled>
 Switch from development versions of <code>styler</code> (1.3.2.9000) and
@@ -157,16 +151,20 @@ Switch from development versions of <code>styler</code> (1.3.2.9000) and
 both were needed to address bugs in the current release versions, 1.3.2
 and 2.0.1.</li>
 <li>
-<input type="checkbox" disabled checked>
-Automate release process</li>
+<input type="checkbox" disabled>
+Add messages, warnings to <code><a href="reference/build_analysis_site.html">build_analysis_site()</a></code> to report
+on progress</li>
 <li>
-<input type="checkbox" disabled checked>
-Handle <code>.Rmd</code> files that already have an
-<code>html_document</code> section</li>
+<input type="checkbox" disabled>
+Update Roxygen comments after reading package book, documentation,
+review and merge duplicate Roxygen docs</li>
 <li>
-<input type="checkbox" disabled checked><del>Validate that <code>lint_all</code> works as expected within
-<code>ci</code></del>
-</li>
+<input type="checkbox" disabled>
+Write a manual regression test script (notes with R commands) as a
+vignette to validate ‘Creating Packages’ and ‘GitHub Releases’</li>
+<li>
+<input type="checkbox" disabled>
+Automate branch protection</li>
 </ul></div>
 <div class="section level2">
 <h2 id="github">GitHub<a class="anchor" aria-label="anchor" href="#github"></a></h2>
@@ -187,29 +185,29 @@ Use <a href="https://github.com/r-lib/actions/blob/master/examples/lint.yaml" cl
 <input type="checkbox" disabled checked>
 Faster CI checks</li>
 <li>
+<input type="checkbox" disabled checked><del>Switch to <a href="https://github.com/r-lib/actions/blob/master/examples/check-full.yaml" class="external-link">full</a>
+<code>R CMD check</code> ?</del>
+</li>
+<li>
 <input type="checkbox" disabled checked>
 Update GitHub Actions from r-lib <a href="https://github.com/r-lib/actions/tree/master/examples" class="external-link">examples</a>
 </li>
-<li>
-<input type="checkbox" disabled>
-Skip CI checks for changes in only the <code>docs/</code> directory</li>
 <li>
 <input type="checkbox" disabled checked>
 Run <a href="https://github.com/r-lib/actions/blob/master/examples/test-coverage.yaml" class="external-link">test
 coverage</a>
 </li>
 <li>
-<input type="checkbox" disabled>
-Add GitHub Action for html/link checking using something like <a href="https://github.com/gjtorikian/html-proofer" class="external-link">htmlproofer</a>
+<input type="checkbox" disabled checked><del>Skip CI checks for changes in only the <code>docs/</code>
+directory</del>
 </li>
 <li>
-<input type="checkbox" disabled checked>
-Switch to <a href="https://github.com/r-lib/actions/blob/master/examples/check-full.yaml" class="external-link">full</a>
-<code>R CMD check</code> ?</li>
+<input type="checkbox" disabled checked><del>Add GitHub Action for html/link checking using something like <a href="https://github.com/gjtorikian/html-proofer" class="external-link">htmlproofer</a></del>
+</li>
 <li>
-<input type="checkbox" disabled>
-Autobuild <code>docs/</code> like <a href="https://github.com/r-lib/actions/blob/master/examples/pkgdown.yaml" class="external-link">pkgdown</a>
-?</li>
+<input type="checkbox" disabled checked><del>Autobuild <code>docs/</code> like <a href="https://github.com/r-lib/actions/blob/master/examples/pkgdown.yaml" class="external-link">pkgdown</a>
+?</del>
+</li>
 </ul></div>
 </div>
 
