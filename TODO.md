@@ -25,7 +25,7 @@
 - [ ] Review and merge duplicate Roxygen docs
 - [ ] Add messages, warnings to `build_analysis_site()` to report on progress
 - [ ] Update Roxygen comments after reading package book, documentation
-- [ ] Add tests per comments in `R/` after reading package book, documentation
+- [x] Add tests per comments in `R/` after reading package book, documentation
 - [x] Switch from development version of `styler` (1.3.2.9000) when a new release becomes available
 - [ ] Switch from development versions of `styler` (1.3.2.9000) and `lintr` (2.0.1.9000) when a new release becomes available - both were needed to address bugs in the current release versions, 1.3.2 and 2.0.1.
 - [x] Automate release process
@@ -39,8 +39,8 @@
   - [x] Use [lintr](https://github.com/r-lib/actions/blob/master/examples/lint.yaml)
 - [x] Faster CI checks
 - [x] Update GitHub Actions from r-lib [examples](https://github.com/r-lib/actions/tree/master/examples)
-- [ ] Skip CI checks for changes in only the `docs/` directory
+- [x] ~~Skip CI checks for changes in only the `docs/` directory~~
 - [x] Run [test coverage](https://github.com/r-lib/actions/blob/master/examples/test-coverage.yaml)
-- [ ] Add GitHub Action for html/link checking using something like [htmlproofer](https://github.com/gjtorikian/html-proofer)
+- [x] ~~Add GitHub Action for html/link checking using something like [htmlproofer](https://github.com/gjtorikian/html-proofer)~~
 - [x] Switch to  [full](https://github.com/r-lib/actions/blob/master/examples/check-full.yaml) `R CMD check` ?
-- [ ] Autobuild `docs/` like [pkgdown](https://github.com/r-lib/actions/blob/master/examples/pkgdown.yaml) ?
+- [x] ~~Autobuild `docs/` like [pkgdown](https://github.com/r-lib/actions/blob/master/examples/pkgdown.yaml) ?~~
