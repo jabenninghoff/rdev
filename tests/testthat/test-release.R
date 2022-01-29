@@ -1,11 +1,91 @@
 withr::local_dir("test-release")
+
+# new_branch
+
+ver <- structure(list(c(1L, 0L, 0L)), class = c(
+  "package_version",
+  "numeric_version"
+))
+
+dev_ver <- structure(list(c(1L, 0L, 0L, 9000L)), class = c(
+  "package_version",
+  "numeric_version"
+))
+
+test_that("new_branch errors when local or remote branch exists", {
+  g <- function(name, local = TRUE) {
+    if (name == "local" & local) {
+      return(TRUE)
+    }
+    if (name == "origin/remote" & !local) {
+      return(TRUE)
+    }
+    FALSE
+  }
+  mockery::stub(new_branch, "gert::git_branch_exists", g)
+  mockery::stub(new_branch, "gert::git_branch_checkout", NULL)
+  mockery::stub(new_branch, "usethis::git_default_branch", NULL)
+  mockery::stub(new_branch, "gert::git_branch_create", NULL)
+  mockery::stub(new_branch, "desc::desc_get_version", ver)
+  mockery::stub(new_branch, "desc::desc_bump_version", NULL)
+  mockery::stub(new_branch, "gert::git_add", NULL)
+  mockery::stub(new_branch, "gert::git_commit", NULL)
+
+  expect_error(new_branch("local"), "local branch exists")
+  expect_error(new_branch("remote"), "branch exists on remote")
+})
+
+test_that("new_branch branches from default branch when current = FALSE and current when TRUE", {
+  s <- function(x) {
+    stop("gert::git_branch_checkout")
+  }
+  mockery::stub(new_branch, "gert::git_branch_exists", FALSE)
+  mockery::stub(new_branch, "gert::git_branch_checkout", s)
+  mockery::stub(new_branch, "usethis::git_default_branch", NULL)
+  mockery::stub(new_branch, "gert::git_branch_create", NULL)
+  mockery::stub(new_branch, "desc::desc_get_version", ver)
+  mockery::stub(new_branch, "desc::desc_bump_version", NULL)
+  mockery::stub(new_branch, "gert::git_add", NULL)
+  mockery::stub(new_branch, "gert::git_commit", "Bump version")
+
+  expect_identical(new_branch("test", current = TRUE), "Bump version")
+  expect_error(new_branch("test", current = FALSE), "gert::git_branch_checkout")
+})
+
+test_that("new_branch bumps non-dev version", {
+  mockery::stub(new_branch, "gert::git_branch_exists", FALSE)
+  mockery::stub(new_branch, "gert::git_branch_checkout", NULL)
+  mockery::stub(new_branch, "usethis::git_default_branch", NULL)
+  mockery::stub(new_branch, "gert::git_branch_create", NULL)
+  mockery::stub(new_branch, "desc::desc_get_version", ver)
+  mockery::stub(new_branch, "desc::desc_bump_version", NULL)
+  mockery::stub(new_branch, "gert::git_add", NULL)
+  mockery::stub(new_branch, "gert::git_commit", "Bump version")
+
+  expect_identical(new_branch("test"), "Bump version")
+  expect_identical(new_branch("test", bump_ver = FALSE), NULL)
+})
+
+test_that("new_branch doesn't bump dev version", {
+  mockery::stub(new_branch, "gert::git_branch_exists", FALSE)
+  mockery::stub(new_branch, "gert::git_branch_checkout", NULL)
+  mockery::stub(new_branch, "usethis::git_default_branch", NULL)
+  mockery::stub(new_branch, "gert::git_branch_create", NULL)
+  mockery::stub(new_branch, "desc::desc_get_version", dev_ver)
+  mockery::stub(new_branch, "desc::desc_bump_version", NULL)
+  mockery::stub(new_branch, "gert::git_add", NULL)
+  mockery::stub(new_branch, "gert::git_commit", "Bump version")
+
+  expect_identical(new_branch("test"), NULL)
+})
+
+# get_release
+
 pkg_test <- structure(list(
   package = "rdev", title = "R Development Tools", version = "1.0.0",
   description = "My personalized collection of development packages, tools and utility functions.",
   encoding = "UTF-8"
 ), class = "package")
-
-# get_release
 
 test_that("get_release returns correct package, release version and notes", {
   mockery::stub(get_release, "devtools::as.package", pkg_test)
