@@ -19,8 +19,7 @@
 - [x] Add check to `stage_release()` to look for missing topics in `_pkgdown.yml` reference section
 - [x] Update `use_rdev_package()`
 - [x] Automate creation of feature branches, including 'Bump version' using `desc::desc_bump_version("dev")`
-- [ ] Add test coverage to `use_rdev_package()` templates
-- [ ] Move `rmd_metadata()` from README-analysis.Rmd to rdev package (with test coverage)
+- [x] Move `rmd_metadata()` from README-analysis.Rmd to rdev package
 - [ ] Write a manual regression test script (notes with R commands) as a vignette to validate 'Creating Packages' and 'GitHub Releases'
 - [ ] Automate branch protection
 - [ ] Review and merge duplicate Roxygen docs
@@ -41,7 +40,7 @@
 - [x] Faster CI checks
 - [x] Update GitHub Actions from r-lib [examples](https://github.com/r-lib/actions/tree/master/examples)
 - [ ] Skip CI checks for changes in only the `docs/` directory
-- [ ] Run [test coverage](https://github.com/r-lib/actions/blob/master/examples/test-coverage.yaml)
+- [x] Run [test coverage](https://github.com/r-lib/actions/blob/master/examples/test-coverage.yaml)
 - [ ] Add GitHub Action for html/link checking using something like [htmlproofer](https://github.com/gjtorikian/html-proofer)
 - [x] Switch to  [full](https://github.com/r-lib/actions/blob/master/examples/check-full.yaml) `R CMD check` ?
 - [ ] Autobuild `docs/` like [pkgdown](https://github.com/r-lib/actions/blob/master/examples/pkgdown.yaml) ?
