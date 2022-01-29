@@ -11,7 +11,7 @@ test_that("sort_file sorts a file", {
   writeLines(strings, tmp_file)
   sort_file(tmp_file)
 
-  expect_equal(readLines(tmp_file), sort(strings))
+  expect_identical(readLines(tmp_file), sort(strings))
 })
 
 # sort_rbuildignore
@@ -28,5 +28,5 @@ test_that("sort_rbuildignore sorts .Rbuildignore", {
   writeLines(strings, ".Rbuildignore")
   sort_rbuildignore()
 
-  expect_equal(readLines(".Rbuildignore"), sort(strings))
+  expect_identical(readLines(".Rbuildignore"), sort(strings))
 })
