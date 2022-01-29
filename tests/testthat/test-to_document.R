@@ -71,7 +71,7 @@ test_that("to_document converts `html_notebook` to `html_document`", {
   doc_yaml <- rmarkdown::yaml_front_matter(dest)
 
   expect_null(doc_yaml$output$html_notebook)
-  expect_equal(doc_yaml$output$html_document, nb_yaml$output$html_notebook)
+  expect_identical(doc_yaml$output$html_document, nb_yaml$output$html_notebook)
 })
 
 test_that("to_document converts minimal `html_notebook` to `html_document`", {
@@ -81,7 +81,7 @@ test_that("to_document converts minimal `html_notebook` to `html_document`", {
   to_document("minimal.Rmd", dest)
   yaml <- rmarkdown::yaml_front_matter(dest)
 
-  expect_equal(yaml$output, "html_document")
+  expect_identical(yaml$output, "html_document")
 })
 
 test_that("to_document copies source file to a directory", {
@@ -96,7 +96,7 @@ test_that("to_document copies source file to a directory", {
   doc_yaml <- rmarkdown::yaml_front_matter(new_file)
 
   expect_null(doc_yaml$output$html_notebook)
-  expect_equal(doc_yaml$output$html_document, nb_yaml$output$html_notebook)
+  expect_identical(doc_yaml$output$html_document, nb_yaml$output$html_notebook)
 })
 
 # rmd_metadata

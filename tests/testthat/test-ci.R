@@ -32,15 +32,15 @@ test_that("renv::update isn't run when update = FALSE", {
 style_test <- withr::with_options(list(styler.quiet = TRUE), style_all())
 
 test_that("style_all returns a tibble", {
-  expect_equal(tibble::is_tibble(style_test), TRUE)
+  expect_identical(tibble::is_tibble(style_test), TRUE)
 })
 
 test_that("style_all returns the correct columns", {
-  expect_equal(colnames(style_test), c("file", "changed"))
+  expect_identical(colnames(style_test), c("file", "changed"))
 })
 
 test_that("style_all tests R and Rmd files", {
-  expect_equal(nrow(style_test), 3)
+  expect_identical(nrow(style_test), 3L)
 })
 
 # lint_all
@@ -51,11 +51,11 @@ test_that("style_all tests R and Rmd files", {
 lint_test <- lint_all()
 
 test_that("lint_all returns the correct type", {
-  expect_equal(typeof(lint_test), "list")
+  expect_identical(typeof(lint_test), "list")
 })
 
 test_that("lint_all returns the correct class", {
-  expect_equal(class(lint_test), "lints")
+  expect_identical(class(lint_test), "lints")
 })
 
 test_that("lint_all checks all test files", {

@@ -6,5 +6,5 @@ test_that("use_package_r creates an R directory if it doesn't exist", {
 
   use_package_r(open = FALSE)
 
-  expect_equal(fs::dir_exists("R"), c(R = TRUE))
+  expect_identical(fs::dir_exists("R"), c(R = TRUE))
 })
