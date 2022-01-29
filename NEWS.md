@@ -1,3 +1,9 @@
+# rdev 0.8.7
+
+* Moved `rmd_metadata()` from README-analysis.Rmd to rdev package
+
+* Increased test coverage, reorganized files
+
 # rdev 0.8.6
 
 * Added code coverage using [codecov.io](https://app.codecov.io/gh/jabenninghoff/rdev), new tests for existing code
