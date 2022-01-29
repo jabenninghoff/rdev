@@ -56,11 +56,8 @@ get_release <- function(pkg = ".", filename = "NEWS.md") {
   if (pkg != ".") {
     stop('currently only build_analysis_site(pkg = ".") is supported')
   }
-  pkg_obj <- devtools::as.package(pkg)
-  if (class(pkg_obj) != "package") {
-    stop(pkg, " is not a valid package!")
-  }
 
+  pkg_obj <- devtools::as.package(pkg)
   header_regex <- paste0(
     "^# ", pkg_obj$package, " ", .standard_regexps()$valid_package_version, "$"
   )
