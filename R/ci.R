@@ -38,7 +38,6 @@ check_renv <- function(update = TRUE) {
 #' style_all("analysis", filetype = "Rmd")
 #' }
 #' @export
-# add tests using local_create_package() per https://testthat.r-lib.org/articles/test-fixtures.html
 style_all <- function(path = ".", filetype = c("R", "Rprofile", "Rmd", "Rnw"), ...) {
   styler::style_dir(path = path, filetype = filetype, ...)
 }
@@ -58,7 +57,6 @@ style_all <- function(path = ".", filetype = c("R", "Rprofile", "Rmd", "Rnw"), .
 #' lint_all("analysis")
 #' }
 #' @export
-# add tests using local_create_package() per https://testthat.r-lib.org/articles/test-fixtures.html
 lint_all <- function(path = ".", ...) {
   lintr::lint_dir(path = path, ...)
 }
@@ -80,8 +78,6 @@ lint_all <- function(path = ".", ...) {
 #' ci(styler = TRUE, lintr = TRUE, rcmdcheck = FALSE)
 #' }
 #' @export
-# add tests using local_create_package() per https://testthat.r-lib.org/articles/test-fixtures.html
-# test styler and lintr, don't test rcmdcheck
 ci <- function(styler = FALSE, lintr = FALSE, document = TRUE, rcmdcheck = TRUE) {
   # TODO: styler should be set to automatically run if there are no uncommitted changes
   if (styler) {
