@@ -12,6 +12,7 @@ reference:
     - merge_release
     - get_release
     - to_document
+    - rmd_metadata
   - title: Continous Integration
     desc: >
       Local continous integration checks and dependency management
