@@ -58,21 +58,54 @@ to_document <- function(file_path, new_path, overwrite = FALSE) {
   return(new_file)
 }
 
-rmd_metadata <- function(filename) {
-  # get notebook yaml
-  yfm <- rmarkdown::yaml_front_matter(filename)
+#' Get analysis notebook metadata
+#'
+#' Extract the YAML front matter and 'description' line from an
+#'  [analysis notebook](https://jabenninghoff.github.io/rdev/articles/analysis-package-layout.html),
+#'   and construct a URL to the notebook's location on GitHub pages.
+#'
+#' The 'description' line is the the first non-blank line in the body of an R notebook that serves
+#'   as a brief description of the work.
+#'
+#' @param file_path Path to analysis notebook
+#'
+#' @return Named list containing analysis notebook title, URL, date, and description
+#' @export
+rmd_metadata <- function(file_path) {
+  if (!(fs::path_ext(file_path) %in% c("Rmd", "rmd"))) {
+    stop("file_path, '", file_path, "' is not an R Markdown (*.Rmd) file")
+  }
 
-  # get notebook 'description' line - first non-blank line after front matter
-  # warning: assumes the document has valid front matter bounded by ^---$
-  notebook <- readLines(filename)
+  notebook <- readLines(file_path)
   header <- grep("^---$", notebook)
+  yaml <- rmarkdown::yaml_front_matter(file_path)
+  if (length(header) < 2 | length(yaml) < 1) {
+    stop("file_path, '", file_path, "' is not a valid R Notebook")
+  }
+
+  if (is.character(yaml$output)) {
+    if (yaml$output != "html_notebook") {
+      stop("file_path, '", file_path, "' does not contain `output: html_notebook`")
+    }
+  } else if (is.list(yaml$output)) {
+    if (is.null(yaml$output$html_notebook)) {
+      stop("file_path, '", file_path, "' does not contain `output: html_notebook`")
+    }
+  } else {
+    stop("unexpected object type for output: '", typeof(yaml$output), "'")
+  }
+
   body_start <- header[2] + 1
   body_end <- length(notebook)
   desc_line <- grep("[:graph:]", notebook[body_start:body_end])[1] + header[2]
 
+  urls <- desc::desc_get_urls()
+  if (length(urls) < 1) {
+    stop("no URL found in DESCRIPTION")
+  }
   gh_url <- paste0(
-    desc::desc_get_urls()[1], "/", fs::path_ext_remove(fs::path_file(filename)), ".html"
+    urls[1], "/", fs::path_ext_remove(fs::path_file(file_path)), ".html"
   )
 
-  list(title = yfm$title, url = gh_url, date = yfm$date, description = notebook[desc_line])
+  list(title = yaml$title, url = gh_url, date = yaml$date, description = notebook[desc_line])
 }
