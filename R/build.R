@@ -8,7 +8,8 @@
 #' 1. [pkgdown::clean_site()]
 #' 1. [pkgdown::build_site()]
 #'
-#' Both `build_rdev_site()` and [build_analysis_site()] are meant to be used as part of a CI/CD
+#' @section Continuous Integration:
+#' Both [build_rdev_site()] and [build_analysis_site()] are meant to be used as part of a CI/CD
 #'   workflow, and temporarily set the environment variable `CI == "TRUE"` so that the build will
 #'   fail when non-internal topics are not included on the reference index page per
 #'   [pkgdown::build_reference()].
@@ -55,13 +56,9 @@ build_rdev_site <- function(pkg = ".", ...) {
 #' `build_analysis_site()` will fail with an error if there are no files in `analysis/*.Rmd`, or if
 #'   `pkgdown/_base.yml` does not exist.
 #'
-#' Both [build_rdev_site()] and `build_analysis_site()` are meant to be used as part of a CI/CD
-#'   workflow, and temporarily set the environment variable `CI == "TRUE"` so that the build will
-#'   fail when non-internal topics are not included on the reference index page per
-#'   [pkgdown::build_reference()].
+#' @inheritSection build_rdev_site Continuous Integration
 #'
-#' @param pkg Path to package. Currently, only `pkg = "."` is supported.
-#' @param ... additional arguments passed to [pkgdown::build_site()] (not implemented)
+#' @inheritParams build_rdev_site
 #'
 #' @export
 build_analysis_site <- function(pkg = ".", ...) {
