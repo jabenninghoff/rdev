@@ -1,3 +1,7 @@
+# rdev 0.8.10
+
+* Minor documentation updates
+
 # rdev 0.8.9
 
 * Bug fixes for `use_rdev_package()`, `proof-docs`
