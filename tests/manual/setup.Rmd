@@ -1,0 +1,225 @@
+---
+title: "Package Setup Test"
+output:
+  html_notebook:
+    code_folding: none
+---
+
+Test script to manually validate creating a new rdev package or R analysis package.
+
+# Setup
+
+Load devtools. Load package manually using `devtools::load_all(".")` (command-shift-l).
+
+```{r setup, message = FALSE, warning = FALSE}
+require(devtools)
+```
+
+# Create GitHub Repository
+
+Given:
+
+- rdev and dependencies are installed in the R site library (using `setup-r`)
+- Running in a session with no project open
+
+When:
+
+Creating a new GitHub repository with the following command:
+
+```r
+rdev::create_github_repo("rdtest1", "rdev test package 1")
+```
+
+Then:
+
+- A new rdev package named "rdtest1" is created in the active GitHub account, downloaded to the
+  local system, and populated with package files using usethis options in `~/.Rprofile`
+- On macOS, the repository is opened in GitHub Desktop
+- On macOS, the repository branch protection settings are opened on github.com
+- The git repository will contain a single commit, 'Initial commit', with:
+  - `LICENSE`: GitHub MIT License, with active GitHub user's name and current year in Copyright
+  - `.gitignore`: GitHub [R.gitignore](https://github.com/github/gitignore/blob/main/R.gitignore)
+- There will be 4 new files: (see note below)
+  - `.Rbuildignore`
+  - `DESCRIPTION`
+  - `NAMESPACE`
+  - `rdtest1.Rproj`
+
+**Note:** upstream issue: create_package adds `.Rproj.user` to `.gitignore` even when it's already
+present, see <https://github.com/r-lib/usethis/issues/1568> - discard changes to `.gitignore` until
+resolved.
+
+Commit the changes to a new branch named package-setup and push to GitHub:
+
+```r
+gert::git_branch_create("package-setup")
+gert::git_add(".")
+gert::git_commit("rdev::create_github_repo()")
+gert::git_push()
+```
+
+# Use rdev package
+
+Given:
+
+- Running in an interactive session at the rdtest1 project root
+- Commands in 'Create GitHub Repository' have been run
+
+When:
+
+Setting up rdev package conventions with the following command:
+
+```r
+use_rdev_package()
+```
+
+Then:
+
+There will be 21 new or changed files (new unless otherwise noted):
+
+- `.github/.gitignore`
+- `.github/workflows/check-standard.yaml`
+- `.github/workflows/lint.yaml`
+- `.gitignore`: changed, add 'macOS, vim' section
+- `.lintr`
+- `.Rbuildignore`: changed, sorted
+- `.Rprofile`
+- `DESCRIPTION`: changed
+  - License: MIT
+  - URL: GitHub pages, GitHub repo
+  - BugReports: GitHub issues
+  - Suggests: devtools, rdev (>= 0.8.9), testthat (>= 3.0.0)
+  - Remotes: jabenninghoff/rdev
+  - Config/testthat/edition: 3
+- `LICENSE.md`
+- `man/rdtest1-package.Rd`
+- `NEWS.md`
+- `R/package.R`
+- `README.md`
+- `README.Rmd`
+- `renv.lock`
+- `renv/.gitignore`
+- `renv/activate.R`
+- `renv/settings.dcf`
+- `tests/testthat.R`
+- `tests/testthat/test-package.R`
+- `TODO.md`
+
+Commit the changes, check the new package, and push to GitHub:
+
+```r
+gert::git_add(".")
+style_all()
+lint_all()
+ci()
+gert::git_commit("rdev::use_rdev_package()")
+gert::git_push()
+```
+
+The CI checks should all complete successfully.
+
+## Regression
+
+Regression tests:
+
+- Confirm that `.git/hooks/pre-commit` is owner-executable (must be executable to work) and matches
+  the `pre-commit` template
+
+```sh
+$ dir .git/hooks/pre-commit
+-rwxr--r--  1 agamemnon  staff  409 Jan 30 15:58 .git/hooks/pre-commit
+$ cat .git/hooks/pre-commit
+#!/bin/bash
+# forked from https://github.com/r-lib/usethis/blob/main/inst/templates/readme-rmd-pre-commit.sh
+README=($(git diff --cached --name-only | grep -Ei '^README\.[R]?md$'))
+MSG="use 'git commit --no-verify' to override this check"
+
+if [[ ${#README[@]} == 0 ]]; then
+  exit 0
+fi
+
+if [[ README.Rmd -nt README.md ]]; then
+  echo -e "README.md is out of date; please re-knit README.Rmd\n$MSG"
+  exit 1
+fi
+```
+
+# Use pkgdown
+
+Given:
+
+- Running in an interactive session at the rdtest1 project root
+- Commands in 'Create GitHub Repository' have been run
+- Commands in 'Use rdev package' have been run
+
+When:
+
+Setting up pkgdown with the following command:
+
+```r
+usethis::use_pkgdown()
+```
+
+Then:
+
+There will be 3 new or changed files:
+
+- `.gitignore`: changed, added `docs`
+- `.Rbuildignore`: changed, added `^_pkgdown\.yml$`, `^docs$`, `^pkgdown$`
+- `_pkgdown.yml`: new
+
+Test the installation by running the rdev builder, which should complete successfully:
+
+```r
+build_rdev_site()
+```
+
+Discard the changes to test `use_analysis_package()`.
+
+# Use analysis package
+
+Given:
+
+- Running in an interactive session at the rdtest1 project root
+- Commands in 'Create GitHub Repository' have been run
+- Commands in 'Use rdev package' have been run
+
+When:
+
+Setting up an analysis package with the following command, and confirming to overwrite README.Rmd:
+
+```r
+use_analysis_package()
+```
+
+Then:
+
+There will be 4 new or changed files:
+
+- `.gitignore`: added `# analysis package generated files` section
+- `.Rbuildignore`: added analysis package generated files, sorted
+- `pkgdown/_base.yml`: new, with GitHub pages `url`
+- `README.Rmd`: changed, with Notebooks section
+
+Test the installation by running CI checks and the analysis builder, which should throw an error:
+
+```r
+renv::install("dplyr")
+style_all()
+lint_all()
+ci()
+build_analysis_site()
+
+#> Error in build_analysis_site() : No *.Rmd files in analysis directory
+```
+
+Create an analysis notebook in RStudio using File > New File > R Markdown... > From Template >
+Analysis Notebook, save in `analysis` as `test.Rmd`, removing all `library` commands in the setup
+block except `library(dplyr)`, and re-run the checks, which should complete successfully:
+
+```r
+style_all()
+lint_all()
+ci()
+build_analysis_site()
+```
