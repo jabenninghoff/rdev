@@ -22,9 +22,12 @@ When run, \code{build_rdev_site()} calls:
 \item \code{\link[pkgdown:clean_site]{pkgdown::clean_site()}}
 \item \code{\link[pkgdown:build_site]{pkgdown::build_site()}}
 }
+}
+\section{Continuous Integration}{
 
-Both \code{build_rdev_site()} and \code{\link[=build_analysis_site]{build_analysis_site()}} are meant to be used as part of a CI/CD
+Both \code{\link[=build_rdev_site]{build_rdev_site()}} and \code{\link[=build_analysis_site]{build_analysis_site()}} are meant to be used as part of a CI/CD
 workflow, and temporarily set the environment variable \code{CI == "TRUE"} so that the build will
 fail when non-internal topics are not included on the reference index page per
 \code{\link[pkgdown:build_reference]{pkgdown::build_reference()}}.
 }
+
