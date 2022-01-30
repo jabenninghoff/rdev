@@ -1,3 +1,7 @@
+# rdev 0.8.9
+
+* Bug fixes for `use_rdev_package()`, `proof-docs`
+
 # rdev 0.8.8
 
 * Added `proof-docs` script to tools, checks docs directory using [htmlproofer](https://github.com/gjtorikian/html-proofer)
