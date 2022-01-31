@@ -253,6 +253,9 @@ use_rdev_package <- function() {
 #'   .gitignore and .Rbuildignore, creates `_base.yml` in `pkgdown` from the first `URL` in
 #'   `DESCRIPTION`, and installs the `README.Rmd` template for analysis packages.
 #'
+#' @return List containing `dirs` created, `rbuildignore` lines added to .Rbuildignore, `gitignore`
+#'   exclusions added to .gitignore.
+#'
 #' @export
 use_analysis_package <- function() {
   # workaround for lintr, R CMD check
@@ -309,4 +312,9 @@ use_analysis_package <- function() {
     ignore = TRUE,
     open = rlang::is_interactive()
   )
+
+  ret <- list(
+    dirs = analysis_dirs, rbuildignore = analysis_rbuildignore, gitignore = analysis_gitignore
+  )
+  return(invisible(ret))
 }

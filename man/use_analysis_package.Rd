@@ -6,6 +6,10 @@
 \usage{
 use_analysis_package()
 }
+\value{
+List containing \code{dirs} created, \code{rbuildignore} lines added to .Rbuildignore, \code{gitignore}
+exclusions added to .gitignore.
+}
 \description{
 Add the \href{https://jabenninghoff.github.io/rdev/articles/analysis-package-layout.html}{Analysis Package Layout}
 to the current package.
