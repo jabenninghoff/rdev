@@ -41,3 +41,32 @@ test_that("create_github_repo generates expected output", {
     )
   )
 })
+
+# use_analysis_package
+
+test_that("use_analysis_package returns expected values", {
+  values <- list(
+    dirs = c(
+      "analysis", "analysis/assets", "analysis/data", "analysis/import", "analysis/rendered",
+      "docs", "pkgdown"
+    ), rbuildignore = c(
+      "^analysis/.*\\.docx$", "^analysis/.*\\.html$", "^analysis/.*\\.md$", "^analysis/.*\\.pdf$",
+      "^analysis/.*-figure$", "^analysis/import$", "^analysis/rendered$",
+      "^docs$", "^pkgdown$", "^_pkgdown\\.yml$"
+    ), gitignore = c(
+      "analysis/*.docx", "analysis/*.html", "analysis/*.md", "analysis/*.pdf", "analysis/*-figure/",
+      "analysis/import", "analysis/rendered"
+    )
+  )
+  urls <- c("https://example.github.io/test")
+  mockery::stub(use_analysis_package, "fs::dir_create", NULL)
+  mockery::stub(use_analysis_package, "usethis::use_git_ignore", NULL)
+  mockery::stub(use_analysis_package, "usethis::use_build_ignore", NULL)
+  mockery::stub(use_analysis_package, "rdev::sort_rbuildignore", NULL)
+  mockery::stub(use_analysis_package, "desc::desc_get_urls", urls)
+  mockery::stub(use_analysis_package, "fs::file_exists", FALSE)
+  mockery::stub(use_analysis_package, "yaml::write_yaml", NULL)
+  mockery::stub(use_analysis_package, "usethis::use_template", NULL)
+
+  expect_identical(use_analysis_package(), values)
+})
