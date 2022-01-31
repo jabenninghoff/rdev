@@ -58,6 +58,13 @@ gert::git_commit("rdev::create_github_repo()")
 gert::git_push()
 ```
 
+## Regression
+
+Regression tests:
+
+- Confirm that running `rdev::create_github_repo("test")` errors when the "test" directory exists
+  in `usethis:::conspicuous_place()`
+
 # Use rdev package
 
 Given:
