@@ -25,17 +25,20 @@ test_that("create_github_repo errors when proposed repo directory exists locally
 })
 
 test_that("create_github_repo generates expected output", {
+  fs_path <- "/Users/test/Desktop/rdtest9"
+  create <- list(html_url = "https://github.com/test/rdtest9")
   mockery::stub(create_github_repo, "fs::dir_exists", FALSE)
-  mockery::stub(create_github_repo, "gh::gh", NULL)
-  mockery::stub(create_github_repo, "usethis::create_from_github", NULL)
+  mockery::stub(create_github_repo, "gh::gh", create)
+  mockery::stub(create_github_repo, "usethis::create_from_github", fs_path)
   mockery::stub(create_github_repo, "fs::file_delete", NULL)
   mockery::stub(create_github_repo, "usethis::create_package", NULL)
 
   expect_output(
     create_github_repo("rdtest9", "rdev test analysis package 9"),
     paste0(
-      "\\nRepository created at: \\nOpen the repository by executing: \\$ github \\n\\n",
-      "Manually add any branch protection at: /settings/branches\\n",
+      "\\nRepository created at: ", create$html_url, "\\n",
+      "Open the repository by executing: \\$ github ", fs_path, "\\n",
+      "\\nManually add any branch protection at: ", create$html_url, "/settings/branches\\n",
       "Apply rdev conventions within the new project with use_rdev_package\\(\\),\\n",
       "and use either use_analysis_package\\(\\) or usethis::use_pkgdown\\(\\) for GitHub Pages\\."
     )
