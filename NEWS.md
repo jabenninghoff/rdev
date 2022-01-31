@@ -1,3 +1,9 @@
+# rdev 0.8.10 (unreleased)
+
+* Updated documentation
+
+* Added manual test script for new package setup, increased test coverage
+
 # rdev 0.8.9
 
 * Bug fixes for `use_rdev_package()`, `proof-docs`
