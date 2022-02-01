@@ -2,61 +2,30 @@ withr::local_dir("test-ci")
 
 # check_renv
 
-test_that("All renv functions are called", {
+test_that("All renv functions are called, unless set to FALSE", {
   mockery::stub(check_renv, "renv::status", NULL)
   mockery::stub(check_renv, "renv::clean", NULL)
   mockery::stub(check_renv, "renv::update", NULL)
 
-  expect_output(
-    check_renv(),
-    "^(?s)renv::status\\(\\)\\n\\nrenv::clean\\(\\)\\n\\nrenv::update\\(\\)$",
-    perl = TRUE
-  )
-})
+  begin <- "^(?s)"
+  end <- "$"
+  sep <- "\\n\\n"
+  status <- "renv::status\\(\\)"
+  clean <- "renv::clean\\(\\)"
+  update <- "renv::update\\(\\)"
 
-test_that("renv::update isn't run when update = FALSE", {
-  mockery::stub(check_renv, "renv::status", NULL)
-  mockery::stub(check_renv, "renv::clean", NULL)
-  mockery::stub(check_renv, "renv::update", NULL)
-
-  expect_output(
-    check_renv(update = FALSE),
-    "^(?s)renv::status\\(\\)\\n\\nrenv::clean\\(\\)$",
-    perl = TRUE
-  )
+  expect_output(check_renv(), paste0(begin, status, sep, clean, sep, update, end), perl = TRUE)
+  expect_output(check_renv(update = FALSE), paste0(begin, status, sep, clean, end), perl = TRUE)
 })
 
 # style_all
 
-# set styler.quiet = FALSE to suppress output
-style_test <- withr::with_options(list(styler.quiet = TRUE), style_all())
-
-test_that("style_all returns a tibble", {
-  expect_identical(tibble::is_tibble(style_test), TRUE)
-})
-
-test_that("style_all returns the correct columns", {
-  expect_identical(colnames(style_test), c("file", "changed"))
-})
-
 test_that("style_all tests R and Rmd files", {
-  expect_identical(nrow(style_test), 3L)
+  # set styler.quiet = FALSE to suppress output
+  expect_identical(nrow(withr::with_options(list(styler.quiet = TRUE), style_all())), 3L)
 })
 
 # lint_all
-
-# testthat suppresses messages but because lintr uses interactive() to control message output, there
-#   is no easy way to turn off the side-effect of ci being printed twice in the test() report,
-#   see: https://github.com/r-lib/lintr/blob/master/R/lint.R
-lint_test <- lint_all()
-
-test_that("lint_all returns the correct type", {
-  expect_identical(typeof(lint_test), "list")
-})
-
-test_that("lint_all returns the correct class", {
-  expect_identical(class(lint_test), "lints")
-})
 
 test_that("lint_all checks all test files", {
   # snapshot captures "..." for the 3 files tested
