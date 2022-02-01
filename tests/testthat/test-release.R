@@ -33,6 +33,7 @@ test_that("new_branch errors when local or remote branch exists", {
 
   expect_error(new_branch("local"), "local branch exists")
   expect_error(new_branch("remote"), "branch exists on remote")
+  expect_error(new_branch("test"), NA)
 })
 
 test_that("new_branch branches from default branch when current = FALSE and current when TRUE", {
@@ -77,6 +78,7 @@ test_that("new_branch doesn't bump dev version", {
   mockery::stub(new_branch, "gert::git_commit", "Bump version")
 
   expect_identical(new_branch("test"), NULL)
+  expect_identical(new_branch("test", bump_ver = FALSE), NULL)
 })
 
 # get_release
@@ -89,6 +91,7 @@ pkg_test <- structure(list(
 
 test_that("get_release returns correct package, release version and notes", {
   mockery::stub(get_release, "devtools::as.package", pkg_test)
+
   expected_notes <- c(
     "Major update.", "", "## New Features", "", "* `feature1()`: description", "",
     "* `feature2()`: description", "", "* `feature3()`: description", "", "## Other Changes", "",
@@ -103,6 +106,7 @@ test_that("get_release returns correct package, release version and notes", {
 
 test_that("get_release returns correct package, version, and notes for first release", {
   mockery::stub(get_release, "devtools::as.package", pkg_test)
+
   rel <- get_release(filename = "first-release.md")
   expect_identical(length(rel), 3L)
   expect_identical(rel$package, "rdev")
@@ -119,6 +123,7 @@ test_that('get_release stops when pkg != "."', {
 
 test_that("get_release returns error on invalid NEWS.md format", {
   mockery::stub(get_release, "devtools::as.package", pkg_test)
+
   expect_error(get_release(filename = "empty.md"), regexp = "no valid releases found")
   expect_error(get_release(filename = "no-h1.md"), regexp = "no valid releases found")
   expect_error(get_release(filename = "bad-first-h1.md"), regexp = "unexpected header")
@@ -127,6 +132,7 @@ test_that("get_release returns error on invalid NEWS.md format", {
 
 test_that("get_release returns valid but non-rdev version", {
   mockery::stub(get_release, "devtools::as.package", pkg_test)
+
   rel <- get_release(filename = "bad-version.md")
   expect_identical(rel$version, "1.1")
 })
@@ -144,6 +150,7 @@ test_that("stage_release returns error on non-rdev version", {
   mockery::stub(get_release, "devtools::as.package", pkg_test)
   rel <- get_release(filename = "bad-version.md")
   mockery::stub(stage_release, "get_release", rel)
+
   expect_error(stage_release(filename = "bad-version.md"), regexp = "invalid package version")
 })
 
@@ -151,6 +158,7 @@ test_that("stage_release returns error on empty release notes", {
   mockery::stub(get_release, "devtools::as.package", pkg_test)
   rel <- get_release(filename = "bad-notes.md")
   mockery::stub(stage_release, "get_release", rel)
+
   expect_error(stage_release(filename = "bad-notes.md"), regexp = "no release notes found")
 })
 
@@ -166,18 +174,20 @@ test_that("stage_release returns error if git tag matching version exists", {
   rel <- get_release()
   mockery::stub(stage_release, "get_release", rel)
   mockery::stub(stage_release, "gert::git_tag_list", tag_12)
+
   expect_error(stage_release(), regexp = "release tag .* already exists")
 })
 
-no_tags <- structure(list(name = character(0), ref = character(0), commit = character(0)),
-  row.names = integer(0), class = c("tbl_df", "tbl", "data.frame")
-)
 
 test_that("stage_release returns error if uncommitted changes are present", {
+  no_tags <- structure(list(name = character(0), ref = character(0), commit = character(0)),
+    row.names = integer(0), class = c("tbl_df", "tbl", "data.frame")
+  )
   mockery::stub(get_release, "devtools::as.package", pkg_test)
   rel <- get_release()
   mockery::stub(stage_release, "get_release", rel)
   mockery::stub(stage_release, "gert::git_tag_list", no_tags)
   mockery::stub(stage_release, "gert::git_diff_patch", c("diff --git fake/1"))
+
   expect_error(stage_release(), regexp = "uncommitted changes present, aborting")
 })
