@@ -349,3 +349,52 @@ test_that("stage_release returns pull request results", {
 
   expect_identical(stage_release(), "pull_request")
 })
+
+# merge_release
+
+# sophisticated stub for gh::gh
+gh_pulls <- list(list(title = "testpkg 1.2.0"))
+gh_pull_number <- list(locked = FALSE, draft = FALSE, mergeable = TRUE, rebaseable = TRUE)
+gh_merge <- list(merged = TRUE)
+gh <- function(command, ...) {
+  if (command == "GET /repos/{owner}/{repo}/pulls") {
+    return(gh_pulls)
+  }
+  if (command == "GET /repos/{owner}/{repo}/pulls/{pull_number}") {
+    return(gh_pull_number)
+  }
+  if (command == "PUT /repos/{owner}/{repo}/pulls/{pull_number}/merge") {
+    return(gh_merge)
+  }
+}
+
+test_that("merge_release ...", {
+  # stub functions that change state
+  mockery::stub(merge_release, "gh::gh", NULL)
+  mockery::stub(merge_release, "gert::git_branch_checkout", NULL)
+  mockery::stub(merge_release, "gert::git_branch_delete", NULL)
+  mockery::stub(merge_release, "gert::git_pull", NULL)
+  mockery::stub(merge_release, "gert::git_tag_create", NULL)
+  mockery::stub(merge_release, "gert::git_tag_push", NULL)
+})
+
+test_that("merge_release returns list", {
+  mockery::stub(get_release, "devtools::as.package", pkg_test)
+  rel <- get_release()
+  mockery::stub(merge_release, "get_release", rel)
+  rem <- list(name = "origin", url = "https://github.com/example/test.git")
+  mockery::stub(merge_release, "gert::git_remote_info", rem)
+  # stub functions that change state
+  mockery::stub(merge_release, "gh::gh", gh)
+  mockery::stub(merge_release, "gert::git_branch_checkout", NULL)
+  mockery::stub(merge_release, "gert::git_branch_delete", NULL)
+  mockery::stub(merge_release, "gert::git_pull", NULL)
+  mockery::stub(merge_release, "gert::git_tag_create", NULL)
+  mockery::stub(merge_release, "gert::git_tag_push", NULL)
+
+  mr_ret <- list(
+    merge = gh("PUT /repos/{owner}/{repo}/pulls/{pull_number}/merge"),
+    release = gh("POST /repos/{owner}/{repo}/releases")
+  )
+  expect_identical(merge_release(), mr_ret)
+})
