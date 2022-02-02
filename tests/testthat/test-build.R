@@ -16,12 +16,16 @@ test_that("all build_rdev_site functions are called", {
   mockery::stub(build_rdev_site, "pkgdown::clean_site", NULL)
   mockery::stub(build_rdev_site, "pkgdown::build_site", NULL)
 
+  begin <- "^(?s)"
+  end <- "$"
+  sep <- "\\n\\n"
+  build_readme <- "devtools::build_readme\\(\\)"
+  clean_site <- "pkgdown::clean_site\\(\\)"
+  build_site <- "pkgdown::build_site\\(\\)"
+
   expect_output(
     build_rdev_site(),
-    paste0(
-      "^(?s)devtools::build_readme\\(\\)\\n\\npkgdown::clean_site\\(\\)\\n\\n",
-      "pkgdown::build_site\\(\\)$"
-    ),
+    paste0(begin, build_readme, sep, clean_site, sep, build_site, end),
     perl = TRUE
   )
 })
