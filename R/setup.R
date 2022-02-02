@@ -224,7 +224,7 @@ use_rdev_package <- function() {
   # update dependencies, activate renv
   usethis::use_package("devtools", type = "Suggests")
   renv::install("jabenninghoff/rdev")
-  usethis::use_dev_package("rdev", type = "Suggests")
+  usethis::use_dev_package("rdev", type = "Suggests", remote = "jabenninghoff/rdev")
   usethis::use_testthat()
   # add a test for package.R so that ci() passes immediately after use_rdev_package() is run
   usethis::use_test("package")
