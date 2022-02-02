@@ -215,7 +215,6 @@ test_that("stage_release returns error if git tag matching version exists", {
   expect_error(stage_release(), regexp = "release tag .* already exists")
 })
 
-
 test_that("stage_release returns error if uncommitted changes are present", {
   no_tags <- structure(list(name = character(0), ref = character(0), commit = character(0)),
     row.names = integer(0), class = c("tbl_df", "tbl", "data.frame")
@@ -236,4 +235,117 @@ test_that("stage_release returns error if uncommitted changes are present", {
   mockery::stub(stage_release, "gh::gh", NULL)
 
   expect_error(stage_release(), regexp = "uncommitted changes present, aborting")
+})
+
+test_that("stage_release creates new branch", {
+  no_tags <- structure(list(name = character(0), ref = character(0), commit = character(0)),
+    row.names = integer(0), class = c("tbl_df", "tbl", "data.frame")
+  )
+  mockery::stub(get_release, "devtools::as.package", pkg_test)
+  rel <- get_release()
+  mockery::stub(stage_release, "get_release", rel)
+  mockery::stub(stage_release, "gert::git_tag_list", no_tags)
+  mockery::stub(stage_release, "gert::git_diff_patch", character(0))
+  mockery::stub(stage_release, "gert::git_branch", "main")
+  mockery::stub(stage_release, "usethis::git_default_branch", "main")
+  # stub functions that change state
+  g <- function(x) {
+    stop(x)
+  }
+  mockery::stub(stage_release, "gert::git_branch_create", g)
+  mockery::stub(stage_release, "desc::desc_set_version", NULL)
+  mockery::stub(stage_release, "gert::git_add", NULL)
+  mockery::stub(stage_release, "gert::git_commit", NULL)
+  mockery::stub(stage_release, "rdev::build_analysis_site", NULL)
+  mockery::stub(stage_release, "rdev::build_rdev_site", NULL)
+  mockery::stub(stage_release, "gert::git_push", NULL)
+  mockery::stub(stage_release, "gh::gh", NULL)
+
+  expect_error(stage_release(), "rdev-120")
+})
+
+test_that("stage_release errors when on default branch before commits", {
+  no_tags <- structure(list(name = character(0), ref = character(0), commit = character(0)),
+    row.names = integer(0), class = c("tbl_df", "tbl", "data.frame")
+  )
+  mockery::stub(get_release, "devtools::as.package", pkg_test)
+  rel <- get_release()
+  mockery::stub(stage_release, "get_release", rel)
+  mockery::stub(stage_release, "gert::git_tag_list", no_tags)
+  mockery::stub(stage_release, "gert::git_diff_patch", character(0))
+  mockery::stub(stage_release, "usethis::git_default_branch", "main")
+  mockery::stub(stage_release, "gert::git_branch", "main")
+  # stub functions that change state
+  mockery::stub(stage_release, "gert::git_branch_create", NULL)
+  mockery::stub(stage_release, "desc::desc_set_version", NULL)
+  mockery::stub(stage_release, "gert::git_add", NULL)
+  mockery::stub(stage_release, "gert::git_commit", NULL)
+  mockery::stub(stage_release, "rdev::build_analysis_site", NULL)
+  mockery::stub(stage_release, "rdev::build_rdev_site", NULL)
+  mockery::stub(stage_release, "gert::git_push", NULL)
+  mockery::stub(stage_release, "gh::gh", NULL)
+
+  expect_error(stage_release(), "on default branch\\. This should never happen, aborting!")
+})
+
+test_that("stage_release runs proper builder", {
+  no_tags <- structure(list(name = character(0), ref = character(0), commit = character(0)),
+    row.names = integer(0), class = c("tbl_df", "tbl", "data.frame")
+  )
+  mockery::stub(get_release, "devtools::as.package", pkg_test)
+  rel <- get_release()
+  mockery::stub(stage_release, "get_release", rel)
+  mockery::stub(stage_release, "gert::git_tag_list", no_tags)
+  mockery::stub(stage_release, "gert::git_diff_patch", character(0))
+  mockery::stub(stage_release, "usethis::git_default_branch", "main")
+  mockery::stub(stage_release, "gert::git_branch", "stage-release")
+  # stub functions that change state
+  analysis <- function() {
+    stop("rdev::build_analysis_site")
+  }
+  rdev <- function() {
+    stop("rdev::build_rdev_site")
+  }
+  mockery::stub(stage_release, "gert::git_branch_create", NULL)
+  mockery::stub(stage_release, "desc::desc_set_version", NULL)
+  mockery::stub(stage_release, "gert::git_add", NULL)
+  mockery::stub(stage_release, "gert::git_commit", NULL)
+  mockery::stub(stage_release, "rdev::build_analysis_site", analysis)
+  mockery::stub(stage_release, "rdev::build_rdev_site", rdev)
+  mockery::stub(stage_release, "gert::git_push", NULL)
+  mockery::stub(stage_release, "gh::gh", NULL)
+
+  withr::local_dir(withr::local_tempdir())
+  expect_error(stage_release(), "rdev::build_rdev_site")
+
+  fs::dir_create("pkgdown")
+  base <- fs::file_create("pkgdown/_base.yml")
+  writeLines("url: ~", base)
+  expect_error(stage_release(), "rdev::build_analysis_site")
+})
+
+test_that("stage_release returns pull request results", {
+  no_tags <- structure(list(name = character(0), ref = character(0), commit = character(0)),
+    row.names = integer(0), class = c("tbl_df", "tbl", "data.frame")
+  )
+  mockery::stub(get_release, "devtools::as.package", pkg_test)
+  rel <- get_release()
+  mockery::stub(stage_release, "get_release", rel)
+  mockery::stub(stage_release, "gert::git_tag_list", no_tags)
+  mockery::stub(stage_release, "gert::git_diff_patch", character(0))
+  mockery::stub(stage_release, "usethis::git_default_branch", "main")
+  mockery::stub(stage_release, "gert::git_branch", "stage-release")
+  rem <- list(name = "origin", url = "https://github.com/example/test.git")
+  mockery::stub(stage_release, "gert::git_remote_info", rem)
+  # stub functions that change state
+  mockery::stub(stage_release, "gert::git_branch_create", NULL)
+  mockery::stub(stage_release, "desc::desc_set_version", NULL)
+  mockery::stub(stage_release, "gert::git_add", NULL)
+  mockery::stub(stage_release, "gert::git_commit", NULL)
+  mockery::stub(stage_release, "rdev::build_analysis_site", NULL)
+  mockery::stub(stage_release, "rdev::build_rdev_site", NULL)
+  mockery::stub(stage_release, "gert::git_push", NULL)
+  mockery::stub(stage_release, "gh::gh", "pull_request")
+
+  expect_identical(stage_release(), "pull_request")
 })
