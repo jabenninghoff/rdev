@@ -3,7 +3,7 @@ withr::local_dir("test-to_document")
 # to_document
 
 test_that("to_document errors when file isn't a well-formed R markdown document", {
-  dest <- fs::file_temp(pattern = "notebook", ext = "Rmd")
+  dest <- fs::file_temp(pattern = "document", ext = "Rmd")
   withr::local_file(dest)
 
   expect_error(to_document("test.txt", dest), "is not an R Markdown \\(\\*\\.Rmd\\) file")
@@ -12,7 +12,7 @@ test_that("to_document errors when file isn't a well-formed R markdown document"
 })
 
 test_that("overwrite = FALSE prevents file from being overwritten", {
-  dest <- fs::file_temp(pattern = "notebook", ext = "Rmd")
+  dest <- fs::file_temp(pattern = "document", ext = "Rmd")
   withr::local_file(dest)
 
   fs::file_create(dest)
@@ -23,7 +23,7 @@ test_that("overwrite = FALSE prevents file from being overwritten", {
 })
 
 test_that("overwrite = TRUE overwrites file", {
-  dest <- fs::file_temp(pattern = "notebook", ext = "Rmd")
+  dest <- fs::file_temp(pattern = "document", ext = "Rmd")
   withr::local_file(dest)
 
   fs::file_create(dest)
@@ -32,7 +32,7 @@ test_that("overwrite = TRUE overwrites file", {
 })
 
 test_that("to_document errors when yaml front matter doesn't contain `html_notebook`", {
-  dest <- fs::file_temp(pattern = "notebook", ext = "Rmd")
+  dest <- fs::file_temp(pattern = "document", ext = "Rmd")
   withr::local_file(dest)
 
   expect_error(to_document("document.Rmd", dest), "does not contain `output: html_notebook`")
@@ -42,7 +42,7 @@ test_that("to_document errors when yaml front matter doesn't contain `html_noteb
 })
 
 test_that("to_document errors when output contains an unexpected object type", {
-  dest <- fs::file_temp(pattern = "notebook", ext = "Rmd")
+  dest <- fs::file_temp(pattern = "document", ext = "Rmd")
   withr::local_file(dest)
 
   bad_object <- list(title = "Minimal Notebook", date = "2022-01-22", output = 42)
@@ -52,7 +52,7 @@ test_that("to_document errors when output contains an unexpected object type", {
 })
 
 test_that("to_document removes all other output types", {
-  dest <- fs::file_temp(pattern = "notebook", ext = "Rmd")
+  dest <- fs::file_temp(pattern = "document", ext = "Rmd")
   withr::local_file(dest)
 
   to_document("multiple.Rmd", dest)
@@ -63,7 +63,7 @@ test_that("to_document removes all other output types", {
 })
 
 test_that("to_document converts `html_notebook` to `html_document`", {
-  dest <- fs::file_temp(pattern = "notebook", ext = "Rmd")
+  dest <- fs::file_temp(pattern = "document", ext = "Rmd")
   withr::local_file(dest)
 
   to_document("valid.Rmd", dest)
@@ -75,7 +75,7 @@ test_that("to_document converts `html_notebook` to `html_document`", {
 })
 
 test_that("to_document converts minimal `html_notebook` to `html_document`", {
-  dest <- fs::file_temp(pattern = "notebook", ext = "Rmd")
+  dest <- fs::file_temp(pattern = "document", ext = "Rmd")
   withr::local_file(dest)
 
   to_document("minimal.Rmd", dest)
