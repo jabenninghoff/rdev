@@ -116,18 +116,17 @@ test_that("get_release returns correct package, version, and notes for first rel
 
 test_that('get_release stops when pkg != "."', {
   expect_error(
-    get_release(pkg = "foo"),
-    regexp = 'currently only build_analysis_site\\(pkg = "\\."\\) is supported'
+    get_release(pkg = "foo"), 'currently only build_analysis_site\\(pkg = "\\."\\) is supported'
   )
 })
 
 test_that("get_release returns error on invalid NEWS.md format", {
   mockery::stub(get_release, "devtools::as.package", pkg_test)
 
-  expect_error(get_release(filename = "empty.md"), regexp = "no valid releases found")
-  expect_error(get_release(filename = "no-h1.md"), regexp = "no valid releases found")
-  expect_error(get_release(filename = "bad-first-h1.md"), regexp = "unexpected header")
-  expect_error(get_release(filename = "bad-first-h1-1.md"), regexp = "unexpected header")
+  expect_error(get_release(filename = "empty.md"), "no valid releases found")
+  expect_error(get_release(filename = "no-h1.md"), "no valid releases found")
+  expect_error(get_release(filename = "bad-first-h1.md"), "unexpected header")
+  expect_error(get_release(filename = "bad-first-h1-1.md"), "unexpected header")
 })
 
 test_that("get_release returns valid but non-rdev version", {
@@ -151,8 +150,7 @@ test_that('stage_release stops when pkg != "."', {
   mockery::stub(stage_release, "gh::gh", NULL)
 
   expect_error(
-    stage_release(pkg = "foo"),
-    regexp = 'currently only build_analysis_site\\(pkg = "\\."\\) is supported'
+    stage_release(pkg = "foo"), 'currently only build_analysis_site\\(pkg = "\\."\\) is supported'
   )
 })
 
@@ -170,7 +168,7 @@ test_that("stage_release returns error on non-rdev version", {
   mockery::stub(stage_release, "gert::git_push", NULL)
   mockery::stub(stage_release, "gh::gh", NULL)
 
-  expect_error(stage_release(filename = "bad-version.md"), regexp = "invalid package version")
+  expect_error(stage_release(filename = "bad-version.md"), "invalid package version")
 })
 
 test_that("stage_release returns error on empty release notes", {
@@ -187,7 +185,7 @@ test_that("stage_release returns error on empty release notes", {
   mockery::stub(stage_release, "gert::git_push", NULL)
   mockery::stub(stage_release, "gh::gh", NULL)
 
-  expect_error(stage_release(filename = "bad-notes.md"), regexp = "no release notes found")
+  expect_error(stage_release(filename = "bad-notes.md"), "no release notes found")
 })
 
 test_that("stage_release returns error if git tag matching version exists", {
@@ -212,7 +210,7 @@ test_that("stage_release returns error if git tag matching version exists", {
   mockery::stub(stage_release, "gert::git_push", NULL)
   mockery::stub(stage_release, "gh::gh", NULL)
 
-  expect_error(stage_release(), regexp = "release tag .* already exists")
+  expect_error(stage_release(), "release tag .* already exists")
 })
 
 test_that("stage_release returns error if uncommitted changes are present", {
@@ -234,7 +232,7 @@ test_that("stage_release returns error if uncommitted changes are present", {
   mockery::stub(stage_release, "gert::git_push", NULL)
   mockery::stub(stage_release, "gh::gh", NULL)
 
-  expect_error(stage_release(), regexp = "uncommitted changes present, aborting")
+  expect_error(stage_release(), "uncommitted changes present, aborting")
 })
 
 test_that("stage_release creates new branch", {
