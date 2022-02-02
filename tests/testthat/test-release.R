@@ -84,8 +84,8 @@ test_that("new_branch doesn't bump dev version", {
 # get_release
 
 pkg_test <- structure(list(
-  package = "rdev", title = "R Development Tools", version = "1.0.0",
-  description = "My personalized collection of development packages, tools and utility functions.",
+  package = "testpkg", title = "R Test Package", version = "1.0.0",
+  description = "A test package.",
   encoding = "UTF-8"
 ), class = "package")
 
@@ -99,7 +99,7 @@ test_that("get_release returns correct package, release version and notes", {
   )
   rel <- get_release()
   expect_identical(length(rel), 3L)
-  expect_identical(rel$package, "rdev")
+  expect_identical(rel$package, "testpkg")
   expect_identical(rel$version, "1.2.0")
   expect_identical(rel$notes, expected_notes)
 })
@@ -109,7 +109,7 @@ test_that("get_release returns correct package, version, and notes for first rel
 
   rel <- get_release(filename = "first-release.md")
   expect_identical(length(rel), 3L)
-  expect_identical(rel$package, "rdev")
+  expect_identical(rel$package, "testpkg")
   expect_identical(rel$version, "1.0.0")
   expect_identical(rel$notes, "Initial release.")
 })
@@ -261,7 +261,7 @@ test_that("stage_release creates new branch", {
   mockery::stub(stage_release, "gert::git_push", NULL)
   mockery::stub(stage_release, "gh::gh", NULL)
 
-  expect_error(stage_release(), "rdev-120")
+  expect_error(stage_release(), "testpkg-120")
 })
 
 test_that("stage_release errors when on default branch before commits", {

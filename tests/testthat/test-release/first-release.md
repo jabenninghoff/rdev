@@ -1,3 +1,3 @@
-# rdev 1.0.0
+# testpkg 1.0.0
 
 Initial release.
