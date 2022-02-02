@@ -140,6 +140,16 @@ test_that("get_release returns valid but non-rdev version", {
 # stage_release
 
 test_that('stage_release stops when pkg != "."', {
+  # stub functions that change state
+  mockery::stub(stage_release, "gert::git_branch_create", NULL)
+  mockery::stub(stage_release, "desc::desc_set_version", NULL)
+  mockery::stub(stage_release, "gert::git_add", NULL)
+  mockery::stub(stage_release, "gert::git_commit", NULL)
+  mockery::stub(stage_release, "rdev::build_analysis_site", NULL)
+  mockery::stub(stage_release, "rdev::build_rdev_site", NULL)
+  mockery::stub(stage_release, "gert::git_push", NULL)
+  mockery::stub(stage_release, "gh::gh", NULL)
+
   expect_error(
     stage_release(pkg = "foo"),
     regexp = 'currently only build_analysis_site\\(pkg = "\\."\\) is supported'
@@ -150,6 +160,15 @@ test_that("stage_release returns error on non-rdev version", {
   mockery::stub(get_release, "devtools::as.package", pkg_test)
   rel <- get_release(filename = "bad-version.md")
   mockery::stub(stage_release, "get_release", rel)
+  # stub functions that change state
+  mockery::stub(stage_release, "gert::git_branch_create", NULL)
+  mockery::stub(stage_release, "desc::desc_set_version", NULL)
+  mockery::stub(stage_release, "gert::git_add", NULL)
+  mockery::stub(stage_release, "gert::git_commit", NULL)
+  mockery::stub(stage_release, "rdev::build_analysis_site", NULL)
+  mockery::stub(stage_release, "rdev::build_rdev_site", NULL)
+  mockery::stub(stage_release, "gert::git_push", NULL)
+  mockery::stub(stage_release, "gh::gh", NULL)
 
   expect_error(stage_release(filename = "bad-version.md"), regexp = "invalid package version")
 })
@@ -158,6 +177,15 @@ test_that("stage_release returns error on empty release notes", {
   mockery::stub(get_release, "devtools::as.package", pkg_test)
   rel <- get_release(filename = "bad-notes.md")
   mockery::stub(stage_release, "get_release", rel)
+  # stub functions that change state
+  mockery::stub(stage_release, "gert::git_branch_create", NULL)
+  mockery::stub(stage_release, "desc::desc_set_version", NULL)
+  mockery::stub(stage_release, "gert::git_add", NULL)
+  mockery::stub(stage_release, "gert::git_commit", NULL)
+  mockery::stub(stage_release, "rdev::build_analysis_site", NULL)
+  mockery::stub(stage_release, "rdev::build_rdev_site", NULL)
+  mockery::stub(stage_release, "gert::git_push", NULL)
+  mockery::stub(stage_release, "gh::gh", NULL)
 
   expect_error(stage_release(filename = "bad-notes.md"), regexp = "no release notes found")
 })
@@ -174,6 +202,15 @@ test_that("stage_release returns error if git tag matching version exists", {
   rel <- get_release()
   mockery::stub(stage_release, "get_release", rel)
   mockery::stub(stage_release, "gert::git_tag_list", tag_12)
+  # stub functions that change state
+  mockery::stub(stage_release, "gert::git_branch_create", NULL)
+  mockery::stub(stage_release, "desc::desc_set_version", NULL)
+  mockery::stub(stage_release, "gert::git_add", NULL)
+  mockery::stub(stage_release, "gert::git_commit", NULL)
+  mockery::stub(stage_release, "rdev::build_analysis_site", NULL)
+  mockery::stub(stage_release, "rdev::build_rdev_site", NULL)
+  mockery::stub(stage_release, "gert::git_push", NULL)
+  mockery::stub(stage_release, "gh::gh", NULL)
 
   expect_error(stage_release(), regexp = "release tag .* already exists")
 })
@@ -188,6 +225,15 @@ test_that("stage_release returns error if uncommitted changes are present", {
   mockery::stub(stage_release, "get_release", rel)
   mockery::stub(stage_release, "gert::git_tag_list", no_tags)
   mockery::stub(stage_release, "gert::git_diff_patch", c("diff --git fake/1"))
+  # stub functions that change state
+  mockery::stub(stage_release, "gert::git_branch_create", NULL)
+  mockery::stub(stage_release, "desc::desc_set_version", NULL)
+  mockery::stub(stage_release, "gert::git_add", NULL)
+  mockery::stub(stage_release, "gert::git_commit", NULL)
+  mockery::stub(stage_release, "rdev::build_analysis_site", NULL)
+  mockery::stub(stage_release, "rdev::build_rdev_site", NULL)
+  mockery::stub(stage_release, "gert::git_push", NULL)
+  mockery::stub(stage_release, "gh::gh", NULL)
 
   expect_error(stage_release(), regexp = "uncommitted changes present, aborting")
 })
