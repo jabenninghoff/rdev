@@ -350,33 +350,93 @@ test_that("stage_release returns pull request results", {
 
 # merge_release
 
-# sophisticated stub for gh::gh
-gh_pulls <- list(list(title = "testpkg 1.2.0"))
-gh_pull_number <- list(locked = FALSE, draft = FALSE, mergeable = TRUE, rebaseable = TRUE)
-gh_merge <- list(merged = TRUE)
-gh <- function(command, ...) {
-  if (command == "GET /repos/{owner}/{repo}/pulls") {
-    return(gh_pulls)
+test_that("merge_release errors when expected", {
+  # sophisticated stub for gh::gh
+  gh_pulls <- list(list(title = "testpkg 1.2.0"))
+  gh_pull_number <- list(
+    locked = FALSE, draft = FALSE, mergeable = TRUE, rebaseable = TRUE,
+    html_url = "https://github.com/example/test"
+  )
+  gh_merge <- list(merged = TRUE)
+  gh <- function(command, ...) {
+    if (command == "GET /repos/{owner}/{repo}/pulls") {
+      return(gh_pulls)
+    }
+    if (command == "GET /repos/{owner}/{repo}/pulls/{pull_number}") {
+      return(gh_pull_number)
+    }
+    if (command == "PUT /repos/{owner}/{repo}/pulls/{pull_number}/merge") {
+      return(gh_merge)
+    }
   }
-  if (command == "GET /repos/{owner}/{repo}/pulls/{pull_number}") {
-    return(gh_pull_number)
-  }
-  if (command == "PUT /repos/{owner}/{repo}/pulls/{pull_number}/merge") {
-    return(gh_merge)
-  }
-}
 
-test_that("merge_release ...", {
+  mockery::stub(get_release, "devtools::as.package", pkg_test)
+  rel <- get_release()
+  mockery::stub(merge_release, "get_release", rel)
+  rem <- list(name = "origin", url = "https://github.com/example/test.git")
+  mockery::stub(merge_release, "gert::git_remote_info", rem)
   # stub functions that change state
-  mockery::stub(merge_release, "gh::gh", NULL)
+  mockery::stub(merge_release, "gh::gh", gh)
   mockery::stub(merge_release, "gert::git_branch_checkout", NULL)
   mockery::stub(merge_release, "gert::git_branch_delete", NULL)
   mockery::stub(merge_release, "gert::git_pull", NULL)
   mockery::stub(merge_release, "gert::git_tag_create", NULL)
   mockery::stub(merge_release, "gert::git_tag_push", NULL)
+
+  gh_merge <- list(merged = FALSE)
+  expect_error(merge_release(), "pull request merge failed: https://github.com/example/test")
+
+  gh_pull_number$rebaseable <- FALSE
+  expect_error(
+    merge_release(), "pull request is not marked as rebaseable: https://github.com/example/test"
+  )
+
+  gh_pull_number$mergeable <- FALSE
+  expect_error(
+    merge_release(), "pull request is not marked as mergeable: https://github.com/example/test"
+  )
+
+  gh_pull_number$draft <- TRUE
+  expect_error(merge_release(), "pull request is marked as draft: https://github.com/example/test")
+
+  gh_pull_number$locked <- TRUE
+  expect_error(merge_release(), "pull request is marked as locked: https://github.com/example/test")
+
+  gh_pulls <- list(list(title = "testpkg 1.2.0"), list(title = "testpkg 1.2.0"))
+  expect_error(
+    merge_release(), "found more than one pull request with the title 'testpkg 1.2.0', aborting"
+  )
+
+  gh_pulls <- list(list(title = "test PR"), list(title = "test PR 2"))
+  expect_error(
+    merge_release(), "found no open pull requests with the title 'testpkg 1.2.0', aborting"
+  )
+
+  expect_error(
+    merge_release(pkg = "foo"), 'currently only build_analysis_site\\(pkg = "\\."\\) is supported'
+  )
 })
 
 test_that("merge_release returns list", {
+  # sophisticated stub for gh::gh
+  gh_pulls <- list(list(title = "testpkg 1.2.0"))
+  gh_pull_number <- list(
+    locked = FALSE, draft = FALSE, mergeable = TRUE, rebaseable = TRUE,
+    html_url = "https://github.com/example/test"
+  )
+  gh_merge <- list(merged = TRUE)
+  gh <- function(command, ...) {
+    if (command == "GET /repos/{owner}/{repo}/pulls") {
+      return(gh_pulls)
+    }
+    if (command == "GET /repos/{owner}/{repo}/pulls/{pull_number}") {
+      return(gh_pull_number)
+    }
+    if (command == "PUT /repos/{owner}/{repo}/pulls/{pull_number}/merge") {
+      return(gh_merge)
+    }
+  }
+
   mockery::stub(get_release, "devtools::as.package", pkg_test)
   rel <- get_release()
   mockery::stub(merge_release, "get_release", rel)
