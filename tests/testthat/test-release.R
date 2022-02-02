@@ -116,7 +116,7 @@ test_that("get_release returns correct package, version, and notes for first rel
 
 test_that('get_release stops when pkg != "."', {
   expect_error(
-    get_release(pkg = "foo"), 'currently only build_analysis_site\\(pkg = "\\."\\) is supported'
+    get_release(pkg = "tpkg"), 'currently only build_analysis_site\\(pkg = "\\."\\) is supported'
   )
 })
 
@@ -150,7 +150,7 @@ test_that('stage_release stops when pkg != "."', {
   mockery::stub(stage_release, "gh::gh", NULL)
 
   expect_error(
-    stage_release(pkg = "foo"), 'currently only build_analysis_site\\(pkg = "\\."\\) is supported'
+    stage_release(pkg = "tpkg"), 'currently only build_analysis_site\\(pkg = "\\."\\) is supported'
   )
 })
 
@@ -419,6 +419,6 @@ test_that("merge_release errors when expected and returns list", {
   )
 
   expect_error(
-    merge_release(pkg = "foo"), 'currently only build_analysis_site\\(pkg = "\\."\\) is supported'
+    merge_release(pkg = "tpkg"), 'currently only build_analysis_site\\(pkg = "\\."\\) is supported'
   )
 })
