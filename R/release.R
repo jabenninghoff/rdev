@@ -156,10 +156,10 @@ stage_release <- function(pkg = ".", filename = "NEWS.md", host = NULL) {
 
   if (fs::file_exists("pkgdown/_base.yml")) {
     builder <- "build_analysis_site()"
-    rdev::build_analysis_site()
+    build_analysis_site()
   } else {
     builder <- "build_rdev_site()"
-    rdev::build_rdev_site()
+    build_rdev_site()
   }
   gert::git_add(".")
   gert::git_commit(paste0(builder, " for release ", rel$version))

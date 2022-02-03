@@ -155,7 +155,7 @@ build_analysis_site <- function(pkg = ".", ...) {
     }
   }
   purrr::walk(analysis_dirs, dir_check_copy, tmp_dir)
-  purrr::walk(notebooks, rdev::to_document, tmp_dir)
+  purrr::walk(notebooks, to_document, tmp_dir)
 
   # run render_site()
   rmarkdown::render_site(tmp_dir)
