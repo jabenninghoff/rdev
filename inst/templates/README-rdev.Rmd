@@ -22,7 +22,7 @@ knitr::opts_chunk$set(
 
 ## Overview
 
-**`r packageDescription("{{{ repo }}}", fields = "Title")`:** `r packageDescription("{{{ repo }}}", fields = "Description")`
+**`r desc::desc_get_field("Title")`:** `r desc::desc_get_field("Description")`
 
 Feel free to use and/or fork this project!
 
@@ -52,6 +52,5 @@ renv::install("{{{ username }}}/{{{ repo }}}")
 This is a basic example which shows you how to solve a common problem:
 
 ```{r example}
-library({{{ repo }}})
 # basic example code
 ```
