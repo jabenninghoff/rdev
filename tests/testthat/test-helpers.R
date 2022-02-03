@@ -4,8 +4,17 @@ test_that("local_temppkg errors with an invalid package type", {
   expect_error(local_temppkg(type = "badtype"), "unrecognized package type, 'badtype'")
 })
 
-test_that("local_temppkg creates a valid rdev package", {
+test_that("local_temppkg creates a valid usethis package", {
   dir <- usethis::ui_silence(local_temppkg())
+
+  # paste0(fs::path_file(dir), ".Rproj"), .Rbuildignore and .gitignore aren't created in rcmdcheck
+  expect_true(fs::file_exists("DESCRIPTION"))
+  expect_true(fs::file_exists("NAMESPACE"))
+  expect_true(fs::dir_exists("R"))
+})
+
+test_that("local_temppkg creates a valid rdev package", {
+  dir <- usethis::ui_silence(local_temppkg(type = "rdev"))
 
   # paste0(fs::path_file(dir), ".Rproj") isn't created when running rcmdcheck
   expect_true(fs::file_exists(".Rbuildignore"))

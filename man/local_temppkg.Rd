@@ -4,15 +4,15 @@
 \alias{local_temppkg}
 \title{Temporary package}
 \usage{
-local_temppkg(dir = fs::file_temp(), type = "rdev", env = parent.frame())
+local_temppkg(dir = fs::file_temp(), type = "usethis", env = parent.frame())
 }
 \arguments{
 \item{dir}{Path to package directory, created if necessary, defaults to \code{\link[fs:file_temp]{fs::file_temp()}}.}
 
-\item{type}{type of package to create, either "rdev" - \code{\link[=use_rdev_package]{use_rdev_package()}} or "analysis" -
-\code{\link[=use_analysis_package]{use_analysis_package()}}}
+\item{type}{type of package to create, one of "usethis" - \code{\link[usethis:create_package]{usethis::create_package()}},
+"rdev" - \code{\link[=use_rdev_package]{use_rdev_package()}}, or "analysis" - \code{\link[=use_analysis_package]{use_analysis_package()}}.}
 
-\item{env}{Environment passed to \code{\link[withr:defer]{withr::defer()}}, defaults to \code{\link[=parent.frame]{parent.frame()}}}
+\item{env}{Environment passed to \code{\link[withr:defer]{withr::defer()}}, defaults to \code{\link[=parent.frame]{parent.frame()}}.}
 }
 \value{
 Path to temporary package directory.
