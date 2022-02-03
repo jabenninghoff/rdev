@@ -7,7 +7,7 @@
 use_rdev_package(quiet = TRUE)
 }
 \arguments{
-\item{quiet}{If TRUE, disable user prompts and suppress output when testing.}
+\item{quiet}{If TRUE, disable user prompts by setting \code{\link[rlang:is_interactive]{rlang::local_interactive()}} to FALSE.}
 }
 \description{
 Add rdev templates and settings within the active package. Normally invoked when first setting
