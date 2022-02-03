@@ -1,0 +1,43 @@
+---
+title: "Valid Notebook with R Code"
+date: '2022-01-22'
+output:
+  html_notebook:
+    toc: yes
+    toc_float:
+      collapsed: no
+      smooth_scroll: no
+---
+
+Valid Notebook from 'Analysis Notebook' template that creates a cars plot.
+
+# Questions/TODO
+
+- [ ] Questions/TODO list here
+
+```{r setup, message = FALSE, warning = FALSE}
+# setup code here
+```
+
+# Import
+
+Import data (typically from external CSV).
+
+# Tidy/Transform
+
+Clean and Tidy data.
+
+# Explore
+
+Graph and model data to ask and answer questions.
+
+Plot the speed and stopping distances from the `cars` dataset (circa 1920).
+
+```{r cars}
+plot(cars)
+```
+
+
+# Communicate
+
+Communicate results.
