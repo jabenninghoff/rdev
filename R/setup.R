@@ -304,6 +304,10 @@ use_analysis_package <- function() {
     yaml::write_yaml(list(url = urls[1]), "pkgdown/_base.yml")
   }
 
+  # always overwrite README.Rmd
+  if (fs::file_exists("README.Rmd")) {
+    fs::file_delete("README.Rmd")
+  }
   usethis::use_template(
     "README-analysis.Rmd",
     save_as = "README.Rmd",
