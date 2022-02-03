@@ -157,7 +157,7 @@ create_github_repo <- function(repo_name, repo_desc = "", host = NULL) {
 #' Add rdev templates and settings within the active package. Normally invoked when first setting
 #'   up a package.
 #'
-#' @param quiet If TRUE, disable user prompts and suppress output when testing.
+#' @param quiet If TRUE, disable user prompts by setting [rlang::local_interactive()] to FALSE.
 #'
 #' @export
 use_rdev_package <- function(quiet = TRUE) {
@@ -231,14 +231,9 @@ use_rdev_package <- function(quiet = TRUE) {
   usethis::use_test("package")
 
   # run document() to create package .Rd file
+  devtools::document()
   # build REAMDE.md so that modified git hook works as expected
-  if (quiet) {
-    suppressMessages(devtools::document(quiet = TRUE))
-    suppressMessages(devtools::build_readme())
-  } else {
-    devtools::document()
-    devtools::build_readme()
-  }
+  devtools::build_readme()
 
   # use_rprofile() and sort_rbuildignore() need to run last, right before renv::init()
   use_rprofile()
