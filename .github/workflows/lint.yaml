@@ -22,5 +22,7 @@ jobs:
       - uses: r-lib/actions/setup-renv@v1
 
       - name: Lint all files
-        run: lintr::lint_dir(path = ".")
+        run: |
+          devtools::load_all(".")
+          lintr::lint_dir(path = ".")
         shell: Rscript {0}

@@ -144,8 +144,8 @@ test_that('stage_release stops when pkg != "."', {
   mockery::stub(stage_release, "desc::desc_set_version", NULL)
   mockery::stub(stage_release, "gert::git_add", NULL)
   mockery::stub(stage_release, "gert::git_commit", NULL)
-  mockery::stub(stage_release, "rdev::build_analysis_site", NULL)
-  mockery::stub(stage_release, "rdev::build_rdev_site", NULL)
+  mockery::stub(stage_release, "build_analysis_site", NULL)
+  mockery::stub(stage_release, "build_rdev_site", NULL)
   mockery::stub(stage_release, "gert::git_push", NULL)
   mockery::stub(stage_release, "gh::gh", NULL)
 
@@ -163,8 +163,8 @@ test_that("stage_release returns error on non-rdev version", {
   mockery::stub(stage_release, "desc::desc_set_version", NULL)
   mockery::stub(stage_release, "gert::git_add", NULL)
   mockery::stub(stage_release, "gert::git_commit", NULL)
-  mockery::stub(stage_release, "rdev::build_analysis_site", NULL)
-  mockery::stub(stage_release, "rdev::build_rdev_site", NULL)
+  mockery::stub(stage_release, "build_analysis_site", NULL)
+  mockery::stub(stage_release, "build_rdev_site", NULL)
   mockery::stub(stage_release, "gert::git_push", NULL)
   mockery::stub(stage_release, "gh::gh", NULL)
 
@@ -180,8 +180,8 @@ test_that("stage_release returns error on empty release notes", {
   mockery::stub(stage_release, "desc::desc_set_version", NULL)
   mockery::stub(stage_release, "gert::git_add", NULL)
   mockery::stub(stage_release, "gert::git_commit", NULL)
-  mockery::stub(stage_release, "rdev::build_analysis_site", NULL)
-  mockery::stub(stage_release, "rdev::build_rdev_site", NULL)
+  mockery::stub(stage_release, "build_analysis_site", NULL)
+  mockery::stub(stage_release, "build_rdev_site", NULL)
   mockery::stub(stage_release, "gert::git_push", NULL)
   mockery::stub(stage_release, "gh::gh", NULL)
 
@@ -205,8 +205,8 @@ test_that("stage_release returns error if git tag matching version exists", {
   mockery::stub(stage_release, "desc::desc_set_version", NULL)
   mockery::stub(stage_release, "gert::git_add", NULL)
   mockery::stub(stage_release, "gert::git_commit", NULL)
-  mockery::stub(stage_release, "rdev::build_analysis_site", NULL)
-  mockery::stub(stage_release, "rdev::build_rdev_site", NULL)
+  mockery::stub(stage_release, "build_analysis_site", NULL)
+  mockery::stub(stage_release, "build_rdev_site", NULL)
   mockery::stub(stage_release, "gert::git_push", NULL)
   mockery::stub(stage_release, "gh::gh", NULL)
 
@@ -227,8 +227,8 @@ test_that("stage_release returns error if uncommitted changes are present", {
   mockery::stub(stage_release, "desc::desc_set_version", NULL)
   mockery::stub(stage_release, "gert::git_add", NULL)
   mockery::stub(stage_release, "gert::git_commit", NULL)
-  mockery::stub(stage_release, "rdev::build_analysis_site", NULL)
-  mockery::stub(stage_release, "rdev::build_rdev_site", NULL)
+  mockery::stub(stage_release, "build_analysis_site", NULL)
+  mockery::stub(stage_release, "build_rdev_site", NULL)
   mockery::stub(stage_release, "gert::git_push", NULL)
   mockery::stub(stage_release, "gh::gh", NULL)
 
@@ -254,8 +254,8 @@ test_that("stage_release creates new branch", {
   mockery::stub(stage_release, "desc::desc_set_version", NULL)
   mockery::stub(stage_release, "gert::git_add", NULL)
   mockery::stub(stage_release, "gert::git_commit", NULL)
-  mockery::stub(stage_release, "rdev::build_analysis_site", NULL)
-  mockery::stub(stage_release, "rdev::build_rdev_site", NULL)
+  mockery::stub(stage_release, "build_analysis_site", NULL)
+  mockery::stub(stage_release, "build_rdev_site", NULL)
   mockery::stub(stage_release, "gert::git_push", NULL)
   mockery::stub(stage_release, "gh::gh", NULL)
 
@@ -278,8 +278,8 @@ test_that("stage_release errors when on default branch before commits", {
   mockery::stub(stage_release, "desc::desc_set_version", NULL)
   mockery::stub(stage_release, "gert::git_add", NULL)
   mockery::stub(stage_release, "gert::git_commit", NULL)
-  mockery::stub(stage_release, "rdev::build_analysis_site", NULL)
-  mockery::stub(stage_release, "rdev::build_rdev_site", NULL)
+  mockery::stub(stage_release, "build_analysis_site", NULL)
+  mockery::stub(stage_release, "build_rdev_site", NULL)
   mockery::stub(stage_release, "gert::git_push", NULL)
   mockery::stub(stage_release, "gh::gh", NULL)
 
@@ -299,27 +299,27 @@ test_that("stage_release runs proper builder", {
   mockery::stub(stage_release, "gert::git_branch", "stage-release")
   # stub functions that change state
   analysis <- function() {
-    stop("rdev::build_analysis_site")
+    stop("build_analysis_site")
   }
   rdev <- function() {
-    stop("rdev::build_rdev_site")
+    stop("build_rdev_site")
   }
   mockery::stub(stage_release, "gert::git_branch_create", NULL)
   mockery::stub(stage_release, "desc::desc_set_version", NULL)
   mockery::stub(stage_release, "gert::git_add", NULL)
   mockery::stub(stage_release, "gert::git_commit", NULL)
-  mockery::stub(stage_release, "rdev::build_analysis_site", analysis)
-  mockery::stub(stage_release, "rdev::build_rdev_site", rdev)
+  mockery::stub(stage_release, "build_analysis_site", analysis)
+  mockery::stub(stage_release, "build_rdev_site", rdev)
   mockery::stub(stage_release, "gert::git_push", NULL)
   mockery::stub(stage_release, "gh::gh", NULL)
 
   withr::local_dir(withr::local_tempdir())
-  expect_error(stage_release(), "rdev::build_rdev_site")
+  expect_error(stage_release(), "build_rdev_site")
 
   fs::dir_create("pkgdown")
   base <- fs::file_create("pkgdown/_base.yml")
   writeLines("url: ~", base)
-  expect_error(stage_release(), "rdev::build_analysis_site")
+  expect_error(stage_release(), "build_analysis_site")
 })
 
 test_that("stage_release returns pull request results", {
@@ -340,8 +340,8 @@ test_that("stage_release returns pull request results", {
   mockery::stub(stage_release, "desc::desc_set_version", NULL)
   mockery::stub(stage_release, "gert::git_add", NULL)
   mockery::stub(stage_release, "gert::git_commit", NULL)
-  mockery::stub(stage_release, "rdev::build_analysis_site", NULL)
-  mockery::stub(stage_release, "rdev::build_rdev_site", NULL)
+  mockery::stub(stage_release, "build_analysis_site", NULL)
+  mockery::stub(stage_release, "build_rdev_site", NULL)
   mockery::stub(stage_release, "gert::git_push", NULL)
   mockery::stub(stage_release, "gh::gh", "pull_request")
 

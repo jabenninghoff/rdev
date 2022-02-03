@@ -242,7 +242,7 @@ use_rdev_package <- function(quiet = TRUE) {
 
   # use_rprofile() and sort_rbuildignore() need to run last, right before renv::init()
   use_rprofile()
-  rdev::sort_rbuildignore()
+  sort_rbuildignore()
 
   # run renv::init() last to restart the session
   renv::init()
@@ -303,7 +303,7 @@ use_analysis_package <- function() {
   usethis::use_git_ignore(analysis_gitignore)
 
   usethis::use_build_ignore(analysis_rbuildignore, escape = FALSE)
-  rdev::sort_rbuildignore()
+  sort_rbuildignore()
 
   urls <- desc::desc_get_urls()
   if (length(urls) >= 1 & !fs::file_exists("pkgdown/_base.yml")) {

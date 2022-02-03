@@ -65,7 +65,7 @@ test_that("use_analysis_package returns expected values", {
   mockery::stub(use_analysis_package, "fs::dir_create", NULL)
   mockery::stub(use_analysis_package, "usethis::use_git_ignore", NULL)
   mockery::stub(use_analysis_package, "usethis::use_build_ignore", NULL)
-  mockery::stub(use_analysis_package, "rdev::sort_rbuildignore", NULL)
+  mockery::stub(use_analysis_package, "sort_rbuildignore", NULL)
   mockery::stub(use_analysis_package, "desc::desc_get_urls", urls)
   mockery::stub(use_analysis_package, "fs::file_exists", FALSE)
   mockery::stub(use_analysis_package, "yaml::write_yaml", NULL)
