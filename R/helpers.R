@@ -57,8 +57,24 @@ local_temppkg <- function(dir = fs::file_temp(), type = "usethis", env = parent.
     mockery::stub(use_rdev_package, "usethis::use_github_pages", gh_pages)
     mockery::stub(use_rdev_package, "gh::gh", NULL)
     mockery::stub(use_rdev_package, "renv::install", NULL)
-    mockery::stub(use_rdev_package, "devtools::build_readme", NULL)
     mockery::stub(use_rdev_package, "renv::init", NULL)
+
+    # nolint start: line_length_linter
+    # stub all devtools functions as they introduce problems into the R session when run here (restarting session fixes)
+    #
+    # example 1: devtools::document causes the "?" help lookup operator to break after running local_temppkg
+    # > ?suppressMessages
+    # Error in `pkg_path()`:
+    # ! Could not find a root 'DESCRIPTION' file that starts with '^Package' in '/private/var/folders/4v/k12n8ksn77l4_bcsvc6kfgk00000gn/T/RtmpLH9A2O/fileaa31781656b1'. Are you in your project directory, and does your project have a 'DESCRIPTION' file?
+    # Run `rlang::last_error()` to see where the error occurred.
+    # Warning message:
+    # In normalizePath(path) :
+    #   path[1]="/private/var/folders/4v/k12n8ksn77l4_bcsvc6kfgk00000gn/T/RtmpLH9A2O/fileaa31781656b1": No such file or directory
+    #
+    # example 2: devtools::build_readme breaks covr::codecov() test-coverage.yaml workflow
+    # nolint end
+    mockery::stub(use_rdev_package, "devtools::document", NULL)
+    mockery::stub(use_rdev_package, "devtools::build_readme", NULL)
 
     usethis::use_git()
     use_rdev_package()
