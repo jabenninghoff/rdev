@@ -56,10 +56,19 @@ local_temppkg <- function(dir = fs::file_temp(), type = "rdev", env = parent.fra
   mockery::stub(use_rdev_package, "usethis::use_github_pages", gh_pages)
   mockery::stub(use_rdev_package, "gh::gh", NULL)
   mockery::stub(use_rdev_package, "renv::install", NULL)
+  mockery::stub(use_rdev_package, "devtools::document", NULL)
+  mockery::stub(use_rdev_package, "devtools::build_readme", NULL)
   mockery::stub(use_rdev_package, "renv::init", NULL)
 
   # create rdev package
   usethis::use_git()
+  use_rdev_package()
+
+  # create analysis package
+  mockery::stub(use_analysis_package, "get_github_repo", gh_repo)
+  if (type == "analysis") {
+    use_analysis_package()
+  }
 
   dir
 }
