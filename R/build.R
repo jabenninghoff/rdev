@@ -66,6 +66,9 @@ build_analysis_site <- function(pkg = ".", ...) {
     stop('currently only build_analysis_site(pkg = ".") is supported')
   }
 
+  if (!fs::dir_exists("analysis")) {
+    stop("No analysis directory found")
+  }
   notebooks <- fs::dir_ls("analysis", glob = "*.Rmd")
   if (length(notebooks) == 0) {
     stop("No *.Rmd files in analysis directory")
