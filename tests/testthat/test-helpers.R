@@ -34,7 +34,7 @@ test_that("local_temppkg creates a valid rdev package", {
   expect_true(fs::file_exists("README.Rmd"))
   expect_true(fs::file_exists("TODO.md"))
   expect_true(fs::dir_exists("man"))
-  expect_length(fs::dir_ls("man"), 1)
+  expect_true(fs::file_exists(paste0("man/", fs::path_file(dir), "-package.Rd")))
   expect_true(fs::file_exists("tests/testthat/test-package.R"))
   expect_true(fs::file_exists("tests/testthat.R"))
 })
@@ -61,7 +61,7 @@ test_that("local_temppkg creates a valid analysis package", {
   expect_true(fs::file_exists("README.Rmd"))
   expect_true(fs::file_exists("TODO.md"))
   expect_true(fs::dir_exists("man"))
-  expect_length(fs::dir_ls("man"), 1)
+  expect_true(fs::file_exists(paste0("man/", fs::path_file(dir), "-package.Rd")))
   expect_true(fs::file_exists("tests/testthat/test-package.R"))
   expect_true(fs::file_exists("tests/testthat.R"))
 
