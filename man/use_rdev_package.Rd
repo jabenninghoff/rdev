@@ -4,7 +4,10 @@
 \alias{use_rdev_package}
 \title{Use rdev package conventions}
 \usage{
-use_rdev_package()
+use_rdev_package(quiet = TRUE)
+}
+\arguments{
+\item{quiet}{If TRUE, disable user prompts and suppress output when testing.}
 }
 \description{
 Add rdev templates and settings within the active package. Normally invoked when first setting
