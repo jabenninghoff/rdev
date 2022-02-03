@@ -74,6 +74,19 @@ test_that("to_document converts `html_notebook` to `html_document`", {
   expect_identical(doc_yaml$output$html_document, nb_yaml$output$html_notebook)
 })
 
+test_that("to_document converts document containing executable R code", {
+  dest <- fs::file_temp(pattern = "document", ext = "Rmd")
+  withr::local_file(dest)
+
+  to_document("with-code.Rmd", dest)
+  nb_yaml <- rmarkdown::yaml_front_matter("with-code.Rmd")
+  doc_yaml <- rmarkdown::yaml_front_matter(dest)
+
+  expect_null(doc_yaml$output$html_notebook)
+  expect_identical(doc_yaml$output$html_document, nb_yaml$output$html_notebook)
+})
+
+
 test_that("to_document converts minimal `html_notebook` to `html_document`", {
   dest <- fs::file_temp(pattern = "document", ext = "Rmd")
   withr::local_file(dest)
