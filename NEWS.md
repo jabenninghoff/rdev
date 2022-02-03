@@ -1,5 +1,9 @@
 # rdev 0.8.10 (unreleased)
 
+* Added `local_temppkg()` test helper function
+
+* Minor enhancements to `use_rdev_package()`, `use_analysis_package()`, README.Rmd templates
+
 * Updated documentation
 
 * Added manual test script for new package setup, increased test coverage
