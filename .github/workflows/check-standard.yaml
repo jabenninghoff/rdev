@@ -41,8 +41,7 @@ jobs:
 
       - uses: r-lib/actions/setup-renv@v2
       - name: Install rcmdcheck
-        run: |
-          renv::install("rcmdcheck")
+        run: renv::install("rcmdcheck")
         shell: Rscript {0}
 
       - uses: r-lib/actions/check-r-package@v2
