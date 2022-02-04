@@ -39,8 +39,10 @@ Suggests:
     mockery,
     knitr,
     covr,
-    DT
+    DT,
+    spelling
 Config/testthat/edition: 3
 Remotes:
     r-lib/lintr
 VignetteBuilder: knitr
+Language: en-US
