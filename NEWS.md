@@ -1,4 +1,22 @@
-# rdev 0.8.10 (unreleased)
+# rdev 1.0.0
+
+rdev is now stable enough for a 1.0.0 release!
+
+## Major features
+
+rdev provides functions and templates for:
+
+* Release automation: Stage and create GitHub releases, including GitHub pages
+
+* Continuous Integration: Local continuous integration checks and dependency management
+
+* Package Setup: Package setup tasks, typically performed once
+
+## Recent changes
+
+Changes since release 0.8.9:
+
+* (TODO) add codecov and spelling to use_rdev_package
 
 * Added `local_temppkg()` test helper function
 
@@ -7,6 +25,16 @@
 * Updated documentation
 
 * Added manual test script for new package setup, increased test coverage
+
+## TODO
+
+In `ci()`:
+
+* `styler` should be set to automatically run if there are no uncommitted changes
+
+* `lintr` should stop execution and open RStudio markers if any lints are found
+
+* `ci()` should run `styler` and `lintr` by default
 
 # rdev 0.8.9
 
