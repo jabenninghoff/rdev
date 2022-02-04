@@ -60,6 +60,8 @@ build_rdev_site <- function(pkg = ".", ...) {
 #'
 #' @inheritParams build_rdev_site
 #'
+#' @return rmarkdown _site.yml as yaml, invisibly
+#'
 #' @export
 build_analysis_site <- function(pkg = ".", ...) {
   if (pkg != ".") {
@@ -169,4 +171,6 @@ build_analysis_site <- function(pkg = ".", ...) {
   dir_check_delete(paste0(tmp_dir, "/docs/data"))
   dir_check_delete(paste0(tmp_dir, "/docs/import"))
   fs::dir_copy(paste0(tmp_dir, "/docs"), pkg)
+
+  return(invisible(yaml::read_yaml(paste0(tmp_dir, "/_site.yml"))))
 }

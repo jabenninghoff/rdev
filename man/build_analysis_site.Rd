@@ -11,6 +11,9 @@ build_analysis_site(pkg = ".", ...)
 
 \item{...}{additional arguments passed to \code{\link[pkgdown:build_site]{pkgdown::build_site()}} (not implemented)}
 }
+\value{
+rmarkdown _site.yml as yaml, invisibly
+}
 \description{
 \code{build_analysis_site()} is a wrapper for \code{\link[pkgdown:build_site]{pkgdown::build_site()}} that adds an 'Analysis' menu
 containing rendered versions of all .Rmd files in \verb{analysis/}.
