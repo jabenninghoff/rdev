@@ -3,7 +3,7 @@ url: https://jabenninghoff.github.io/rdev
 reference:
   - title: Release Automation
     desc: >
-      Stage and create GitHub releases and GitHub pages
+      Stage and create GitHub releases, including GitHub pages
     contents:
     - build_analysis_site
     - build_rdev_site
@@ -13,9 +13,9 @@ reference:
     - get_release
     - to_document
     - rmd_metadata
-  - title: Continous Integration
+  - title: Continuous Integration
     desc: >
-      Local continous integration checks and dependency management
+      Local continuous integration checks and dependency management
     contents:
     - check_renv
     - style_all
