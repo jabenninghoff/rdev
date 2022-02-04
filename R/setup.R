@@ -172,6 +172,9 @@ use_rdev_package <- function(quiet = TRUE) {
   usethis::use_github_action(
     url = "https://github.com/jabenninghoff/rdev/blob/main/.github/workflows/lint.yaml"
   )
+  usethis::use_github_action(
+    url = "https://github.com/jabenninghoff/rdev/blob/main/.github/workflows/test-coverage.yaml"
+  )
   use_todo()
   usethis::use_news_md()
   usethis::use_readme_rmd()
@@ -222,13 +225,22 @@ use_rdev_package <- function(quiet = TRUE) {
     homepage = pages_url
   )
 
-  # update dependencies, activate renv
+  # update dependencies
   usethis::use_package("devtools", type = "Suggests")
   renv::install("jabenninghoff/rdev")
   usethis::use_dev_package("rdev", type = "Suggests", remote = "jabenninghoff/rdev")
   usethis::use_testthat()
   # add a test for package.R so that ci() passes immediately after use_rdev_package() is run
   usethis::use_test("package")
+
+  # add code coverage
+  usethis::use_coverage(type = "codecov")
+  renv::install("DT")
+  usethis::use_package("DT", type = "Suggests")
+
+  # add spelling
+  renv::install("spelling")
+  usethis::use_spell_check(vignettes = TRUE, lang = "en-US", error = TRUE)
 
   # run document() to create package .Rd file
   devtools::document()
