@@ -76,10 +76,10 @@ build_analysis_site <- function(pkg = ".", ...) {
     stop("No *.Rmd files in analysis directory")
   }
 
-  # read base settings, write to pkgdown
   if (!fs::file_exists("pkgdown/_base.yml")) {
     stop("pkgdown/_base.yml does not exist")
   }
+  writeLines("creating `_pkgdown.yml` from `pkgdown/_base.yml`")
   pkg_yml <- yaml::read_yaml("pkgdown/_base.yml")
   fs::file_copy("pkgdown/_base.yml", "_pkgdown.yml", overwrite = TRUE)
 
@@ -101,19 +101,19 @@ build_analysis_site <- function(pkg = ".", ...) {
     length(pkg_yml$navbar$components) - 1
   )
 
-  # write template
   yaml::write_yaml(pkg_yml, "_pkgdown.yml")
 
-  # rebuild REAMDE.md
   if (fs::file_exists("README.Rmd")) {
+    writeLines("rebuilding `README.md`")
     devtools::build_readme(pkg)
   }
 
-  # run clean_site() and build_site()
+  writeLines("pkgdown::clean_site()")
   pkgdown::clean_site()
+  writeLines("pkgdown::build_site()")
   withr::with_envvar(c("CI" = "TRUE"), pkgdown::build_site())
 
-  # create _site.yml from _pkgdown.yml in temporary build directory
+  writeLines("creating `_site.yml` from `_pkgdown.yml` in temporary directory")
   desc <- desc::description$new(pkg)
   title <- paste0(desc$get("Package")[[1]], " notebooks")
 
@@ -149,7 +149,7 @@ build_analysis_site <- function(pkg = ".", ...) {
   fs::dir_create(tmp_dir)
   yaml::write_yaml(site_yml, paste0(tmp_dir, "/_site.yml"))
 
-  # copy files from analysis/ into build directory, changing html_notebook to html_document
+  writeLines("copying files from analysis/ to temporary directory")
   analysis_dirs <- fs::dir_ls("analysis", regexp = "/(assets|data|import|rendered)$")
   dir_check_copy <- function(path, new_path) {
     if (fs::is_dir(path)) {
@@ -157,12 +157,14 @@ build_analysis_site <- function(pkg = ".", ...) {
     }
   }
   purrr::walk(analysis_dirs, dir_check_copy, tmp_dir)
+  writeLines("converting html_notebook to html_document")
   purrr::walk(notebooks, to_document, tmp_dir)
 
-  # run render_site()
+  writeLines("rmarkdown::render_site()")
   rmarkdown::render_site(tmp_dir)
 
-  # move rendered files to docs/, do not overwrite, skip data/, import/
+  writeLines("moving rendered files to docs/")
+  # do not overwrite, skip data/, import/
   dir_check_delete <- function(path) {
     if (fs::dir_exists(path)) {
       fs::dir_delete(path)
@@ -172,5 +174,6 @@ build_analysis_site <- function(pkg = ".", ...) {
   dir_check_delete(paste0(tmp_dir, "/docs/import"))
   fs::dir_copy(paste0(tmp_dir, "/docs"), pkg)
 
+  writeLines("build_analysis_site() complete")
   return(invisible(yaml::read_yaml(paste0(tmp_dir, "/_site.yml"))))
 }
