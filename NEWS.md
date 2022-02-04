@@ -2,7 +2,7 @@
 
 * Added `local_temppkg()` test helper function
 
-* Minor enhancements to `use_rdev_package()`, `use_analysis_package()`, README.Rmd templates
+* Minor enhancements to `use_rdev_package()`, `use_analysis_package()`, `build_analysis_site()`, README.Rmd templates
 
 * Updated documentation
 
