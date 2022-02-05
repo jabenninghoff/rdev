@@ -16,7 +16,7 @@ rdev provides functions and templates for:
 
 Changes since release 0.8.9:
 
-* (TODO) add codecov and spelling to use_rdev_package
+* Add codecov and spelling to `use_rdev_package()`
 
 * Added `local_temppkg()` test helper function
 
