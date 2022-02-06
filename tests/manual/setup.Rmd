@@ -116,10 +116,10 @@ Commit the changes, check the new package, and push to GitHub:
 
 ```r
 gert::git_add(".")
+gert::git_commit("rdev::use_rdev_package()")
 style_all()
 lint_all()
 ci()
-gert::git_commit("rdev::use_rdev_package()")
 gert::git_push()
 ```
 
