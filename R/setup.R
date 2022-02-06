@@ -75,7 +75,9 @@ use_spelling <- function(lang = "en-US") {
 #' Install code coverage with [`usethis::use_coverage(type = "codecov")`][usethis::use_coverage()],
 #'   `DT` package for [covr::report()], and rdev GitHub action `test-coverage.yaml`.
 #'
-#' `use_codecov()` is not run in [use_rdev_package()].
+#' Because [use_rdev_package()], [use_analysis_package()] and `use_codecov()` all modify README.Rmd,
+#'   `use_codecov()` must be run last or its changes will be overwritten. `use_codecov()` is not run
+#'   in [use_rdev_package()].
 #'
 #' @export
 use_codecov <- function() {
