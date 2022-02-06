@@ -70,6 +70,24 @@ use_spelling <- function(lang = "en-US") {
   usethis::use_template("spelling.R", save_as = "tests/spelling.R", package = "rdev")
 }
 
+#' Use rdev codecov
+#'
+#' Install code coverage with [`usethis::use_coverage(type = "codecov")`][usethis::use_coverage()],
+#'   `DT` package for [covr::report()], and rdev GitHub action `test-coverage.yaml`.
+#'
+#' `use_codecov()` is not run in [use_rdev_package()].
+#'
+#' @export
+use_codecov <- function() {
+  renv::install("covr")
+  usethis::use_coverage(type = "codecov")
+  renv::install("DT")
+  usethis::use_package("DT", type = "Suggests")
+  usethis::use_github_action(
+    url = "https://github.com/jabenninghoff/rdev/blob/main/.github/workflows/test-coverage.yaml"
+  )
+}
+
 #' Get GitHub username and repository
 #'
 #' Retrieve and parse the GitHub remote to identify username and repo name.
@@ -189,9 +207,6 @@ use_rdev_package <- function(quiet = TRUE) {
   usethis::use_github_action(
     url = "https://github.com/jabenninghoff/rdev/blob/main/.github/workflows/lint.yaml"
   )
-  usethis::use_github_action(
-    url = "https://github.com/jabenninghoff/rdev/blob/main/.github/workflows/test-coverage.yaml"
-  )
   use_todo()
   usethis::use_news_md()
   usethis::use_readme_rmd()
@@ -249,11 +264,6 @@ use_rdev_package <- function(quiet = TRUE) {
   usethis::use_testthat()
   # add a test for package.R so that ci() passes immediately after use_rdev_package() is run
   usethis::use_test("package")
-
-  # add code coverage
-  usethis::use_coverage(type = "codecov")
-  renv::install("DT")
-  usethis::use_package("DT", type = "Suggests")
 
   # run document() to create package .Rd file
   devtools::document()
