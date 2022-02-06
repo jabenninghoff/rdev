@@ -17,7 +17,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">rdev</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="">0.8.9</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="">1.0.0</span>
       </span>
     </div>
 
@@ -57,6 +57,43 @@
       <small>Source: <a href="https://github.com/jabenninghoff/rdev/blob/HEAD/NEWS.md" class="external-link"><code>NEWS.md</code></a></small>
     </div>
 
+    <div class="section level2">
+<h2 class="page-header" data-toc-text="1.0.0" id="rdev-100">rdev 1.0.0<a class="anchor" aria-label="anchor" href="#rdev-100"></a></h2>
+<p>rdev is now stable enough for a 1.0.0 release!</p>
+<div class="section level3">
+<h3 id="major-features-1-0-0">Major features<a class="anchor" aria-label="anchor" href="#major-features-1-0-0"></a></h3>
+<p>rdev provides functions and templates for:</p>
+<ul><li><p>Release automation: Stage and create GitHub releases, including
+GitHub pages</p></li>
+<li><p>Continuous Integration: Local continuous integration checks and
+dependency management</p></li>
+<li><p>Package Setup: Package setup tasks, typically performed
+once</p></li>
+</ul></div>
+<div class="section level3">
+<h3 id="recent-changes-1-0-0">Recent changes<a class="anchor" aria-label="anchor" href="#recent-changes-1-0-0"></a></h3>
+<p>Changes since release 0.8.9:</p>
+<ul><li><p>Add <code><a href="../reference/use_spelling.html">use_spelling()</a></code> and
+<code><a href="../reference/use_codecov.html">use_codecov()</a></code></p></li>
+<li><p>Added <code><a href="../reference/local_temppkg.html">local_temppkg()</a></code> test helper function</p></li>
+<li><p>Minor enhancements to <code><a href="../reference/use_rdev_package.html">use_rdev_package()</a></code>,
+<code><a href="../reference/use_analysis_package.html">use_analysis_package()</a></code>, <code><a href="../reference/build_analysis_site.html">build_analysis_site()</a></code>,
+README.Rmd templates</p></li>
+<li><p>Updated documentation</p></li>
+<li><p>Added manual test script for new package setup, increased test
+coverage</p></li>
+</ul></div>
+<div class="section level3">
+<h3 id="todo-1-0-0">TODO<a class="anchor" aria-label="anchor" href="#todo-1-0-0"></a></h3>
+<p>In <code><a href="../reference/ci.html">ci()</a></code>:</p>
+<ul><li><p><code>styler</code> should be set to automatically run if there
+are no uncommitted changes</p></li>
+<li><p><code>lintr</code> should stop execution and open RStudio markers
+if any lints are found</p></li>
+<li><p><code><a href="../reference/ci.html">ci()</a></code> should run <code>styler</code> and
+<code>lintr</code> by default</p></li>
+</ul></div>
+</div>
     <div class="section level2">
 <h2 class="page-header" data-toc-text="0.8.9" id="rdev-089">rdev 0.8.9<a class="anchor" aria-label="anchor" href="#rdev-089"></a></h2>
 <ul><li>Bug fixes for <code><a href="../reference/use_rdev_package.html">use_rdev_package()</a></code>,

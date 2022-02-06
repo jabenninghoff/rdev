@@ -18,7 +18,7 @@ containing rendered versions of all .Rmd files in analysis/."><!-- mathjax --><s
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">rdev</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="">0.8.9</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="">1.0.0</span>
       </span>
     </div>
 
@@ -75,6 +75,10 @@ containing rendered versions of all .Rmd files in <code>analysis/</code>.</p>
 <dt>...</dt>
 <dd><p>additional arguments passed to <code><a href="https://pkgdown.r-lib.org/reference/build_site.html" class="external-link">pkgdown::build_site()</a></code> (not implemented)</p></dd>
 </dl></div>
+    <div id="value">
+    <h2>Value</h2>
+    <p>rmarkdown _site.yml as yaml, invisibly</p>
+    </div>
     <div id="details">
     <h2>Details</h2>
     <p>When run, <code>build_analysis_site()</code>:</p><ol><li><p>Reads base pkgdown settings from <code>pkgdown/_base.yml</code></p></li>
@@ -95,6 +99,11 @@ to render files with the look and feel of <code>html_notebook</code></p></li>
 <li><p>Moves the rendered files to <code>docs/</code>: <code>*.html</code>, <code>assets/</code>, <code>rendered/</code>, without overwriting</p></li>
 </ol><p><code>build_analysis_site()</code> will fail with an error if there are no files in <code>analysis/*.Rmd</code>, or if
 <code>pkgdown/_base.yml</code> does not exist.</p>
+    </div>
+    <div id="continuous-integration">
+    <h2>Continuous Integration</h2>
+    
+
 <p>Both <code><a href="build_rdev_site.html">build_rdev_site()</a></code> and <code>build_analysis_site()</code> are meant to be used as part of a CI/CD
 workflow, and temporarily set the environment variable <code>CI == "TRUE"</code> so that the build will
 fail when non-internal topics are not included on the reference index page per
