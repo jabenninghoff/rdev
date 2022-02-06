@@ -230,3 +230,81 @@ lint_all()
 ci()
 build_analysis_site()
 ```
+
+# Use spelling
+
+Given:
+
+- Running in an interactive session at the rdtest1 project root
+- Commands in 'Create GitHub Repository' have been run
+- Commands in 'Use rdev package' have been run
+- Optionally, commands in 'Use analysis package' have been run
+
+When:
+
+Activating spelling with the following commands, answering '1: Yes' when prompted to update the
+wordlist:
+
+```r
+use_spelling()
+```
+
+Then:
+
+There will be 4 new or changed files:
+
+- `DESCRIPTION`: added spelling, Language
+- `inst/WORDLIST`: new, with the following words in the list:
+  - CMD
+  - Changelog
+  - ORCID
+  - rdtest
+  - renv
+- `renv.lock`: added spelling, dependencies
+- `tests/spelling.R`: new, from rdev template
+
+Test the installation by running renv and CI checks which should pass:
+
+```r
+check_renv()
+style_all()
+lint_all()
+ci()
+```
+
+# Use codecov
+
+Given:
+
+- Running in an interactive session at the rdtest1 project root
+- Commands in 'Create GitHub Repository' have been run
+- Commands in 'Use rdev package' have been run
+- Optionally, commands in 'Use analysis package' have been run
+
+When:
+
+Activating  codecov with the following commands:
+
+```r
+use_codecov()
+```
+
+Then:
+
+There will be 6 new or changed files:
+
+- `.github/workflows/test-coverage.yaml`: new, added from rdev workflows
+- `.Rbuildignore`: added codecov.yml
+- `codecov.yml`: new
+- `DESCRIPTION`: added covr, DT
+- `README.Rmd`: added 'Codecov test coverage' badge
+- `renv.lock`: added covr, DT, dependencies
+
+Test the installation by running renv and CI checks which should pass:
+
+```r
+check_renv()
+style_all()
+lint_all()
+ci()
+```
