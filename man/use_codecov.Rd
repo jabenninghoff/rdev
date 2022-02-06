@@ -4,7 +4,10 @@
 \alias{use_codecov}
 \title{Use rdev codecov}
 \usage{
-use_codecov()
+use_codecov(prompt = FALSE)
+}
+\arguments{
+\item{prompt}{If TRUE, prompt before writing \code{renv.lock}, passed to \code{\link[renv:snapshot]{renv::snapshot()}}.}
 }
 \description{
 Install code coverage with \code{\link[usethis:use_coverage]{usethis::use_coverage(type = "codecov")}},

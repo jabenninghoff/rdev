@@ -61,13 +61,15 @@ use_package_r <- function(open = FALSE) {
 #'   [use_rdev_package()].
 #'
 #' @inheritParams usethis::use_spell_check
+#' @inheritParams use_codecov
 #'
 #' @export
-use_spelling <- function(lang = "en-US") {
+use_spelling <- function(lang = "en-US", prompt = FALSE) {
   renv::install("spelling")
   usethis::use_spell_check(vignettes = TRUE, lang = lang, error = TRUE)
   fs::file_delete("tests/spelling.R")
   usethis::use_template("spelling.R", save_as = "tests/spelling.R", package = "rdev")
+  renv::snapshot(prompt = prompt)
 }
 
 #' Use rdev codecov
@@ -79,8 +81,10 @@ use_spelling <- function(lang = "en-US") {
 #'   `use_codecov()` must be run last or its changes will be overwritten. `use_codecov()` is not run
 #'   in [use_rdev_package()].
 #'
+#' @param prompt If TRUE, prompt before writing `renv.lock`, passed to [renv::snapshot()].
+#'
 #' @export
-use_codecov <- function() {
+use_codecov <- function(prompt = FALSE) {
   renv::install("covr")
   usethis::use_coverage(type = "codecov")
   renv::install("DT")
@@ -88,6 +92,7 @@ use_codecov <- function() {
   usethis::use_github_action(
     url = "https://github.com/jabenninghoff/rdev/blob/main/.github/workflows/test-coverage.yaml"
   )
+  renv::snapshot(prompt = prompt)
 }
 
 #' Get GitHub username and repository

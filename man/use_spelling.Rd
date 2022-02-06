@@ -4,11 +4,13 @@
 \alias{use_spelling}
 \title{Use rdev spelling}
 \usage{
-use_spelling(lang = "en-US")
+use_spelling(lang = "en-US", prompt = FALSE)
 }
 \arguments{
 \item{lang}{Preferred spelling language. Usually either \code{"en-US"} or
 \code{"en-GB"}.}
+
+\item{prompt}{If TRUE, prompt before writing \code{renv.lock}, passed to \code{\link[renv:snapshot]{renv::snapshot()}}.}
 }
 \description{
 Install \link[spelling:spell_check_package]{spelling} with rdev conventions.
