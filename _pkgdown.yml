@@ -27,17 +27,20 @@ reference:
     contents:
     - create_github_repo
     - use_analysis_package
+    - use_codecov
     - use_lintr
     - use_package_r
     - use_rdev_package
     - use_rprofile
+    - use_spelling
     - use_todo
   - title: Utilities
     desc: >
-      Clean and tidy package files
+      Utilities and test helpers
     contents:
     - sort_file
     - sort_rbuildignore
+    - local_temppkg
   - title: rdev Package
     desc: >
       rdev package documentation
