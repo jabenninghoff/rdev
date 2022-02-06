@@ -261,7 +261,8 @@ use_rdev_package <- function(quiet = TRUE) {
 
   # update dependencies
   usethis::use_package("devtools", type = "Suggests")
-  renv::install("jabenninghoff/rdev")
+  # use install_github() to prevent renv initialization
+  remotes::install_github("jabenninghoff/rdev", quiet = TRUE)
   usethis::use_dev_package("rdev", type = "Suggests", remote = "jabenninghoff/rdev")
   usethis::use_testthat()
   # add a test for package.R so that ci() passes immediately after use_rdev_package() is run
