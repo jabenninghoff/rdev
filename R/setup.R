@@ -53,6 +53,23 @@ use_package_r <- function(open = FALSE) {
   )
 }
 
+#' Use rdev spelling
+#'
+#' Install [spelling][spelling::spelling] with rdev conventions.
+#'
+#' Since [spelling::spell_check_setup()] requires user interaction, `use_spelling()` is not run in
+#'   [use_rdev_package()].
+#'
+#' @inheritParams usethis::use_spell_check
+#'
+#' @export
+use_spelling <- function(lang = "en-US") {
+  renv::install("spelling")
+  usethis::use_spell_check(vignettes = TRUE, lang = lang, error = TRUE)
+  fs::file_delete("tests/spelling.R")
+  usethis::use_template("spelling.R", save_as = "tests/spelling.R", package = "rdev")
+}
+
 #' Get GitHub username and repository
 #'
 #' Retrieve and parse the GitHub remote to identify username and repo name.
@@ -237,10 +254,6 @@ use_rdev_package <- function(quiet = TRUE) {
   usethis::use_coverage(type = "codecov")
   renv::install("DT")
   usethis::use_package("DT", type = "Suggests")
-
-  # add spelling
-  renv::install("spelling")
-  usethis::use_spell_check(vignettes = TRUE, lang = "en-US", error = TRUE)
 
   # run document() to create package .Rd file
   devtools::document()
