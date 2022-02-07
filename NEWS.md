@@ -1,3 +1,7 @@
+# rdev 1.0.1
+
+* Minor updates to analysis README.Rmd template
+
 # rdev 1.0.0
 
 rdev is now stable enough for a 1.0.0 release!
