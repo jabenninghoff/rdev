@@ -118,6 +118,55 @@ locally:
 
 ``` r
 ci()
+#> style_all()
+#> Styling  38  files:
+#>  .Rprofile                                               ✓ 
+#>  README.Rmd                                              ✓ 
+#>  inst/rmarkdown/templates/analysis/skeleton/skeleton.Rmd ✓ 
+#>  inst/templates/package.R                                ✓ 
+#>  inst/templates/README-analysis.Rmd                      ✓ 
+#>  inst/templates/README-rdev.Rmd                          ✓ 
+#>  inst/templates/spelling.R                               ✓ 
+#>  R/build.R                                               ✓ 
+#>  R/ci.R                                                  ✓ 
+#>  R/helpers.R                                             ✓ 
+#>  R/package.R                                             ✓ 
+#>  R/release.R                                             ✓ 
+#>  R/setup.R                                               ✓ 
+#>  R/to_document.R                                         ✓ 
+#>  R/utils.R                                               ✓ 
+#>  tests/spelling.R                                        ✓ 
+#>  tests/testthat.R                                        ✓ 
+#>  tests/manual/setup.Rmd                                  ✓ 
+#>  tests/testthat/test-build.R                             ✓ 
+#>  tests/testthat/test-ci.R                                ✓ 
+#>  tests/testthat/test-helpers.R                           ✓ 
+#>  tests/testthat/test-release.R                           ✓ 
+#>  tests/testthat/test-setup.R                             ✓ 
+#>  tests/testthat/test-to_document.R                       ✓ 
+#>  tests/testthat/test-utils.R                             ✓ 
+#>  tests/testthat/test-ci/testcode_1.R                     ✓ 
+#>  tests/testthat/test-ci/testcode_2.R                     ✓ 
+#>  tests/testthat/test-ci/testcode.Rmd                     ✓ 
+#>  tests/testthat/test-to_document/document.Rmd            ✓ 
+#>  tests/testthat/test-to_document/extra-spaces.Rmd        ✓ 
+#>  tests/testthat/test-to_document/minimal-document.Rmd    ✓ 
+#>  tests/testthat/test-to_document/minimal.Rmd             ✓ 
+#>  tests/testthat/test-to_document/multiple.Rmd            ✓ 
+#>  tests/testthat/test-to_document/no-front-matter.Rmd     ✓ 
+#>  tests/testthat/test-to_document/no-yaml.Rmd             ✓ 
+#>  tests/testthat/test-to_document/valid.Rmd               ✓ 
+#>  tests/testthat/test-to_document/with-code.Rmd           ✓ 
+#>  vignettes/analysis-package-layout.Rmd                   ✓ 
+#> ───────────────────────────────────────────────────────
+#> Status   Count   Legend 
+#> ✓    38  File unchanged.
+#> ℹ    0   File changed.
+#> x    0   Styling threw an error.
+#> ───────────────────────────────────────────────────────
+#> 
+#> lint_all()
+#> 
 #> devtools::document()
 #> ℹ Updating rdev documentation
 #> ℹ Loading rdev
@@ -133,16 +182,16 @@ ci()
 #> * creating vignettes ... OK
 #> * checking for LF line-endings in source and make files and shell scripts
 #> * checking for empty or unneeded directories
-#> * building ‘rdev_1.0.1.tar.gz’
+#> * building ‘rdev_1.1.0.tar.gz’
 #> 
 #> ── R CMD check ─────────────────────────────────────────────────────────────────
-#> * using log directory ‘/private/var/folders/vn/cw5f9gws42v9m8mdsds_zbl00000gp/T/Rtmpjl7ago/file840a70250426/rdev.Rcheck’
+#> * using log directory ‘/private/var/folders/vn/cw5f9gws42v9m8mdsds_zbl00000gp/T/RtmpFvv9iW/file47f86e712e94/rdev.Rcheck’
 #> * using R version 4.1.2 (2021-11-01)
 #> * using platform: x86_64-apple-darwin19.6.0 (64-bit)
 #> * using session charset: UTF-8
 #> * using option ‘--no-manual’
 #> * checking for file ‘rdev/DESCRIPTION’ ... OK
-#> * this is package ‘rdev’ version ‘1.0.1’
+#> * this is package ‘rdev’ version ‘1.1.0’
 #> * package encoding: UTF-8
 #> * checking package namespace information ... OK
 #> * checking package dependencies ... OK
@@ -197,9 +246,10 @@ ci()
 #>  NONE
 #> * checking re-building of vignette outputs ... OK
 #> * DONE
+#> 
 #> Status: OK
-#> ── R CMD check results ───────────────────────────────────────── rdev 1.0.1 ────
-#> Duration: 26.4s
+#> ── R CMD check results ───────────────────────────────────────── rdev 1.1.0 ────
+#> Duration: 25.9s
 #> 
 #> 0 errors ✓ | 0 warnings ✓ | 0 notes ✓
 ```

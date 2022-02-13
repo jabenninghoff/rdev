@@ -33,7 +33,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="index.html">rdev</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="">1.0.1</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="">1.1.0</span>
       </span>
     </div>
 
@@ -193,6 +193,55 @@ a feature branch, and create a new release branch if on the default.</p>
 integration tests locally:</p>
 <div class="sourceCode" id="cb4"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="fu"><a href="reference/ci.html">ci</a></span><span class="op">(</span><span class="op">)</span>
+<span class="co">#&gt; style_all()</span>
+<span class="co">#&gt; Styling  38  files:</span>
+<span class="co">#&gt;  .Rprofile                                               ✓ </span>
+<span class="co">#&gt;  README.Rmd                                              ✓ </span>
+<span class="co">#&gt;  inst/rmarkdown/templates/analysis/skeleton/skeleton.Rmd ✓ </span>
+<span class="co">#&gt;  inst/templates/package.R                                ✓ </span>
+<span class="co">#&gt;  inst/templates/README-analysis.Rmd                      ✓ </span>
+<span class="co">#&gt;  inst/templates/README-rdev.Rmd                          ✓ </span>
+<span class="co">#&gt;  inst/templates/spelling.R                               ✓ </span>
+<span class="co">#&gt;  R/build.R                                               ✓ </span>
+<span class="co">#&gt;  R/ci.R                                                  ✓ </span>
+<span class="co">#&gt;  R/helpers.R                                             ✓ </span>
+<span class="co">#&gt;  R/package.R                                             ✓ </span>
+<span class="co">#&gt;  R/release.R                                             ✓ </span>
+<span class="co">#&gt;  R/setup.R                                               ✓ </span>
+<span class="co">#&gt;  R/to_document.R                                         ✓ </span>
+<span class="co">#&gt;  R/utils.R                                               ✓ </span>
+<span class="co">#&gt;  tests/spelling.R                                        ✓ </span>
+<span class="co">#&gt;  tests/testthat.R                                        ✓ </span>
+<span class="co">#&gt;  tests/manual/setup.Rmd                                  ✓ </span>
+<span class="co">#&gt;  tests/testthat/test-build.R                             ✓ </span>
+<span class="co">#&gt;  tests/testthat/test-ci.R                                ✓ </span>
+<span class="co">#&gt;  tests/testthat/test-helpers.R                           ✓ </span>
+<span class="co">#&gt;  tests/testthat/test-release.R                           ✓ </span>
+<span class="co">#&gt;  tests/testthat/test-setup.R                             ✓ </span>
+<span class="co">#&gt;  tests/testthat/test-to_document.R                       ✓ </span>
+<span class="co">#&gt;  tests/testthat/test-utils.R                             ✓ </span>
+<span class="co">#&gt;  tests/testthat/test-ci/testcode_1.R                     ✓ </span>
+<span class="co">#&gt;  tests/testthat/test-ci/testcode_2.R                     ✓ </span>
+<span class="co">#&gt;  tests/testthat/test-ci/testcode.Rmd                     ✓ </span>
+<span class="co">#&gt;  tests/testthat/test-to_document/document.Rmd            ✓ </span>
+<span class="co">#&gt;  tests/testthat/test-to_document/extra-spaces.Rmd        ✓ </span>
+<span class="co">#&gt;  tests/testthat/test-to_document/minimal-document.Rmd    ✓ </span>
+<span class="co">#&gt;  tests/testthat/test-to_document/minimal.Rmd             ✓ </span>
+<span class="co">#&gt;  tests/testthat/test-to_document/multiple.Rmd            ✓ </span>
+<span class="co">#&gt;  tests/testthat/test-to_document/no-front-matter.Rmd     ✓ </span>
+<span class="co">#&gt;  tests/testthat/test-to_document/no-yaml.Rmd             ✓ </span>
+<span class="co">#&gt;  tests/testthat/test-to_document/valid.Rmd               ✓ </span>
+<span class="co">#&gt;  tests/testthat/test-to_document/with-code.Rmd           ✓ </span>
+<span class="co">#&gt;  vignettes/analysis-package-layout.Rmd                   ✓ </span>
+<span class="co">#&gt; ───────────────────────────────────────────────────────</span>
+<span class="co">#&gt; Status   Count   Legend </span>
+<span class="co">#&gt; ✓    38  File unchanged.</span>
+<span class="co">#&gt; ℹ    0   File changed.</span>
+<span class="co">#&gt; x    0   Styling threw an error.</span>
+<span class="co">#&gt; ───────────────────────────────────────────────────────</span>
+<span class="co">#&gt; </span>
+<span class="co">#&gt; lint_all()</span>
+<span class="co">#&gt; </span>
 <span class="co">#&gt; devtools::document()</span>
 <span class="co">#&gt; ℹ Updating rdev documentation</span>
 <span class="co">#&gt; ℹ Loading rdev</span>
@@ -208,16 +257,16 @@ integration tests locally:</p>
 <span class="co">#&gt; * creating vignettes ... OK</span>
 <span class="co">#&gt; * checking for LF line-endings in source and make files and shell scripts</span>
 <span class="co">#&gt; * checking for empty or unneeded directories</span>
-<span class="co">#&gt; * building ‘rdev_1.0.1.tar.gz’</span>
+<span class="co">#&gt; * building ‘rdev_1.1.0.tar.gz’</span>
 <span class="co">#&gt; </span>
 <span class="co">#&gt; ── R CMD check ─────────────────────────────────────────────────────────────────</span>
-<span class="co">#&gt; * using log directory ‘/private/var/folders/vn/cw5f9gws42v9m8mdsds_zbl00000gp/T/Rtmpjl7ago/file840a70250426/rdev.Rcheck’</span>
+<span class="co">#&gt; * using log directory ‘/private/var/folders/vn/cw5f9gws42v9m8mdsds_zbl00000gp/T/RtmpFvv9iW/file47f86e712e94/rdev.Rcheck’</span>
 <span class="co">#&gt; * using R version 4.1.2 (2021-11-01)</span>
 <span class="co">#&gt; * using platform: x86_64-apple-darwin19.6.0 (64-bit)</span>
 <span class="co">#&gt; * using session charset: UTF-8</span>
 <span class="co">#&gt; * using option ‘--no-manual’</span>
 <span class="co">#&gt; * checking for file ‘rdev/DESCRIPTION’ ... OK</span>
-<span class="co">#&gt; * this is package ‘rdev’ version ‘1.0.1’</span>
+<span class="co">#&gt; * this is package ‘rdev’ version ‘1.1.0’</span>
 <span class="co">#&gt; * package encoding: UTF-8</span>
 <span class="co">#&gt; * checking package namespace information ... OK</span>
 <span class="co">#&gt; * checking package dependencies ... OK</span>
@@ -272,9 +321,10 @@ integration tests locally:</p>
 <span class="co">#&gt;  NONE</span>
 <span class="co">#&gt; * checking re-building of vignette outputs ... OK</span>
 <span class="co">#&gt; * DONE</span>
+<span class="co">#&gt; </span>
 <span class="co">#&gt; Status: OK</span>
-<span class="co">#&gt; ── R CMD check results ───────────────────────────────────────── rdev 1.0.1 ────</span>
-<span class="co">#&gt; Duration: 26.4s</span>
+<span class="co">#&gt; ── R CMD check results ───────────────────────────────────────── rdev 1.1.0 ────</span>
+<span class="co">#&gt; Duration: 25.9s</span>
 <span class="co">#&gt; </span>
 <span class="co">#&gt; 0 errors ✓ | 0 warnings ✓ | 0 notes ✓</span></code></pre></div>
 </div>
