@@ -1110,10 +1110,10 @@
     },
     "systemfonts": {
       "Package": "systemfonts",
-      "Version": "1.0.4",
+      "Version": "1.0.3",
       "Source": "Repository",
       "Repository": "CRAN",
-      "Hash": "90b28393209827327de889f49935140a",
+      "Hash": "5be9fcf8ef6763e8cb13ab009e273a1d",
       "Requirements": [
         "cpp11"
       ]
