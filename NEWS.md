@@ -1,3 +1,9 @@
+# rdev 1.1.0
+
+* Added additional automation to `ci()`:
+  * `style_all()` now runs automatically if there are no uncommitted changes
+  * `lint_all()` now runs by default and opens RStudio markers pane if any lints are found
+
 # rdev 1.0.1
 
 * Minor updates to analysis README.Rmd template
