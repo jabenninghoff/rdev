@@ -65,7 +65,12 @@ lint_all <- function(path = ".", ...) {
 #'
 #' Run continuous integration tests locally.
 #'
-#' @param styler style all files using [style_all()]
+#' If `styler` is set to `NULL` (the default), [style_all()] will be run only if there are no
+#'   uncommitted changes to git. Setting the value to `TRUE` or `FALSE` overrides this check.
+#'
+#' If [lint_all()] finds any lints, `ci()` will stop and open the RStudio markers pane.
+#'
+#' @param styler style all files using [style_all()], see details
 #' @param lintr lint all files using [lint_all()]
 #' @param document run [devtools::document()]
 #' @param rcmdcheck run \code{R CMD check} using:
@@ -75,21 +80,26 @@ lint_all <- function(path = ".", ...) {
 #' \dontrun{
 #' ci()
 #' ci(styler = TRUE)
-#' ci(styler = TRUE, lintr = TRUE, rcmdcheck = FALSE)
+#' ci(styler = FALSE, rcmdcheck = FALSE)
 #' }
 #' @export
-ci <- function(styler = FALSE, lintr = FALSE, document = TRUE, rcmdcheck = TRUE) {
-  # TODO: styler should be set to automatically run if there are no uncommitted changes
+ci <- function(styler = NULL, lintr = TRUE, document = TRUE, rcmdcheck = TRUE) {
+  if (is.null(styler)) {
+    styler <- length(gert::git_diff_patch()) == 0
+  }
+
   if (styler) {
     writeLines("style_all()")
     style_all()
     if (any(lintr, document, rcmdcheck)) writeLines("")
   }
 
-  # TODO: lintr should stop execution and open RStudio markers if any lints are found
   if (lintr) {
     writeLines("lint_all()")
-    lint_all()
+    lints <- lint_all()
+    if (length(lints) > 0) {
+      return(lints)
+    }
     if (any(document, rcmdcheck)) writeLines("")
   }
 
