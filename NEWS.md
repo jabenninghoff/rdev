@@ -1,3 +1,9 @@
+# rdev 1.1.1
+
+* Fix R-CMD-check for Windows
+
+* `check_renv()` now defaults to running `update` when interactive
+
 # rdev 1.1.0
 
 * Added additional automation to `ci()`:
