@@ -106,11 +106,6 @@ check_renv()
 #> * No stale package locks were found.
 #> * No temporary directories were found in the project library.
 #> * The project has been cleaned.
-#> 
-#> renv::update()
-#> * Querying repositories for available source packages ... Done!
-#> * Checking for updated packages ... Done!
-#> * All packages appear to be up-to-date.
 ```
 
 I also have a `ci()` function to run all my continuous integration tests
@@ -182,16 +177,16 @@ ci()
 #> * creating vignettes ... OK
 #> * checking for LF line-endings in source and make files and shell scripts
 #> * checking for empty or unneeded directories
-#> * building ‘rdev_1.1.0.tar.gz’
+#> * building ‘rdev_1.1.1.tar.gz’
 #> 
 #> ── R CMD check ─────────────────────────────────────────────────────────────────
-#> * using log directory ‘/private/var/folders/vn/cw5f9gws42v9m8mdsds_zbl00000gp/T/RtmpFvv9iW/file47f86e712e94/rdev.Rcheck’
+#> * using log directory ‘/private/var/folders/vn/cw5f9gws42v9m8mdsds_zbl00000gp/T/RtmpwSSstb/file58da523cdd34/rdev.Rcheck’
 #> * using R version 4.1.2 (2021-11-01)
 #> * using platform: x86_64-apple-darwin19.6.0 (64-bit)
 #> * using session charset: UTF-8
 #> * using option ‘--no-manual’
 #> * checking for file ‘rdev/DESCRIPTION’ ... OK
-#> * this is package ‘rdev’ version ‘1.1.0’
+#> * this is package ‘rdev’ version ‘1.1.1’
 #> * package encoding: UTF-8
 #> * checking package namespace information ... OK
 #> * checking package dependencies ... OK
@@ -246,10 +241,9 @@ ci()
 #>  NONE
 #> * checking re-building of vignette outputs ... OK
 #> * DONE
-#> 
 #> Status: OK
-#> ── R CMD check results ───────────────────────────────────────── rdev 1.1.0 ────
-#> Duration: 25.9s
+#> ── R CMD check results ───────────────────────────────────────── rdev 1.1.1 ────
+#> Duration: 26.3s
 #> 
 #> 0 errors ✓ | 0 warnings ✓ | 0 notes ✓
 ```
