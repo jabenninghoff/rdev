@@ -14,7 +14,11 @@ test_that("All renv functions are called, unless set to FALSE", {
   clean <- "renv::clean\\(\\)"
   update <- "renv::update\\(\\)"
 
-  expect_output(check_renv(), paste0(begin, status, sep, clean, sep, update, end), perl = TRUE)
+  expect_output(
+    check_renv(update = TRUE),
+    paste0(begin, status, sep, clean, sep, update, end),
+    perl = TRUE
+  )
   expect_output(check_renv(update = FALSE), paste0(begin, status, sep, clean, end), perl = TRUE)
 })
 

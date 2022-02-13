@@ -4,7 +4,7 @@
 \alias{check_renv}
 \title{Check renv}
 \usage{
-check_renv(update = TRUE)
+check_renv(update = rlang::is_interactive())
 }
 \arguments{
 \item{update}{run \code{\link[renv:update]{renv::update()}}}

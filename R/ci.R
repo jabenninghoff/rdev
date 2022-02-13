@@ -11,7 +11,7 @@
 #' check_renv(update = FALSE)
 #' }
 #' @export
-check_renv <- function(update = TRUE) {
+check_renv <- function(update = rlang::is_interactive()) {
   writeLines("renv::status()")
   renv::status()
 
