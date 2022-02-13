@@ -17,7 +17,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">rdev</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="">1.0.1</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="">1.1.0</span>
       </span>
     </div>
 
@@ -63,13 +63,13 @@
     </div>
 
     <div id="ref-usage">
-    <div class="sourceCode"><pre class="sourceCode r"><code><span class="fu">ci</span><span class="op">(</span>styler <span class="op">=</span> <span class="cn">FALSE</span>, lintr <span class="op">=</span> <span class="cn">FALSE</span>, document <span class="op">=</span> <span class="cn">TRUE</span>, rcmdcheck <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span></code></pre></div>
+    <div class="sourceCode"><pre class="sourceCode r"><code><span class="fu">ci</span><span class="op">(</span>styler <span class="op">=</span> <span class="cn">NULL</span>, lintr <span class="op">=</span> <span class="cn">TRUE</span>, document <span class="op">=</span> <span class="cn">TRUE</span>, rcmdcheck <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span></code></pre></div>
     </div>
 
     <div id="arguments">
     <h2>Arguments</h2>
     <dl><dt>styler</dt>
-<dd><p>style all files using <code><a href="style_all.html">style_all()</a></code></p></dd>
+<dd><p>style all files using <code><a href="style_all.html">style_all()</a></code>, see details</p></dd>
 <dt>lintr</dt>
 <dd><p>lint all files using <code><a href="lint_all.html">lint_all()</a></code></p></dd>
 <dt>document</dt>
@@ -78,13 +78,19 @@
 <dd><p>run <code>R CMD check</code> using:
 <code><a href="http://r-lib.github.io/rcmdcheck/reference/rcmdcheck.html" class="external-link">rcmdcheck::rcmdcheck(args = "--no-manual", error_on = "warning")</a></code></p></dd>
 </dl></div>
+    <div id="details">
+    <h2>Details</h2>
+    <p>If <code>styler</code> is set to <code>NULL</code> (the default), <code><a href="style_all.html">style_all()</a></code> will be run only if there are no
+uncommitted changes to git. Setting the value to <code>TRUE</code> or <code>FALSE</code> overrides this check.</p>
+<p>If <code><a href="lint_all.html">lint_all()</a></code> finds any lints, <code>ci()</code> will stop and open the RStudio markers pane.</p>
+    </div>
 
     <div id="ref-examples">
     <h2>Examples</h2>
     <div class="sourceCode"><pre class="sourceCode r"><code><span class="r-in"><span class="kw">if</span> <span class="op">(</span><span class="cn">FALSE</span><span class="op">)</span> <span class="op">{</span></span>
 <span class="r-in"><span class="fu">ci</span><span class="op">(</span><span class="op">)</span></span>
 <span class="r-in"><span class="fu">ci</span><span class="op">(</span>styler <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span></span>
-<span class="r-in"><span class="fu">ci</span><span class="op">(</span>styler <span class="op">=</span> <span class="cn">TRUE</span>, lintr <span class="op">=</span> <span class="cn">TRUE</span>, rcmdcheck <span class="op">=</span> <span class="cn">FALSE</span><span class="op">)</span></span>
+<span class="r-in"><span class="fu">ci</span><span class="op">(</span>styler <span class="op">=</span> <span class="cn">FALSE</span>, rcmdcheck <span class="op">=</span> <span class="cn">FALSE</span><span class="op">)</span></span>
 <span class="r-in"><span class="op">}</span></span>
 </code></pre></div>
     </div>
