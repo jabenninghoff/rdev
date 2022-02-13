@@ -4,10 +4,10 @@
 \alias{ci}
 \title{Local CI}
 \usage{
-ci(styler = FALSE, lintr = FALSE, document = TRUE, rcmdcheck = TRUE)
+ci(styler = NULL, lintr = TRUE, document = TRUE, rcmdcheck = TRUE)
 }
 \arguments{
-\item{styler}{style all files using \code{\link[=style_all]{style_all()}}}
+\item{styler}{style all files using \code{\link[=style_all]{style_all()}}, see details}
 
 \item{lintr}{lint all files using \code{\link[=lint_all]{lint_all()}}}
 
@@ -19,10 +19,16 @@ ci(styler = FALSE, lintr = FALSE, document = TRUE, rcmdcheck = TRUE)
 \description{
 Run continuous integration tests locally.
 }
+\details{
+If \code{styler} is set to \code{NULL} (the default), \code{\link[=style_all]{style_all()}} will be run only if there are no
+uncommitted changes to git. Setting the value to \code{TRUE} or \code{FALSE} overrides this check.
+
+If \code{\link[=lint_all]{lint_all()}} finds any lints, \code{ci()} will stop and open the RStudio markers pane.
+}
 \examples{
 \dontrun{
 ci()
 ci(styler = TRUE)
-ci(styler = TRUE, lintr = TRUE, rcmdcheck = FALSE)
+ci(styler = FALSE, rcmdcheck = FALSE)
 }
 }

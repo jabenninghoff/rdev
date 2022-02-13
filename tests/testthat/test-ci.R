@@ -36,9 +36,10 @@ test_that("lint_all checks all test files", {
 
 # ci
 
-test_that("All renv functions are called only when parameter = TRUE", {
+test_that("All renv functions are called according to ci logic", {
   mockery::stub(ci, "style_all", NULL)
   mockery::stub(ci, "lint_all", NULL)
+  mockery::stub(ci, "gert::git_diff_patch", NULL)
   mockery::stub(ci, "devtools::document", NULL)
   mockery::stub(ci, "rcmdcheck::rcmdcheck", NULL)
 
@@ -51,12 +52,9 @@ test_that("All renv functions are called only when parameter = TRUE", {
   rcmdcheck <- 'rcmdcheck::rcmdcheck\\(args = "--no-manual", error_on = "warning"\\)'
 
   # default
-  expect_output(ci(), paste0(begin, document, sep, rcmdcheck, end), perl = TRUE)
-
-  # inverse
   expect_output(
-    ci(styler = TRUE, lintr = TRUE, document = FALSE, rcmdcheck = FALSE),
-    paste0(begin, styler, sep, lintr, end),
+    ci(),
+    paste0(begin, styler, sep, lintr, sep, document, sep, rcmdcheck, end),
     perl = TRUE
   )
 
@@ -69,4 +67,21 @@ test_that("All renv functions are called only when parameter = TRUE", {
 
   # none
   expect_output(ci(styler = FALSE, lintr = FALSE, document = FALSE, rcmdcheck = FALSE), NA)
+
+  # uncommitted changes
+  mockery::stub(ci, "gert::git_diff_patch", c("diff"))
+  expect_output(
+    ci(styler = NULL, lintr = TRUE, document = TRUE, rcmdcheck = TRUE),
+    paste0(begin, lintr, sep, document, sep, rcmdcheck, end),
+    perl = TRUE
+  )
+
+  # lints found
+  mockery::stub(ci, "gert::git_diff_patch", NULL)
+  mockery::stub(ci, "lint_all", list("lint"))
+  expect_output(
+    ci(styler = NULL, lintr = TRUE, document = TRUE, rcmdcheck = TRUE),
+    paste0(begin, styler, sep, lintr, end),
+    perl = TRUE
+  )
 })
