@@ -4,15 +4,23 @@
 \alias{spell_check_notebooks}
 \title{Spell Check Notebooks}
 \usage{
-spell_check_notebooks(use_wordlist = TRUE, lang = "en_US")
+spell_check_notebooks(
+  path = "analysis",
+  glob = "*.Rmd",
+  use_wordlist = TRUE,
+  lang = "en_US"
+)
 }
 \arguments{
+\item{path}{A character vector of one or more paths.}
+
+\item{glob}{A wildcard aka globbing pattern (e.g. \verb{*.csv}) passed on to \code{\link[=grep]{grep()}} to filter paths.}
+
 \item{use_wordlist}{ignore words in the package \link[spelling:wordlist]{WORDLIST} file.}
 
 \item{lang}{set \code{Language} field in \code{DESCRIPTION} e.g. \code{"en-US"} or \code{"en-GB"}.
 For supporting other languages, see the \href{https://docs.ropensci.org/hunspell/articles/intro.html#hunspell-dictionaries}{hunspell vignette}.}
 }
 \description{
-Perform a spell check on notebooks (\verb{*.Rmd}) in the \code{analysis} directory with
-\code{\link[spelling:spell_check_files]{spelling::spell_check_files()}}.
+Perform a spell check on notebooks with \code{\link[spelling:spell_check_files]{spelling::spell_check_files()}}.
 }
