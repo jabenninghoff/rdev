@@ -1,6 +1,6 @@
 # rdev 1.2.0
 
-* Added `spell_check_notebooks()`: Perform a spell check on notebooks (`*.Rmd`) in the `analysis` directory with `spelling::spell_check_files()`.
+* Added `spell_check_notebooks()`: Perform a spell check on notebooks with `spelling::spell_check_files()`.
 
 # rdev 1.1.1
 
