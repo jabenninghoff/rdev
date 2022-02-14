@@ -30,3 +30,24 @@ test_that("sort_rbuildignore sorts .Rbuildignore", {
 
   expect_identical(readLines(".Rbuildignore"), sort(strings))
 })
+
+# spell_check_notebooks
+
+test_that("spell_check_notebooks logic flows work", {
+  withr::local_dir(withr::local_tempdir())
+  fs::dir_create("inst")
+  writeLines("spelltest", "inst/WORDLIST")
+
+  expect_error(spell_check_notebooks(), "analysis directory not found")
+
+  fs::dir_create("analysis")
+  expect_length(spell_check_notebooks()$found, 0)
+
+  writeLines(c("spelltest", "valid US English words"), "analysis/test.Rmd")
+  expect_length(spell_check_notebooks()$found, 0)
+  expect_length(spell_check_notebooks(use_wordlist = FALSE)$found, 1)
+
+  fs::file_delete("inst/WORDLIST")
+  expect_length(spell_check_notebooks()$found, 1)
+  expect_length(spell_check_notebooks(use_wordlist = FALSE)$found, 1)
+})
