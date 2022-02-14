@@ -38,7 +38,8 @@ test_that("spell_check_notebooks logic flows work", {
   fs::dir_create("inst")
   writeLines("spelltest", "inst/WORDLIST")
 
-  expect_error(spell_check_notebooks(), "analysis directory not found")
+  expect_error(spell_check_notebooks(), "'analysis' directory not found")
+  expect_error(spell_check_notebooks(path = "testdir"), "'testdir' directory not found")
 
   fs::dir_create("analysis")
   expect_length(spell_check_notebooks()$found, 0)
@@ -50,4 +51,6 @@ test_that("spell_check_notebooks logic flows work", {
   fs::file_delete("inst/WORDLIST")
   expect_length(spell_check_notebooks()$found, 1)
   expect_length(spell_check_notebooks(use_wordlist = FALSE)$found, 1)
+  expect_length(spell_check_notebooks(glob = "*.tmp")$found, 0)
+  expect_length(spell_check_notebooks(glob = "*.Rmd")$found, 1)
 })
