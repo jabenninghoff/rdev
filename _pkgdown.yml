@@ -40,6 +40,7 @@ reference:
     contents:
     - sort_file
     - sort_rbuildignore
+    - spell_check_notebooks
     - local_temppkg
   - title: rdev Package
     desc: >
