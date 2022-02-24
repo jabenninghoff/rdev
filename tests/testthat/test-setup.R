@@ -38,7 +38,6 @@ test_that("create_github_repo generates expected output", {
     paste0(
       "\\nRepository created at: ", create$html_url, "\\n",
       "Open the repository by executing: \\$ github ", fs_path, "\\n",
-      "\\nManually add any branch protection at: ", create$html_url, "/settings/branches\\n",
       "Apply rdev conventions within the new project with use_rdev_package\\(\\),\\n",
       "and use either use_analysis_package\\(\\) or usethis::use_pkgdown\\(\\) for GitHub Pages\\."
     )
