@@ -1,3 +1,7 @@
+# rdev 1.2.1
+
+* `create_github_repo()` now adds branch protection to the default branch
+
 # rdev 1.2.0
 
 * Added `spell_check_notebooks()`: Perform a spell check on notebooks with `spelling::spell_check_files()`.
