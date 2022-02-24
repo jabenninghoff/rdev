@@ -112,10 +112,14 @@ get_github_repo <- function() {
 #' Create rdev GitHub repository
 #'
 #' Create new GitHub repository following rdev conventions in the active user's account using
-#'   [gh::gh()], activates Dependabot alerts, Dependabot security updates, clones the repository
-#'   locally with [usethis::create_from_github()], and creates a basic package using
-#'   [usethis::create_package()]. If running interactively on macOS, the repository will
-#'   automatically be opened in RStudio, GitHub Desktop, and the default browser.
+#'   [gh::gh()], and:
+#'   * Activates Dependabot alerts
+#'   * Activates Dependabot security updates
+#'   * Adds branch protection to the default branch
+#'   * Clones the repository locally with [usethis::create_from_github()]
+#'   * Creates a basic package using [usethis::create_package()]
+#'   * If running interactively on macOS, the repository will automatically be opened in RStudio,
+#'     GitHub Desktop, and the default browser
 #'
 #' @inheritParams usethis::use_github
 #' @param repo_name The name of the GitHub repository to create
@@ -155,6 +159,7 @@ create_github_repo <- function(repo_name, repo_desc = "", host = NULL) {
     repo = create$name,
     .api_url = host
   )
+
   gh::gh(
     "PUT /repos/{owner}/{repo}/automated-security-fixes",
     owner = create$owner$login,
@@ -162,8 +167,31 @@ create_github_repo <- function(repo_name, repo_desc = "", host = NULL) {
     .api_url = host
   )
 
-  # add branch protection using rdev main (requires json)
-  # use: gh::gh("GET /repos/{owner}/{repo}/branches/{branch}/protection", owner = "jabenninghoff", repo = "rdev", branch = "main") # nolint: line_length_linter
+  required_status_checks <- list(
+    strict = TRUE,
+    checks = list(
+      list(context = "lint", app_id = 15368L),
+      list(context = "macOS-latest (release)", app_id = 15368L),
+      list(context = "windows-latest (release)", app_id = 15368L)
+    )
+  )
+  required_pull_request_reviews <- list(
+    dismiss_stale_reviews = FALSE,
+    require_code_owner_reviews = FALSE,
+    required_approving_review_count = 0L
+  )
+  gh::gh(
+    "PUT /repos/{owner}/{repo}/branches/{branch}/protection",
+    owner = create$owner$login,
+    repo = create$name,
+    branch = create$default_branch,
+    required_status_checks = required_status_checks,
+    enforce_admins = NA,
+    required_pull_request_reviews = required_pull_request_reviews,
+    restrictions = NA,
+    required_linear_history = TRUE,
+    .api_url = host
+  )
 
   # warning: duplicates .Rproj.user in .gitignore
   fs_path <- usethis::create_from_github(
@@ -180,14 +208,11 @@ create_github_repo <- function(repo_name, repo_desc = "", host = NULL) {
 
   writeLines(paste0("\n", "Repository created at: ", create$html_url))
   writeLines(paste0("Open the repository by executing: $ github ", fs_path))
-  writeLines(paste0(
-    "\n", "Manually add any branch protection at: ", create$html_url, "/settings/branches"
-  ))
   writeLines("Apply rdev conventions within the new project with use_rdev_package(),")
   writeLines("and use either use_analysis_package() or usethis::use_pkgdown() for GitHub Pages.")
 
   if (Sys.info()["sysname"] == "Darwin" & rlang::is_interactive()) {
-    system(paste0("open ", create$html_url, "/settings/branches"))
+    system(paste0("open ", create$html_url, "/settings"))
     system(paste0("github ", fs_path))
   }
 

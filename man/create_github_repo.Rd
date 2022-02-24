@@ -25,8 +25,14 @@ return value from \code{\link[gh:gh]{gh::gh()}} creating the repository, invisib
 }
 \description{
 Create new GitHub repository following rdev conventions in the active user's account using
-\code{\link[gh:gh]{gh::gh()}}, activates Dependabot alerts, Dependabot security updates, clones the repository
-locally with \code{\link[usethis:create_from_github]{usethis::create_from_github()}}, and creates a basic package using
-\code{\link[usethis:create_package]{usethis::create_package()}}. If running interactively on macOS, the repository will
-automatically be opened in RStudio, GitHub Desktop, and the default browser.
+\code{\link[gh:gh]{gh::gh()}}, and:
+\itemize{
+\item Activates Dependabot alerts
+\item Activates Dependabot security updates
+\item Adds branch protection to the default branch
+\item Clones the repository locally with \code{\link[usethis:create_from_github]{usethis::create_from_github()}}
+\item Creates a basic package using \code{\link[usethis:create_package]{usethis::create_package()}}
+\item If running interactively on macOS, the repository will automatically be opened in RStudio,
+GitHub Desktop, and the default browser
+}
 }
