@@ -36,6 +36,18 @@ Then:
   local system, and populated with package files using usethis options in `~/.Rprofile`
 - On macOS, the repository is opened in GitHub Desktop
 - On macOS, the repository branch protection settings are opened on github.com
+- Branch protection applied to the default branch:
+  - Require a pull request before merging
+  - Require status checks to pass before merging
+  - Require branches to be up to date before merging
+  - Status checks that are required:
+    - lint, GitHub Actions
+    - macOS-latest (release), GitHub Actions
+    - windows-latest (release), GitHub Actions
+  - Require linear history
+- Code security and analysis:
+  - Dependabot alerts
+  - Dependabot security updates
 - The git repository will contain a single commit, 'Initial commit', with:
   - `LICENSE`: GitHub MIT License, with active GitHub user's name and current year in Copyright
   - `.gitignore`: GitHub [R.gitignore](https://github.com/github/gitignore/blob/main/R.gitignore)
@@ -111,6 +123,12 @@ There will be 21 new or changed files (new unless otherwise noted):
 - `tests/testthat.R`
 - `tests/testthat/test-package.R`
 - `TODO.md`
+
+On GitHub:
+
+- GitHub Pages, enabled:
+  - Branch: default, folder: /docs
+- Website (homepage) set to GitHub Pages URL
 
 Commit the changes, check the new package, and push to GitHub:
 
