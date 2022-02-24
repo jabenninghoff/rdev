@@ -29,8 +29,8 @@
 - [x] Write a manual regression test script (notes with R commands) ~~as a vignette~~ to validate 'Creating Packages' ~~and 'GitHub Releases'~~
 - [x] Add messages, warnings to `build_analysis_site()` to report on progress
 - [x] Add function to spell check notebooks
+- [x] Automate branch protection
 - [ ] Switch from development versions of `styler` (1.3.2.9000) and `lintr` (2.0.1.9000) when a new release becomes available - both were needed to address bugs in the current release versions, 1.3.2 and 2.0.1.
-- [ ] Automate branch protection
 
 ## GitHub
 
