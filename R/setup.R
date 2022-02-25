@@ -111,15 +111,17 @@ get_github_repo <- function() {
 
 #' Create rdev GitHub repository
 #'
-#' Create new GitHub repository following rdev conventions in the active user's account using
-#'   [gh::gh()], and:
-#'   * Activates Dependabot alerts
-#'   * Activates Dependabot security updates
-#'   * Adds branch protection to the default branch
-#'   * Clones the repository locally with [usethis::create_from_github()]
-#'   * Creates a basic package using [usethis::create_package()]
-#'   * If running interactively on macOS, the repository will automatically be opened in RStudio,
-#'     GitHub Desktop, and the default browser
+#' Create, configure, clone, and open a new GitHub R package repository following rdev conventions.
+#'
+#' When run, `create_github_repo()`:
+#'   1. Creates a new GitHub repository in the active user's account using [gh::gh()]
+#'   1. Activates Dependabot alerts
+#'   1. Activates Dependabot security updates
+#'   1. Adds branch protection to the default branch
+#'   1. Clones the repository locally with [usethis::create_from_github()]
+#'   1. Creates a basic package using [usethis::create_package()]
+#'   1. If running interactively on macOS, the repository will automatically be opened in RStudio,
+#'      GitHub Desktop, and the default browser
 #'
 #' @inheritParams usethis::use_github
 #' @param repo_name The name of the GitHub repository to create
