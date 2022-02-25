@@ -24,9 +24,12 @@ acceptable.}
 return value from \code{\link[gh:gh]{gh::gh()}} creating the repository, invisibly
 }
 \description{
-Create new GitHub repository following rdev conventions in the active user's account using
-\code{\link[gh:gh]{gh::gh()}}, and:
-\itemize{
+Create, configure, clone, and open a new GitHub R package repository following rdev conventions.
+}
+\details{
+When run, \code{create_github_repo()}:
+\enumerate{
+\item Creates a new GitHub repository in the active user's account using \code{\link[gh:gh]{gh::gh()}}
 \item Activates Dependabot alerts
 \item Activates Dependabot security updates
 \item Adds branch protection to the default branch
