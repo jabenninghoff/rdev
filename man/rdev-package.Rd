@@ -6,7 +6,7 @@
 \alias{rdev-package}
 \title{rdev: R Development Tools}
 \description{
-My personalized collection of development packages, tools and utility functions.
+An opinionated collection of development tools, packages, and utilities.
 }
 \seealso{
 Useful links:
