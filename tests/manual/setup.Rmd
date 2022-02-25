@@ -35,7 +35,7 @@ Then:
 - A new rdev package named "rdtest1" is created in the active GitHub account, downloaded to the
   local system, and populated with package files using usethis options in `~/.Rprofile`
 - On macOS, the repository is opened in GitHub Desktop
-- On macOS, the repository branch protection settings are opened on github.com
+- On macOS, the repository settings are opened on github.com
 - Branch protection applied to the default branch:
   - Require a pull request before merging
   - Require status checks to pass before merging
@@ -135,8 +135,6 @@ Commit the changes, check the new package, and push to GitHub:
 ```r
 gert::git_add(".")
 gert::git_commit("rdev::use_rdev_package()")
-style_all()
-lint_all()
 ci()
 gert::git_push()
 ```
@@ -229,9 +227,8 @@ There will be 4 new or changed files:
 Test the installation by running CI checks and the analysis builder, which should throw an error:
 
 ```r
+# TODO: add dplyr when running `use_analysis_package()`
 renv::install("dplyr")
-style_all()
-lint_all()
 ci()
 build_analysis_site()
 
@@ -243,8 +240,6 @@ Analysis Notebook, save in `analysis` as `test.Rmd`, removing all `library` comm
 block except `library(dplyr)`, and re-run the checks, which should complete successfully:
 
 ```r
-style_all()
-lint_all()
 ci()
 build_analysis_site()
 ```
@@ -285,8 +280,6 @@ Test the installation by running renv and CI checks which should pass:
 
 ```r
 check_renv()
-style_all()
-lint_all()
 ci()
 ```
 
@@ -322,7 +315,5 @@ Test the installation by running renv and CI checks which should pass:
 
 ```r
 check_renv()
-style_all()
-lint_all()
 ci()
 ```
