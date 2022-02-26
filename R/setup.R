@@ -334,13 +334,16 @@ use_rdev_package <- function(quiet = TRUE) {
 #'
 #' When run, `use_analysis_package()` creates analysis package directories, adds exclusions to
 #'   .gitignore and .Rbuildignore, creates `_base.yml` in `pkgdown` from the first `URL` in
-#'   `DESCRIPTION`, and installs the `README.Rmd` template for analysis packages.
+#'   `DESCRIPTION`, installs the `README.Rmd` template for analysis packages, and the `dplyr`
+#'   package needed for the `README.Rmd` template.
+#'
+#' @inheritParams use_codecov
 #'
 #' @return List containing `dirs` created, `rbuildignore` lines added to .Rbuildignore, `gitignore`
 #'   exclusions added to .gitignore.
 #'
 #' @export
-use_analysis_package <- function() {
+use_analysis_package <- function(prompt = FALSE) {
   # workaround for lintr, R CMD check
   create <- gitignore <- rbuildignore <- NULL
 
@@ -399,6 +402,10 @@ use_analysis_package <- function() {
     ignore = TRUE,
     open = rlang::is_interactive()
   )
+
+  renv::install("dplyr")
+  usethis::use_package("dplyr", type = "Suggests")
+  renv::snapshot(prompt = prompt)
 
   ret <- list(
     dirs = analysis_dirs, rbuildignore = analysis_rbuildignore, gitignore = analysis_gitignore

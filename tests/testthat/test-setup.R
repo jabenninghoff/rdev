@@ -92,6 +92,9 @@ test_that("use_analysis_package returns expected values", {
   mockery::stub(use_analysis_package, "fs::file_exists", FALSE)
   mockery::stub(use_analysis_package, "yaml::write_yaml", NULL)
   mockery::stub(use_analysis_package, "usethis::use_template", NULL)
+  mockery::stub(use_analysis_package, "renv::install", NULL)
+  mockery::stub(use_analysis_package, "usethis::use_package", NULL)
+  mockery::stub(use_analysis_package, "renv::snapshot", NULL)
 
   expect_identical(use_analysis_package(), values)
 })
