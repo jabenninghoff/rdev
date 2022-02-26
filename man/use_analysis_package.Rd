@@ -4,7 +4,10 @@
 \alias{use_analysis_package}
 \title{Use Analysis Package Layout}
 \usage{
-use_analysis_package()
+use_analysis_package(prompt = FALSE)
+}
+\arguments{
+\item{prompt}{If TRUE, prompt before writing \code{renv.lock}, passed to \code{\link[renv:snapshot]{renv::snapshot()}}.}
 }
 \value{
 List containing \code{dirs} created, \code{rbuildignore} lines added to .Rbuildignore, \code{gitignore}
@@ -17,5 +20,6 @@ to the current package.
 \details{
 When run, \code{use_analysis_package()} creates analysis package directories, adds exclusions to
 .gitignore and .Rbuildignore, creates \verb{_base.yml} in \code{pkgdown} from the first \code{URL} in
-\code{DESCRIPTION}, and installs the \code{README.Rmd} template for analysis packages.
+\code{DESCRIPTION}, installs the \code{README.Rmd} template for analysis packages, and the \code{dplyr}
+package needed for the \code{README.Rmd} template.
 }
