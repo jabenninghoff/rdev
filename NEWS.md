@@ -1,3 +1,11 @@
+# rdev 1.2.2
+
+* Implement workaround for closed usethis issue [#1568](https://github.com/r-lib/usethis/issues/1568)
+
+* `use_analysis_package()` now installs [dplyr](https://dplyr.tidyverse.org), used in the `README.Rmd` template
+
+* Documentation updates
+
 # rdev 1.2.1
 
 * `create_github_repo()` now adds branch protection to the default branch
