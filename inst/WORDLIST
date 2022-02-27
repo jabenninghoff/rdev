@@ -10,6 +10,7 @@ Dependabot
 dev
 devtools
 discoverable
+dplyr
 ggplot
 gh
 gh's
@@ -64,6 +65,7 @@ styler
 testthat
 tidyverse
 usethis
+WORDLIST
 yaml
 YAML
 yml
