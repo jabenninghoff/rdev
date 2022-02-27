@@ -33,6 +33,7 @@
 - [x] Address issue <https://github.com/r-lib/usethis/issues/1568>, which has been closed
 - [x] Add dplyr when running `use_analysis_package()`
 - [ ] Switch from development versions of `styler` (1.3.2.9000) and `lintr` (2.0.1.9000) when a new release becomes available - both were needed to address bugs in the current release versions, 1.3.2 and 2.0.1.
+- [ ] Consider switching `getOption("pkgType")` from `source` to `both` per R [options](https://stat.ethz.ch/R-manual/R-devel/library/base/html/options.html)
 
 ## GitHub
 
