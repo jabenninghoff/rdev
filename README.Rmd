@@ -23,7 +23,7 @@ knitr::opts_chunk$set(
 
 ## Overview
 
-**`r packageDescription("rdev", fields = "Title")`:** `r packageDescription("rdev", fields = "Description")`
+**`r desc::desc_get_field("Title")`:** `r desc::desc_get_field("Description")`
 
 Feel free to use and/or fork this project!
 
