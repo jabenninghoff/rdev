@@ -83,6 +83,8 @@ local_temppkg <- function(dir = fs::file_temp(), type = "usethis", env = parent.
   # create analysis package
   if (type == "analysis") {
     mockery::stub(use_analysis_package, "get_github_repo", gh_repo)
+    mockery::stub(use_analysis_package, "renv::install", NULL)
+    mockery::stub(use_analysis_package, "renv::snapshot", NULL)
 
     use_analysis_package()
   }
