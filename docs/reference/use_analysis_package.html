@@ -18,7 +18,7 @@ to the current package."><!-- mathjax --><script src="https://cdnjs.cloudflare.c
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">rdev</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="">1.2.1</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="">1.2.2</span>
       </span>
     </div>
 
@@ -65,9 +65,14 @@ to the current package.</p>
     </div>
 
     <div id="ref-usage">
-    <div class="sourceCode"><pre class="sourceCode r"><code><span class="fu">use_analysis_package</span><span class="op">(</span><span class="op">)</span></code></pre></div>
+    <div class="sourceCode"><pre class="sourceCode r"><code><span class="fu">use_analysis_package</span><span class="op">(</span>prompt <span class="op">=</span> <span class="cn">FALSE</span><span class="op">)</span></code></pre></div>
     </div>
 
+    <div id="arguments">
+    <h2>Arguments</h2>
+    <dl><dt>prompt</dt>
+<dd><p>If TRUE, prompt before writing <code>renv.lock</code>, passed to <code><a href="https://rstudio.github.io/renv/reference/snapshot.html" class="external-link">renv::snapshot()</a></code>.</p></dd>
+</dl></div>
     <div id="value">
     <h2>Value</h2>
     <p>List containing <code>dirs</code> created, <code>rbuildignore</code> lines added to .Rbuildignore, <code>gitignore</code>exclusions added to .gitignore.</p>
@@ -76,7 +81,8 @@ to the current package.</p>
     <h2>Details</h2>
     <p>When run, <code>use_analysis_package()</code> creates analysis package directories, adds exclusions to
 .gitignore and .Rbuildignore, creates <code>_base.yml</code> in <code>pkgdown</code> from the first <code>URL</code> in
-<code>DESCRIPTION</code>, and installs the <code>README.Rmd</code> template for analysis packages.</p>
+<code>DESCRIPTION</code>, installs the <code>README.Rmd</code> template for analysis packages, and the <code>dplyr</code>
+package needed for the <code>README.Rmd</code> template.</p>
     </div>
 
   </div>
