@@ -13,8 +13,8 @@ coverage](https://codecov.io/gh/jabenninghoff/rdev/branch/main/graph/badge.svg)]
 
 ## Overview
 
-**R Development Tools:** My personalized collection of development
-packages, tools and utility functions.
+**R Development Tools:** An opinionated collection of development tools,
+packages, and utilities.
 
 Feel free to use and/or fork this project!
 
@@ -49,21 +49,18 @@ packages. The typical setup workflow is:
 
 1.  Use `available::available()` to check package name
 2.  Create new base package using `create_github_repo()`
-3.  Manually set branch protection as needed (main: require status
-    checks, linear history)
-4.  Add new package to GitHub Desktop
-5.  Commit to git with message: `create_github_repo()`
-6.  Run `use_rdev_package()` within new project to add remaining
+3.  Add new package to GitHub Desktop
+4.  Commit to git with message: `rdev::create_github_repo()`
+5.  Run `use_rdev_package()` within new project to add remaining
     templates and settings
-7.  Commit to git with message: `use_rdev_package()`
-8.  Run either `use_analysis_package()` or `usethis::use_pkgdown()` for
+6.  Commit to git with message: `rdev::use_rdev_package()`
+7.  Run either `use_analysis_package()` or `usethis::use_pkgdown()` for
     GitHub Pages
-9.  Commit to git
-10. Edit DESCRIPTION and add a Title and Description
-11. Update TODO.md, NEWS.md, README.Rmd, and DESCRIPTION as needed
-12. Run `check_renv()`, `style_all()`, `lint_all()`, `ci()` to validate
-    package
-13. Commit to git and begin development
+8.  Commit to git
+9.  Edit DESCRIPTION and add a Title and Description
+10. Update TODO.md, NEWS.md, README.Rmd, and DESCRIPTION as needed
+11. Run `check_renv()`, `ci()` to validate package
+12. Commit to git and begin development
 
 ## GitHub Releases
 
@@ -91,7 +88,7 @@ new release notes in NEWS.md before running. When ready to release,
 `stage_release()` will use the existing branch if on a feature branch,
 and create a new release branch if on the default.
 
-## Examples
+## Workflow
 
 For my workflow, I typically check renv when I start:
 
@@ -177,16 +174,16 @@ ci()
 #> * creating vignettes ... OK
 #> * checking for LF line-endings in source and make files and shell scripts
 #> * checking for empty or unneeded directories
-#> * building ‘rdev_1.2.1.tar.gz’
+#> * building ‘rdev_1.2.2.tar.gz’
 #> 
 #> ── R CMD check ─────────────────────────────────────────────────────────────────
-#> * using log directory ‘/private/var/folders/vn/cw5f9gws42v9m8mdsds_zbl00000gp/T/RtmpF7pWgr/file128bf5dd2a280/rdev.Rcheck’
+#> * using log directory ‘/private/var/folders/vn/cw5f9gws42v9m8mdsds_zbl00000gp/T/RtmpUgyfbP/filefd417881e3d7/rdev.Rcheck’
 #> * using R version 4.1.2 (2021-11-01)
 #> * using platform: x86_64-apple-darwin19.6.0 (64-bit)
 #> * using session charset: UTF-8
 #> * using option ‘--no-manual’
 #> * checking for file ‘rdev/DESCRIPTION’ ... OK
-#> * this is package ‘rdev’ version ‘1.2.1’
+#> * this is package ‘rdev’ version ‘1.2.2’
 #> * package encoding: UTF-8
 #> * checking package namespace information ... OK
 #> * checking package dependencies ... OK
@@ -241,10 +238,9 @@ ci()
 #>  NONE
 #> * checking re-building of vignette outputs ... OK
 #> * DONE
-#> 
 #> Status: OK
-#> ── R CMD check results ───────────────────────────────────────── rdev 1.2.1 ────
-#> Duration: 31.4s
+#> ── R CMD check results ───────────────────────────────────────── rdev 1.2.2 ────
+#> Duration: 28.1s
 #> 
 #> 0 errors ✓ | 0 warnings ✓ | 0 notes ✓
 ```
