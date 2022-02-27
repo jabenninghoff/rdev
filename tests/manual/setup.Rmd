@@ -223,8 +223,6 @@ There will be 4 new or changed files:
 Test the installation by running CI checks and the analysis builder, which should throw an error:
 
 ```r
-# TODO: add dplyr when running `use_analysis_package()`
-renv::install("dplyr")
 ci()
 build_analysis_site()
 
