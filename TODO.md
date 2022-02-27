@@ -30,9 +30,9 @@
 - [x] Add messages, warnings to `build_analysis_site()` to report on progress
 - [x] Add function to spell check notebooks
 - [x] Automate branch protection
+- [x] Address issue <https://github.com/r-lib/usethis/issues/1568>, which has been closed
+- [x] Add dplyr when running `use_analysis_package()`
 - [ ] Switch from development versions of `styler` (1.3.2.9000) and `lintr` (2.0.1.9000) when a new release becomes available - both were needed to address bugs in the current release versions, 1.3.2 and 2.0.1.
-- [ ] Address issue <https://github.com/r-lib/usethis/issues/1568>, which has been closed
-- [ ] Add dplyr when running `use_analysis_package()`
 
 ## GitHub
 
