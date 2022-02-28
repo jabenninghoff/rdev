@@ -87,6 +87,7 @@ use_spelling <- function(lang = "en-US", prompt = FALSE) {
 use_codecov <- function(prompt = FALSE) {
   renv::install("covr")
   usethis::use_coverage(type = "codecov")
+  sort_rbuildignore()
   renv::install("DT")
   usethis::use_package("DT", type = "Suggests")
   usethis::use_github_action(
