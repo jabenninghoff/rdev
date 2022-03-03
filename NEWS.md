@@ -1,3 +1,7 @@
+# rdev 1.2.4
+
+* Fix bug in workaround for closed usethis issue [#1568](https://github.com/r-lib/usethis/issues/1568)
+
 # rdev 1.2.3
 
 * Updated `use_codecov()` to use `sort_rbuildignore()`
