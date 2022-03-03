@@ -117,10 +117,11 @@ get_github_repo <- function() {
 #'
 #' @keywords internal
 #' @noRd
-fix_gitignore <- function() {
-  gitignore <- readLines(".gitignore")
+fix_gitignore <- function(path = ".") {
+  giti_path <- fs::path(path, ".gitignore")
+  gitignore <- readLines(giti_path)
   gitignore <- gitignore[!grepl("^\\.Rproj\\.user$", gitignore)]
-  writeLines(gitignore, ".gitignore")
+  writeLines(gitignore, giti_path)
 }
 
 #' Create rdev GitHub repository
@@ -219,7 +220,7 @@ create_github_repo <- function(repo_name, repo_desc = "", host = NULL) {
   fs::file_delete(paste0(fs_path, "/", create$name, ".Rproj"))
 
   usethis::create_package(fs_path)
-  fix_gitignore()
+  fix_gitignore(fs_path)
 
   writeLines(paste0("\n", "Repository created at: ", create$html_url))
   writeLines(paste0("Open the repository by executing: $ github ", fs_path))
