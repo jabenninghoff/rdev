@@ -213,17 +213,27 @@ use_analysis_package()
 
 Then:
 
-There will be 4 new or changed files:
+There will be 6 new or changed files:
 
 - `.gitignore`: added `# analysis package generated files` section
 - `.Rbuildignore`: added analysis package generated files, sorted
+- `DESCRIPTION`: added `dplyr` to `Suggests`
 - `pkgdown/_base.yml`: new, with GitHub pages `url`
 - `README.Rmd`: changed, with Notebooks section
+- `renv.lock`: updated with `dplyr` and dependencies
+
+Commit the changes to git:
+
+```r
+gert::git_add(".")
+gert::git_commit("rdev::use_analysis_package()")
+ci()
+gert::git_push()
+```
 
 Test the installation by running CI checks and the analysis builder, which should throw an error:
 
 ```r
-ci()
 build_analysis_site()
 
 #> Error in build_analysis_site() : No *.Rmd files in analysis directory
@@ -234,8 +244,16 @@ Analysis Notebook, save in `analysis` as `test.Rmd`, removing all `library` comm
 block except `library(dplyr)`, and re-run the checks, which should complete successfully:
 
 ```r
-ci()
 build_analysis_site()
+```
+
+Commit the changes to git:
+
+```r
+gert::git_add(".")
+gert::git_commit("rdev::build_analysis_site()")
+ci()
+gert::git_push()
 ```
 
 # Use spelling
@@ -246,6 +264,7 @@ Given:
 - Commands in 'Create GitHub Repository' have been run
 - Commands in 'Use rdev package' have been run
 - Optionally, commands in 'Use analysis package' have been run
+- All changes have been committed to git
 
 When:
 
@@ -265,6 +284,8 @@ There will be 4 new or changed files:
   - CMD
   - Changelog
   - ORCID
+  - README
+  - md
   - rdtest
   - renv
 - `renv.lock`: added spelling, dependencies
@@ -275,6 +296,15 @@ Test the installation by running renv and CI checks which should pass:
 ```r
 check_renv()
 ci()
+```
+
+Commit the changes to git:
+
+```r
+gert::git_add(".")
+gert::git_commit("rdev::use_spelling()")
+ci()
+gert::git_push()
 ```
 
 # Use codecov
