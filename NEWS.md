@@ -1,3 +1,7 @@
+# rdev 1.2.5
+
+* Updated `ci()` to run spell check tests
+
 # rdev 1.2.4
 
 * Fix bug in workaround for closed usethis issue [#1568](https://github.com/r-lib/usethis/issues/1568)
