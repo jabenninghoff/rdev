@@ -18,7 +18,7 @@ release using merge_release()."><!-- mathjax --><script src="https://cdnjs.cloud
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">rdev</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="">1.2.4</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="">1.2.5</span>
       </span>
     </div>
 
@@ -95,7 +95,7 @@ acceptable.</p></dd>
 <li><p>Checks for uncommitted changes and stops if any exist using <code><a href="https://docs.ropensci.org/gert/reference/git_diff.html" class="external-link">gert::git_diff_patch()</a></code></p></li>
 <li><p>Creates a new branch if on the default branch (<code><a href="https://docs.ropensci.org/gert/reference/git_branch.html" class="external-link">gert::git_branch()</a></code> <code>==</code>
 <code><a href="https://usethis.r-lib.org/reference/git-default-branch.html" class="external-link">usethis::git_default_branch()</a></code>) using <code><a href="https://docs.ropensci.org/gert/reference/git_branch.html" class="external-link">gert::git_branch_create()</a></code></p></li>
-<li><p>Updates <code>Version</code> in <code>DESCRIPTION</code> with <code><a href="https://rdrr.io/pkg/desc/man/desc_set_version.html" class="external-link">desc::desc_set_version()</a></code>, commits and push to git
+<li><p>Updates <code>Version</code> in <code>DESCRIPTION</code> with <code><a href="http://r-lib.github.io/desc/reference/desc_set_version.html" class="external-link">desc::desc_set_version()</a></code>, commits and push to git
 with message <code>"GitHub release &lt;version&gt;"</code> using <code><a href="https://docs.ropensci.org/gert/reference/git_commit.html" class="external-link">gert::git_add()</a></code>, <code><a href="https://docs.ropensci.org/gert/reference/git_commit.html" class="external-link">gert::git_commit()</a></code> and
 <code><a href="https://docs.ropensci.org/gert/reference/git_fetch.html" class="external-link">gert::git_push()</a></code></p></li>
 <li><p>Runs <code><a href="build_analysis_site.html">build_analysis_site()</a></code> (if <code>pkgdown/_base.yml</code> exists) or <code><a href="build_rdev_site.html">build_rdev_site()</a></code>, commits

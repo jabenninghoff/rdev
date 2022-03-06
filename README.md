@@ -165,6 +165,7 @@ ci()
 #> Writing NAMESPACE
 #> Writing NAMESPACE
 #> 
+#> Setting env vars: NOT_CRAN="true", CI="true"
 #> rcmdcheck::rcmdcheck(args = "--no-manual", error_on = "warning")
 #> ── R CMD build ─────────────────────────────────────────────────────────────────
 #> * checking for file ‘.../DESCRIPTION’ ... OK
@@ -174,16 +175,16 @@ ci()
 #> * creating vignettes ... OK
 #> * checking for LF line-endings in source and make files and shell scripts
 #> * checking for empty or unneeded directories
-#> * building ‘rdev_1.2.4.tar.gz’
+#> * building ‘rdev_1.2.5.tar.gz’
 #> 
 #> ── R CMD check ─────────────────────────────────────────────────────────────────
-#> * using log directory ‘/private/var/folders/vn/cw5f9gws42v9m8mdsds_zbl00000gp/T/RtmpmBtvFt/file5e8379f3353a/rdev.Rcheck’
+#> * using log directory ‘/private/var/folders/vn/cw5f9gws42v9m8mdsds_zbl00000gp/T/RtmpLv17ZW/file1d6e18debeda/rdev.Rcheck’
 #> * using R version 4.1.2 (2021-11-01)
 #> * using platform: x86_64-apple-darwin19.6.0 (64-bit)
 #> * using session charset: UTF-8
 #> * using option ‘--no-manual’
 #> * checking for file ‘rdev/DESCRIPTION’ ... OK
-#> * this is package ‘rdev’ version ‘1.2.4’
+#> * this is package ‘rdev’ version ‘1.2.5’
 #> * package encoding: UTF-8
 #> * checking package namespace information ... OK
 #> * checking package dependencies ... OK
@@ -229,6 +230,7 @@ ci()
 #> * checking for unstated dependencies in ‘tests’ ... OK
 #> * checking tests ...
 #>   Running ‘spelling.R’
+#>   Comparing ‘spelling.Rout’ to ‘spelling.Rout.save’ ... OK
 #>   Running ‘testthat.R’
 #>  OK
 #> * checking for unstated dependencies in vignettes ... OK
@@ -239,8 +241,8 @@ ci()
 #> * checking re-building of vignette outputs ... OK
 #> * DONE
 #> Status: OK
-#> ── R CMD check results ───────────────────────────────────────── rdev 1.2.4 ────
-#> Duration: 28.9s
+#> ── R CMD check results ───────────────────────────────────────── rdev 1.2.5 ────
+#> Duration: 27.4s
 #> 
 #> 0 errors ✓ | 0 warnings ✓ | 0 notes ✓
 ```
