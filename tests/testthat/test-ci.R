@@ -53,7 +53,10 @@ test_that("All renv functions are called according to ci logic", {
   styler <- "style_all\\(\\)"
   lintr <- "lint_all\\(\\)"
   document <- "devtools::document\\(\\)"
-  rcmdcheck <- 'rcmdcheck::rcmdcheck\\(args = "--no-manual", error_on = "warning"\\)'
+  rcmdcheck <- paste0(
+    'Setting env vars: NOT_CRAN="true", CI="true"\\n',
+    'rcmdcheck::rcmdcheck\\(args = "--no-manual", error_on = "warning"\\)'
+  )
 
   # default
   expect_output(

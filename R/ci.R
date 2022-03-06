@@ -110,7 +110,11 @@ ci <- function(styler = NULL, lintr = TRUE, document = TRUE, rcmdcheck = TRUE) {
   }
 
   if (rcmdcheck) {
+    writeLines('Setting env vars: NOT_CRAN="true", CI="true"')
     writeLines('rcmdcheck::rcmdcheck(args = "--no-manual", error_on = "warning")')
-    rcmdcheck::rcmdcheck(args = "--no-manual", error_on = "warning")
+    withr::with_envvar(
+      new = c("NOT_CRAN" = "true", "CI" = "true"),
+      rcmdcheck::rcmdcheck(args = "--no-manual", error_on = "warning")
+    )
   }
 }
