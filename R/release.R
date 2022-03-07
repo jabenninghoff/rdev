@@ -106,8 +106,9 @@ get_release <- function(pkg = ".", filename = "NEWS.md") {
 #' 1. Updates `Version` in `DESCRIPTION` with [desc::desc_set_version()], commits and push to git
 #'   with message `"GitHub release <version>"` using [gert::git_add()], [gert::git_commit()] and
 #'   [gert::git_push()]
-#' 1. Runs [build_analysis_site()] (if `pkgdown/_base.yml` exists) or [build_rdev_site()], commits
-#'   and pushes changes to git with message `"<builder> for release <version>"`
+#' 1. Runs [build_analysis_site()] (if `pkgdown/_base.yml` exists) or [build_rdev_site()] (if
+#'   `_pkgdown.yml` exists), commits and pushes changes (if any) to git with message:
+#'   `"<builder> for release <version>"`
 #' 1. Opens a pull request with the title `"<package> <version>"` and the release notes in the body
 #'   using [gh::gh()]
 #'
@@ -158,11 +159,16 @@ stage_release <- function(pkg = ".", filename = "NEWS.md", host = NULL) {
     builder <- "build_analysis_site()"
     build_analysis_site()
   } else {
-    builder <- "build_rdev_site()"
-    build_rdev_site()
+    if (fs::file_exists("_pkgdown.yml")) {
+      builder <- "build_rdev_site()"
+      build_rdev_site()
+    }
   }
-  gert::git_add(".")
-  gert::git_commit(paste0(builder, " for release ", rel$version))
+  # commit builder changes if there are any
+  if (length(gert::git_diff_patch()) != 0) {
+    gert::git_add(".")
+    gert::git_commit(paste0(builder, " for release ", rel$version))
+  }
   gert::git_push()
 
   gh_remote <- remotes::parse_github_url(gert::git_remote_info()$url)
