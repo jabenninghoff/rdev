@@ -1,3 +1,7 @@
+# rdev 1.2.6
+
+* Updated `stage_release()` to run `build_rdev_site()` only when `_pkgdown.yml` exists
+
 # rdev 1.2.5
 
 * Updated `ci()` to run spell check tests
