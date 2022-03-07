@@ -297,6 +297,8 @@ test_that("stage_release runs proper builder", {
   mockery::stub(stage_release, "gert::git_diff_patch", character(0))
   mockery::stub(stage_release, "usethis::git_default_branch", "main")
   mockery::stub(stage_release, "gert::git_branch", "stage-release")
+  mockery::stub(stage_release, "gert::git_remote_info", NULL)
+  mockery::stub(stage_release, "remotes::parse_github_url", NULL)
   # stub functions that change state
   analysis <- function() {
     stop("build_analysis_site")
@@ -314,6 +316,10 @@ test_that("stage_release runs proper builder", {
   mockery::stub(stage_release, "gh::gh", NULL)
 
   withr::local_dir(withr::local_tempdir())
+  expect_equal(stage_release(), NULL)
+
+  pkgdown <- fs::file_create("_pkgdown.yml")
+  writeLines("url: ~", pkgdown)
   expect_error(stage_release(), "build_rdev_site")
 
   fs::dir_create("pkgdown")
