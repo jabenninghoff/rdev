@@ -4,7 +4,7 @@
 \alias{stage_release}
 \title{Stage a GitHub release}
 \usage{
-stage_release(pkg = ".", filename = "NEWS.md", host = NULL)
+stage_release(pkg = ".", filename = "NEWS.md", host = getOption("rdev.host"))
 }
 \arguments{
 \item{pkg}{path to package. Currently, only \code{pkg = "."} is supported.}
@@ -46,3 +46,9 @@ with message \code{"GitHub release <version>"} using \code{\link[gert:git_commit
 using \code{\link[gh:gh]{gh::gh()}}
 }
 }
+\section{Host}{
+
+Set the \code{rdev.host} option when using a GitHub Enterprise server:
+\code{options(rdev.host = "https://github.example.com/api/v3")}
+}
+

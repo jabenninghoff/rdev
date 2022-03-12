@@ -4,7 +4,7 @@
 \alias{merge_release}
 \title{Merge staged GitHub release}
 \usage{
-merge_release(pkg = ".", filename = "NEWS.md", host = NULL)
+merge_release(pkg = ".", filename = "NEWS.md", host = getOption("rdev.host"))
 }
 \arguments{
 \item{pkg}{path to package. Currently, only \code{pkg = "."} is supported.}
@@ -47,3 +47,9 @@ with \code{\link[gert:git_tag]{gert::git_tag_create()}} and pushes using \code{\
 release notes in the body, using \code{\link[gh:gh]{gh::gh()}}
 }
 }
+\section{Host}{
+
+Set the \code{rdev.host} option when using a GitHub Enterprise server:
+\code{options(rdev.host = "https://github.example.com/api/v3")}
+}
+

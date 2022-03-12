@@ -138,13 +138,17 @@ fix_gitignore <- function(path = ".") {
 #'   1. If running interactively on macOS, the repository will automatically be opened in RStudio,
 #'      GitHub Desktop, and the default browser
 #'
+#' @section Host:
+#' Set the `rdev.host` option when using a GitHub Enterprise server:
+#'   `options(rdev.host = "https://github.example.com/api/v3")`
+#'
 #' @inheritParams usethis::use_github
 #' @param repo_name The name of the GitHub repository to create
 #' @param repo_desc The description of the GitHub repository to create
 #'
 #' @return return value from [gh::gh()] creating the repository, invisibly
 #' @export
-create_github_repo <- function(repo_name, repo_desc = "", host = NULL) {
+create_github_repo <- function(repo_name, repo_desc = "", host = getOption("rdev.host")) {
   # workaround for ::: per https://stat.ethz.ch/pipermail/r-devel/2013-August/067210.html
   `%:::%` <- function(pkg, fun) {
     get(fun,

@@ -112,13 +112,15 @@ get_release <- function(pkg = ".", filename = "NEWS.md") {
 #' 1. Opens a pull request with the title `"<package> <version>"` and the release notes in the body
 #'   using [gh::gh()]
 #'
+#' @inheritSection create_github_repo Host
+#'
 #' @inheritParams get_release
 #' @inheritParams usethis::use_github
 #'
 #' @return results of GitHub pull request, invisibly
 #'
 #' @export
-stage_release <- function(pkg = ".", filename = "NEWS.md", host = NULL) {
+stage_release <- function(pkg = ".", filename = "NEWS.md", host = getOption("rdev.host")) {
   if (pkg != ".") {
     stop('currently only build_analysis_site(pkg = ".") is supported')
   }
@@ -208,13 +210,15 @@ stage_release <- function(pkg = ".", filename = "NEWS.md", host = NULL) {
 #' 1. Create the GitHub release from the newly created tag, with the name `"<version>"` and the
 #'   release notes in the body, using [gh::gh()]
 #'
+#' @inheritSection create_github_repo Host
+#'
 #' @inheritParams get_release
 #' @inheritParams usethis::use_github
 #'
 #' @return list containing results of pull request merge and GitHub release, invisibly
 #'
 #' @export
-merge_release <- function(pkg = ".", filename = "NEWS.md", host = NULL) {
+merge_release <- function(pkg = ".", filename = "NEWS.md", host = getOption("rdev.host")) {
   if (pkg != ".") {
     stop('currently only build_analysis_site(pkg = ".") is supported')
   }
