@@ -137,8 +137,8 @@ fix_gitignore <- function(path = ".") {
 #'
 #' When run, `create_github_repo()`:
 #'   1. Creates a new GitHub repository in the active user's account using [gh::gh()]
-#'   1. Activates Dependabot alerts
-#'   1. Activates Dependabot security updates
+#'   1. Activates Dependabot alerts per `getOption("rdev.dependabot", default = TRUE)`
+#'   1. Activates Dependabot security updates per `getOption("rdev.dependabot", default = TRUE)`
 #'   1. Adds branch protection to the default branch
 #'   1. Clones the repository locally with [usethis::create_from_github()]
 #'   1. Creates a basic package using [usethis::create_package()]
@@ -181,19 +181,21 @@ create_github_repo <- function(repo_name, repo_desc = "", host = getOption("rdev
     .api_url = host
   )
 
-  gh::gh(
-    "PUT /repos/{owner}/{repo}/vulnerability-alerts",
-    owner = create$owner$login,
-    repo = create$name,
-    .api_url = host
-  )
+  if (getOption("rdev.dependabot", default = TRUE)) {
+    gh::gh(
+      "PUT /repos/{owner}/{repo}/vulnerability-alerts",
+      owner = create$owner$login,
+      repo = create$name,
+      .api_url = host
+    )
 
-  gh::gh(
-    "PUT /repos/{owner}/{repo}/automated-security-fixes",
-    owner = create$owner$login,
-    repo = create$name,
-    .api_url = host
-  )
+    gh::gh(
+      "PUT /repos/{owner}/{repo}/automated-security-fixes",
+      owner = create$owner$login,
+      repo = create$name,
+      .api_url = host
+    )
+  }
 
   required_status_checks <- list(
     strict = TRUE,

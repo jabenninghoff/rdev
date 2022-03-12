@@ -75,6 +75,64 @@ test_that("create_github_repo errors when proposed repo directory exists locally
   )
 })
 
+test_that("create_github_repo options work", {
+  fs_path <- "/Users/test/Desktop/rdtest9"
+  create <- list(html_url = "https://github.com/test/rdtest9")
+  with_dependabot <- paste0(
+    "^POST /user/repos\\n",
+    "PUT /repos/\\{owner\\}/\\{repo\\}/vulnerability-alerts\\n",
+    "PUT /repos/\\{owner\\}/\\{repo\\}/automated-security-fixes\\n",
+    "PUT /repos/\\{owner\\}/\\{repo\\}/branches/\\{branch\\}/protection\\n",
+    "\\nRepository created at: ", create$html_url, "\\n",
+    "Open the repository by executing: \\$ github ", fs_path, "\\n",
+    "Apply rdev conventions within the new project with use_rdev_package\\(\\),\\n",
+    "and use either use_analysis_package\\(\\) or usethis::use_pkgdown\\(\\) for GitHub Pages\\.$"
+  )
+  without_dependabot <- paste0(
+    "^POST /user/repos\\n",
+    "PUT /repos/\\{owner\\}/\\{repo\\}/branches/\\{branch\\}/protection\\n",
+    "\\nRepository created at: ", create$html_url, "\\n",
+    "Open the repository by executing: \\$ github ", fs_path, "\\n",
+    "Apply rdev conventions within the new project with use_rdev_package\\(\\),\\n",
+    "and use either use_analysis_package\\(\\) or usethis::use_pkgdown\\(\\) for GitHub Pages\\.$"
+  )
+  gh_gh <- function(command, ...) {
+    writeLines(command)
+    create
+  }
+  mockery::stub(create_github_repo, "fs::dir_exists", FALSE)
+  mockery::stub(create_github_repo, "gh::gh", gh_gh)
+  mockery::stub(create_github_repo, "usethis::create_from_github", fs_path)
+  mockery::stub(create_github_repo, "fs::file_delete", NULL)
+  mockery::stub(create_github_repo, "usethis::create_package", NULL)
+  mockery::stub(create_github_repo, "fix_gitignore", NULL)
+
+  expect_output(
+    withr::with_options(
+      list(rdev.dependabot = NULL),
+      create_github_repo("rdtest9", "rdev test analysis package 9")
+    ),
+    with_dependabot,
+    perl = TRUE
+  )
+  expect_output(
+    withr::with_options(
+      list(rdev.dependabot = TRUE),
+      create_github_repo("rdtest9", "rdev test analysis package 9")
+    ),
+    with_dependabot,
+    perl = TRUE
+  )
+  expect_output(
+    withr::with_options(
+      list(rdev.dependabot = FALSE),
+      create_github_repo("rdtest9", "rdev test analysis package 9")
+    ),
+    without_dependabot,
+    perl = TRUE
+  )
+})
+
 test_that("create_github_repo generates expected output", {
   fs_path <- "/Users/test/Desktop/rdtest9"
   create <- list(html_url = "https://github.com/test/rdtest9")
@@ -88,11 +146,12 @@ test_that("create_github_repo generates expected output", {
   expect_output(
     create_github_repo("rdtest9", "rdev test analysis package 9"),
     paste0(
-      "\\nRepository created at: ", create$html_url, "\\n",
+      "^\\nRepository created at: ", create$html_url, "\\n",
       "Open the repository by executing: \\$ github ", fs_path, "\\n",
       "Apply rdev conventions within the new project with use_rdev_package\\(\\),\\n",
-      "and use either use_analysis_package\\(\\) or usethis::use_pkgdown\\(\\) for GitHub Pages\\."
-    )
+      "and use either use_analysis_package\\(\\) or usethis::use_pkgdown\\(\\) for GitHub Pages\\.$"
+    ),
+    perl = TRUE
   )
 })
 
