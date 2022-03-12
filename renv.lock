@@ -1,6 +1,6 @@
 {
   "R": {
-    "Version": "4.1.2",
+    "Version": "4.1.3",
     "Repositories": [
       {
         "Name": "CRAN",
@@ -77,10 +77,10 @@
     },
     "Rcpp": {
       "Package": "Rcpp",
-      "Version": "1.0.8",
+      "Version": "1.0.8.2",
       "Source": "Repository",
       "Repository": "CRAN",
-      "Hash": "22b546dd7e337f6c0c58a39983a496bc",
+      "Hash": "6d93fbe4e93e43cbf59fd90d7932c5fb",
       "Requirements": []
     },
     "askpass": {
@@ -189,10 +189,10 @@
     },
     "commonmark": {
       "Package": "commonmark",
-      "Version": "1.7",
+      "Version": "1.8.0",
       "Source": "Repository",
       "Repository": "CRAN",
-      "Hash": "0f22be39ec1d141fd03683c06f3a6e67",
+      "Hash": "2ba81b120c1655ab696c935ef33ea716",
       "Requirements": []
     },
     "covr": {
@@ -602,9 +602,9 @@
       "RemoteUsername": "r-lib",
       "RemoteRepo": "lintr",
       "RemoteRef": "master",
-      "RemoteSha": "0794ee10b212cf7205963750cf3c73dfd89e2d33",
+      "RemoteSha": "4148ebdf8a39050e79b5b519c56de3bbc09c797b",
       "RemoteHost": "api.github.com",
-      "Hash": "cc741de6aa0a6bd2b52c45777b52167a",
+      "Hash": "646bf9a54778552b2a5396c776f28f52",
       "Requirements": [
         "codetools",
         "crayon",
@@ -920,10 +920,10 @@
     },
     "rmarkdown": {
       "Package": "rmarkdown",
-      "Version": "2.12",
+      "Version": "2.13",
       "Source": "Repository",
       "Repository": "CRAN",
-      "Hash": "354da5088ddfdffb73c11cc952885d88",
+      "Hash": "ac78f4d2e0289d4cba73b88af567b8b1",
       "Requirements": [
         "bslib",
         "evaluate",
