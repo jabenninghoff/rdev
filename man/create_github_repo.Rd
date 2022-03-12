@@ -4,7 +4,7 @@
 \alias{create_github_repo}
 \title{Create rdev GitHub repository}
 \usage{
-create_github_repo(repo_name, repo_desc = "", host = NULL)
+create_github_repo(repo_name, repo_desc = "", host = getOption("rdev.host"))
 }
 \arguments{
 \item{repo_name}{The name of the GitHub repository to create}
@@ -39,3 +39,9 @@ When run, \code{create_github_repo()}:
 GitHub Desktop, and the default browser
 }
 }
+\section{Host}{
+
+Set the \code{rdev.host} option when using a GitHub Enterprise server:
+\code{options(rdev.host = "https://github.example.com/api/v3")}
+}
+
