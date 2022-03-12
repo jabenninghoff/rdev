@@ -38,6 +38,29 @@ test_that("rdev.codecov option skips installation of codecov.io components", {
   )
 })
 
+# get_license
+
+test_that("get_license validates options", {
+  expect_error(
+    withr::with_options(list(rdev.license = "cc0"), get_license()),
+    "invalid rdev.license type, 'cc0'"
+  )
+  expect_error(
+    withr::with_options(list(rdev.license = "proprietary"), get_license()),
+    "rdev.license is 'proprietary' and rdev.license.copyright is not set"
+  )
+  expect_identical(withr::with_options(list(rdev.license = "mit"), get_license()), "mit")
+  expect_identical(withr::with_options(list(rdev.license = "gpl"), get_license()), "gpl")
+  expect_identical(withr::with_options(list(rdev.license = "lgpl"), get_license()), "lgpl")
+  expect_identical(
+    withr::with_options(
+      list(rdev.license = "proprietary", rdev.license.copyright = "Test"),
+      get_license()
+    ),
+    "proprietary"
+  )
+})
+
 # fix_gitignore
 
 test_that("fix_gitignore removes extra '.Rproj.user'", {
