@@ -72,7 +72,7 @@ use_spelling <- function(lang = "en-US", prompt = FALSE) {
   renv::snapshot(prompt = prompt)
 }
 
-#' Use rdev codecov
+#' Use rdev code coverage
 #'
 #' Install code coverage with [`usethis::use_coverage(type = "codecov")`][usethis::use_coverage()],
 #'   `DT` package for [covr::report()], and rdev GitHub action `test-coverage.yaml`.
@@ -81,18 +81,25 @@ use_spelling <- function(lang = "en-US", prompt = FALSE) {
 #'   `use_codecov()` must be run last or its changes will be overwritten. `use_codecov()` is not run
 #'   in [use_rdev_package()].
 #'
+#' Set option `rdev.codecov` to `FALSE` to skip installation of codecov.io and `test-coverage.yaml`:
+#'   `options(rdev.codecov = FALSE)`
+#'
 #' @param prompt If TRUE, prompt before writing `renv.lock`, passed to [renv::snapshot()].
 #'
 #' @export
 use_codecov <- function(prompt = FALSE) {
   renv::install("covr")
-  usethis::use_coverage(type = "codecov")
-  sort_rbuildignore()
+  if (getOption("rdev.codecov", default = TRUE)) {
+    usethis::use_coverage(type = "codecov")
+    sort_rbuildignore()
+    usethis::use_github_action(
+      url = "https://github.com/jabenninghoff/rdev/blob/main/.github/workflows/test-coverage.yaml"
+    )
+  } else {
+    usethis::use_package("covr", type = "Suggests")
+  }
   renv::install("DT")
   usethis::use_package("DT", type = "Suggests")
-  usethis::use_github_action(
-    url = "https://github.com/jabenninghoff/rdev/blob/main/.github/workflows/test-coverage.yaml"
-  )
   renv::snapshot(prompt = prompt)
 }
 

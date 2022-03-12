@@ -2,7 +2,7 @@
 % Please edit documentation in R/setup.R
 \name{use_codecov}
 \alias{use_codecov}
-\title{Use rdev codecov}
+\title{Use rdev code coverage}
 \usage{
 use_codecov(prompt = FALSE)
 }
@@ -17,4 +17,7 @@ Install code coverage with \code{\link[usethis:use_coverage]{usethis::use_covera
 Because \code{\link[=use_rdev_package]{use_rdev_package()}}, \code{\link[=use_analysis_package]{use_analysis_package()}} and \code{use_codecov()} all modify README.Rmd,
 \code{use_codecov()} must be run last or its changes will be overwritten. \code{use_codecov()} is not run
 in \code{\link[=use_rdev_package]{use_rdev_package()}}.
+
+Set option \code{rdev.codecov} to \code{FALSE} to skip installation of codecov.io and \code{test-coverage.yaml}:
+\code{options(rdev.codecov = FALSE)}
 }

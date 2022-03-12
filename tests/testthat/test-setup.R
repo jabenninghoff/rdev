@@ -9,6 +9,35 @@ test_that("use_package_r creates an R directory if it doesn't exist", {
   expect_identical(fs::dir_exists("R"), c(R = TRUE))
 })
 
+# use_codecov
+
+test_that("rdev.codecov option skips installation of codecov.io components", {
+  u_pack <- function(package, type = "Imports") {
+    writeLines(paste0("package = '", package, "', type ='", type, "'"))
+  }
+  mockery::stub(use_codecov, "renv::install", NULL)
+  mockery::stub(use_codecov, "renv::snapshot", NULL)
+  mockery::stub(use_codecov, "usethis::use_coverage", function(type) writeLines("use_coverage"))
+  mockery::stub(use_codecov, "sort_rbuildignore", function() writeLines("sort_rbuildignore"))
+  mockery::stub(
+    use_codecov, "usethis::use_github_action", function(url) writeLines("use_github_action")
+  )
+  mockery::stub(use_codecov, "usethis::use_package", u_pack)
+
+  expect_output(
+    withr::with_options(list(rdev.codecov = NULL), use_codecov()),
+    "use_coverage\\nsort_rbuildignore\\nuse_github_action\\npackage = 'DT', type ='Suggests'"
+  )
+  expect_output(
+    withr::with_options(list(rdev.codecov = TRUE), use_codecov()),
+    "use_coverage\\nsort_rbuildignore\\nuse_github_action\\npackage = 'DT', type ='Suggests'"
+  )
+  expect_output(
+    withr::with_options(list(rdev.codecov = FALSE), use_codecov()),
+    "package = 'covr', type ='Suggests'\\npackage = 'DT', type ='Suggests'"
+  )
+})
+
 # fix_gitignore
 
 test_that("fix_gitignore removes extra '.Rproj.user'", {
