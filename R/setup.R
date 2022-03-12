@@ -103,6 +103,27 @@ use_codecov <- function(prompt = FALSE) {
   renv::snapshot(prompt = prompt)
 }
 
+#' Get license option
+#'
+#' Retrieve and validate `rdev.license` option.
+#'
+#' `rdev.license` must be one of `c("mit", "gpl", "lgpl", "proprietary")`, and defaults to `"mit"`.
+#'   If `rdev.license` is `"proprietary"`, `rdev.license.copyright` (the name of the copyright
+#'   holder) must also be set.
+#'
+#' @return license string, one of `c("mit", "gpl", "lgpl", "proprietary")`
+#' @export
+get_license <- function() {
+  lic <- getOption("rdev.license", default = "mit")
+  if (!lic %in% c("mit", "gpl", "lgpl", "proprietary")) {
+    stop("invalid rdev.license type, '", lic, "'")
+  }
+  if (lic == "proprietary" & is.null(getOption("rdev.license.copyright"))) {
+    stop("rdev.license is 'proprietary' and rdev.license.copyright is not set")
+  }
+  lic
+}
+
 #' Get GitHub username and repository
 #'
 #' Retrieve and parse the GitHub remote to identify username and repo name.
