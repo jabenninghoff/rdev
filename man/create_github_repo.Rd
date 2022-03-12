@@ -30,8 +30,8 @@ Create, configure, clone, and open a new GitHub R package repository following r
 When run, \code{create_github_repo()}:
 \enumerate{
 \item Creates a new GitHub repository in the active user's account using \code{\link[gh:gh]{gh::gh()}}
-\item Activates Dependabot alerts
-\item Activates Dependabot security updates
+\item Activates Dependabot alerts per \code{getOption("rdev.dependabot", default = TRUE)}
+\item Activates Dependabot security updates per \code{getOption("rdev.dependabot", default = TRUE)}
 \item Adds branch protection to the default branch
 \item Clones the repository locally with \code{\link[usethis:create_from_github]{usethis::create_from_github()}}
 \item Creates a basic package using \code{\link[usethis:create_package]{usethis::create_package()}}
