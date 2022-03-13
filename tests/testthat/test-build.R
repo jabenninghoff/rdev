@@ -52,6 +52,7 @@ test_that("build_analysis_site errors when components are missing", {
 })
 
 test_that("build_analysis_site creates analysis site", {
+  withr::local_options(.new = list(rdev.host = NULL))
   test_notebook <- readLines("test-to_document/with-code.Rmd")
 
   # run build_analysis_site() only once to speed up testing
