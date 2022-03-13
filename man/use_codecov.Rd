@@ -21,3 +21,8 @@ in \code{\link[=use_rdev_package]{use_rdev_package()}}.
 Set option \code{rdev.codecov} to \code{FALSE} to skip installation of codecov.io and \code{test-coverage.yaml}:
 \code{options(rdev.codecov = FALSE)}
 }
+\section{GitHub Actions}{
+ GitHub Actions can be disabled by setting \code{rdev.github.actions} to
+\code{FALSE}: \code{options(rdev.github.actions = FALSE)}
+}
+

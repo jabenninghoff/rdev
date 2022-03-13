@@ -29,7 +29,8 @@ Create, configure, clone, and open a new GitHub R package repository following r
 \details{
 When run, \code{create_github_repo()}:
 \enumerate{
-\item Creates a new GitHub repository in the active user's account using \code{\link[gh:gh]{gh::gh()}}
+\item Creates a new GitHub repository in the active user's account using \code{\link[gh:gh]{gh::gh()}} with license
+template from \code{\link[=get_license]{get_license()}}
 \item Activates Dependabot alerts per \code{getOption("rdev.dependabot", default = TRUE)}
 \item Activates Dependabot security updates per \code{getOption("rdev.dependabot", default = TRUE)}
 \item Adds branch protection to the default branch
@@ -39,6 +40,11 @@ When run, \code{create_github_repo()}:
 GitHub Desktop, and the default browser
 }
 }
+\section{GitHub Actions}{
+ GitHub Actions can be disabled by setting \code{rdev.github.actions} to
+\code{FALSE}: \code{options(rdev.github.actions = FALSE)}
+}
+
 \section{Host}{
 
 Set the \code{rdev.host} option when using a GitHub Enterprise server:

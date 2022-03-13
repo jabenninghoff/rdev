@@ -84,6 +84,8 @@ use_spelling <- function(lang = "en-US", prompt = FALSE) {
 #' Set option `rdev.codecov` to `FALSE` to skip installation of codecov.io and `test-coverage.yaml`:
 #'   `options(rdev.codecov = FALSE)`
 #'
+#' @inheritSection create_github_repo GitHub Actions
+#'
 #' @param prompt If TRUE, prompt before writing `renv.lock`, passed to [renv::snapshot()].
 #'
 #' @export
@@ -92,9 +94,11 @@ use_codecov <- function(prompt = FALSE) {
   if (getOption("rdev.codecov", default = TRUE)) {
     usethis::use_coverage(type = "codecov")
     sort_rbuildignore()
-    usethis::use_github_action(
-      url = "https://github.com/jabenninghoff/rdev/blob/main/.github/workflows/test-coverage.yaml"
-    )
+    if (getOption("rdev.github.actions", default = TRUE)) {
+      usethis::use_github_action(
+        url = "https://github.com/jabenninghoff/rdev/blob/main/.github/workflows/test-coverage.yaml"
+      )
+    }
   } else {
     usethis::use_package("covr", type = "Suggests")
   }
@@ -157,7 +161,8 @@ fix_gitignore <- function(path = ".") {
 #' Create, configure, clone, and open a new GitHub R package repository following rdev conventions.
 #'
 #' When run, `create_github_repo()`:
-#'   1. Creates a new GitHub repository in the active user's account using [gh::gh()]
+#'   1. Creates a new GitHub repository in the active user's account using [gh::gh()] with license
+#'      template from [get_license()]
 #'   1. Activates Dependabot alerts per `getOption("rdev.dependabot", default = TRUE)`
 #'   1. Activates Dependabot security updates per `getOption("rdev.dependabot", default = TRUE)`
 #'   1. Adds branch protection to the default branch
@@ -165,6 +170,9 @@ fix_gitignore <- function(path = ".") {
 #'   1. Creates a basic package using [usethis::create_package()]
 #'   1. If running interactively on macOS, the repository will automatically be opened in RStudio,
 #'      GitHub Desktop, and the default browser
+#'
+#' @section GitHub Actions: GitHub Actions can be disabled by setting `rdev.github.actions` to
+#'   `FALSE`: `options(rdev.github.actions = FALSE)`
 #'
 #' @section Host:
 #' Set the `rdev.host` option when using a GitHub Enterprise server:
@@ -220,14 +228,18 @@ create_github_repo <- function(repo_name, repo_desc = "", host = getOption("rdev
     )
   }
 
-  required_status_checks <- list(
-    strict = TRUE,
-    checks = list(
-      list(context = "lint", app_id = 15368L),
-      list(context = "macOS-latest (release)", app_id = 15368L),
-      list(context = "windows-latest (release)", app_id = 15368L)
+  if (getOption("rdev.github.actions", default = TRUE)) {
+    required_status_checks <- list(
+      strict = TRUE,
+      checks = list(
+        list(context = "lint", app_id = 15368L),
+        list(context = "macOS-latest (release)", app_id = 15368L),
+        list(context = "windows-latest (release)", app_id = 15368L)
+      )
     )
-  )
+  } else {
+    required_status_checks <- list(strict = TRUE, contexts = list())
+  }
   required_pull_request_reviews <- list(
     dismiss_stale_reviews = FALSE,
     require_code_owner_reviews = FALSE,
@@ -276,6 +288,8 @@ create_github_repo <- function(repo_name, repo_desc = "", host = getOption("rdev
 #' Add rdev templates and settings within the active package. Normally invoked when first setting
 #'   up a package.
 #'
+#' @inheritSection create_github_repo GitHub Actions
+#'
 #' @param quiet If TRUE, disable user prompts by setting [rlang::local_interactive()] to FALSE.
 #'
 #' @export
@@ -285,12 +299,14 @@ use_rdev_package <- function(quiet = TRUE) {
   # add templates
   use_lintr()
   use_package_r()
-  usethis::use_github_action(
-    url = "https://github.com/jabenninghoff/rdev/blob/main/.github/workflows/check-standard.yaml"
-  )
-  usethis::use_github_action(
-    url = "https://github.com/jabenninghoff/rdev/blob/main/.github/workflows/lint.yaml"
-  )
+  if (getOption("rdev.github.actions", default = TRUE)) {
+    usethis::use_github_action(
+      url = "https://github.com/jabenninghoff/rdev/blob/main/.github/workflows/check-standard.yaml"
+    )
+    usethis::use_github_action(
+      url = "https://github.com/jabenninghoff/rdev/blob/main/.github/workflows/lint.yaml"
+    )
+  }
   use_todo()
   usethis::use_news_md()
   usethis::use_readme_rmd()
