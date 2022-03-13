@@ -25,15 +25,19 @@ test_that("rdev.codecov option skips installation of codecov.io components", {
   mockery::stub(use_codecov, "usethis::use_package", u_pack)
 
   expect_output(
-    withr::with_options(list(rdev.codecov = NULL), use_codecov()),
+    withr::with_options(list(rdev.codecov = NULL, rdev.github.actions = NULL), use_codecov()),
     "use_coverage\\nsort_rbuildignore\\nuse_github_action\\npackage = 'DT', type ='Suggests'"
   )
   expect_output(
-    withr::with_options(list(rdev.codecov = TRUE), use_codecov()),
+    withr::with_options(list(rdev.codecov = TRUE, rdev.github.actions = TRUE), use_codecov()),
     "use_coverage\\nsort_rbuildignore\\nuse_github_action\\npackage = 'DT', type ='Suggests'"
   )
   expect_output(
-    withr::with_options(list(rdev.codecov = FALSE), use_codecov()),
+    withr::with_options(list(rdev.codecov = TRUE, rdev.github.actions = FALSE), use_codecov()),
+    "use_coverage\\nsort_rbuildignore\\npackage = 'DT', type ='Suggests'"
+  )
+  expect_output(
+    withr::with_options(list(rdev.codecov = FALSE, rdev.github.actions = TRUE), use_codecov()),
     "package = 'covr', type ='Suggests'\\npackage = 'DT', type ='Suggests'"
   )
 })
@@ -46,7 +50,9 @@ test_that("get_license validates options", {
     "invalid rdev.license type, 'cc0'"
   )
   expect_error(
-    withr::with_options(list(rdev.license = "proprietary"), get_license()),
+    withr::with_options(
+      list(rdev.license = "proprietary", rdev.license.copyright = NULL), get_license()
+    ),
     "rdev.license is 'proprietary' and rdev.license.copyright is not set"
   )
   expect_identical(withr::with_options(list(rdev.license = "mit"), get_license()), "mit")

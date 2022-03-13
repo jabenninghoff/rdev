@@ -14,7 +14,9 @@ test_that("local_temppkg creates a valid usethis package", {
 })
 
 test_that("local_temppkg creates a valid rdev package", {
-  withr::local_options(.new = list(rdev.license = NULL, rdev.license.copyright = NULL))
+  withr::local_options(
+    .new = list(rdev.license = NULL, rdev.license.copyright = NULL, rdev.github.actions = NULL)
+  )
   usethis::ui_silence(local_temppkg(type = "rdev"))
 
   # paste0(fs::path_file(dir), ".Rproj") isn't created when running rcmdcheck
@@ -75,8 +77,31 @@ test_that("local_temppkg uses license options", {
   expect_false(fs::file_exists("LICENSE.md"))
 })
 
+test_that("local_temppkg uses GitHub Action options", {
+  withr::with_options(
+    list(rdev.github.actions = NULL), usethis::ui_silence(local_temppkg(type = "rdev"))
+  )
+  expect_true(fs::file_exists(".github/.gitignore"))
+  expect_true(fs::file_exists(".github/workflows/check-standard.yaml"))
+  expect_true(fs::file_exists(".github/workflows/lint.yaml"))
+  withr::with_options(
+    list(rdev.github.actions = TRUE), usethis::ui_silence(local_temppkg(type = "rdev"))
+  )
+  expect_true(fs::file_exists(".github/.gitignore"))
+  expect_true(fs::file_exists(".github/workflows/check-standard.yaml"))
+  expect_true(fs::file_exists(".github/workflows/lint.yaml"))
+  withr::with_options(
+    list(rdev.github.actions = FALSE), usethis::ui_silence(local_temppkg(type = "rdev"))
+  )
+  expect_false(fs::file_exists(".github/.gitignore"))
+  expect_false(fs::file_exists(".github/workflows/check-standard.yaml"))
+  expect_false(fs::file_exists(".github/workflows/lint.yaml"))
+})
+
 test_that("local_temppkg creates a valid analysis package", {
-  withr::local_options(.new = list(rdev.license = NULL, rdev.license.copyright = NULL))
+  withr::local_options(
+    .new = list(rdev.license = NULL, rdev.license.copyright = NULL, rdev.github.actions = NULL)
+  )
   usethis::ui_silence(local_temppkg(type = "analysis"))
 
   # valid rdev package
