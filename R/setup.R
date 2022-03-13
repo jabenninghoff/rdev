@@ -366,18 +366,18 @@ use_rdev_package <- function(quiet = TRUE) {
   gh_pages <- usethis::use_github_pages(branch = usethis::git_default_branch(), path = "/docs")
 
   pages_url <- sub("/$", "", gh_pages$html_url)
-  gh_url <- paste0("https://github.com/", gh_repo$username, "/", gh_repo$repo)
+  gh_url <- paste0(get_server_url(), gh_repo$username, "/", gh_repo$repo)
   gh_issues <- paste0(gh_url, "/issues")
 
   desc::desc_set_urls(c(pages_url, gh_url))
   desc::desc_set("BugReports", gh_issues)
 
-  # warning: assumes repo is on github.com
   gh::gh(
     "PATCH /repos/{owner}/{repo}",
     owner = gh_repo$username,
     repo = gh_repo$repo,
-    homepage = pages_url
+    homepage = pages_url,
+    .api_url = getOption("rdev.host")
   )
 
   # update dependencies
