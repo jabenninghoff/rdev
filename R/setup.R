@@ -283,6 +283,24 @@ create_github_repo <- function(repo_name, repo_desc = "", host = getOption("rdev
   invisible(create)
 }
 
+#' Get server URL
+#'
+#' Determine server URL from `rdev.host`
+#'
+#' @return server URL string, for use in [use_rdev_package()]
+#'
+#' @keywords internal
+#' @noRd
+get_server_url <- function() {
+  host_url <- xml2::url_parse(getOption("rdev.host", default = "https://github.com/"))
+  port <- ""
+  if (!is.na(host_url$port)) port <- paste0(":", as.character(host_url$port))
+  user <- ""
+  if (host_url$user != "") user <- paste0(host_url$user, "@")
+
+  paste0(host_url$scheme, "://", user, host_url$server, port, "/")
+}
+
 #' Use rdev package conventions
 #'
 #' Add rdev templates and settings within the active package. Normally invoked when first setting

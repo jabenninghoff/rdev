@@ -178,6 +178,35 @@ test_that("create_github_repo generates expected output", {
   )
 })
 
+# get_server_url
+
+test_that("get_server_url finds the correct server URL", {
+  expect_identical(
+    withr::with_options(list(rdev.host = NULL), get_server_url()),
+    "https://github.com/"
+  )
+  expect_identical(
+    withr::with_options(list(rdev.host = "https://github.com"), get_server_url()),
+    "https://github.com/"
+  )
+  expect_identical(
+    withr::with_options(list(rdev.host = "https://github.example.com/api/v3"), get_server_url()),
+    "https://github.example.com/"
+  )
+  expect_identical(
+    withr::with_options(list(rdev.host = "https://github.example.com:80/api/v3"), get_server_url()),
+    "https://github.example.com:80/"
+  )
+  expect_identical(
+    withr::with_options(list(rdev.host = "https://user@github.com/api/v3"), get_server_url()),
+    "https://user@github.com/"
+  )
+  expect_identical(
+    withr::with_options(list(rdev.host = "https://user@github.com:80/api/v3"), get_server_url()),
+    "https://user@github.com:80/"
+  )
+})
+
 # use_analysis_package
 
 test_that("use_analysis_package returns expected values", {
