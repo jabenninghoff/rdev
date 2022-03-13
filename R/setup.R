@@ -240,11 +240,15 @@ create_github_repo <- function(repo_name, repo_desc = "", host = getOption("rdev
   } else {
     required_status_checks <- list(strict = TRUE, contexts = list())
   }
-  required_pull_request_reviews <- list(
-    dismiss_stale_reviews = FALSE,
-    require_code_owner_reviews = FALSE,
-    required_approving_review_count = 0L
-  )
+  if (get_server_url() == "https://github.com/") {
+    required_pull_request_reviews <- list(
+      dismiss_stale_reviews = FALSE,
+      require_code_owner_reviews = FALSE,
+      required_approving_review_count = 0L
+    )
+  } else {
+    required_pull_request_reviews <- NA
+  }
   gh::gh(
     "PUT /repos/{owner}/{repo}/branches/{branch}/protection",
     owner = create$owner$login,
