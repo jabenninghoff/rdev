@@ -161,8 +161,7 @@ fix_gitignore <- function(path = ".") {
 #' Create, configure, clone, and open a new GitHub R package repository following rdev conventions.
 #'
 #' When run, `create_github_repo()`:
-#'   1. Creates a new GitHub repository in the active user's account using [gh::gh()] with license
-#'      template from [get_license()]
+#'   1. Creates a new GitHub repository using [gh::gh()] with license template from [get_license()]
 #'   1. Activates Dependabot alerts per `getOption("rdev.dependabot", default = TRUE)`
 #'   1. Activates Dependabot security updates per `getOption("rdev.dependabot", default = TRUE)`
 #'   1. Adds branch protection to the default branch
@@ -181,10 +180,13 @@ fix_gitignore <- function(path = ".") {
 #' @inheritParams usethis::use_github
 #' @param repo_name The name of the GitHub repository to create
 #' @param repo_desc The description of the GitHub repository to create
+#' @param org The organization to create the repository in. If `NULL`, create the repository in the
+#'   active user's account.
 #'
 #' @return return value from [gh::gh()] creating the repository, invisibly
 #' @export
-create_github_repo <- function(repo_name, repo_desc = "", host = getOption("rdev.host")) {
+create_github_repo <- function(repo_name, repo_desc = "", org = NULL,
+                               host = getOption("rdev.host")) {
   # workaround for ::: per https://stat.ethz.ch/pipermail/r-devel/2013-August/067210.html
   `%:::%` <- function(pkg, fun) {
     get(fun,
@@ -203,14 +205,26 @@ create_github_repo <- function(repo_name, repo_desc = "", host = getOption("rdev
 
   license_template <- get_license()
   if (license_template == "proprietary") license_template <- NULL
-  create <- gh::gh(
-    "POST /user/repos",
-    name = repo_name,
-    description = repo_desc,
-    gitignore_template = "R",
-    license_template = license_template,
-    .api_url = host
-  )
+  if (is.null(org)) {
+    create <- gh::gh(
+      "POST /user/repos",
+      name = repo_name,
+      description = repo_desc,
+      gitignore_template = "R",
+      license_template = license_template,
+      .api_url = host
+    )
+  } else {
+    create <- gh::gh(
+      "POST /orgs/{org}/repos",
+      org = org,
+      name = repo_name,
+      description = repo_desc,
+      gitignore_template = "R",
+      license_template = license_template,
+      .api_url = host
+    )
+  }
 
   if (getOption("rdev.dependabot", default = TRUE)) {
     gh::gh(

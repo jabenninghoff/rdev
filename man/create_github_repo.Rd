@@ -4,12 +4,20 @@
 \alias{create_github_repo}
 \title{Create rdev GitHub repository}
 \usage{
-create_github_repo(repo_name, repo_desc = "", host = getOption("rdev.host"))
+create_github_repo(
+  repo_name,
+  repo_desc = "",
+  org = NULL,
+  host = getOption("rdev.host")
+)
 }
 \arguments{
 \item{repo_name}{The name of the GitHub repository to create}
 
 \item{repo_desc}{The description of the GitHub repository to create}
+
+\item{org}{The organization to create the repository in. If \code{NULL}, create the repository in the
+active user's account.}
 
 \item{host}{GitHub host to target, passed to the \code{.api_url} argument of
 \code{\link[gh:gh]{gh::gh()}}. If unspecified, gh defaults to "https://api.github.com",
@@ -29,8 +37,7 @@ Create, configure, clone, and open a new GitHub R package repository following r
 \details{
 When run, \code{create_github_repo()}:
 \enumerate{
-\item Creates a new GitHub repository in the active user's account using \code{\link[gh:gh]{gh::gh()}} with license
-template from \code{\link[=get_license]{get_license()}}
+\item Creates a new GitHub repository using \code{\link[gh:gh]{gh::gh()}} with license template from \code{\link[=get_license]{get_license()}}
 \item Activates Dependabot alerts per \code{getOption("rdev.dependabot", default = TRUE)}
 \item Activates Dependabot security updates per \code{getOption("rdev.dependabot", default = TRUE)}
 \item Adds branch protection to the default branch
