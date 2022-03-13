@@ -5,7 +5,7 @@ test_that("local_temppkg errors with an invalid package type", {
 })
 
 test_that("local_temppkg creates a valid usethis package", {
-  dir <- usethis::ui_silence(local_temppkg())
+  usethis::ui_silence(local_temppkg())
 
   # paste0(fs::path_file(dir), ".Rproj"), .Rbuildignore and .gitignore aren't created in rcmdcheck
   expect_true(fs::file_exists("DESCRIPTION"))
@@ -14,7 +14,8 @@ test_that("local_temppkg creates a valid usethis package", {
 })
 
 test_that("local_temppkg creates a valid rdev package", {
-  dir <- usethis::ui_silence(local_temppkg(type = "rdev"))
+  withr::local_options(.new = list(rdev.license = NULL, rdev.license.copyright = NULL))
+  usethis::ui_silence(local_temppkg(type = "rdev"))
 
   # paste0(fs::path_file(dir), ".Rproj") isn't created when running rcmdcheck
   expect_true(fs::file_exists(".Rbuildignore"))
@@ -37,8 +38,46 @@ test_that("local_temppkg creates a valid rdev package", {
   expect_true(fs::file_exists("tests/testthat.R"))
 })
 
+test_that("local_temppkg uses license options", {
+  withr::with_options(
+    list(rdev.license = NULL, rdev.license.copyright = NULL),
+    usethis::ui_silence(local_temppkg(type = "rdev"))
+  )
+  expect_true(fs::file_exists("LICENSE"))
+  expect_true(fs::file_exists("LICENSE.md"))
+
+  withr::with_options(
+    list(rdev.license = "mit", rdev.license.copyright = NULL),
+    usethis::ui_silence(local_temppkg(type = "rdev"))
+  )
+  expect_true(fs::file_exists("LICENSE"))
+  expect_true(fs::file_exists("LICENSE.md"))
+
+  withr::with_options(
+    list(rdev.license = "gpl", rdev.license.copyright = NULL),
+    usethis::ui_silence(local_temppkg(type = "rdev"))
+  )
+  expect_false(fs::file_exists("LICENSE"))
+  expect_true(fs::file_exists("LICENSE.md"))
+
+  withr::with_options(
+    list(rdev.license = "lgpl", rdev.license.copyright = NULL),
+    usethis::ui_silence(local_temppkg(type = "rdev"))
+  )
+  expect_false(fs::file_exists("LICENSE"))
+  expect_true(fs::file_exists("LICENSE.md"))
+
+  withr::with_options(
+    list(rdev.license = "proprietary", rdev.license.copyright = "Test"),
+    usethis::ui_silence(local_temppkg(type = "rdev"))
+  )
+  expect_true(fs::file_exists("LICENSE"))
+  expect_false(fs::file_exists("LICENSE.md"))
+})
+
 test_that("local_temppkg creates a valid analysis package", {
-  dir <- usethis::ui_silence(local_temppkg(type = "analysis"))
+  withr::local_options(.new = list(rdev.license = NULL, rdev.license.copyright = NULL))
+  usethis::ui_silence(local_temppkg(type = "analysis"))
 
   # valid rdev package
   # paste0(fs::path_file(dir), ".Rproj") isn't created when running rcmdcheck

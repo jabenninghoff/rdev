@@ -193,12 +193,14 @@ create_github_repo <- function(repo_name, repo_desc = "", host = getOption("rdev
     stop(paste0("create_from_github() target, '", ut_destdir, "' already exists"))
   }
 
+  license_template <- get_license()
+  if (license_template == "proprietary") license_template <- NULL
   create <- gh::gh(
     "POST /user/repos",
     name = repo_name,
     description = repo_desc,
     gitignore_template = "R",
-    license_template = "mit",
+    license_template = license_template,
     .api_url = host
   )
 
@@ -292,7 +294,12 @@ use_rdev_package <- function(quiet = TRUE) {
   use_todo()
   usethis::use_news_md()
   usethis::use_readme_rmd()
-  usethis::use_mit_license()
+  switch(get_license(),
+    mit = usethis::use_mit_license(copyright_holder = getOption("rdev.license.copyright")),
+    gpl = usethis::use_gpl_license(),
+    lgpl = usethis::use_lgpl_license(),
+    proprietary = usethis::use_proprietary_license(getOption("rdev.license.copyright"))
+  )
 
   # replace README.Rmd with rdev template
   fs::file_delete("README.Rmd")
