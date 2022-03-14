@@ -17,7 +17,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">rdev</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="">1.2.6</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="">1.3.0</span>
       </span>
     </div>
 
@@ -57,6 +57,34 @@
       <small>Source: <a href="https://github.com/jabenninghoff/rdev/blob/HEAD/NEWS.md" class="external-link"><code>NEWS.md</code></a></small>
     </div>
 
+    <div class="section level2">
+<h2 class="page-header" data-toc-text="1.3.0" id="rdev-130">rdev 1.3.0<a class="anchor" aria-label="anchor" href="#rdev-130"></a></h2>
+<p>Added new options and features to support GitHub Enterprise.</p>
+<div class="section level3">
+<h3 id="new-options-1-3-0">New Options<a class="anchor" aria-label="anchor" href="#new-options-1-3-0"></a></h3>
+<p>Added settings, configured using <code><a href="https://rdrr.io/r/base/options.html" class="external-link">options()</a></code></p>
+<ul><li><p><code>rdev.host</code>: set the default server for
+<code><a href="../reference/create_github_repo.html">create_github_repo()</a></code>, <code><a href="../reference/stage_release.html">stage_release()</a></code>,
+<code><a href="../reference/merge_release.html">merge_release()</a></code> (to support GitHub Enterprise)</p></li>
+<li><p><code>rdev.codecov</code>: to disable codecov.io support in
+<code><a href="../reference/use_codecov.html">use_codecov()</a></code></p></li>
+<li><p><code>rdev.dependabot</code>: to disable support for Dependabot
+in <code><a href="../reference/create_github_repo.html">create_github_repo()</a></code></p></li>
+<li><p><code>rdev.license</code> and
+<code>rdev.license.copyright</code>: specify licenses for
+<code><a href="../reference/create_github_repo.html">create_github_repo()</a></code>,
+<code><a href="../reference/use_rdev_package.html">use_rdev_package()</a></code></p></li>
+<li><p><code>rdev.github.actions</code>: to disable support for GitHub
+Actions in <code><a href="../reference/create_github_repo.html">create_github_repo()</a></code>,
+<code><a href="../reference/use_codecov.html">use_codecov()</a></code>, <code><a href="../reference/use_rdev_package.html">use_rdev_package()</a></code></p></li>
+</ul></div>
+<div class="section level3">
+<h3 id="new-features-1-3-0">New Features<a class="anchor" aria-label="anchor" href="#new-features-1-3-0"></a></h3>
+<ul><li><p><code><a href="../reference/create_github_repo.html">create_github_repo()</a></code> now supports creating
+repositories within organizations</p></li>
+<li><p>Updated <code>setup-r</code> script to include pkgdown</p></li>
+</ul></div>
+</div>
     <div class="section level2">
 <h2 class="page-header" data-toc-text="1.2.6" id="rdev-126">rdev 1.2.6<a class="anchor" aria-label="anchor" href="#rdev-126"></a></h2>
 <ul><li>Updated <code><a href="../reference/stage_release.html">stage_release()</a></code> to run

@@ -18,7 +18,7 @@ release using merge_release()."><!-- mathjax --><script src="https://cdnjs.cloud
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">rdev</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="">1.2.6</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="">1.3.0</span>
       </span>
     </div>
 
@@ -65,7 +65,7 @@ release using <code><a href="merge_release.html">merge_release()</a></code>.</p>
     </div>
 
     <div id="ref-usage">
-    <div class="sourceCode"><pre class="sourceCode r"><code><span class="fu">stage_release</span><span class="op">(</span>pkg <span class="op">=</span> <span class="st">"."</span>, filename <span class="op">=</span> <span class="st">"NEWS.md"</span>, host <span class="op">=</span> <span class="cn">NULL</span><span class="op">)</span></code></pre></div>
+    <div class="sourceCode"><pre class="sourceCode r"><code><span class="fu">stage_release</span><span class="op">(</span>pkg <span class="op">=</span> <span class="st">"."</span>, filename <span class="op">=</span> <span class="st">"NEWS.md"</span>, host <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/options.html" class="external-link">getOption</a></span><span class="op">(</span><span class="st">"rdev.host"</span><span class="op">)</span><span class="op">)</span></code></pre></div>
     </div>
 
     <div id="arguments">
@@ -104,6 +104,13 @@ with message <code>"GitHub release &lt;version&gt;"</code> using <code><a href="
 <li><p>Opens a pull request with the title <code>"&lt;package&gt; &lt;version&gt;"</code> and the release notes in the body
 using <code><a href="https://gh.r-lib.org/reference/gh.html" class="external-link">gh::gh()</a></code></p></li>
 </ol></div>
+    <div id="host">
+    <h2>Host</h2>
+    
+
+<p>Set the <code>rdev.host</code> option when using a GitHub Enterprise server:
+<code>options(rdev.host = "https://github.example.com/api/v3")</code></p>
+    </div>
 
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="pkgdown-sidebar">

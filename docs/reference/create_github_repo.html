@@ -17,7 +17,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">rdev</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="">1.2.6</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="">1.3.0</span>
       </span>
     </div>
 
@@ -63,7 +63,12 @@
     </div>
 
     <div id="ref-usage">
-    <div class="sourceCode"><pre class="sourceCode r"><code><span class="fu">create_github_repo</span><span class="op">(</span><span class="va">repo_name</span>, repo_desc <span class="op">=</span> <span class="st">""</span>, host <span class="op">=</span> <span class="cn">NULL</span><span class="op">)</span></code></pre></div>
+    <div class="sourceCode"><pre class="sourceCode r"><code><span class="fu">create_github_repo</span><span class="op">(</span>
+  <span class="va">repo_name</span>,
+  repo_desc <span class="op">=</span> <span class="st">""</span>,
+  org <span class="op">=</span> <span class="cn">NULL</span>,
+  host <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/options.html" class="external-link">getOption</a></span><span class="op">(</span><span class="st">"rdev.host"</span><span class="op">)</span>
+<span class="op">)</span></code></pre></div>
     </div>
 
     <div id="arguments">
@@ -72,6 +77,9 @@
 <dd><p>The name of the GitHub repository to create</p></dd>
 <dt>repo_desc</dt>
 <dd><p>The description of the GitHub repository to create</p></dd>
+<dt>org</dt>
+<dd><p>The organization to create the repository in. If <code>NULL</code>, create the repository in the
+active user's account.</p></dd>
 <dt>host</dt>
 <dd><p>GitHub host to target, passed to the <code>.api_url</code> argument of
 <code><a href="https://gh.r-lib.org/reference/gh.html" class="external-link">gh::gh()</a></code>. If unspecified, gh defaults to "https://api.github.com",
@@ -87,15 +95,27 @@ acceptable.</p></dd>
     </div>
     <div id="details">
     <h2>Details</h2>
-    <p>When run, <code>create_github_repo()</code>:</p><ol><li><p>Creates a new GitHub repository in the active user's account using <code><a href="https://gh.r-lib.org/reference/gh.html" class="external-link">gh::gh()</a></code></p></li>
-<li><p>Activates Dependabot alerts</p></li>
-<li><p>Activates Dependabot security updates</p></li>
+    <p>When run, <code>create_github_repo()</code>:</p><ol><li><p>Creates a new GitHub repository using <code><a href="https://gh.r-lib.org/reference/gh.html" class="external-link">gh::gh()</a></code> with license template from <code><a href="get_license.html">get_license()</a></code></p></li>
+<li><p>Activates Dependabot alerts per <code>getOption("rdev.dependabot", default = TRUE)</code></p></li>
+<li><p>Activates Dependabot security updates per <code>getOption("rdev.dependabot", default = TRUE)</code></p></li>
 <li><p>Adds branch protection to the default branch</p></li>
 <li><p>Clones the repository locally with <code><a href="https://usethis.r-lib.org/reference/create_from_github.html" class="external-link">usethis::create_from_github()</a></code></p></li>
 <li><p>Creates a basic package using <code><a href="https://usethis.r-lib.org/reference/create_package.html" class="external-link">usethis::create_package()</a></code></p></li>
 <li><p>If running interactively on macOS, the repository will automatically be opened in RStudio,
 GitHub Desktop, and the default browser</p></li>
 </ol></div>
+    <div id="github-actions">
+    <h2>GitHub Actions</h2>
+    <p>GitHub Actions can be disabled by setting <code>rdev.github.actions</code> to
+<code>FALSE</code>: <code>options(rdev.github.actions = FALSE)</code></p>
+    </div>
+    <div id="host">
+    <h2>Host</h2>
+    
+
+<p>Set the <code>rdev.host</code> option when using a GitHub Enterprise server:
+<code>options(rdev.host = "https://github.example.com/api/v3")</code></p>
+    </div>
 
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="pkgdown-sidebar">
