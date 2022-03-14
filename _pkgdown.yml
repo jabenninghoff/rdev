@@ -26,6 +26,7 @@ reference:
       Package setup tasks, typically performed once
     contents:
     - create_github_repo
+    - get_license
     - use_analysis_package
     - use_codecov
     - use_lintr
