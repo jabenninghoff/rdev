@@ -93,14 +93,6 @@
         "sys"
       ]
     },
-    "backports": {
-      "Package": "backports",
-      "Version": "1.4.1",
-      "Source": "Repository",
-      "Repository": "CRAN",
-      "Hash": "c39fbec8a30d23e721980b8afb31984c",
-      "Requirements": []
-    },
     "base64enc": {
       "Package": "base64enc",
       "Version": "0.1-3",
@@ -602,9 +594,9 @@
       "RemoteUsername": "r-lib",
       "RemoteRepo": "lintr",
       "RemoteRef": "master",
-      "RemoteSha": "4148ebdf8a39050e79b5b519c56de3bbc09c797b",
+      "RemoteSha": "308be5bc3d3e37dcc0c13812e971fc5792006cda",
       "RemoteHost": "api.github.com",
-      "Hash": "646bf9a54778552b2a5396c776f28f52",
+      "Hash": "ef5c6cf75a09807d8bebddb2b149d208",
       "Requirements": [
         "codetools",
         "crayon",
@@ -1082,23 +1074,20 @@
     },
     "styler": {
       "Package": "styler",
-      "Version": "1.6.2",
+      "Version": "1.7.0",
       "Source": "Repository",
       "Repository": "CRAN",
-      "Hash": "d9e85c794c5a723aabed32a49926186a",
+      "Hash": "6cc6b1eb8f318b15fae4b81fe0a0d82e",
       "Requirements": [
         "R.cache",
-        "backports",
         "cli",
-        "glue",
         "magrittr",
         "purrr",
         "rematch2",
         "rlang",
         "rprojroot",
         "tibble",
-        "withr",
-        "xfun"
+        "withr"
       ]
     },
     "sys": {
