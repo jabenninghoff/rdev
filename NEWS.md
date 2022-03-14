@@ -1,3 +1,27 @@
+# rdev 1.3.0
+
+Added new options and features to support GitHub Enterprise.
+
+## New Options
+
+Added settings, configured using `options()`
+
+* `rdev.host`: set the default server for `create_github_repo()`, `stage_release()`, `merge_release()` (to support GitHub Enterprise)
+
+* `rdev.codecov`: to disable codecov.io support in `use_codecov()`
+
+* `rdev.dependabot`: to disable support for Dependabot in `create_github_repo()`
+
+* `rdev.license` and `rdev.license.copyright`: specify licenses for `create_github_repo()`, `use_rdev_package()`
+
+* `rdev.github.actions`: to disable support for GitHub Actions in `create_github_repo()`, `use_codecov()`, `use_rdev_package()`
+
+## New Features
+
+* `create_github_repo()` now supports creating repositories within organizations
+
+* Updated `setup-r` script to include pkgdown
+
 # rdev 1.2.6
 
 * Updated `stage_release()` to run `build_rdev_site()` only when `_pkgdown.yml` exists
