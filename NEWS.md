@@ -2,6 +2,8 @@
 
 * Added `update_wordlist_notebooks()`: Update package `inst/WORDLIST` with words from `spell_check_notebooks()`
 
+* Updated `spell_check_notebooks()` to use Language field in `DESCRIPTION` by default
+
 # rdev 1.3.0
 
 Added new options and features to support GitHub Enterprise.
