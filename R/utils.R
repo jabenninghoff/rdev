@@ -37,7 +37,7 @@ sort_rbuildignore <- function() {
 spell_check_notebooks <- function(path = "analysis", glob = "*.Rmd", use_wordlist = TRUE,
                                   lang = "en_US") {
   ignore <- character()
-  if (use_wordlist & fs::file_exists("inst/WORDLIST")) {
+  if (use_wordlist && fs::file_exists("inst/WORDLIST")) {
     ignore <- readLines("inst/WORDLIST")
   }
   if (!fs::dir_exists(path)) {

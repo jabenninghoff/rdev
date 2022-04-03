@@ -24,7 +24,7 @@ to_document <- function(file_path, new_path, overwrite = FALSE) {
   notebook <- readLines(file_path)
   header <- grep("^---$", notebook)
   yaml <- rmarkdown::yaml_front_matter(file_path)
-  if (length(header) < 2 | length(yaml) < 1) {
+  if (length(header) < 2 || length(yaml) < 1) {
     stop("file_path, '", file_path, "' is not a valid R Notebook!")
   }
 
@@ -79,7 +79,7 @@ rmd_metadata <- function(file_path) {
   notebook <- readLines(file_path)
   header <- grep("^---$", notebook)
   yaml <- rmarkdown::yaml_front_matter(file_path)
-  if (length(header) < 2 | length(yaml) < 1) {
+  if (length(header) < 2 || length(yaml) < 1) {
     stop("file_path, '", file_path, "' is not a valid R Notebook")
   }
 

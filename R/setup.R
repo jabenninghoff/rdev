@@ -122,7 +122,7 @@ get_license <- function() {
   if (!lic %in% c("mit", "gpl", "lgpl", "proprietary")) {
     stop("invalid rdev.license type, '", lic, "'")
   }
-  if (lic == "proprietary" & is.null(getOption("rdev.license.copyright"))) {
+  if (lic == "proprietary" && is.null(getOption("rdev.license.copyright"))) {
     stop("rdev.license is 'proprietary' and rdev.license.copyright is not set")
   }
   lic
@@ -293,7 +293,7 @@ create_github_repo <- function(repo_name, repo_desc = "", org = NULL,
   writeLines("Apply rdev conventions within the new project with use_rdev_package(),")
   writeLines("and use either use_analysis_package() or usethis::use_pkgdown() for GitHub Pages.")
 
-  if (Sys.info()["sysname"] == "Darwin" & rlang::is_interactive()) {
+  if (Sys.info()["sysname"] == "Darwin" && rlang::is_interactive()) {
     system(paste0("open ", create$html_url, "/settings"))
     system(paste0("github ", fs_path))
   }
@@ -481,7 +481,7 @@ use_analysis_package <- function(prompt = FALSE) {
   sort_rbuildignore()
 
   urls <- desc::desc_get_urls()
-  if (length(urls) >= 1 & !fs::file_exists("pkgdown/_base.yml")) {
+  if (length(urls) >= 1 && !fs::file_exists("pkgdown/_base.yml")) {
     yaml::write_yaml(list(url = urls[1]), "pkgdown/_base.yml")
   }
 
