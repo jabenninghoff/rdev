@@ -55,6 +55,9 @@ test_that("spell_check_notebooks logic flows work", {
   expect_length(spell_check_notebooks(glob = "*.tmp")$found, 0)
   expect_length(spell_check_notebooks(glob = "*.Rmd")$found, 1)
 
+  writeLines("Package: test", "DESCRIPTION")
+  expect_error(spell_check_notebooks(), "Field 'Language' not found")
+
   fs::file_delete("DESCRIPTION")
   expect_error(spell_check_notebooks(), "DESCRIPTION not found")
   expect_length(spell_check_notebooks(lang = "en_US")$found, 1)
