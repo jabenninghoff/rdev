@@ -69,6 +69,13 @@ use_spelling <- function(lang = "en-US", prompt = FALSE) {
   usethis::use_spell_check(vignettes = TRUE, lang = lang, error = TRUE)
   fs::file_delete("tests/spelling.R")
   usethis::use_template("spelling.R", save_as = "tests/spelling.R", package = "rdev")
+  if (fs::dir_exists("tests/testthat")) {
+    usethis::use_template(
+      "test-spelling.R",
+      save_as = "tests/testthat/test-spelling.R",
+      package = "rdev"
+    )
+  }
   renv::snapshot(prompt = prompt)
 }
 
