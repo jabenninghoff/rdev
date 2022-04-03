@@ -35,9 +35,10 @@
 - [x] ~~Consider switching `getOption("pkgType")` from `source` to `both` per R [options](https://stat.ethz.ch/R-manual/R-devel/library/base/html/options.html)~~ per the [R macOS FAQ](https://cran.r-project.org/bin/macosx/RMacOSX-FAQ.html#What-is-the-difference-between-the-CRAN-build-and-a-vanilla-build_003f), "Only the CRAN build is guaranteed to be compatible with the package binaries on CRAN (or Bioconductor)."
 - [x] Support creating repos in organizations
 - [x] ~~Consider incorporating the GitHub description into `DESCRIPTION`~~
+- [x] Create a wrapper for `spelling` that includes notebooks in package spell checking, WORDLIST
 - [ ] Switch from development versions of `styler` (1.3.2.9000) and `lintr` (2.0.1.9000) when a new release becomes available - both were needed to address bugs in the current release versions, 1.3.2 and 2.0.1.
 - [ ] Convert manual tests (`Setup.Rmd`) into an R Script that can be run from within the package created with `create_github_repo()`
-- [ ] Create a wrapper for `spelling` that includes notebooks in package spell checking, WORDLIST
+- [ ] Add a `spell_check_test_notebooks()` function for CI spellchecks on notebooks
 
 ## GitHub
 
