@@ -88,10 +88,10 @@ update_wordlist_notebooks <- function(pkg = ".", vignettes = TRUE, path = "analy
   # build new_words from both package and notebooks
   # this is the only non-whitespace change from spelling::update_wordlist
   new_words <- sort(
-    c(
+    unique(c(
       spell_check_package(pkg$path, vignettes = vignettes, use_wordlist = FALSE)$word,
       spell_check_notebooks(path = path, glob = glob, use_wordlist = FALSE)$word
-    ),
+    )),
     method = "radix"
   )
   if (isTRUE(all.equal(old_words, new_words))) {
