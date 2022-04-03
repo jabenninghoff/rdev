@@ -42,6 +42,7 @@ reference:
     - sort_file
     - sort_rbuildignore
     - spell_check_notebooks
+    - update_wordlist_notebooks
     - local_temppkg
   - title: rdev Package
     desc: >
