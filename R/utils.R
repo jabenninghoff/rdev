@@ -37,13 +37,22 @@ sort_rbuildignore <- function() {
 #'
 #' Perform a spell check on notebooks with [spelling::spell_check_files()].
 #'
+#' If `lang` is `NULL` (the default), get language from `DESCRIPTION` using
+#'   [desc::desc_get_field()].
+#'
 #' @param use_wordlist ignore words in the package [WORDLIST][spelling::get_wordlist] file.
 #' @inheritParams fs::dir_ls
 #' @inheritParams spelling::spell_check_files
 #'
 #' @export
 spell_check_notebooks <- function(path = "analysis", glob = "*.Rmd", use_wordlist = TRUE,
-                                  lang = "en_US") {
+                                  lang = NULL) {
+  if (is.null(lang)) {
+    if (!fs::file_exists("DESCRIPTION")) {
+      stop("DESCRIPTION not found")
+    }
+    lang <- desc::desc_get_field("Language")
+  }
   ignore <- character()
   if (use_wordlist && fs::file_exists("inst/WORDLIST")) {
     ignore <- readLines("inst/WORDLIST")

@@ -37,6 +37,7 @@ test_that("spell_check_notebooks logic flows work", {
   withr::local_dir(withr::local_tempdir())
   fs::dir_create("inst")
   writeLines("spelltest", "inst/WORDLIST")
+  writeLines("Package: test\nLanguage: en-US", "DESCRIPTION")
 
   expect_error(spell_check_notebooks(), "'analysis' directory not found")
   expect_error(spell_check_notebooks(path = "testdir"), "'testdir' directory not found")
@@ -53,4 +54,8 @@ test_that("spell_check_notebooks logic flows work", {
   expect_length(spell_check_notebooks(use_wordlist = FALSE)$found, 1)
   expect_length(spell_check_notebooks(glob = "*.tmp")$found, 0)
   expect_length(spell_check_notebooks(glob = "*.Rmd")$found, 1)
+
+  fs::file_delete("DESCRIPTION")
+  expect_error(spell_check_notebooks(), "DESCRIPTION not found")
+  expect_length(spell_check_notebooks(lang = "en_US")$found, 1)
 })

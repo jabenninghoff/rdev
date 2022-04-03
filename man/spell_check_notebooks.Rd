@@ -8,7 +8,7 @@ spell_check_notebooks(
   path = "analysis",
   glob = "*.Rmd",
   use_wordlist = TRUE,
-  lang = "en_US"
+  lang = NULL
 )
 }
 \arguments{
@@ -23,4 +23,8 @@ For supporting other languages, see the \href{https://docs.ropensci.org/hunspell
 }
 \description{
 Perform a spell check on notebooks with \code{\link[spelling:spell_check_files]{spelling::spell_check_files()}}.
+}
+\details{
+If \code{lang} is \code{NULL} (the default), get language from \code{DESCRIPTION} using
+\code{\link[desc:desc_get_field]{desc::desc_get_field()}}.
 }
