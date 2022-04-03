@@ -187,13 +187,6 @@ fix_gitignore <- function(path = ".") {
 #' @export
 create_github_repo <- function(repo_name, repo_desc = "", org = NULL,
                                host = getOption("rdev.host")) {
-  # workaround for ::: per https://stat.ethz.ch/pipermail/r-devel/2013-August/067210.html
-  `%:::%` <- function(pkg, fun) {
-    get(fun,
-      envir = asNamespace(pkg),
-      inherits = FALSE
-    )
-  }
   conspicuous_place <- "usethis" %:::% "conspicuous_place"
   user_path_prep <- "usethis" %:::% "user_path_prep"
 
