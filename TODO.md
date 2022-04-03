@@ -36,9 +36,9 @@
 - [x] Support creating repos in organizations
 - [x] ~~Consider incorporating the GitHub description into `DESCRIPTION`~~
 - [x] Create a wrapper for `spelling` that includes notebooks in package spell checking, WORDLIST
+- [x] Add a `spell_check_test_notebooks()` function for CI spellchecks on notebooks
 - [ ] Switch from development versions of `styler` (1.3.2.9000) and `lintr` (2.0.1.9000) when a new release becomes available - both were needed to address bugs in the current release versions, 1.3.2 and 2.0.1.
 - [ ] Convert manual tests (`Setup.Rmd`) into an R Script that can be run from within the package created with `create_github_repo()`
-- [ ] Add a `spell_check_test_notebooks()` function for CI spellchecks on notebooks
 
 ## GitHub
 
