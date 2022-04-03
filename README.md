@@ -111,7 +111,7 @@ locally:
 ``` r
 ci()
 #> style_all()
-#> Styling  38  files:
+#> Styling  40  files:
 #>  .Rprofile                                               ✓ 
 #>  README.Rmd                                              ✓ 
 #>  inst/rmarkdown/templates/analysis/skeleton/skeleton.Rmd ✓ 
@@ -119,6 +119,7 @@ ci()
 #>  inst/templates/README-analysis.Rmd                      ✓ 
 #>  inst/templates/README-rdev.Rmd                          ✓ 
 #>  inst/templates/spelling.R                               ✓ 
+#>  inst/templates/test-spelling.R                          ✓ 
 #>  R/build.R                                               ✓ 
 #>  R/ci.R                                                  ✓ 
 #>  R/helpers.R                                             ✓ 
@@ -135,6 +136,7 @@ ci()
 #>  tests/testthat/test-helpers.R                           ✓ 
 #>  tests/testthat/test-release.R                           ✓ 
 #>  tests/testthat/test-setup.R                             ✓ 
+#>  tests/testthat/test-spelling.R                          ✓ 
 #>  tests/testthat/test-to_document.R                       ✓ 
 #>  tests/testthat/test-utils.R                             ✓ 
 #>  tests/testthat/test-ci/testcode_1.R                     ✓ 
@@ -152,7 +154,7 @@ ci()
 #>  vignettes/analysis-package-layout.Rmd                   ✓ 
 #> ───────────────────────────────────────────────────────
 #> Status   Count   Legend 
-#> ✓    38  File unchanged.
+#> ✓    40  File unchanged.
 #> ℹ    0   File changed.
 #> x    0   Styling threw an error.
 #> ───────────────────────────────────────────────────────
@@ -175,16 +177,16 @@ ci()
 #> * creating vignettes ... OK
 #> * checking for LF line-endings in source and make files and shell scripts
 #> * checking for empty or unneeded directories
-#> * building ‘rdev_1.3.1.tar.gz’
+#> * building ‘rdev_1.3.2.tar.gz’
 #> 
 #> ── R CMD check ─────────────────────────────────────────────────────────────────
-#> * using log directory ‘/private/var/folders/vn/cw5f9gws42v9m8mdsds_zbl00000gp/T/RtmpF2QTmR/file802c70e4232c/rdev.Rcheck’
+#> * using log directory ‘/private/var/folders/vn/cw5f9gws42v9m8mdsds_zbl00000gp/T/RtmpUCO5Pz/filee88214aa95a7/rdev.Rcheck’
 #> * using R version 4.1.3 (2022-03-10)
 #> * using platform: x86_64-apple-darwin19.6.0 (64-bit)
 #> * using session charset: UTF-8
 #> * using option ‘--no-manual’
 #> * checking for file ‘rdev/DESCRIPTION’ ... OK
-#> * this is package ‘rdev’ version ‘1.3.1’
+#> * this is package ‘rdev’ version ‘1.3.2’
 #> * package encoding: UTF-8
 #> * checking package namespace information ... OK
 #> * checking package dependencies ... OK
@@ -242,8 +244,8 @@ ci()
 #> * DONE
 #> 
 #> Status: OK
-#> ── R CMD check results ───────────────────────────────────────── rdev 1.3.1 ────
-#> Duration: 35.5s
+#> ── R CMD check results ───────────────────────────────────────── rdev 1.3.2 ────
+#> Duration: 34.1s
 #> 
 #> 0 errors ✓ | 0 warnings ✓ | 0 notes ✓
 ```
