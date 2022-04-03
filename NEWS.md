@@ -1,3 +1,9 @@
+# rdev 1.3.2
+
+* Fixed `update_wordlist_notebooks()`: removed duplicate words
+
+* Update `use_spelling()` to install test-spelling.R testthat template
+
 # rdev 1.3.1
 
 * Added `update_wordlist_notebooks()`: Update package `inst/WORDLIST` with words from `spell_check_notebooks()`
