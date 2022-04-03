@@ -34,8 +34,10 @@ test_that("style_all tests R and Rmd files", {
 test_that("lint_all checks all test files", {
   # snapshot captures "..." for the 3 files tested
   # use cran = FALSE and skip_on_ci() as expect_snapshot only works when tests are run interactively
+  # set TESTTHAT=false to un-silence lintr, see
+  #   https://github.com/r-lib/lintr/commit/74f1e9d2886c4bd06f52bd2510e939eac644065a
   skip_on_ci()
-  expect_snapshot(lint_all(), cran = FALSE)
+  withr::with_envvar(new = c("TESTTHAT" = "false"), expect_snapshot(lint_all(), cran = FALSE))
 })
 
 # ci
