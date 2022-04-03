@@ -18,12 +18,14 @@ if (!length(pkg_dir) && identical(basename(getwd()), "testthat")) {
 
 test_that("Package has no spelling errors", {
   skip_on_cran()
+  skip_on_covr()
   withr::local_dir(pkg_dir)
   expect_identical(spelling::spell_check_package()$word, character(0))
 })
 
 test_that("Notebooks have no spelling errors", {
   skip_on_cran()
+  skip_on_covr()
   withr::local_dir(pkg_dir)
   if (fs::dir_exists("analysis")) {
     expect_identical(rdev::spell_check_notebooks()$word, character(0))
