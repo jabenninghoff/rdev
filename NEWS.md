@@ -1,3 +1,7 @@
+# rdev 1.3.1
+
+* Added `update_wordlist_notebooks()`: Update package `inst/WORDLIST` with words from `spell_check_notebooks()`
+
 # rdev 1.3.0
 
 Added new options and features to support GitHub Enterprise.
