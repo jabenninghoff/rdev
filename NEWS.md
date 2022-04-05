@@ -1,3 +1,7 @@
+# rdev 1.3.3
+
+* Fixed `ci()` and `stage_release()` to correctly use `gert::git_stage()` to determine if uncommitted changes exist (instead of `gert::git_diff_patch()`)
+
 # rdev 1.3.2
 
 * Fixed `update_wordlist_notebooks()`: removed duplicate words
