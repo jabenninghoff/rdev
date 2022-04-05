@@ -85,7 +85,7 @@ lint_all <- function(path = ".", ...) {
 #' @export
 ci <- function(styler = NULL, lintr = TRUE, document = TRUE, rcmdcheck = TRUE) {
   if (is.null(styler)) {
-    styler <- length(gert::git_diff_patch()) == 0
+    styler <- nrow(gert::git_status()) == 0
   }
 
   if (styler) {

@@ -100,7 +100,7 @@ get_release <- function(pkg = ".", filename = "NEWS.md") {
 #' 1. Extracts release version and release notes from `NEWS.md` using [get_release()]
 #' 1. Validates version conforms to rdev conventions (#.#.#) and release notes aren't empty
 #' 1. Verifies that version tag doesn't already exist using [gert::git_tag_list()]
-#' 1. Checks for uncommitted changes and stops if any exist using [gert::git_diff_patch()]
+#' 1. Checks for uncommitted changes and stops if any exist using [gert::git_status()]
 #' 1. Creates a new branch if on the default branch ([gert::git_branch()] `==`
 #'   [usethis::git_default_branch()]) using [gert::git_branch_create()]
 #' 1. Updates `Version` in `DESCRIPTION` with [desc::desc_set_version()], commits and push to git
@@ -138,7 +138,7 @@ stage_release <- function(pkg = ".", filename = "NEWS.md", host = getOption("rde
     stop("release tag '", rel$version, "' already exists!")
   }
 
-  if (length(gert::git_diff_patch()) != 0) {
+  if (nrow(gert::git_status()) != 0) {
     stop("uncommitted changes present, aborting.")
   }
 
@@ -167,7 +167,7 @@ stage_release <- function(pkg = ".", filename = "NEWS.md", host = getOption("rde
     }
   }
   # commit builder changes if there are any
-  if (length(gert::git_diff_patch()) != 0) {
+  if (nrow(gert::git_status()) != 0) {
     gert::git_add(".")
     gert::git_commit(paste0(builder, " for release ", rel$version))
   }

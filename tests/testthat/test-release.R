@@ -1,4 +1,12 @@
 withr::local_dir("test-release")
+git_status_empty <- structure(
+  list(file = character(0), status = character(0), staged = logical(0)),
+  row.names = integer(0), class = c("tbl_df", "tbl", "data.frame")
+)
+git_status_changed <- structure(
+  list(file = "test", status = "new", staged = FALSE),
+  row.names = c(NA, -1L), class = c("tbl_df", "tbl", "data.frame")
+)
 
 # new_branch
 
@@ -221,7 +229,7 @@ test_that("stage_release returns error if uncommitted changes are present", {
   rel <- get_release()
   mockery::stub(stage_release, "get_release", rel)
   mockery::stub(stage_release, "gert::git_tag_list", no_tags)
-  mockery::stub(stage_release, "gert::git_diff_patch", c("diff --git fake/1"))
+  mockery::stub(stage_release, "gert::git_status", git_status_changed)
   # stub functions that change state
   mockery::stub(stage_release, "gert::git_branch_create", NULL)
   mockery::stub(stage_release, "desc::desc_set_version", NULL)
@@ -243,7 +251,7 @@ test_that("stage_release creates new branch", {
   rel <- get_release()
   mockery::stub(stage_release, "get_release", rel)
   mockery::stub(stage_release, "gert::git_tag_list", no_tags)
-  mockery::stub(stage_release, "gert::git_diff_patch", character(0))
+  mockery::stub(stage_release, "gert::git_status", git_status_empty)
   mockery::stub(stage_release, "gert::git_branch", "main")
   mockery::stub(stage_release, "usethis::git_default_branch", "main")
   # stub functions that change state
@@ -270,7 +278,7 @@ test_that("stage_release errors when on default branch before commits", {
   rel <- get_release()
   mockery::stub(stage_release, "get_release", rel)
   mockery::stub(stage_release, "gert::git_tag_list", no_tags)
-  mockery::stub(stage_release, "gert::git_diff_patch", character(0))
+  mockery::stub(stage_release, "gert::git_status", git_status_empty)
   mockery::stub(stage_release, "usethis::git_default_branch", "main")
   mockery::stub(stage_release, "gert::git_branch", "main")
   # stub functions that change state
@@ -294,7 +302,7 @@ test_that("stage_release runs proper builder", {
   rel <- get_release()
   mockery::stub(stage_release, "get_release", rel)
   mockery::stub(stage_release, "gert::git_tag_list", no_tags)
-  mockery::stub(stage_release, "gert::git_diff_patch", character(0))
+  mockery::stub(stage_release, "gert::git_status", git_status_empty)
   mockery::stub(stage_release, "usethis::git_default_branch", "main")
   mockery::stub(stage_release, "gert::git_branch", "stage-release")
   mockery::stub(stage_release, "gert::git_remote_info", NULL)
@@ -336,7 +344,7 @@ test_that("stage_release returns pull request results", {
   rel <- get_release()
   mockery::stub(stage_release, "get_release", rel)
   mockery::stub(stage_release, "gert::git_tag_list", no_tags)
-  mockery::stub(stage_release, "gert::git_diff_patch", character(0))
+  mockery::stub(stage_release, "gert::git_status", git_status_empty)
   mockery::stub(stage_release, "usethis::git_default_branch", "main")
   mockery::stub(stage_release, "gert::git_branch", "stage-release")
   rem <- list(name = "origin", url = "https://github.com/example/test.git")

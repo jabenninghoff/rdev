@@ -43,9 +43,17 @@ test_that("lint_all checks all test files", {
 # ci
 
 test_that("All renv functions are called according to ci logic", {
+  git_status_empty <- structure(
+    list(file = character(0), status = character(0), staged = logical(0)),
+    row.names = integer(0), class = c("tbl_df", "tbl", "data.frame")
+  )
+  git_status_changed <- structure(
+    list(file = "test", status = "new", staged = FALSE),
+    row.names = c(NA, -1L), class = c("tbl_df", "tbl", "data.frame")
+  )
   mockery::stub(ci, "style_all", NULL)
   mockery::stub(ci, "lint_all", NULL)
-  mockery::stub(ci, "gert::git_diff_patch", NULL)
+  mockery::stub(ci, "gert::git_status", git_status_empty)
   mockery::stub(ci, "devtools::document", NULL)
   mockery::stub(ci, "rcmdcheck::rcmdcheck", NULL)
 
@@ -78,7 +86,7 @@ test_that("All renv functions are called according to ci logic", {
   expect_output(ci(styler = FALSE, lintr = FALSE, document = FALSE, rcmdcheck = FALSE), NA)
 
   # uncommitted changes
-  mockery::stub(ci, "gert::git_diff_patch", c("diff"))
+  mockery::stub(ci, "gert::git_status", git_status_changed)
   expect_output(
     ci(styler = NULL, lintr = TRUE, document = TRUE, rcmdcheck = TRUE),
     paste0(begin, lintr, sep, document, sep, rcmdcheck, end),
@@ -86,7 +94,7 @@ test_that("All renv functions are called according to ci logic", {
   )
 
   # lints found
-  mockery::stub(ci, "gert::git_diff_patch", NULL)
+  mockery::stub(ci, "gert::git_status", git_status_empty)
   mockery::stub(ci, "lint_all", list("lint"))
   expect_output(
     ci(styler = NULL, lintr = TRUE, document = TRUE, rcmdcheck = TRUE),
