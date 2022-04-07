@@ -100,6 +100,7 @@ stopifnot(
 )
 writeLines("3. use_rdev_package() changes")
 
-# commit changes
+# validate ci() and commit changes
 gert::git_commit("rdev::use_rdev_package()")
+ci()
 gert::git_push()
