@@ -77,3 +77,10 @@ stopifnot(
   )
 )
 writeLines("2. branch protection, dependabot settings, git commits, git status")
+
+# commit changes, run use_rdev_package()
+gert::git_branch_create("package-setup")
+gert::git_add(".")
+gert::git_commit("rdev::create_github_repo()")
+gert::git_push()
+rdev::use_rdev_package()
