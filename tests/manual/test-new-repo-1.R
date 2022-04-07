@@ -4,6 +4,12 @@
 repo_name <- "rdtest1"
 repo_desc <- "rdev test package 1"
 
+# assumes default options
+host <- NULL
+# assume the repo created under the currently logged in user
+gh_login <- gh::gh_whoami(.api_url = host)$login
+gh_server <- "github.com"
+
 # validate that repository is created and opened in RStudio, GitHub Desktop, and default browser
 preconditions <- c(
   "Given:",
@@ -20,7 +26,7 @@ preconditions <- c(
   "  local system, and populated with package files using usethis options in `~/.Rprofile`",
   "- The repository is opened as a new project in RStudio",
   "- On macOS, the repository is opened in GitHub Desktop",
-  "- On macOS, the repository settings on github.com are opened in the default browser",
+  "- On macOS, the repository settings on ", gh_server, " are opened in the default browser",
   "- Re-running the create_github_repo command returns an error\n"
 )
 writeLines(preconditions)
@@ -32,10 +38,13 @@ writeLines("\nValidated:")
 writeLines("1. repository is created and opened in RStudio, GitHub Desktop, and default browser")
 
 # validate branch protection, dependabot settings, git commits, git status
-# assume the repo created under the currently logged in user
-gh_login <- gh::gh_whoami()$login
 # assume that only the default branch is returned because the repo was just created
-gh_branches <- gh::gh("GET /repos/{owner}/{repo}/branches", owner = gh_login, repo = repo_name)
+gh_branches <- gh::gh(
+  "GET /repos/{owner}/{repo}/branches",
+  owner = gh_login,
+  repo = repo_name,
+  .api_url = host
+)
 stopifnot(
   gh_branches[[1]]$protected == TRUE,
   identical(
@@ -57,7 +66,8 @@ stopifnot(
   gh::gh(
     "GET /repos/{owner}/{repo}/vulnerability-alerts",
     owner = gh_login,
-    repo = repo_name
+    repo = repo_name,
+    .api_url = host
   ) == "",
   # no method to check if automated-security-fixes are enabled
   nrow(gert::git_log()) == 1,
