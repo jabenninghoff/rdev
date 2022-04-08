@@ -1,3 +1,7 @@
+# rdev 1.3.4
+
+* Added new test scripts for new package setup
+
 # rdev 1.3.3
 
 * Fixed `ci()` and `stage_release()` to correctly use `gert::git_status()` to determine if uncommitted changes exist (instead of `gert::git_diff_patch()`)
