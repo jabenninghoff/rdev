@@ -594,9 +594,9 @@
       "RemoteUsername": "r-lib",
       "RemoteRepo": "lintr",
       "RemoteRef": "master",
-      "RemoteSha": "49fd3468a5ec8fb14d5986809b3ca22511ab5ef7",
+      "RemoteSha": "f1643b7430a769947a862c4cd37d0e930bd32f50",
       "RemoteHost": "api.github.com",
-      "Hash": "1fbe8fae133b35cdda0311ddbac63918",
+      "Hash": "aa0303e9394a4c8e6c6a073e9fbb196c",
       "Requirements": [
         "codetools",
         "crayon",
