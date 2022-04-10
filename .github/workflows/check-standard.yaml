@@ -48,3 +48,4 @@ jobs:
         with:
           # see https://github.com/r-hub/rhub/issues/476 for --no-multiarch
           args: 'c("--no-manual", "--no-multiarch")'
+          upload-snapshots: true
