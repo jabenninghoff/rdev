@@ -28,5 +28,6 @@ jobs:
         run: |
           devtools::load_all(".")
           lints <- lintr::lint_dir(path = ".")
+          lints
           stopifnot(length(lints) == 0)
         shell: Rscript {0}
