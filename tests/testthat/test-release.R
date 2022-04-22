@@ -374,13 +374,14 @@ test_that("merge_release errors when expected and returns list", {
   gh_merge <- list(merged = TRUE)
   gh <- function(command, ...) {
     if (command == "GET /repos/{owner}/{repo}/pulls") {
-      return(gh_pulls)
+      # object_usage_linter shouldn't trigger here, see https://github.com/r-lib/lintr/issues/1088
+      return(gh_pulls) # nolint: object_usage_linter
     }
     if (command == "GET /repos/{owner}/{repo}/pulls/{pull_number}") {
-      return(gh_pull_number)
+      return(gh_pull_number) # nolint: object_usage_linter
     }
     if (command == "PUT /repos/{owner}/{repo}/pulls/{pull_number}/merge") {
-      return(gh_merge)
+      return(gh_merge) # nolint: object_usage_linter
     }
   }
 
