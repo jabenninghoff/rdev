@@ -27,5 +27,7 @@ jobs:
       - name: Lint all files
         run: |
           devtools::load_all(".")
-          stopifnot(length(lintr::lint_dir(path = ".")) == 0)
+          lints <- lintr::lint_dir(path = ".")
+          lints
+          stopifnot(length(lints) == 0)
         shell: Rscript {0}
