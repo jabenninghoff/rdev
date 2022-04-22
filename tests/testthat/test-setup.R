@@ -127,8 +127,7 @@ test_that("create_github_repo options work", {
   )
   gh_gh <- function(command, ...) {
     writeLines(command)
-    # object_usage_linter shouldn't trigger here, see https://github.com/r-lib/lintr/issues/1088
-    create # nolint: object_usage_linter
+    create
   }
   mockery::stub(create_github_repo, "fs::dir_exists", FALSE)
   mockery::stub(create_github_repo, "gh::gh", gh_gh)
