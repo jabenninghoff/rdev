@@ -1,3 +1,7 @@
+# rdev 1.3.7
+
+* Fixed bug in lint workflow
+
 # rdev 1.3.6
 
 * Updated `.Rprofile` to load current package at start
