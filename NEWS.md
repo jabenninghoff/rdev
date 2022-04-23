@@ -1,3 +1,9 @@
+# rdev 1.3.6
+
+* Updated `.Rprofile` to load current package at start
+
+* Updated for R version 4.2.0 (2022-04-22) -- "Vigorous Calisthenics"
+
 # rdev 1.3.5
 
 * Updated GitHub workflows
