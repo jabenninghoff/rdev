@@ -724,10 +724,10 @@
     },
     "pkgdown": {
       "Package": "pkgdown",
-      "Version": "2.0.2",
+      "Version": "2.0.3",
       "Source": "Repository",
       "Repository": "CRAN",
-      "Hash": "1ef66f10b752bb5f17e33fe9fa861005",
+      "Hash": "ec3139021900fa27faae7a821b732bf8",
       "Requirements": [
         "bslib",
         "callr",
