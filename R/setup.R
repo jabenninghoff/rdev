@@ -500,6 +500,8 @@ use_analysis_package <- function(prompt = FALSE) {
 
   renv::install("dplyr")
   usethis::use_package("dplyr", type = "Suggests")
+  usethis::use_package("fs", type = "Suggests")
+  usethis::use_package("purrr", type = "Suggests")
   renv::snapshot(prompt = prompt)
 
   ret <- list(
