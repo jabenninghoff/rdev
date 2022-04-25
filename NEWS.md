@@ -1,3 +1,7 @@
+# rdev 1.3.8
+
+* Fix bugs in tests, `use_analysis_package()`
+
 # rdev 1.3.7
 
 * Fixed bug in lint workflow
