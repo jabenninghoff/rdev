@@ -17,7 +17,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">rdev</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="">1.3.7</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="">1.3.8</span>
       </span>
     </div>
 
@@ -58,15 +58,18 @@
     </div>
 
     <div class="section level2">
+<h2 class="page-header" data-toc-text="1.3.8" id="rdev-138">rdev 1.3.8<a class="anchor" aria-label="anchor" href="#rdev-138"></a></h2>
+<ul><li>Fix bugs in tests, <code><a href="../reference/use_analysis_package.html">use_analysis_package()</a></code>
+</li>
+</ul></div>
+    <div class="section level2">
 <h2 class="page-header" data-toc-text="1.3.7" id="rdev-137">rdev 1.3.7<a class="anchor" aria-label="anchor" href="#rdev-137"></a></h2>
 <ul><li>Fixed bug in lint workflow</li>
 </ul></div>
     <div class="section level2">
 <h2 class="page-header" data-toc-text="1.3.6" id="rdev-136">rdev 1.3.6<a class="anchor" aria-label="anchor" href="#rdev-136"></a></h2>
-<ul><li><p>Updated <code>.Rprofile</code> to load current package at
-start</p></li>
-<li><p>Updated for R version 4.2.0 (2022-04-22) – “Vigorous
-Calisthenics”</p></li>
+<ul><li><p>Updated <code>.Rprofile</code> to load current package at start</p></li>
+<li><p>Updated for R version 4.2.0 (2022-04-22) – “Vigorous Calisthenics”</p></li>
 </ul></div>
     <div class="section level2">
 <h2 class="page-header" data-toc-text="1.3.5" id="rdev-135">rdev 1.3.5<a class="anchor" aria-label="anchor" href="#rdev-135"></a></h2>
@@ -78,25 +81,17 @@ Calisthenics”</p></li>
 </ul></div>
     <div class="section level2">
 <h2 class="page-header" data-toc-text="1.3.3" id="rdev-133">rdev 1.3.3<a class="anchor" aria-label="anchor" href="#rdev-133"></a></h2>
-<ul><li>Fixed <code><a href="../reference/ci.html">ci()</a></code> and <code><a href="../reference/stage_release.html">stage_release()</a></code> to
-correctly use <code><a href="https://docs.ropensci.org/gert/reference/git_commit.html" class="external-link">gert::git_status()</a></code> to determine if
-uncommitted changes exist (instead of
-<code><a href="https://docs.ropensci.org/gert/reference/git_diff.html" class="external-link">gert::git_diff_patch()</a></code>)</li>
+<ul><li>Fixed <code><a href="../reference/ci.html">ci()</a></code> and <code><a href="../reference/stage_release.html">stage_release()</a></code> to correctly use <code><a href="https://docs.ropensci.org/gert/reference/git_commit.html" class="external-link">gert::git_status()</a></code> to determine if uncommitted changes exist (instead of <code><a href="https://docs.ropensci.org/gert/reference/git_diff.html" class="external-link">gert::git_diff_patch()</a></code>)</li>
 </ul></div>
     <div class="section level2">
 <h2 class="page-header" data-toc-text="1.3.2" id="rdev-132">rdev 1.3.2<a class="anchor" aria-label="anchor" href="#rdev-132"></a></h2>
-<ul><li><p>Fixed <code><a href="../reference/update_wordlist_notebooks.html">update_wordlist_notebooks()</a></code>: removed duplicate
-words</p></li>
-<li><p>Update <code><a href="../reference/use_spelling.html">use_spelling()</a></code> to install test-spelling.R
-testthat template</p></li>
+<ul><li><p>Fixed <code><a href="../reference/update_wordlist_notebooks.html">update_wordlist_notebooks()</a></code>: removed duplicate words</p></li>
+<li><p>Update <code><a href="../reference/use_spelling.html">use_spelling()</a></code> to install test-spelling.R testthat template</p></li>
 </ul></div>
     <div class="section level2">
 <h2 class="page-header" data-toc-text="1.3.1" id="rdev-131">rdev 1.3.1<a class="anchor" aria-label="anchor" href="#rdev-131"></a></h2>
-<ul><li><p>Added <code><a href="../reference/update_wordlist_notebooks.html">update_wordlist_notebooks()</a></code>: Update package
-<code>inst/WORDLIST</code> with words from
-<code><a href="../reference/spell_check_notebooks.html">spell_check_notebooks()</a></code></p></li>
-<li><p>Updated <code><a href="../reference/spell_check_notebooks.html">spell_check_notebooks()</a></code> to use Language
-field in <code>DESCRIPTION</code> by default</p></li>
+<ul><li><p>Added <code><a href="../reference/update_wordlist_notebooks.html">update_wordlist_notebooks()</a></code>: Update package <code>inst/WORDLIST</code> with words from <code><a href="../reference/spell_check_notebooks.html">spell_check_notebooks()</a></code></p></li>
+<li><p>Updated <code><a href="../reference/spell_check_notebooks.html">spell_check_notebooks()</a></code> to use Language field in <code>DESCRIPTION</code> by default</p></li>
 </ul></div>
     <div class="section level2">
 <h2 class="page-header" data-toc-text="1.3.0" id="rdev-130">rdev 1.3.0<a class="anchor" aria-label="anchor" href="#rdev-130"></a></h2>
@@ -104,33 +99,21 @@ field in <code>DESCRIPTION</code> by default</p></li>
 <div class="section level3">
 <h3 id="new-options-1-3-0">New Options<a class="anchor" aria-label="anchor" href="#new-options-1-3-0"></a></h3>
 <p>Added settings, configured using <code><a href="https://rdrr.io/r/base/options.html" class="external-link">options()</a></code></p>
-<ul><li><p><code>rdev.host</code>: set the default server for
-<code><a href="../reference/create_github_repo.html">create_github_repo()</a></code>, <code><a href="../reference/stage_release.html">stage_release()</a></code>,
-<code><a href="../reference/merge_release.html">merge_release()</a></code> (to support GitHub Enterprise)</p></li>
-<li><p><code>rdev.codecov</code>: to disable codecov.io support in
-<code><a href="../reference/use_codecov.html">use_codecov()</a></code></p></li>
-<li><p><code>rdev.dependabot</code>: to disable support for Dependabot
-in <code><a href="../reference/create_github_repo.html">create_github_repo()</a></code></p></li>
-<li><p><code>rdev.license</code> and
-<code>rdev.license.copyright</code>: specify licenses for
-<code><a href="../reference/create_github_repo.html">create_github_repo()</a></code>,
-<code><a href="../reference/use_rdev_package.html">use_rdev_package()</a></code></p></li>
-<li><p><code>rdev.github.actions</code>: to disable support for GitHub
-Actions in <code><a href="../reference/create_github_repo.html">create_github_repo()</a></code>,
-<code><a href="../reference/use_codecov.html">use_codecov()</a></code>, <code><a href="../reference/use_rdev_package.html">use_rdev_package()</a></code></p></li>
+<ul><li><p><code>rdev.host</code>: set the default server for <code><a href="../reference/create_github_repo.html">create_github_repo()</a></code>, <code><a href="../reference/stage_release.html">stage_release()</a></code>, <code><a href="../reference/merge_release.html">merge_release()</a></code> (to support GitHub Enterprise)</p></li>
+<li><p><code>rdev.codecov</code>: to disable codecov.io support in <code><a href="../reference/use_codecov.html">use_codecov()</a></code></p></li>
+<li><p><code>rdev.dependabot</code>: to disable support for Dependabot in <code><a href="../reference/create_github_repo.html">create_github_repo()</a></code></p></li>
+<li><p><code>rdev.license</code> and <code>rdev.license.copyright</code>: specify licenses for <code><a href="../reference/create_github_repo.html">create_github_repo()</a></code>, <code><a href="../reference/use_rdev_package.html">use_rdev_package()</a></code></p></li>
+<li><p><code>rdev.github.actions</code>: to disable support for GitHub Actions in <code><a href="../reference/create_github_repo.html">create_github_repo()</a></code>, <code><a href="../reference/use_codecov.html">use_codecov()</a></code>, <code><a href="../reference/use_rdev_package.html">use_rdev_package()</a></code></p></li>
 </ul></div>
 <div class="section level3">
 <h3 id="new-features-1-3-0">New Features<a class="anchor" aria-label="anchor" href="#new-features-1-3-0"></a></h3>
-<ul><li><p><code><a href="../reference/create_github_repo.html">create_github_repo()</a></code> now supports creating
-repositories within organizations</p></li>
+<ul><li><p><code><a href="../reference/create_github_repo.html">create_github_repo()</a></code> now supports creating repositories within organizations</p></li>
 <li><p>Updated <code>setup-r</code> script to include pkgdown</p></li>
 </ul></div>
 </div>
     <div class="section level2">
 <h2 class="page-header" data-toc-text="1.2.6" id="rdev-126">rdev 1.2.6<a class="anchor" aria-label="anchor" href="#rdev-126"></a></h2>
-<ul><li>Updated <code><a href="../reference/stage_release.html">stage_release()</a></code> to run
-<code><a href="../reference/build_rdev_site.html">build_rdev_site()</a></code> only when <code>_pkgdown.yml</code>
-exists</li>
+<ul><li>Updated <code><a href="../reference/stage_release.html">stage_release()</a></code> to run <code><a href="../reference/build_rdev_site.html">build_rdev_site()</a></code> only when <code>_pkgdown.yml</code> exists</li>
 </ul></div>
     <div class="section level2">
 <h2 class="page-header" data-toc-text="1.2.5" id="rdev-125">rdev 1.2.5<a class="anchor" aria-label="anchor" href="#rdev-125"></a></h2>
@@ -143,43 +126,36 @@ exists</li>
 </ul></div>
     <div class="section level2">
 <h2 class="page-header" data-toc-text="1.2.3" id="rdev-123">rdev 1.2.3<a class="anchor" aria-label="anchor" href="#rdev-123"></a></h2>
-<ul><li>Updated <code><a href="../reference/use_codecov.html">use_codecov()</a></code> to use
-<code><a href="../reference/sort_rbuildignore.html">sort_rbuildignore()</a></code>
+<ul><li>Updated <code><a href="../reference/use_codecov.html">use_codecov()</a></code> to use <code><a href="../reference/sort_rbuildignore.html">sort_rbuildignore()</a></code>
 </li>
 </ul></div>
     <div class="section level2">
 <h2 class="page-header" data-toc-text="1.2.2" id="rdev-122">rdev 1.2.2<a class="anchor" aria-label="anchor" href="#rdev-122"></a></h2>
 <ul><li><p>Implement workaround for closed usethis issue <a href="https://github.com/r-lib/usethis/issues/1568" class="external-link">#1568</a></p></li>
-<li><p><code><a href="../reference/use_analysis_package.html">use_analysis_package()</a></code> now installs <a href="https://dplyr.tidyverse.org" class="external-link">dplyr</a>, used in the
-<code>README.Rmd</code> template</p></li>
+<li><p><code><a href="../reference/use_analysis_package.html">use_analysis_package()</a></code> now installs <a href="https://dplyr.tidyverse.org" class="external-link">dplyr</a>, used in the <code>README.Rmd</code> template</p></li>
 <li><p>Documentation updates</p></li>
 </ul></div>
     <div class="section level2">
 <h2 class="page-header" data-toc-text="1.2.1" id="rdev-121">rdev 1.2.1<a class="anchor" aria-label="anchor" href="#rdev-121"></a></h2>
 <ul><li>
-<code><a href="../reference/create_github_repo.html">create_github_repo()</a></code> now adds branch protection to the
-default branch</li>
+<code><a href="../reference/create_github_repo.html">create_github_repo()</a></code> now adds branch protection to the default branch</li>
 </ul></div>
     <div class="section level2">
 <h2 class="page-header" data-toc-text="1.2.0" id="rdev-120">rdev 1.2.0<a class="anchor" aria-label="anchor" href="#rdev-120"></a></h2>
-<ul><li>Added <code><a href="../reference/spell_check_notebooks.html">spell_check_notebooks()</a></code>: Perform a spell check on
-notebooks with <code><a href="https://docs.ropensci.org/spelling/reference/spell_check_files.html" class="external-link">spelling::spell_check_files()</a></code>.</li>
+<ul><li>Added <code><a href="../reference/spell_check_notebooks.html">spell_check_notebooks()</a></code>: Perform a spell check on notebooks with <code><a href="https://docs.ropensci.org/spelling/reference/spell_check_files.html" class="external-link">spelling::spell_check_files()</a></code>.</li>
 </ul></div>
     <div class="section level2">
 <h2 class="page-header" data-toc-text="1.1.1" id="rdev-111">rdev 1.1.1<a class="anchor" aria-label="anchor" href="#rdev-111"></a></h2>
 <ul><li><p>Fix R-CMD-check for Windows</p></li>
-<li><p><code><a href="../reference/check_renv.html">check_renv()</a></code> now defaults to running
-<code>update</code> when interactive</p></li>
+<li><p><code><a href="../reference/check_renv.html">check_renv()</a></code> now defaults to running <code>update</code> when interactive</p></li>
 </ul></div>
     <div class="section level2">
 <h2 class="page-header" data-toc-text="1.1.0" id="rdev-110">rdev 1.1.0<a class="anchor" aria-label="anchor" href="#rdev-110"></a></h2>
 <ul><li>Added additional automation to <code><a href="../reference/ci.html">ci()</a></code>:
 <ul><li>
-<code><a href="../reference/style_all.html">style_all()</a></code> now runs automatically if there are no
-uncommitted changes</li>
+<code><a href="../reference/style_all.html">style_all()</a></code> now runs automatically if there are no uncommitted changes</li>
 <li>
-<code><a href="../reference/lint_all.html">lint_all()</a></code> now runs by default and opens RStudio
-markers pane if any lints are found</li>
+<code><a href="../reference/lint_all.html">lint_all()</a></code> now runs by default and opens RStudio markers pane if any lints are found</li>
 </ul></li>
 </ul></div>
     <div class="section level2">
@@ -192,59 +168,45 @@ markers pane if any lints are found</li>
 <div class="section level3">
 <h3 id="major-features-1-0-0">Major features<a class="anchor" aria-label="anchor" href="#major-features-1-0-0"></a></h3>
 <p>rdev provides functions and templates for:</p>
-<ul><li><p>Release automation: Stage and create GitHub releases, including
-GitHub pages</p></li>
-<li><p>Continuous Integration: Local continuous integration checks and
-dependency management</p></li>
-<li><p>Package Setup: Package setup tasks, typically performed
-once</p></li>
+<ul><li><p>Release automation: Stage and create GitHub releases, including GitHub pages</p></li>
+<li><p>Continuous Integration: Local continuous integration checks and dependency management</p></li>
+<li><p>Package Setup: Package setup tasks, typically performed once</p></li>
 </ul></div>
 <div class="section level3">
 <h3 id="recent-changes-1-0-0">Recent changes<a class="anchor" aria-label="anchor" href="#recent-changes-1-0-0"></a></h3>
 <p>Changes since release 0.8.9:</p>
-<ul><li><p>Add <code><a href="../reference/use_spelling.html">use_spelling()</a></code> and
-<code><a href="../reference/use_codecov.html">use_codecov()</a></code></p></li>
+<ul><li><p>Add <code><a href="../reference/use_spelling.html">use_spelling()</a></code> and <code><a href="../reference/use_codecov.html">use_codecov()</a></code></p></li>
 <li><p>Added <code><a href="../reference/local_temppkg.html">local_temppkg()</a></code> test helper function</p></li>
-<li><p>Minor enhancements to <code><a href="../reference/use_rdev_package.html">use_rdev_package()</a></code>,
-<code><a href="../reference/use_analysis_package.html">use_analysis_package()</a></code>, <code><a href="../reference/build_analysis_site.html">build_analysis_site()</a></code>,
-README.Rmd templates</p></li>
+<li><p>Minor enhancements to <code><a href="../reference/use_rdev_package.html">use_rdev_package()</a></code>, <code><a href="../reference/use_analysis_package.html">use_analysis_package()</a></code>, <code><a href="../reference/build_analysis_site.html">build_analysis_site()</a></code>, README.Rmd templates</p></li>
 <li><p>Updated documentation</p></li>
-<li><p>Added manual test script for new package setup, increased test
-coverage</p></li>
+<li><p>Added manual test script for new package setup, increased test coverage</p></li>
 </ul></div>
 <div class="section level3">
 <h3 id="todo-1-0-0">TODO<a class="anchor" aria-label="anchor" href="#todo-1-0-0"></a></h3>
 <p>In <code><a href="../reference/ci.html">ci()</a></code>:</p>
-<ul><li><p><code>styler</code> should be set to automatically run if there
-are no uncommitted changes</p></li>
-<li><p><code>lintr</code> should stop execution and open RStudio markers
-if any lints are found</p></li>
-<li><p><code><a href="../reference/ci.html">ci()</a></code> should run <code>styler</code> and
-<code>lintr</code> by default</p></li>
+<ul><li><p><code>styler</code> should be set to automatically run if there are no uncommitted changes</p></li>
+<li><p><code>lintr</code> should stop execution and open RStudio markers if any lints are found</p></li>
+<li><p><code><a href="../reference/ci.html">ci()</a></code> should run <code>styler</code> and <code>lintr</code> by default</p></li>
 </ul></div>
 </div>
     <div class="section level2">
 <h2 class="page-header" data-toc-text="0.8.9" id="rdev-089">rdev 0.8.9<a class="anchor" aria-label="anchor" href="#rdev-089"></a></h2>
-<ul><li>Bug fixes for <code><a href="../reference/use_rdev_package.html">use_rdev_package()</a></code>,
-<code>proof-docs</code>
+<ul><li>Bug fixes for <code><a href="../reference/use_rdev_package.html">use_rdev_package()</a></code>, <code>proof-docs</code>
 </li>
 </ul></div>
     <div class="section level2">
 <h2 class="page-header" data-toc-text="0.8.8" id="rdev-088">rdev 0.8.8<a class="anchor" aria-label="anchor" href="#rdev-088"></a></h2>
-<ul><li>Added <code>proof-docs</code> script to tools, checks docs directory
-using <a href="https://github.com/gjtorikian/html-proofer" class="external-link">htmlproofer</a>
+<ul><li>Added <code>proof-docs</code> script to tools, checks docs directory using <a href="https://github.com/gjtorikian/html-proofer" class="external-link">htmlproofer</a>
 </li>
 </ul></div>
     <div class="section level2">
 <h2 class="page-header" data-toc-text="0.8.7" id="rdev-087">rdev 0.8.7<a class="anchor" aria-label="anchor" href="#rdev-087"></a></h2>
-<ul><li><p>Moved <code><a href="../reference/rmd_metadata.html">rmd_metadata()</a></code> from README-analysis.Rmd to
-rdev package</p></li>
+<ul><li><p>Moved <code><a href="../reference/rmd_metadata.html">rmd_metadata()</a></code> from README-analysis.Rmd to rdev package</p></li>
 <li><p>Increased test coverage, reorganized files</p></li>
 </ul></div>
     <div class="section level2">
 <h2 class="page-header" data-toc-text="0.8.6" id="rdev-086">rdev 0.8.6<a class="anchor" aria-label="anchor" href="#rdev-086"></a></h2>
-<ul><li><p>Added code coverage using <a href="https://app.codecov.io/gh/jabenninghoff/rdev" class="external-link">codecov.io</a>, new
-tests for existing code</p></li>
+<ul><li><p>Added code coverage using <a href="https://app.codecov.io/gh/jabenninghoff/rdev" class="external-link">codecov.io</a>, new tests for existing code</p></li>
 <li><p>Refactored <code><a href="../reference/sort_file.html">sort_file()</a></code></p></li>
 </ul></div>
     <div class="section level2">
@@ -254,42 +216,30 @@ tests for existing code</p></li>
 </ul></div>
     <div class="section level2">
 <h2 class="page-header" data-toc-text="0.8.4" id="rdev-084">rdev 0.8.4<a class="anchor" aria-label="anchor" href="#rdev-084"></a></h2>
-<ul><li>Updated <code><a href="../reference/to_document.html">to_document()</a></code> to parse yaml front matter and
-confirm the source file is a valid R Notebook</li>
+<ul><li>Updated <code><a href="../reference/to_document.html">to_document()</a></code> to parse yaml front matter and confirm the source file is a valid R Notebook</li>
 </ul></div>
     <div class="section level2">
 <h2 class="page-header" data-toc-text="0.8.3" id="rdev-083">rdev 0.8.3<a class="anchor" aria-label="anchor" href="#rdev-083"></a></h2>
-<ul><li>Updated <code><a href="../reference/use_rdev_package.html">use_rdev_package()</a></code> to better conform to rdev
-conventions (README.Rmd, .git/hooks/pre-commit), support committing and
-error-free <code><a href="../reference/ci.html">ci()</a></code> immediately after it is run</li>
+<ul><li>Updated <code><a href="../reference/use_rdev_package.html">use_rdev_package()</a></code> to better conform to rdev conventions (README.Rmd, .git/hooks/pre-commit), support committing and error-free <code><a href="../reference/ci.html">ci()</a></code> immediately after it is run</li>
 </ul></div>
     <div class="section level2">
 <h2 class="page-header" data-toc-text="0.8.2" id="rdev-082">rdev 0.8.2<a class="anchor" aria-label="anchor" href="#rdev-082"></a></h2>
-<ul><li>Updated <code><a href="../reference/build_rdev_site.html">build_rdev_site()</a></code> and
-<code><a href="../reference/build_analysis_site.html">build_analysis_site()</a></code> to abort if there are missing topics
-in the <a href="https://pkgdown.r-lib.org/reference/build_reference.html" class="external-link">pkgdown
-reference section</a>
+<ul><li>Updated <code><a href="../reference/build_rdev_site.html">build_rdev_site()</a></code> and <code><a href="../reference/build_analysis_site.html">build_analysis_site()</a></code> to abort if there are missing topics in the <a href="https://pkgdown.r-lib.org/reference/build_reference.html" class="external-link">pkgdown reference section</a>
 </li>
 </ul></div>
     <div class="section level2">
 <h2 class="page-header" data-toc-text="0.8.1" id="rdev-081">rdev 0.8.1<a class="anchor" aria-label="anchor" href="#rdev-081"></a></h2>
-<ul><li>Added <code><a href="../reference/new_branch.html">new_branch()</a></code>: Create a new feature branch, and
-(optionally) bump the version in DESCRIPTION</li>
+<ul><li>Added <code><a href="../reference/new_branch.html">new_branch()</a></code>: Create a new feature branch, and (optionally) bump the version in DESCRIPTION</li>
 </ul></div>
     <div class="section level2">
 <h2 class="page-header" data-toc-text="0.8.0" id="rdev-080">rdev 0.8.0<a class="anchor" aria-label="anchor" href="#rdev-080"></a></h2>
 <p>Major update adding automation for GitHub releases.</p>
 <div class="section level3">
 <h3 id="release-automation-0-8-0">Release Automation<a class="anchor" aria-label="anchor" href="#release-automation-0-8-0"></a></h3>
-<p>Added functions to automate workflow for staging and creating
-releases on GitHub:</p>
-<ul><li><p><code><a href="../reference/stage_release.html">stage_release()</a></code>: Open a GitHub pull request for a
-new release from NEWS.md</p></li>
-<li><p><code><a href="../reference/get_release.html">get_release()</a></code>: Extract release version and release
-notes from NEWS.md. Called by <code><a href="../reference/stage_release.html">stage_release()</a></code> and
-<code><a href="../reference/merge_release.html">merge_release()</a></code>.</p></li>
-<li><p><code><a href="../reference/merge_release.html">merge_release()</a></code>: Merge a staged pull request and
-create a new GitHub release</p></li>
+<p>Added functions to automate workflow for staging and creating releases on GitHub:</p>
+<ul><li><p><code><a href="../reference/stage_release.html">stage_release()</a></code>: Open a GitHub pull request for a new release from NEWS.md</p></li>
+<li><p><code><a href="../reference/get_release.html">get_release()</a></code>: Extract release version and release notes from NEWS.md. Called by <code><a href="../reference/stage_release.html">stage_release()</a></code> and <code><a href="../reference/merge_release.html">merge_release()</a></code>.</p></li>
+<li><p><code><a href="../reference/merge_release.html">merge_release()</a></code>: Merge a staged pull request and create a new GitHub release</p></li>
 </ul></div>
 <div class="section level3">
 <h3 id="other-changes-0-8-0">Other Changes<a class="anchor" aria-label="anchor" href="#other-changes-0-8-0"></a></h3>
@@ -298,66 +248,41 @@ create a new GitHub release</p></li>
 </div>
     <div class="section level2">
 <h2 class="page-header" data-toc-text="0.7.3" id="rdev-073">rdev 0.7.3<a class="anchor" aria-label="anchor" href="#rdev-073"></a></h2>
-<ul><li><p>Updated <code><a href="../reference/build_analysis_site.html">build_analysis_site()</a></code> to run
-<code><a href="https://devtools.r-lib.org/reference/build_rmd.html" class="external-link">devtools::build_readme()</a></code> to regenerate the dynamic list of
-notebooks (in case new notebooks were added)</p></li>
+<ul><li><p>Updated <code><a href="../reference/build_analysis_site.html">build_analysis_site()</a></code> to run <code><a href="https://devtools.r-lib.org/reference/build_rmd.html" class="external-link">devtools::build_readme()</a></code> to regenerate the dynamic list of notebooks (in case new notebooks were added)</p></li>
 <li><p>Important update from renv 0.15.0 to <a href="https://rstudio.github.io/renv/news/index.html#renv-0151" class="external-link">0.15.1</a></p></li>
 </ul></div>
     <div class="section level2">
 <h2 class="page-header" data-toc-text="0.7.2" id="rdev-072">rdev 0.7.2<a class="anchor" aria-label="anchor" href="#rdev-072"></a></h2>
-<ul><li>Added info on dynamic notebook list to notebook template and
-Analysis Package Layout <a href="https://jabenninghoff.github.io/rdev/articles/analysis-package-layout.html">vignette</a>
+<ul><li>Added info on dynamic notebook list to notebook template and Analysis Package Layout <a href="https://jabenninghoff.github.io/rdev/articles/analysis-package-layout.html">vignette</a>
 </li>
 </ul></div>
     <div class="section level2">
 <h2 class="page-header" data-toc-text="0.7.1" id="rdev-071">rdev 0.7.1<a class="anchor" aria-label="anchor" href="#rdev-071"></a></h2>
-<ul><li>Updated <code><a href="../reference/use_analysis_package.html">use_analysis_package()</a></code>: add dynamic notebook
-list to <code>README.Rmd</code> template</li>
+<ul><li>Updated <code><a href="../reference/use_analysis_package.html">use_analysis_package()</a></code>: add dynamic notebook list to <code>README.Rmd</code> template</li>
 </ul></div>
     <div class="section level2">
 <h2 class="page-header" data-toc-text="0.7.0" id="rdev-070">rdev 0.7.0<a class="anchor" aria-label="anchor" href="#rdev-070"></a></h2>
-<p>Major update adding automation for creating rdev and R analysis
-packages.</p>
+<p>Major update adding automation for creating rdev and R analysis packages.</p>
 <div class="section level3">
 <h3 id="create-package-automation-0-7-0">‘Create Package’ Automation<a class="anchor" aria-label="anchor" href="#create-package-automation-0-7-0"></a></h3>
-<p>Added functions to automate steps when creating new packages
-following rdev and optionally analysis package conventions:</p>
-<ul><li><p><code><a href="../reference/create_github_repo.html">create_github_repo()</a></code>: Create new GitHub repository
-following rdev conventions in the active user’s account and create a
-basic package</p></li>
-<li><p><code><a href="../reference/use_rdev_package.html">use_rdev_package()</a></code>: Add rdev templates and settings
-within the active package. Normally invoked when first setting up a
-package.</p></li>
-<li><p>Install templates using <code><a href="https://usethis.r-lib.org/reference/use_template.html" class="external-link">usethis::use_template()</a></code>:
-<code><a href="../reference/use_rprofile.html">use_rprofile()</a></code>, <code><a href="../reference/use_lintr.html">use_lintr()</a></code>,
-<code><a href="../reference/use_todo.html">use_todo()</a></code>, <code><a href="../reference/use_package_r.html">use_package_r()</a></code></p></li>
-<li><p>Add functionality to <code><a href="../reference/use_analysis_package.html">use_analysis_package()</a></code>: also
-install the analysis package <code>README.Rmd</code> template</p></li>
-<li><p>Changed both <code><a href="../reference/use_analysis_package.html">use_analysis_package()</a></code> and
-<code><a href="../reference/build_analysis_site.html">build_analysis_site()</a></code> to write <code>_pkgdown.yml</code> to
-the project root and to store in GitHub to make projects <a href="https://github.com/search?q=filename%3Apkgdown.yml+path%3A%2F&amp;type=Code" class="external-link">discoverable</a>
-by <a href="https://pkgdown.r-lib.org" class="external-link">pkgdown</a>.</p></li>
-<li><p>Updated <code>setup-r</code> to install rdev and dependencies in
-<code>site_library</code></p></li>
+<p>Added functions to automate steps when creating new packages following rdev and optionally analysis package conventions:</p>
+<ul><li><p><code><a href="../reference/create_github_repo.html">create_github_repo()</a></code>: Create new GitHub repository following rdev conventions in the active user’s account and create a basic package</p></li>
+<li><p><code><a href="../reference/use_rdev_package.html">use_rdev_package()</a></code>: Add rdev templates and settings within the active package. Normally invoked when first setting up a package.</p></li>
+<li><p>Install templates using <code><a href="https://usethis.r-lib.org/reference/use_template.html" class="external-link">usethis::use_template()</a></code>: <code><a href="../reference/use_rprofile.html">use_rprofile()</a></code>, <code><a href="../reference/use_lintr.html">use_lintr()</a></code>, <code><a href="../reference/use_todo.html">use_todo()</a></code>, <code><a href="../reference/use_package_r.html">use_package_r()</a></code></p></li>
+<li><p>Add functionality to <code><a href="../reference/use_analysis_package.html">use_analysis_package()</a></code>: also install the analysis package <code>README.Rmd</code> template</p></li>
+<li><p>Changed both <code><a href="../reference/use_analysis_package.html">use_analysis_package()</a></code> and <code><a href="../reference/build_analysis_site.html">build_analysis_site()</a></code> to write <code>_pkgdown.yml</code> to the project root and to store in GitHub to make projects <a href="https://github.com/search?q=filename%3Apkgdown.yml+path%3A%2F&amp;type=Code" class="external-link">discoverable</a> by <a href="https://pkgdown.r-lib.org" class="external-link">pkgdown</a>.</p></li>
+<li><p>Updated <code>setup-r</code> to install rdev and dependencies in <code>site_library</code></p></li>
 </ul></div>
 <div class="section level3">
 <h3 id="other-changes-0-7-0">Other Changes<a class="anchor" aria-label="anchor" href="#other-changes-0-7-0"></a></h3>
-<ul><li><p>Added <code><a href="../reference/build_rdev_site.html">build_rdev_site()</a></code>, a wrapper for
-<code><a href="https://pkgdown.r-lib.org/reference/build_site.html" class="external-link">pkgdown::build_site()</a></code> optimized for rdev workflow that
-updates <code>README.md</code> and performs a clean build using
-pkgdown</p></li>
-<li><p>Added ‘Analysis Notebook’ R markdown template for RStudio (File
-&gt; New File &gt; Rmarkdown &gt; From Template)</p></li>
-<li><p>Migrated ggplot2 themes/styles (<code>theme_quo()</code>,
-<code>viridis_quo()</code>) to new package,
-<code>jabenninghoff/jbplot</code></p></li>
+<ul><li><p>Added <code><a href="../reference/build_rdev_site.html">build_rdev_site()</a></code>, a wrapper for <code><a href="https://pkgdown.r-lib.org/reference/build_site.html" class="external-link">pkgdown::build_site()</a></code> optimized for rdev workflow that updates <code>README.md</code> and performs a clean build using pkgdown</p></li>
+<li><p>Added ‘Analysis Notebook’ R markdown template for RStudio (File &gt; New File &gt; Rmarkdown &gt; From Template)</p></li>
+<li><p>Migrated ggplot2 themes/styles (<code>theme_quo()</code>, <code>viridis_quo()</code>) to new package, <code>jabenninghoff/jbplot</code></p></li>
 </ul></div>
 </div>
     <div class="section level2">
 <h2 class="page-header" data-toc-text="0.6.2" id="rdev-062">rdev 0.6.2<a class="anchor" aria-label="anchor" href="#rdev-062"></a></h2>
-<ul><li>Add functionality to <code><a href="../reference/use_analysis_package.html">use_analysis_package()</a></code>: Create
-<code>_base.yml</code> in <code>pkgdown</code> from the first
-<code>URL</code> in the package <code>DESCRIPTION</code> file.</li>
+<ul><li>Add functionality to <code><a href="../reference/use_analysis_package.html">use_analysis_package()</a></code>: Create <code>_base.yml</code> in <code>pkgdown</code> from the first <code>URL</code> in the package <code>DESCRIPTION</code> file.</li>
 </ul></div>
     <div class="section level2">
 <h2 class="page-header" data-toc-text="0.6.1" id="rdev-061">rdev 0.6.1<a class="anchor" aria-label="anchor" href="#rdev-061"></a></h2>
@@ -366,36 +291,26 @@ pkgdown</p></li>
 </ul></div>
     <div class="section level2">
 <h2 class="page-header" data-toc-text="0.6.0" id="rdev-060">rdev 0.6.0<a class="anchor" aria-label="anchor" href="#rdev-060"></a></h2>
-<ul><li>Added <code><a href="../reference/use_analysis_package.html">use_analysis_package()</a></code>: Add the <a href="https://jabenninghoff.github.io/rdev/articles/analysis-package-layout.html">Analysis
-Package Layout</a> to the current package</li>
+<ul><li>Added <code><a href="../reference/use_analysis_package.html">use_analysis_package()</a></code>: Add the <a href="https://jabenninghoff.github.io/rdev/articles/analysis-package-layout.html">Analysis Package Layout</a> to the current package</li>
 </ul></div>
     <div class="section level2">
 <h2 class="page-header" data-toc-text="0.5.3" id="rdev-053">rdev 0.5.3<a class="anchor" aria-label="anchor" href="#rdev-053"></a></h2>
-<ul><li>Add options to <code>theme_quo()</code> to disable both
-<code>panel.grid.major</code> and <code>panel.grid.minor</code> for
-<code>x</code> and <code>y</code>
+<ul><li>Add options to <code>theme_quo()</code> to disable both <code>panel.grid.major</code> and <code>panel.grid.minor</code> for <code>x</code> and <code>y</code>
 </li>
 </ul></div>
     <div class="section level2">
 <h2 class="page-header" data-toc-text="0.5.2" id="rdev-052">rdev 0.5.2<a class="anchor" aria-label="anchor" href="#rdev-052"></a></h2>
-<ul><li><p>Disable <code>lintr</code> by default in <code><a href="../reference/ci.html">ci()</a></code>, since
-the normal workflow is <code><a href="../reference/style_all.html">style_all()</a></code>,
-<code><a href="../reference/lint_all.html">lint_all()</a></code>, then <code><a href="../reference/ci.html">ci()</a></code></p></li>
+<ul><li><p>Disable <code>lintr</code> by default in <code><a href="../reference/ci.html">ci()</a></code>, since the normal workflow is <code><a href="../reference/style_all.html">style_all()</a></code>, <code><a href="../reference/lint_all.html">lint_all()</a></code>, then <code><a href="../reference/ci.html">ci()</a></code></p></li>
 <li><p>Documentation fixes</p></li>
 </ul></div>
     <div class="section level2">
 <h2 class="page-header" data-toc-text="0.5.1" id="rdev-051">rdev 0.5.1<a class="anchor" aria-label="anchor" href="#rdev-051"></a></h2>
-<ul><li>Updated <code>theme_quo()</code>: set base theme to
-<code>ggplot2::theme_minimal()</code> and add parameters for disabling
-grid lines</li>
+<ul><li>Updated <code>theme_quo()</code>: set base theme to <code>ggplot2::theme_minimal()</code> and add parameters for disabling grid lines</li>
 </ul></div>
     <div class="section level2">
 <h2 class="page-header" data-toc-text="0.5.0" id="rdev-050">rdev 0.5.0<a class="anchor" aria-label="anchor" href="#rdev-050"></a></h2>
-<ul><li><p>Added <code>theme_quo()</code>: <a href="https://ggplot2.tidyverse.org" class="external-link">ggplot2</a> theme based on
-<code>ggplot2::theme_bw()</code> and font <a href="https://www.latofonts.com" class="external-link">Lato</a></p></li>
-<li><p>Added <code>viridis_quo()</code>: Sets the default theme to
-<code>theme_quo()</code> and the default color scales to
-<code>viridis</code></p></li>
+<ul><li><p>Added <code>theme_quo()</code>: <a href="https://ggplot2.tidyverse.org" class="external-link">ggplot2</a> theme based on <code>ggplot2::theme_bw()</code> and font <a href="https://www.latofonts.com" class="external-link">Lato</a></p></li>
+<li><p>Added <code>viridis_quo()</code>: Sets the default theme to <code>theme_quo()</code> and the default color scales to <code>viridis</code></p></li>
 <li><p>maintenance</p></li>
 </ul></div>
     <div class="section level2">
@@ -404,13 +319,11 @@ grid lines</li>
 </ul></div>
     <div class="section level2">
 <h2 class="page-header" data-toc-text="0.4.4" id="rdev-044">rdev 0.4.4<a class="anchor" aria-label="anchor" href="#rdev-044"></a></h2>
-<ul><li>Update <code><a href="../reference/build_analysis_site.html">build_analysis_site()</a></code> to work with
-<code>pkgdown</code> version 2</li>
+<ul><li>Update <code><a href="../reference/build_analysis_site.html">build_analysis_site()</a></code> to work with <code>pkgdown</code> version 2</li>
 </ul></div>
     <div class="section level2">
 <h2 class="page-header" data-toc-text="0.4.3" id="rdev-043">rdev 0.4.3<a class="anchor" aria-label="anchor" href="#rdev-043"></a></h2>
-<ul><li>maintenance, update TODO with steps for manually setting up an
-Analysis Package</li>
+<ul><li>maintenance, update TODO with steps for manually setting up an Analysis Package</li>
 </ul></div>
     <div class="section level2">
 <h2 class="page-header" data-toc-text="0.4.2" id="rdev-042">rdev 0.4.2<a class="anchor" aria-label="anchor" href="#rdev-042"></a></h2>
@@ -422,13 +335,10 @@ Analysis Package</li>
 </ul></div>
     <div class="section level2">
 <h2 class="page-header" data-toc-text="0.4.0" id="rdev-040">rdev 0.4.0<a class="anchor" aria-label="anchor" href="#rdev-040"></a></h2>
-<ul><li><p>Add <a href="https://devtools.r-lib.org/reference/document.html" class="external-link"><code>devtools::document()</code></a>
-option to <code><a href="../reference/ci.html">ci()</a></code>, turned on by default</p></li>
+<ul><li><p>Add <a href="https://devtools.r-lib.org/reference/document.html" class="external-link"><code>devtools::document()</code></a> option to <code><a href="../reference/ci.html">ci()</a></code>, turned on by default</p></li>
 <li><p>Add R Analysis Package layout definition, migrated from <a href="https://jabenninghoff.github.io/rtraining/" class="external-link">rtraining</a></p></li>
-<li><p>Update <code><a href="../reference/ci.html">ci()</a></code> to use <code><a href="../reference/style_all.html">style_all()</a></code> and
-<code><a href="../reference/lint_all.html">lint_all()</a></code> for consistency</p></li>
-<li><p>Add <code>import</code> directory to
-<code><a href="../reference/build_analysis_site.html">build_analysis_site()</a></code></p></li>
+<li><p>Update <code><a href="../reference/ci.html">ci()</a></code> to use <code><a href="../reference/style_all.html">style_all()</a></code> and <code><a href="../reference/lint_all.html">lint_all()</a></code> for consistency</p></li>
+<li><p>Add <code>import</code> directory to <code><a href="../reference/build_analysis_site.html">build_analysis_site()</a></code></p></li>
 <li><p>minor updates, improved tests, maintenance</p></li>
 </ul></div>
     <div class="section level2">
@@ -438,14 +348,7 @@ option to <code><a href="../reference/ci.html">ci()</a></code>, turned on by def
     <div class="section level2">
 <h2 class="page-header" data-toc-text="0.3.0" id="rdev-030">rdev 0.3.0<a class="anchor" aria-label="anchor" href="#rdev-030"></a></h2>
 <ul><li>
-<code><a href="../reference/build_analysis_site.html">build_analysis_site()</a></code>, new function migrated from <a href="https://jabenninghoff.github.io/rtraining/" class="external-link">rtraining</a>: a
-wrapper for <code><a href="https://pkgdown.r-lib.org/reference/build_site.html" class="external-link">pkgdown::build_site()</a></code> that adds an ‘Analysis’
-menu containing rendered versions of all <code>.Rmd</code> files in
-<code>analysis/</code>. It is still considered Experimental, due to lack
-of test coverage and some features that are not implemented, but should
-work for projects with limited pkgdown customization. The update also
-includes a function to convert notebooks to <code>html_document</code>,
-<code><a href="../reference/to_document.html">to_document()</a></code>.</li>
+<code><a href="../reference/build_analysis_site.html">build_analysis_site()</a></code>, new function migrated from <a href="https://jabenninghoff.github.io/rtraining/" class="external-link">rtraining</a>: a wrapper for <code><a href="https://pkgdown.r-lib.org/reference/build_site.html" class="external-link">pkgdown::build_site()</a></code> that adds an ‘Analysis’ menu containing rendered versions of all <code>.Rmd</code> files in <code>analysis/</code>. It is still considered Experimental, due to lack of test coverage and some features that are not implemented, but should work for projects with limited pkgdown customization. The update also includes a function to convert notebooks to <code>html_document</code>, <code><a href="../reference/to_document.html">to_document()</a></code>.</li>
 </ul></div>
     <div class="section level2">
 <h2 class="page-header" data-toc-text="0.2.2" id="rdev-022">rdev 0.2.2<a class="anchor" aria-label="anchor" href="#rdev-022"></a></h2>
@@ -457,10 +360,7 @@ includes a function to convert notebooks to <code>html_document</code>,
 </ul></div>
     <div class="section level2">
 <h2 class="page-header" data-toc-text="0.2.0" id="rdev-020">rdev 0.2.0<a class="anchor" aria-label="anchor" href="#rdev-020"></a></h2>
-<ul><li>installing rdev will now automatically install preferred development
-tools as a ‘meta-package’ (like tidyverse), including: styler, lintr,
-rcmdcheck, renv, miniUI (for RStudio Addin support), devtools, and
-rmarkdown</li>
+<ul><li>installing rdev will now automatically install preferred development tools as a ‘meta-package’ (like tidyverse), including: styler, lintr, rcmdcheck, renv, miniUI (for RStudio Addin support), devtools, and rmarkdown</li>
 </ul></div>
     <div class="section level2">
 <h2 class="page-header" data-toc-text="0.1.2" id="rdev-012">rdev 0.1.2<a class="anchor" aria-label="anchor" href="#rdev-012"></a></h2>
@@ -471,9 +371,7 @@ rmarkdown</li>
 <ul><li>maintenance release</li>
 </ul><div class="section level3">
 <h3 id="updates-0-1-1">Updates<a class="anchor" aria-label="anchor" href="#updates-0-1-1"></a></h3>
-<ul><li><p><code><a href="../reference/ci.html">ci()</a></code>: updated to match my preferred GitHub workflow:
-<code>use_github_action_check_standard()</code> with
-<code>--as-cran</code> removed</p></li>
+<ul><li><p><code><a href="../reference/ci.html">ci()</a></code>: updated to match my preferred GitHub workflow: <code>use_github_action_check_standard()</code> with <code>--as-cran</code> removed</p></li>
 <li><p>documentation updates for all functions (style, links)</p></li>
 </ul></div>
 </div>
@@ -482,23 +380,13 @@ rmarkdown</li>
 <p>Initial GitHub release</p>
 <div class="section level3">
 <h3 id="new-features-0-1-0">New Features<a class="anchor" aria-label="anchor" href="#new-features-0-1-0"></a></h3>
-<ul><li><p><code>./tools/setup-r</code>: shell script to install development
-packages to site repository on macOS + Homebrew</p></li>
-<li><p><code><a href="../reference/check_renv.html">check_renv()</a></code>: convenience function that runs
-<code>renv</code> <code>status()</code>, <code>clean()</code>, and
-optionally <code><a href="https://rdrr.io/r/stats/update.html" class="external-link">update()</a></code> (on by default).</p></li>
-<li><p><code><a href="../reference/style_all.html">style_all()</a></code>: style all <code>.R</code> and
-<code>.Rmd</code> files in a project using <code>styler</code></p></li>
-<li><p><code><a href="../reference/lint_all.html">lint_all()</a></code>: lint all <code>.R</code> and
-<code>.Rmd</code> files in a project using <code>lintr</code></p></li>
-<li><p><code><a href="../reference/sort_file.html">sort_file()</a></code>: sort a file using R
-<code><a href="https://rdrr.io/r/base/sort.html" class="external-link">sort()</a></code>, similar to the unix <code>sort</code>
-command</p></li>
-<li><p><code><a href="../reference/sort_rbuildignore.html">sort_rbuildignore()</a></code>: sort the
-<code>.Rbuildignore</code> file using <code><a href="../reference/sort_file.html">sort_file()</a></code>, because
-unsorted is annoying</p></li>
-<li><p><code><a href="../reference/ci.html">ci()</a></code>: run continuous integration tests locally:
-lint, R CMD check, and style (off by default).</p></li>
+<ul><li><p><code>./tools/setup-r</code>: shell script to install development packages to site repository on macOS + Homebrew</p></li>
+<li><p><code><a href="../reference/check_renv.html">check_renv()</a></code>: convenience function that runs <code>renv</code> <code>status()</code>, <code>clean()</code>, and optionally <code><a href="https://rdrr.io/r/stats/update.html" class="external-link">update()</a></code> (on by default).</p></li>
+<li><p><code><a href="../reference/style_all.html">style_all()</a></code>: style all <code>.R</code> and <code>.Rmd</code> files in a project using <code>styler</code></p></li>
+<li><p><code><a href="../reference/lint_all.html">lint_all()</a></code>: lint all <code>.R</code> and <code>.Rmd</code> files in a project using <code>lintr</code></p></li>
+<li><p><code><a href="../reference/sort_file.html">sort_file()</a></code>: sort a file using R <code><a href="https://rdrr.io/r/base/sort.html" class="external-link">sort()</a></code>, similar to the unix <code>sort</code> command</p></li>
+<li><p><code><a href="../reference/sort_rbuildignore.html">sort_rbuildignore()</a></code>: sort the <code>.Rbuildignore</code> file using <code><a href="../reference/sort_file.html">sort_file()</a></code>, because unsorted is annoying</p></li>
+<li><p><code><a href="../reference/ci.html">ci()</a></code>: run continuous integration tests locally: lint, R CMD check, and style (off by default).</p></li>
 </ul></div>
 </div>
   </div>
@@ -515,8 +403,7 @@ lint, R CMD check, and style (off by default).</p></li>
 </div>
 
 <div class="pkgdown">
-  <p></p><p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a>
-2.0.2.</p>
+  <p></p><p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.0.3.</p>
 </div>
 
       </footer></div>
