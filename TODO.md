@@ -39,6 +39,8 @@
 - [x] Add a `spell_check_test_notebooks()` function for CI spellchecks on notebooks
 - [x] Convert manual tests (`Setup.Rmd`) into an R Script that can be run from within the package created with `create_github_repo()`
 - [ ] Switch from development versions of `styler` (1.3.2.9000) and `lintr` (2.0.1.9000) when a new release becomes available - both were needed to address bugs in the current release versions, 1.3.2 and 2.0.1.
+- [ ] Add `check_renv()` to `ci()` and stop if `renv::status()` is not up to date
+- [ ] Add a function to add missing (notebook) dependencies to DESCRIPTION, see `renv::dependencies()` and `desc::desc_get_deps()`
 
 ## GitHub
 
