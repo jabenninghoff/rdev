@@ -17,7 +17,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">rdev</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="">1.3.7</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="">1.3.8</span>
       </span>
     </div>
 
@@ -74,7 +74,7 @@
 <dd><p>name of file containing release notes, defaults to <code>NEWS.md</code>.</p></dd>
 <dt>host</dt>
 <dd><p>GitHub host to target, passed to the <code>.api_url</code> argument of
-<code><a href="https://gh.r-lib.org/reference/gh.html" class="external-link">gh::gh()</a></code>. If unspecified, gh defaults to "https://api.github.com",
+<code><a href="https://rdrr.io/pkg/gh/man/gh.html" class="external-link">gh::gh()</a></code>. If unspecified, gh defaults to "https://api.github.com",
 although gh's default can be customised by setting the GITHUB_API_URL
 environment variable.</p>
 <p>For a hypothetical GitHub Enterprise instance, either
@@ -91,17 +91,17 @@ acceptable.</p></dd>
 doesn't currently validate that status checks are successful.</p>
 <p>When run, <code>merge_release()</code>:</p><ol><li><p>Determines the staged release title from <code>NEWS.md</code> using <code><a href="get_release.html">get_release()</a></code></p></li>
 <li><p>Selects the GitHub pull request that matches the staged release title, stops if there is more
-or less than one matching PR using <code><a href="https://gh.r-lib.org/reference/gh.html" class="external-link">gh::gh()</a></code></p></li>
+or less than one matching PR using <code><a href="https://rdrr.io/pkg/gh/man/gh.html" class="external-link">gh::gh()</a></code></p></li>
 <li><p>Verifies the staged pull request is ready to be merged by checking the locked, draft,
 mergeable, and rebaseable flags</p></li>
-<li><p>Merges the pull request into the default branch using "Rebase and merge" using <code><a href="https://gh.r-lib.org/reference/gh.html" class="external-link">gh::gh()</a></code></p></li>
-<li><p>Deletes the pull request branch remotely and locally using <code><a href="https://gh.r-lib.org/reference/gh.html" class="external-link">gh::gh()</a></code> and
+<li><p>Merges the pull request into the default branch using "Rebase and merge" using <code><a href="https://rdrr.io/pkg/gh/man/gh.html" class="external-link">gh::gh()</a></code></p></li>
+<li><p>Deletes the pull request branch remotely and locally using <code><a href="https://rdrr.io/pkg/gh/man/gh.html" class="external-link">gh::gh()</a></code> and
 <code><a href="https://docs.ropensci.org/gert/reference/git_branch.html" class="external-link">gert::git_branch_delete()</a></code></p></li>
 <li><p>Updates the default branch with <code><a href="https://docs.ropensci.org/gert/reference/git_fetch.html" class="external-link">gert::git_pull()</a></code></p></li>
 <li><p>Adds the version tag to the <code>DESCRIPTION</code> commit with the message <code>"GitHub release &lt;version&gt;"</code>
 with <code><a href="https://docs.ropensci.org/gert/reference/git_tag.html" class="external-link">gert::git_tag_create()</a></code> and pushes using <code><a href="https://docs.ropensci.org/gert/reference/git_tag.html" class="external-link">gert::git_tag_push()</a></code></p></li>
 <li><p>Create the GitHub release from the newly created tag, with the name <code>"&lt;version&gt;"</code> and the
-release notes in the body, using <code><a href="https://gh.r-lib.org/reference/gh.html" class="external-link">gh::gh()</a></code></p></li>
+release notes in the body, using <code><a href="https://rdrr.io/pkg/gh/man/gh.html" class="external-link">gh::gh()</a></code></p></li>
 </ol></div>
     <div id="host">
     <h2>Host</h2>
@@ -123,8 +123,7 @@ release notes in the body, using <code><a href="https://gh.r-lib.org/reference/g
 </div>
 
 <div class="pkgdown">
-  <p></p><p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a>
-2.0.2.</p>
+  <p></p><p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.0.3.</p>
 </div>
 
       </footer></div>

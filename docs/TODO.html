@@ -17,7 +17,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="index.html">rdev</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="">1.3.7</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="">1.3.8</span>
       </span>
     </div>
 
@@ -65,8 +65,7 @@
 Add README.Rmd</li>
 <li>
 <input type="checkbox" disabled checked>
-Update <code>DESCRIPTION</code> and use description data in
-<code>README.Rmd</code>
+Update <code>DESCRIPTION</code> and use description data in <code>README.Rmd</code>
 </li>
 <li>
 <input type="checkbox" disabled checked>
@@ -84,8 +83,7 @@ Implement <a href="https://pkgdown.r-lib.org" class="external-link">pkgdown</a>
 </li>
 <li>
 <input type="checkbox" disabled checked>
-Add links / update <a href="https://roxygen2.r-lib.org/articles/rd-formatting.html" class="external-link">Rd
-formatting</a> for all function documentation.</li>
+Add links / update <a href="https://roxygen2.r-lib.org/articles/rd-formatting.html" class="external-link">Rd formatting</a> for all function documentation.</li>
 <li>
 <input type="checkbox" disabled checked>
 Add dummy imports to silence R CMD check note per <a href="https://github.com/tidyverse/tidyverse/blob/master/R/tidyverse.R" class="external-link">tidyverse</a>
@@ -95,69 +93,54 @@ Add dummy imports to silence R CMD check note per <a href="https://github.com/ti
 Migrate <code><a href="reference/build_analysis_site.html">build_analysis_site()</a></code> to rdev</li>
 <li>
 <input type="checkbox" disabled checked>
-Switch from development version of <code>styler</code> (1.3.2.9000) when
-a new release becomes available</li>
+Switch from development version of <code>styler</code> (1.3.2.9000) when a new release becomes available</li>
 <li>
-<input type="checkbox" disabled checked><del>Validate that <code>lint_all</code> works as expected within
-<code>ci</code></del>
+<input type="checkbox" disabled checked><del>Validate that <code>lint_all</code> works as expected within <code>ci</code></del>
 </li>
 <li>
 <input type="checkbox" disabled checked>
-Add ‘create package’ workflow example to README, remove TODO section
-“Analysis package creation process”</li>
+Add ‘create package’ workflow example to README, remove TODO section “Analysis package creation process”</li>
 <li>
 <input type="checkbox" disabled checked>
-Move <code>_pkgdown.yml</code> to repository root to make projects
-discoverable by the <a href="https://pkgdown.r-lib.org" class="external-link">pgkdown</a>
-GitHub <a href="https://github.com/search?q=filename%3Apkgdown.yml+path%3A%2F&amp;type=Code" class="external-link">query</a>
+Move <code>_pkgdown.yml</code> to repository root to make projects discoverable by the <a href="https://pkgdown.r-lib.org" class="external-link">pgkdown</a> GitHub <a href="https://github.com/search?q=filename%3Apkgdown.yml+path%3A%2F&amp;type=Code" class="external-link">query</a>
 </li>
 <li>
 <input type="checkbox" disabled checked>
-Update <code>README.Rmd</code> template to dynamically generate list of
-notebooks in <code>analysis</code>
+Update <code>README.Rmd</code> template to dynamically generate list of notebooks in <code>analysis</code>
 </li>
 <li>
 <input type="checkbox" disabled checked>
 Automate release process</li>
 <li>
 <input type="checkbox" disabled checked>
-Automate creation of feature branches, including ‘Bump version’ using
-<code>desc::desc_bump_version("dev")</code>
+Automate creation of feature branches, including ‘Bump version’ using <code>desc::desc_bump_version("dev")</code>
 </li>
 <li>
 <input type="checkbox" disabled checked>
-Add check to <code><a href="reference/stage_release.html">stage_release()</a></code> to look for missing topics in
-<code>_pkgdown.yml</code> reference section</li>
+Add check to <code><a href="reference/stage_release.html">stage_release()</a></code> to look for missing topics in <code>_pkgdown.yml</code> reference section</li>
 <li>
 <input type="checkbox" disabled checked>
 Update <code><a href="reference/use_rdev_package.html">use_rdev_package()</a></code>
 </li>
 <li>
 <input type="checkbox" disabled checked>
-Handle <code>.Rmd</code> files that already have an
-<code>html_document</code> section</li>
+Handle <code>.Rmd</code> files that already have an <code>html_document</code> section</li>
 <li>
 <input type="checkbox" disabled checked>
-Move <code><a href="reference/rmd_metadata.html">rmd_metadata()</a></code> from README-analysis.Rmd to rdev
-package</li>
+Move <code><a href="reference/rmd_metadata.html">rmd_metadata()</a></code> from README-analysis.Rmd to rdev package</li>
 <li>
 <input type="checkbox" disabled checked>
-Add tests per comments in <code>R/</code> after reading package book,
-documentation</li>
+Add tests per comments in <code>R/</code> after reading package book, documentation</li>
 <li>
 <input type="checkbox" disabled checked>
-Update Roxygen comments after reading package book, documentation,
-review and merge duplicate Roxygen docs</li>
+Update Roxygen comments after reading package book, documentation, review and merge duplicate Roxygen docs</li>
 <li>
 <input type="checkbox" disabled checked>
-Write a manual regression test script (notes with R commands) <del>as a
-vignette</del> to validate ‘Creating Packages’ <del>and ‘GitHub
-Releases’</del>
+Write a manual regression test script (notes with R commands) <del>as a vignette</del> to validate ‘Creating Packages’ <del>and ‘GitHub Releases’</del>
 </li>
 <li>
 <input type="checkbox" disabled checked>
-Add messages, warnings to <code><a href="reference/build_analysis_site.html">build_analysis_site()</a></code> to report
-on progress</li>
+Add messages, warnings to <code><a href="reference/build_analysis_site.html">build_analysis_site()</a></code> to report on progress</li>
 <li>
 <input type="checkbox" disabled checked>
 Add function to spell check notebooks</li>
@@ -166,55 +149,40 @@ Add function to spell check notebooks</li>
 Automate branch protection</li>
 <li>
 <input type="checkbox" disabled checked>
-Address issue <a href="https://github.com/r-lib/usethis/issues/1568" class="external-link uri">https://github.com/r-lib/usethis/issues/1568</a>, which has
-been closed</li>
+Address issue <a href="https://github.com/r-lib/usethis/issues/1568" class="external-link uri">https://github.com/r-lib/usethis/issues/1568</a>, which has been closed</li>
 <li>
 <input type="checkbox" disabled checked>
 Add dplyr when running <code><a href="reference/use_analysis_package.html">use_analysis_package()</a></code>
 </li>
 <li>
-<input type="checkbox" disabled checked><del>Consider switching <code>getOption("pkgType")</code> from
-<code>source</code> to <code>both</code> per R <a href="https://stat.ethz.ch/R-manual/R-devel/library/base/html/options.html" class="external-link">options</a></del>
-per the <a href="https://cran.r-project.org/bin/macosx/RMacOSX-FAQ.html#What-is-the-difference-between-the-CRAN-build-and-a-vanilla-build_003f" class="external-link">R
-macOS FAQ</a>, “Only the CRAN build is guaranteed to be compatible with
-the package binaries on CRAN (or Bioconductor).”</li>
+<input type="checkbox" disabled checked><del>Consider switching <code>getOption("pkgType")</code> from <code>source</code> to <code>both</code> per R <a href="https://stat.ethz.ch/R-manual/R-devel/library/base/html/options.html" class="external-link">options</a></del> per the <a href="https://cran.r-project.org/bin/macosx/RMacOSX-FAQ.html#What-is-the-difference-between-the-CRAN-build-and-a-vanilla-build_003f" class="external-link">R macOS FAQ</a>, “Only the CRAN build is guaranteed to be compatible with the package binaries on CRAN (or Bioconductor).”</li>
 <li>
 <input type="checkbox" disabled checked>
 Support creating repos in organizations</li>
 <li>
-<input type="checkbox" disabled checked><del>Consider incorporating the GitHub description into
-<code>DESCRIPTION</code></del>
+<input type="checkbox" disabled checked><del>Consider incorporating the GitHub description into <code>DESCRIPTION</code></del>
 </li>
 <li>
 <input type="checkbox" disabled checked>
-Create a wrapper for <code>spelling</code> that includes notebooks in
-package spell checking, WORDLIST</li>
+Create a wrapper for <code>spelling</code> that includes notebooks in package spell checking, WORDLIST</li>
 <li>
 <input type="checkbox" disabled checked>
-Add a <code>spell_check_test_notebooks()</code> function for CI
-spellchecks on notebooks</li>
+Add a <code>spell_check_test_notebooks()</code> function for CI spellchecks on notebooks</li>
 <li>
 <input type="checkbox" disabled checked>
-Convert manual tests (<code>Setup.Rmd</code>) into an R Script that can
-be run from within the package created with
-<code><a href="reference/create_github_repo.html">create_github_repo()</a></code>
+Convert manual tests (<code>Setup.Rmd</code>) into an R Script that can be run from within the package created with <code><a href="reference/create_github_repo.html">create_github_repo()</a></code>
 </li>
 <li>
 <input type="checkbox" disabled>
-Switch from development versions of <code>styler</code> (1.3.2.9000) and
-<code>lintr</code> (2.0.1.9000) when a new release becomes available -
-both were needed to address bugs in the current release versions, 1.3.2
-and 2.0.1.</li>
+Switch from development versions of <code>styler</code> (1.3.2.9000) and <code>lintr</code> (2.0.1.9000) when a new release becomes available - both were needed to address bugs in the current release versions, 1.3.2 and 2.0.1.</li>
 </ul></div>
 <div class="section level2">
 <h2 id="github">GitHub<a class="anchor" aria-label="anchor" href="#github"></a></h2>
 <ul class="task-list"><li>
 <input type="checkbox" disabled checked>
-Set up <a href="https://usethis.r-lib.org/reference/github_actions.html" class="external-link">GitHub
-Actions</a><ul class="task-list"><li>
+Set up <a href="https://usethis.r-lib.org/reference/github_actions.html" class="external-link">GitHub Actions</a><ul class="task-list"><li>
 <input type="checkbox" disabled checked>
-Use <a href="https://github.com/r-lib/actions/blob/master/examples/check-standard.yaml" class="external-link">standard</a>
-<code>R CMD check</code>
+Use <a href="https://github.com/r-lib/actions/blob/master/examples/check-standard.yaml" class="external-link">standard</a> <code>R CMD check</code>
 </li>
 <li>
 <input type="checkbox" disabled checked>
@@ -225,8 +193,7 @@ Use <a href="https://github.com/r-lib/actions/blob/master/examples/lint.yaml" cl
 <input type="checkbox" disabled checked>
 Faster CI checks</li>
 <li>
-<input type="checkbox" disabled checked><del>Switch to <a href="https://github.com/r-lib/actions/blob/master/examples/check-full.yaml" class="external-link">full</a>
-<code>R CMD check</code> ?</del>
+<input type="checkbox" disabled checked><del>Switch to <a href="https://github.com/r-lib/actions/blob/master/examples/check-full.yaml" class="external-link">full</a> <code>R CMD check</code> ?</del>
 </li>
 <li>
 <input type="checkbox" disabled checked>
@@ -234,19 +201,16 @@ Update GitHub Actions from r-lib <a href="https://github.com/r-lib/actions/tree/
 </li>
 <li>
 <input type="checkbox" disabled checked>
-Run <a href="https://github.com/r-lib/actions/blob/master/examples/test-coverage.yaml" class="external-link">test
-coverage</a>
+Run <a href="https://github.com/r-lib/actions/blob/master/examples/test-coverage.yaml" class="external-link">test coverage</a>
 </li>
 <li>
-<input type="checkbox" disabled checked><del>Skip CI checks for changes in only the <code>docs/</code>
-directory</del>
+<input type="checkbox" disabled checked><del>Skip CI checks for changes in only the <code>docs/</code> directory</del>
 </li>
 <li>
 <input type="checkbox" disabled checked><del>Add GitHub Action for html/link checking using something like <a href="https://github.com/gjtorikian/html-proofer" class="external-link">htmlproofer</a></del>
 </li>
 <li>
-<input type="checkbox" disabled checked><del>Autobuild <code>docs/</code> like <a href="https://github.com/r-lib/actions/blob/master/examples/pkgdown.yaml" class="external-link">pkgdown</a>
-?</del>
+<input type="checkbox" disabled checked><del>Autobuild <code>docs/</code> like <a href="https://github.com/r-lib/actions/blob/master/examples/pkgdown.yaml" class="external-link">pkgdown</a> ?</del>
 </li>
 </ul></div>
 </div>
@@ -266,8 +230,7 @@ directory</del>
 </div>
 
 <div class="pkgdown">
-  <p></p><p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a>
-2.0.2.</p>
+  <p></p><p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.0.3.</p>
 </div>
 
       </footer></div>

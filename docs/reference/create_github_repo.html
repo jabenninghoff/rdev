@@ -17,7 +17,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">rdev</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="">1.3.7</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="">1.3.8</span>
       </span>
     </div>
 
@@ -82,7 +82,7 @@
 active user's account.</p></dd>
 <dt>host</dt>
 <dd><p>GitHub host to target, passed to the <code>.api_url</code> argument of
-<code><a href="https://gh.r-lib.org/reference/gh.html" class="external-link">gh::gh()</a></code>. If unspecified, gh defaults to "https://api.github.com",
+<code><a href="https://rdrr.io/pkg/gh/man/gh.html" class="external-link">gh::gh()</a></code>. If unspecified, gh defaults to "https://api.github.com",
 although gh's default can be customised by setting the GITHUB_API_URL
 environment variable.</p>
 <p>For a hypothetical GitHub Enterprise instance, either
@@ -91,16 +91,16 @@ acceptable.</p></dd>
 </dl></div>
     <div id="value">
     <h2>Value</h2>
-    <p>return value from <code><a href="https://gh.r-lib.org/reference/gh.html" class="external-link">gh::gh()</a></code> creating the repository, invisibly</p>
+    <p>return value from <code><a href="https://rdrr.io/pkg/gh/man/gh.html" class="external-link">gh::gh()</a></code> creating the repository, invisibly</p>
     </div>
     <div id="details">
     <h2>Details</h2>
-    <p>When run, <code>create_github_repo()</code>:</p><ol><li><p>Creates a new GitHub repository using <code><a href="https://gh.r-lib.org/reference/gh.html" class="external-link">gh::gh()</a></code> with license template from <code><a href="get_license.html">get_license()</a></code></p></li>
+    <p>When run, <code>create_github_repo()</code>:</p><ol><li><p>Creates a new GitHub repository using <code><a href="https://rdrr.io/pkg/gh/man/gh.html" class="external-link">gh::gh()</a></code> with license template from <code><a href="get_license.html">get_license()</a></code></p></li>
 <li><p>Activates Dependabot alerts per <code>getOption("rdev.dependabot", default = TRUE)</code></p></li>
 <li><p>Activates Dependabot security updates per <code>getOption("rdev.dependabot", default = TRUE)</code></p></li>
 <li><p>Adds branch protection to the default branch</p></li>
-<li><p>Clones the repository locally with <code><a href="https://usethis.r-lib.org/reference/create_from_github.html" class="external-link">usethis::create_from_github()</a></code></p></li>
-<li><p>Creates a basic package using <code><a href="https://usethis.r-lib.org/reference/create_package.html" class="external-link">usethis::create_package()</a></code></p></li>
+<li><p>Clones the repository locally with <code><a href="https://rdrr.io/pkg/usethis/man/create_from_github.html" class="external-link">usethis::create_from_github()</a></code></p></li>
+<li><p>Creates a basic package using <code><a href="https://rdrr.io/pkg/usethis/man/create_package.html" class="external-link">usethis::create_package()</a></code></p></li>
 <li><p>If running interactively on macOS, the repository will automatically be opened in RStudio,
 GitHub Desktop, and the default browser</p></li>
 </ol></div>
@@ -129,8 +129,7 @@ GitHub Desktop, and the default browser</p></li>
 </div>
 
 <div class="pkgdown">
-  <p></p><p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a>
-2.0.2.</p>
+  <p></p><p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.0.3.</p>
 </div>
 
       </footer></div>

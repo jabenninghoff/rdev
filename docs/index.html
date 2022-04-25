@@ -33,7 +33,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="index.html">rdev</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="">1.3.7</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="">1.3.8</span>
       </span>
     </div>
 
@@ -85,8 +85,7 @@
 <div class="section level2">
 <h2 id="overview">Overview<a class="anchor" aria-label="anchor" href="#overview"></a>
 </h2>
-<p><strong>R Development Tools:</strong> An opinionated collection of
-development tools, packages, and utilities.</p>
+<p><strong>R Development Tools:</strong> An opinionated collection of development tools, packages, and utilities.</p>
 <p>Feel free to use and/or fork this project!</p>
 </div>
 <div class="section level2">
@@ -95,7 +94,7 @@ development tools, packages, and utilities.</p>
 <p>You can install the development version of rdev from <a href="https://github.com/" class="external-link">GitHub</a> with:</p>
 <div class="sourceCode" id="cb1"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="co"># install.packages("devtools")</span>
-<span class="fu">devtools</span><span class="fu">::</span><span class="fu"><a href="https://devtools.r-lib.org/reference/remote-reexports.html" class="external-link">install_github</a></span><span class="op">(</span><span class="st">"jabenninghoff/rdev"</span><span class="op">)</span></code></pre></div>
+<span class="fu">devtools</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/pkg/devtools/man/remote-reexports.html" class="external-link">install_github</a></span><span class="op">(</span><span class="st">"jabenninghoff/rdev"</span><span class="op">)</span></code></pre></div>
 <p>Or using renv:</p>
 <div class="sourceCode" id="cb2"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="co"># install.packages("renv")</span>
@@ -113,61 +112,40 @@ development tools, packages, and utilities.</p>
 <div class="section level2">
 <h2 id="creating-packages">Creating Packages<a class="anchor" aria-label="anchor" href="#creating-packages"></a>
 </h2>
-<p>rdev supports creation of new R packages following rdev conventions
-as well as new <a href="https://jabenninghoff.github.io/rdev/articles/analysis-package-layout.html">R
-Analysis</a> packages. The typical setup workflow is:</p>
+<p>rdev supports creation of new R packages following rdev conventions as well as new <a href="https://jabenninghoff.github.io/rdev/articles/analysis-package-layout.html">R Analysis</a> packages. The typical setup workflow is:</p>
 <ol style="list-style-type: decimal">
 <li>Use <code>available::available()</code> to check package name</li>
 <li>Create new base package using <code><a href="reference/create_github_repo.html">create_github_repo()</a></code>
 </li>
 <li>Add new package to GitHub Desktop</li>
-<li>Commit to git with message:
-<code><a href="reference/create_github_repo.html">rdev::create_github_repo()</a></code>
+<li>Commit to git with message: <code><a href="reference/create_github_repo.html">rdev::create_github_repo()</a></code>
 </li>
-<li>Run <code><a href="reference/use_rdev_package.html">use_rdev_package()</a></code> within new project to add
-remaining templates and settings</li>
-<li>Commit to git with message:
-<code><a href="reference/use_rdev_package.html">rdev::use_rdev_package()</a></code>
+<li>Run <code><a href="reference/use_rdev_package.html">use_rdev_package()</a></code> within new project to add remaining templates and settings</li>
+<li>Commit to git with message: <code><a href="reference/use_rdev_package.html">rdev::use_rdev_package()</a></code>
 </li>
-<li>Run either <code><a href="reference/use_analysis_package.html">use_analysis_package()</a></code> or
-<code><a href="https://usethis.r-lib.org/reference/use_pkgdown.html" class="external-link">usethis::use_pkgdown()</a></code> for GitHub Pages</li>
+<li>Run either <code><a href="reference/use_analysis_package.html">use_analysis_package()</a></code> or <code><a href="https://rdrr.io/pkg/usethis/man/use_pkgdown.html" class="external-link">usethis::use_pkgdown()</a></code> for GitHub Pages</li>
 <li>Commit to git</li>
 <li>Edit DESCRIPTION and add a Title and Description</li>
 <li>Update TODO.md, NEWS.md, README.Rmd, and DESCRIPTION as needed</li>
-<li>Run <code><a href="reference/check_renv.html">check_renv()</a></code>, <code><a href="reference/ci.html">ci()</a></code> to validate
-package</li>
+<li>Run <code><a href="reference/check_renv.html">check_renv()</a></code>, <code><a href="reference/ci.html">ci()</a></code> to validate package</li>
 <li>Commit to git and begin development</li>
 </ol>
 </div>
 <div class="section level2">
 <h2 id="github-releases">GitHub Releases<a class="anchor" aria-label="anchor" href="#github-releases"></a>
 </h2>
-<p>rdev automates the workflow for creating GitHub releases along with
-updating GitHub pages for either standard R packages or R analysis
-packages, using the release notes format in NEWS.md. A typical
-development workflow is:</p>
+<p>rdev automates the workflow for creating GitHub releases along with updating GitHub pages for either standard R packages or R analysis packages, using the release notes format in NEWS.md. A typical development workflow is:</p>
 <ol style="list-style-type: decimal">
-<li>Bump version and create new feature branch with
-<code><a href="reference/new_branch.html">new_branch()</a></code>
+<li>Bump version and create new feature branch with <code><a href="reference/new_branch.html">new_branch()</a></code>
 </li>
 <li><em>Write all the things</em></li>
-<li>Update the release notes for the new version in NEWS.md, following
-the conventions described in <code><a href="reference/get_release.html">get_release()</a></code>
+<li>Update the release notes for the new version in NEWS.md, following the conventions described in <code><a href="reference/get_release.html">get_release()</a></code>
 </li>
 <li>Finalize the release and merge all changes to git</li>
-<li>Run <code><a href="reference/stage_release.html">stage_release()</a></code> to create a new pull request on
-GitHub using details derived from NEWS.md, including updating the README
-and GitHub pages</li>
-<li>After the pull request has been reviewed and passes all required
-status checks, accept the staged release with
-<code><a href="reference/merge_release.html">merge_release()</a></code>, which merges the pull request, cleans up
-branches, and publishes a new GitHub release</li>
+<li>Run <code><a href="reference/stage_release.html">stage_release()</a></code> to create a new pull request on GitHub using details derived from NEWS.md, including updating the README and GitHub pages</li>
+<li>After the pull request has been reviewed and passes all required status checks, accept the staged release with <code><a href="reference/merge_release.html">merge_release()</a></code>, which merges the pull request, cleans up branches, and publishes a new GitHub release</li>
 </ol>
-<p>Feature branches can be merged without starting a new release;
-<code><a href="reference/stage_release.html">stage_release()</a></code> just requires that everything is committed,
-including new release notes in NEWS.md before running. When ready to
-release, <code><a href="reference/stage_release.html">stage_release()</a></code> will use the existing branch if on
-a feature branch, and create a new release branch if on the default.</p>
+<p>Feature branches can be merged without starting a new release; <code><a href="reference/stage_release.html">stage_release()</a></code> just requires that everything is committed, including new release notes in NEWS.md before running. When ready to release, <code><a href="reference/stage_release.html">stage_release()</a></code> will use the existing branch if on a feature branch, and create a new release branch if on the default.</p>
 </div>
 <div class="section level2">
 <h2 id="workflow">Workflow<a class="anchor" aria-label="anchor" href="#workflow"></a>
@@ -184,8 +162,7 @@ a feature branch, and create a new release branch if on the default.</p>
 <span class="co">#&gt; * No stale package locks were found.</span>
 <span class="co">#&gt; * No temporary directories were found in the project library.</span>
 <span class="co">#&gt; * The project has been cleaned.</span></code></pre></div>
-<p>I also have a <code><a href="reference/ci.html">ci()</a></code> function to run all my continuous
-integration tests locally:</p>
+<p>I also have a <code><a href="reference/ci.html">ci()</a></code> function to run all my continuous integration tests locally:</p>
 <div class="sourceCode" id="cb4"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="fu"><a href="reference/ci.html">ci</a></span><span class="op">(</span><span class="op">)</span>
 <span class="co">#&gt; style_all()</span>
@@ -259,16 +236,16 @@ integration tests locally:</p>
 <span class="co">#&gt; * creating vignettes ... OK</span>
 <span class="co">#&gt; * checking for LF line-endings in source and make files and shell scripts</span>
 <span class="co">#&gt; * checking for empty or unneeded directories</span>
-<span class="co">#&gt; * building ‘rdev_1.3.7.tar.gz’</span>
+<span class="co">#&gt; * building ‘rdev_1.3.8.tar.gz’</span>
 <span class="co">#&gt; </span>
 <span class="co">#&gt; ── R CMD check ─────────────────────────────────────────────────────────────────</span>
-<span class="co">#&gt; * using log directory ‘/private/var/folders/vn/cw5f9gws42v9m8mdsds_zbl00000gp/T/Rtmp8GjdcK/file6ce06799bacd/rdev.Rcheck’</span>
+<span class="co">#&gt; * using log directory ‘/private/var/folders/4v/k12n8ksn77l4_bcsvc6kfgk00000gn/T/Rtmpf5YWrY/file119741e3f8744/rdev.Rcheck’</span>
 <span class="co">#&gt; * using R version 4.2.0 (2022-04-22)</span>
-<span class="co">#&gt; * using platform: x86_64-apple-darwin19.6.0 (64-bit)</span>
+<span class="co">#&gt; * using platform: x86_64-apple-darwin18.7.0 (64-bit)</span>
 <span class="co">#&gt; * using session charset: UTF-8</span>
 <span class="co">#&gt; * using option ‘--no-manual’</span>
 <span class="co">#&gt; * checking for file ‘rdev/DESCRIPTION’ ... OK</span>
-<span class="co">#&gt; * this is package ‘rdev’ version ‘1.3.7’</span>
+<span class="co">#&gt; * this is package ‘rdev’ version ‘1.3.8’</span>
 <span class="co">#&gt; * package encoding: UTF-8</span>
 <span class="co">#&gt; * checking package namespace information ... OK</span>
 <span class="co">#&gt; * checking package dependencies ... OK</span>
@@ -324,9 +301,10 @@ integration tests locally:</p>
 <span class="co">#&gt;  NONE</span>
 <span class="co">#&gt; * checking re-building of vignette outputs ... OK</span>
 <span class="co">#&gt; * DONE</span>
+<span class="co">#&gt; </span>
 <span class="co">#&gt; Status: OK</span>
-<span class="co">#&gt; ── R CMD check results ───────────────────────────────────────── rdev 1.3.7 ────</span>
-<span class="co">#&gt; Duration: 34s</span>
+<span class="co">#&gt; ── R CMD check results ───────────────────────────────────────── rdev 1.3.8 ────</span>
+<span class="co">#&gt; Duration: 29.5s</span>
 <span class="co">#&gt; </span>
 <span class="co">#&gt; 0 errors ✓ | 0 warnings ✓ | 0 notes ✓</span></code></pre></div>
 </div>
@@ -385,8 +363,7 @@ integration tests locally:</p>
 
 <div class="pkgdown">
   <p></p>
-<p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a>
-2.0.2.</p>
+<p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.0.3.</p>
 </div>
 
       </footer>
