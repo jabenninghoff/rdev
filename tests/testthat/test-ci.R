@@ -43,6 +43,8 @@ test_that("lint_all checks all test files", {
 # ci
 
 test_that("All renv functions are called according to ci logic", {
+  renv_sync_true <- list(library = list(), lockfile = list(), synchronized = TRUE)
+  renv_sync_false <- list(library = list(), lockfile = list(), synchronized = FALSE)
   git_status_empty <- structure(
     list(file = character(0), status = character(0), staged = logical(0)),
     row.names = integer(0), class = c("tbl_df", "tbl", "data.frame")
@@ -51,6 +53,7 @@ test_that("All renv functions are called according to ci logic", {
     list(file = "test", status = "new", staged = FALSE),
     row.names = c(NA, -1L), class = c("tbl_df", "tbl", "data.frame")
   )
+  mockery::stub(ci, "renv::status", renv_sync_true)
   mockery::stub(ci, "style_all", NULL)
   mockery::stub(ci, "lint_all", NULL)
   mockery::stub(ci, "gert::git_status", git_status_empty)
@@ -60,6 +63,7 @@ test_that("All renv functions are called according to ci logic", {
   begin <- "^(?s)"
   end <- "$"
   sep <- "\\n\\n"
+  renv <- "renv::status\\(\\)"
   styler <- "style_all\\(\\)"
   lintr <- "lint_all\\(\\)"
   document <- "devtools::document\\(\\)"
@@ -71,25 +75,27 @@ test_that("All renv functions are called according to ci logic", {
   # default
   expect_output(
     ci(),
-    paste0(begin, styler, sep, lintr, sep, document, sep, rcmdcheck, end),
+    paste0(begin, renv, sep, styler, sep, lintr, sep, document, sep, rcmdcheck, end),
     perl = TRUE
   )
 
   # all
   expect_output(
-    ci(styler = TRUE, lintr = TRUE, document = TRUE, rcmdcheck = TRUE),
-    paste0(begin, styler, sep, lintr, sep, document, sep, rcmdcheck, end),
+    ci(renv = TRUE, styler = TRUE, lintr = TRUE, document = TRUE, rcmdcheck = TRUE),
+    paste0(begin, renv, sep, styler, sep, lintr, sep, document, sep, rcmdcheck, end),
     perl = TRUE
   )
 
   # none
-  expect_output(ci(styler = FALSE, lintr = FALSE, document = FALSE, rcmdcheck = FALSE), NA)
+  expect_output(
+    ci(renv = FALSE, styler = FALSE, lintr = FALSE, document = FALSE, rcmdcheck = FALSE), NA
+  )
 
   # uncommitted changes
   mockery::stub(ci, "gert::git_status", git_status_changed)
   expect_output(
-    ci(styler = NULL, lintr = TRUE, document = TRUE, rcmdcheck = TRUE),
-    paste0(begin, lintr, sep, document, sep, rcmdcheck, end),
+    ci(renv = TRUE, styler = NULL, lintr = TRUE, document = TRUE, rcmdcheck = TRUE),
+    paste0(begin, renv, sep, lintr, sep, document, sep, rcmdcheck, end),
     perl = TRUE
   )
 
@@ -97,8 +103,16 @@ test_that("All renv functions are called according to ci logic", {
   mockery::stub(ci, "gert::git_status", git_status_empty)
   mockery::stub(ci, "lint_all", list("lint"))
   expect_output(
-    ci(styler = NULL, lintr = TRUE, document = TRUE, rcmdcheck = TRUE),
-    paste0(begin, styler, sep, lintr, end),
+    ci(renv = TRUE, styler = NULL, lintr = TRUE, document = TRUE, rcmdcheck = TRUE),
+    paste0(begin, renv, sep, styler, sep, lintr, end),
+    perl = TRUE
+  )
+
+  # renv not synchronized
+  mockery::stub(ci, "renv::status", renv_sync_false)
+  expect_output(
+    ci(renv = TRUE, styler = NULL, lintr = TRUE, document = TRUE, rcmdcheck = TRUE),
+    paste0(begin, renv, end),
     perl = TRUE
   )
 })

@@ -65,11 +65,14 @@ lint_all <- function(path = ".", ...) {
 #'
 #' Run continuous integration tests locally.
 #'
+#' If [renv::status()] is not synchronized, `ci()` will stop.
+#'
 #' If `styler` is set to `NULL` (the default), [style_all()] will be run only if there are no
 #'   uncommitted changes to git. Setting the value to `TRUE` or `FALSE` overrides this check.
 #'
 #' If [lint_all()] finds any lints, `ci()` will stop and open the RStudio markers pane.
 #'
+#' @param renv check [renv::status()]
 #' @param styler style all files using [style_all()], see details
 #' @param lintr lint all files using [lint_all()]
 #' @param document run [devtools::document()]
@@ -83,7 +86,16 @@ lint_all <- function(path = ".", ...) {
 #' ci(styler = FALSE, rcmdcheck = FALSE)
 #' }
 #' @export
-ci <- function(styler = NULL, lintr = TRUE, document = TRUE, rcmdcheck = TRUE) {
+ci <- function(renv = TRUE, styler = NULL, lintr = TRUE, document = TRUE, rcmdcheck = TRUE) {
+  if (renv) {
+    writeLines("renv::status()")
+    status <- renv::status()
+    if (!status$synchronized) {
+      return(invisible(status))
+    }
+    if (any(is.null(styler), styler, lintr, document, rcmdcheck)) writeLines("")
+  }
+
   if (is.null(styler)) {
     styler <- nrow(gert::git_status()) == 0
   }

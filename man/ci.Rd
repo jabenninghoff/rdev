@@ -4,9 +4,11 @@
 \alias{ci}
 \title{Local CI}
 \usage{
-ci(styler = NULL, lintr = TRUE, document = TRUE, rcmdcheck = TRUE)
+ci(renv = TRUE, styler = NULL, lintr = TRUE, document = TRUE, rcmdcheck = TRUE)
 }
 \arguments{
+\item{renv}{check \code{\link[renv:status]{renv::status()}}}
+
 \item{styler}{style all files using \code{\link[=style_all]{style_all()}}, see details}
 
 \item{lintr}{lint all files using \code{\link[=lint_all]{lint_all()}}}
@@ -20,6 +22,8 @@ ci(styler = NULL, lintr = TRUE, document = TRUE, rcmdcheck = TRUE)
 Run continuous integration tests locally.
 }
 \details{
+If \code{\link[renv:status]{renv::status()}} is not synchronized, \code{ci()} will stop.
+
 If \code{styler} is set to \code{NULL} (the default), \code{\link[=style_all]{style_all()}} will be run only if there are no
 uncommitted changes to git. Setting the value to \code{TRUE} or \code{FALSE} overrides this check.
 
