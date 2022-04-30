@@ -17,7 +17,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">rdev</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="">1.3.8</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="">1.4.0</span>
       </span>
     </div>
 
@@ -63,12 +63,14 @@
     </div>
 
     <div id="ref-usage">
-    <div class="sourceCode"><pre class="sourceCode r"><code><span class="fu">ci</span><span class="op">(</span>styler <span class="op">=</span> <span class="cn">NULL</span>, lintr <span class="op">=</span> <span class="cn">TRUE</span>, document <span class="op">=</span> <span class="cn">TRUE</span>, rcmdcheck <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span></code></pre></div>
+    <div class="sourceCode"><pre class="sourceCode r"><code><span class="fu">ci</span><span class="op">(</span>renv <span class="op">=</span> <span class="cn">TRUE</span>, styler <span class="op">=</span> <span class="cn">NULL</span>, lintr <span class="op">=</span> <span class="cn">TRUE</span>, document <span class="op">=</span> <span class="cn">TRUE</span>, rcmdcheck <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span></code></pre></div>
     </div>
 
     <div id="arguments">
     <h2>Arguments</h2>
-    <dl><dt>styler</dt>
+    <dl><dt>renv</dt>
+<dd><p>check <code><a href="https://rstudio.github.io/renv/reference/status.html" class="external-link">renv::status()</a></code></p></dd>
+<dt>styler</dt>
 <dd><p>style all files using <code><a href="style_all.html">style_all()</a></code>, see details</p></dd>
 <dt>lintr</dt>
 <dd><p>lint all files using <code><a href="lint_all.html">lint_all()</a></code></p></dd>
@@ -80,7 +82,8 @@
 </dl></div>
     <div id="details">
     <h2>Details</h2>
-    <p>If <code>styler</code> is set to <code>NULL</code> (the default), <code><a href="style_all.html">style_all()</a></code> will be run only if there are no
+    <p>If <code><a href="https://rstudio.github.io/renv/reference/status.html" class="external-link">renv::status()</a></code> is not synchronized, <code>ci()</code> will stop.</p>
+<p>If <code>styler</code> is set to <code>NULL</code> (the default), <code><a href="style_all.html">style_all()</a></code> will be run only if there are no
 uncommitted changes to git. Setting the value to <code>TRUE</code> or <code>FALSE</code> overrides this check.</p>
 <p>If <code><a href="lint_all.html">lint_all()</a></code> finds any lints, <code>ci()</code> will stop and open the RStudio markers pane.</p>
     </div>
