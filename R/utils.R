@@ -126,3 +126,43 @@ update_wordlist_notebooks <- function(pkg = ".", vignettes = TRUE, path = "analy
     ))
   }
 }
+
+deps_check <- function(type) {
+  if (!(type %in% c("missing", "extra"))) {
+    stop("invalid type :", type)
+  }
+  renv_deps <- renv::dependencies()
+  renv_deps <- renv_deps[!grepl("/DESCRIPTION$", renv_deps$Source), ]
+  desc_deps <- desc::desc_get_deps()
+  if (type == "missing") {
+    writeLines("renv::dependencies() not in DESCRIPTION:")
+    return(renv_deps[renv_deps$Package %in% setdiff(renv_deps$Package, desc_deps$package), ])
+  }
+  if (type == "extra") {
+    writeLines("desc::desc_get_deps() not found by renv:")
+    return(desc_deps[desc_deps$package %in% setdiff(desc_deps$package, renv_deps$Package), ])
+  }
+}
+
+#' Check dependencies
+#'
+#' @description
+#' Check dependencies in DESCRIPTION.
+#'
+#' `missing_deps()` reports [renv::dependencies()] not in DESCRIPTION.
+#'
+#' `extra_deps()` reports [desc::desc_get_deps()] not found by renv.
+#'
+#' @return data.frame from either [renv::dependencies()] or [desc::desc_get_deps()].
+#'
+#' @export
+#' @rdname deps_check
+missing_deps <- function() {
+  deps_check("missing")
+}
+
+#' @export
+#' @rdname deps_check
+extra_deps <- function() {
+  deps_check("extra")
+}

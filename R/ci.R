@@ -118,9 +118,3 @@ ci <- function(styler = NULL, lintr = TRUE, document = TRUE, rcmdcheck = TRUE) {
     )
   }
 }
-
-check_desc_deps <- function() {
-  renv_deps <- sort(unique(renv::dependencies()$Package))
-  desc_deps <- sort(desc::desc_get_deps()$package)
-  setdiff(renv_deps, desc_deps)
-}
