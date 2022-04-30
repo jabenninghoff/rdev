@@ -1,3 +1,9 @@
+# rdev 1.4.0
+
+* Added functions to check dependencies: `missing_deps()` reports `renv::dependencies()` not in DESCRIPTION, `extra_deps()` reports `desc::desc_get_deps()` not found by renv
+
+* Added `renv` check to `ci()`: if `renv::status()` is not synchronized, `ci()` will stop
+
 # rdev 1.3.8
 
 * Fix bugs in tests, `use_analysis_package()`
