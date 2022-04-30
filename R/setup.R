@@ -76,6 +76,7 @@ use_spelling <- function(lang = "en-US", prompt = FALSE) {
       package = "rdev"
     )
   }
+  usethis::use_package("withr", type = "Suggests")
   renv::snapshot(prompt = prompt)
 }
 
@@ -363,6 +364,7 @@ use_rdev_package <- function(quiet = TRUE) {
     ignore = TRUE,
     open = rlang::is_interactive()
   )
+  usethis::use_package("desc", type = "Suggests")
   # replace pre-commit hook to allow committing README.md without README.Rmd
   if (fs::file_exists(".git/hooks/pre-commit")) {
     fs::file_delete(".git/hooks/pre-commit")
@@ -502,6 +504,7 @@ use_analysis_package <- function(prompt = FALSE) {
   usethis::use_package("dplyr", type = "Suggests")
   usethis::use_package("fs", type = "Suggests")
   usethis::use_package("purrr", type = "Suggests")
+  usethis::use_package("pkgdown", type = "Suggests")
   renv::snapshot(prompt = prompt)
 
   ret <- list(
