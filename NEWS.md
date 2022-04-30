@@ -1,3 +1,7 @@
+# rdev 1.4.1
+
+* Added missing Suggests dependencies in setup functions
+
 # rdev 1.4.0
 
 * Added functions to check dependencies: `missing_deps()` reports `renv::dependencies()` not in DESCRIPTION, `extra_deps()` reports `desc::desc_get_deps()` not found by renv
