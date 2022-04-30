@@ -44,6 +44,8 @@ reference:
     - spell_check_notebooks
     - update_wordlist_notebooks
     - local_temppkg
+    - missing_deps
+    - extra_deps
   - title: rdev Package
     desc: >
       rdev package documentation
