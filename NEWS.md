@@ -1,3 +1,7 @@
+# rdev 1.4.2
+
+* Remove workaround for resolved upstream issue
+
 # rdev 1.4.1
 
 * Added missing Suggests dependencies in setup functions
