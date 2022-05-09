@@ -2,17 +2,14 @@ Package: rdev
 Title: R Development Tools
 Version: 1.4.2.9000
 Authors@R:
-    person("John", "Benninghoff", email = "jbenninghoff@mac.com", role = c("aut", "cre"),
+    person("John", "Benninghoff", , "jbenninghoff@mac.com", role = c("aut", "cre"),
            comment = c(ORCID = "0000-0002-6230-4742"))
-Description: An opinionated collection of development tools, packages, and utilities.
+Description: An opinionated collection of development tools, packages, and
+    utilities.
 License: MIT + file LICENSE
 URL: https://jabenninghoff.github.io/rdev,
     https://github.com/jabenninghoff/rdev
 BugReports: https://github.com/jabenninghoff/rdev/issues
-Encoding: UTF-8
-Roxygen: list(markdown = TRUE)
-RoxygenNote: 7.1.2
-X-rdev-comment: include all development packages in "Imports" to enable installation through rdev
 Imports:
     desc,
     devtools,
@@ -20,31 +17,37 @@ Imports:
     gert,
     gh,
     lintr (>= 2.0.1.9000),
+    markdown,
+    miniUI,
     pkgdown,
     purrr,
     rcmdcheck,
     remotes,
+    renv,
+    rlang,
     rmarkdown,
     styler (>= 1.4.0),
     tibble,
-    renv,
-    rlang,
     usethis,
     withr,
     xml2,
-    yaml,
-    markdown,
-    miniUI
+    yaml
 Suggests:
-    testthat (>= 3.0.0),
-    mockery,
-    knitr,
     covr,
     DT,
+    knitr,
+    mockery,
+    spelling,
     stringi,
-    spelling
-Config/testthat/edition: 3
+    testthat (>= 3.0.0)
+VignetteBuilder: 
+    knitr
 Remotes:
     r-lib/lintr
-VignetteBuilder: knitr
+Config/testthat/edition: 3
+Encoding: UTF-8
 Language: en-US
+Roxygen: list(markdown = TRUE)
+RoxygenNote: 7.1.2
+X-rdev-comment: include all development packages in "Imports" to enable
+    installation through rdev
