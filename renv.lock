@@ -493,10 +493,10 @@
     },
     "httr": {
       "Package": "httr",
-      "Version": "1.4.2",
+      "Version": "1.4.3",
       "Source": "Repository",
       "Repository": "CRAN",
-      "Hash": "a525aba14184fec243f9eaec62fbed43",
+      "Hash": "88d1b310583777edf01ccd1216fb0b2b",
       "Requirements": [
         "R6",
         "curl",
@@ -594,9 +594,9 @@
       "RemoteUsername": "r-lib",
       "RemoteRepo": "lintr",
       "RemoteRef": "master",
-      "RemoteSha": "b3116e3c2bf1b090879954f3060ea8f994dd5100",
+      "RemoteSha": "4ca7e484bcbe538cc5a81338c0ec55a0ae084cb0",
       "RemoteHost": "api.github.com",
-      "Hash": "70d1221471b6df32dd2935f368187df5",
+      "Hash": "4339eeb4004947c4db9265ade3cb90cb",
       "Requirements": [
         "codetools",
         "crayon",
@@ -1150,10 +1150,10 @@
     },
     "tibble": {
       "Package": "tibble",
-      "Version": "3.1.6",
+      "Version": "3.1.7",
       "Source": "Repository",
       "Repository": "CRAN",
-      "Hash": "8a8f02d1934dfd6431c671361510dd0b",
+      "Hash": "08415af406e3dd75049afef9552e7355",
       "Requirements": [
         "ellipsis",
         "fansi",
