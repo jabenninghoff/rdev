@@ -49,5 +49,3 @@ Encoding: UTF-8
 Language: en-US
 Roxygen: list(markdown = TRUE)
 RoxygenNote: 7.1.2
-X-rdev-comment: include all development packages in "Imports" to enable
-    installation through rdev
