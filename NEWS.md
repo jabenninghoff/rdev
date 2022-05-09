@@ -1,3 +1,7 @@
+# rdev 1.4.3
+
+* Normalize DESCRIPTION file
+
 # rdev 1.4.2
 
 * Remove workaround for resolved upstream issue
