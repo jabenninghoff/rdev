@@ -31,6 +31,7 @@ new_branch <- function(name, bump_ver = TRUE, current = FALSE) {
   }
   gert::git_branch_create(name)
 
+  # TODO: stash and restore changes to DESCRIPTION to ensure committing only the version bump
   if (bump_ver && grepl("^[0-9]*\\.[0-9]*\\.[0-9]*$", desc::desc_get_version())) {
     desc::desc_bump_version("dev")
     gert::git_add("DESCRIPTION")
