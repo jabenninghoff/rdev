@@ -171,8 +171,6 @@ ci()
 #> devtools::document()
 #> ℹ Updating rdev documentation
 #> ℹ Loading rdev
-#> Writing NAMESPACE
-#> Writing NAMESPACE
 #> 
 #> Setting env vars: NOT_CRAN="true", CI="true"
 #> rcmdcheck::rcmdcheck(args = "--no-manual", error_on = "warning")
@@ -184,16 +182,16 @@ ci()
 #> * creating vignettes ... OK
 #> * checking for LF line-endings in source and make files and shell scripts
 #> * checking for empty or unneeded directories
-#> * building ‘rdev_1.4.3.tar.gz’
+#> * building ‘rdev_1.4.4.tar.gz’
 #> 
 #> ── R CMD check ─────────────────────────────────────────────────────────────────
-#> * using log directory ‘/private/var/folders/vn/cw5f9gws42v9m8mdsds_zbl00000gp/T/RtmpYsfdoI/filec196f6b79f/rdev.Rcheck’
+#> * using log directory ‘/private/var/folders/vn/cw5f9gws42v9m8mdsds_zbl00000gp/T/RtmpxcmRMn/file5b3c58f00776/rdev.Rcheck’
 #> * using R version 4.2.0 (2022-04-22)
 #> * using platform: x86_64-apple-darwin19.6.0 (64-bit)
 #> * using session charset: UTF-8
 #> * using option ‘--no-manual’
 #> * checking for file ‘rdev/DESCRIPTION’ ... OK
-#> * this is package ‘rdev’ version ‘1.4.3’
+#> * this is package ‘rdev’ version ‘1.4.4’
 #> * package encoding: UTF-8
 #> * checking package namespace information ... OK
 #> * checking package dependencies ... OK
@@ -249,9 +247,10 @@ ci()
 #>  NONE
 #> * checking re-building of vignette outputs ... OK
 #> * DONE
+#> 
 #> Status: OK
-#> ── R CMD check results ───────────────────────────────────────── rdev 1.4.3 ────
-#> Duration: 35.3s
+#> ── R CMD check results ───────────────────────────────────────── rdev 1.4.4 ────
+#> Duration: 35.6s
 #> 
 #> 0 errors ✔ | 0 warnings ✔ | 0 notes ✔
 ```
