@@ -36,9 +36,11 @@ local_temppkg <- function(dir = fs::file_temp(), type = "usethis", env = parent.
   usethis::create_package(dir, open = FALSE)
   withr::defer(fs::dir_delete(dir), envir = env)
 
+  # nolint start: undesirable_function_linter
   old_dir <- getwd()
   setwd(dir)
   withr::defer(setwd(old_dir), envir = env)
+  # nolint end
 
   usethis::proj_set(dir)
   if (!is.null(old_project)) {

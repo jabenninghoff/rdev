@@ -84,7 +84,7 @@ get_release <- function(pkg = ".", filename = "NEWS.md") {
     notes_end <- notes_end - 1
   }
   if (notes_start > notes_end) {
-    notes <- c("")
+    notes <- ""
   } else {
     notes <- news_md[notes_start:notes_end]
   }

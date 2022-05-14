@@ -72,7 +72,7 @@ test_that("new_branch bumps non-dev version", {
   mockery::stub(new_branch, "gert::git_commit", "Bump version")
 
   expect_identical(new_branch("test"), "Bump version")
-  expect_identical(new_branch("test", bump_ver = FALSE), NULL)
+  expect_null(new_branch("test", bump_ver = FALSE))
 })
 
 test_that("new_branch doesn't bump dev version", {
@@ -85,8 +85,8 @@ test_that("new_branch doesn't bump dev version", {
   mockery::stub(new_branch, "gert::git_add", NULL)
   mockery::stub(new_branch, "gert::git_commit", "Bump version")
 
-  expect_identical(new_branch("test"), NULL)
-  expect_identical(new_branch("test", bump_ver = FALSE), NULL)
+  expect_null(new_branch("test"))
+  expect_null(new_branch("test", bump_ver = FALSE))
 })
 
 # get_release
@@ -106,7 +106,7 @@ test_that("get_release returns correct package, release version and notes", {
     "* Update one", "", "* Update two"
   )
   rel <- get_release()
-  expect_identical(length(rel), 3L)
+  expect_length(rel, 3)
   expect_identical(rel$package, "testpkg")
   expect_identical(rel$version, "1.2.0")
   expect_identical(rel$notes, expected_notes)
@@ -116,7 +116,7 @@ test_that("get_release returns correct package, version, and notes for first rel
   mockery::stub(get_release, "devtools::as.package", pkg_test)
 
   rel <- get_release(filename = "first-release.md")
-  expect_identical(length(rel), 3L)
+  expect_length(rel, 3)
   expect_identical(rel$package, "testpkg")
   expect_identical(rel$version, "1.0.0")
   expect_identical(rel$notes, "Initial release.")
@@ -324,7 +324,7 @@ test_that("stage_release runs proper builder", {
   mockery::stub(stage_release, "gh::gh", NULL)
 
   withr::local_dir(withr::local_tempdir())
-  expect_equal(stage_release(), NULL)
+  expect_null(stage_release())
 
   pkgdown <- fs::file_create("_pkgdown.yml")
   writeLines("url: ~", pkgdown)

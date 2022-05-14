@@ -73,10 +73,10 @@ test_that("build_analysis_site creates analysis site", {
   # _pkgdown.yml should contain analysis navbar, Analysis menu, and test notebook
   yml <- yaml::read_yaml("_pkgdown.yml")
   expect_identical(tail(yml$navbar$structure$left, 1), "analysis")
-  expect_equal(yml$navbar$components$analysis$text, "Analysis")
+  expect_identical(yml$navbar$components$analysis$text, "Analysis")
   expect_length(yml$navbar$components$analysis$menu, 1)
-  expect_equal(yml$navbar$components$analysis$menu[[1]]$text, "Valid Notebook with R Code")
-  expect_equal(yml$navbar$components$analysis$menu[[1]]$href, "test-notebook.html")
+  expect_identical(yml$navbar$components$analysis$menu[[1]]$text, "Valid Notebook with R Code")
+  expect_identical(yml$navbar$components$analysis$menu[[1]]$href, "test-notebook.html")
 
   # _site.yml should match expect_site
   expect_site <- list(
@@ -103,7 +103,7 @@ test_that("build_analysis_site creates analysis site", {
       fig_width = 8, fig_height = 4.5, highlight = "textmate"
     ))
   )
-  expect_equal(site, expect_site)
+  expect_identical(site, expect_site)
 
   # assets, rendered, and site_libs should be copied, data and import should not
   expect_true(fs::dir_exists("docs/assets"))
