@@ -444,6 +444,7 @@ use_analysis_package <- function(prompt = FALSE) {
   # workaround for lintr, R CMD check
   create <- gitignore <- rbuildignore <- NULL
 
+  # TODO: alignment detection not working for 3+ columns: https://github.com/r-lib/styler/issues/943
   analysis_layout <- tibble::tribble(
     ~pattern, ~create, ~gitignore, ~rbuildignore,
     "analysis", TRUE, FALSE, FALSE,
