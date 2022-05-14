@@ -1,3 +1,7 @@
+# rdev 1.4.4
+
+* Enable most linters in `inst/templates/lintr`
+
 # rdev 1.4.3
 
 * Normalize DESCRIPTION file
