@@ -201,7 +201,7 @@ create_github_repo <- function(repo_name, repo_desc = "", org = NULL,
   # determine target dir for create_from_github() and verify it doesn't exist before calling gh
   ut_destdir <- paste0(user_path_prep(conspicuous_place()), "/", repo_name)
   if (fs::dir_exists(ut_destdir)) {
-    stop(paste0("create_from_github() target, '", ut_destdir, "' already exists"))
+    stop("create_from_github() target, '", ut_destdir, "' already exists")
   }
 
   license_template <- get_license()
@@ -459,7 +459,7 @@ use_analysis_package <- function(prompt = FALSE) {
     "analysis/rendered", TRUE, TRUE, TRUE,
     "docs", TRUE, FALSE, TRUE,
     "pkgdown", TRUE, FALSE, TRUE,
-    "_pkgdown.yml", FALSE, FALSE, TRUE,
+    "_pkgdown.yml", FALSE, FALSE, TRUE
   )
 
   analysis_dirs <- subset(analysis_layout, create)$pattern

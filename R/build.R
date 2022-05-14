@@ -147,7 +147,7 @@ build_analysis_site <- function(pkg = ".", ...) {
     fs::dir_delete(tmp_dir)
   }
   fs::dir_create(tmp_dir)
-  yaml::write_yaml(site_yml, paste0(tmp_dir, "/_site.yml"))
+  yaml::write_yaml(site_yml, fs::path(tmp_dir, "_site.yml"))
 
   writeLines("copying files from analysis/ to temporary directory")
   analysis_dirs <- fs::dir_ls("analysis", regexp = "/(assets|data|import|rendered)$")
@@ -170,10 +170,10 @@ build_analysis_site <- function(pkg = ".", ...) {
       fs::dir_delete(path)
     }
   }
-  dir_check_delete(paste0(tmp_dir, "/docs/data"))
-  dir_check_delete(paste0(tmp_dir, "/docs/import"))
-  fs::dir_copy(paste0(tmp_dir, "/docs"), pkg)
+  dir_check_delete(fs::path(tmp_dir, "docs/data"))
+  dir_check_delete(fs::path(tmp_dir, "docs/import"))
+  fs::dir_copy(fs::path(tmp_dir, "docs"), pkg)
 
   writeLines("build_analysis_site() complete")
-  return(invisible(yaml::read_yaml(paste0(tmp_dir, "/_site.yml"))))
+  return(invisible(yaml::read_yaml(fs::path(tmp_dir, "_site.yml"))))
 }

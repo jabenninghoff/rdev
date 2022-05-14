@@ -105,7 +105,7 @@ test_that("create_github_repo errors when proposed repo directory exists locally
 })
 
 test_that("create_github_repo options work", {
-  fs_path <- "/Users/test/Desktop/rdtest9"
+  fs_path <- "/Users/test/Desktop/rdtest9" # nolint: absolute_path_linter
   create <- list(html_url = "https://github.com/test/rdtest9")
   with_dependabot <- paste0(
     "^POST /user/repos\\n",
@@ -163,7 +163,7 @@ test_that("create_github_repo options work", {
 })
 
 test_that("create_github_repo generates expected output", {
-  fs_path <- "/Users/test/Desktop/rdtest9"
+  fs_path <- "/Users/test/Desktop/rdtest9" # nolint: absolute_path_linter
   create <- list(html_url = "https://github.com/test/rdtest9")
   mockery::stub(create_github_repo, "fs::dir_exists", FALSE)
   mockery::stub(create_github_repo, "gh::gh", create)
@@ -229,7 +229,7 @@ test_that("use_analysis_package returns expected values", {
       "analysis/import", "analysis/rendered"
     )
   )
-  urls <- c("https://example.github.io/test")
+  urls <- "https://example.github.io/test"
   mockery::stub(use_analysis_package, "fs::dir_create", NULL)
   mockery::stub(use_analysis_package, "usethis::use_git_ignore", NULL)
   mockery::stub(use_analysis_package, "usethis::use_build_ignore", NULL)
