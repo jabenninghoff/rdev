@@ -10,5 +10,8 @@ linters: linters_with_tags(
     undesirable_function_linter(
       within(all_undesirable_functions, rm(ifelse, library, require, return))
     ),
-    undesirable_operator_linter(all_undesirable_operators)
+    undesirable_operator_linter(all_undesirable_operators),
+    unused_import_linter(
+      except_packages = c("bit64", "data.table", "tidyverse", pkgload::pkg_name("."))
+    )
   )

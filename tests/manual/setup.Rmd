@@ -12,7 +12,7 @@ Test script to manually validate creating a new rdev package or R analysis packa
 Load devtools. Load package manually using `devtools::load_all(".")` (command-shift-l).
 
 ```{r setup, message = FALSE, warning = FALSE}
-require(devtools)
+# devtools already loaded
 ```
 
 # Create GitHub Repository

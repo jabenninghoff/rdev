@@ -7,6 +7,7 @@
 #' @export
 use_rprofile <- function(open = FALSE) {
   usethis::use_template("Rprofile", save_as = ".Rprofile", package = "rdev", open = open)
+  usethis::use_package("pkgload", type = "Suggests")
 }
 
 #' Use rdev .lintr
@@ -18,6 +19,7 @@ use_rprofile <- function(open = FALSE) {
 #' @export
 use_lintr <- function(open = FALSE) {
   usethis::use_template("lintr", save_as = ".lintr", package = "rdev", ignore = TRUE, open = open)
+  usethis::use_package("pkgload", type = "Suggests")
 }
 
 #' Use rdev TODO.md
