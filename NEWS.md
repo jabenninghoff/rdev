@@ -1,3 +1,7 @@
+# rdev 1.4.5
+
+* Updated for new linters
+
 # rdev 1.4.4
 
 * Enable most linters in `inst/templates/lintr`
