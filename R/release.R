@@ -144,7 +144,7 @@ stage_release <- function(pkg = ".", filename = "NEWS.md", host = getOption("rde
   }
 
   if (gert::git_branch() == usethis::git_default_branch()) {
-    new_branch <- paste0(rel$package, "-", gsub("\\.", "", rel$version))
+    new_branch <- paste0(rel$package, "-", gsub(".", "", rel$version, fixed = TRUE))
     gert::git_branch_create(new_branch)
   }
 

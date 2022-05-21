@@ -469,9 +469,9 @@ use_analysis_package <- function(prompt = FALSE) {
   analysis_gitignore <- subset(analysis_layout, gitignore)$pattern
 
   analysis_rbuildignore <- subset(analysis_layout, rbuildignore)$pattern
-  analysis_rbuildignore <- gsub("\\.", "\\\\.", analysis_rbuildignore)
+  analysis_rbuildignore <- gsub(".", "\\.", analysis_rbuildignore, fixed = TRUE)
   analysis_rbuildignore <- gsub("/$", "", analysis_rbuildignore)
-  analysis_rbuildignore <- gsub("\\*", ".\\*", analysis_rbuildignore)
+  analysis_rbuildignore <- gsub("*", ".*", analysis_rbuildignore, fixed = TRUE)
   analysis_rbuildignore <- paste0("^", analysis_rbuildignore, "$")
 
   fs::dir_create(analysis_dirs)
