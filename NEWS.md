@@ -1,3 +1,7 @@
+# rdev 1.4.6
+
+* Updated lint workflow
+
 # rdev 1.4.5
 
 * Updated for new linters
