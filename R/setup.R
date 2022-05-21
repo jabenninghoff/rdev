@@ -450,20 +450,20 @@ use_analysis_package <- function(prompt = FALSE) {
   # alignment detection not working for 3+ columns: https://github.com/r-lib/styler/issues/943
   # fixed by https://github.com/r-lib/styler/pull/945
   analysis_layout <- tibble::tribble(
-    ~pattern,             ~create, ~gitignore, ~rbuildignore,
-    "analysis",           TRUE,    FALSE,      FALSE,
-    "analysis/*.docx",    FALSE,   TRUE,       TRUE,
-    "analysis/*.html",    FALSE,   TRUE,       TRUE,
-    "analysis/*.md",      FALSE,   TRUE,       TRUE,
-    "analysis/*.pdf",     FALSE,   TRUE,       TRUE,
-    "analysis/*-figure/", FALSE,   TRUE,       TRUE,
-    "analysis/assets",    TRUE,    FALSE,      FALSE,
-    "analysis/data",      TRUE,    FALSE,      FALSE,
-    "analysis/import",    TRUE,    TRUE,       TRUE,
-    "analysis/rendered",  TRUE,    TRUE,       TRUE,
-    "docs",               TRUE,    FALSE,      TRUE,
-    "pkgdown",            TRUE,    FALSE,      TRUE,
-    "_pkgdown.yml",       FALSE,   FALSE,      TRUE
+    ~pattern, ~create, ~gitignore, ~rbuildignore,
+    "analysis", TRUE, FALSE, FALSE,
+    "analysis/*.docx", FALSE, TRUE, TRUE,
+    "analysis/*.html", FALSE, TRUE, TRUE,
+    "analysis/*.md", FALSE, TRUE, TRUE,
+    "analysis/*.pdf", FALSE, TRUE, TRUE,
+    "analysis/*-figure/", FALSE, TRUE, TRUE,
+    "analysis/assets", TRUE, FALSE, FALSE,
+    "analysis/data", TRUE, FALSE, FALSE,
+    "analysis/import", TRUE, TRUE, TRUE,
+    "analysis/rendered", TRUE, TRUE, TRUE,
+    "docs", TRUE, FALSE, TRUE,
+    "pkgdown", TRUE, FALSE, TRUE,
+    "_pkgdown.yml", FALSE, FALSE, TRUE
   )
 
   analysis_dirs <- subset(analysis_layout, create)$pattern
