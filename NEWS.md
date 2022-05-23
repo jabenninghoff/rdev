@@ -1,3 +1,7 @@
+# rdev 1.4.7
+
+* Added scripts to `tools/` to further automate package setup
+
 # rdev 1.4.6
 
 * Updated lint workflow
