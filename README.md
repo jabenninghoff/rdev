@@ -114,7 +114,7 @@ ci()
 #> * The project is already synchronized with the lockfile.
 #> 
 #> style_all()
-#> Styling  44  files:
+#> Styling  46  files:
 #>  .Rprofile                                               ✔ 
 #>  README.Rmd                                              ✔ 
 #>  inst/rmarkdown/templates/analysis/skeleton/skeleton.Rmd ✔ 
@@ -158,10 +158,12 @@ ci()
 #>  tests/testthat/test-to_document/no-yaml.Rmd             ✔ 
 #>  tests/testthat/test-to_document/valid.Rmd               ✔ 
 #>  tests/testthat/test-to_document/with-code.Rmd           ✔ 
+#>  tools/setup-1.R                                         ✔ 
+#>  tools/setup-analysis.R                                  ✔ 
 #>  vignettes/analysis-package-layout.Rmd                   ✔ 
 #> ───────────────────────────────────────────────────────
 #> Status   Count   Legend 
-#> ✔    44  File unchanged.
+#> ✔    46  File unchanged.
 #> ℹ    0   File changed.
 #> ✖    0   Styling threw an error.
 #> ───────────────────────────────────────────────────────
@@ -182,16 +184,16 @@ ci()
 #> * creating vignettes ... OK
 #> * checking for LF line-endings in source and make files and shell scripts
 #> * checking for empty or unneeded directories
-#> * building ‘rdev_1.4.6.tar.gz’
+#> * building ‘rdev_1.4.7.tar.gz’
 #> 
 #> ── R CMD check ─────────────────────────────────────────────────────────────────
-#> * using log directory ‘/private/var/folders/vn/cw5f9gws42v9m8mdsds_zbl00000gp/T/RtmpSaXdHt/file61013054692/rdev.Rcheck’
+#> * using log directory ‘/private/var/folders/vn/cw5f9gws42v9m8mdsds_zbl00000gp/T/RtmpDpPt8w/file4ae45bb12892/rdev.Rcheck’
 #> * using R version 4.2.0 (2022-04-22)
 #> * using platform: x86_64-apple-darwin19.6.0 (64-bit)
 #> * using session charset: UTF-8
 #> * using option ‘--no-manual’
 #> * checking for file ‘rdev/DESCRIPTION’ ... OK
-#> * this is package ‘rdev’ version ‘1.4.6’
+#> * this is package ‘rdev’ version ‘1.4.7’
 #> * package encoding: UTF-8
 #> * checking package namespace information ... OK
 #> * checking package dependencies ... OK
@@ -248,8 +250,8 @@ ci()
 #> * checking re-building of vignette outputs ... OK
 #> * DONE
 #> Status: OK
-#> ── R CMD check results ───────────────────────────────────────── rdev 1.4.6 ────
-#> Duration: 34.8s
+#> ── R CMD check results ───────────────────────────────────────── rdev 1.4.7 ────
+#> Duration: 34.6s
 #> 
 #> 0 errors ✔ | 0 warnings ✔ | 0 notes ✔
 ```
