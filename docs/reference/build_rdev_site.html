@@ -18,7 +18,7 @@ updates README.md and performs a clean build using pkgdown."><!-- mathjax --><sc
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">rdev</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="">1.4.6</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="">1.4.7</span>
       </span>
     </div>
 
@@ -60,7 +60,7 @@ updates README.md and performs a clean build using pkgdown."><!-- mathjax --><sc
     </div>
 
     <div class="ref-description">
-    <p><code>build_rdev_site()</code> is a wrapper for <code><a href="https://pkgdown.r-lib.org/reference/build_site.html" class="external-link">pkgdown::build_site()</a></code> optimized for rdev workflow that
+    <p><code>build_rdev_site()</code> is a wrapper for <code><a href="https://rdrr.io/pkg/pkgdown/man/build_site.html" class="external-link">pkgdown::build_site()</a></code> optimized for rdev workflow that
 updates <code>README.md</code> and performs a clean build using <code>pkgdown</code>.</p>
     </div>
 
@@ -73,13 +73,13 @@ updates <code>README.md</code> and performs a clean build using <code>pkgdown</c
     <dl><dt>pkg</dt>
 <dd><p>Path to package. Currently, only <code>pkg = "."</code> is supported.</p></dd>
 <dt>...</dt>
-<dd><p>additional arguments passed to <code><a href="https://pkgdown.r-lib.org/reference/build_site.html" class="external-link">pkgdown::build_site()</a></code> (not implemented)</p></dd>
+<dd><p>additional arguments passed to <code><a href="https://rdrr.io/pkg/pkgdown/man/build_site.html" class="external-link">pkgdown::build_site()</a></code> (not implemented)</p></dd>
 </dl></div>
     <div id="details">
     <h2>Details</h2>
-    <p>When run, <code>build_rdev_site()</code> calls:</p><ol><li><p><code><a href="https://devtools.r-lib.org/reference/build_rmd.html" class="external-link">devtools::build_readme()</a></code></p></li>
-<li><p><code><a href="https://pkgdown.r-lib.org/reference/clean_site.html" class="external-link">pkgdown::clean_site()</a></code></p></li>
-<li><p><code><a href="https://pkgdown.r-lib.org/reference/build_site.html" class="external-link">pkgdown::build_site()</a></code></p></li>
+    <p>When run, <code>build_rdev_site()</code> calls:</p><ol><li><p><code><a href="https://rdrr.io/pkg/devtools/man/build_rmd.html" class="external-link">devtools::build_readme()</a></code></p></li>
+<li><p><code><a href="https://rdrr.io/pkg/pkgdown/man/clean_site.html" class="external-link">pkgdown::clean_site()</a></code></p></li>
+<li><p><code><a href="https://rdrr.io/pkg/pkgdown/man/build_site.html" class="external-link">pkgdown::build_site()</a></code></p></li>
 </ol></div>
     <div id="continuous-integration">
     <h2>Continuous Integration</h2>
@@ -88,7 +88,7 @@ updates <code>README.md</code> and performs a clean build using <code>pkgdown</c
 <p>Both <code>build_rdev_site()</code> and <code><a href="build_analysis_site.html">build_analysis_site()</a></code> are meant to be used as part of a CI/CD
 workflow, and temporarily set the environment variable <code>CI == "TRUE"</code> so that the build will
 fail when non-internal topics are not included on the reference index page per
-<code><a href="https://pkgdown.r-lib.org/reference/build_reference.html" class="external-link">pkgdown::build_reference()</a></code>.</p>
+<code><a href="https://rdrr.io/pkg/pkgdown/man/build_reference.html" class="external-link">pkgdown::build_reference()</a></code>.</p>
     </div>
 
   </div>

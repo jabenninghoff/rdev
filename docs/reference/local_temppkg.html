@@ -17,7 +17,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">rdev</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="">1.4.6</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="">1.4.7</span>
       </span>
     </div>
 
@@ -63,18 +63,18 @@
     </div>
 
     <div id="ref-usage">
-    <div class="sourceCode"><pre class="sourceCode r"><code><span class="fu">local_temppkg</span><span class="op">(</span>dir <span class="op">=</span> <span class="fu">fs</span><span class="fu">::</span><span class="fu"><a href="https://fs.r-lib.org/reference/file_temp.html" class="external-link">file_temp</a></span><span class="op">(</span><span class="op">)</span>, type <span class="op">=</span> <span class="st">"usethis"</span>, env <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/sys.parent.html" class="external-link">parent.frame</a></span><span class="op">(</span><span class="op">)</span><span class="op">)</span></code></pre></div>
+    <div class="sourceCode"><pre class="sourceCode r"><code><span class="fu">local_temppkg</span><span class="op">(</span>dir <span class="op">=</span> <span class="fu">fs</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/pkg/fs/man/file_temp.html" class="external-link">file_temp</a></span><span class="op">(</span><span class="op">)</span>, type <span class="op">=</span> <span class="st">"usethis"</span>, env <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/sys.parent.html" class="external-link">parent.frame</a></span><span class="op">(</span><span class="op">)</span><span class="op">)</span></code></pre></div>
     </div>
 
     <div id="arguments">
     <h2>Arguments</h2>
     <dl><dt>dir</dt>
-<dd><p>Path to package directory, created if necessary, defaults to <code><a href="https://fs.r-lib.org/reference/file_temp.html" class="external-link">fs::file_temp()</a></code>.</p></dd>
+<dd><p>Path to package directory, created if necessary, defaults to <code><a href="https://rdrr.io/pkg/fs/man/file_temp.html" class="external-link">fs::file_temp()</a></code>.</p></dd>
 <dt>type</dt>
-<dd><p>type of package to create, one of "usethis" - <code><a href="https://usethis.r-lib.org/reference/create_package.html" class="external-link">usethis::create_package()</a></code>,
+<dd><p>type of package to create, one of "usethis" - <code><a href="https://rdrr.io/pkg/usethis/man/create_package.html" class="external-link">usethis::create_package()</a></code>,
 "rdev" - <code><a href="use_rdev_package.html">use_rdev_package()</a></code>, or "analysis" - <code><a href="use_analysis_package.html">use_analysis_package()</a></code>.</p></dd>
 <dt>env</dt>
-<dd><p>Environment passed to <code><a href="https://withr.r-lib.org/reference/defer.html" class="external-link">withr::defer()</a></code>, defaults to <code><a href="https://rdrr.io/r/base/sys.parent.html" class="external-link">parent.frame()</a></code>.</p></dd>
+<dd><p>Environment passed to <code><a href="https://rdrr.io/pkg/withr/man/defer.html" class="external-link">withr::defer()</a></code>, defaults to <code><a href="https://rdrr.io/r/base/sys.parent.html" class="external-link">parent.frame()</a></code>.</p></dd>
 </dl></div>
     <div id="value">
     <h2>Value</h2>
@@ -84,19 +84,19 @@
     <h2>Details</h2>
     <p>Used internally for testing rdev automation. Based on the
 <a href="https://testthat.r-lib.org/articles/test-fixtures.html#case-study-usethis" class="external-link">usethis case study</a>
-from <code><a href="https://testthat.r-lib.org/reference/testthat-package.html" class="external-link">testthat</a></code>.</p>
+from <code><a href="https://rdrr.io/pkg/testthat/man/testthat-package.html" class="external-link">testthat</a></code>.</p>
     </div>
     <div id="see-also">
     <h2>See also</h2>
-    <div class="dont-index"><p><a href="https://withr.r-lib.org/reference/withr.html" class="external-link">withr::withr-package</a></p></div>
+    <div class="dont-index"><p><a href="https://rdrr.io/pkg/withr/man/withr.html" class="external-link">withr::withr-package</a></p></div>
     </div>
 
     <div id="ref-examples">
     <h2>Examples</h2>
     <div class="sourceCode"><pre class="sourceCode r"><code><span class="r-in"><span class="kw">if</span> <span class="op">(</span><span class="cn">FALSE</span><span class="op">)</span> <span class="op">{</span></span>
 <span class="r-in"><span class="fu">test_that</span><span class="op">(</span><span class="st">"local_temppkg creates a directory"</span>, <span class="op">{</span></span>
-<span class="r-in">  <span class="va">dir</span> <span class="op">&lt;-</span> <span class="fu">usethis</span><span class="fu">::</span><span class="fu"><a href="https://usethis.r-lib.org/reference/ui.html" class="external-link">ui_silence</a></span><span class="op">(</span><span class="fu">local_temppkg</span><span class="op">(</span><span class="op">)</span><span class="op">)</span></span>
-<span class="r-in">  <span class="fu">expect_true</span><span class="op">(</span><span class="fu">fs</span><span class="fu">::</span><span class="fu"><a href="https://fs.r-lib.org/reference/file_access.html" class="external-link">dir_exists</a></span><span class="op">(</span><span class="va">dir</span><span class="op">)</span><span class="op">)</span></span>
+<span class="r-in">  <span class="va">dir</span> <span class="op">&lt;-</span> <span class="fu">usethis</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/pkg/usethis/man/ui.html" class="external-link">ui_silence</a></span><span class="op">(</span><span class="fu">local_temppkg</span><span class="op">(</span><span class="op">)</span><span class="op">)</span></span>
+<span class="r-in">  <span class="fu">expect_true</span><span class="op">(</span><span class="fu">fs</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/pkg/fs/man/file_access.html" class="external-link">dir_exists</a></span><span class="op">(</span><span class="va">dir</span><span class="op">)</span><span class="op">)</span></span>
 <span class="r-in"><span class="op">}</span><span class="op">)</span></span>
 <span class="r-in"><span class="op">}</span></span>
 </code></pre></div>

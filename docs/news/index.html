@@ -17,7 +17,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">rdev</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="">1.4.6</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="">1.4.7</span>
       </span>
     </div>
 
@@ -57,6 +57,10 @@
       <small>Source: <a href="https://github.com/jabenninghoff/rdev/blob/HEAD/NEWS.md" class="external-link"><code>NEWS.md</code></a></small>
     </div>
 
+    <div class="section level2">
+<h2 class="page-header" data-toc-text="1.4.7" id="rdev-147">rdev 1.4.7<a class="anchor" aria-label="anchor" href="#rdev-147"></a></h2>
+<ul><li>Added scripts to <code>tools/</code> to further automate package setup</li>
+</ul></div>
     <div class="section level2">
 <h2 class="page-header" data-toc-text="1.4.6" id="rdev-146">rdev 1.4.6<a class="anchor" aria-label="anchor" href="#rdev-146"></a></h2>
 <ul><li>Updated lint workflow</li>
@@ -278,7 +282,7 @@
 </div>
     <div class="section level2">
 <h2 class="page-header" data-toc-text="0.7.3" id="rdev-073">rdev 0.7.3<a class="anchor" aria-label="anchor" href="#rdev-073"></a></h2>
-<ul><li><p>Updated <code><a href="../reference/build_analysis_site.html">build_analysis_site()</a></code> to run <code><a href="https://devtools.r-lib.org/reference/build_rmd.html" class="external-link">devtools::build_readme()</a></code> to regenerate the dynamic list of notebooks (in case new notebooks were added)</p></li>
+<ul><li><p>Updated <code><a href="../reference/build_analysis_site.html">build_analysis_site()</a></code> to run <code><a href="https://rdrr.io/pkg/devtools/man/build_rmd.html" class="external-link">devtools::build_readme()</a></code> to regenerate the dynamic list of notebooks (in case new notebooks were added)</p></li>
 <li><p>Important update from renv 0.15.0 to <a href="https://rstudio.github.io/renv/news/index.html#renv-0151" class="external-link">0.15.1</a></p></li>
 </ul></div>
     <div class="section level2">
@@ -298,14 +302,14 @@
 <p>Added functions to automate steps when creating new packages following rdev and optionally analysis package conventions:</p>
 <ul><li><p><code><a href="../reference/create_github_repo.html">create_github_repo()</a></code>: Create new GitHub repository following rdev conventions in the active user’s account and create a basic package</p></li>
 <li><p><code><a href="../reference/use_rdev_package.html">use_rdev_package()</a></code>: Add rdev templates and settings within the active package. Normally invoked when first setting up a package.</p></li>
-<li><p>Install templates using <code><a href="https://usethis.r-lib.org/reference/use_template.html" class="external-link">usethis::use_template()</a></code>: <code><a href="../reference/use_rprofile.html">use_rprofile()</a></code>, <code><a href="../reference/use_lintr.html">use_lintr()</a></code>, <code><a href="../reference/use_todo.html">use_todo()</a></code>, <code><a href="../reference/use_package_r.html">use_package_r()</a></code></p></li>
+<li><p>Install templates using <code><a href="https://rdrr.io/pkg/usethis/man/use_template.html" class="external-link">usethis::use_template()</a></code>: <code><a href="../reference/use_rprofile.html">use_rprofile()</a></code>, <code><a href="../reference/use_lintr.html">use_lintr()</a></code>, <code><a href="../reference/use_todo.html">use_todo()</a></code>, <code><a href="../reference/use_package_r.html">use_package_r()</a></code></p></li>
 <li><p>Add functionality to <code><a href="../reference/use_analysis_package.html">use_analysis_package()</a></code>: also install the analysis package <code>README.Rmd</code> template</p></li>
 <li><p>Changed both <code><a href="../reference/use_analysis_package.html">use_analysis_package()</a></code> and <code><a href="../reference/build_analysis_site.html">build_analysis_site()</a></code> to write <code>_pkgdown.yml</code> to the project root and to store in GitHub to make projects <a href="https://github.com/search?q=filename%3Apkgdown.yml+path%3A%2F&amp;type=Code" class="external-link">discoverable</a> by <a href="https://pkgdown.r-lib.org" class="external-link">pkgdown</a>.</p></li>
 <li><p>Updated <code>setup-r</code> to install rdev and dependencies in <code>site_library</code></p></li>
 </ul></div>
 <div class="section level3">
 <h3 id="other-changes-0-7-0">Other Changes<a class="anchor" aria-label="anchor" href="#other-changes-0-7-0"></a></h3>
-<ul><li><p>Added <code><a href="../reference/build_rdev_site.html">build_rdev_site()</a></code>, a wrapper for <code><a href="https://pkgdown.r-lib.org/reference/build_site.html" class="external-link">pkgdown::build_site()</a></code> optimized for rdev workflow that updates <code>README.md</code> and performs a clean build using pkgdown</p></li>
+<ul><li><p>Added <code><a href="../reference/build_rdev_site.html">build_rdev_site()</a></code>, a wrapper for <code><a href="https://rdrr.io/pkg/pkgdown/man/build_site.html" class="external-link">pkgdown::build_site()</a></code> optimized for rdev workflow that updates <code>README.md</code> and performs a clean build using pkgdown</p></li>
 <li><p>Added ‘Analysis Notebook’ R markdown template for RStudio (File &gt; New File &gt; Rmarkdown &gt; From Template)</p></li>
 <li><p>Migrated ggplot2 themes/styles (<code>theme_quo()</code>, <code>viridis_quo()</code>) to new package, <code>jabenninghoff/jbplot</code></p></li>
 </ul></div>
@@ -378,7 +382,7 @@
     <div class="section level2">
 <h2 class="page-header" data-toc-text="0.3.0" id="rdev-030">rdev 0.3.0<a class="anchor" aria-label="anchor" href="#rdev-030"></a></h2>
 <ul><li>
-<code><a href="../reference/build_analysis_site.html">build_analysis_site()</a></code>, new function migrated from <a href="https://jabenninghoff.github.io/rtraining/" class="external-link">rtraining</a>: a wrapper for <code><a href="https://pkgdown.r-lib.org/reference/build_site.html" class="external-link">pkgdown::build_site()</a></code> that adds an ‘Analysis’ menu containing rendered versions of all <code>.Rmd</code> files in <code>analysis/</code>. It is still considered Experimental, due to lack of test coverage and some features that are not implemented, but should work for projects with limited pkgdown customization. The update also includes a function to convert notebooks to <code>html_document</code>, <code><a href="../reference/to_document.html">to_document()</a></code>.</li>
+<code><a href="../reference/build_analysis_site.html">build_analysis_site()</a></code>, new function migrated from <a href="https://jabenninghoff.github.io/rtraining/" class="external-link">rtraining</a>: a wrapper for <code><a href="https://rdrr.io/pkg/pkgdown/man/build_site.html" class="external-link">pkgdown::build_site()</a></code> that adds an ‘Analysis’ menu containing rendered versions of all <code>.Rmd</code> files in <code>analysis/</code>. It is still considered Experimental, due to lack of test coverage and some features that are not implemented, but should work for projects with limited pkgdown customization. The update also includes a function to convert notebooks to <code>html_document</code>, <code><a href="../reference/to_document.html">to_document()</a></code>.</li>
 </ul></div>
     <div class="section level2">
 <h2 class="page-header" data-toc-text="0.2.2" id="rdev-022">rdev 0.2.2<a class="anchor" aria-label="anchor" href="#rdev-022"></a></h2>

@@ -18,7 +18,7 @@ containing rendered versions of all .Rmd files in analysis/."><!-- mathjax --><s
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">rdev</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="">1.4.6</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="">1.4.7</span>
       </span>
     </div>
 
@@ -60,7 +60,7 @@ containing rendered versions of all .Rmd files in analysis/."><!-- mathjax --><s
     </div>
 
     <div class="ref-description">
-    <p><code>build_analysis_site()</code> is a wrapper for <code><a href="https://pkgdown.r-lib.org/reference/build_site.html" class="external-link">pkgdown::build_site()</a></code> that adds an 'Analysis' menu
+    <p><code>build_analysis_site()</code> is a wrapper for <code><a href="https://rdrr.io/pkg/pkgdown/man/build_site.html" class="external-link">pkgdown::build_site()</a></code> that adds an 'Analysis' menu
 containing rendered versions of all .Rmd files in <code>analysis/</code>.</p>
     </div>
 
@@ -73,7 +73,7 @@ containing rendered versions of all .Rmd files in <code>analysis/</code>.</p>
     <dl><dt>pkg</dt>
 <dd><p>Path to package. Currently, only <code>pkg = "."</code> is supported.</p></dd>
 <dt>...</dt>
-<dd><p>additional arguments passed to <code><a href="https://pkgdown.r-lib.org/reference/build_site.html" class="external-link">pkgdown::build_site()</a></code> (not implemented)</p></dd>
+<dd><p>additional arguments passed to <code><a href="https://rdrr.io/pkg/pkgdown/man/build_site.html" class="external-link">pkgdown::build_site()</a></code> (not implemented)</p></dd>
 </dl></div>
     <div id="value">
     <h2>Value</h2>
@@ -83,18 +83,18 @@ containing rendered versions of all .Rmd files in <code>analysis/</code>.</p>
     <h2>Details</h2>
     <p>When run, <code>build_analysis_site()</code>:</p><ol><li><p>Reads base pkgdown settings from <code>pkgdown/_base.yml</code></p></li>
 <li><p>Writes base settings to <code>_pkgdown.yml</code></p></li>
-<li><p>Creates a template using <code><a href="https://pkgdown.r-lib.org/reference/templates.html" class="external-link">pkgdown::template_navbar()</a></code> and inserts an <code>analysis</code> menu with
+<li><p>Creates a template using <code><a href="https://rdrr.io/pkg/pkgdown/man/templates.html" class="external-link">pkgdown::template_navbar()</a></code> and inserts an <code>analysis</code> menu with
 links to html versions of each .Rmd file in <code>analysis/</code></p></li>
 <li><p>Writes the template to <code>_pkgdown.yml</code></p></li>
-<li><p>Updates <code>README.md</code> by running <code><a href="https://devtools.r-lib.org/reference/build_rmd.html" class="external-link">devtools::build_readme()</a></code> (if <code>README.Rmd</code> exists) to update
+<li><p>Updates <code>README.md</code> by running <code><a href="https://rdrr.io/pkg/devtools/man/build_rmd.html" class="external-link">devtools::build_readme()</a></code> (if <code>README.Rmd</code> exists) to update
 the list of notebooks</p></li>
-<li><p>Runs <code><a href="https://pkgdown.r-lib.org/reference/clean_site.html" class="external-link">pkgdown::clean_site()</a></code> and <code><a href="https://pkgdown.r-lib.org/reference/build_site.html" class="external-link">pkgdown::build_site()</a></code></p></li>
+<li><p>Runs <code><a href="https://rdrr.io/pkg/pkgdown/man/clean_site.html" class="external-link">pkgdown::clean_site()</a></code> and <code><a href="https://rdrr.io/pkg/pkgdown/man/build_site.html" class="external-link">pkgdown::build_site()</a></code></p></li>
 <li><p>Creates a <code>_site.yml</code> file based on the final <code>_pkgdown.yml</code> that clones the pkgdown navbar
 in a temporary build directory</p></li>
 <li><p>Copies the following from <code>analysis/</code> into the build directory: <code>*.Rmd</code>, <code>assets/</code>, <code>data/</code>,
 <code>import/</code>, <code>rendered/</code></p></li>
 <li><p>Changes <code>*.Rmd</code> from <code>html_notebook</code> to <code>html_document</code> using <code><a href="to_document.html">to_document()</a></code></p></li>
-<li><p>Builds a site using <code><a href="https://pkgs.rstudio.com/rmarkdown/reference/render_site.html" class="external-link">rmarkdown::render_site()</a></code> using modified <code>html_document</code> output settings
+<li><p>Builds a site using <code><a href="https://rdrr.io/pkg/rmarkdown/man/render_site.html" class="external-link">rmarkdown::render_site()</a></code> using modified <code>html_document</code> output settings
 to render files with the look and feel of <code>html_notebook</code></p></li>
 <li><p>Moves the rendered files to <code>docs/</code>: <code>*.html</code>, <code>assets/</code>, <code>rendered/</code>, without overwriting</p></li>
 </ol><p><code>build_analysis_site()</code> will fail with an error if there are no files in <code>analysis/*.Rmd</code>, or if
@@ -107,7 +107,7 @@ to render files with the look and feel of <code>html_notebook</code></p></li>
 <p>Both <code><a href="build_rdev_site.html">build_rdev_site()</a></code> and <code>build_analysis_site()</code> are meant to be used as part of a CI/CD
 workflow, and temporarily set the environment variable <code>CI == "TRUE"</code> so that the build will
 fail when non-internal topics are not included on the reference index page per
-<code><a href="https://pkgdown.r-lib.org/reference/build_reference.html" class="external-link">pkgdown::build_reference()</a></code>.</p>
+<code><a href="https://rdrr.io/pkg/pkgdown/man/build_reference.html" class="external-link">pkgdown::build_reference()</a></code>.</p>
     </div>
 
   </div>
