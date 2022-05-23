@@ -1,0 +1,11 @@
+# run this script within the new package after rdev::use_rdev_package
+gert::git_add(".")
+gert::git_commit("rdev::use_rdev_package()")
+rdev::use_analysis_package()
+gert::git_add(".")
+gert::git_commit("rdev::use_analysis_package()")
+rdev::use_spelling()
+fs::file_delete("tests/testthat/test-package.R")
+gert::git_add(".")
+gert::git_commit("rdev::use_spelling()")
+rdev::ci()
