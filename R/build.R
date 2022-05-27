@@ -161,7 +161,7 @@ build_analysis_site <- function(pkg = ".", ...) {
   purrr::walk(notebooks, to_document, tmp_dir)
 
   writeLines("rmarkdown::render_site()")
-  rmarkdown::render_site(tmp_dir)
+  rmarkdown::render_site(tmp_dir, envir = new.env())
 
   writeLines("moving rendered files to docs/")
   # do not overwrite, skip data/, import/
