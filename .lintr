@@ -11,6 +11,8 @@ linters: linters_with_tags(
       within(all_undesirable_functions, rm(ifelse, library, require))
     ),
     undesirable_operator_linter(all_undesirable_operators),
+    # disabled until https://github.com/r-lib/lintr/issues/1301 is fixed
+    unneeded_concatenation_linter = NULL,
     unused_import_linter(
       except_packages = c("bit64", "data.table", "tidyverse", pkgload::pkg_name("."))
     )
