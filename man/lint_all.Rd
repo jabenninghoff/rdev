@@ -7,25 +7,25 @@
 lint_all(path = ".", ...)
 }
 \arguments{
-\item{path}{the path to the base directory, by default, it will be searched in the parent directories of the current
-directory.}
+\item{path}{For the base directory of the project (for \code{lint_dir()}) or
+package (for \code{lint_package()}).}
 
 \item{...}{
-  Arguments passed on to \code{\link[lintr:lint_dir]{lintr::lint_dir}}
+  Arguments passed on to \code{\link[lintr:lint]{lintr::lint_dir}}
   \describe{
+    \item{\code{parse_settings}}{whether to try and parse the settings.}
     \item{\code{relative_path}}{if \code{TRUE}, file paths are printed using their path relative to the base directory.
 If \code{FALSE}, use the full absolute path.}
     \item{\code{exclusions}}{exclusions for \code{\link[lintr:exclude]{exclude()}}, relative to the package path.}
     \item{\code{pattern}}{pattern for files, by default it will take files with any of the extensions .R, .Rmd, .Rnw, .Rhtml,
 .Rrst, .Rtex, .Rtxt allowing for lowercase r (.r, ...)}
-    \item{\code{parse_settings}}{whether to try and parse the settings.}
   }}
 }
 \value{
 A list of lint objects.
 }
 \description{
-Lint all files in a project. Implemented as a wrapper for \code{\link[lintr:lint_dir]{lintr::lint_dir()}}.
+Lint all files in a project. Implemented as a wrapper for \code{\link[lintr:lint]{lintr::lint_dir()}}.
 }
 \examples{
 \dontrun{
