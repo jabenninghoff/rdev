@@ -17,7 +17,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">rdev</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="">1.4.7</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="">1.4.8</span>
       </span>
     </div>
 
@@ -59,7 +59,7 @@
     </div>
 
     <div class="ref-description">
-    <p>Lint all files in a project. Implemented as a wrapper for <code><a href="https://rdrr.io/pkg/lintr/man/lint_dir.html" class="external-link">lintr::lint_dir()</a></code>.</p>
+    <p>Lint all files in a project. Implemented as a wrapper for <code><a href="https://lintr.r-lib.org/reference/lint.html" class="external-link">lintr::lint_dir()</a></code>.</p>
     </div>
 
     <div id="ref-usage">
@@ -69,22 +69,22 @@
     <div id="arguments">
     <h2>Arguments</h2>
     <dl><dt>path</dt>
-<dd><p>the path to the base directory, by default, it will be searched in the parent directories of the current
-directory.</p></dd>
+<dd><p>For the base directory of the project (for <code>lint_dir()</code>) or
+package (for <code>lint_package()</code>).</p></dd>
 <dt>...</dt>
-<dd><p>Arguments passed on to <code><a href="https://rdrr.io/pkg/lintr/man/lint_dir.html" class="external-link">lintr::lint_dir</a></code></p><dl><dt><code>relative_path</code></dt>
+<dd><p>Arguments passed on to <code><a href="https://lintr.r-lib.org/reference/lint.html" class="external-link">lintr::lint_dir</a></code></p><dl><dt><code>parse_settings</code></dt>
+<dd><p>whether to try and parse the settings.</p></dd>
+
+    <dt><code>relative_path</code></dt>
 <dd><p>if <code>TRUE</code>, file paths are printed using their path relative to the base directory.
 If <code>FALSE</code>, use the full absolute path.</p></dd>
 
     <dt><code>exclusions</code></dt>
-<dd><p>exclusions for <code><a href="https://rdrr.io/pkg/lintr/man/exclude.html" class="external-link">exclude()</a></code>, relative to the package path.</p></dd>
+<dd><p>exclusions for <code><a href="https://lintr.r-lib.org/reference/exclude.html" class="external-link">exclude()</a></code>, relative to the package path.</p></dd>
 
     <dt><code>pattern</code></dt>
 <dd><p>pattern for files, by default it will take files with any of the extensions .R, .Rmd, .Rnw, .Rhtml,
 .Rrst, .Rtex, .Rtxt allowing for lowercase r (.r, ...)</p></dd>
-
-    <dt><code>parse_settings</code></dt>
-<dd><p>whether to try and parse the settings.</p></dd>
 
   
 </dl></dd>
