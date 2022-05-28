@@ -1,3 +1,7 @@
+# rdev 1.4.8
+
+* Make rdev [data.table aware](https://rdatatable.gitlab.io/data.table/articles/datatable-importing.html#data-table-in-imports-but-nothing-imported)
+
 # rdev 1.4.7
 
 * Added scripts to `tools/` to further automate package setup
