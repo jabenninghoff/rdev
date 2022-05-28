@@ -27,7 +27,7 @@ build_rdev_site <- function(pkg = ".", ...) {
   writeLines("\npkgdown::clean_site()")
   pkgdown::clean_site()
   writeLines("\npkgdown::build_site()")
-  withr::with_envvar(c("CI" = "TRUE"), pkgdown::build_site())
+  withr::with_envvar(c(CI = "TRUE"), pkgdown::build_site())
 }
 
 #' Build Analysis Site
@@ -111,7 +111,7 @@ build_analysis_site <- function(pkg = ".", ...) {
   writeLines("pkgdown::clean_site()")
   pkgdown::clean_site()
   writeLines("pkgdown::build_site()")
-  withr::with_envvar(c("CI" = "TRUE"), pkgdown::build_site())
+  withr::with_envvar(c(CI = "TRUE"), pkgdown::build_site())
 
   writeLines("creating `_site.yml` from `_pkgdown.yml` in temporary directory")
   desc <- desc::description$new(pkg)

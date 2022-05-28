@@ -37,7 +37,7 @@ test_that("lint_all checks all test files", {
   # set TESTTHAT=false to un-silence lintr, see
   #   https://github.com/r-lib/lintr/commit/74f1e9d2886c4bd06f52bd2510e939eac644065a
   skip_on_ci()
-  withr::with_envvar(new = c("TESTTHAT" = "false"), expect_snapshot(lint_all(), cran = FALSE))
+  withr::with_envvar(new = c(TESTTHAT = "false"), expect_snapshot(lint_all(), cran = FALSE))
 })
 
 # ci
