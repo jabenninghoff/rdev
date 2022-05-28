@@ -602,9 +602,9 @@
       "RemoteUsername": "r-lib",
       "RemoteRepo": "lintr",
       "RemoteRef": "main",
-      "RemoteSha": "19308c1d61dae2a9cc921a9cbd921c1df31c867e",
+      "RemoteSha": "61dc4b34332c1a1bd6ffc6f2ba267debcdcaa085",
       "RemoteHost": "api.github.com",
-      "Hash": "e6a354235bcb42e71eac4fe78fecfd2a",
+      "Hash": "5fbb6e6f9aaf657d8704aa5878dde0b7",
       "Requirements": [
         "backports",
         "codetools",
