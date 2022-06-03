@@ -132,7 +132,7 @@ deps_check <- function(type) {
     stop("invalid type :", type)
   }
   renv_deps <- renv::dependencies()
-  renv_deps <- renv_deps[!grepl("/DESCRIPTION$", renv_deps$Source), ]
+  renv_deps <- renv_deps[!endsWith(renv_deps$Source, "/DESCRIPTION"), ]
   desc_deps <- desc::desc_get_deps()
   if (type == "missing") {
     writeLines("renv::dependencies() not in DESCRIPTION:")
