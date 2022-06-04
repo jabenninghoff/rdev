@@ -6,9 +6,13 @@ test_that("to_document errors when file isn't a well-formed R markdown document"
   dest <- fs::file_temp(pattern = "document", ext = "Rmd")
   withr::local_file(dest)
 
-  expect_error(to_document("test.txt", dest), "is not an R Markdown \\(\\*\\.Rmd\\) file")
-  expect_error(to_document("no-front-matter.Rmd", dest), "is not a valid R Notebook")
-  expect_error(to_document("no-yaml.Rmd", dest), "is not a valid R Notebook")
+  expect_error(
+    to_document("test.txt", dest), "^'test.txt' is not an R Markdown \\(\\*\\.Rmd\\) file$"
+  )
+  expect_error(
+    to_document("no-front-matter.Rmd", dest), "^'no-front-matter.Rmd' is not a valid R Notebook$"
+  )
+  expect_error(to_document("no-yaml.Rmd", dest), "^'no-yaml.Rmd' is not a valid R Notebook$")
 })
 
 test_that("overwrite = FALSE prevents file from being overwritten", {
@@ -17,8 +21,11 @@ test_that("overwrite = FALSE prevents file from being overwritten", {
 
   fs::file_create(dest)
 
-  expect_error(to_document("valid.Rmd", dest), "file already exists")
-  expect_error(to_document("valid.Rmd", dest, overwrite = FALSE), "file already exists")
+  expect_error(to_document("valid.Rmd", dest), "file already exists", fixed = TRUE)
+  expect_error(
+    to_document("valid.Rmd", dest, overwrite = FALSE), "file already exists",
+    fixed = TRUE
+  )
   expect_length(readLines(dest), 0)
 })
 
@@ -35,9 +42,12 @@ test_that("to_document errors when yaml front matter doesn't contain `html_noteb
   dest <- fs::file_temp(pattern = "document", ext = "Rmd")
   withr::local_file(dest)
 
-  expect_error(to_document("document.Rmd", dest), "does not contain `output: html_notebook`")
   expect_error(
-    to_document("minimal-document.Rmd", dest), "does not contain `output: html_notebook`"
+    to_document("document.Rmd", dest), "^'document.Rmd' does not contain `output: html_notebook`$"
+  )
+  expect_error(
+    to_document("minimal-document.Rmd", dest),
+    "^'minimal-document.Rmd' does not contain `output: html_notebook`$"
   )
 })
 
@@ -48,7 +58,7 @@ test_that("to_document errors when output contains an unexpected object type", {
   bad_object <- list(title = "Minimal Notebook", date = "2022-01-22", output = 42)
   mockery::stub(to_document, "rmarkdown::yaml_front_matter", bad_object)
 
-  expect_error(to_document("minimal.Rmd", dest), "unexpected object type for output")
+  expect_error(to_document("minimal.Rmd", dest), "^unexpected output object type 'double'$")
 })
 
 test_that("to_document removes all other output types", {
@@ -117,16 +127,23 @@ test_that("to_document copies source file to a directory", {
 test_that("rmd_metadata errors when file isn't a well-formed R markdown document", {
   mockery::stub(rmd_metadata, "desc::desc_get_urls", "https://example.github.io/package")
 
-  expect_error(rmd_metadata("test.txt"), "is not an R Markdown \\(\\*\\.Rmd\\) file")
-  expect_error(rmd_metadata("no-front-matter.Rmd"), "is not a valid R Notebook")
-  expect_error(rmd_metadata("no-yaml.Rmd"), "is not a valid R Notebook")
+  expect_error(rmd_metadata("test.txt"), "^'test.txt' is not an R Markdown \\(\\*\\.Rmd\\) file$")
+  expect_error(
+    rmd_metadata("no-front-matter.Rmd"), "^'no-front-matter.Rmd' is not a valid R Notebook$"
+  )
+  expect_error(rmd_metadata("no-yaml.Rmd"), "^'no-yaml.Rmd' is not a valid R Notebook$")
 })
 
 test_that("rmd_metadata errors when yaml front matter doesn't contain `html_notebook`", {
   mockery::stub(rmd_metadata, "desc::desc_get_urls", "https://example.github.io/package")
 
-  expect_error(rmd_metadata("document.Rmd"), "does not contain `output: html_notebook`")
-  expect_error(rmd_metadata("minimal-document.Rmd"), "does not contain `output: html_notebook`")
+  expect_error(
+    rmd_metadata("document.Rmd"), "^'document.Rmd' does not contain `output: html_notebook`$"
+  )
+  expect_error(
+    rmd_metadata("minimal-document.Rmd"),
+    "^'minimal-document.Rmd' does not contain `output: html_notebook`$"
+  )
 })
 
 test_that("rmd_metadata errors when output contains an unexpected object type", {
@@ -134,7 +151,7 @@ test_that("rmd_metadata errors when output contains an unexpected object type", 
   bad_object <- list(title = "Minimal Notebook", date = "2022-01-22", output = 42)
   mockery::stub(rmd_metadata, "rmarkdown::yaml_front_matter", bad_object)
 
-  expect_error(rmd_metadata("minimal.Rmd"), "unexpected object type for output")
+  expect_error(rmd_metadata("minimal.Rmd"), "^unexpected output object type 'double'$")
 })
 
 test_that("rmd_metadata returns correct description with extra spaces", {
@@ -154,7 +171,7 @@ test_that("rmd_metadata returns correct description with extra spaces", {
 test_that("rmd_metadata errors when DESCRIPTION doesn't contain a URL", {
   mockery::stub(rmd_metadata, "desc::desc_get_urls", character(0))
 
-  expect_error(rmd_metadata("valid.Rmd"), "no URL found in DESCRIPTION")
+  expect_error(rmd_metadata("valid.Rmd"), "^no URL found in DESCRIPTION$")
 })
 
 test_that("rmd_metadata returns analysis notebook metadata", {

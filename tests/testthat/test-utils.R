@@ -1,7 +1,7 @@
 # sort_file
 
 test_that("sort_file errors when file does not exist", {
-  expect_error(sort_file("nonexistant"), "^cannot sort file, '.*': no such file$")
+  expect_error(sort_file("nonexistant"), "^cannot sort file, 'nonexistant': no such file$")
 })
 
 test_that("sort_file sorts a file", {
@@ -39,8 +39,8 @@ test_that("spell_check_notebooks logic flows work", {
   writeLines("spelltest", "inst/WORDLIST")
   writeLines("Package: test\nLanguage: en-US", "DESCRIPTION")
 
-  expect_error(spell_check_notebooks(), "'analysis' directory not found")
-  expect_error(spell_check_notebooks(path = "testdir"), "'testdir' directory not found")
+  expect_error(spell_check_notebooks(), "^'analysis' directory not found$")
+  expect_error(spell_check_notebooks(path = "testdir"), "^'testdir' directory not found$")
 
   fs::dir_create("analysis")
   expect_length(spell_check_notebooks()$found, 0)
@@ -56,9 +56,9 @@ test_that("spell_check_notebooks logic flows work", {
   expect_length(spell_check_notebooks(glob = "*.Rmd")$found, 1)
 
   writeLines("Package: test", "DESCRIPTION")
-  expect_error(spell_check_notebooks(), "Field 'Language' not found")
+  expect_error(spell_check_notebooks(), "^Field 'Language' not found$")
 
   fs::file_delete("DESCRIPTION")
-  expect_error(spell_check_notebooks(), "DESCRIPTION not found")
+  expect_error(spell_check_notebooks(), "^DESCRIPTION not found$")
   expect_length(spell_check_notebooks(lang = "en_US")$found, 1)
 })

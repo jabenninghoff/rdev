@@ -26,19 +26,19 @@ test_that("rdev.codecov option skips installation of codecov.io components", {
 
   expect_output(
     withr::with_options(list(rdev.codecov = NULL, rdev.github.actions = NULL), use_codecov()),
-    "use_coverage\\nsort_rbuildignore\\nuse_github_action\\npackage = 'DT', type ='Suggests'"
+    "^use_coverage\\nsort_rbuildignore\\nuse_github_action\\npackage = 'DT', type ='Suggests'$"
   )
   expect_output(
     withr::with_options(list(rdev.codecov = TRUE, rdev.github.actions = TRUE), use_codecov()),
-    "use_coverage\\nsort_rbuildignore\\nuse_github_action\\npackage = 'DT', type ='Suggests'"
+    "^use_coverage\\nsort_rbuildignore\\nuse_github_action\\npackage = 'DT', type ='Suggests'$"
   )
   expect_output(
     withr::with_options(list(rdev.codecov = TRUE, rdev.github.actions = FALSE), use_codecov()),
-    "use_coverage\\nsort_rbuildignore\\npackage = 'DT', type ='Suggests'"
+    "^use_coverage\\nsort_rbuildignore\\npackage = 'DT', type ='Suggests'$"
   )
   expect_output(
     withr::with_options(list(rdev.codecov = FALSE, rdev.github.actions = TRUE), use_codecov()),
-    "package = 'covr', type ='Suggests'\\npackage = 'DT', type ='Suggests'"
+    "^package = 'covr', type ='Suggests'\\npackage = 'DT', type ='Suggests'$"
   )
 })
 
@@ -47,13 +47,13 @@ test_that("rdev.codecov option skips installation of codecov.io components", {
 test_that("get_license validates options", {
   expect_error(
     withr::with_options(list(rdev.license = "cc0"), get_license()),
-    "invalid rdev.license type, 'cc0'"
+    "^invalid rdev\\.license type, 'cc0'$"
   )
   expect_error(
     withr::with_options(
       list(rdev.license = "proprietary", rdev.license.copyright = NULL), get_license()
     ),
-    "rdev.license is 'proprietary' and rdev.license.copyright is not set"
+    "^rdev\\.license is 'proprietary' and rdev\\.license\\.copyright is not set$"
   )
   expect_identical(withr::with_options(list(rdev.license = "mit"), get_license()), "mit")
   expect_identical(withr::with_options(list(rdev.license = "gpl"), get_license()), "gpl")
@@ -141,24 +141,21 @@ test_that("create_github_repo options work", {
       list(rdev.dependabot = NULL),
       create_github_repo("rdtest9", "rdev test analysis package 9")
     ),
-    with_dependabot,
-    perl = TRUE
+    with_dependabot
   )
   expect_output(
     withr::with_options(
       list(rdev.dependabot = TRUE),
       create_github_repo("rdtest9", "rdev test analysis package 9")
     ),
-    with_dependabot,
-    perl = TRUE
+    with_dependabot
   )
   expect_output(
     withr::with_options(
       list(rdev.dependabot = FALSE),
       create_github_repo("rdtest9", "rdev test analysis package 9")
     ),
-    without_dependabot,
-    perl = TRUE
+    without_dependabot
   )
 })
 
@@ -179,8 +176,7 @@ test_that("create_github_repo generates expected output", {
       "Open the repository by executing: \\$ github ", fs_path, "\\n",
       "Apply rdev conventions within the new project with use_rdev_package\\(\\),\\n",
       "and use either use_analysis_package\\(\\) or usethis::use_pkgdown\\(\\) for GitHub Pages\\.$"
-    ),
-    perl = TRUE
+    )
   )
 })
 

@@ -1,13 +1,13 @@
 # local_temppkg
 
 test_that("local_temppkg errors with an invalid package type", {
-  expect_error(local_temppkg(type = "badtype"), "unrecognized package type, 'badtype'")
+  expect_error(local_temppkg(type = "badtype"), "^unrecognized package type, 'badtype'$")
 })
 
 test_that("local_temppkg creates a valid usethis package", {
   usethis::ui_silence(local_temppkg())
 
-  # paste0(fs::path_file(dir), ".Rproj"), .Rbuildignore and .gitignore aren't created in rcmdcheck
+  # .Rbuildignore and .gitignore aren't created in rcmdcheck
   expect_true(fs::file_exists("DESCRIPTION"))
   expect_true(fs::file_exists("NAMESPACE"))
   expect_true(fs::dir_exists("R"))
@@ -19,7 +19,7 @@ test_that("local_temppkg creates a valid rdev package", {
   )
   usethis::ui_silence(local_temppkg(type = "rdev"))
 
-  # paste0(fs::path_file(dir), ".Rproj") isn't created when running rcmdcheck
+  # .Rproj isn't created when running rcmdcheck
   expect_true(fs::file_exists(".Rbuildignore"))
   expect_true(fs::file_exists(".Rprofile"))
   expect_true(fs::file_exists(".git/hooks/pre-commit"))
@@ -105,7 +105,7 @@ test_that("local_temppkg creates a valid analysis package", {
   usethis::ui_silence(local_temppkg(type = "analysis"))
 
   # valid rdev package
-  # paste0(fs::path_file(dir), ".Rproj") isn't created when running rcmdcheck
+  # .Rproj isn't created when running rcmdcheck
   expect_true(fs::file_exists(".Rbuildignore"))
   expect_true(fs::file_exists(".Rprofile"))
   expect_true(fs::file_exists(".git/hooks/pre-commit"))
