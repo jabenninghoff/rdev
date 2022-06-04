@@ -1,3 +1,7 @@
+# rdev 1.4.9
+
+* Clean up tests, standardize error messages
+
 # rdev 1.4.8
 
 * Make rdev [data.table aware](https://rdatatable.gitlab.io/data.table/articles/datatable-importing.html#data-table-in-imports-but-nothing-imported)
