@@ -114,7 +114,7 @@ ci()
 #> * The project is already synchronized with the lockfile.
 #> 
 #> style_all()
-#> Styling  46  files:
+#> Styling  47  files:
 #>  .Rprofile                                               ✔ 
 #>  README.Rmd                                              ✔ 
 #>  inst/rmarkdown/templates/analysis/skeleton/skeleton.Rmd ✔ 
@@ -141,6 +141,7 @@ ci()
 #>  tests/testthat/test-build.R                             ✔ 
 #>  tests/testthat/test-ci.R                                ✔ 
 #>  tests/testthat/test-helpers.R                           ✔ 
+#>  tests/testthat/test-inst.R                              ✔ 
 #>  tests/testthat/test-release.R                           ✔ 
 #>  tests/testthat/test-setup.R                             ✔ 
 #>  tests/testthat/test-spelling.R                          ✔ 
@@ -163,7 +164,7 @@ ci()
 #>  vignettes/analysis-package-layout.Rmd                   ✔ 
 #> ───────────────────────────────────────────────────────
 #> Status   Count   Legend 
-#> ✔    46  File unchanged.
+#> ✔    47  File unchanged.
 #> ℹ    0   File changed.
 #> ✖    0   Styling threw an error.
 #> ───────────────────────────────────────────────────────
@@ -184,16 +185,16 @@ ci()
 #> * creating vignettes ... OK
 #> * checking for LF line-endings in source and make files and shell scripts
 #> * checking for empty or unneeded directories
-#> * building ‘rdev_1.4.8.tar.gz’
+#> * building ‘rdev_1.4.9.tar.gz’
 #> 
 #> ── R CMD check ─────────────────────────────────────────────────────────────────
-#> * using log directory ‘/private/var/folders/vn/cw5f9gws42v9m8mdsds_zbl00000gp/T/Rtmpy7tDbz/filed93e73ed5d83/rdev.Rcheck’
+#> * using log directory ‘/private/var/folders/vn/cw5f9gws42v9m8mdsds_zbl00000gp/T/Rtmp0D6hk4/file36be562643c6/rdev.Rcheck’
 #> * using R version 4.2.0 (2022-04-22)
 #> * using platform: x86_64-apple-darwin19.6.0 (64-bit)
 #> * using session charset: UTF-8
 #> * using option ‘--no-manual’
 #> * checking for file ‘rdev/DESCRIPTION’ ... OK
-#> * this is package ‘rdev’ version ‘1.4.8’
+#> * this is package ‘rdev’ version ‘1.4.9’
 #> * package encoding: UTF-8
 #> * checking package namespace information ... OK
 #> * checking package dependencies ... OK
@@ -251,8 +252,8 @@ ci()
 #> * DONE
 #> 
 #> Status: OK
-#> ── R CMD check results ───────────────────────────────────────── rdev 1.4.8 ────
-#> Duration: 35.3s
+#> ── R CMD check results ───────────────────────────────────────── rdev 1.4.9 ────
+#> Duration: 38.9s
 #> 
 #> 0 errors ✔ | 0 warnings ✔ | 0 notes ✔
 ```
