@@ -20,7 +20,7 @@
 #' @export
 build_rdev_site <- function(pkg = ".", ...) {
   if (pkg != ".") {
-    stop('currently only build_analysis_site(pkg = ".") is supported')
+    stop('currently only build_rdev_site(pkg = ".") is supported')
   }
   writeLines("devtools::build_readme()")
   devtools::build_readme()
@@ -69,11 +69,11 @@ build_analysis_site <- function(pkg = ".", ...) {
   }
 
   if (!fs::dir_exists("analysis")) {
-    stop("No analysis directory found")
+    stop("no analysis directory found")
   }
   notebooks <- fs::dir_ls("analysis", glob = "*.Rmd")
   if (length(notebooks) == 0) {
-    stop("No *.Rmd files in analysis directory")
+    stop("no *.Rmd files in analysis directory")
   }
 
   if (!fs::file_exists("pkgdown/_base.yml")) {

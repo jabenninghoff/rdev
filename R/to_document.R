@@ -18,28 +18,28 @@
 #' @export
 to_document <- function(file_path, new_path, overwrite = FALSE) {
   if (!(fs::path_ext(file_path) %in% c("Rmd", "rmd"))) {
-    stop("file_path, '", file_path, "' is not an R Markdown (*.Rmd) file!")
+    stop("'", file_path, "' is not an R Markdown (*.Rmd) file")
   }
 
   notebook <- readLines(file_path)
   header <- grep("^---$", notebook)
   yaml <- rmarkdown::yaml_front_matter(file_path)
   if (length(header) < 2 || length(yaml) < 1) {
-    stop("file_path, '", file_path, "' is not a valid R Notebook!")
+    stop("'", file_path, "' is not a valid R Notebook")
   }
 
   if (is.character(yaml$output)) {
     if (yaml$output != "html_notebook") {
-      stop("file_path, '", file_path, "' does not contain `output: html_notebook`!")
+      stop("'", file_path, "' does not contain `output: html_notebook`")
     }
     yaml$output <- "html_document"
   } else if (is.list(yaml$output)) {
     if (is.null(yaml$output$html_notebook)) {
-      stop("file_path, '", file_path, "' does not contain `output: html_notebook`!")
+      stop("'", file_path, "' does not contain `output: html_notebook`")
     }
     yaml$output <- list(html_document = yaml$output$html_notebook)
   } else {
-    stop("unexpected object type for output: '", typeof(yaml$output), "'")
+    stop("unexpected output object type '", typeof(yaml$output), "'")
   }
 
   body_start <- header[2] + 1
@@ -73,26 +73,26 @@ to_document <- function(file_path, new_path, overwrite = FALSE) {
 #' @export
 rmd_metadata <- function(file_path) {
   if (!(fs::path_ext(file_path) %in% c("Rmd", "rmd"))) {
-    stop("file_path, '", file_path, "' is not an R Markdown (*.Rmd) file")
+    stop("'", file_path, "' is not an R Markdown (*.Rmd) file")
   }
 
   notebook <- readLines(file_path)
   header <- grep("^---$", notebook)
   yaml <- rmarkdown::yaml_front_matter(file_path)
   if (length(header) < 2 || length(yaml) < 1) {
-    stop("file_path, '", file_path, "' is not a valid R Notebook")
+    stop("'", file_path, "' is not a valid R Notebook")
   }
 
   if (is.character(yaml$output)) {
     if (yaml$output != "html_notebook") {
-      stop("file_path, '", file_path, "' does not contain `output: html_notebook`")
+      stop("'", file_path, "' does not contain `output: html_notebook`")
     }
   } else if (is.list(yaml$output)) {
     if (is.null(yaml$output$html_notebook)) {
-      stop("file_path, '", file_path, "' does not contain `output: html_notebook`")
+      stop("'", file_path, "' does not contain `output: html_notebook`")
     }
   } else {
-    stop("unexpected object type for output: '", typeof(yaml$output), "'")
+    stop("unexpected output object type '", typeof(yaml$output), "'")
   }
 
   body_start <- header[2] + 1

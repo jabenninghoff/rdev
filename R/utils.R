@@ -129,7 +129,7 @@ update_wordlist_notebooks <- function(pkg = ".", vignettes = TRUE, path = "analy
 
 deps_check <- function(type) {
   if (!(type %in% c("missing", "extra"))) {
-    stop("invalid type :", type)
+    stop("invalid type '", type, "'")
   }
   renv_deps <- renv::dependencies()
   renv_deps <- renv_deps[!endsWith(renv_deps$Source, "/DESCRIPTION"), ]

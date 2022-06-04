@@ -39,8 +39,8 @@ test_that("new_branch errors when local or remote branch exists", {
   mockery::stub(new_branch, "gert::git_add", NULL)
   mockery::stub(new_branch, "gert::git_commit", NULL)
 
-  expect_error(new_branch("local"), "local branch exists")
-  expect_error(new_branch("remote"), "branch exists on remote")
+  expect_error(new_branch("local"), "^local branch exists$")
+  expect_error(new_branch("remote"), "^branch exists on remote \\(origin/remote\\)$")
   expect_error(new_branch("test"), NA)
 })
 
@@ -58,7 +58,7 @@ test_that("new_branch branches from default branch when current = FALSE and curr
   mockery::stub(new_branch, "gert::git_commit", "Bump version")
 
   expect_identical(new_branch("test", current = TRUE), "Bump version")
-  expect_error(new_branch("test", current = FALSE), "gert::git_branch_checkout")
+  expect_error(new_branch("test", current = FALSE), "^gert::git_branch_checkout$")
 })
 
 test_that("new_branch bumps non-dev version", {
@@ -124,17 +124,21 @@ test_that("get_release returns correct package, version, and notes for first rel
 
 test_that('get_release stops when pkg != "."', {
   expect_error(
-    get_release(pkg = "tpkg"), 'currently only build_analysis_site\\(pkg = "\\."\\) is supported'
+    get_release(pkg = "tpkg"), '^currently only get_release\\(pkg = "\\."\\) is supported$'
   )
 })
 
 test_that("get_release returns error on invalid NEWS.md format", {
   mockery::stub(get_release, "devtools::as.package", pkg_test)
 
-  expect_error(get_release(filename = "empty.md"), "no valid releases found")
-  expect_error(get_release(filename = "no-h1.md"), "no valid releases found")
-  expect_error(get_release(filename = "bad-first-h1.md"), "unexpected header")
-  expect_error(get_release(filename = "bad-first-h1-1.md"), "unexpected header")
+  expect_error(get_release(filename = "empty.md"), "^no valid releases found in 'empty\\.md'$")
+  expect_error(get_release(filename = "no-h1.md"), "^no valid releases found in 'no-h1\\.md'$")
+  expect_error(
+    get_release(filename = "bad-first-h1.md"), "^unexpected header in 'bad-first-h1\\.md'$"
+  )
+  expect_error(
+    get_release(filename = "bad-first-h1-1.md"), "^unexpected header in 'bad-first-h1-1\\.md'$"
+  )
 })
 
 test_that("get_release returns valid but non-rdev version", {
@@ -158,7 +162,7 @@ test_that('stage_release stops when pkg != "."', {
   mockery::stub(stage_release, "gh::gh", NULL)
 
   expect_error(
-    stage_release(pkg = "tpkg"), 'currently only build_analysis_site\\(pkg = "\\."\\) is supported'
+    stage_release(pkg = "tpkg"), '^currently only stage_release\\(pkg = "\\."\\) is supported$'
   )
 })
 
@@ -176,7 +180,7 @@ test_that("stage_release returns error on non-rdev version", {
   mockery::stub(stage_release, "gert::git_push", NULL)
   mockery::stub(stage_release, "gh::gh", NULL)
 
-  expect_error(stage_release(filename = "bad-version.md"), "invalid package version")
+  expect_error(stage_release(filename = "bad-version.md"), "^invalid package version '1\\.1'$")
 })
 
 test_that("stage_release returns error on empty release notes", {
@@ -193,7 +197,7 @@ test_that("stage_release returns error on empty release notes", {
   mockery::stub(stage_release, "gert::git_push", NULL)
   mockery::stub(stage_release, "gh::gh", NULL)
 
-  expect_error(stage_release(filename = "bad-notes.md"), "no release notes found")
+  expect_error(stage_release(filename = "bad-notes.md"), "^no release notes found$")
 })
 
 test_that("stage_release returns error if git tag matching version exists", {
@@ -218,7 +222,7 @@ test_that("stage_release returns error if git tag matching version exists", {
   mockery::stub(stage_release, "gert::git_push", NULL)
   mockery::stub(stage_release, "gh::gh", NULL)
 
-  expect_error(stage_release(), "release tag .* already exists")
+  expect_error(stage_release(), "^release tag '1\\.2\\.0' already exists$")
 })
 
 test_that("stage_release returns error if uncommitted changes are present", {
@@ -240,7 +244,7 @@ test_that("stage_release returns error if uncommitted changes are present", {
   mockery::stub(stage_release, "gert::git_push", NULL)
   mockery::stub(stage_release, "gh::gh", NULL)
 
-  expect_error(stage_release(), "uncommitted changes present, aborting")
+  expect_error(stage_release(), "^uncommitted changes present$")
 })
 
 test_that("stage_release creates new branch", {
@@ -267,7 +271,7 @@ test_that("stage_release creates new branch", {
   mockery::stub(stage_release, "gert::git_push", NULL)
   mockery::stub(stage_release, "gh::gh", NULL)
 
-  expect_error(stage_release(), "testpkg-120")
+  expect_error(stage_release(), "^testpkg-120$")
 })
 
 test_that("stage_release errors when on default branch before commits", {
@@ -291,7 +295,7 @@ test_that("stage_release errors when on default branch before commits", {
   mockery::stub(stage_release, "gert::git_push", NULL)
   mockery::stub(stage_release, "gh::gh", NULL)
 
-  expect_error(stage_release(), "on default branch\\. This should never happen, aborting!")
+  expect_error(stage_release(), "^on default branch \\(this should never happen\\)$")
 })
 
 test_that("stage_release runs proper builder", {
@@ -328,12 +332,12 @@ test_that("stage_release runs proper builder", {
 
   pkgdown <- fs::file_create("_pkgdown.yml")
   writeLines("url: ~", pkgdown)
-  expect_error(stage_release(), "build_rdev_site")
+  expect_error(stage_release(), "^build_rdev_site$")
 
   fs::dir_create("pkgdown")
   base <- fs::file_create("pkgdown/_base.yml")
   writeLines("url: ~", base)
-  expect_error(stage_release(), "build_analysis_site")
+  expect_error(stage_release(), "^build_analysis_site$")
 })
 
 test_that("stage_release returns pull request results", {
@@ -404,35 +408,40 @@ test_that("merge_release errors when expected and returns list", {
   expect_identical(merge_release(), mr_ret)
 
   gh_merge <- list(merged = FALSE)
-  expect_error(merge_release(), "pull request merge failed: https://github.com/example/test")
+  expect_error(merge_release(), "^pull request merge 'https://github\\.com/example/test' failed$")
 
   gh_pull_number$rebaseable <- FALSE
   expect_error(
-    merge_release(), "pull request is not marked as rebaseable: https://github.com/example/test"
+    merge_release(),
+    "^pull request 'https://github\\.com/example/test' is not marked as rebaseable$"
   )
 
   gh_pull_number$mergeable <- FALSE
   expect_error(
-    merge_release(), "pull request is not marked as mergeable: https://github.com/example/test"
+    merge_release(), "^pull request 'https://github\\.com/example/test' is not marked as mergeable$"
   )
 
   gh_pull_number$draft <- TRUE
-  expect_error(merge_release(), "pull request is marked as draft: https://github.com/example/test")
+  expect_error(
+    merge_release(), "^pull request 'https://github\\.com/example/test' is marked as draft$"
+  )
 
   gh_pull_number$locked <- TRUE
-  expect_error(merge_release(), "pull request is marked as locked: https://github.com/example/test")
+  expect_error(
+    merge_release(), "^pull request 'https://github\\.com/example/test' is marked as locked$"
+  )
 
   gh_pulls <- list(list(title = "testpkg 1.2.0"), list(title = "testpkg 1.2.0"))
   expect_error(
-    merge_release(), "found more than one pull request with the title 'testpkg 1.2.0', aborting"
+    merge_release(), "^found more than one pull request with the title 'testpkg 1\\.2\\.0'$"
   )
 
   gh_pulls <- list(list(title = "test PR"), list(title = "test PR 2"))
   expect_error(
-    merge_release(), "found no open pull requests with the title 'testpkg 1.2.0', aborting"
+    merge_release(), "^found no open pull requests with the title 'testpkg 1\\.2\\.0'$"
   )
 
   expect_error(
-    merge_release(pkg = "tpkg"), 'currently only build_analysis_site\\(pkg = "\\."\\) is supported'
+    merge_release(pkg = "tpkg"), '^currently only merge_release\\(pkg = "\\."\\) is supported$'
   )
 })

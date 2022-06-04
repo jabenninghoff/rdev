@@ -6,9 +6,8 @@ test_that('build_rdev_site errors when pkg is something other than "."', {
   mockery::stub(build_rdev_site, "pkgdown::build_site", NULL)
 
   expect_error(
-    build_rdev_site(pkg = "tpkg"), 'currently only build_analysis_site\\(pkg = "."\\) is supported'
+    build_rdev_site(pkg = "tpkg"), '^currently only build_rdev_site\\(pkg = "."\\) is supported$'
   )
-  expect_output(build_rdev_site(pkg = "."))
 })
 
 test_that("all build_rdev_site functions are called", {
@@ -16,7 +15,7 @@ test_that("all build_rdev_site functions are called", {
   mockery::stub(build_rdev_site, "pkgdown::clean_site", NULL)
   mockery::stub(build_rdev_site, "pkgdown::build_site", NULL)
 
-  begin <- "^(?s)"
+  begin <- "^"
   end <- "$"
   sep <- "\\n\\n"
   build_readme <- "devtools::build_readme\\(\\)"
@@ -24,9 +23,10 @@ test_that("all build_rdev_site functions are called", {
   build_site <- "pkgdown::build_site\\(\\)"
 
   expect_output(
-    build_rdev_site(),
-    paste0(begin, build_readme, sep, clean_site, sep, build_site, end),
-    perl = TRUE
+    build_rdev_site(), paste0(begin, build_readme, sep, clean_site, sep, build_site, end)
+  )
+  expect_output(
+    build_rdev_site(pkg = "."), paste0(begin, build_readme, sep, clean_site, sep, build_site, end)
   )
 })
 
@@ -37,18 +37,18 @@ test_that('build_analysis_site errors when pkg is something other than "."', {
 
   expect_error(
     build_analysis_site(pkg = "tpkg"),
-    'currently only build_analysis_site\\(pkg = "."\\) is supported'
+    '^currently only build_analysis_site\\(pkg = "."\\) is supported$'
   )
 })
 
 test_that("build_analysis_site errors when components are missing", {
   withr::local_dir(withr::local_tempdir())
 
-  expect_error(build_analysis_site(), "No analysis directory found")
+  expect_error(build_analysis_site(), "^no analysis directory found$")
   fs::dir_create("analysis")
-  expect_error(build_analysis_site(), "No \\*\\.Rmd files in analysis directory")
+  expect_error(build_analysis_site(), "^no \\*\\.Rmd files in analysis directory$")
   fs::file_create("analysis/test.Rmd")
-  expect_error(build_analysis_site(), "pkgdown/_base.yml does not exist")
+  expect_error(build_analysis_site(), "^pkgdown/_base\\.yml does not exist$")
 })
 
 test_that("build_analysis_site creates analysis site", {
