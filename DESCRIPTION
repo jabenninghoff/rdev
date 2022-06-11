@@ -11,6 +11,7 @@ URL: https://jabenninghoff.github.io/rdev,
     https://github.com/jabenninghoff/rdev
 BugReports: https://github.com/jabenninghoff/rdev/issues
 Imports:
+    cli,
     desc,
     devtools,
     fs,
@@ -28,6 +29,7 @@ Imports:
     rmarkdown,
     styler (>= 1.4.0),
     tibble,
+    urlchecker,
     usethis,
     withr,
     xml2,
