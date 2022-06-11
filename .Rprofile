@@ -1,4 +1,5 @@
 source("renv/activate.R")
+options(styler.cache_root = "styler-perm")
 
 # attach devtools and set options per https://r-pkgs.org/setup.html
 if (interactive()) {
