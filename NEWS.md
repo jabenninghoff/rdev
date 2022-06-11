@@ -1,3 +1,15 @@
+# rdev 1.5.0
+
+* Added styler cache options to `.Rprofile` template
+
+* Imported `urlchecker::url_check()`, `urlchecker::url_update()`, and added a new function, `html_url_check()`, to check URLs in `docs/` (replaces `proof-docs` script)
+
+* Replaced scripts in `tools/` for automating package setup with `init()`: run after `create_github_repo()`, and `setup_analysis()`: run after `init()`
+
+* Moved `setup-r` to `inst/bin`
+
+* Increased test coverage
+
 # rdev 1.4.9
 
 * Clean up tests, standardize error messages
