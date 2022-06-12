@@ -52,7 +52,13 @@
     <loc>https://jabenninghoff.github.io/rdev/reference/get_release.html</loc>
   </url>
   <url>
+    <loc>https://jabenninghoff.github.io/rdev/reference/html_url_check.html</loc>
+  </url>
+  <url>
     <loc>https://jabenninghoff.github.io/rdev/reference/index.html</loc>
+  </url>
+  <url>
+    <loc>https://jabenninghoff.github.io/rdev/reference/init.html</loc>
   </url>
   <url>
     <loc>https://jabenninghoff.github.io/rdev/reference/lint_all.html</loc>
@@ -71,6 +77,9 @@
   </url>
   <url>
     <loc>https://jabenninghoff.github.io/rdev/reference/rmd_metadata.html</loc>
+  </url>
+  <url>
+    <loc>https://jabenninghoff.github.io/rdev/reference/setup_analysis.html</loc>
   </url>
   <url>
     <loc>https://jabenninghoff.github.io/rdev/reference/sort_file.html</loc>
@@ -92,6 +101,9 @@
   </url>
   <url>
     <loc>https://jabenninghoff.github.io/rdev/reference/update_wordlist_notebooks.html</loc>
+  </url>
+  <url>
+    <loc>https://jabenninghoff.github.io/rdev/reference/urlchecker-reexports.html</loc>
   </url>
   <url>
     <loc>https://jabenninghoff.github.io/rdev/reference/use_analysis_package.html</loc>
