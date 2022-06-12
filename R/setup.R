@@ -147,9 +147,10 @@ get_license <- function() {
 #' @keywords internal
 #' @noRd
 get_github_repo <- function() {
+  # nocov start
   url <- usethis::git_remotes()$origin
-
   remotes::parse_github_url(url)
+  # nocov end
 }
 
 #' Fix .gitignore file
