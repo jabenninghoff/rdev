@@ -35,6 +35,8 @@ reference:
     - use_rprofile
     - use_spelling
     - use_todo
+    - init
+    - setup_analysis
   - title: Utilities
     desc: >
       Utilities and test helpers
@@ -46,6 +48,8 @@ reference:
     - local_temppkg
     - missing_deps
     - extra_deps
+    - urlchecker-reexports
+    - html_url_check
   - title: rdev Package
     desc: >
       rdev package documentation
