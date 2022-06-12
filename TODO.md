@@ -32,7 +32,7 @@
 - [x] Automate branch protection
 - [x] Address issue <https://github.com/r-lib/usethis/issues/1568>, which has been closed
 - [x] Add dplyr when running `use_analysis_package()`
-- [x] ~~Consider switching `getOption("pkgType")` from `source` to `both` per R [options](https://stat.ethz.ch/R-manual/R-devel/library/base/html/options.html)~~ per the [R macOS FAQ](https://cran.r-project.org/bin/macosx/RMacOSX-FAQ.html#What-is-the-difference-between-the-CRAN-build-and-a-vanilla-build_003f), "Only the CRAN build is guaranteed to be compatible with the package binaries on CRAN (or Bioconductor)."
+- [x] ~~Consider switching `getOption("pkgType")` from `source` to `both` per R [options](https://stat.ethz.ch/R-manual/R-devel/library/base/html/options.html)~~ per the [R macOS FAQ](https://cloud.r-project.org/bin/macosx/RMacOSX-FAQ.html#What-is-the-difference-between-the-CRAN-build-and-a-vanilla-build_003f), "Only the CRAN build is guaranteed to be compatible with the package binaries on CRAN (or Bioconductor)."
 - [x] Support creating repos in organizations
 - [x] ~~Consider incorporating the GitHub description into `DESCRIPTION`~~
 - [x] Create a wrapper for `spelling` that includes notebooks in package spell checking, WORDLIST
