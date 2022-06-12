@@ -124,7 +124,9 @@ Added settings, configured using `options()`
 
 # rdev 1.2.4
 
-* Fix bug in workaround for closed usethis issue [#1568](https://github.com/r-lib/usethis/issues/1568)
+[//]: # (Workaround for issue https://github.com/r-lib/pkgdown/issues/2122: '#1568' is improperly linking to https://github.com/jabenninghoff/rdev/issues/1568 due to a bug introduced in pkgdown 2.0.4)
+
+* Fix bug in workaround for closed usethis issue #[1568](https://github.com/r-lib/usethis/issues/1568)
 
 # rdev 1.2.3
 
@@ -132,7 +134,7 @@ Added settings, configured using `options()`
 
 # rdev 1.2.2
 
-* Implement workaround for closed usethis issue [#1568](https://github.com/r-lib/usethis/issues/1568)
+* Implement workaround for closed usethis issue #[1568](https://github.com/r-lib/usethis/issues/1568)
 
 * `use_analysis_package()` now installs [dplyr](https://dplyr.tidyverse.org), used in the `README.Rmd` template
 
