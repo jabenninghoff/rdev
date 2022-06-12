@@ -114,7 +114,7 @@ ci()
 #> * The project is already synchronized with the lockfile.
 #> 
 #> style_all()
-#> Styling  47  files:
+#> Styling  48  files:
 #>  .Rprofile                                               ✔ 
 #>  README.Rmd                                              ✔ 
 #>  inst/rmarkdown/templates/analysis/skeleton/skeleton.Rmd ✔ 
@@ -126,10 +126,12 @@ ci()
 #>  R/build.R                                               ✔ 
 #>  R/ci.R                                                  ✔ 
 #>  R/helpers.R                                             ✔ 
+#>  R/init.R                                                ✔ 
 #>  R/package.R                                             ✔ 
 #>  R/release.R                                             ✔ 
 #>  R/setup.R                                               ✔ 
 #>  R/to_document.R                                         ✔ 
+#>  R/urlchecker.R                                          ✔ 
 #>  R/utils.R                                               ✔ 
 #>  tests/spelling.R                                        ✔ 
 #>  tests/testthat.R                                        ✔ 
@@ -141,6 +143,7 @@ ci()
 #>  tests/testthat/test-build.R                             ✔ 
 #>  tests/testthat/test-ci.R                                ✔ 
 #>  tests/testthat/test-helpers.R                           ✔ 
+#>  tests/testthat/test-init.R                              ✔ 
 #>  tests/testthat/test-inst.R                              ✔ 
 #>  tests/testthat/test-release.R                           ✔ 
 #>  tests/testthat/test-setup.R                             ✔ 
@@ -159,12 +162,10 @@ ci()
 #>  tests/testthat/test-to_document/no-yaml.Rmd             ✔ 
 #>  tests/testthat/test-to_document/valid.Rmd               ✔ 
 #>  tests/testthat/test-to_document/with-code.Rmd           ✔ 
-#>  tools/setup-1.R                                         ✔ 
-#>  tools/setup-analysis.R                                  ✔ 
 #>  vignettes/analysis-package-layout.Rmd                   ✔ 
 #> ───────────────────────────────────────────────────────
 #> Status   Count   Legend 
-#> ✔    47  File unchanged.
+#> ✔    48  File unchanged.
 #> ℹ    0   File changed.
 #> ✖    0   Styling threw an error.
 #> ───────────────────────────────────────────────────────
@@ -185,16 +186,16 @@ ci()
 #> * creating vignettes ... OK
 #> * checking for LF line-endings in source and make files and shell scripts
 #> * checking for empty or unneeded directories
-#> * building ‘rdev_1.4.9.tar.gz’
+#> * building ‘rdev_1.5.0.tar.gz’
 #> 
 #> ── R CMD check ─────────────────────────────────────────────────────────────────
-#> * using log directory ‘/private/var/folders/vn/cw5f9gws42v9m8mdsds_zbl00000gp/T/Rtmp0D6hk4/file36be562643c6/rdev.Rcheck’
+#> * using log directory ‘/private/var/folders/vn/cw5f9gws42v9m8mdsds_zbl00000gp/T/RtmpREadqj/file132f02410d8b3/rdev.Rcheck’
 #> * using R version 4.2.0 (2022-04-22)
 #> * using platform: x86_64-apple-darwin19.6.0 (64-bit)
 #> * using session charset: UTF-8
 #> * using option ‘--no-manual’
 #> * checking for file ‘rdev/DESCRIPTION’ ... OK
-#> * this is package ‘rdev’ version ‘1.4.9’
+#> * this is package ‘rdev’ version ‘1.5.0’
 #> * package encoding: UTF-8
 #> * checking package namespace information ... OK
 #> * checking package dependencies ... OK
@@ -250,10 +251,9 @@ ci()
 #>  NONE
 #> * checking re-building of vignette outputs ... OK
 #> * DONE
-#> 
 #> Status: OK
-#> ── R CMD check results ───────────────────────────────────────── rdev 1.4.9 ────
-#> Duration: 38.9s
+#> ── R CMD check results ───────────────────────────────────────── rdev 1.5.0 ────
+#> Duration: 36.4s
 #> 
 #> 0 errors ✔ | 0 warnings ✔ | 0 notes ✔
 ```
