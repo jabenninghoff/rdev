@@ -62,3 +62,79 @@ test_that("spell_check_notebooks logic flows work", {
   expect_error(spell_check_notebooks(), "^DESCRIPTION not found$")
   expect_length(spell_check_notebooks(lang = "en_US")$found, 1)
 })
+
+# deps_check
+
+test_that("deps_check errors on invalid type", {
+  mockery::stub(deps_check, "renv::dependencies", NULL)
+  mockery::stub(deps_check, "desc::desc_get_deps", NULL)
+
+  expect_error(deps_check("badtype"), "^invalid type 'badtype'$")
+})
+
+test_that("deps_check finds correct missing and extra deps", {
+  # nolint start: absolute_path_linter
+  renv_dependencies <- as.data.frame(tibble::tribble(
+    ~Source, ~Package, ~Require, ~Version, ~Dev,
+    "/Users/test/pkg/DESCRIPTION", "desc_only_1", "", "", FALSE,
+    "/Users/test/pkg/DESCRIPTION", "desc_only_2", "", "", FALSE,
+    "/Users/test/pkg/DESCRIPTION", "desc_source_1", "", "", FALSE,
+    "/Users/test/pkg/R/function_1.R", "desc_source_1", "", "", FALSE,
+    "/Users/test/pkg/DESCRIPTION", "desc_source_2", "", "", FALSE,
+    "/Users/test/pkg/tests/test.R", "desc_source_2", "", "", FALSE,
+    "/Users/test/pkg/R/function_1.R", "source_only_1", "", "", FALSE,
+    "/Users/test/pkg/tests/test.R", "source_only_2", "", "", FALSE
+  ))
+
+  desc_desc_get_deps <- as.data.frame(tibble::tribble(
+    ~type, ~package, ~version,
+    "Imports", "desc_only_1", "*",
+    "Suggests", "desc_only_2", "*",
+    "Imports", "desc_source_1", "*",
+    "Suggests", "desc_source_2", "*"
+  ))
+
+  extras <- structure(
+    list(
+      type = c("Imports", "Suggests"),
+      package = c("desc_only_1", "desc_only_2"),
+      version = c("*", "*")
+    ),
+    row.names = 1:2,
+    class = "data.frame"
+  )
+
+  missing <- structure(
+    list(
+      Source = c("/Users/test/pkg/R/function_1.R", "/Users/test/pkg/tests/test.R"),
+      Package = c("source_only_1", "source_only_2"),
+      Require = c("", ""),
+      Version = c("", ""),
+      Dev = c(FALSE, FALSE)
+    ),
+    row.names = 7:8,
+    class = "data.frame"
+  )
+  # nolint end
+
+  mockery::stub(deps_check, "renv::dependencies", renv_dependencies)
+  mockery::stub(deps_check, "desc::desc_get_deps", desc_desc_get_deps)
+
+  expect_output(deps_check("extra"), "^desc::desc_get_deps\\(\\) not found by renv:$")
+  expect_output(deps_check("missing"), "^renv::dependencies\\(\\) not in DESCRIPTION:$")
+
+  mockery::stub(deps_check, "writeLines", NULL)
+  expect_identical(deps_check("extra"), extras)
+  expect_identical(deps_check("missing"), missing)
+})
+
+test_that("missing_deps and extra_deps call correct deps_check type", {
+  dc <- function(type) {
+    type
+  }
+  mockery::stub(missing_deps, "deps_check", dc)
+  mockery::stub(extra_deps, "deps_check", dc)
+
+  expect_identical(missing_deps(), "missing")
+  expect_identical(extra_deps(), "extra")
+})
