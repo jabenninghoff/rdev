@@ -60,7 +60,7 @@ inst/rmarkdown/templates |`x`|`x`| [R Markdown Templates](https://rstudio.github
 man                      |`x`|`x`| Automatically generated with [roxygen2](https://roxygen2.r-lib.org)
 package.Rproj            |   |`x`| Use the same name for the package, .Rproj, directory, and GitHub repository
 pkgdown                  |   |`x`| Store all [pkgdown](https://pkgdown.r-lib.org) files here
-po                       |`x`|`x`| Used for [Internationalization](https://cran.rstudio.com/doc/manuals/r-devel/R-exts.html#Internationalization) if needed
+po                       |`x`|`x`| Used for [Internationalization](https://cloud.r-project.org/doc/manuals/r-devel/R-exts.html#Internationalization) if needed
 renv                     |   |`x`| Used by [renv](https://rstudio.github.io/renv/)
 renv.lock                |   |`x`| renv [lockfile](https://rstudio.github.io/renv/reference/lockfiles.html)
 tests                    |`x`|`x`| Tests using [testthat](https://testthat.r-lib.org) and [spelling](https://docs.ropensci.org/spelling/)

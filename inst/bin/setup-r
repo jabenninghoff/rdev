@@ -20,5 +20,5 @@ fi
 
 brew install libgit2 # required by devtools
 
-echo "install.packages(${DEVPKG}, repos=\"https://cran.rstudio.com\", lib=\"${SITELIB}\")" | R --no-save
+echo "install.packages(${DEVPKG}, repos=\"https://cloud.r-project.org\", lib=\"${SITELIB}\")" | R --no-save
 echo "remotes::install_github(${GITPKG}, lib=\"${SITELIB}\")" | R --no-save
