@@ -17,7 +17,7 @@ Imports:
     fs,
     gert,
     gh,
-    lintr (>= 2.0.1.9000),
+    lintr (>= 3.0.0),
     markdown,
     miniUI,
     pkgdown,
@@ -45,8 +45,6 @@ Suggests:
     testthat (>= 3.0.0)
 VignetteBuilder: 
     knitr
-Remotes:
-    r-lib/lintr
 Config/testthat/edition: 3
 Encoding: UTF-8
 Language: en-US
