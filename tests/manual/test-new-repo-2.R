@@ -67,7 +67,7 @@ stopifnot(
   fs::file_info(".git/hooks/pre-commit")$permissions == structure(33252L, class = "fs_perms"),
   readLines(".git/hooks/pre-commit") == c(
     "#!/bin/bash",
-    "# forked from https://github.com/r-lib/usethis/blob/main/inst/templates/readme-rmd-pre-commit.sh", # nolint: line_length_linter
+    "# forked from https://github.com/r-lib/usethis/blob/main/inst/templates/readme-rmd-pre-commit.sh", # nolint: line_length_linter.
     "README=($(git diff --cached --name-only | grep -Ei '^README\\.[R]?md$'))",
     "MSG=\"use 'git commit --no-verify' to override this check\"", "",
     "if [[ ${#README[@]} == 0 ]]; then", "  exit 0", "fi", "",

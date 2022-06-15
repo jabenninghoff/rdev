@@ -36,7 +36,7 @@ local_temppkg <- function(dir = fs::file_temp(), type = "usethis", env = parent.
   usethis::create_package(dir, open = FALSE)
   withr::defer(fs::dir_delete(dir), envir = env)
 
-  # nolint start: undesirable_function_linter
+  # nolint start: undesirable_function_linter.
   old_dir <- getwd()
   setwd(dir)
   withr::defer(setwd(old_dir), envir = env)
@@ -61,7 +61,7 @@ local_temppkg <- function(dir = fs::file_temp(), type = "usethis", env = parent.
     mockery::stub(use_rdev_package, "remotes::install_github", NULL)
     mockery::stub(use_rdev_package, "renv::init", NULL)
 
-    # nolint start: line_length_linter
+    # nolint start: line_length_linter.
     # stub all devtools functions as they introduce problems into the R session when run here (restarting session fixes)
     #
     # example 1: devtools::document causes the "?" help lookup operator to break after running local_temppkg

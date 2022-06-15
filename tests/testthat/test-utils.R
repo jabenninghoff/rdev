@@ -73,7 +73,7 @@ test_that("deps_check errors on invalid type", {
 })
 
 test_that("deps_check finds correct missing and extra deps", {
-  # nolint start: absolute_path_linter
+  # nolint start: absolute_path_linter.
   renv_dependencies <- as.data.frame(tibble::tribble(
     ~Source, ~Package, ~Require, ~Version, ~Dev,
     "/Users/test/pkg/DESCRIPTION", "desc_only_1", "", "", FALSE,

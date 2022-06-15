@@ -105,7 +105,7 @@ test_that("create_github_repo errors when proposed repo directory exists locally
 })
 
 test_that("create_github_repo options work", {
-  fs_path <- "/Users/test/Desktop/rdtest9" # nolint: absolute_path_linter
+  fs_path <- "/Users/test/Desktop/rdtest9" # nolint: absolute_path_linter.
   create <- list(html_url = "https://github.com/test/rdtest9")
   with_dependabot <- paste0(
     "^POST /user/repos\\n",
@@ -160,7 +160,7 @@ test_that("create_github_repo options work", {
 })
 
 test_that("create_github_repo generates expected output", {
-  fs_path <- "/Users/test/Desktop/rdtest9" # nolint: absolute_path_linter
+  fs_path <- "/Users/test/Desktop/rdtest9" # nolint: absolute_path_linter.
   create <- list(html_url = "https://github.com/test/rdtest9")
   mockery::stub(create_github_repo, "fs::dir_exists", FALSE)
   mockery::stub(create_github_repo, "gh::gh", create)
