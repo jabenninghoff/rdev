@@ -21,8 +21,7 @@ jobs:
 
       - uses: r-lib/actions/setup-renv@v2
       - name: Install dependencies
-        # TODO: replace with release version of lintr >2.0.1
-        run: renv::install(c("r-lib/lintr", "."))
+        run: renv::install(c("lintr", "."))
         shell: Rscript {0}
 
       - name: Lint all files
