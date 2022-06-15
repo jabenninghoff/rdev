@@ -35,7 +35,7 @@ Path                     | R | g | Function
 .git                     |   |   | git version control
 .github                  |   |`x`| GitHub templates and workflows
 .gitignore               |`x`|`x`| git exclusions based on [GitHub R](https://github.com/github/gitignore/blob/master/R.gitignore). Generated files outside of `docs` (used by GitHub Pages) are excluded.
-.lintr                   |   |`x`| [lintr](https://github.com/r-lib/lintr) default linters with 100 columns: `linters: with_defaults(line_length_linter(100))`
+.lintr                   |   |`x`| [lintr](https://lintr.r-lib.org/index.html) default linters with 100 columns: `linters: with_defaults(line_length_linter(100))`
 DESCRIPTION              |`x`|`x`| Package metadata. Use "Suggests" for development tools, per [renv](https://rstudio.github.io/renv/articles/faq.html#how-should-i-handle-development-dependencies-)
 LICENSE                  |`x`|`x`| Generated with `usethis::use_mit_license()`
 LICENSE.md               |   |`x`| See above, used by [pkgdown](https://pkgdown.r-lib.org)
