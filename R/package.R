@@ -9,7 +9,7 @@
 # https://github.com/Rdatatable/data.table/blob/master/R/cedta.R explicitly allows packages like
 # knitr and rmarkdown that run user code. One option would be to add rdev to cedta.pkgEvalsUserCode,
 # but it's easier and simpler to just use .datatable.aware here.
-.datatable.aware <- TRUE # nolint: object_name_linter
+.datatable.aware <- TRUE # nolint: object_name_linter.
 
 # Suppress R CMD check note
 #' @importFrom markdown renderMarkdown

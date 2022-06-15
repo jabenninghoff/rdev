@@ -79,7 +79,7 @@ stopifnot(
   ),
   readLines(".github/workflows/test-coverage.yaml") == c(
     "# Workflow derived from https://github.com/r-lib/actions/tree/v2/examples",
-    "# Need help debugging build failures? Start at https://github.com/r-lib/actions#where-to-find-help", # nolint: line_length_linter
+    "# Need help debugging build failures? Start at https://github.com/r-lib/actions#where-to-find-help", # nolint: line_length_linter.
     "on:", "  push:", "    branches: [main, master]", "  pull_request:",
     "    branches: [main, master]", "", "name: test-coverage", "", "jobs:", "  test-coverage:",
     "    runs-on: macOS-latest", "    env:", "      GITHUB_PAT: ${{ secrets.GITHUB_TOKEN }}", "",

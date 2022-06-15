@@ -427,7 +427,7 @@ use_rdev_package <- function(quiet = TRUE) {
 
 #' Use Analysis Package Layout
 #'
-# nolint start: line_length_linter
+# nolint start: line_length_linter.
 #' Add the [Analysis Package Layout](https://jabenninghoff.github.io/rdev/articles/analysis-package-layout.html)
 # nolint end
 #'   to the current package.
