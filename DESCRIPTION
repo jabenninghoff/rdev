@@ -31,6 +31,7 @@ Imports:
     tibble,
     urlchecker,
     usethis,
+    utils,
     withr,
     xml2,
     yaml
