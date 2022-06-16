@@ -14,8 +14,8 @@ knitr::opts_chunk$set(
 )
 ```
 
-The R Style Guide describes the rdev style conventions, along with automated checks (styler and
-lintr). The rdev R Style Guide incorporates both the
+The R Style Guide describes the rdev style conventions, along with automated checks ([styler](https://styler.r-lib.org) and
+[lintr](https://lintr.r-lib.org)). The rdev R Style Guide incorporates both the
 [Tidyverse Style Guide](https://style.tidyverse.org) and
 [Google's R Style Guide](https://google.github.io/styleguide/Rguide.html).
 
@@ -61,7 +61,7 @@ structure.
 
 ## lintr
 
-rdev uses an opinionated default `.lintr`:
+rdev uses an opinionated [lintr](https://lintr.r-lib.org) configuration (`.lintr`):
 
 ```r
 linters: linters_with_tags(
