@@ -22,6 +22,7 @@ Rproj
 Rrst
 Rtex
 Rtxt
+Tidyverse
 WORDLIST
 YAML
 api
@@ -42,6 +43,7 @@ htmlproofer
 https
 hunspell
 io
+linter
 linters
 lintr
 lockfile

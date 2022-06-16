@@ -1,0 +1,97 @@
+---
+title: "Style Guide"
+output: rmarkdown::html_vignette
+vignette: >
+  %\VignetteIndexEntry{Style Guide}
+  %\VignetteEngine{knitr::rmarkdown}
+  %\VignetteEncoding{UTF-8}
+---
+
+```{r, include = FALSE}
+knitr::opts_chunk$set(
+  collapse = TRUE,
+  comment = "#>"
+)
+```
+
+The R Style Guide describes the rdev style conventions, along with automated checks (styler and
+lintr). The rdev R Style Guide incorporates both the
+[Tidyverse Style Guide](https://style.tidyverse.org) and
+[Google's R Style Guide](https://google.github.io/styleguide/Rguide.html).
+
+## rdev conventions
+
+rdev uses a mix of Google and tidyverse conventions.
+
+### Naming conventions
+
+rdev follows the tidyverse naming convention of `snake_case`.
+
+### Right-hand assignment
+
+rdev follows Google's style guide, and does not use right-hand assignment.
+
+### Returns
+
+rdev typically uses implicit returns unless needed for flow control or to construct a specific
+return structure.
+
+### Qualifying namespaces
+
+Use of `@import` and `@importFrom` are discouraged, instead using `::` in functions defined in `R/`.
+An exception is infix functions (`%name%`), which are always imported, using roxygen `@importFrom`.
+Within R Notebooks, use of `library()` is encouraged for readability.
+
+### Package-level documentation
+
+rdev package documentation lives in `R/package.R`.
+
+Additionally, use of base R is encouraged within functions defined in `R/` (to control
+dependencies), where tidyverse R is encouraged within notebooks for readability.
+
+R Markdown documents should generally wrap at the same width as code, with exceptions for the R
+Notebook 'description line' (the first non-blank line in the body), and long hyperlinks.
+
+## styler
+
+The rdev package implements [styler](https://styler.r-lib.org) using the styler defaults, with
+permanent caching enabled (`options(styler.cache_root = "styler-perm")`). The `style_all()` function
+applies the tidyverse style to all R files (`R`, `Rprofile`, `Rmd`, `Rnw`) in the package directory
+structure.
+
+## lintr
+
+rdev uses an opinionated default `.lintr`:
+
+```r
+linters: linters_with_tags(
+    tags = NULL,
+    extraction_operator_linter = NULL,
+    implicit_integer_linter = NULL,
+    line_length_linter(100),
+    missing_package_linter = NULL,
+    namespace_linter = NULL,
+    nonportable_path_linter = NULL,
+    todo_comment_linter = NULL,
+    undesirable_function_linter(
+      within(all_undesirable_functions, rm(ifelse, library, require))
+    ),
+    undesirable_operator_linter(all_undesirable_operators),
+    unneeded_concatenation_linter(allow_single_expression = FALSE),
+    unused_import_linter(
+      except_packages = c("bit64", "data.table", "tidyverse", pkgload::pkg_name("."))
+    )
+  )
+```
+
+These settings were deliberately chosen to meet specific goals:
+
+```r
+linters: linters_with_tags(
+    tags = NULL,
+```
+
+This selects all linters, including the new
+[Google linters](https://lintr.r-lib.org/news/index.html#google-linters-3-0-0). By selecting all
+linters, not just the defaults, this forces evaluation of new linters as they are added to lintr.
+Specific linters are disabled or configured per rdev style.
