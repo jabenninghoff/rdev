@@ -114,7 +114,7 @@ ci()
 #> * The project is already synchronized with the lockfile.
 #> 
 #> style_all()
-#> Styling  48  files:
+#> Styling  49  files:
 #>  .Rprofile                                               ✔ 
 #>  README.Rmd                                              ✔ 
 #>  inst/rmarkdown/templates/analysis/skeleton/skeleton.Rmd ✔ 
@@ -163,9 +163,10 @@ ci()
 #>  tests/testthat/test-to_document/valid.Rmd               ✔ 
 #>  tests/testthat/test-to_document/with-code.Rmd           ✔ 
 #>  vignettes/analysis-package-layout.Rmd                   ✔ 
+#>  vignettes/style-guide.Rmd                               ✔ 
 #> ───────────────────────────────────────────────────────
 #> Status   Count   Legend 
-#> ✔    48  File unchanged.
+#> ✔    49  File unchanged.
 #> ℹ    0   File changed.
 #> ✖    0   Styling threw an error.
 #> ───────────────────────────────────────────────────────
@@ -186,16 +187,16 @@ ci()
 #> * creating vignettes ... OK
 #> * checking for LF line-endings in source and make files and shell scripts
 #> * checking for empty or unneeded directories
-#> * building ‘rdev_1.5.0.tar.gz’
+#> * building ‘rdev_1.5.1.tar.gz’
 #> 
 #> ── R CMD check ─────────────────────────────────────────────────────────────────
-#> * using log directory ‘/private/var/folders/vn/cw5f9gws42v9m8mdsds_zbl00000gp/T/RtmpREadqj/file132f02410d8b3/rdev.Rcheck’
+#> * using log directory ‘/private/var/folders/vn/cw5f9gws42v9m8mdsds_zbl00000gp/T/RtmpfOZPA7/file13c103e8a6c07/rdev.Rcheck’
 #> * using R version 4.2.0 (2022-04-22)
 #> * using platform: x86_64-apple-darwin19.6.0 (64-bit)
 #> * using session charset: UTF-8
 #> * using option ‘--no-manual’
 #> * checking for file ‘rdev/DESCRIPTION’ ... OK
-#> * this is package ‘rdev’ version ‘1.5.0’
+#> * this is package ‘rdev’ version ‘1.5.1’
 #> * package encoding: UTF-8
 #> * checking package namespace information ... OK
 #> * checking package dependencies ... OK
@@ -248,12 +249,13 @@ ci()
 #> * checking package vignettes in ‘inst/doc’ ... OK
 #> * checking running R code from vignettes ...
 #>   ‘analysis-package-layout.Rmd’ using ‘UTF-8’... OK
+#>   ‘style-guide.Rmd’ using ‘UTF-8’... OK
 #>  NONE
 #> * checking re-building of vignette outputs ... OK
 #> * DONE
 #> Status: OK
-#> ── R CMD check results ───────────────────────────────────────── rdev 1.5.0 ────
-#> Duration: 36.4s
+#> ── R CMD check results ───────────────────────────────────────── rdev 1.5.1 ────
+#> Duration: 40.7s
 #> 
 #> 0 errors ✔ | 0 warnings ✔ | 0 notes ✔
 ```
