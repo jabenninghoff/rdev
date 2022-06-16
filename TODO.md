@@ -42,7 +42,7 @@
 - [x] Add `check_renv()` to `ci()` and stop if `renv::status()` is not up to date
 - [x] Replace proof-docs with [urlchecker](https://r-lib.github.io/urlchecker/), support checking GitHub Pages `docs` directory using `url_db_from_HTML_files` ~~(ask if a PR for this would be accepted)~~
 - [x] Move scripts from `tools` to `inst/bin` or similar, per [Stack Overflow](https://stackoverflow.com/questions/26104709/is-there-any-special-functionality-in-r-package-exec-or-tools-directories) and [R Packages](https://r-pkgs.org/inst.html#inst-other-langs)
-- [ ] Switch from development versions of `styler` (1.3.2.9000) and `lintr` (2.0.1.9000) when a new release becomes available - both were needed to address bugs in the current release versions, 1.3.2 and 2.0.1.
+- [x] Switch from development versions of `styler` (1.3.2.9000) and `lintr` (2.0.1.9000) when a new release becomes available - both were needed to address bugs in the current release versions, 1.3.2 and 2.0.1.
 - [ ] Add trailing slash to GitHub Pages URL
 
 ## GitHub
