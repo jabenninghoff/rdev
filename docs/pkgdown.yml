@@ -3,7 +3,8 @@ pkgdown: 2.0.4
 pkgdown_sha: ~
 articles:
   analysis-package-layout: analysis-package-layout.html
-last_built: 2022-06-12T14:41Z
+  style-guide: style-guide.html
+last_built: 2022-06-16T15:15Z
 urls:
   reference: https://jabenninghoff.github.io/rdev/reference
   article: https://jabenninghoff.github.io/rdev/articles
