@@ -1,3 +1,9 @@
+# rdev 1.5.0.9000
+
+* Replace development lintr with CRAN release 3.0.0
+
+* Add Style Guide vignette
+
 # rdev 1.5.0
 
 * Added styler cache options to `.Rprofile` template
