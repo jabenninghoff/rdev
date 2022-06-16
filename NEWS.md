@@ -1,8 +1,8 @@
-# rdev 1.5.0.9000
+# rdev 1.5.1
 
 * Replace development lintr with CRAN release 3.0.0
 
-* Add Style Guide vignette
+* Add Style Guide vignette, describing rdev coding style, [styler](https://styler.r-lib.org) and [lintr](https://lintr.r-lib.org) configuration
 
 # rdev 1.5.0
 
