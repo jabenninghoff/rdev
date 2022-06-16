@@ -19,6 +19,10 @@ lintr). The rdev R Style Guide incorporates both the
 [Tidyverse Style Guide](https://style.tidyverse.org) and
 [Google's R Style Guide](https://google.github.io/styleguide/Rguide.html).
 
+```{r setup}
+# no libraries
+```
+
 ## rdev conventions
 
 rdev uses a mix of Google and tidyverse conventions.
@@ -95,3 +99,81 @@ This selects all linters, including the new
 [Google linters](https://lintr.r-lib.org/news/index.html#google-linters-3-0-0). By selecting all
 linters, not just the defaults, this forces evaluation of new linters as they are added to lintr.
 Specific linters are disabled or configured per rdev style.
+
+```r
+    extraction_operator_linter = NULL,
+```
+
+The extraction operator linter enforces use of `[[` over `$`. Since `$` is intended for interactive
+use and supports partial mapping, it is safer to use `[[`. However, use of `$` is common practice,
+including within the lintr code, and leads to more readable code.
+
+```r
+    implicit_integer_linter = NULL,
+```
+
+The implicit integer linter checks that integers are explicitly typed using the form `1L`. Again,
+while this is safer, implicit integers are common practice, including in the output of `dput()`:
+
+```{r implicit_integer}
+dput(character(0L))
+```
+
+```r
+    line_length_linter(100),
+```
+
+A line length of 100 is a reasonable width when working in the RStudio IDE on a laptop.
+
+```r
+    missing_package_linter = NULL,
+    namespace_linter = NULL,
+```
+
+The missing package linter and the namespace linter both check for packages referenced in code that
+are not installed. rdev uses [renv](https://rstudio.github.io/renv/) to manage packages, which does
+a better job of detecting missing packages, including not complaining when the current package
+(`"."`) is not installed.
+
+```r
+    nonportable_path_linter = NULL,
+```
+
+The non-portable path linter generates too many false positives, including calls to
+[fs](https://fs.r-lib.org), which essentially makes UNIX-style paths portable across operating
+systems.
+
+```r
+    todo_comment_linter = NULL,
+```
+
+rdev conventions encourage use of `# TODO` comments as a convenient way of identifying needed or
+planned updates inline.
+
+```r
+    undesirable_function_linter(
+      within(all_undesirable_functions, rm(ifelse, library, require))
+    ),
+    undesirable_operator_linter(all_undesirable_operators),
+```
+
+Enable all undesirable functions and operators, not just the defaults, except for `ifelse()` which
+is more succinct than an `if`/`else` block, `library()` and `require()`. Use of `require()` within
+`.Rprofile` and `library()` within R Markdown documents is an appropriate and common practice,
+although neither should be used within package code.
+
+```r
+    unneeded_concatenation_linter(allow_single_expression = FALSE),
+```
+
+Enforce the stricter version of the unneeded concatenation linter.
+
+```r
+    unused_import_linter(
+      except_packages = c("bit64", "data.table", "tidyverse", pkgload::pkg_name("."))
+    )
+  )
+```
+
+Verify that imported packages are used, except for packages that are attached for their side
+effects, and the current package (to support package development).
