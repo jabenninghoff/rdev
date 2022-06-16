@@ -1,3 +1,7 @@
+# rdev 1.5.2
+
+* Minor updates to Style Guide
+
 # rdev 1.5.1
 
 * Replace development lintr with CRAN release 3.0.0
