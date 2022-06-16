@@ -33,6 +33,7 @@ dev
 devtools
 discoverable
 dplyr
+fs
 ggplot
 gh
 gh's
