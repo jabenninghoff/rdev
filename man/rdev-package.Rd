@@ -11,7 +11,7 @@ An opinionated collection of development tools, packages, and utilities.
 \seealso{
 Useful links:
 \itemize{
-  \item \url{https://jabenninghoff.github.io/rdev}
+  \item \url{https://jabenninghoff.github.io/rdev/}
   \item \url{https://github.com/jabenninghoff/rdev}
   \item Report bugs at \url{https://github.com/jabenninghoff/rdev/issues}
 }
