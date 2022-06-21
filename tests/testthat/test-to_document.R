@@ -124,8 +124,10 @@ test_that("to_document copies source file to a directory", {
 
 # rmd_metadata
 
+desc_urls <- c("https://example.github.io/package/", "https://github.com/example/package")
+
 test_that("rmd_metadata errors when file isn't a well-formed R markdown document", {
-  mockery::stub(rmd_metadata, "desc::desc_get_urls", "https://example.github.io/package")
+  mockery::stub(rmd_metadata, "desc::desc_get_urls", desc_urls)
 
   expect_error(rmd_metadata("test.txt"), "^'test.txt' is not an R Markdown \\(\\*\\.Rmd\\) file$")
   expect_error(
@@ -135,7 +137,7 @@ test_that("rmd_metadata errors when file isn't a well-formed R markdown document
 })
 
 test_that("rmd_metadata errors when yaml front matter doesn't contain `html_notebook`", {
-  mockery::stub(rmd_metadata, "desc::desc_get_urls", "https://example.github.io/package")
+  mockery::stub(rmd_metadata, "desc::desc_get_urls", desc_urls)
 
   expect_error(
     rmd_metadata("document.Rmd"), "^'document.Rmd' does not contain `output: html_notebook`$"
@@ -147,7 +149,7 @@ test_that("rmd_metadata errors when yaml front matter doesn't contain `html_note
 })
 
 test_that("rmd_metadata errors when output contains an unexpected object type", {
-  mockery::stub(rmd_metadata, "desc::desc_get_urls", "https://example.github.io/package")
+  mockery::stub(rmd_metadata, "desc::desc_get_urls", desc_urls)
   bad_object <- list(title = "Minimal Notebook", date = "2022-01-22", output = 42)
   mockery::stub(rmd_metadata, "rmarkdown::yaml_front_matter", bad_object)
 
@@ -155,7 +157,7 @@ test_that("rmd_metadata errors when output contains an unexpected object type", 
 })
 
 test_that("rmd_metadata returns correct description with extra spaces", {
-  mockery::stub(rmd_metadata, "desc::desc_get_urls", "https://example.github.io/package")
+  mockery::stub(rmd_metadata, "desc::desc_get_urls", desc_urls)
   valid <- list(
     title = "Extra Spaces Notebook", url = "https://example.github.io/package/extra-spaces.html",
     date = "2022-01-28",
@@ -175,7 +177,7 @@ test_that("rmd_metadata errors when DESCRIPTION doesn't contain a URL", {
 })
 
 test_that("rmd_metadata returns analysis notebook metadata", {
-  mockery::stub(rmd_metadata, "desc::desc_get_urls", "https://example.github.io/package")
+  mockery::stub(rmd_metadata, "desc::desc_get_urls", desc_urls)
 
   valid <- list(
     title = "Valid Notebook", url = "https://example.github.io/package/valid.html",
