@@ -7,7 +7,7 @@ Authors@R:
 Description: An opinionated collection of development tools, packages, and
     utilities.
 License: MIT + file LICENSE
-URL: https://jabenninghoff.github.io/rdev,
+URL: https://jabenninghoff.github.io/rdev/,
     https://github.com/jabenninghoff/rdev
 BugReports: https://github.com/jabenninghoff/rdev/issues
 Imports:
