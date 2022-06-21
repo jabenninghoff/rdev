@@ -103,8 +103,10 @@ rmd_metadata <- function(file_path) {
   if (length(urls) < 1) {
     stop("no URL found in DESCRIPTION")
   }
+  # set separator to "/" only if first URL doesn't end with "/"
+  sep <- ifelse(endsWith(urls[1], "/"), "", "/")
   gh_url <- paste0(
-    urls[1], "/", fs::path_ext_remove(fs::path_file(file_path)), ".html"
+    urls[1], sep, fs::path_ext_remove(fs::path_file(file_path)), ".html"
   )
 
   list(title = yaml$title, url = gh_url, date = yaml$date, description = notebook[desc_line])
