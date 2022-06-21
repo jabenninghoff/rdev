@@ -1,3 +1,9 @@
+# rdev 1.5.5
+
+* Add option to disable GitHub Pages in `use_rdev_package()` with `options(rdev.github.pages = FALSE)`
+
+* Use proper GitHub Pages URL with trailing "/"
+
 # rdev 1.5.4
 
 * Minor maintenance updates
