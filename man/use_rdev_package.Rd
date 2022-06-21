@@ -13,6 +13,11 @@ use_rdev_package(quiet = TRUE)
 Add rdev templates and settings within the active package. Normally invoked when first setting
 up a package.
 }
+\section{GitHub Pages}{
+ GitHub Pages can be disabled by setting \code{rdev.github.pages} to \code{FALSE}:
+\code{options(rdev.github.pages = FALSE)}
+}
+
 \section{GitHub Actions}{
  GitHub Actions can be disabled by setting \code{rdev.github.actions} to
 \code{FALSE}: \code{options(rdev.github.actions = FALSE)}

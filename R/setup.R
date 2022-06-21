@@ -330,6 +330,9 @@ get_server_url <- function() {
 #'
 #' @inheritSection create_github_repo GitHub Actions
 #'
+#' @section GitHub Pages: GitHub Pages can be disabled by setting `rdev.github.pages` to `FALSE`:
+#'   `options(rdev.github.pages = FALSE)`
+#'
 #' @param quiet If TRUE, disable user prompts by setting [rlang::local_interactive()] to FALSE.
 #'
 #' @export
@@ -384,24 +387,29 @@ use_rdev_package <- function(quiet = TRUE) {
     "~$*"
   ))
 
-  # activate github pages, add github URLs to DESCRIPTION
+  # add github URLs to DESCRIPTION, optionally activate github pages
   gh_repo <- get_github_repo()
-  gh_pages <- usethis::use_github_pages(branch = usethis::git_default_branch(), path = "/docs")
-
-  pages_url <- sub("/$", "", gh_pages$html_url)
   gh_url <- paste0(get_server_url(), gh_repo$username, "/", gh_repo$repo)
   gh_issues <- paste0(gh_url, "/issues")
 
-  desc::desc_set_urls(c(pages_url, gh_url))
-  desc::desc_set("BugReports", gh_issues)
+  if (getOption("rdev.github.pages", default = TRUE)) {
+    gh_pages <- usethis::use_github_pages(branch = usethis::git_default_branch(), path = "/docs")
+    pages_url <- gh_pages$html_url
+    urls <- c(pages_url, gh_url)
 
-  gh::gh(
-    "PATCH /repos/{owner}/{repo}",
-    owner = gh_repo$username,
-    repo = gh_repo$repo,
-    homepage = pages_url,
-    .api_url = getOption("rdev.host")
-  )
+    gh::gh(
+      "PATCH /repos/{owner}/{repo}",
+      owner = gh_repo$username,
+      repo = gh_repo$repo,
+      homepage = pages_url,
+      .api_url = getOption("rdev.host")
+    )
+  } else {
+    urls <- gh_url
+  }
+
+  desc::desc_set_urls(urls)
+  desc::desc_set("BugReports", gh_issues)
 
   # update dependencies
   usethis::use_package("devtools", type = "Suggests")
