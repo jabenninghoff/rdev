@@ -37,6 +37,7 @@ Imports:
     yaml
 Suggests:
     covr,
+    diffviewer,
     DT,
     knitr,
     mockery,
