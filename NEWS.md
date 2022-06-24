@@ -1,3 +1,7 @@
+# rdev 1.5.6
+
+* Update `lint_all()` to also check `.Rpres` files
+
 # rdev 1.5.5
 
 * Add option to disable GitHub Pages in `use_rdev_package()` with `options(rdev.github.pages = FALSE)`
