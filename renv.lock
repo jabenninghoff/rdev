@@ -327,6 +327,17 @@
         "crayon"
       ]
     },
+    "diffviewer": {
+      "Package": "diffviewer",
+      "Version": "0.1.1",
+      "Source": "Repository",
+      "Repository": "CRAN",
+      "Hash": "8dfb2780d1c20a2399d9716c9a7f205a",
+      "Requirements": [
+        "htmlwidgets",
+        "jsonlite"
+      ]
+    },
     "digest": {
       "Package": "digest",
       "Version": "0.6.29",
