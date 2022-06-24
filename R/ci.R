@@ -46,6 +46,9 @@ style_all <- function(path = ".", filetype = c("R", "Rprofile", "Rmd", "Rnw"), .
 #'
 #' Lint all files in a project. Implemented as a wrapper for [lintr::lint_dir()].
 #'
+#' @param pattern regex pattern for files, by default it will take files with any of the extensions
+#' .R, .Rmd, .Rnw, .Rpres, .Rhtml, .Rrst, .Rtex, .Rtxt allowing for lowercase r (.r, ...)
+#'
 #' @inheritParams lintr::lint_dir
 #' @inheritDotParams lintr::lint_dir
 #'
@@ -57,8 +60,8 @@ style_all <- function(path = ".", filetype = c("R", "Rprofile", "Rmd", "Rnw"), .
 #' lint_all("analysis")
 #' }
 #' @export
-lint_all <- function(path = ".", ...) {
-  lintr::lint_dir(path = path, ...)
+lint_all <- function(path = ".", pattern = "\\.[Rr](?:|html|md|nw|pres|rst|tex|txt)$", ...) {
+  lintr::lint_dir(path = path, pattern = pattern, ...)
 }
 
 #' Local CI
