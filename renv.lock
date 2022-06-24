@@ -348,10 +348,10 @@
     },
     "downlit": {
       "Package": "downlit",
-      "Version": "0.4.0",
+      "Version": "0.4.1",
       "Source": "Repository",
       "Repository": "CRAN",
-      "Hash": "ba63dc9ab5a31f3209892437e40c5f60",
+      "Hash": "4850b3f46b1e7dd8c666f68aacad6951",
       "Requirements": [
         "brio",
         "desc",
@@ -361,6 +361,7 @@
         "memoise",
         "rlang",
         "vctrs",
+        "withr",
         "yaml"
       ]
     },
