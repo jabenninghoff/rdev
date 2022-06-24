@@ -4,11 +4,18 @@
 \alias{lint_all}
 \title{Lint all files}
 \usage{
-lint_all(path = ".", ...)
+lint_all(
+  path = ".",
+  pattern = "\\\\.[Rr](?:|html|md|nw|pres|rst|tex|txt)$",
+  ...
+)
 }
 \arguments{
 \item{path}{For the base directory of the project (for \code{lint_dir()}) or
 package (for \code{lint_package()}).}
+
+\item{pattern}{regex pattern for files, by default it will take files with any of the extensions
+.R, .Rmd, .Rnw, .Rpres, .Rhtml, .Rrst, .Rtex, .Rtxt allowing for lowercase r (.r, ...)}
 
 \item{...}{
   Arguments passed on to \code{\link[lintr:lint]{lintr::lint_dir}}
@@ -17,8 +24,6 @@ package (for \code{lint_package()}).}
     \item{\code{relative_path}}{if \code{TRUE}, file paths are printed using their path relative to the base directory.
 If \code{FALSE}, use the full absolute path.}
     \item{\code{exclusions}}{exclusions for \code{\link[lintr:exclude]{exclude()}}, relative to the package path.}
-    \item{\code{pattern}}{pattern for files, by default it will take files with any of the extensions .R, .Rmd, .Rnw, .Rhtml,
-.Rrst, .Rtex, .Rtxt allowing for lowercase r (.r, ...)}
   }}
 }
 \value{

@@ -1,0 +1,28 @@
+\documentclass{article}
+\usepackage{graphicx}
+\title{Test}
+
+Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod
+tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At
+vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren,
+no sea takimata sanctus est Lorem ipsum dolor sit amet.
+
+%% begin.rcode
+% a <- 1
+%% end.rcode
+
+\subtitle{Test}
+
+Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod
+tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At
+vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren,
+no sea takimata sanctus est Lorem ipsum dolor sit amet.
+
+%% begin.rcode test_chunk
+% b <- function(x) {
+%   x
+% }
+%% end.rcode
+
+Adapted from:
+https://github.com/r-lib/lintr/blob/main/tests/testthat/dummy_packages/package/vignettes/test.Rtex

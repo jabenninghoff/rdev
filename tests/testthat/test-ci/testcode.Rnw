@@ -1,0 +1,10 @@
+\documentclass{article}
+
+\begin{document}
+\SweaveOpts{concordance=TRUE}
+
+<<sample-code>>=
+summary(cars)
+@
+
+\end{document}

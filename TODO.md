@@ -44,7 +44,7 @@
 - [x] Move scripts from `tools` to `inst/bin` or similar, per [Stack Overflow](https://stackoverflow.com/questions/26104709/is-there-any-special-functionality-in-r-package-exec-or-tools-directories) and [R Packages](https://r-pkgs.org/inst.html#inst-other-langs)
 - [x] Switch from development versions of `styler` (1.3.2.9000) and `lintr` (2.0.1.9000) when a new release becomes available - both were needed to address bugs in the current release versions, 1.3.2 and 2.0.1.
 - [x] Add trailing slash to GitHub Pages URL
-- [ ] Update `lint_all()` to lint all types, including `.Rpres`
+- [x] Update `lint_all()` to lint all types, including `.Rpres`
 
 ## GitHub
 

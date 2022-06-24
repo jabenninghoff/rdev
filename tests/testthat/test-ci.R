@@ -20,18 +20,19 @@ test_that("All renv functions are called, unless set to FALSE", {
 
 # style_all
 
-test_that("style_all tests R and Rmd files", {
+test_that("style_all tests all file types", {
   # set styler.quiet = FALSE to suppress output
-  expect_identical(nrow(withr::with_options(list(styler.quiet = TRUE), style_all())), 3L)
+  expect_identical(nrow(withr::with_options(list(styler.quiet = TRUE), style_all())), 5L)
 })
 
 # lint_all
 
-test_that("lint_all checks all test files", {
-  # snapshot captures "..." for the 3 files tested
+test_that("lint_all checks all file types", {
+  # snapshot captures "........." for the 9 files tested
   # use cran = FALSE and skip_on_ci() as expect_snapshot only works when tests are run interactively
   # set TESTTHAT=false to un-silence lintr, see
   #   https://github.com/r-lib/lintr/commit/74f1e9d2886c4bd06f52bd2510e939eac644065a
+  # TODO: rewrite this to detect specific lints, like lintr
   skip_on_ci()
   withr::with_envvar(new = c(TESTTHAT = "false"), expect_snapshot(lint_all(), cran = FALSE))
 })
