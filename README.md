@@ -114,7 +114,7 @@ ci()
 #> * The project is already synchronized with the lockfile.
 #> 
 #> style_all()
-#> Styling  49  files:
+#> Styling  51  files:
 #>  .Rprofile                                               ✔ 
 #>  README.Rmd                                              ✔ 
 #>  inst/rmarkdown/templates/analysis/skeleton/skeleton.Rmd ✔ 
@@ -150,9 +150,11 @@ ci()
 #>  tests/testthat/test-spelling.R                          ✔ 
 #>  tests/testthat/test-to_document.R                       ✔ 
 #>  tests/testthat/test-utils.R                             ✔ 
+#>  tests/testthat/test-ci/test.Rprofile                    ✔ 
 #>  tests/testthat/test-ci/testcode_1.R                     ✔ 
 #>  tests/testthat/test-ci/testcode_2.R                     ✔ 
 #>  tests/testthat/test-ci/testcode.Rmd                     ✔ 
+#>  tests/testthat/test-ci/testcode.Rnw                     ✔ 
 #>  tests/testthat/test-to_document/document.Rmd            ✔ 
 #>  tests/testthat/test-to_document/extra-spaces.Rmd        ✔ 
 #>  tests/testthat/test-to_document/minimal-document.Rmd    ✔ 
@@ -166,7 +168,7 @@ ci()
 #>  vignettes/style-guide.Rmd                               ✔ 
 #> ───────────────────────────────────────────────────────
 #> Status   Count   Legend 
-#> ✔    49  File unchanged.
+#> ✔    51  File unchanged.
 #> ℹ    0   File changed.
 #> ✖    0   Styling threw an error.
 #> ───────────────────────────────────────────────────────
@@ -187,16 +189,16 @@ ci()
 #> * creating vignettes ... OK
 #> * checking for LF line-endings in source and make files and shell scripts
 #> * checking for empty or unneeded directories
-#> * building ‘rdev_1.5.5.tar.gz’
+#> * building ‘rdev_1.5.6.tar.gz’
 #> 
 #> ── R CMD check ─────────────────────────────────────────────────────────────────
-#> * using log directory ‘/private/var/folders/vn/cw5f9gws42v9m8mdsds_zbl00000gp/T/RtmpFuqbCV/filecd5f30cdf347/rdev.Rcheck’
+#> * using log directory ‘/private/var/folders/vn/cw5f9gws42v9m8mdsds_zbl00000gp/T/Rtmp45qd9t/fileeb461358faf1/rdev.Rcheck’
 #> * using R version 4.2.0 (2022-04-22)
 #> * using platform: x86_64-apple-darwin19.6.0 (64-bit)
 #> * using session charset: UTF-8
 #> * using option ‘--no-manual’
 #> * checking for file ‘rdev/DESCRIPTION’ ... OK
-#> * this is package ‘rdev’ version ‘1.5.5’
+#> * this is package ‘rdev’ version ‘1.5.6’
 #> * package encoding: UTF-8
 #> * checking package namespace information ... OK
 #> * checking package dependencies ... OK
@@ -254,8 +256,8 @@ ci()
 #> * checking re-building of vignette outputs ... OK
 #> * DONE
 #> Status: OK
-#> ── R CMD check results ───────────────────────────────────────── rdev 1.5.5 ────
-#> Duration: 37.8s
+#> ── R CMD check results ───────────────────────────────────────── rdev 1.5.6 ────
+#> Duration: 39.3s
 #> 
 #> 0 errors ✔ | 0 warnings ✔ | 0 notes ✔
 ```

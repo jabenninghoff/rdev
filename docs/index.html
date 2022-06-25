@@ -34,7 +34,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="index.html">rdev</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="">1.5.5</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="">1.5.6</span>
       </span>
     </div>
 
@@ -97,12 +97,12 @@
 </h2>
 <p>You can install the development version of rdev from <a href="https://github.com/" class="external-link">GitHub</a> with:</p>
 <div class="sourceCode" id="cb1"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="co"># install.packages("devtools")</span>
-<span class="fu">devtools</span><span class="fu">::</span><span class="fu"><a href="https://devtools.r-lib.org/reference/remote-reexports.html" class="external-link">install_github</a></span><span class="op">(</span><span class="st">"jabenninghoff/rdev"</span><span class="op">)</span></code></pre></div>
+<code class="sourceCode R"><span><span class="co"># install.packages("devtools")</span></span>
+<span><span class="fu">devtools</span><span class="fu">::</span><span class="fu"><a href="https://remotes.r-lib.org/reference/install_github.html" class="external-link">install_github</a></span><span class="op">(</span><span class="st">"jabenninghoff/rdev"</span><span class="op">)</span></span></code></pre></div>
 <p>Or using renv:</p>
 <div class="sourceCode" id="cb2"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="co"># install.packages("renv")</span>
-<span class="fu">renv</span><span class="fu">::</span><span class="fu"><a href="https://rstudio.github.io/renv/reference/install.html" class="external-link">install</a></span><span class="op">(</span><span class="st">"jabenninghoff/rdev"</span><span class="op">)</span></code></pre></div>
+<code class="sourceCode R"><span><span class="co"># install.packages("renv")</span></span>
+<span><span class="fu">renv</span><span class="fu">::</span><span class="fu"><a href="https://rstudio.github.io/renv/reference/install.html" class="external-link">install</a></span><span class="op">(</span><span class="st">"jabenninghoff/rdev"</span><span class="op">)</span></span></code></pre></div>
 </div>
 <div class="section level2">
 <h2 id="development">Development<a class="anchor" aria-label="anchor" href="#development"></a>
@@ -156,167 +156,169 @@
 </h2>
 <p>For my workflow, I typically check renv when I start:</p>
 <div class="sourceCode" id="cb3"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://jabenninghoff.github.io/rdev/">rdev</a></span><span class="op">)</span>
-
-<span class="fu"><a href="reference/check_renv.html">check_renv</a></span><span class="op">(</span><span class="op">)</span>
-<span class="co">#&gt; renv::status()</span>
-<span class="co">#&gt; * The project is already synchronized with the lockfile.</span>
-<span class="co">#&gt; </span>
-<span class="co">#&gt; renv::clean()</span>
-<span class="co">#&gt; * No stale package locks were found.</span>
-<span class="co">#&gt; * No temporary directories were found in the project library.</span>
-<span class="co">#&gt; * The project has been cleaned.</span></code></pre></div>
+<code class="sourceCode R"><span><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://jabenninghoff.github.io/rdev/">rdev</a></span><span class="op">)</span></span>
+<span></span>
+<span><span class="fu"><a href="reference/check_renv.html">check_renv</a></span><span class="op">(</span><span class="op">)</span></span>
+<span><span class="co">#&gt; renv::status()</span></span>
+<span><span class="co">#&gt; * The project is already synchronized with the lockfile.</span></span>
+<span><span class="co">#&gt; </span></span>
+<span><span class="co">#&gt; renv::clean()</span></span>
+<span><span class="co">#&gt; * No stale package locks were found.</span></span>
+<span><span class="co">#&gt; * No temporary directories were found in the project library.</span></span>
+<span><span class="co">#&gt; * The project has been cleaned.</span></span></code></pre></div>
 <p>I also have a <code><a href="reference/ci.html">ci()</a></code> function to run all my continuous integration tests locally:</p>
 <div class="sourceCode" id="cb4"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="fu"><a href="reference/ci.html">ci</a></span><span class="op">(</span><span class="op">)</span>
-<span class="co">#&gt; renv::status()</span>
-<span class="co">#&gt; * The project is already synchronized with the lockfile.</span>
-<span class="co">#&gt; </span>
-<span class="co">#&gt; style_all()</span>
-<span class="co">#&gt; Styling  49  files:</span>
-<span class="co">#&gt;  .Rprofile                                               ✔ </span>
-<span class="co">#&gt;  README.Rmd                                              ✔ </span>
-<span class="co">#&gt;  inst/rmarkdown/templates/analysis/skeleton/skeleton.Rmd ✔ </span>
-<span class="co">#&gt;  inst/templates/package.R                                ✔ </span>
-<span class="co">#&gt;  inst/templates/README-analysis.Rmd                      ✔ </span>
-<span class="co">#&gt;  inst/templates/README-rdev.Rmd                          ✔ </span>
-<span class="co">#&gt;  inst/templates/spelling.R                               ✔ </span>
-<span class="co">#&gt;  inst/templates/test-spelling.R                          ✔ </span>
-<span class="co">#&gt;  R/build.R                                               ✔ </span>
-<span class="co">#&gt;  R/ci.R                                                  ✔ </span>
-<span class="co">#&gt;  R/helpers.R                                             ✔ </span>
-<span class="co">#&gt;  R/init.R                                                ✔ </span>
-<span class="co">#&gt;  R/package.R                                             ✔ </span>
-<span class="co">#&gt;  R/release.R                                             ✔ </span>
-<span class="co">#&gt;  R/setup.R                                               ✔ </span>
-<span class="co">#&gt;  R/to_document.R                                         ✔ </span>
-<span class="co">#&gt;  R/urlchecker.R                                          ✔ </span>
-<span class="co">#&gt;  R/utils.R                                               ✔ </span>
-<span class="co">#&gt;  tests/spelling.R                                        ✔ </span>
-<span class="co">#&gt;  tests/testthat.R                                        ✔ </span>
-<span class="co">#&gt;  tests/manual/setup.Rmd                                  ✔ </span>
-<span class="co">#&gt;  tests/manual/test-new-repo-1.R                          ✔ </span>
-<span class="co">#&gt;  tests/manual/test-new-repo-2.R                          ✔ </span>
-<span class="co">#&gt;  tests/manual/test-new-repo-3-analysis.R                 ✔ </span>
-<span class="co">#&gt;  tests/manual/test-new-repo-3-package.R                  ✔ </span>
-<span class="co">#&gt;  tests/testthat/test-build.R                             ✔ </span>
-<span class="co">#&gt;  tests/testthat/test-ci.R                                ✔ </span>
-<span class="co">#&gt;  tests/testthat/test-helpers.R                           ✔ </span>
-<span class="co">#&gt;  tests/testthat/test-init.R                              ✔ </span>
-<span class="co">#&gt;  tests/testthat/test-inst.R                              ✔ </span>
-<span class="co">#&gt;  tests/testthat/test-release.R                           ✔ </span>
-<span class="co">#&gt;  tests/testthat/test-setup.R                             ✔ </span>
-<span class="co">#&gt;  tests/testthat/test-spelling.R                          ✔ </span>
-<span class="co">#&gt;  tests/testthat/test-to_document.R                       ✔ </span>
-<span class="co">#&gt;  tests/testthat/test-utils.R                             ✔ </span>
-<span class="co">#&gt;  tests/testthat/test-ci/testcode_1.R                     ✔ </span>
-<span class="co">#&gt;  tests/testthat/test-ci/testcode_2.R                     ✔ </span>
-<span class="co">#&gt;  tests/testthat/test-ci/testcode.Rmd                     ✔ </span>
-<span class="co">#&gt;  tests/testthat/test-to_document/document.Rmd            ✔ </span>
-<span class="co">#&gt;  tests/testthat/test-to_document/extra-spaces.Rmd        ✔ </span>
-<span class="co">#&gt;  tests/testthat/test-to_document/minimal-document.Rmd    ✔ </span>
-<span class="co">#&gt;  tests/testthat/test-to_document/minimal.Rmd             ✔ </span>
-<span class="co">#&gt;  tests/testthat/test-to_document/multiple.Rmd            ✔ </span>
-<span class="co">#&gt;  tests/testthat/test-to_document/no-front-matter.Rmd     ✔ </span>
-<span class="co">#&gt;  tests/testthat/test-to_document/no-yaml.Rmd             ✔ </span>
-<span class="co">#&gt;  tests/testthat/test-to_document/valid.Rmd               ✔ </span>
-<span class="co">#&gt;  tests/testthat/test-to_document/with-code.Rmd           ✔ </span>
-<span class="co">#&gt;  vignettes/analysis-package-layout.Rmd                   ✔ </span>
-<span class="co">#&gt;  vignettes/style-guide.Rmd                               ✔ </span>
-<span class="co">#&gt; ───────────────────────────────────────────────────────</span>
-<span class="co">#&gt; Status   Count   Legend </span>
-<span class="co">#&gt; ✔    49  File unchanged.</span>
-<span class="co">#&gt; ℹ    0   File changed.</span>
-<span class="co">#&gt; ✖    0   Styling threw an error.</span>
-<span class="co">#&gt; ───────────────────────────────────────────────────────</span>
-<span class="co">#&gt; </span>
-<span class="co">#&gt; lint_all()</span>
-<span class="co">#&gt; </span>
-<span class="co">#&gt; devtools::document()</span>
-<span class="co">#&gt; ℹ Updating rdev documentation</span>
-<span class="co">#&gt; ℹ Loading rdev</span>
-<span class="co">#&gt; </span>
-<span class="co">#&gt; Setting env vars: NOT_CRAN="true", CI="true"</span>
-<span class="co">#&gt; rcmdcheck::rcmdcheck(args = "--no-manual", error_on = "warning")</span>
-<span class="co">#&gt; ── R CMD build ─────────────────────────────────────────────────────────────────</span>
-<span class="co">#&gt; * checking for file ‘.../DESCRIPTION’ ... OK</span>
-<span class="co">#&gt; * preparing ‘rdev’:</span>
-<span class="co">#&gt; * checking DESCRIPTION meta-information ... OK</span>
-<span class="co">#&gt; * installing the package to build vignettes</span>
-<span class="co">#&gt; * creating vignettes ... OK</span>
-<span class="co">#&gt; * checking for LF line-endings in source and make files and shell scripts</span>
-<span class="co">#&gt; * checking for empty or unneeded directories</span>
-<span class="co">#&gt; * building ‘rdev_1.5.5.tar.gz’</span>
-<span class="co">#&gt; </span>
-<span class="co">#&gt; ── R CMD check ─────────────────────────────────────────────────────────────────</span>
-<span class="co">#&gt; * using log directory ‘/private/var/folders/vn/cw5f9gws42v9m8mdsds_zbl00000gp/T/RtmpFuqbCV/filecd5f30cdf347/rdev.Rcheck’</span>
-<span class="co">#&gt; * using R version 4.2.0 (2022-04-22)</span>
-<span class="co">#&gt; * using platform: x86_64-apple-darwin19.6.0 (64-bit)</span>
-<span class="co">#&gt; * using session charset: UTF-8</span>
-<span class="co">#&gt; * using option ‘--no-manual’</span>
-<span class="co">#&gt; * checking for file ‘rdev/DESCRIPTION’ ... OK</span>
-<span class="co">#&gt; * this is package ‘rdev’ version ‘1.5.5’</span>
-<span class="co">#&gt; * package encoding: UTF-8</span>
-<span class="co">#&gt; * checking package namespace information ... OK</span>
-<span class="co">#&gt; * checking package dependencies ... OK</span>
-<span class="co">#&gt; * checking if this is a source package ... OK</span>
-<span class="co">#&gt; * checking if there is a namespace ... OK</span>
-<span class="co">#&gt; * checking for executable files ... OK</span>
-<span class="co">#&gt; * checking for hidden files and directories ... OK</span>
-<span class="co">#&gt; * checking for portable file names ... OK</span>
-<span class="co">#&gt; * checking for sufficient/correct file permissions ... OK</span>
-<span class="co">#&gt; * checking whether package ‘rdev’ can be installed ... OK</span>
-<span class="co">#&gt; * checking installed package size ... OK</span>
-<span class="co">#&gt; * checking package directory ... OK</span>
-<span class="co">#&gt; * checking ‘build’ directory ... OK</span>
-<span class="co">#&gt; * checking DESCRIPTION meta-information ... OK</span>
-<span class="co">#&gt; * checking top-level files ... OK</span>
-<span class="co">#&gt; * checking for left-over files ... OK</span>
-<span class="co">#&gt; * checking index information ... OK</span>
-<span class="co">#&gt; * checking package subdirectories ... OK</span>
-<span class="co">#&gt; * checking R files for non-ASCII characters ... OK</span>
-<span class="co">#&gt; * checking R files for syntax errors ... OK</span>
-<span class="co">#&gt; * checking whether the package can be loaded ... OK</span>
-<span class="co">#&gt; * checking whether the package can be loaded with stated dependencies ... OK</span>
-<span class="co">#&gt; * checking whether the package can be unloaded cleanly ... OK</span>
-<span class="co">#&gt; * checking whether the namespace can be loaded with stated dependencies ... OK</span>
-<span class="co">#&gt; * checking whether the namespace can be unloaded cleanly ... OK</span>
-<span class="co">#&gt; * checking loading without being on the library search path ... OK</span>
-<span class="co">#&gt; * checking dependencies in R code ... OK</span>
-<span class="co">#&gt; * checking S3 generic/method consistency ... OK</span>
-<span class="co">#&gt; * checking replacement functions ... OK</span>
-<span class="co">#&gt; * checking foreign function calls ... OK</span>
-<span class="co">#&gt; * checking R code for possible problems ... OK</span>
-<span class="co">#&gt; * checking Rd files ... OK</span>
-<span class="co">#&gt; * checking Rd metadata ... OK</span>
-<span class="co">#&gt; * checking Rd cross-references ... OK</span>
-<span class="co">#&gt; * checking for missing documentation entries ... OK</span>
-<span class="co">#&gt; * checking for code/documentation mismatches ... OK</span>
-<span class="co">#&gt; * checking Rd \usage sections ... OK</span>
-<span class="co">#&gt; * checking Rd contents ... OK</span>
-<span class="co">#&gt; * checking for unstated dependencies in examples ... OK</span>
-<span class="co">#&gt; * checking installed files from ‘inst/doc’ ... OK</span>
-<span class="co">#&gt; * checking files in ‘vignettes’ ... OK</span>
-<span class="co">#&gt; * checking examples ... OK</span>
-<span class="co">#&gt; * checking for unstated dependencies in ‘tests’ ... OK</span>
-<span class="co">#&gt; * checking tests ...</span>
-<span class="co">#&gt;   Running ‘spelling.R’</span>
-<span class="co">#&gt;   Comparing ‘spelling.Rout’ to ‘spelling.Rout.save’ ... OK</span>
-<span class="co">#&gt;   Running ‘testthat.R’</span>
-<span class="co">#&gt;  OK</span>
-<span class="co">#&gt; * checking for unstated dependencies in vignettes ... OK</span>
-<span class="co">#&gt; * checking package vignettes in ‘inst/doc’ ... OK</span>
-<span class="co">#&gt; * checking running R code from vignettes ...</span>
-<span class="co">#&gt;   ‘analysis-package-layout.Rmd’ using ‘UTF-8’... OK</span>
-<span class="co">#&gt;   ‘style-guide.Rmd’ using ‘UTF-8’... OK</span>
-<span class="co">#&gt;  NONE</span>
-<span class="co">#&gt; * checking re-building of vignette outputs ... OK</span>
-<span class="co">#&gt; * DONE</span>
-<span class="co">#&gt; Status: OK</span>
-<span class="co">#&gt; ── R CMD check results ───────────────────────────────────────── rdev 1.5.5 ────</span>
-<span class="co">#&gt; Duration: 37.8s</span>
-<span class="co">#&gt; </span>
-<span class="co">#&gt; 0 errors ✔ | 0 warnings ✔ | 0 notes ✔</span></code></pre></div>
+<code class="sourceCode R"><span><span class="fu"><a href="reference/ci.html">ci</a></span><span class="op">(</span><span class="op">)</span></span>
+<span><span class="co">#&gt; renv::status()</span></span>
+<span><span class="co">#&gt; * The project is already synchronized with the lockfile.</span></span>
+<span><span class="co">#&gt; </span></span>
+<span><span class="co">#&gt; style_all()</span></span>
+<span><span class="co">#&gt; Styling  51  files:</span></span>
+<span><span class="co">#&gt;  .Rprofile                                               ✔ </span></span>
+<span><span class="co">#&gt;  README.Rmd                                              ✔ </span></span>
+<span><span class="co">#&gt;  inst/rmarkdown/templates/analysis/skeleton/skeleton.Rmd ✔ </span></span>
+<span><span class="co">#&gt;  inst/templates/package.R                                ✔ </span></span>
+<span><span class="co">#&gt;  inst/templates/README-analysis.Rmd                      ✔ </span></span>
+<span><span class="co">#&gt;  inst/templates/README-rdev.Rmd                          ✔ </span></span>
+<span><span class="co">#&gt;  inst/templates/spelling.R                               ✔ </span></span>
+<span><span class="co">#&gt;  inst/templates/test-spelling.R                          ✔ </span></span>
+<span><span class="co">#&gt;  R/build.R                                               ✔ </span></span>
+<span><span class="co">#&gt;  R/ci.R                                                  ✔ </span></span>
+<span><span class="co">#&gt;  R/helpers.R                                             ✔ </span></span>
+<span><span class="co">#&gt;  R/init.R                                                ✔ </span></span>
+<span><span class="co">#&gt;  R/package.R                                             ✔ </span></span>
+<span><span class="co">#&gt;  R/release.R                                             ✔ </span></span>
+<span><span class="co">#&gt;  R/setup.R                                               ✔ </span></span>
+<span><span class="co">#&gt;  R/to_document.R                                         ✔ </span></span>
+<span><span class="co">#&gt;  R/urlchecker.R                                          ✔ </span></span>
+<span><span class="co">#&gt;  R/utils.R                                               ✔ </span></span>
+<span><span class="co">#&gt;  tests/spelling.R                                        ✔ </span></span>
+<span><span class="co">#&gt;  tests/testthat.R                                        ✔ </span></span>
+<span><span class="co">#&gt;  tests/manual/setup.Rmd                                  ✔ </span></span>
+<span><span class="co">#&gt;  tests/manual/test-new-repo-1.R                          ✔ </span></span>
+<span><span class="co">#&gt;  tests/manual/test-new-repo-2.R                          ✔ </span></span>
+<span><span class="co">#&gt;  tests/manual/test-new-repo-3-analysis.R                 ✔ </span></span>
+<span><span class="co">#&gt;  tests/manual/test-new-repo-3-package.R                  ✔ </span></span>
+<span><span class="co">#&gt;  tests/testthat/test-build.R                             ✔ </span></span>
+<span><span class="co">#&gt;  tests/testthat/test-ci.R                                ✔ </span></span>
+<span><span class="co">#&gt;  tests/testthat/test-helpers.R                           ✔ </span></span>
+<span><span class="co">#&gt;  tests/testthat/test-init.R                              ✔ </span></span>
+<span><span class="co">#&gt;  tests/testthat/test-inst.R                              ✔ </span></span>
+<span><span class="co">#&gt;  tests/testthat/test-release.R                           ✔ </span></span>
+<span><span class="co">#&gt;  tests/testthat/test-setup.R                             ✔ </span></span>
+<span><span class="co">#&gt;  tests/testthat/test-spelling.R                          ✔ </span></span>
+<span><span class="co">#&gt;  tests/testthat/test-to_document.R                       ✔ </span></span>
+<span><span class="co">#&gt;  tests/testthat/test-utils.R                             ✔ </span></span>
+<span><span class="co">#&gt;  tests/testthat/test-ci/test.Rprofile                    ✔ </span></span>
+<span><span class="co">#&gt;  tests/testthat/test-ci/testcode_1.R                     ✔ </span></span>
+<span><span class="co">#&gt;  tests/testthat/test-ci/testcode_2.R                     ✔ </span></span>
+<span><span class="co">#&gt;  tests/testthat/test-ci/testcode.Rmd                     ✔ </span></span>
+<span><span class="co">#&gt;  tests/testthat/test-ci/testcode.Rnw                     ✔ </span></span>
+<span><span class="co">#&gt;  tests/testthat/test-to_document/document.Rmd            ✔ </span></span>
+<span><span class="co">#&gt;  tests/testthat/test-to_document/extra-spaces.Rmd        ✔ </span></span>
+<span><span class="co">#&gt;  tests/testthat/test-to_document/minimal-document.Rmd    ✔ </span></span>
+<span><span class="co">#&gt;  tests/testthat/test-to_document/minimal.Rmd             ✔ </span></span>
+<span><span class="co">#&gt;  tests/testthat/test-to_document/multiple.Rmd            ✔ </span></span>
+<span><span class="co">#&gt;  tests/testthat/test-to_document/no-front-matter.Rmd     ✔ </span></span>
+<span><span class="co">#&gt;  tests/testthat/test-to_document/no-yaml.Rmd             ✔ </span></span>
+<span><span class="co">#&gt;  tests/testthat/test-to_document/valid.Rmd               ✔ </span></span>
+<span><span class="co">#&gt;  tests/testthat/test-to_document/with-code.Rmd           ✔ </span></span>
+<span><span class="co">#&gt;  vignettes/analysis-package-layout.Rmd                   ✔ </span></span>
+<span><span class="co">#&gt;  vignettes/style-guide.Rmd                               ✔ </span></span>
+<span><span class="co">#&gt; ───────────────────────────────────────────────────────</span></span>
+<span><span class="co">#&gt; Status   Count   Legend </span></span>
+<span><span class="co">#&gt; ✔    51  File unchanged.</span></span>
+<span><span class="co">#&gt; ℹ    0   File changed.</span></span>
+<span><span class="co">#&gt; ✖    0   Styling threw an error.</span></span>
+<span><span class="co">#&gt; ───────────────────────────────────────────────────────</span></span>
+<span><span class="co">#&gt; </span></span>
+<span><span class="co">#&gt; lint_all()</span></span>
+<span><span class="co">#&gt; </span></span>
+<span><span class="co">#&gt; devtools::document()</span></span>
+<span><span class="co">#&gt; ℹ Updating rdev documentation</span></span>
+<span><span class="co">#&gt; ℹ Loading rdev</span></span>
+<span><span class="co">#&gt; </span></span>
+<span><span class="co">#&gt; Setting env vars: NOT_CRAN="true", CI="true"</span></span>
+<span><span class="co">#&gt; rcmdcheck::rcmdcheck(args = "--no-manual", error_on = "warning")</span></span>
+<span><span class="co">#&gt; ── R CMD build ─────────────────────────────────────────────────────────────────</span></span>
+<span><span class="co">#&gt; * checking for file ‘.../DESCRIPTION’ ... OK</span></span>
+<span><span class="co">#&gt; * preparing ‘rdev’:</span></span>
+<span><span class="co">#&gt; * checking DESCRIPTION meta-information ... OK</span></span>
+<span><span class="co">#&gt; * installing the package to build vignettes</span></span>
+<span><span class="co">#&gt; * creating vignettes ... OK</span></span>
+<span><span class="co">#&gt; * checking for LF line-endings in source and make files and shell scripts</span></span>
+<span><span class="co">#&gt; * checking for empty or unneeded directories</span></span>
+<span><span class="co">#&gt; * building ‘rdev_1.5.6.tar.gz’</span></span>
+<span><span class="co">#&gt; </span></span>
+<span><span class="co">#&gt; ── R CMD check ─────────────────────────────────────────────────────────────────</span></span>
+<span><span class="co">#&gt; * using log directory ‘/private/var/folders/vn/cw5f9gws42v9m8mdsds_zbl00000gp/T/Rtmp45qd9t/fileeb461358faf1/rdev.Rcheck’</span></span>
+<span><span class="co">#&gt; * using R version 4.2.0 (2022-04-22)</span></span>
+<span><span class="co">#&gt; * using platform: x86_64-apple-darwin19.6.0 (64-bit)</span></span>
+<span><span class="co">#&gt; * using session charset: UTF-8</span></span>
+<span><span class="co">#&gt; * using option ‘--no-manual’</span></span>
+<span><span class="co">#&gt; * checking for file ‘rdev/DESCRIPTION’ ... OK</span></span>
+<span><span class="co">#&gt; * this is package ‘rdev’ version ‘1.5.6’</span></span>
+<span><span class="co">#&gt; * package encoding: UTF-8</span></span>
+<span><span class="co">#&gt; * checking package namespace information ... OK</span></span>
+<span><span class="co">#&gt; * checking package dependencies ... OK</span></span>
+<span><span class="co">#&gt; * checking if this is a source package ... OK</span></span>
+<span><span class="co">#&gt; * checking if there is a namespace ... OK</span></span>
+<span><span class="co">#&gt; * checking for executable files ... OK</span></span>
+<span><span class="co">#&gt; * checking for hidden files and directories ... OK</span></span>
+<span><span class="co">#&gt; * checking for portable file names ... OK</span></span>
+<span><span class="co">#&gt; * checking for sufficient/correct file permissions ... OK</span></span>
+<span><span class="co">#&gt; * checking whether package ‘rdev’ can be installed ... OK</span></span>
+<span><span class="co">#&gt; * checking installed package size ... OK</span></span>
+<span><span class="co">#&gt; * checking package directory ... OK</span></span>
+<span><span class="co">#&gt; * checking ‘build’ directory ... OK</span></span>
+<span><span class="co">#&gt; * checking DESCRIPTION meta-information ... OK</span></span>
+<span><span class="co">#&gt; * checking top-level files ... OK</span></span>
+<span><span class="co">#&gt; * checking for left-over files ... OK</span></span>
+<span><span class="co">#&gt; * checking index information ... OK</span></span>
+<span><span class="co">#&gt; * checking package subdirectories ... OK</span></span>
+<span><span class="co">#&gt; * checking R files for non-ASCII characters ... OK</span></span>
+<span><span class="co">#&gt; * checking R files for syntax errors ... OK</span></span>
+<span><span class="co">#&gt; * checking whether the package can be loaded ... OK</span></span>
+<span><span class="co">#&gt; * checking whether the package can be loaded with stated dependencies ... OK</span></span>
+<span><span class="co">#&gt; * checking whether the package can be unloaded cleanly ... OK</span></span>
+<span><span class="co">#&gt; * checking whether the namespace can be loaded with stated dependencies ... OK</span></span>
+<span><span class="co">#&gt; * checking whether the namespace can be unloaded cleanly ... OK</span></span>
+<span><span class="co">#&gt; * checking loading without being on the library search path ... OK</span></span>
+<span><span class="co">#&gt; * checking dependencies in R code ... OK</span></span>
+<span><span class="co">#&gt; * checking S3 generic/method consistency ... OK</span></span>
+<span><span class="co">#&gt; * checking replacement functions ... OK</span></span>
+<span><span class="co">#&gt; * checking foreign function calls ... OK</span></span>
+<span><span class="co">#&gt; * checking R code for possible problems ... OK</span></span>
+<span><span class="co">#&gt; * checking Rd files ... OK</span></span>
+<span><span class="co">#&gt; * checking Rd metadata ... OK</span></span>
+<span><span class="co">#&gt; * checking Rd cross-references ... OK</span></span>
+<span><span class="co">#&gt; * checking for missing documentation entries ... OK</span></span>
+<span><span class="co">#&gt; * checking for code/documentation mismatches ... OK</span></span>
+<span><span class="co">#&gt; * checking Rd \usage sections ... OK</span></span>
+<span><span class="co">#&gt; * checking Rd contents ... OK</span></span>
+<span><span class="co">#&gt; * checking for unstated dependencies in examples ... OK</span></span>
+<span><span class="co">#&gt; * checking installed files from ‘inst/doc’ ... OK</span></span>
+<span><span class="co">#&gt; * checking files in ‘vignettes’ ... OK</span></span>
+<span><span class="co">#&gt; * checking examples ... OK</span></span>
+<span><span class="co">#&gt; * checking for unstated dependencies in ‘tests’ ... OK</span></span>
+<span><span class="co">#&gt; * checking tests ...</span></span>
+<span><span class="co">#&gt;   Running ‘spelling.R’</span></span>
+<span><span class="co">#&gt;   Comparing ‘spelling.Rout’ to ‘spelling.Rout.save’ ... OK</span></span>
+<span><span class="co">#&gt;   Running ‘testthat.R’</span></span>
+<span><span class="co">#&gt;  OK</span></span>
+<span><span class="co">#&gt; * checking for unstated dependencies in vignettes ... OK</span></span>
+<span><span class="co">#&gt; * checking package vignettes in ‘inst/doc’ ... OK</span></span>
+<span><span class="co">#&gt; * checking running R code from vignettes ...</span></span>
+<span><span class="co">#&gt;   ‘analysis-package-layout.Rmd’ using ‘UTF-8’... OK</span></span>
+<span><span class="co">#&gt;   ‘style-guide.Rmd’ using ‘UTF-8’... OK</span></span>
+<span><span class="co">#&gt;  NONE</span></span>
+<span><span class="co">#&gt; * checking re-building of vignette outputs ... OK</span></span>
+<span><span class="co">#&gt; * DONE</span></span>
+<span><span class="co">#&gt; Status: OK</span></span>
+<span><span class="co">#&gt; ── R CMD check results ───────────────────────────────────────── rdev 1.5.6 ────</span></span>
+<span><span class="co">#&gt; Duration: 39.3s</span></span>
+<span><span class="co">#&gt; </span></span>
+<span><span class="co">#&gt; 0 errors ✔ | 0 warnings ✔ | 0 notes ✔</span></span></code></pre></div>
 </div>
 </div>
   </div>
@@ -373,7 +375,7 @@
 
 <div class="pkgdown">
   <p></p>
-<p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.0.4.</p>
+<p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.0.5.</p>
 </div>
 
       </footer>
