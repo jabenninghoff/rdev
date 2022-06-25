@@ -17,7 +17,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">rdev</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="">1.5.5</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="">1.5.6</span>
       </span>
     </div>
 
@@ -66,7 +66,11 @@
     </div>
 
     <div id="ref-usage">
-    <div class="sourceCode"><pre class="sourceCode r"><code><span class="fu">lint_all</span><span class="op">(</span>path <span class="op">=</span> <span class="st">"."</span>, <span class="va">...</span><span class="op">)</span></code></pre></div>
+    <div class="sourceCode"><pre class="sourceCode r"><code><span><span class="fu">lint_all</span><span class="op">(</span></span>
+<span>  path <span class="op">=</span> <span class="st">"."</span>,</span>
+<span>  pattern <span class="op">=</span> <span class="st">"\\.[Rr](?:|html|md|nw|pres|rst|tex|txt)$"</span>,</span>
+<span>  <span class="va">...</span></span>
+<span><span class="op">)</span></span></code></pre></div>
     </div>
 
     <div id="arguments">
@@ -74,6 +78,11 @@
     <dl><dt>path</dt>
 <dd><p>For the base directory of the project (for <code>lint_dir()</code>) or
 package (for <code>lint_package()</code>).</p></dd>
+
+
+<dt>pattern</dt>
+<dd><p>regex pattern for files, by default it will take files with any of the extensions
+.R, .Rmd, .Rnw, .Rpres, .Rhtml, .Rrst, .Rtex, .Rtxt allowing for lowercase r (.r, ...)</p></dd>
 
 
 <dt>...</dt>
@@ -86,10 +95,6 @@ If <code>FALSE</code>, use the full absolute path.</p></dd>
 
     <dt><code>exclusions</code></dt>
 <dd><p>exclusions for <code><a href="https://lintr.r-lib.org/reference/exclude.html" class="external-link">exclude()</a></code>, relative to the package path.</p></dd>
-
-    <dt><code>pattern</code></dt>
-<dd><p>pattern for files, by default it will take files with any of the extensions .R, .Rmd, .Rnw, .Rhtml,
-.Rrst, .Rtex, .Rtxt allowing for lowercase r (.r, ...)</p></dd>
 
   
 </dl></dd>
@@ -104,10 +109,10 @@ If <code>FALSE</code>, use the full absolute path.</p></dd>
 
     <div id="ref-examples">
     <h2>Examples</h2>
-    <div class="sourceCode"><pre class="sourceCode r"><code><span class="r-in"><span class="kw">if</span> <span class="op">(</span><span class="cn">FALSE</span><span class="op">)</span> <span class="op">{</span></span>
-<span class="r-in"><span class="fu">lint_all</span><span class="op">(</span><span class="op">)</span></span>
-<span class="r-in"><span class="fu">lint_all</span><span class="op">(</span><span class="st">"analysis"</span><span class="op">)</span></span>
-<span class="r-in"><span class="op">}</span></span>
+    <div class="sourceCode"><pre class="sourceCode r"><code><span class="r-in"><span><span class="kw">if</span> <span class="op">(</span><span class="cn">FALSE</span><span class="op">)</span> <span class="op">{</span></span></span>
+<span class="r-in"><span><span class="fu">lint_all</span><span class="op">(</span><span class="op">)</span></span></span>
+<span class="r-in"><span><span class="fu">lint_all</span><span class="op">(</span><span class="st">"analysis"</span><span class="op">)</span></span></span>
+<span class="r-in"><span><span class="op">}</span></span></span>
 </code></pre></div>
     </div>
   </div>
@@ -122,7 +127,7 @@ If <code>FALSE</code>, use the full absolute path.</p></dd>
 </div>
 
 <div class="pkgdown">
-  <p></p><p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.0.4.</p>
+  <p></p><p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.0.5.</p>
 </div>
 
       </footer></div>
