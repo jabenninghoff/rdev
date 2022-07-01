@@ -1,3 +1,7 @@
+# rdev 1.5.7
+
+* Add option to warn on partial $ matches
+
 # rdev 1.5.6
 
 * Update `lint_all()` to also check `.Rpres` files
