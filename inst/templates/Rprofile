@@ -1,6 +1,8 @@
 source("renv/activate.R")
 
 options(
+  warnPartialMatchArgs = TRUE,
+  warnPartialMatchAttr = TRUE,
   warnPartialMatchDollar = TRUE,
   styler.cache_root = "styler-perm"
 )
