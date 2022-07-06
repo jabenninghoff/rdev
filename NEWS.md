@@ -1,3 +1,7 @@
+# rdev 1.5.8
+
+* Update options to enable warnings for all partial matches
+
 # rdev 1.5.7
 
 * Add option to warn on partial $ matches
