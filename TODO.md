@@ -45,6 +45,7 @@
 - [x] Switch from development versions of `styler` (1.3.2.9000) and `lintr` (2.0.1.9000) when a new release becomes available - both were needed to address bugs in the current release versions, 1.3.2 and 2.0.1.
 - [x] Add trailing slash to GitHub Pages URL
 - [x] Update `lint_all()` to lint all types, including `.Rpres`
+- [ ] Add options to sort notebooks by date or name, not just filename
 
 ## GitHub
 
