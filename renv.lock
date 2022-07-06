@@ -348,10 +348,10 @@
     },
     "downlit": {
       "Package": "downlit",
-      "Version": "0.4.1",
+      "Version": "0.4.2",
       "Source": "Repository",
       "Repository": "CRAN",
-      "Hash": "4850b3f46b1e7dd8c666f68aacad6951",
+      "Hash": "79bf3f66590752ffbba20f8d2da94c7c",
       "Requirements": [
         "brio",
         "desc",
