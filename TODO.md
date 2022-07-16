@@ -46,6 +46,8 @@
 - [x] Add trailing slash to GitHub Pages URL
 - [x] Update `lint_all()` to lint all types, including `.Rpres`
 - [ ] Add options to sort notebooks by date or name, not just filename
+- [ ] Update errors and messages after reading Advanced R [Conditions](https://adv-r.hadley.nz/conditions.html) and re-reading the Tidyverse [Style Guide](https://style.tidyverse.org/index.html)
+- [ ] Establish default [knitr options](https://yihui.org/knitr/options/), including `knitr::opts_chunk$set(fig.align = "center"")`, add to analysis template, also review [settings](https://github.com/hadley/adv-r/blob/master/common.R) for *Advanced R*
 
 ## GitHub
 
