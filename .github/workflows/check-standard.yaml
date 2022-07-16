@@ -46,6 +46,8 @@ jobs:
 
       - uses: r-lib/actions/check-r-package@v2
         with:
+          # uncomment next line if windows build fails per https://github.com/r-lib/actions/issues/585
+          # rtools-version: '42'
           # see https://github.com/r-hub/rhub/issues/476 for --no-multiarch
           args: 'c("--no-manual", "--no-multiarch")'
           upload-snapshots: true
