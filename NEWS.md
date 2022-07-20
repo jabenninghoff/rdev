@@ -2,6 +2,8 @@
 
 * Update `build_analysis_site()` and 'Analysis Notebook' R markdown template to use Bootstrap 5 using [`bslib`](https://rstudio.github.io/bslib/)
 
+* Update rdev pkgdown site to use Bootstrap 5
+
 # rdev 1.5.8
 
 * Update options to enable warnings for all partial matches
