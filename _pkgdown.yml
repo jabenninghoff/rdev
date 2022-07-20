@@ -1,4 +1,6 @@
 url: https://jabenninghoff.github.io/rdev/
+template:
+  bootstrap: 5
 
 reference:
   - title: Release Automation
