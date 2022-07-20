@@ -45,6 +45,7 @@
 - [x] Switch from development versions of `styler` (1.3.2.9000) and `lintr` (2.0.1.9000) when a new release becomes available - both were needed to address bugs in the current release versions, 1.3.2 and 2.0.1.
 - [x] Add trailing slash to GitHub Pages URL
 - [x] Update `lint_all()` to lint all types, including `.Rpres`
+- [ ] Add custom CSS files to [`_site.yml`](https://rmarkdown.rstudio.com/docs/reference/render_site.html) and analysis notebook templates to control font size, as described in this [article](https://medium.com/@HadrienD/how-to-customize-font-size-in-r-markdown-documents-f5adff36e2cc), or possibly using [`bs_theme()`](https://rstudio.github.io/bslib/articles/bslib.html), since pkgdown customizes the default using [`build_bslib()`](https://github.com/r-lib/pkgdown/blob/main/R/theme.R)
 - [ ] Add options to sort notebooks by date or name, not just filename
 - [ ] Update errors and messages after reading Advanced R [Conditions](https://adv-r.hadley.nz/conditions.html) and re-reading the Tidyverse [Style Guide](https://style.tidyverse.org/index.html)
 - [ ] Establish default [knitr options](https://yihui.org/knitr/options/), including `knitr::opts_chunk$set(fig.align = "center"")`, add to analysis template, also review [settings](https://github.com/hadley/adv-r/blob/master/common.R) for *Advanced R*
