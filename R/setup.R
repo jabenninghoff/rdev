@@ -78,6 +78,7 @@ use_spelling <- function(lang = "en-US", prompt = FALSE) {
       package = "rdev"
     )
   }
+  usethis::use_package("fs", type = "Suggests")
   usethis::use_package("withr", type = "Suggests")
   renv::snapshot(prompt = prompt)
 }
@@ -353,6 +354,9 @@ use_rdev_package <- function(quiet = TRUE) {
   use_todo()
   usethis::use_news_md()
   usethis::use_readme_rmd()
+  # README.Rmd uses knitr and rmarkdown per renv::dependencies()
+  usethis::use_package("knitr", type = "Suggests")
+  usethis::use_package("rmarkdown", type = "Suggests")
   switch(get_license(),
     mit = usethis::use_mit_license(copyright_holder = getOption("rdev.license.copyright")),
     gpl = usethis::use_gpl_license(),
