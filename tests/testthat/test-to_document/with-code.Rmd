@@ -3,6 +3,8 @@ title: "Valid Notebook with R Code"
 date: '2022-01-22'
 output:
   html_notebook:
+    theme:
+      version: 5
     toc: yes
     toc_float:
       collapsed: no

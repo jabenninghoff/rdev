@@ -69,7 +69,7 @@ test_that("to_document removes all other output types", {
   yaml <- rmarkdown::yaml_front_matter(dest)
 
   expect_length(yaml$output, 1)
-  expect_length(yaml$output$html_document, 2)
+  expect_length(yaml$output$html_document, 3)
 })
 
 test_that("to_document converts `html_notebook` to `html_document`", {

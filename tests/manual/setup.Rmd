@@ -2,6 +2,8 @@
 title: "Package Setup Test"
 output:
   html_notebook:
+    theme:
+      version: 5
     code_folding: none
 ---
 

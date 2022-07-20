@@ -3,6 +3,8 @@ title: "Extra Spaces Notebook"
 date: '2022-01-28'
 output:
   html_notebook:
+    theme:
+      version: 5
     toc: yes
     toc_float:
       collapsed: no

@@ -3,6 +3,8 @@ title: "TEMPLATE Analysis"
 date: '2022-00-00'
 output:
   html_notebook:
+    theme:
+      version: 5
     toc: yes
     toc_float:
       collapsed: no

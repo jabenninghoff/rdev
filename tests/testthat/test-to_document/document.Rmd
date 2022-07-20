@@ -3,6 +3,8 @@ title: "Valid Document"
 date: '2022-01-22'
 output:
   html_document:
+    theme:
+      version: 5
     toc: yes
     df_print: paged
 ---
