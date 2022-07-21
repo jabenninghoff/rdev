@@ -18,4 +18,7 @@ Check dependencies in DESCRIPTION.
 \code{missing_deps()} reports \code{\link[renv:dependencies]{renv::dependencies()}} not in DESCRIPTION.
 
 \code{extra_deps()} reports \code{\link[desc:desc_get_deps]{desc::desc_get_deps()}} not found by renv.
+
+The current package (\code{\link[pkgload:packages]{pkgload::pkg_name(".")}}) is automatically removed
+from \code{\link[renv:dependencies]{renv::dependencies()}}.
 }

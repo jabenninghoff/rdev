@@ -21,6 +21,7 @@ Imports:
     markdown,
     miniUI,
     pkgdown,
+    pkgload,
     purrr,
     rcmdcheck,
     remotes,
@@ -42,7 +43,6 @@ Suggests:
     DT,
     knitr,
     mockery,
-    pkgload,
     spelling,
     stringi,
     testthat (>= 3.0.0)
