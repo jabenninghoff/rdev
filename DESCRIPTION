@@ -20,6 +20,7 @@ Imports:
     lintr (>= 3.0.0),
     markdown,
     miniUI,
+    mockery,
     pkgdown,
     pkgload,
     purrr,
@@ -28,6 +29,7 @@ Imports:
     renv,
     rlang,
     rmarkdown,
+    spelling,
     styler (>= 1.4.0),
     tibble,
     urlchecker,
@@ -42,8 +44,6 @@ Suggests:
     diffviewer,
     DT,
     knitr,
-    mockery,
-    spelling,
     stringi,
     testthat (>= 3.0.0)
 VignetteBuilder: 
