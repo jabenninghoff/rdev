@@ -1,6 +1,6 @@
 # rdev 1.6.0
 
-* `missing_deps()` and `extra_deps()` now automatically remove the current package from the list of `renv::dependencies()`
+* `missing_deps()` and `extra_deps()` now automatically remove the current package and `renv` (in `renv.lock`) from the list of `renv::dependencies()`
 
 # rdev 1.5.9
 
