@@ -37,6 +37,8 @@ url_update <- urlchecker::url_update
 #' @return A `url_checker_db` object (invisibly). This is a `check_url_db` object with an added
 #'   class with a custom print method.
 #' @export
+# NOTE: use of curl::new_pool() is considered a dependency by renv but not by R CMD check.
+# TODO: open upstream issue (renv) and/or implement a fix.
 html_url_check <- function(path = "docs", parallel = TRUE, pool = curl::new_pool(),
                            progress = TRUE) {
   # nocov start

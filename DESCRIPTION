@@ -36,6 +36,7 @@ Imports:
     xml2,
     yaml
 Suggests:
+    bslib,
     covr,
     diffviewer,
     DT,
