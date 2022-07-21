@@ -83,7 +83,8 @@ test_that("deps_check finds correct missing and extra deps", {
     "/Users/test/pkg/DESCRIPTION", "desc_source_2", "", "", FALSE,
     "/Users/test/pkg/tests/test.R", "desc_source_2", "", "", FALSE,
     "/Users/test/pkg/R/function_1.R", "source_only_1", "", "", FALSE,
-    "/Users/test/pkg/tests/test.R", "source_only_2", "", "", FALSE
+    "/Users/test/pkg/tests/test.R", "source_only_2", "", "", FALSE,
+    "/Users/test/pkg/tests/test.R", "pkg", "", "", FALSE
   ))
 
   desc_desc_get_deps <- as.data.frame(tibble::tribble(
@@ -119,6 +120,7 @@ test_that("deps_check finds correct missing and extra deps", {
 
   mockery::stub(deps_check, "renv::dependencies", renv_dependencies)
   mockery::stub(deps_check, "desc::desc_get_deps", desc_desc_get_deps)
+  mockery::stub(deps_check, "pkgload::pkg_name", "pkg")
 
   expect_output(deps_check("extra"), "^desc::desc_get_deps\\(\\) not found by renv:$")
   expect_output(deps_check("missing"), "^renv::dependencies\\(\\) not in DESCRIPTION:$")
