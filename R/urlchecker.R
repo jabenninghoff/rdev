@@ -13,6 +13,14 @@
 #' @export
 url_check <- urlchecker::url_check
 
+# NOTE: url_update code includes cli::cli_alert_success which creates a warning in R CMD check if
+# cli is not recorded in Imports. This function is a workaround to ensure use of cli is also
+# detected by renv.
+# TODO: open upstream issue (renv) and/or implement a better fix.
+url_update_renv_workaround <- function(...) {
+  cli::cli_alert_success(...)
+}
+
 #' @rdname urlchecker-reexports
 #' @inheritParams urlchecker::url_update
 #' @export
