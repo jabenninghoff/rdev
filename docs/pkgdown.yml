@@ -4,7 +4,7 @@ pkgdown_sha: ~
 articles:
   analysis-package-layout: analysis-package-layout.html
   style-guide: style-guide.html
-last_built: 2022-07-20T18:51Z
+last_built: 2022-07-21T03:56Z
 urls:
   reference: https://jabenninghoff.github.io/rdev/reference
   article: https://jabenninghoff.github.io/rdev/articles
