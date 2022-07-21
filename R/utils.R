@@ -147,7 +147,6 @@ deps_check <- function(type) {
 
 #' Check dependencies
 #'
-#' @description
 #' Check dependencies in DESCRIPTION.
 #'
 #' `missing_deps()` reports [renv::dependencies()] not in DESCRIPTION.
