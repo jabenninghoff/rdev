@@ -1,3 +1,7 @@
+# rdev 1.6.0
+
+* `missing_deps()` and `extra_deps()` now automatically remove the current package from the list of `renv::dependencies()`
+
 # rdev 1.5.9
 
 * Update `build_analysis_site()` and 'Analysis Notebook' R markdown template to use Bootstrap 5 using [`bslib`](https://rstudio.github.io/bslib/)
