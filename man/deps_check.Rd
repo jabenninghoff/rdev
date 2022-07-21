@@ -14,7 +14,8 @@ data.frame from either \code{\link[renv:dependencies]{renv::dependencies()}} or 
 }
 \description{
 Check dependencies in DESCRIPTION.
-
+}
+\details{
 \code{missing_deps()} reports \code{\link[renv:dependencies]{renv::dependencies()}} not in DESCRIPTION.
 
 \code{extra_deps()} reports \code{\link[desc:desc_get_deps]{desc::desc_get_deps()}} not found by renv.
