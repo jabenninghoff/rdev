@@ -20,6 +20,6 @@ Check dependencies in DESCRIPTION.
 
 \code{extra_deps()} reports \code{\link[desc:desc_get_deps]{desc::desc_get_deps()}} not found by renv.
 
-The current package (\code{\link[pkgload:packages]{pkgload::pkg_name(".")}}) is automatically removed
-from \code{\link[renv:dependencies]{renv::dependencies()}}.
+The current package (\code{\link[pkgload:packages]{pkgload::pkg_name(".")}}) and \code{renv} (in \code{renv.lock}
+only) are automatically removed from \code{\link[renv:dependencies]{renv::dependencies()}}.
 }

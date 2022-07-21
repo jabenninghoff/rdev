@@ -134,6 +134,8 @@ deps_check <- function(type) {
   renv_deps <- renv::dependencies()
   renv_deps <- renv_deps[!endsWith(renv_deps$Source, "/DESCRIPTION"), ]
   renv_deps <- renv_deps[!renv_deps$Package == pkgload::pkg_name("."), ]
+  renv_deps <-
+    renv_deps[!(renv_deps$Package == "renv" & endsWith(renv_deps$Source, "/renv.lock")), ]
   desc_deps <- desc::desc_get_deps()
   if (type == "missing") {
     writeLines("renv::dependencies() not in DESCRIPTION:")
@@ -153,8 +155,8 @@ deps_check <- function(type) {
 #'
 #' `extra_deps()` reports [desc::desc_get_deps()] not found by renv.
 #'
-#' The current package ([`pkgload::pkg_name(".")`][pkgload::pkg_name()]) is automatically removed
-#'   from [renv::dependencies()].
+#' The current package ([`pkgload::pkg_name(".")`][pkgload::pkg_name()]) and `renv` (in `renv.lock`
+#'   only) are automatically removed from [renv::dependencies()].
 #'
 #' @return data.frame from either [renv::dependencies()] or [desc::desc_get_deps()].
 #'

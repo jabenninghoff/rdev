@@ -84,6 +84,7 @@ test_that("deps_check finds correct missing and extra deps", {
     "/Users/test/pkg/tests/test.R", "desc_source_2", "", "", FALSE,
     "/Users/test/pkg/R/function_1.R", "source_only_1", "", "", FALSE,
     "/Users/test/pkg/tests/test.R", "source_only_2", "", "", FALSE,
+    "/Users/test/pkg/renv.lock", "renv", "", "", FALSE,
     "/Users/test/pkg/tests/test.R", "pkg", "", "", FALSE
   ))
 
