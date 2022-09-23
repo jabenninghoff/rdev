@@ -31,11 +31,20 @@ new_branch <- function(name, bump_ver = TRUE, current = FALSE) {
   }
   gert::git_branch_create(name)
 
-  # TODO: stash and restore changes to DESCRIPTION to ensure committing only the version bump
   if (bump_ver && grepl("^[0-9]*\\.[0-9]*\\.[0-9]*$", desc::desc_get_version())) {
+    stash <- FALSE
+    if (nrow(gert::git_status()) != 0) {
+      stash <- TRUE
+      gert::git_stash_save()
+    }
+
     desc::desc_bump_version("dev")
     gert::git_add("DESCRIPTION")
-    gert::git_commit("Bump version")
+    ret <- gert::git_commit("Bump version")
+
+    if (stash) gert::git_stash_pop()
+
+    ret
   }
 }
 

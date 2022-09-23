@@ -38,6 +38,9 @@ test_that("new_branch errors when local or remote branch exists", {
   mockery::stub(new_branch, "desc::desc_bump_version", NULL)
   mockery::stub(new_branch, "gert::git_add", NULL)
   mockery::stub(new_branch, "gert::git_commit", NULL)
+  mockery::stub(new_branch, "gert::git_status", git_status_empty)
+  mockery::stub(new_branch, "gert::git_stash_save", NULL)
+  mockery::stub(new_branch, "gert::git_stash_pop", NULL)
 
   expect_error(new_branch("local"), "^local branch exists$")
   expect_error(new_branch("remote"), "^branch exists on remote \\(origin/remote\\)$")
@@ -56,6 +59,9 @@ test_that("new_branch branches from default branch when current = FALSE and curr
   mockery::stub(new_branch, "desc::desc_bump_version", NULL)
   mockery::stub(new_branch, "gert::git_add", NULL)
   mockery::stub(new_branch, "gert::git_commit", "Bump version")
+  mockery::stub(new_branch, "gert::git_status", git_status_empty)
+  mockery::stub(new_branch, "gert::git_stash_save", NULL)
+  mockery::stub(new_branch, "gert::git_stash_pop", NULL)
 
   expect_identical(new_branch("test", current = TRUE), "Bump version")
   expect_error(new_branch("test", current = FALSE), "^gert::git_branch_checkout$")
@@ -70,6 +76,9 @@ test_that("new_branch bumps non-dev version", {
   mockery::stub(new_branch, "desc::desc_bump_version", NULL)
   mockery::stub(new_branch, "gert::git_add", NULL)
   mockery::stub(new_branch, "gert::git_commit", "Bump version")
+  mockery::stub(new_branch, "gert::git_status", git_status_empty)
+  mockery::stub(new_branch, "gert::git_stash_save", NULL)
+  mockery::stub(new_branch, "gert::git_stash_pop", NULL)
 
   expect_identical(new_branch("test"), "Bump version")
   expect_null(new_branch("test", bump_ver = FALSE))
@@ -84,8 +93,39 @@ test_that("new_branch doesn't bump dev version", {
   mockery::stub(new_branch, "desc::desc_bump_version", NULL)
   mockery::stub(new_branch, "gert::git_add", NULL)
   mockery::stub(new_branch, "gert::git_commit", "Bump version")
+  mockery::stub(new_branch, "gert::git_status", git_status_empty)
+  mockery::stub(new_branch, "gert::git_stash_save", NULL)
+  mockery::stub(new_branch, "gert::git_stash_pop", NULL)
 
   expect_null(new_branch("test"))
+  expect_null(new_branch("test", bump_ver = FALSE))
+})
+
+test_that("new_branch stashes files", {
+  mockery::stub(new_branch, "gert::git_branch_exists", FALSE)
+  mockery::stub(new_branch, "gert::git_branch_checkout", NULL)
+  mockery::stub(new_branch, "usethis::git_default_branch", NULL)
+  mockery::stub(new_branch, "gert::git_branch_create", NULL)
+  mockery::stub(new_branch, "desc::desc_get_version", ver)
+  mockery::stub(new_branch, "desc::desc_bump_version", NULL)
+  mockery::stub(new_branch, "gert::git_add", NULL)
+  mockery::stub(new_branch, "gert::git_commit", "Bump version")
+  mockery::stub(new_branch, "gert::git_status", git_status_empty)
+  mockery::stub(new_branch, "gert::git_stash_save", function() stop("git_stash_save"))
+  mockery::stub(new_branch, "gert::git_stash_pop", function() stop("git_stash_pop"))
+
+  # git_status_empty skips stash
+  expect_identical(new_branch("test"), "Bump version")
+
+  # git_status_changed saves and pops stash
+  mockery::stub(new_branch, "gert::git_status", git_status_changed)
+  expect_error(new_branch("test"), "^git_stash_save$")
+  mockery::stub(new_branch, "gert::git_stash_save", NULL)
+  expect_error(new_branch("test"), "^git_stash_pop$")
+
+  # version is still bumped when git_status_changed
+  mockery::stub(new_branch, "gert::git_stash_pop", NULL)
+  expect_identical(new_branch("test"), "Bump version")
   expect_null(new_branch("test", bump_ver = FALSE))
 })
 
