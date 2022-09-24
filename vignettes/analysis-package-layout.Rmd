@@ -46,7 +46,7 @@ README.Rmd               |`x`|`x`| Generated with `usethis::use_readme_md()` or 
 README.md                |`x`|`x`| Generated with `devtools::build_readme()`
 TODO.md                  |   |`x`| To-do list, inspired by <https://github.com/rstudio/renv/blob/master/TODO.md>
 _pkgdown.yml             |   |`x`| [pkgdown](https://pkgdown.r-lib.org) metadata, stored in the project root to make it more [discoverable](https://github.com/search?q=filename%3Apkgdown.yml+path%3A%2F&type=Code)
-analysis                 |   |`x`| Exploratory data analysis in R Notebooks and R Presentations. Include functions from the R directory using `library(name)`, not `source("rscript.R")`.
+analysis                 |   |`x`| Exploratory data analysis in R Notebooks and R Presentations. Include functions from the R directory using `library()`, not `source()`.
 analysis/assets          |   |`x`| External assets (images, other files) included in R Notebooks
 analysis/data            |   |`x`| Used to store small data sets used for analysis and exported data as `csv` files
 analysis/import          |   |   | Used for local storage of large data sets
