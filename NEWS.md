@@ -1,3 +1,7 @@
+# rdev 1.6.1
+
+* `new_branch()` now stashes and restores changes, so that the `Bump version` commit just changes the version number in `DESCRIPTION`
+
 # rdev 1.6.0
 
 * `missing_deps()` and `extra_deps()` now automatically remove the current package and `renv` (in `renv.lock`) from the list of `renv::dependencies()`
