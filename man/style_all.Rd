@@ -18,14 +18,14 @@ standardization) are: "r", "rprofile", "rmd", "rmarkdown", "rnw". Rmarkdown is t
   Arguments passed on to \code{\link[styler:style_dir]{styler::style_dir}}
   \describe{
     \item{\code{style}}{A function that creates a style guide to use, by default
-\code{\link[styler:tidyverse_style]{tidyverse_style()}} (without the parentheses). Not used
+\code{\link[styler]{tidyverse_style}}. Not used
 further except to construct the argument \code{transformers}. See
 \code{\link[styler:style_guides]{style_guides()}} for details.}
     \item{\code{transformers}}{A set of transformer functions. This argument is most
 conveniently constructed via the \code{style} argument and \code{...}. See
 'Examples'.}
-    \item{\code{recursive}}{A logical value indicating whether or not files in subdirectories
-of \code{path} should be styled as well.}
+    \item{\code{recursive}}{A logical value indicating whether or not files in
+sub directories of \code{path} should be styled as well.}
     \item{\code{exclude_files}}{Character vector with paths to files that should be
 excluded from styling.}
     \item{\code{exclude_dirs}}{Character vector with directories to exclude
