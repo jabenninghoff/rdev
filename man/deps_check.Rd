@@ -5,9 +5,12 @@
 \alias{extra_deps}
 \title{Check dependencies}
 \usage{
-missing_deps()
+missing_deps(exclude_base = TRUE)
 
 extra_deps()
+}
+\arguments{
+\item{exclude_base}{exclude packages installed with R from missing dependencies}
 }
 \value{
 data.frame from either \code{\link[renv:dependencies]{renv::dependencies()}} or \code{\link[desc:desc_get_deps]{desc::desc_get_deps()}}.
@@ -21,5 +24,6 @@ Check dependencies in DESCRIPTION.
 \code{extra_deps()} reports \code{\link[desc:desc_get_deps]{desc::desc_get_deps()}} not found by renv.
 
 The current package (\code{\link[pkgload:packages]{pkgload::pkg_name(".")}}) and \code{renv} (in \code{renv.lock}
-only) are automatically removed from \code{\link[renv:dependencies]{renv::dependencies()}}.
+only) are automatically removed from \code{\link[renv:dependencies]{renv::dependencies()}}, along with 'base' R packages if
+\code{exclude_base} is \code{TRUE} (base, compiler, datasets, graphics, grDevices, grid, methods, parallel, splines, stats, stats4, tcltk, tools, utils).
 }

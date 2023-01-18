@@ -40,6 +40,7 @@ gh's
 github
 gitignore
 globbing
+grDevices
 htmlproofer
 https
 hunspell
@@ -67,6 +68,7 @@ rprofile
 rstudio
 rtraining
 styler
+tcltk
 testthat
 tidyverse
 urlchecker
