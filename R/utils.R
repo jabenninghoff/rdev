@@ -127,7 +127,9 @@ update_wordlist_notebooks <- function(pkg = ".", vignettes = TRUE, path = "analy
   }
 }
 
-deps_check <- function(type) {
+deps_check <- function(type, exclude_base = TRUE) {
+  base_packages <- rownames(utils::installed.packages(priority = "base"))
+
   if (!(type %in% c("missing", "extra"))) {
     stop("invalid type '", type, "'")
   }
@@ -139,7 +141,13 @@ deps_check <- function(type) {
   desc_deps <- desc::desc_get_deps()
   if (type == "missing") {
     writeLines("renv::dependencies() not in DESCRIPTION:")
-    return(renv_deps[renv_deps$Package %in% setdiff(renv_deps$Package, desc_deps$package), ])
+    if (exclude_base) {
+      return(renv_deps[
+        renv_deps$Package %in% setdiff(renv_deps$Package, union(desc_deps$package, base_packages)),
+      ])
+    } else {
+      return(renv_deps[renv_deps$Package %in% setdiff(renv_deps$Package, desc_deps$package), ])
+    }
   }
   if (type == "extra") {
     writeLines("desc::desc_get_deps() not found by renv:")
@@ -156,14 +164,17 @@ deps_check <- function(type) {
 #' `extra_deps()` reports [desc::desc_get_deps()] not found by renv.
 #'
 #' The current package ([`pkgload::pkg_name(".")`][pkgload::pkg_name()]) and `renv` (in `renv.lock`
-#'   only) are automatically removed from [renv::dependencies()].
+#'   only) are automatically removed from [renv::dependencies()], along with 'base' R packages if
+#'   `exclude_base` is `TRUE` (`r rownames(installed.packages(priority = "base"))`).
+#'
+#' @param exclude_base exclude packages installed with R from missing dependencies
 #'
 #' @return data.frame from either [renv::dependencies()] or [desc::desc_get_deps()].
 #'
 #' @export
 #' @rdname deps_check
-missing_deps <- function() {
-  deps_check("missing")
+missing_deps <- function(exclude_base = TRUE) {
+  deps_check("missing", exclude_base)
 }
 
 #' @export

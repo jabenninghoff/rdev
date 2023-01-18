@@ -84,6 +84,13 @@ test_that("deps_check finds correct missing and extra deps", {
     "/Users/test/pkg/tests/test.R", "desc_source_2", "", "", FALSE,
     "/Users/test/pkg/R/function_1.R", "source_only_1", "", "", FALSE,
     "/Users/test/pkg/tests/test.R", "source_only_2", "", "", FALSE,
+    # base packages loaded at startup
+    "/Users/test/pkg/R/function_1.R", "base", "", "", FALSE,
+    "/Users/test/pkg/tests/test.R", "utils", "", "", FALSE,
+    # base packages loaded later
+    "/Users/test/pkg/R/function_1.R", "grDevices", "", "", FALSE,
+    "/Users/test/pkg/tests/test.R", "stats", "", "", FALSE,
+    # always ignore pkg and renv
     "/Users/test/pkg/renv.lock", "renv", "", "", FALSE,
     "/Users/test/pkg/tests/test.R", "pkg", "", "", FALSE
   ))
@@ -117,6 +124,22 @@ test_that("deps_check finds correct missing and extra deps", {
     row.names = 7:8,
     class = "data.frame"
   )
+
+  missing_withbase <- structure(
+    list(
+      Source = c(
+        "/Users/test/pkg/R/function_1.R", "/Users/test/pkg/tests/test.R",
+        "/Users/test/pkg/R/function_1.R", "/Users/test/pkg/tests/test.R",
+        "/Users/test/pkg/R/function_1.R", "/Users/test/pkg/tests/test.R"
+      ),
+      Package = c("source_only_1", "source_only_2", "base", "utils", "grDevices", "stats"),
+      Require = c("", "", "", "", "", ""),
+      Version = c("", "", "", "", "", ""),
+      Dev = c(FALSE, FALSE, FALSE, FALSE, FALSE, FALSE)
+    ),
+    row.names = 7:12,
+    class = "data.frame"
+  )
   # nolint end
 
   mockery::stub(deps_check, "renv::dependencies", renv_dependencies)
@@ -129,10 +152,12 @@ test_that("deps_check finds correct missing and extra deps", {
   mockery::stub(deps_check, "writeLines", NULL)
   expect_identical(deps_check("extra"), extras)
   expect_identical(deps_check("missing"), missing)
+  expect_identical(deps_check("missing", exclude_base = TRUE), missing)
+  expect_identical(deps_check("missing", exclude_base = FALSE), missing_withbase)
 })
 
 test_that("missing_deps and extra_deps call correct deps_check type", {
-  dc <- function(type) {
+  dc <- function(type, exclude_base = TRUE) {
     type
   }
   mockery::stub(missing_deps, "deps_check", dc)
