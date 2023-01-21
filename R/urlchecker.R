@@ -16,9 +16,13 @@ url_check <- urlchecker::url_check
 # NOTE: url_update code includes cli::cli_alert_success which creates a warning in R CMD check if
 # cli is not recorded in Imports. This function is a workaround to ensure use of cli is also
 # detected by renv.
-# TODO: open upstream issue (renv) and/or implement a better fix.
 url_update_renv_workaround <- function(...) {
   cli::cli_alert_success(...)
+}
+
+# NOTE: use of curl::new_pool() is considered a dependency by renv but not by R CMD check.
+curl_new_pool_renv_workaround <- function(...) {
+  curl::new_pool(...)
 }
 
 #' @rdname urlchecker-reexports
@@ -37,8 +41,6 @@ url_update <- urlchecker::url_update
 #' @return A `url_checker_db` object (invisibly). This is a `check_url_db` object with an added
 #'   class with a custom print method.
 #' @export
-# NOTE: use of curl::new_pool() is considered a dependency by renv but not by R CMD check.
-# TODO: open upstream issue (renv) and/or implement a fix.
 html_url_check <- function(path = "docs", parallel = TRUE, pool = curl::new_pool(),
                            progress = TRUE) {
   # nocov start
