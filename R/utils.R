@@ -165,7 +165,7 @@ deps_check <- function(type, exclude_base = TRUE) {
 #'
 #' The current package ([`pkgload::pkg_name(".")`][pkgload::pkg_name()]) and `renv` (in `renv.lock`
 #'   only) are automatically removed from [renv::dependencies()], along with 'base' R packages if
-#'   `exclude_base` is `TRUE` (`r rownames(installed.packages(priority = "base"))`).
+#'   `exclude_base` is `TRUE` (`r sort(rownames(installed.packages(priority = "base")))`).
 #'
 #' @param exclude_base exclude packages installed with R from missing dependencies
 #'
