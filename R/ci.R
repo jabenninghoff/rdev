@@ -74,6 +74,8 @@ print_tbl <- function(df) {
 #'
 #' If [renv::status()] is not synchronized, `ci()` will stop.
 #'
+#' If [missing_deps()] returns any missing dependencies, `ci()` will stop.
+#'
 #' If `styler` is set to `NULL` (the default), [style_all()] will be run only if there are no
 #'   uncommitted changes to git. Setting the value to `TRUE` or `FALSE` overrides this check.
 #'
@@ -83,13 +85,13 @@ print_tbl <- function(df) {
 #'   improved readability in the console.
 #'
 #' @param renv check [renv::status()]
+#' @param missing run [missing_deps()]
 #' @param styler style all files using [style_all()], see details
 #' @param lintr lint all files using [lint_all()]
 #' @param document run [devtools::document()]
 #' @param normalize run [desc::desc_normalize()]
 #' @param rcmdcheck run `R CMD check` using:
 #'   [`rcmdcheck::rcmdcheck(args = "--no-manual", error_on = "warning")`][rcmdcheck::rcmdcheck]
-#' @param missing run [missing_deps()]
 #' @param extra run [extra_deps()]
 #' @param urls validate URLs with [url_check()] and [html_url_check()]
 #'
@@ -100,16 +102,26 @@ print_tbl <- function(df) {
 #' ci(styler = FALSE, rcmdcheck = FALSE)
 #' }
 #' @export
-ci <- function(renv = TRUE, styler = NULL, lintr = TRUE, # nolint: cyclocomp_linter.
-               document = TRUE, normalize = TRUE, rcmdcheck = TRUE,
-               missing = TRUE, extra = TRUE, urls = TRUE) {
+ci <- function(renv = TRUE, missing = TRUE, styler = NULL, lintr = TRUE, # nolint: cyclocomp_linter.
+               document = TRUE, normalize = TRUE, rcmdcheck = TRUE, extra = TRUE, urls = TRUE) {
   if (renv) {
     writeLines("renv::status()")
     status <- renv::status()
     if (!status$synchronized) {
       return(invisible(status))
     }
-    if (any(is.null(styler), styler, lintr, document, normalize, rcmdcheck, missing, extra, urls)) {
+    if (any(missing, is.null(styler), styler, lintr, document, normalize, rcmdcheck, extra, urls)) {
+      writeLines("")
+    }
+  }
+
+  if (missing) {
+    writeLines("missing_deps()")
+    md <- missing_deps()
+    if (nrow(md) != 0) {
+      return(tibble::as_tibble(md))
+    }
+    if (any(is.null(styler), styler, lintr, document, normalize, rcmdcheck, extra, urls)) {
       writeLines("")
     }
   }
@@ -121,7 +133,7 @@ ci <- function(renv = TRUE, styler = NULL, lintr = TRUE, # nolint: cyclocomp_lin
   if (styler) {
     writeLines("style_all()")
     style_all()
-    if (any(lintr, document, normalize, rcmdcheck, missing, extra, urls)) writeLines("")
+    if (any(lintr, document, normalize, rcmdcheck, extra, urls)) writeLines("")
   }
 
   if (lintr) {
@@ -130,19 +142,19 @@ ci <- function(renv = TRUE, styler = NULL, lintr = TRUE, # nolint: cyclocomp_lin
     if (length(lints) > 0) {
       return(lints)
     }
-    if (any(document, normalize, rcmdcheck, missing, extra, urls)) writeLines("")
+    if (any(document, normalize, rcmdcheck, extra, urls)) writeLines("")
   }
 
   if (document) {
     writeLines("devtools::document()")
     devtools::document()
-    if (any(normalize, rcmdcheck, missing, extra, urls)) writeLines("")
+    if (any(normalize, rcmdcheck, extra, urls)) writeLines("")
   }
 
   if (normalize) {
     writeLines("desc::desc_normalize()")
     desc::desc_normalize()
-    if (any(rcmdcheck, missing, extra, urls)) writeLines("")
+    if (any(rcmdcheck, extra, urls)) writeLines("")
   }
 
   if (rcmdcheck) {
@@ -152,13 +164,6 @@ ci <- function(renv = TRUE, styler = NULL, lintr = TRUE, # nolint: cyclocomp_lin
       new = c("NOT_CRAN" = "true", "CI" = "true"),
       rcmdcheck::rcmdcheck(args = "--no-manual", error_on = "warning")
     )
-    if (any(missing, extra, urls)) writeLines("")
-  }
-
-  if (missing) {
-    writeLines("missing_deps()")
-    print_tbl(missing_deps())
-    if (any(extra, urls)) writeLines("")
   }
 
   if (extra) {

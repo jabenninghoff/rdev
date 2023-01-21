@@ -42,6 +42,17 @@ test_that("lint_all checks all file types", {
 test_that("All renv functions are called according to ci logic", {
   renv_sync_true <- list(library = list(), lockfile = list(), synchronized = TRUE)
   renv_sync_false <- list(library = list(), lockfile = list(), synchronized = FALSE)
+  missing_deps_empty <- structure(
+    list(
+      Source = character(0), Package = character(0), Require = character(0),
+      Version = character(0), Dev = logical(0)
+    ),
+    row.names = integer(0), class = "data.frame"
+  )
+  missing_deps_missing <- structure(
+    list(Source = "R/missing.R", Package = "missing", Require = "", Version = "", Dev = FALSE),
+    row.names = 88L, class = "data.frame"
+  )
   git_status_empty <- structure(
     list(file = character(0), status = character(0), staged = logical(0)),
     row.names = integer(0), class = c("tbl_df", "tbl", "data.frame")
@@ -51,6 +62,7 @@ test_that("All renv functions are called according to ci logic", {
     row.names = c(NA, -1L), class = c("tbl_df", "tbl", "data.frame")
   )
   mockery::stub(ci, "renv::status", renv_sync_true)
+  mockery::stub(ci, "missing_deps", missing_deps_empty)
   mockery::stub(ci, "style_all", NULL)
   mockery::stub(ci, "lint_all", NULL)
   mockery::stub(ci, "gert::git_status", git_status_empty)
@@ -58,7 +70,6 @@ test_that("All renv functions are called according to ci logic", {
   mockery::stub(ci, "desc::desc_normalize", NULL)
   mockery::stub(ci, "rcmdcheck::rcmdcheck", NULL)
   mockery::stub(ci, "print_tbl", NULL)
-  mockery::stub(ci, "missing_deps", NULL)
   mockery::stub(ci, "extra_deps", NULL)
   mockery::stub(ci, "url_check", NULL)
   mockery::stub(ci, "html_url_check", NULL)
@@ -67,6 +78,7 @@ test_that("All renv functions are called according to ci logic", {
   end <- "$"
   sep <- "\\n\\n"
   renv <- "renv::status\\(\\)"
+  missing <- "missing_deps\\(\\)"
   styler <- "style_all\\(\\)"
   lintr <- "lint_all\\(\\)"
   document <- "devtools::document\\(\\)"
@@ -75,7 +87,6 @@ test_that("All renv functions are called according to ci logic", {
     'Setting env vars: NOT_CRAN="true", CI="true"\\n',
     'rcmdcheck::rcmdcheck\\(args = "--no-manual", error_on = "warning"\\)'
   )
-  missing <- "missing_deps\\(\\)"
   extra <- "extra_deps\\(\\)"
   urls <- "url_check\\((\\))\nhtml_url_check\\(\\)"
 
@@ -83,8 +94,8 @@ test_that("All renv functions are called according to ci logic", {
   expect_output(
     ci(),
     paste0(
-      begin, renv, sep, styler, sep, lintr, sep, document, sep, normalize, sep, rcmdcheck, sep,
-      missing, sep, extra, sep, urls, end
+      begin, renv, sep, missing, sep, styler, sep, lintr, sep, document, sep, normalize, sep,
+      rcmdcheck, "\\n", extra, sep, urls, end
     )
   )
 
@@ -95,8 +106,8 @@ test_that("All renv functions are called according to ci logic", {
       missing = TRUE, extra = TRUE, urls = TRUE
     ),
     paste0(
-      begin, renv, sep, styler, sep, lintr, sep, document, sep, normalize, sep, rcmdcheck, sep,
-      missing, sep, extra, sep, urls, end
+      begin, renv, sep, missing, sep, styler, sep, lintr, sep, document, sep, normalize, sep,
+      rcmdcheck, "\\n", extra, sep, urls, end
     )
   )
 
@@ -116,7 +127,7 @@ test_that("All renv functions are called according to ci logic", {
       missing = TRUE, extra = TRUE, urls = TRUE
     ),
     paste0(
-      begin, renv, sep, lintr, sep, document, sep, normalize, sep, rcmdcheck, sep, missing, sep,
+      begin, renv, sep, missing, sep, lintr, sep, document, sep, normalize, sep, rcmdcheck, "\\n",
       extra, sep, urls, end
     )
   )
@@ -129,7 +140,17 @@ test_that("All renv functions are called according to ci logic", {
       renv = TRUE, styler = NULL, lintr = TRUE, document = TRUE, normalize = TRUE, rcmdcheck = TRUE,
       missing = TRUE, extra = TRUE, urls = TRUE
     ),
-    paste0(begin, renv, sep, styler, sep, lintr, end)
+    paste0(begin, renv, sep, missing, sep, styler, sep, lintr, end)
+  )
+
+  # missing dependencies
+  mockery::stub(ci, "missing_deps", missing_deps_missing)
+  expect_output(
+    ci(
+      renv = TRUE, styler = NULL, lintr = TRUE, document = TRUE, normalize = TRUE, rcmdcheck = TRUE,
+      missing = TRUE, extra = TRUE, urls = TRUE
+    ),
+    paste0(begin, renv, sep, missing, end)
   )
 
   # renv not synchronized

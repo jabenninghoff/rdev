@@ -6,18 +6,20 @@
 \usage{
 ci(
   renv = TRUE,
+  missing = TRUE,
   styler = NULL,
   lintr = TRUE,
   document = TRUE,
   normalize = TRUE,
   rcmdcheck = TRUE,
-  missing = TRUE,
   extra = TRUE,
   urls = TRUE
 )
 }
 \arguments{
 \item{renv}{check \code{\link[renv:status]{renv::status()}}}
+
+\item{missing}{run \code{\link[=missing_deps]{missing_deps()}}}
 
 \item{styler}{style all files using \code{\link[=style_all]{style_all()}}, see details}
 
@@ -30,8 +32,6 @@ ci(
 \item{rcmdcheck}{run \verb{R CMD check} using:
 \code{\link[rcmdcheck:rcmdcheck]{rcmdcheck::rcmdcheck(args = "--no-manual", error_on = "warning")}}}
 
-\item{missing}{run \code{\link[=missing_deps]{missing_deps()}}}
-
 \item{extra}{run \code{\link[=extra_deps]{extra_deps()}}}
 
 \item{urls}{validate URLs with \code{\link[=url_check]{url_check()}} and \code{\link[=html_url_check]{html_url_check()}}}
@@ -41,6 +41,8 @@ Run continuous integration tests locally.
 }
 \details{
 If \code{\link[renv:status]{renv::status()}} is not synchronized, \code{ci()} will stop.
+
+If \code{\link[=missing_deps]{missing_deps()}} returns any missing dependencies, \code{ci()} will stop.
 
 If \code{styler} is set to \code{NULL} (the default), \code{\link[=style_all]{style_all()}} will be run only if there are no
 uncommitted changes to git. Setting the value to \code{TRUE} or \code{FALSE} overrides this check.
