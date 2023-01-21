@@ -12,6 +12,7 @@ URL: https://jabenninghoff.github.io/rdev/,
 BugReports: https://github.com/jabenninghoff/rdev/issues
 Imports:
     cli,
+    curl,
     desc,
     devtools,
     fs,
