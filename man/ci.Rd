@@ -4,7 +4,17 @@
 \alias{ci}
 \title{Local CI}
 \usage{
-ci(renv = TRUE, styler = NULL, lintr = TRUE, document = TRUE, rcmdcheck = TRUE)
+ci(
+  renv = TRUE,
+  styler = NULL,
+  lintr = TRUE,
+  document = TRUE,
+  normalize = TRUE,
+  rcmdcheck = TRUE,
+  missing = TRUE,
+  extra = TRUE,
+  urls = TRUE
+)
 }
 \arguments{
 \item{renv}{check \code{\link[renv:status]{renv::status()}}}
@@ -15,8 +25,16 @@ ci(renv = TRUE, styler = NULL, lintr = TRUE, document = TRUE, rcmdcheck = TRUE)
 
 \item{document}{run \code{\link[devtools:document]{devtools::document()}}}
 
-\item{rcmdcheck}{run \code{R CMD check} using:
+\item{normalize}{run \code{\link[desc:desc_normalize]{desc::desc_normalize()}}}
+
+\item{rcmdcheck}{run \verb{R CMD check} using:
 \code{\link[rcmdcheck:rcmdcheck]{rcmdcheck::rcmdcheck(args = "--no-manual", error_on = "warning")}}}
+
+\item{missing}{run \code{\link[=missing_deps]{missing_deps()}}}
+
+\item{extra}{run \code{\link[=extra_deps]{extra_deps()}}}
+
+\item{urls}{validate URLs with \code{\link[=url_check]{url_check()}} and \code{\link[=html_url_check]{html_url_check()}}}
 }
 \description{
 Run continuous integration tests locally.
@@ -28,6 +46,9 @@ If \code{styler} is set to \code{NULL} (the default), \code{\link[=style_all]{st
 uncommitted changes to git. Setting the value to \code{TRUE} or \code{FALSE} overrides this check.
 
 If \code{\link[=lint_all]{lint_all()}} finds any lints, \code{ci()} will stop and open the RStudio markers pane.
+
+Output from \code{missing}, \code{extra}, and \code{urls} is printed as a \link[tibble:tibble]{tibble} for
+improved readability in the console.
 }
 \examples{
 \dontrun{
