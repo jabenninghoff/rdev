@@ -25,5 +25,5 @@ Check dependencies in DESCRIPTION.
 
 The current package (\code{\link[pkgload:packages]{pkgload::pkg_name(".")}}) and \code{renv} (in \code{renv.lock}
 only) are automatically removed from \code{\link[renv:dependencies]{renv::dependencies()}}, along with 'base' R packages if
-\code{exclude_base} is \code{TRUE} (base, compiler, datasets, graphics, grDevices, grid, methods, parallel, splines, stats, stats4, tcltk, tools, utils).
+\code{exclude_base} is \code{TRUE} (base, compiler, datasets, grDevices, graphics, grid, methods, parallel, splines, stats, stats4, tcltk, tools, utils).
 }
