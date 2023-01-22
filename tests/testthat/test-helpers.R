@@ -26,6 +26,7 @@ test_that("local_temppkg creates a valid rdev package", {
   expect_true(fs::file_exists(".github/.gitignore"))
   expect_true(fs::file_exists(".github/workflows/check-standard.yaml"))
   expect_true(fs::file_exists(".github/workflows/lint.yaml"))
+  expect_true(fs::file_exists(".github/workflows/missing-deps.yaml"))
   expect_true(fs::file_exists(".gitignore"))
   expect_true(fs::file_exists(".lintr"))
   expect_true(fs::file_exists("DESCRIPTION"))
@@ -84,18 +85,21 @@ test_that("local_temppkg uses GitHub Action options", {
   expect_true(fs::file_exists(".github/.gitignore"))
   expect_true(fs::file_exists(".github/workflows/check-standard.yaml"))
   expect_true(fs::file_exists(".github/workflows/lint.yaml"))
+  expect_true(fs::file_exists(".github/workflows/missing-deps.yaml"))
   withr::with_options(
     list(rdev.github.actions = TRUE), usethis::ui_silence(local_temppkg(type = "rdev"))
   )
   expect_true(fs::file_exists(".github/.gitignore"))
   expect_true(fs::file_exists(".github/workflows/check-standard.yaml"))
   expect_true(fs::file_exists(".github/workflows/lint.yaml"))
+  expect_true(fs::file_exists(".github/workflows/missing-deps.yaml"))
   withr::with_options(
     list(rdev.github.actions = FALSE), usethis::ui_silence(local_temppkg(type = "rdev"))
   )
   expect_false(fs::file_exists(".github/.gitignore"))
   expect_false(fs::file_exists(".github/workflows/check-standard.yaml"))
   expect_false(fs::file_exists(".github/workflows/lint.yaml"))
+  expect_false(fs::file_exists(".github/workflows/missing-deps.yaml"))
 })
 
 test_that("local_temppkg creates a valid analysis package", {
@@ -112,6 +116,7 @@ test_that("local_temppkg creates a valid analysis package", {
   expect_true(fs::file_exists(".github/.gitignore"))
   expect_true(fs::file_exists(".github/workflows/check-standard.yaml"))
   expect_true(fs::file_exists(".github/workflows/lint.yaml"))
+  expect_true(fs::file_exists(".github/workflows/missing-deps.yaml"))
   expect_true(fs::file_exists(".gitignore"))
   expect_true(fs::file_exists(".lintr"))
   expect_true(fs::file_exists("DESCRIPTION"))
