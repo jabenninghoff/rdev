@@ -11,9 +11,9 @@ ci(
   lintr = TRUE,
   document = TRUE,
   normalize = TRUE,
-  rcmdcheck = TRUE,
   extra = TRUE,
-  urls = TRUE
+  urls = TRUE,
+  rcmdcheck = TRUE
 )
 }
 \arguments{
@@ -29,12 +29,12 @@ ci(
 
 \item{normalize}{run \code{\link[desc:desc_normalize]{desc::desc_normalize()}}}
 
-\item{rcmdcheck}{run \verb{R CMD check} using:
-\code{\link[rcmdcheck:rcmdcheck]{rcmdcheck::rcmdcheck(args = "--no-manual", error_on = "warning")}}}
-
 \item{extra}{run \code{\link[=extra_deps]{extra_deps()}}}
 
 \item{urls}{validate URLs with \code{\link[=url_check]{url_check()}} and \code{\link[=html_url_check]{html_url_check()}}}
+
+\item{rcmdcheck}{run \verb{R CMD check} using:
+\code{\link[rcmdcheck:rcmdcheck]{rcmdcheck::rcmdcheck(args = "--no-manual", error_on = "warning")}}}
 }
 \description{
 Run continuous integration tests locally.
