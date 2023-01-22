@@ -53,10 +53,13 @@ stopifnot(
       enabled = TRUE,
       required_status_checks = list(
         enforcement_level = "non_admins",
-        contexts = list("lint", "macOS-latest (release)", "windows-latest (release)"),
+        contexts = list(
+          "lint", "macos-latest (release)", "missing-deps", "windows-latest (release)"
+        ),
         checks = list(
           list(context = "lint", app_id = 15368L),
-          list(context = "macOS-latest (release)", app_id = 15368L),
+          list(context = "macos-latest (release)", app_id = 15368L),
+          list(context = "missing-deps", app_id = 15368L),
           list(context = "windows-latest (release)", app_id = 15368L)
         )
       )

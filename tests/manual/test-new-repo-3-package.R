@@ -82,7 +82,7 @@ stopifnot(
     "# Need help debugging build failures? Start at https://github.com/r-lib/actions#where-to-find-help", # nolint: line_length_linter.
     "on:", "  push:", "    branches: [main, master]", "  pull_request:",
     "    branches: [main, master]", "", "name: test-coverage", "", "jobs:", "  test-coverage:",
-    "    runs-on: macOS-latest", "    env:", "      GITHUB_PAT: ${{ secrets.GITHUB_TOKEN }}", "",
+    "    runs-on: macos-latest", "    env:", "      GITHUB_PAT: ${{ secrets.GITHUB_TOKEN }}", "",
     "    steps:", "      - uses: actions/checkout@v2", "", "      - uses: r-lib/actions/setup-r@v2",
     "", "      - uses: r-lib/actions/setup-renv@v2", "",
     "      - uses: r-lib/actions/setup-pandoc@v2", "", "      - name: Test coverage",

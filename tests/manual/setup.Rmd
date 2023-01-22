@@ -44,7 +44,8 @@ Then:
   - Require branches to be up to date before merging
   - Status checks that are required:
     - lint, GitHub Actions
-    - macOS-latest (release), GitHub Actions
+    - macos-latest (release), GitHub Actions
+    - missing-deps, GitHub Actions
     - windows-latest (release), GitHub Actions
   - Require linear history
 - Code security and analysis:

@@ -252,7 +252,8 @@ create_github_repo <- function(repo_name, repo_desc = "", org = NULL,
       strict = TRUE,
       checks = list(
         list(context = "lint", app_id = 15368L),
-        list(context = "macOS-latest (release)", app_id = 15368L),
+        list(context = "macos-latest (release)", app_id = 15368L),
+        list(context = "missing-deps", app_id = 15368L),
         list(context = "windows-latest (release)", app_id = 15368L)
       )
     )
