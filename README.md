@@ -202,13 +202,13 @@ ci()
 #> # A tibble: 7 × 9
 #>   URL                        From  Status Message New   CRAN  Spaces R     root 
 #>   <chr>                      <nam> <chr>  <chr>   <chr> <chr> <chr>  <chr> <chr>
-#> 1 http://covr.r-lib.org/ref… <chr> 200    OK      "htt… ""    ""     ""    /Use…
-#> 2 http://r-lib.github.io/de… <chr> 200    OK      "htt… ""    ""     ""    /Use…
-#> 3 http://r-lib.github.io/de… <chr> 200    OK      "htt… ""    ""     ""    /Use…
-#> 4 http://r-lib.github.io/de… <chr> 200    OK      "htt… ""    ""     ""    /Use…
-#> 5 http://r-lib.github.io/de… <chr> 200    OK      "htt… ""    ""     ""    /Use…
-#> 6 http://r-lib.github.io/rc… <chr> 200    OK      "htt… ""    ""     ""    /Use…
-#> 7 https://rdrr.io/pkg/urlch… <chr> 503    Servic… ""    ""    ""     ""    /Use…
+#> 1 http://covr.r-lib.org/ref… <chr> 200    OK      http… ""    ""     ""    /Use…
+#> 2 http://r-lib.github.io/de… <chr> 200    OK      http… ""    ""     ""    /Use…
+#> 3 http://r-lib.github.io/de… <chr> 200    OK      http… ""    ""     ""    /Use…
+#> 4 http://r-lib.github.io/de… <chr> 200    OK      http… ""    ""     ""    /Use…
+#> 5 http://r-lib.github.io/de… <chr> 200    OK      http… ""    ""     ""    /Use…
+#> 6 http://r-lib.github.io/de… <chr> 200    OK      http… ""    ""     ""    /Use…
+#> 7 http://r-lib.github.io/rc… <chr> 200    OK      http… ""    ""     ""    /Use…
 #> 
 #> Setting env vars: NOT_CRAN="true", CI="true"
 #> rcmdcheck::rcmdcheck(args = "--no-manual", error_on = "warning")
@@ -220,16 +220,16 @@ ci()
 #> * creating vignettes ... OK
 #> * checking for LF line-endings in source and make files and shell scripts
 #> * checking for empty or unneeded directories
-#> * building ‘rdev_1.6.2.tar.gz’
+#> * building ‘rdev_1.6.3.tar.gz’
 #> 
 #> ── R CMD check ─────────────────────────────────────────────────────────────────
-#> * using log directory ‘/private/var/folders/vn/cw5f9gws42v9m8mdsds_zbl00000gp/T/RtmpTTVKAM/file8afa27dba3e2/rdev.Rcheck’
+#> * using log directory ‘/private/var/folders/vn/cw5f9gws42v9m8mdsds_zbl00000gp/T/Rtmp6I5MJa/file14c7c4d26dfc3/rdev.Rcheck’
 #> * using R version 4.2.2 (2022-10-31)
 #> * using platform: x86_64-apple-darwin17.0 (64-bit)
 #> * using session charset: UTF-8
 #> * using option ‘--no-manual’
 #> * checking for file ‘rdev/DESCRIPTION’ ... OK
-#> * this is package ‘rdev’ version ‘1.6.2’
+#> * this is package ‘rdev’ version ‘1.6.3’
 #> * package encoding: UTF-8
 #> * checking package namespace information ... OK
 #> * checking package dependencies ... OK
@@ -287,8 +287,8 @@ ci()
 #> * checking re-building of vignette outputs ... OK
 #> * DONE
 #> Status: OK
-#> ── R CMD check results ───────────────────────────────────────── rdev 1.6.2 ────
-#> Duration: 44.1s
+#> ── R CMD check results ───────────────────────────────────────── rdev 1.6.3 ────
+#> Duration: 43.1s
 #> 
 #> 0 errors ✔ | 0 warnings ✔ | 0 notes ✔
 ```
