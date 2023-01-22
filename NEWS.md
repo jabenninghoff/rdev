@@ -1,3 +1,11 @@
+# rdev 1.6.2
+
+* `missing_deps()` now excludes base R packages by default
+
+* Added new checks to `ci()`: `missing_deps()`, `desc::desc_normalize()`, `extra_deps()`, `url_check()`, and `html_url_check()`; `ci()` will stop if `missing_deps()` returns one or more rows
+
+* Added `missing-deps.yaml` GitHub Action
+
 # rdev 1.6.1
 
 * `new_branch()` now stashes and restores changes, so that the `Bump version` commit just changes the version number in `DESCRIPTION`
