@@ -139,6 +139,8 @@ deps_check <- function(type, exclude_base = TRUE) {
   renv_deps <-
     renv_deps[!(renv_deps$Package == "renv" & endsWith(renv_deps$Source, "/renv.lock")), ]
   desc_deps <- desc::desc_get_deps()
+  # desc_get_deps() will return Depends R which is not a valid package
+  desc_deps <- desc_deps[!desc_deps$package == "R", ]
   if (type == "missing") {
     writeLines("renv::dependencies() not in DESCRIPTION:")
     if (exclude_base) {
