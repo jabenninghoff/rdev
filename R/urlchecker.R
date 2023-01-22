@@ -44,7 +44,7 @@ url_update <- urlchecker::url_update
 html_url_check <- function(path = "docs", parallel = TRUE, pool = curl::new_pool(),
                            progress = TRUE) {
   # nocov start
-  url_db_from_HTML_files <- "tools" %:::% "url_db_from_HTML_files" # nolint: object_name_linter.
+  url_db_from_HTML_files <- "tools" %:::% "url_db_from_HTML_files"
 
   urlchecker::url_check(
     path = path, db = url_db_from_HTML_files(normalizePath(path), recursive = TRUE),
