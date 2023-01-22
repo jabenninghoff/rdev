@@ -350,6 +350,9 @@ use_rdev_package <- function(quiet = TRUE) {
     usethis::use_github_action(
       url = "https://github.com/jabenninghoff/rdev/blob/main/.github/workflows/lint.yaml"
     )
+    usethis::use_github_action(
+      url = "https://github.com/jabenninghoff/rdev/blob/main/.github/workflows/missing-deps.yaml"
+    )
   }
   use_todo()
   usethis::use_news_md()

@@ -80,21 +80,22 @@ stopifnot(
       list(
         file = c(
           ".github/.gitignore", ".github/workflows/check-standard.yaml",
-          ".github/workflows/lint.yaml", ".gitignore", ".lintr", ".Rbuildignore", ".Rprofile",
-          "DESCRIPTION", "LICENSE.md", "man/rdtest1-package.Rd", "NEWS.md", "R/package.R",
-          "README.md", "README.Rmd", "renv.lock", "renv/.gitignore", "renv/activate.R",
-          "renv/settings.dcf", "tests/testthat.R", "tests/testthat/test-package.R", "TODO.md"
+          ".github/workflows/lint.yaml", ".github/workflows/missing-deps.yaml", ".gitignore",
+          ".lintr", ".Rbuildignore", ".Rprofile", "DESCRIPTION", "LICENSE.md",
+          "man/rdtest1-package.Rd", "NEWS.md", "R/package.R", "README.md", "README.Rmd",
+          "renv.lock", "renv/.gitignore", "renv/activate.R", "renv/settings.dcf",
+          "tests/testthat.R", "tests/testthat/test-package.R", "TODO.md"
         ),
         status = c(
-          "new", "new", "new", "modified", "new", "modified", "new", "modified", "new", "new",
-          "new", "new", "new", "new", "new", "new", "new", "new", "new", "new", "new"
+          "new", "new", "new", "new", "modified", "new", "modified", "new", "modified", "new",
+          "new", "new", "new", "new", "new", "new", "new", "new", "new", "new", "new", "new"
         ),
         staged = c(
           TRUE, TRUE, TRUE, TRUE, TRUE, TRUE, TRUE, TRUE, TRUE, TRUE, TRUE, TRUE, TRUE, TRUE, TRUE,
-          TRUE, TRUE, TRUE, TRUE, TRUE, TRUE
+          TRUE, TRUE, TRUE, TRUE, TRUE, TRUE, TRUE
         )
       ),
-      row.names = c(NA, -21L), class = c("tbl_df", "tbl", "data.frame")
+      row.names = c(NA, -22L), class = c("tbl_df", "tbl", "data.frame")
     )
   )
 )
