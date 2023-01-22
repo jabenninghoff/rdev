@@ -90,10 +90,10 @@ print_tbl <- function(df) {
 #' @param lintr lint all files using [lint_all()]
 #' @param document run [devtools::document()]
 #' @param normalize run [desc::desc_normalize()]
-#' @param rcmdcheck run `R CMD check` using:
-#'   [`rcmdcheck::rcmdcheck(args = "--no-manual", error_on = "warning")`][rcmdcheck::rcmdcheck]
 #' @param extra run [extra_deps()]
 #' @param urls validate URLs with [url_check()] and [html_url_check()]
+#' @param rcmdcheck run `R CMD check` using:
+#'   [`rcmdcheck::rcmdcheck(args = "--no-manual", error_on = "warning")`][rcmdcheck::rcmdcheck]
 #'
 #' @examples
 #' \dontrun{
@@ -103,14 +103,14 @@ print_tbl <- function(df) {
 #' }
 #' @export
 ci <- function(renv = TRUE, missing = TRUE, styler = NULL, lintr = TRUE, # nolint: cyclocomp_linter.
-               document = TRUE, normalize = TRUE, rcmdcheck = TRUE, extra = TRUE, urls = TRUE) {
+               document = TRUE, normalize = TRUE, extra = TRUE, urls = TRUE, rcmdcheck = TRUE) {
   if (renv) {
     writeLines("renv::status()")
     status <- renv::status()
     if (!status$synchronized) {
       return(invisible(status))
     }
-    if (any(missing, is.null(styler), styler, lintr, document, normalize, rcmdcheck, extra, urls)) {
+    if (any(missing, is.null(styler), styler, lintr, document, normalize, extra, urls, rcmdcheck)) {
       writeLines("")
     }
   }
@@ -121,7 +121,7 @@ ci <- function(renv = TRUE, missing = TRUE, styler = NULL, lintr = TRUE, # nolin
     if (nrow(md) != 0) {
       return(tibble::as_tibble(md))
     }
-    if (any(is.null(styler), styler, lintr, document, normalize, rcmdcheck, extra, urls)) {
+    if (any(is.null(styler), styler, lintr, document, normalize, extra, urls, rcmdcheck)) {
       writeLines("")
     }
   }
@@ -133,7 +133,7 @@ ci <- function(renv = TRUE, missing = TRUE, styler = NULL, lintr = TRUE, # nolin
   if (styler) {
     writeLines("style_all()")
     style_all()
-    if (any(lintr, document, normalize, rcmdcheck, extra, urls)) writeLines("")
+    if (any(lintr, document, normalize, extra, urls, rcmdcheck)) writeLines("")
   }
 
   if (lintr) {
@@ -142,21 +142,36 @@ ci <- function(renv = TRUE, missing = TRUE, styler = NULL, lintr = TRUE, # nolin
     if (length(lints) > 0) {
       return(lints)
     }
-    if (any(document, normalize, rcmdcheck, extra, urls)) writeLines("")
+    if (any(document, normalize, extra, urls, rcmdcheck)) writeLines("")
   }
 
   if (document) {
     writeLines("devtools::document()")
     devtools::document()
-    if (any(normalize, rcmdcheck, extra, urls)) writeLines("")
+    if (any(normalize, extra, urls, rcmdcheck)) writeLines("")
   }
 
   if (normalize) {
     writeLines("desc::desc_normalize()")
     desc::desc_normalize()
-    if (any(rcmdcheck, extra, urls)) writeLines("")
+    if (any(extra, urls, rcmdcheck)) writeLines("")
   }
 
+  if (extra) {
+    writeLines("extra_deps()")
+    print_tbl(extra_deps())
+    if (any(urls, rcmdcheck)) writeLines("")
+  }
+
+  if (urls) {
+    writeLines("url_check()")
+    print_tbl(url_check(progress = FALSE))
+    writeLines("html_url_check()")
+    print_tbl(html_url_check(progress = FALSE))
+    if (rcmdcheck) writeLines("")
+  }
+
+  # NOTE: run rcmdcheck last to get complete output
   if (rcmdcheck) {
     writeLines('Setting env vars: NOT_CRAN="true", CI="true"')
     writeLines('rcmdcheck::rcmdcheck(args = "--no-manual", error_on = "warning")')
@@ -164,18 +179,5 @@ ci <- function(renv = TRUE, missing = TRUE, styler = NULL, lintr = TRUE, # nolin
       new = c("NOT_CRAN" = "true", "CI" = "true"),
       rcmdcheck::rcmdcheck(args = "--no-manual", error_on = "warning")
     )
-  }
-
-  if (extra) {
-    writeLines("extra_deps()")
-    print_tbl(extra_deps())
-    if (urls) writeLines("")
-  }
-
-  if (urls) {
-    writeLines("url_check()")
-    print_tbl(url_check())
-    writeLines("html_url_check()")
-    print_tbl(html_url_check())
   }
 }
