@@ -6,11 +6,11 @@ on:
   pull_request:
     branches: [main, master]
 
-name: lint
+name: missing-deps
 
 jobs:
-  lint:
-    runs-on: macOS-latest
+  missing-deps:
+    runs-on: macos-latest
     env:
       GITHUB_PAT: ${{ secrets.GITHUB_TOKEN }}
 
@@ -21,12 +21,12 @@ jobs:
 
       - uses: r-lib/actions/setup-renv@v2
       - name: Install dependencies
-        run: renv::install(c("rdev"))
+        run: renv::install("jabenninghoff/rdev")
         shell: Rscript {0}
 
       - name: Find missing dependencies
         run: |
-          mdeps <- missing_deps(exclude_base = TRUE)
+          mdeps <- rdev::missing_deps()
           mdeps
           stopifnot(nrow(mdeps) == 0)
         shell: Rscript {0}
