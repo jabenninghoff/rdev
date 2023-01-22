@@ -1,3 +1,7 @@
+# rdev 1.6.3
+
+* `extra_deps()` no longer reports R as an extra package
+
 # rdev 1.6.2
 
 * `missing_deps()` now excludes base R packages by default
