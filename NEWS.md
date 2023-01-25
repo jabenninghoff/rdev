@@ -1,3 +1,7 @@
+# rdev 1.6.4
+
+* Added check to install pre-commit git hook if missing (update `use_rprofile()`)
+
 # rdev 1.6.3
 
 * `extra_deps()` no longer reports R as an extra package
