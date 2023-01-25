@@ -7,7 +7,11 @@
 #' @export
 use_rprofile <- function(open = FALSE) {
   usethis::use_template("Rprofile", save_as = ".Rprofile", package = "rdev", open = open)
+  # renv is not included in DESCRIPTION by convention
   usethis::use_package("pkgload", type = "Suggests")
+  usethis::use_package("devtools", type = "Suggests")
+  usethis::use_package("fs", type = "Suggests")
+  usethis::use_package("usethis", type = "Suggests")
 }
 
 #' Use rdev .lintr
