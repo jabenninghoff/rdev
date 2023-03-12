@@ -26,7 +26,7 @@
     
     <a class="navbar-brand me-2" href="../index.html">rdev</a>
 
-    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">1.6.4</small>
+    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">1.6.5</small>
 
     
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbar" aria-controls="navbar" aria-expanded="false" aria-label="Toggle navigation">
@@ -168,8 +168,8 @@ configuration (<code>.lintr</code>):</p>
 <div class="section level3">
 <h3 id="use-all-linters">Use all linters<a class="anchor" aria-label="anchor" href="#use-all-linters"></a>
 </h3>
-<div class="sourceCode" id="cb2"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a>linters<span class="sc">:</span> <span class="fu">linters_with_tags</span>(</span>
-<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a>    <span class="at">tags =</span> <span class="cn">NULL</span>,</span></code></pre></div>
+<div class="sourceCode" id="cb2"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1" tabindex="-1"></a>linters<span class="sc">:</span> <span class="fu">linters_with_tags</span>(</span>
+<span id="cb2-2"><a href="#cb2-2" tabindex="-1"></a>    <span class="at">tags =</span> <span class="cn">NULL</span>,</span></code></pre></div>
 <p>This selects all linters, including the new <a href="https://lintr.r-lib.org/news/index.html#google-linters-3-0-0" class="external-link">Google
 linters</a>. By selecting all linters, not just the defaults, this
 forces evaluation of new linters as they are added to lintr. Specific
@@ -178,7 +178,7 @@ linters are disabled or configured per rdev style.</p>
 <div class="section level3">
 <h3 id="allow-extraction-operator">Allow $ extraction operator<a class="anchor" aria-label="anchor" href="#allow-extraction-operator"></a>
 </h3>
-<div class="sourceCode" id="cb3"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a>    extraction_operator_linter <span class="ot">=</span> <span class="cn">NULL</span>,</span></code></pre></div>
+<div class="sourceCode" id="cb3"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" tabindex="-1"></a>    extraction_operator_linter <span class="ot">=</span> <span class="cn">NULL</span>,</span></code></pre></div>
 <p>The extraction operator linter enforces use of <code>[[</code> over
 <code>$</code>. Since <code>$</code> is intended for interactive use and
 supports partial mapping, it is safer to use <code>[[</code>. However,
@@ -188,7 +188,7 @@ code, and leads to more readable code.</p>
 <div class="section level3">
 <h3 id="allow-implicit-integers">Allow implicit integers<a class="anchor" aria-label="anchor" href="#allow-implicit-integers"></a>
 </h3>
-<div class="sourceCode" id="cb4"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a>    implicit_integer_linter <span class="ot">=</span> <span class="cn">NULL</span>,</span></code></pre></div>
+<div class="sourceCode" id="cb4"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1" tabindex="-1"></a>    implicit_integer_linter <span class="ot">=</span> <span class="cn">NULL</span>,</span></code></pre></div>
 <p>The implicit integer linter checks that integers are explicitly typed
 using the form <code>1L</code>. Again, while this is safer, implicit
 integers are common practice, including in the output of
@@ -200,15 +200,15 @@ integers are common practice, including in the output of
 <div class="section level3">
 <h3 id="set-line-length">Set line length<a class="anchor" aria-label="anchor" href="#set-line-length"></a>
 </h3>
-<div class="sourceCode" id="cb6"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a>    <span class="fu">line_length_linter</span>(<span class="dv">100</span>),</span></code></pre></div>
+<div class="sourceCode" id="cb6"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb6-1"><a href="#cb6-1" tabindex="-1"></a>    <span class="fu">line_length_linter</span>(<span class="dv">100</span>),</span></code></pre></div>
 <p>A line length of 100 is a reasonable width when working in the
 RStudio IDE on a laptop.</p>
 </div>
 <div class="section level3">
 <h3 id="use-renv-for-missing-packages">Use renv for missing packages<a class="anchor" aria-label="anchor" href="#use-renv-for-missing-packages"></a>
 </h3>
-<div class="sourceCode" id="cb7"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a>    missing_package_linter <span class="ot">=</span> <span class="cn">NULL</span>,</span>
-<span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a>    namespace_linter <span class="ot">=</span> <span class="cn">NULL</span>,</span></code></pre></div>
+<div class="sourceCode" id="cb7"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb7-1"><a href="#cb7-1" tabindex="-1"></a>    missing_package_linter <span class="ot">=</span> <span class="cn">NULL</span>,</span>
+<span id="cb7-2"><a href="#cb7-2" tabindex="-1"></a>    namespace_linter <span class="ot">=</span> <span class="cn">NULL</span>,</span></code></pre></div>
 <p>The missing package linter and the namespace linter both check for
 packages referenced in code that are not installed. rdev uses <a href="https://rstudio.github.io/renv/" class="external-link">renv</a> to manage packages,
 which does a better job of detecting missing packages, including not
@@ -218,7 +218,7 @@ installed.</p>
 <div class="section level3">
 <h3 id="allow-non-portable-paths">Allow non-portable paths<a class="anchor" aria-label="anchor" href="#allow-non-portable-paths"></a>
 </h3>
-<div class="sourceCode" id="cb8"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a>    nonportable_path_linter <span class="ot">=</span> <span class="cn">NULL</span>,</span></code></pre></div>
+<div class="sourceCode" id="cb8"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb8-1"><a href="#cb8-1" tabindex="-1"></a>    nonportable_path_linter <span class="ot">=</span> <span class="cn">NULL</span>,</span></code></pre></div>
 <p>The non-portable path linter generates too many false positives,
 including calls to <a href="https://fs.r-lib.org" class="external-link">fs</a>, which
 essentially makes UNIX-style paths portable across operating
@@ -227,17 +227,17 @@ systems.</p>
 <div class="section level3">
 <h3 id="allow-todo-comments">Allow TODO comments<a class="anchor" aria-label="anchor" href="#allow-todo-comments"></a>
 </h3>
-<div class="sourceCode" id="cb9"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a>    todo_comment_linter <span class="ot">=</span> <span class="cn">NULL</span>,</span></code></pre></div>
+<div class="sourceCode" id="cb9"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb9-1"><a href="#cb9-1" tabindex="-1"></a>    todo_comment_linter <span class="ot">=</span> <span class="cn">NULL</span>,</span></code></pre></div>
 <p>rdev conventions encourage use of <code># TODO</code> comments as a
 convenient way of identifying needed or planned updates inline.</p>
 </div>
 <div class="section level3">
 <h3 id="disallow-almost-all-undesirable-functions-and-operators">Disallow almost all undesirable functions and operators<a class="anchor" aria-label="anchor" href="#disallow-almost-all-undesirable-functions-and-operators"></a>
 </h3>
-<div class="sourceCode" id="cb10"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a>    <span class="fu">undesirable_function_linter</span>(</span>
-<span id="cb10-2"><a href="#cb10-2" aria-hidden="true" tabindex="-1"></a>      <span class="fu">within</span>(all_undesirable_functions, <span class="fu">rm</span>(ifelse, library, require))</span>
-<span id="cb10-3"><a href="#cb10-3" aria-hidden="true" tabindex="-1"></a>    ),</span>
-<span id="cb10-4"><a href="#cb10-4" aria-hidden="true" tabindex="-1"></a>    <span class="fu">undesirable_operator_linter</span>(all_undesirable_operators),</span></code></pre></div>
+<div class="sourceCode" id="cb10"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb10-1"><a href="#cb10-1" tabindex="-1"></a>    <span class="fu">undesirable_function_linter</span>(</span>
+<span id="cb10-2"><a href="#cb10-2" tabindex="-1"></a>      <span class="fu">within</span>(all_undesirable_functions, <span class="fu">rm</span>(ifelse, library, require))</span>
+<span id="cb10-3"><a href="#cb10-3" tabindex="-1"></a>    ),</span>
+<span id="cb10-4"><a href="#cb10-4" tabindex="-1"></a>    <span class="fu">undesirable_operator_linter</span>(all_undesirable_operators),</span></code></pre></div>
 <p>Enable all undesirable functions and operators, not just the
 defaults, except for <code><a href="https://rdrr.io/r/base/ifelse.html" class="external-link">ifelse()</a></code> which is more succinct than
 an <code>if</code>/<code>else</code> block, <code><a href="https://rdrr.io/r/base/library.html" class="external-link">library()</a></code> and
@@ -249,17 +249,17 @@ be used within package code.</p>
 <div class="section level3">
 <h3 id="enforce-strict-unneeded-concatenation">Enforce strict unneeded concatenation<a class="anchor" aria-label="anchor" href="#enforce-strict-unneeded-concatenation"></a>
 </h3>
-<div class="sourceCode" id="cb11"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a>    <span class="fu">unneeded_concatenation_linter</span>(<span class="at">allow_single_expression =</span> <span class="cn">FALSE</span>),</span></code></pre></div>
+<div class="sourceCode" id="cb11"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb11-1"><a href="#cb11-1" tabindex="-1"></a>    <span class="fu">unneeded_concatenation_linter</span>(<span class="at">allow_single_expression =</span> <span class="cn">FALSE</span>),</span></code></pre></div>
 <p>Enforce the stricter version of the unneeded concatenation
 linter.</p>
 </div>
 <div class="section level3">
 <h3 id="verify-imported-packages-are-used">Verify imported packages are used<a class="anchor" aria-label="anchor" href="#verify-imported-packages-are-used"></a>
 </h3>
-<div class="sourceCode" id="cb12"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a>    <span class="fu">unused_import_linter</span>(</span>
-<span id="cb12-2"><a href="#cb12-2" aria-hidden="true" tabindex="-1"></a>      <span class="at">except_packages =</span> <span class="fu">c</span>(<span class="st">"bit64"</span>, <span class="st">"data.table"</span>, <span class="st">"tidyverse"</span>, pkgload<span class="sc">::</span><span class="fu">pkg_name</span>(<span class="st">"."</span>))</span>
-<span id="cb12-3"><a href="#cb12-3" aria-hidden="true" tabindex="-1"></a>    )</span>
-<span id="cb12-4"><a href="#cb12-4" aria-hidden="true" tabindex="-1"></a>  <span class="er">)</span></span></code></pre></div>
+<div class="sourceCode" id="cb12"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb12-1"><a href="#cb12-1" tabindex="-1"></a>    <span class="fu">unused_import_linter</span>(</span>
+<span id="cb12-2"><a href="#cb12-2" tabindex="-1"></a>      <span class="at">except_packages =</span> <span class="fu">c</span>(<span class="st">"bit64"</span>, <span class="st">"data.table"</span>, <span class="st">"tidyverse"</span>, pkgload<span class="sc">::</span><span class="fu">pkg_name</span>(<span class="st">"."</span>))</span>
+<span id="cb12-3"><a href="#cb12-3" tabindex="-1"></a>    )</span>
+<span id="cb12-4"><a href="#cb12-4" tabindex="-1"></a>  <span class="er">)</span></span></code></pre></div>
 <p>Verify that imported packages are used, except for packages that are
 attached for their side effects, and the current package (to support
 package development).</p>
