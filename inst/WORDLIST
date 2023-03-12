@@ -57,6 +57,7 @@ navbar
 pkgdown
 po
 pre
+qmd
 rcmdcheck
 rebaseable
 renv
