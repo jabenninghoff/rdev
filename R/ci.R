@@ -27,7 +27,7 @@ check_renv <- function(update = rlang::is_interactive()) {
 #' Style all files
 #'
 #' Style all files in a project. Implemented as a wrapper for [styler::style_dir()] that styles
-#'   `.R`, `.Rprofile`, `.Rmd`, and `.Rnw` files by default.
+#'   `.R`, `.Rprofile`, `.Rmd`, `.Rmarkdown`, `.Rnw`, and `.Qmd` files by default.
 #'
 #' @inheritParams styler::style_dir
 #' @inheritDotParams styler::style_dir
@@ -38,7 +38,9 @@ check_renv <- function(update = rlang::is_interactive()) {
 #' style_all("analysis", filetype = "Rmd")
 #' }
 #' @export
-style_all <- function(path = ".", filetype = c("R", "Rprofile", "Rmd", "Rnw"), ...) {
+style_all <- function(path = ".",
+                      filetype = c("R", "Rprofile", "Rmd", "Rmarkdown", "Rnw", "Qmd"),
+                      ...) {
   styler::style_dir(path = path, filetype = filetype, ...)
 }
 

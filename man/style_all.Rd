@@ -4,15 +4,19 @@
 \alias{style_all}
 \title{Style all files}
 \usage{
-style_all(path = ".", filetype = c("R", "Rprofile", "Rmd", "Rnw"), ...)
+style_all(
+  path = ".",
+  filetype = c("R", "Rprofile", "Rmd", "Rmarkdown", "Rnw", "Qmd"),
+  ...
+)
 }
 \arguments{
 \item{path}{Path to a directory with files to transform.}
 
 \item{filetype}{Vector of file extensions indicating which file types should
-be styled. Case is ignored, and the \code{.} is optional, e.g.
-\code{c(".R", ".Rmd")}, or \code{c("r", "rmd")}. Supported values (after
-standardization) are: "r", "rprofile", "rmd", "rmarkdown", "rnw". Rmarkdown is treated as Rmd.}
+be styled. Case is ignored, and the \code{.} is optional, e.g. \code{c(".R", ".Rmd")}, or \code{c("r", "rmd")}. Supported values (after standardization) are:
+"r", "rprofile", "rmd", "rmarkdown", "rnw", "qmd". Rmarkdown is treated as
+Rmd.}
 
 \item{...}{
   Arguments passed on to \code{\link[styler:style_dir]{styler::style_dir}}
@@ -45,7 +49,7 @@ styling are not identical.}
 }
 \description{
 Style all files in a project. Implemented as a wrapper for \code{\link[styler:style_dir]{styler::style_dir()}} that styles
-\code{.R}, \code{.Rprofile}, \code{.Rmd}, and \code{.Rnw} files by default.
+\code{.R}, \code{.Rprofile}, \code{.Rmd}, \code{.Rmarkdown}, \code{.Rnw}, and \code{.Qmd} files by default.
 }
 \examples{
 \dontrun{
