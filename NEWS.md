@@ -1,3 +1,7 @@
+# rdev 1.6.5
+
+* Maintenance updates
+
 # rdev 1.6.4
 
 * Added check to install pre-commit git hook if missing (update `use_rprofile()`)
