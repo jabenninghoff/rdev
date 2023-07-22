@@ -18,6 +18,7 @@ Slide With Code
 
 ```{r}
 summary(cars)
+a <- T
 ```
 
 Slide With Plot

@@ -4,7 +4,10 @@ test_that("inst/templates match rdev package locally", {
   skip_on_covr()
   withr::local_dir("../..")
 
-  expect_identical(readLines("inst/templates/lintr"), readLines(".lintr"))
+  ln <- readLines("inst/templates/lintr")
+  expect_identical(ln, readLines("tests/testthat/test-ci/lintr_test_config"))
+  ln <- append(ln, c("exclusions: list(", "    \"tests/testthat/test-ci\"", "  )"))
+  expect_identical(ln, readLines(".lintr"))
   expect_identical(readLines("inst/templates/spelling.R"), readLines("tests/spelling.R"))
   expect_identical(readLines("inst/templates/pre-commit"), readLines(".git/hooks/pre-commit"))
   expect_identical(

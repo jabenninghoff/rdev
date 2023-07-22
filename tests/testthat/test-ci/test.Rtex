@@ -8,7 +8,8 @@ vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren,
 no sea takimata sanctus est Lorem ipsum dolor sit amet.
 
 %% begin.rcode
-% a <- 1 # nolint: indentation_linter. See upstream issue https://github.com/r-lib/lintr/issues/2013
+% a <- T # nolint: indentation_linter. See upstream issue https://github.com/r-lib/lintr/issues/2013
+% a <- 1 # nolint: indentation_linter. See upstream issue above.
 %% end.rcode
 
 \subtitle{Test}

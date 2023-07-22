@@ -28,13 +28,12 @@ test_that("style_all tests all file types", {
 # lint_all
 
 test_that("lint_all checks all file types", {
-  # snapshot captures "........." for the 9 files tested
-  # use cran = FALSE and skip_on_ci() as expect_snapshot only works when tests are run interactively
-  # set TESTTHAT=false to un-silence lintr, see
-  #   https://github.com/r-lib/lintr/commit/74f1e9d2886c4bd06f52bd2510e939eac644065a
-  # TODO: rewrite this to detect specific lints, like lintr
-  skip_on_ci()
-  withr::with_envvar(new = c(TESTTHAT = "false"), expect_snapshot(lint_all(), cran = FALSE))
+  all_files <- c(
+    "test.Rrst", "test.Rtex", "test.Rtxt", "testcode.Rhtml", "testcode.Rmd",
+    "testcode.Rnw", "testcode.Rpres", "testcode_1.R", "testcode_2.R"
+  )
+  withr::local_options(lintr.linter_file = "lintr_test_config")
+  expect_named(lint_all(), all_files)
 })
 
 # ci
