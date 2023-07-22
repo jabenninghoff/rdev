@@ -4,6 +4,8 @@
 
 * Updated `.lintr` for `lintr` 3.1.0 (update `use_lintr()`)
 
+* Updated spelling tests (update `use_spelling()`)
+
 # rdev 1.6.5
 
 * Maintenance updates
