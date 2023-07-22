@@ -8,7 +8,7 @@ vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren,
 no sea takimata sanctus est Lorem ipsum dolor sit amet.
 
 %% begin.rcode
-% a <- 1
+% a <- 1 # nolint: indentation_linter. # TODO: open upstream issue
 %% end.rcode
 
 \subtitle{Test}
@@ -19,7 +19,7 @@ vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren,
 no sea takimata sanctus est Lorem ipsum dolor sit amet.
 
 %% begin.rcode test_chunk
-% b <- function(x) {
+% b <- function(x) { # nolint: indentation_linter. # TODO: open upstream issue
 %   x
 % }
 %% end.rcode
