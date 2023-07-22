@@ -81,6 +81,8 @@ local_temppkg <- function(dir = fs::file_temp(), type = "usethis", env = parent.
     usethis::use_git()
     # usethis::use_github_action() now requires a valid local and remote github repository
     # TODO: implement a better solution
+    gert::git_config_set("user.name", "John Benninghoff")
+    gert::git_config_set("user.email", "jbenninghoff@mac.com")
     gert::git_add(".")
     gert::git_commit_all("Initial commit")
     gert::git_remote_add("https://github.com/jabenninghoff/rdev.git")
