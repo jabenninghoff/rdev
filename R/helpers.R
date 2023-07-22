@@ -28,9 +28,6 @@ local_temppkg <- function(dir = fs::file_temp(), type = "usethis", env = parent.
     stop("unrecognized package type, '", type, "'")
   }
 
-  # capture current github remote
-  git_remote <- gert::git_remote_list()[[1, "url"]]
-
   # capture the current project - use try() since proj_get() will error within rcmdcheck()
   old_project <- NULL
   try(old_project <- usethis::proj_get(), silent = TRUE) # nolint: implicit_assignment_linter.
@@ -83,9 +80,10 @@ local_temppkg <- function(dir = fs::file_temp(), type = "usethis", env = parent.
 
     usethis::use_git()
     # usethis::use_github_action() now requires a valid local and remote github repository
+    # TODO: implement a better solution
     gert::git_add(".")
     gert::git_commit_all("Initial commit")
-    gert::git_remote_add(git_remote)
+    gert::git_remote_add("https://github.com/jabenninghoff/rdev.git")
     use_rdev_package()
   }
 
