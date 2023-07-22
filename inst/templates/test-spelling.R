@@ -10,10 +10,10 @@ if (!length(pkg_dir)) {
     }
   }
 }
-if (!length(pkg_dir) && identical(basename(getwd()), "testthat")) {
-  if (file.exists("../../DESCRIPTION")) {
-    pkg_dir <- dirname(dirname(getwd()))
-  }
+if (
+  !length(pkg_dir) && identical(basename(getwd()), "testthat") && file.exists("../../DESCRIPTION")
+) {
+  pkg_dir <- dirname(dirname(getwd()))
 }
 
 test_that("Package has no spelling errors", {
