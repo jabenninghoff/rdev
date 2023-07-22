@@ -1,8 +1,8 @@
 # rdev 1.6.6
 
-* Replaced `check-standard.yaml` with `R-CMD-check.yaml`
+* Replaced `check-standard.yaml` with `R-CMD-check.yaml` (update `use_rdev_package()`)
 
-* Updated `.lintr` for `lintr` 3.1.0
+* Updated `.lintr` for `lintr` 3.1.0 (update `use_lintr()`)
 
 # rdev 1.6.5
 
