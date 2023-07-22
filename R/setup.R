@@ -350,6 +350,7 @@ use_rdev_package <- function(quiet = TRUE) {
   use_package_r()
   if (getOption("rdev.github.actions", default = TRUE)) {
     usethis::use_github_action(
+      # TODO: replace check-standard.yaml with R-CMD-check.yaml
       url = "https://github.com/jabenninghoff/rdev/blob/main/.github/workflows/check-standard.yaml"
     )
     usethis::use_github_action(
