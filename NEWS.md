@@ -1,3 +1,7 @@
+# rdev 1.6.7
+
+* Maintenance updates
+
 # rdev 1.6.6
 
 * Replaced `check-standard.yaml` with `R-CMD-check.yaml` (update `use_rdev_package()`)
