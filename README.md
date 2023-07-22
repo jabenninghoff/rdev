@@ -97,12 +97,12 @@ library(rdev)
 
 check_renv()
 #> renv::status()
-#> * The project is already synchronized with the lockfile.
+#> No issues found -- the project is in a consistent state.
 #> 
 #> renv::clean()
-#> * No stale package locks were found.
-#> * No temporary directories were found in the project library.
-#> * The project has been cleaned.
+#> - No stale package locks were found.
+#> - No temporary directories were found in the project library.
+#> - The project has been cleaned.
 ```
 
 I also have a `ci()` function to run all my continuous integration tests
@@ -111,7 +111,7 @@ locally:
 ``` r
 ci()
 #> renv::status()
-#> * The project is already synchronized with the lockfile.
+#> No issues found -- the project is in a consistent state.
 #> 
 #> missing_deps()
 #> Finding R package dependencies ... Done!
@@ -199,7 +199,7 @@ ci()
 #> 
 #> url_check()
 #> html_url_check()
-#> # A tibble: 10 × 9
+#> # A tibble: 11 × 9
 #>    URL                       From  Status Message New   CRAN  Spaces R     root 
 #>    <chr>                     <nam> <chr>  <chr>   <chr> <chr> <chr>  <chr> <chr>
 #>  1 http://covr.r-lib.org/re… <chr> 200    OK      "htt… ""    ""     ""    /Use…
@@ -209,9 +209,10 @@ ci()
 #>  5 http://r-lib.github.io/d… <chr> 200    OK      "htt… ""    ""     ""    /Use…
 #>  6 http://r-lib.github.io/d… <chr> 200    OK      "htt… ""    ""     ""    /Use…
 #>  7 http://r-lib.github.io/r… <chr> 200    OK      "htt… ""    ""     ""    /Use…
-#>  8 https://opensource.org/l… <chr> 200    OK      "htt… ""    ""     ""    /Use…
-#>  9 https://r-lib.github.io/… <chr> 200    OK      "htt… ""    ""     ""    /Use…
-#> 10 https://rdatatable.gitla… <chr> Error  Empty … ""    ""    ""     ""    /Use…
+#>  8 https://github.com/rstud… <chr> 404    Not Fo… ""    ""    ""     ""    /Use…
+#>  9 https://opensource.org/l… <chr> 200    OK      "htt… ""    ""     ""    /Use…
+#> 10 https://r-lib.github.io/… <chr> 200    OK      "htt… ""    ""     ""    /Use…
+#> 11 https://rstudio.github.i… <chr> 404    Not Fo… ""    ""    ""     ""    /Use…
 #> 
 #> Setting env vars: NOT_CRAN="true", CI="true"
 #> rcmdcheck::rcmdcheck(args = "--no-manual", error_on = "warning")
@@ -223,16 +224,21 @@ ci()
 #> * creating vignettes ... OK
 #> * checking for LF line-endings in source and make files and shell scripts
 #> * checking for empty or unneeded directories
-#> * building ‘rdev_1.6.5.tar.gz’
+#> Removed empty directory ‘rdev/actions’
+#> * building ‘rdev_1.6.6.tar.gz’
 #> 
 #> ── R CMD check ─────────────────────────────────────────────────────────────────
-#> * using log directory ‘/private/var/folders/vn/cw5f9gws42v9m8mdsds_zbl00000gp/T/Rtmpj4Agsl/filef9923dd470fb/rdev.Rcheck’
-#> * using R version 4.2.2 (2022-10-31)
-#> * using platform: x86_64-apple-darwin17.0 (64-bit)
+#> * using log directory ‘/private/var/folders/vn/cw5f9gws42v9m8mdsds_zbl00000gp/T/RtmpqEn0Qp/file141c64f15ecba/rdev.Rcheck’
+#> * using R version 4.3.1 (2023-06-16)
+#> * using platform: x86_64-apple-darwin20 (64-bit)
+#> * R was compiled by
+#>     Apple clang version 14.0.3 (clang-1403.0.22.14.1)
+#>     GNU Fortran (GCC) 12.2.0
+#> * running under: macOS Monterey 12.6.7
 #> * using session charset: UTF-8
 #> * using option ‘--no-manual’
 #> * checking for file ‘rdev/DESCRIPTION’ ... OK
-#> * this is package ‘rdev’ version ‘1.6.5’
+#> * this is package ‘rdev’ version ‘1.6.6’
 #> * package encoding: UTF-8
 #> * checking package namespace information ... OK
 #> * checking package dependencies ... OK
@@ -289,9 +295,10 @@ ci()
 #>  NONE
 #> * checking re-building of vignette outputs ... OK
 #> * DONE
+#> 
 #> Status: OK
-#> ── R CMD check results ───────────────────────────────────────── rdev 1.6.5 ────
-#> Duration: 1m 32.1s
+#> ── R CMD check results ───────────────────────────────────────── rdev 1.6.6 ────
+#> Duration: 50.6s
 #> 
 #> 0 errors ✔ | 0 warnings ✔ | 0 notes ✔
 ```
