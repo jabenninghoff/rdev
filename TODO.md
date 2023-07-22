@@ -40,7 +40,7 @@
 - [x] Convert manual tests (`Setup.Rmd`) into an R Script that can be run from within the package created with `create_github_repo()`
 - [x] Add a function to add missing (notebook) dependencies to DESCRIPTION, see `renv::dependencies()` and `desc::desc_get_deps()`
 - [x] Add `check_renv()` to `ci()` and stop if `renv::status()` is not up to date
-- [x] Replace proof-docs with [urlchecker](https://r-lib.github.io/urlchecker/), support checking GitHub Pages `docs` directory using `url_db_from_HTML_files` ~~(ask if a PR for this would be accepted)~~
+- [x] Replace proof-docs with [urlchecker](https://urlchecker.r-lib.org), support checking GitHub Pages `docs` directory using `url_db_from_HTML_files` ~~(ask if a PR for this would be accepted)~~
 - [x] Move scripts from `tools` to `inst/bin` or similar, per [Stack Overflow](https://stackoverflow.com/questions/26104709/is-there-any-special-functionality-in-r-package-exec-or-tools-directories) and [R Packages](https://r-pkgs.org/inst.html#inst-other-langs)
 - [x] Switch from development versions of `styler` (1.3.2.9000) and `lintr` (2.0.1.9000) when a new release becomes available - both were needed to address bugs in the current release versions, 1.3.2 and 2.0.1.
 - [x] Add trailing slash to GitHub Pages URL
