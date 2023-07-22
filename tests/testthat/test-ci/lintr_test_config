@@ -16,6 +16,3 @@ linters: linters_with_tags(
       except_packages = c("bit64", "data.table", "tidyverse", pkgload::pkg_name("."))
     )
   )
-exclusions: list(
-    "tests/testthat/test-ci"
-  )

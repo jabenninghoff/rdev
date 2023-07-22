@@ -5,6 +5,7 @@
 
 <<sample-code>>=
 summary(cars)
+a <- T
 @
 
 \end{document}
