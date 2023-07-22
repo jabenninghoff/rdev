@@ -46,7 +46,7 @@ gh_branches <- gh::gh(
   .api_url = host
 )
 stopifnot(
-  gh_branches[[1]]$protected == TRUE,
+  gh_branches[[1]]$protected,
   identical(
     gh_branches[[1]]$protection,
     list(

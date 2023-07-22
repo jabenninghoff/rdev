@@ -60,7 +60,9 @@ test_that("build_analysis_site creates analysis site", {
   fs::file_delete(c(".Rprofile", "README.Rmd"))
   writeLines(test_notebook, "analysis/test-notebook.Rmd")
   # silence output and messages (but not warnings and errors)
+  # nolint start: implicit_assignment_linter.
   withr::with_output_sink(withr::local_tempfile(), suppressMessages(site <- build_analysis_site()))
+  # nolint end.
 
   expect_true(fs::file_exists("_pkgdown.yml"))
 

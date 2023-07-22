@@ -33,7 +33,7 @@ local_temppkg <- function(dir = fs::file_temp(), type = "usethis", env = parent.
 
   # capture the current project - use try() since proj_get() will error within rcmdcheck()
   old_project <- NULL
-  try(old_project <- usethis::proj_get(), silent = TRUE)
+  try(old_project <- usethis::proj_get(), silent = TRUE) # nolint: implicit_assignment_linter.
 
   # create usethis package
   usethis::create_package(dir, open = FALSE)

@@ -26,7 +26,7 @@ new_branch <- function(name, bump_ver = TRUE, current = FALSE) {
   if (gert::git_branch_exists(paste0("origin/", name), local = FALSE)) {
     stop("branch exists on remote (origin/", name, ")")
   }
-  if (current == FALSE) {
+  if (!current) {
     gert::git_branch_checkout(usethis::git_default_branch())
   }
   gert::git_branch_create(name)
@@ -264,10 +264,10 @@ merge_release <- function(pkg = ".", filename = "NEWS.md", host = getOption("rde
   if (staged_pr$draft) {
     stop("pull request '", staged_pr$html_url, "' is marked as draft")
   }
-  if (!(staged_pr$mergeable == TRUE)) {
+  if (!staged_pr$mergeable) {
     stop("pull request '", staged_pr$html_url, "' is not marked as mergeable")
   }
-  if (!(staged_pr$rebaseable == TRUE)) {
+  if (!staged_pr$rebaseable) {
     stop("pull request '", staged_pr$html_url, "' is not marked as rebaseable")
   }
 
