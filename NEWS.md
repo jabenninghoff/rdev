@@ -1,6 +1,6 @@
 # rdev 1.6.9
 
-* Maintenance updates
+* Disabled use of Posit package manager in `R-CMD-check.yaml` (update `use_rdev_package()`)
 
 # rdev 1.6.8
 
