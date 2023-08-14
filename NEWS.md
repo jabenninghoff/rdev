@@ -1,3 +1,7 @@
+# rdev 1.6.9
+
+* Maintenance updates
+
 # rdev 1.6.8
 
 * Updated `setup-r` to use `rig` for installing and managing R versions
