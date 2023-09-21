@@ -10,7 +10,7 @@
     
     <a class="navbar-brand me-2" href="../index.html">rdev</a>
 
-    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">1.6.9</small>
+    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">1.7.0</small>
 
     
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbar" aria-controls="navbar" aria-expanded="false" aria-label="Toggle navigation">
@@ -74,7 +74,7 @@
     <div class="section level2">
     <h2 id="arguments">Arguments<a class="anchor" aria-label="anchor" href="#arguments"></a></h2>
     <dl><dt>renv</dt>
-<dd><p>check <code><a href="https://rstudio.github.io/renv/reference/status.html" class="external-link">renv::status()</a></code></p></dd>
+<dd><p>check <code><a href="https://rstudio.github.io/renv/reference/status.html" class="external-link">renv::status(dev = TRUE)</a></code></p></dd>
 
 
 <dt>missing</dt>
@@ -112,7 +112,7 @@
 </dl></div>
     <div class="section level2">
     <h2 id="details">Details<a class="anchor" aria-label="anchor" href="#details"></a></h2>
-    <p>If <code><a href="https://rstudio.github.io/renv/reference/status.html" class="external-link">renv::status()</a></code> is not synchronized, <code>ci()</code> will stop.</p>
+    <p>If <code><a href="https://rstudio.github.io/renv/reference/status.html" class="external-link">renv::status(dev = TRUE)</a></code> is not synchronized, <code>ci()</code> will stop.</p>
 <p>If <code><a href="deps_check.html">missing_deps()</a></code> returns any missing dependencies, <code>ci()</code> will stop.</p>
 <p>If <code>styler</code> is set to <code>NULL</code> (the default), <code><a href="style_all.html">style_all()</a></code> will be run only if there are no
 uncommitted changes to git. Setting the value to <code>TRUE</code> or <code>FALSE</code> overrides this check.</p>

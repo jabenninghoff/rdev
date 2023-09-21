@@ -96,7 +96,7 @@ For my workflow, I typically check renv when I start:
 library(rdev)
 
 check_renv()
-#> renv::status()
+#> renv::status(dev = TRUE)
 #> No issues found -- the project is in a consistent state.
 #> 
 #> renv::clean()
@@ -110,7 +110,7 @@ locally:
 
 ``` r
 ci()
-#> renv::status()
+#> renv::status(dev = TRUE)
 #> No issues found -- the project is in a consistent state.
 #> 
 #> missing_deps()
@@ -188,14 +188,12 @@ ci()
 #> extra_deps()
 #> Finding R package dependencies ... Done!
 #> desc::desc_get_deps() not found by renv:
-#> # A tibble: 5 × 3
+#> # A tibble: 3 × 3
 #>   type     package    version
 #>   <chr>    <chr>      <chr>  
-#> 1 Imports  markdown   *      
-#> 2 Imports  miniUI     *      
-#> 3 Suggests covr       *      
-#> 4 Suggests diffviewer *      
-#> 5 Suggests DT         *      
+#> 1 Suggests covr       *      
+#> 2 Suggests diffviewer *      
+#> 3 Suggests DT         *      
 #> 
 #> url_check()
 #> html_url_check()
@@ -221,10 +219,10 @@ ci()
 #> * creating vignettes ... OK
 #> * checking for LF line-endings in source and make files and shell scripts
 #> * checking for empty or unneeded directories
-#> * building ‘rdev_1.6.9.tar.gz’
+#> * building ‘rdev_1.7.0.tar.gz’
 #> 
 #> ── R CMD check ─────────────────────────────────────────────────────────────────
-#> * using log directory ‘/private/var/folders/vn/cw5f9gws42v9m8mdsds_zbl00000gp/T/RtmpIkp6hi/fileb75946defb88/rdev.Rcheck’
+#> * using log directory ‘/private/var/folders/vn/cw5f9gws42v9m8mdsds_zbl00000gp/T/RtmpN7iBXa/file1544762084aa2/rdev.Rcheck’
 #> * using R version 4.3.1 (2023-06-16)
 #> * using platform: x86_64-apple-darwin20 (64-bit)
 #> * R was compiled by
@@ -234,7 +232,7 @@ ci()
 #> * using session charset: UTF-8
 #> * using option ‘--no-manual’
 #> * checking for file ‘rdev/DESCRIPTION’ ... OK
-#> * this is package ‘rdev’ version ‘1.6.9’
+#> * this is package ‘rdev’ version ‘1.7.0’
 #> * package encoding: UTF-8
 #> * checking package namespace information ... OK
 #> * checking package dependencies ... OK
@@ -291,10 +289,9 @@ ci()
 #>  NONE
 #> * checking re-building of vignette outputs ... OK
 #> * DONE
-#> 
 #> Status: OK
-#> ── R CMD check results ───────────────────────────────────────── rdev 1.6.9 ────
-#> Duration: 49.4s
+#> ── R CMD check results ───────────────────────────────────────── rdev 1.7.0 ────
+#> Duration: 51.8s
 #> 
 #> 0 errors ✔ | 0 warnings ✔ | 0 notes ✔
 ```
