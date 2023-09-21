@@ -84,7 +84,7 @@ use_spelling <- function(lang = "en-US", prompt = FALSE) {
   }
   usethis::use_package("fs", type = "Suggests")
   usethis::use_package("withr", type = "Suggests")
-  renv::snapshot(prompt = prompt)
+  renv::snapshot(dev = TRUE, prompt = prompt)
 }
 
 #' Use rdev code coverage
@@ -119,7 +119,7 @@ use_codecov <- function(prompt = FALSE) {
   }
   renv::install("DT")
   usethis::use_package("DT", type = "Suggests")
-  renv::snapshot(prompt = prompt)
+  renv::snapshot(dev = TRUE, prompt = prompt)
 }
 
 #' Get license option
@@ -528,7 +528,7 @@ use_analysis_package <- function(prompt = FALSE) {
   usethis::use_package("fs", type = "Suggests")
   usethis::use_package("purrr", type = "Suggests")
   usethis::use_package("pkgdown", type = "Suggests")
-  renv::snapshot(prompt = prompt)
+  renv::snapshot(dev = TRUE, prompt = prompt)
 
   ret <- list(
     dirs = analysis_dirs, rbuildignore = analysis_rbuildignore, gitignore = analysis_gitignore

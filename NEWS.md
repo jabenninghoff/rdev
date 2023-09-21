@@ -1,3 +1,7 @@
+# rdev 1.7.0
+
+* Updated `check_renv()` and `ci()` to use `renv::status(dev = TRUE)`, added in `renv` 1.0.3
+
 # rdev 1.6.9
 
 * Disabled use of Posit package manager in `R-CMD-check.yaml` (update `use_rdev_package()`)
