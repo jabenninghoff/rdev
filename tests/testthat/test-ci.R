@@ -10,7 +10,7 @@ test_that("All renv functions are called, unless set to FALSE", {
   begin <- "^"
   end <- "$"
   sep <- "\\n\\n"
-  status <- "renv::status\\(\\)"
+  status <- "renv::status\\(dev = TRUE\\)"
   clean <- "renv::clean\\(\\)"
   update <- "renv::update\\(\\)"
 
@@ -76,7 +76,7 @@ test_that("All renv functions are called according to ci logic", {
   begin <- "^"
   end <- "$"
   sep <- "\\n\\n"
-  renv <- "renv::status\\(\\)"
+  renv <- "renv::status\\(dev = TRUE\\)"
   missing <- "missing_deps\\(\\)"
   styler <- "style_all\\(\\)"
   lintr <- "lint_all\\(\\)"

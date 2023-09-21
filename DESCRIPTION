@@ -27,7 +27,7 @@ Imports:
     purrr,
     rcmdcheck,
     remotes,
-    renv,
+    renv (>= 1.0.3),
     rlang,
     rmarkdown,
     spelling,

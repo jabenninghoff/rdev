@@ -17,7 +17,7 @@ ci(
 )
 }
 \arguments{
-\item{renv}{check \code{\link[renv:status]{renv::status()}}}
+\item{renv}{check \code{\link[renv:status]{renv::status(dev = TRUE)}}}
 
 \item{missing}{run \code{\link[=missing_deps]{missing_deps()}}}
 
@@ -40,7 +40,7 @@ ci(
 Run continuous integration tests locally.
 }
 \details{
-If \code{\link[renv:status]{renv::status()}} is not synchronized, \code{ci()} will stop.
+If \code{\link[renv:status]{renv::status(dev = TRUE)}} is not synchronized, \code{ci()} will stop.
 
 If \code{\link[=missing_deps]{missing_deps()}} returns any missing dependencies, \code{ci()} will stop.
 
