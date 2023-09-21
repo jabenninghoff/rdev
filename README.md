@@ -24,8 +24,8 @@ You can install the development version of rdev from
 [GitHub](https://github.com/) with:
 
 ``` r
-# install.packages("devtools")
-devtools::install_github("jabenninghoff/rdev")
+# install.packages("remotes")
+remotes::install_github("jabenninghoff/rdev")
 ```
 
 Or using renv:
@@ -219,10 +219,10 @@ ci()
 #> * creating vignettes ... OK
 #> * checking for LF line-endings in source and make files and shell scripts
 #> * checking for empty or unneeded directories
-#> * building ‘rdev_1.7.0.tar.gz’
+#> * building ‘rdev_1.7.1.tar.gz’
 #> 
 #> ── R CMD check ─────────────────────────────────────────────────────────────────
-#> * using log directory ‘/private/var/folders/vn/cw5f9gws42v9m8mdsds_zbl00000gp/T/RtmpN7iBXa/file1544762084aa2/rdev.Rcheck’
+#> * using log directory ‘/private/var/folders/vn/cw5f9gws42v9m8mdsds_zbl00000gp/T/RtmpeHfgB0/file17b2e38ad6f9f/rdev.Rcheck’
 #> * using R version 4.3.1 (2023-06-16)
 #> * using platform: x86_64-apple-darwin20 (64-bit)
 #> * R was compiled by
@@ -232,7 +232,7 @@ ci()
 #> * using session charset: UTF-8
 #> * using option ‘--no-manual’
 #> * checking for file ‘rdev/DESCRIPTION’ ... OK
-#> * this is package ‘rdev’ version ‘1.7.0’
+#> * this is package ‘rdev’ version ‘1.7.1’
 #> * package encoding: UTF-8
 #> * checking package namespace information ... OK
 #> * checking package dependencies ... OK
@@ -289,9 +289,10 @@ ci()
 #>  NONE
 #> * checking re-building of vignette outputs ... OK
 #> * DONE
+#> 
 #> Status: OK
-#> ── R CMD check results ───────────────────────────────────────── rdev 1.7.0 ────
-#> Duration: 51.8s
+#> ── R CMD check results ───────────────────────────────────────── rdev 1.7.1 ────
+#> Duration: 48.8s
 #> 
 #> 0 errors ✔ | 0 warnings ✔ | 0 notes ✔
 ```
