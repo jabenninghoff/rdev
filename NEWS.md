@@ -1,3 +1,7 @@
+# rdev 1.7.1
+
+* Updated installation instructions in README and templates to use `remotes` instead of `devtools`
+
 # rdev 1.7.0
 
 * Updated `check_renv()` and `ci()` to use `renv::status(dev = TRUE)`, added in `renv` 1.0.3
