@@ -49,8 +49,8 @@ writeLines(notebooks)
 You can install the development version of {{{ repo }}} from [GitHub](https://github.com/) with:
 
 ``` r
-# install.packages("devtools")
-devtools::install_github("{{{ username }}}/{{{ repo }}}")
+# install.packages("remotes")
+remotes::install_github("{{{ username }}}/{{{ repo }}}")
 ```
 
 Or using renv:
