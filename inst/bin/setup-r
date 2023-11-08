@@ -2,7 +2,7 @@
 # install development packages to site repository
 # thanks to https://blog.sellorm.com/2017/10/21/quick-script-to-install-an-r-package-from-the-command-line/
 # https://r-pkgs.org/setup.html
-# and https://github.com/Homebrew/homebrew-core/blob/HEAD/Formula/r.rb
+# and https://github.com/Homebrew/homebrew-core/blob/master/Formula/r/r.rb
 # designed to work with rig: `brew tap r-lib/rig && brew install --cask rig && brew install --cask rstudio`
 set -ex # halt script on error, echo on
 
