@@ -4,26 +4,25 @@
 \alias{lint_all}
 \title{Lint all files}
 \usage{
-lint_all(
-  path = ".",
-  pattern = "\\\\.[Rr](?:|html|md|nw|pres|rst|tex|txt)$",
-  ...
-)
+lint_all(pattern = "(?i)[.](r|rmd|qmd|rnw|rhtml|rpres|rrst|rtex|rtxt)$", ...)
 }
 \arguments{
-\item{path}{For the base directory of the project (for \code{lint_dir()}) or
-package (for \code{lint_package()}).}
-
 \item{pattern}{regex pattern for files, by default it will take files with any of the extensions
-.R, .Rmd, .Rnw, .Rpres, .Rhtml, .Rrst, .Rtex, .Rtxt allowing for lowercase r (.r, ...)}
+.R, .Rmd, .qmd, .Rnw, .Rhtml, .Rpres, .Rrst, .Rtex, .Rtxt, ignoring case.}
 
 \item{...}{
   Arguments passed on to \code{\link[lintr:lint]{lintr::lint_dir}}
   \describe{
-    \item{\code{parse_settings}}{whether to try and parse the settings.}
+    \item{\code{parse_settings}}{Logical, default \code{TRUE}. Whether to try and parse the settings;
+otherwise, the \code{\link[lintr:default_settings]{default_settings()}} are used.}
+    \item{\code{path}}{For the base directory of the project (for \code{lint_dir()}) or
+package (for \code{lint_package()}).}
     \item{\code{relative_path}}{if \code{TRUE}, file paths are printed using their path relative to the base directory.
 If \code{FALSE}, use the full absolute path.}
     \item{\code{exclusions}}{exclusions for \code{\link[lintr:exclude]{exclude()}}, relative to the package path.}
+    \item{\code{show_progress}}{Logical controlling whether to show linting progress with a simple text
+progress bar \emph{via} \code{\link[utils:txtProgressBar]{utils::txtProgressBar()}}. The default behavior is to show progress in
+\code{\link[=interactive]{interactive()}} sessions not running a testthat suite.}
   }}
 }
 \value{
