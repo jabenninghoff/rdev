@@ -6,9 +6,10 @@ linters: linters_with_tags(
     missing_package_linter = NULL,
     namespace_linter = NULL,
     nonportable_path_linter = NULL,
+    paste_linter(allow_file_path = "always"),
     todo_comment_linter = NULL,
     undesirable_function_linter(
-      within(all_undesirable_functions, rm(ifelse, library, require))
+      within(all_undesirable_functions, rm(ifelse, library, require, structure))
     ),
     undesirable_operator_linter(all_undesirable_operators),
     unnecessary_concatenation_linter(allow_single_expression = FALSE),

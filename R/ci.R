@@ -49,7 +49,7 @@ style_all <- function(path = ".",
 #' Lint all files in a project. Implemented as a wrapper for [lintr::lint_dir()].
 #'
 #' @param pattern regex pattern for files, by default it will take files with any of the extensions
-#' .R, .Rmd, .Rnw, .Rpres, .Rhtml, .Rrst, .Rtex, .Rtxt allowing for lowercase r (.r, ...)
+#' .R, .Rmd, .qmd, .Rnw, .Rhtml, .Rpres, .Rrst, .Rtex, .Rtxt, ignoring case.
 #'
 #' @inheritParams lintr::lint_dir
 #' @inheritDotParams lintr::lint_dir
@@ -62,8 +62,8 @@ style_all <- function(path = ".",
 #' lint_all("analysis")
 #' }
 #' @export
-lint_all <- function(path = ".", pattern = "\\.[Rr](?:|html|md|nw|pres|rst|tex|txt)$", ...) {
-  lintr::lint_dir(path = path, pattern = pattern, ...)
+lint_all <- function(pattern = "(?i)[.](r|rmd|qmd|rnw|rhtml|rpres|rrst|rtex|rtxt)$", ...) {
+  lintr::lint_dir(pattern = pattern, ...)
 }
 
 print_tbl <- function(df) {
@@ -178,7 +178,7 @@ ci <- function(renv = TRUE, missing = TRUE, styler = NULL, lintr = TRUE, # nolin
     writeLines('Setting env vars: NOT_CRAN="true", CI="true"')
     writeLines('rcmdcheck::rcmdcheck(args = "--no-manual", error_on = "warning")')
     withr::with_envvar(
-      new = c("NOT_CRAN" = "true", "CI" = "true"),
+      new = c(NOT_CRAN = "true", CI = "true"),
       rcmdcheck::rcmdcheck(args = "--no-manual", error_on = "warning")
     )
   }
