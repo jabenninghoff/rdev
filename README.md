@@ -219,20 +219,20 @@ ci()
 #> * creating vignettes ... OK
 #> * checking for LF line-endings in source and make files and shell scripts
 #> * checking for empty or unneeded directories
-#> * building ‘rdev_1.7.1.tar.gz’
+#> * building ‘rdev_1.7.2.tar.gz’
 #> 
 #> ── R CMD check ─────────────────────────────────────────────────────────────────
-#> * using log directory ‘/private/var/folders/vn/cw5f9gws42v9m8mdsds_zbl00000gp/T/RtmpeHfgB0/file17b2e38ad6f9f/rdev.Rcheck’
-#> * using R version 4.3.1 (2023-06-16)
+#> * using log directory ‘/private/var/folders/vn/cw5f9gws42v9m8mdsds_zbl00000gp/T/RtmpqdwUkp/file134fe7af49db9/rdev.Rcheck’
+#> * using R version 4.3.2 (2023-10-31)
 #> * using platform: x86_64-apple-darwin20 (64-bit)
 #> * R was compiled by
-#>     Apple clang version 14.0.3 (clang-1403.0.22.14.1)
+#>     Apple clang version 14.0.0 (clang-1400.0.29.202)
 #>     GNU Fortran (GCC) 12.2.0
-#> * running under: macOS Monterey 12.6.8
+#> * running under: macOS Monterey 12.7.1
 #> * using session charset: UTF-8
 #> * using option ‘--no-manual’
 #> * checking for file ‘rdev/DESCRIPTION’ ... OK
-#> * this is package ‘rdev’ version ‘1.7.1’
+#> * this is package ‘rdev’ version ‘1.7.2’
 #> * package encoding: UTF-8
 #> * checking package namespace information ... OK
 #> * checking package dependencies ... OK
@@ -291,8 +291,8 @@ ci()
 #> * DONE
 #> 
 #> Status: OK
-#> ── R CMD check results ───────────────────────────────────────── rdev 1.7.1 ────
-#> Duration: 48.8s
+#> ── R CMD check results ───────────────────────────────────────── rdev 1.7.2 ────
+#> Duration: 54.7s
 #> 
 #> 0 errors ✔ | 0 warnings ✔ | 0 notes ✔
 ```
