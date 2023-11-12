@@ -32,10 +32,27 @@ test_that("all build_rdev_site functions are called", {
 
 # build_quarto_site
 
+test_that("build_quarto_site errors when components are missing", {
+  withr::local_dir(withr::local_tempdir())
+
+  expect_error(build_quarto_site(), "^README\\.Rmd does not exist$")
+  fs::file_create("README.Rmd")
+  expect_error(build_quarto_site(), "^no analysis directory found$")
+  fs::dir_create("analysis")
+  expect_error(build_quarto_site(), "^no \\*\\.Rmd files in analysis directory$")
+  fs::file_create("analysis/test.Rmd")
+  expect_error(build_quarto_site(), "^_quarto\\.yml does not exist$")
+})
+
 test_that("all build_quarto_site functions are called", {
   mockery::stub(build_quarto_site, "devtools::build_readme", NULL)
   mockery::stub(build_quarto_site, "unfreeze", NULL)
   mockery::stub(build_quarto_site, "quarto::quarto_render", NULL)
+  withr::local_dir(withr::local_tempdir())
+  fs::file_create("README.Rmd")
+  fs::dir_create("analysis")
+  fs::file_create("analysis/test.Rmd")
+  fs::file_create("_quarto.yml")
 
   begin <- "^"
   end <- "$"
