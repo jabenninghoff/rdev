@@ -229,7 +229,7 @@
     },
     "covr": {
       "Package": "covr",
-      "Version": "3.6.3",
+      "Version": "3.6.4",
       "Source": "Repository",
       "Repository": "CRAN",
       "Requirements": [
@@ -245,7 +245,7 @@
         "withr",
         "yaml"
       ],
-      "Hash": "1555dd95f983200d5997dcbb5b9cd262"
+      "Hash": "0cbf0435830e767ba9b292b313592362"
     },
     "cpp11": {
       "Package": "cpp11",
