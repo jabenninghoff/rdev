@@ -34,14 +34,14 @@ test_that("all build_rdev_site functions are called", {
 
 test_that("all build_quarto_site functions are called", {
   mockery::stub(build_quarto_site, "devtools::build_readme", NULL)
-  mockery::stub(build_quarto_site, "fs::dir_delete", NULL)
+  mockery::stub(build_quarto_site, "unfreeze", NULL)
   mockery::stub(build_quarto_site, "quarto::quarto_render", NULL)
 
   begin <- "^"
   end <- "$"
   sep <- "\\n\\n"
   build_readme <- "devtools::build_readme\\(\\)"
-  delete_freeze <- 'fs::dir_delete\\("_freeze"\\)'
+  unfreeze <- "unfreeze\\(\\)"
   quarto_render <- "quarto::quarto_render\\(\\)"
 
   expect_output(
@@ -49,7 +49,7 @@ test_that("all build_quarto_site functions are called", {
   )
   expect_output(
     build_quarto_site(unfreeze = TRUE),
-    paste0(begin, build_readme, sep, delete_freeze, sep, quarto_render, end)
+    paste0(begin, build_readme, sep, unfreeze, sep, quarto_render, end)
   )
 })
 
