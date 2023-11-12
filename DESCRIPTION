@@ -25,6 +25,7 @@ Imports:
     pkgdown,
     pkgload,
     purrr,
+    quarto,
     rcmdcheck,
     remotes,
     renv (>= 1.0.3),

@@ -30,6 +30,29 @@ test_that("all build_rdev_site functions are called", {
   )
 })
 
+# build_quarto_site
+
+test_that("all build_quarto_site functions are called", {
+  mockery::stub(build_quarto_site, "devtools::build_readme", NULL)
+  mockery::stub(build_quarto_site, "fs::dir_delete", NULL)
+  mockery::stub(build_quarto_site, "quarto::quarto_render", NULL)
+
+  begin <- "^"
+  end <- "$"
+  sep <- "\\n\\n"
+  build_readme <- "devtools::build_readme\\(\\)"
+  delete_freeze <- 'fs::dir_delete\\("_freeze"\\)'
+  quarto_render <- "quarto::quarto_render\\(\\)"
+
+  expect_output(
+    build_quarto_site(), paste0(begin, build_readme, sep, quarto_render, end)
+  )
+  expect_output(
+    build_quarto_site(unfreeze = TRUE),
+    paste0(begin, build_readme, sep, delete_freeze, sep, quarto_render, end)
+  )
+})
+
 # build_analysis_site
 
 test_that('build_analysis_site errors when pkg is something other than "."', {
