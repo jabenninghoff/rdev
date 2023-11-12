@@ -56,6 +56,18 @@ unfreeze <- function() {
 #'
 #' @export
 build_quarto_site <- function(input = NULL, as_job = FALSE, unfreeze = FALSE, ...) {
+  if (!fs::file_exists("README.Rmd")) {
+    stop("README.Rmd does not exist")
+  }
+  if (!fs::dir_exists("analysis")) {
+    stop("no analysis directory found")
+  }
+  if (length(fs::dir_ls("analysis", glob = "*.Rmd")) == 0) {
+    stop("no *.Rmd files in analysis directory")
+  }
+  if (!fs::file_exists("_quarto.yml")) {
+    stop("_quarto.yml does not exist")
+  }
   writeLines("devtools::build_readme()")
   devtools::build_readme()
   if (unfreeze) {
