@@ -30,6 +30,32 @@ build_rdev_site <- function(pkg = ".", ...) {
   withr::with_envvar(c(CI = "TRUE"), pkgdown::build_site())
 }
 
+#' Build Quarto Site
+#'
+#' `build_quarto_site()` is a wrapper for [quarto::quarto_render()] that also updates `README.md`
+#'   and optionally deletes the Quarto `_freeze` directory to fully re-render the site.
+#'
+#' When run, `build_quarto_site()` calls:
+#' 1. [devtools::build_readme()]
+#' 1. [`fs::dir_delete("_freeze")`][fs::dir_delete()] (if `unfreeze = TRUE`)
+#' 1. [quarto::quarto_render()]
+#'
+#' @param unfreeze If `TRUE`, delete the Quarto `_freeze` directory to fully re-render the site.
+#' @param ... Arguments passed to [quarto::quarto_render()].
+#' @inheritParams quarto::quarto_render
+#'
+#' @export
+build_quarto_site <- function(input = NULL, as_job = FALSE, unfreeze = FALSE, ...) {
+  writeLines("devtools::build_readme()")
+  devtools::build_readme()
+  if (unfreeze) {
+    writeLines('\nfs::dir_delete("_freeze")')
+    fs::dir_delete("_freeze")
+  }
+  writeLines("\nquarto::quarto_render()")
+  quarto::quarto_render(input = input, as_job = as_job)
+}
+
 #' Build Analysis Site
 #'
 #' `build_analysis_site()` is a wrapper for [pkgdown::build_site()] that adds an 'Analysis' menu

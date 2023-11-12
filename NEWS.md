@@ -1,3 +1,9 @@
+# rdev 1.8.0
+
+Added support for [Quarto](https://quarto.org), including:
+
+* `build_quarto_site()`: a wrapper for `quarto::quarto_render()` that also updates `README.md` and optionally deletes the Quarto `_freeze` directory to fully re-render the site.
+
 # rdev 1.7.2
 
 * Updated `.lintr` for `lintr` 3.1.1 (update `use_lintr()`)
