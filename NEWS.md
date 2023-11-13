@@ -12,6 +12,8 @@ Added support for [Quarto](https://quarto.org), including:
 
 * Added "quarto" package type to `local_temppkg()`
 
+* Updated vignettes
+
 # rdev 1.7.2
 
 * Updated `.lintr` for `lintr` 3.1.1 (update `use_lintr()`)
