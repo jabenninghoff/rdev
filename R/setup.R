@@ -459,8 +459,7 @@ use_rdev_package <- function(quiet = TRUE) {
 #' 1. Installs the `README.Rmd` template for analysis packages, and the `dplyr`
 #'    package needed for the `README.Rmd` template
 #'
-# TODO: switch use_quarto default and add "(the default)" after `TRUE` in next line
-#' @param use_quarto If `TRUE`, use Quarto for publishing ([build_quarto_site()]),
+#' @param use_quarto If `TRUE` (the default), use Quarto for publishing ([build_quarto_site()]),
 #'   otherwise use [build_analysis_site()].
 #' @inheritParams use_codecov
 #'
@@ -468,7 +467,7 @@ use_rdev_package <- function(quiet = TRUE) {
 #'   exclusions added to .gitignore.
 #'
 #' @export
-use_analysis_package <- function(use_quarto = FALSE, prompt = FALSE) {
+use_analysis_package <- function(use_quarto = TRUE, prompt = FALSE) {
   # workaround for lintr, R CMD check
   create <- gitignore <- rbuildignore <- NULL
 

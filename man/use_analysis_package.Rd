@@ -4,10 +4,10 @@
 \alias{use_analysis_package}
 \title{Use Analysis Package Layout}
 \usage{
-use_analysis_package(use_quarto = FALSE, prompt = FALSE)
+use_analysis_package(use_quarto = TRUE, prompt = FALSE)
 }
 \arguments{
-\item{use_quarto}{If \code{TRUE}, use Quarto for publishing (\code{\link[=build_quarto_site]{build_quarto_site()}}),
+\item{use_quarto}{If \code{TRUE} (the default), use Quarto for publishing (\code{\link[=build_quarto_site]{build_quarto_site()}}),
 otherwise use \code{\link[=build_analysis_site]{build_analysis_site()}}.}
 
 \item{prompt}{If TRUE, prompt before writing \code{renv.lock}, passed to \code{\link[renv:snapshot]{renv::snapshot()}}.}
