@@ -44,7 +44,7 @@ NEWS.md                  |   |`x`| Release notes, used by [pkgdown](https://pkgd
 R                        |`x`|`x`| All project functions go here, with [roxygen2](https://roxygen2.r-lib.org) comments
 README.Rmd               |`x`|`x`| Generated with `usethis::use_readme_md()` or rdev template
 README.md                |`x`|`x`| Generated with `devtools::build_readme()`
-TODO.md                  |   |`x`| To-do list, inspired by <https://github.com/rstudio/renv/blob/99737730ea69730b211770ba2bfa78301cf0e7b2/TODO.md>
+TODO.md                  |   |`x`| To-do list, inspired by renv's [historical TODO.md](https://github.com/rstudio/renv/blob/99737730ea69730b211770ba2bfa78301cf0e7b2/TODO.md)
 _pkgdown.yml             |   |`x`| [pkgdown](https://pkgdown.r-lib.org) metadata, stored in the project root to make it more [discoverable](https://github.com/search?q=filename%3Apkgdown.yml+path%3A%2F&type=Code)
 analysis                 |   |`x`| Exploratory data analysis in R Notebooks and R Presentations. Include functions from the R directory using `library()`, not `source()`.
 analysis/assets          |   |`x`| External assets (images, other files) included in R Notebooks
