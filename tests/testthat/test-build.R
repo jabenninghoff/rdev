@@ -30,6 +30,14 @@ test_that("all build_rdev_site functions are called", {
   )
 })
 
+# unfreeze
+
+test_that("unfreeze errors when components are missing", {
+  withr::local_dir(withr::local_tempdir())
+
+  expect_error(unfreeze(), "^_quarto\\.yml does not exist$")
+})
+
 # build_quarto_site
 
 test_that("build_quarto_site errors when components are missing", {
