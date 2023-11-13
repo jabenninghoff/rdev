@@ -4,9 +4,12 @@
 \alias{use_analysis_package}
 \title{Use Analysis Package Layout}
 \usage{
-use_analysis_package(prompt = FALSE)
+use_analysis_package(use_quarto = FALSE, prompt = FALSE)
 }
 \arguments{
+\item{use_quarto}{If \code{TRUE}, use Quarto for publishing (\code{\link[=build_quarto_site]{build_quarto_site()}}),
+otherwise use \code{\link[=build_analysis_site]{build_analysis_site()}}.}
+
 \item{prompt}{If TRUE, prompt before writing \code{renv.lock}, passed to \code{\link[renv:snapshot]{renv::snapshot()}}.}
 }
 \value{
@@ -18,8 +21,13 @@ Add the \href{https://jabenninghoff.github.io/rdev/articles/analysis-package-lay
 to the current package.
 }
 \details{
-When run, \code{use_analysis_package()} creates analysis package directories, adds exclusions to
-.gitignore and .Rbuildignore, creates \verb{_base.yml} in \code{pkgdown} from the first \code{URL} in
-\code{DESCRIPTION}, installs the \code{README.Rmd} template for analysis packages, and the \code{dplyr}
-package needed for the \code{README.Rmd} template.
+When run, \code{use_analysis_package()}:
+\enumerate{
+\item Creates analysis package directories
+\item Adds exclusions to .gitignore and .Rbuildignore
+\item Adds \code{.nojekyll}, \verb{_quarto.yml} and \code{index.qmd} from templates OR creates \verb{_base.yml} in
+\code{pkgdown} from the first \code{URL} in \code{DESCRIPTION}
+\item Installs the \code{README.Rmd} template for analysis packages, and the \code{dplyr}
+package needed for the \code{README.Rmd} template
+}
 }

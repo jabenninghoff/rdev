@@ -225,12 +225,32 @@ test_that("use_analysis_package returns expected values", {
       "analysis/import", "analysis/rendered"
     )
   )
+  values_quarto <- list(
+    dirs = c(
+      "analysis", "analysis/assets", "analysis/data", "analysis/import", "analysis/rendered",
+      "docs"
+    ), rbuildignore = c(
+      "^analysis/.*\\.docx$", "^analysis/.*\\.html$", "^analysis/.*\\.md$", "^analysis/.*\\.pdf$",
+      "^analysis/.*-figure$", "^analysis/import$", "^analysis/rendered$",
+      "^docs$", "^\\.nojekyll$", "^\\.quarto$", "^_freeze$"
+    ), gitignore = c(
+      "analysis/*.docx", "analysis/*.html", "analysis/*.md", "analysis/*.pdf", "analysis/*-figure/",
+      "analysis/import", "analysis/rendered", "/.quarto/", "/_freeze/"
+    )
+  )
   desc_urls <- c("https://example.github.io/package/", "https://github.com/example/package")
+  author <- structure(list(list(
+    given = "John", family = "Benninghoff", role = c("aut", "cre"), class = "person"
+  )))
   mockery::stub(use_analysis_package, "fs::dir_create", NULL)
   mockery::stub(use_analysis_package, "usethis::use_git_ignore", NULL)
   mockery::stub(use_analysis_package, "usethis::use_build_ignore", NULL)
   mockery::stub(use_analysis_package, "sort_rbuildignore", NULL)
   mockery::stub(use_analysis_package, "desc::desc_get_urls", desc_urls)
+  mockery::stub(use_analysis_package, "get_github_repo", NULL)
+  mockery::stub(use_analysis_package, "desc::desc_get_field", "Description")
+  mockery::stub(use_analysis_package, "desc::desc_get_author", author)
+  mockery::stub(use_analysis_package, "fs::file_create", NULL)
   mockery::stub(use_analysis_package, "fs::file_exists", FALSE)
   mockery::stub(use_analysis_package, "yaml::write_yaml", NULL)
   mockery::stub(use_analysis_package, "usethis::use_template", NULL)
@@ -238,5 +258,6 @@ test_that("use_analysis_package returns expected values", {
   mockery::stub(use_analysis_package, "usethis::use_package", NULL)
   mockery::stub(use_analysis_package, "renv::snapshot", NULL)
 
-  expect_identical(use_analysis_package(), values)
+  expect_identical(use_analysis_package(use_quarto = FALSE), values)
+  expect_identical(use_analysis_package(use_quarto = TRUE), values_quarto)
 })
