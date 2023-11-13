@@ -10,7 +10,9 @@
 #'
 #' @param dir Path to package directory, created if necessary, defaults to [fs::file_temp()].
 #' @param type type of package to create, one of "usethis" - [usethis::create_package()],
-#'   "rdev" - [use_rdev_package()], or "analysis" - [use_analysis_package()].
+#'   "rdev" - [use_rdev_package()], "analysis" -
+#'   [`use_analysis_package(use_quarto = FALSE)`][use_analysis_package()], or "quarto" -
+#'   [`use_analysis_package(use_quarto = TRUE)`][use_analysis_package()].
 #' @param env Environment passed to [withr::defer()], defaults to [parent.frame()].
 #'
 #' @return Path to temporary package directory.
@@ -24,7 +26,7 @@
 #' }
 #' @export
 local_temppkg <- function(dir = fs::file_temp(), type = "usethis", env = parent.frame()) {
-  if (!(type %in% c("usethis", "rdev", "analysis"))) {
+  if (!(type %in% c("usethis", "rdev", "analysis", "quarto"))) {
     stop("unrecognized package type, '", type, "'")
   }
 
@@ -52,7 +54,7 @@ local_temppkg <- function(dir = fs::file_temp(), type = "usethis", env = parent.
   }
 
   # create rdev package
-  if (type %in% c("rdev", "analysis")) {
+  if (type %in% c("rdev", "analysis", "quarto")) {
     gh_repo <- list(username = "example", repo = "tpkg")
     gh_pages <- list(html_url = "https://example.github.io/tpkg/")
     mockery::stub(use_rdev_package, "get_github_repo", gh_repo)
@@ -96,7 +98,15 @@ local_temppkg <- function(dir = fs::file_temp(), type = "usethis", env = parent.
     mockery::stub(use_analysis_package, "usethis::use_package", NULL)
     mockery::stub(use_analysis_package, "renv::snapshot", NULL)
 
-    use_analysis_package()
+    use_analysis_package(use_quarto = FALSE)
+  }
+  if (type == "quarto") {
+    mockery::stub(use_analysis_package, "get_github_repo", gh_repo)
+    mockery::stub(use_analysis_package, "renv::install", NULL)
+    mockery::stub(use_analysis_package, "usethis::use_package", NULL)
+    mockery::stub(use_analysis_package, "renv::snapshot", NULL)
+
+    use_analysis_package(use_quarto = TRUE)
   }
 
   dir

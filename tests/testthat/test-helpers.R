@@ -139,3 +139,43 @@ test_that("local_temppkg creates a valid analysis package", {
   expect_true(fs::dir_exists("docs"))
   expect_true(fs::file_exists("pkgdown/_base.yml"))
 })
+
+test_that("local_temppkg creates a valid quarto package", {
+  withr::local_options(
+    .new = list(rdev.license = NULL, rdev.license.copyright = NULL, rdev.github.actions = NULL)
+  )
+  usethis::ui_silence(local_temppkg(type = "quarto"))
+
+  # valid rdev package
+  # .Rproj isn't created when running rcmdcheck
+  expect_true(fs::file_exists(".Rbuildignore"))
+  expect_true(fs::file_exists(".Rprofile"))
+  expect_true(fs::file_exists(".git/hooks/pre-commit"))
+  expect_true(fs::file_exists(".github/.gitignore"))
+  expect_true(fs::file_exists(".github/workflows/R-CMD-check.yaml"))
+  expect_true(fs::file_exists(".github/workflows/lint.yaml"))
+  expect_true(fs::file_exists(".github/workflows/missing-deps.yaml"))
+  expect_true(fs::file_exists(".gitignore"))
+  expect_true(fs::file_exists(".lintr"))
+  expect_true(fs::file_exists("DESCRIPTION"))
+  expect_true(fs::file_exists("LICENSE"))
+  expect_true(fs::file_exists("LICENSE.md"))
+  expect_true(fs::file_exists("NAMESPACE"))
+  expect_true(fs::file_exists("NEWS.md"))
+  expect_true(fs::file_exists("R/package.R"))
+  expect_true(fs::file_exists("README.Rmd"))
+  expect_true(fs::file_exists("TODO.md"))
+  expect_true(fs::file_exists("tests/testthat/test-package.R"))
+  expect_true(fs::file_exists("tests/testthat.R"))
+
+  # valid quarto package
+  expect_true(fs::dir_exists("analysis"))
+  expect_true(fs::dir_exists("analysis/assets"))
+  expect_true(fs::dir_exists("analysis/data"))
+  expect_true(fs::dir_exists("analysis/import"))
+  expect_true(fs::dir_exists("analysis/rendered"))
+  expect_true(fs::dir_exists("docs"))
+  expect_true(fs::file_exists(".nojekyll"))
+  expect_true(fs::file_exists("_quarto.yml"))
+  expect_true(fs::file_exists("index.qmd"))
+})
