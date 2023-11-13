@@ -1,0 +1,26 @@
+---
+title: "{{{ repo }}}"
+listing:
+  type: default
+  contents: analysis
+  sort-ui: true
+  filter-ui: true
+  max-description-length: 500
+  date-format: iso
+  categories: true
+  feed:
+    items: 100
+    language: en-us
+---
+
+**`r desc::desc_get_field("Title")`:** `r desc::desc_get_field("Description")`
+
+Feel free to use and/or fork this project!
+
+```{r setup, message = FALSE, warning = FALSE, echo = FALSE}
+# this block is required to parse inline r code above
+```
+
+## Notebooks
+
+Notebooks in this package:

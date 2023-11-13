@@ -451,37 +451,66 @@ use_rdev_package <- function(quiet = TRUE) {
 #' Add the [Analysis Package Layout](https://jabenninghoff.github.io/rdev/articles/analysis-package-layout.html)
 #'   to the current package.
 #'
-#' When run, `use_analysis_package()` creates analysis package directories, adds exclusions to
-#'   .gitignore and .Rbuildignore, creates `_base.yml` in `pkgdown` from the first `URL` in
-#'   `DESCRIPTION`, installs the `README.Rmd` template for analysis packages, and the `dplyr`
-#'   package needed for the `README.Rmd` template.
+#' When run, `use_analysis_package()`:
+#' 1. Creates analysis package directories
+#' 1. Adds exclusions to .gitignore and .Rbuildignore
+#' 1. Adds `.nojekyll`, `_quarto.yml` and `index.qmd` from templates OR creates `_base.yml` in
+#'    `pkgdown` from the first `URL` in `DESCRIPTION`
+#' 1. Installs the `README.Rmd` template for analysis packages, and the `dplyr`
+#'    package needed for the `README.Rmd` template
 #'
+# TODO: switch use_quarto default and add "(the default)" after `TRUE` in next line
+#' @param use_quarto If `TRUE`, use Quarto for publishing ([build_quarto_site()]),
+#'   otherwise use [build_analysis_site()].
 #' @inheritParams use_codecov
 #'
 #' @return List containing `dirs` created, `rbuildignore` lines added to .Rbuildignore, `gitignore`
 #'   exclusions added to .gitignore.
 #'
 #' @export
-use_analysis_package <- function(prompt = FALSE) {
+use_analysis_package <- function(use_quarto = FALSE, prompt = FALSE) {
   # workaround for lintr, R CMD check
   create <- gitignore <- rbuildignore <- NULL
 
-  analysis_layout <- tibble::tribble(
-    ~pattern,             ~create, ~gitignore, ~rbuildignore,
-    "analysis",           TRUE,    FALSE,      FALSE,
-    "analysis/*.docx",    FALSE,   TRUE,       TRUE,
-    "analysis/*.html",    FALSE,   TRUE,       TRUE,
-    "analysis/*.md",      FALSE,   TRUE,       TRUE,
-    "analysis/*.pdf",     FALSE,   TRUE,       TRUE,
-    "analysis/*-figure/", FALSE,   TRUE,       TRUE,
-    "analysis/assets",    TRUE,    FALSE,      FALSE,
-    "analysis/data",      TRUE,    FALSE,      FALSE,
-    "analysis/import",    TRUE,    TRUE,       TRUE,
-    "analysis/rendered",  TRUE,    TRUE,       TRUE,
-    "docs",               TRUE,    FALSE,      TRUE,
-    "pkgdown",            TRUE,    FALSE,      TRUE,
-    "_pkgdown.yml",       FALSE,   FALSE,      TRUE
-  )
+  if (use_quarto) {
+    analysis_layout <- tibble::tribble(
+      ~pattern,             ~create, ~gitignore, ~rbuildignore,
+      "analysis",           TRUE,    FALSE,      FALSE,
+      "analysis/*.docx",    FALSE,   TRUE,       TRUE,
+      "analysis/*.html",    FALSE,   TRUE,       TRUE,
+      "analysis/*.md",      FALSE,   TRUE,       TRUE,
+      "analysis/*.pdf",     FALSE,   TRUE,       TRUE,
+      "analysis/*-figure/", FALSE,   TRUE,       TRUE,
+      "analysis/assets",    TRUE,    FALSE,      FALSE,
+      "analysis/data",      TRUE,    FALSE,      FALSE,
+      "analysis/import",    TRUE,    TRUE,       TRUE,
+      "analysis/rendered",  TRUE,    TRUE,       TRUE,
+      "docs",               TRUE,    FALSE,      TRUE,
+      ".nojekyll",          FALSE,   FALSE,      TRUE,
+      ".quarto",            FALSE,   FALSE,      TRUE,
+      "/.quarto/",          FALSE,   TRUE,       FALSE,
+      "_freeze",            FALSE,   FALSE,      TRUE,
+      "/_freeze/",          FALSE,   TRUE,       FALSE,
+      "_quarto.yml",        FALSE,   FALSE,      FALSE
+    )
+  } else {
+    analysis_layout <- tibble::tribble(
+      ~pattern,             ~create, ~gitignore, ~rbuildignore,
+      "analysis",           TRUE,    FALSE,      FALSE,
+      "analysis/*.docx",    FALSE,   TRUE,       TRUE,
+      "analysis/*.html",    FALSE,   TRUE,       TRUE,
+      "analysis/*.md",      FALSE,   TRUE,       TRUE,
+      "analysis/*.pdf",     FALSE,   TRUE,       TRUE,
+      "analysis/*-figure/", FALSE,   TRUE,       TRUE,
+      "analysis/assets",    TRUE,    FALSE,      FALSE,
+      "analysis/data",      TRUE,    FALSE,      FALSE,
+      "analysis/import",    TRUE,    TRUE,       TRUE,
+      "analysis/rendered",  TRUE,    TRUE,       TRUE,
+      "docs",               TRUE,    FALSE,      TRUE,
+      "pkgdown",            TRUE,    FALSE,      TRUE,
+      "_pkgdown.yml",       FALSE,   FALSE,      TRUE
+    )
+  }
 
   analysis_dirs <- subset(analysis_layout, create)$pattern
 
@@ -505,8 +534,23 @@ use_analysis_package <- function(prompt = FALSE) {
   sort_rbuildignore()
 
   urls <- desc::desc_get_urls()
-  if (length(urls) >= 1 && !fs::file_exists("pkgdown/_base.yml")) {
-    yaml::write_yaml(list(url = urls[1], template = list(bootstrap = 5L)), "pkgdown/_base.yml")
+  github_repo <- get_github_repo()
+  if (use_quarto) {
+    fields <- list(
+      repo = github_repo$repo,
+      description = desc::desc_get_field("Description"),
+      site_url = urls[1],
+      repo_url = urls[2],
+      year = format(Sys.Date(), "%Y"),
+      author = paste(desc::desc_get_author()$given, desc::desc_get_author()$family)
+    )
+    fs::file_create(".nojekyll")
+    usethis::use_template("_quarto.yml", package = "rdev", data = fields)
+    usethis::use_template("index.qmd", package = "rdev", data = fields)
+  } else {
+    if (length(urls) >= 1 && !fs::file_exists("pkgdown/_base.yml")) {
+      yaml::write_yaml(list(url = urls[1], template = list(bootstrap = 5L)), "pkgdown/_base.yml")
+    }
   }
 
   # always overwrite README.Rmd
@@ -517,7 +561,7 @@ use_analysis_package <- function(prompt = FALSE) {
     "README-analysis.Rmd",
     save_as = "README.Rmd",
     package = "rdev",
-    data = get_github_repo(),
+    data = github_repo,
     ignore = TRUE,
     open = rlang::is_interactive()
   )
@@ -526,7 +570,11 @@ use_analysis_package <- function(prompt = FALSE) {
   usethis::use_package("dplyr", type = "Suggests")
   usethis::use_package("fs", type = "Suggests")
   usethis::use_package("purrr", type = "Suggests")
-  usethis::use_package("pkgdown", type = "Suggests")
+  if (use_quarto) {
+    usethis::use_package("quarto", type = "Suggests")
+  } else {
+    usethis::use_package("pkgdown", type = "Suggests")
+  }
   renv::snapshot(dev = TRUE, prompt = prompt)
 
   ret <- list(

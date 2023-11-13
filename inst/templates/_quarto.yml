@@ -1,0 +1,45 @@
+project:
+  type: website
+  output-dir: docs
+
+website:
+  title: "{{{ repo }}}"
+  site-url: {{{ site_url }}}
+  description:
+    "{{{ description }}}"
+  repo-url: {{{ repo_url }}}
+  repo-actions: [source, issue]
+  page-navigation: true
+  sidebar:
+    contents: analysis/*
+  navbar:
+    background: light
+    search: true
+    left:
+      - text: Changelog
+        file: NEWS.md
+      - text: TODO
+        file: TODO.md
+    tools:
+      - icon: rss
+        href: index.xml
+        aria-label: rss
+      - icon: github
+        url: {{{ repo_url }}}
+        aria-label: github
+  page-footer:
+    left: "Copyright {{{ year }}}, {{{ author }}}"
+    center:
+      - text: License
+        file: LICENSE.md
+    right:
+      - icon: github
+        href: {{{ repo_url }}}
+        aria-label: github
+
+execute:
+  freeze: auto
+
+format:
+  html:
+    toc: true
