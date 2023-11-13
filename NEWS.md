@@ -10,6 +10,8 @@ Added support for [Quarto](https://quarto.org), including:
 
 * Updated `use_analysis_package()` to use Quarto for publishing <!--by default -->
 
+* Added "quarto" package type to `local_temppkg()`
+
 # rdev 1.7.2
 
 * Updated `.lintr` for `lintr` 3.1.1 (update `use_lintr()`)

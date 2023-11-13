@@ -10,7 +10,9 @@ local_temppkg(dir = fs::file_temp(), type = "usethis", env = parent.frame())
 \item{dir}{Path to package directory, created if necessary, defaults to \code{\link[fs:file_temp]{fs::file_temp()}}.}
 
 \item{type}{type of package to create, one of "usethis" - \code{\link[usethis:create_package]{usethis::create_package()}},
-"rdev" - \code{\link[=use_rdev_package]{use_rdev_package()}}, or "analysis" - \code{\link[=use_analysis_package]{use_analysis_package()}}.}
+"rdev" - \code{\link[=use_rdev_package]{use_rdev_package()}}, "analysis" -
+\code{\link[=use_analysis_package]{use_analysis_package(use_quarto = FALSE)}}, or "quarto" -
+\code{\link[=use_analysis_package]{use_analysis_package(use_quarto = TRUE)}}.}
 
 \item{env}{Environment passed to \code{\link[withr:defer]{withr::defer()}}, defaults to \code{\link[=parent.frame]{parent.frame()}}.}
 }
