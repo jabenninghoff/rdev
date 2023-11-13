@@ -2,9 +2,11 @@
 
 Added support for [Quarto](https://quarto.org), including:
 
-* `build_quarto_site()`: a wrapper for `quarto::quarto_render()` that also updates `README.md` and optionally deletes the Quarto `_freeze` directory to fully re-render the site
+* New function `build_quarto_site()`: a wrapper for `quarto::quarto_render()` that also updates `README.md` and optionally deletes the Quarto `_freeze` directory to fully re-render the site
 
-* `unfreeze()`: delete the Quarto `_freeze` directory to fully re-render the site when `quarto::quarto_render()` is called
+* New function `unfreeze()`: delete the Quarto `_freeze` directory to fully re-render the site when `quarto::quarto_render()` is called
+
+* Updated `stage_release()` to run `build_quarto_site()` when using Quarto
 
 # rdev 1.7.2
 

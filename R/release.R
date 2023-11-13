@@ -116,9 +116,9 @@ get_release <- function(pkg = ".", filename = "NEWS.md") {
 #' 1. Updates `Version` in `DESCRIPTION` with [desc::desc_set_version()], commits and push to git
 #'   with message `"GitHub release <version>"` using [gert::git_add()], [gert::git_commit()] and
 #'   [gert::git_push()]
-#' 1. Runs [build_analysis_site()] (if `pkgdown/_base.yml` exists) or [build_rdev_site()] (if
-#'   `_pkgdown.yml` exists), commits and pushes changes (if any) to git with message:
-#'   `"<builder> for release <version>"`
+#' 1. Runs [build_quarto_site()] (if `_quarto.yml` exists), [build_analysis_site()] (if
+#'   `pkgdown/_base.yml` exists) or [build_rdev_site()] (if `_pkgdown.yml` exists), commits and
+#'   pushes changes (if any) to git with message: `"<builder> for release <version>"`
 #' 1. Opens a pull request with the title `"<package> <version>"` and the release notes in the body
 #'   using [gh::gh()]
 #'
@@ -167,15 +167,19 @@ stage_release <- function(pkg = ".", filename = "NEWS.md", host = getOption("rde
   gert::git_add("DESCRIPTION")
   gert::git_commit(rel_message)
 
-  if (fs::file_exists("pkgdown/_base.yml")) {
+  if (fs::file_exists("_quarto.yml")) {
+    builder <- "build_quarto_site()"
+    build_quarto_site()
+  } else if (fs::file_exists("pkgdown/_base.yml")) {
     builder <- "build_analysis_site()"
     build_analysis_site()
+  } else if (fs::file_exists("_pkgdown.yml")) {
+    builder <- "build_rdev_site()"
+    build_rdev_site()
   } else {
-    if (fs::file_exists("_pkgdown.yml")) {
-      builder <- "build_rdev_site()"
-      build_rdev_site()
-    }
+    stop("could not determine builder type")
   }
+
   # commit builder changes if there are any
   if (nrow(gert::git_status()) != 0) {
     gert::git_add(".")
