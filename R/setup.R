@@ -34,7 +34,7 @@ use_lintr <- function(open = FALSE) {
 #'
 #' @export
 use_todo <- function(open = rlang::is_interactive()) {
-  usethis::use_template("TODO.md", package = "rdev", ignore = TRUE, open = open)
+  usethis::use_template("TODO.md", package = "rdev", ignore = FALSE, open = open)
 }
 
 #' Use rdev package.R
