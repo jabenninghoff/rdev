@@ -37,6 +37,9 @@ build_rdev_site <- function(pkg = ".", ...) {
 #'
 #' @export
 unfreeze <- function() {
+  if (!fs::file_exists("_quarto.yml")) {
+    stop("_quarto.yml does not exist")
+  }
   fs::dir_delete("_freeze")
 }
 
