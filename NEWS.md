@@ -8,7 +8,7 @@ Added support for [Quarto](https://quarto.org), including:
 
 * Updated `stage_release()` to run `build_quarto_site()` when using Quarto
 
-* Updated `use_analysis_package()` to use Quarto for publishing <!--by default -->
+* Updated `use_analysis_package()` to use Quarto for publishing by default
 
 * Added "quarto" package type to `local_temppkg()`
 
