@@ -355,6 +355,9 @@ test_that("stage_release runs proper builder", {
   analysis <- function() {
     stop("build_analysis_site")
   }
+  quarto <- function() {
+    stop("build_quarto_site")
+  }
   rdev <- function() {
     stop("build_rdev_site")
   }
@@ -363,12 +366,13 @@ test_that("stage_release runs proper builder", {
   mockery::stub(stage_release, "gert::git_add", NULL)
   mockery::stub(stage_release, "gert::git_commit", NULL)
   mockery::stub(stage_release, "build_analysis_site", analysis)
+  mockery::stub(stage_release, "build_quarto_site", quarto)
   mockery::stub(stage_release, "build_rdev_site", rdev)
   mockery::stub(stage_release, "gert::git_push", NULL)
   mockery::stub(stage_release, "gh::gh", NULL)
 
   withr::local_dir(withr::local_tempdir())
-  expect_null(stage_release())
+  expect_error(stage_release(), "^could not determine builder type$")
 
   pkgdown <- fs::file_create("_pkgdown.yml")
   writeLines("url: ~", pkgdown)
@@ -378,6 +382,9 @@ test_that("stage_release runs proper builder", {
   base <- fs::file_create("pkgdown/_base.yml")
   writeLines("url: ~", base)
   expect_error(stage_release(), "^build_analysis_site$")
+
+  fs::file_create("_quarto.yml")
+  expect_error(stage_release(), "^build_quarto_site$")
 })
 
 test_that("stage_release returns pull request results", {
@@ -399,9 +406,13 @@ test_that("stage_release returns pull request results", {
   mockery::stub(stage_release, "gert::git_add", NULL)
   mockery::stub(stage_release, "gert::git_commit", NULL)
   mockery::stub(stage_release, "build_analysis_site", NULL)
+  mockery::stub(stage_release, "build_quarto_site", NULL)
   mockery::stub(stage_release, "build_rdev_site", NULL)
   mockery::stub(stage_release, "gert::git_push", NULL)
   mockery::stub(stage_release, "gh::gh", "pull_request")
+
+  withr::local_dir(withr::local_tempdir())
+  fs::file_create("_quarto.yml")
 
   expect_identical(stage_release(), "pull_request")
 })
