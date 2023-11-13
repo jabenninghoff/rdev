@@ -72,12 +72,13 @@ linters: linters_with_tags(
     missing_package_linter = NULL,
     namespace_linter = NULL,
     nonportable_path_linter = NULL,
+    paste_linter(allow_file_path = "always"),
     todo_comment_linter = NULL,
     undesirable_function_linter(
-      within(all_undesirable_functions, rm(ifelse, library, require))
+      within(all_undesirable_functions, rm(ifelse, library, require, structure))
     ),
     undesirable_operator_linter(all_undesirable_operators),
-    unneeded_concatenation_linter(allow_single_expression = FALSE),
+    unnecessary_concatenation_linter(allow_single_expression = FALSE),
     unused_import_linter(
       except_packages = c("bit64", "data.table", "tidyverse", pkgload::pkg_name("."))
     )
@@ -145,11 +146,13 @@ a better job of detecting missing packages, including not complaining when the c
 
 ```r
     nonportable_path_linter = NULL,
+    paste_linter(allow_file_path = "always"),
 ```
 
 The non-portable path linter generates too many false positives, including calls to
 [fs](https://fs.r-lib.org), which essentially makes UNIX-style paths portable across operating
-systems.
+systems. Similarly, the `allow_file_path` default option of `"double_slash"` generates false
+positives when used with fs.
 
 ### Allow TODO comments
 
@@ -164,23 +167,24 @@ planned updates inline.
 
 ```r
     undesirable_function_linter(
-      within(all_undesirable_functions, rm(ifelse, library, require))
+      within(all_undesirable_functions, rm(ifelse, library, require, structure))
     ),
     undesirable_operator_linter(all_undesirable_operators),
 ```
 
 Enable all undesirable functions and operators, not just the defaults, except for `ifelse()` which
-is more succinct than an `if`/`else` block, `library()` and `require()`. Use of `require()` within
-`.Rprofile` and `library()` within R Markdown documents is an appropriate and common practice,
-although neither should be used within package code.
+is more succinct than an `if`/`else` block, `library()`, `require()`, and `structure()`. Use of
+`require()` within `.Rprofile` and `library()` within R Markdown documents is an appropriate and
+common practice, although neither should be used within package code. `structure()` is useful for
+comparing test results to values generated with `dput()`.
 
-### Enforce strict unneeded concatenation
+### Enforce strict unnecessary concatenation
 
 ```r
-    unneeded_concatenation_linter(allow_single_expression = FALSE),
+    unnecessary_concatenation_linter(allow_single_expression = FALSE),
 ```
 
-Enforce the stricter version of the unneeded concatenation linter.
+Enforce the stricter version of the unnecessary concatenation linter.
 
 ### Verify imported packages are used
 
