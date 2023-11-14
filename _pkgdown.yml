@@ -8,6 +8,7 @@ reference:
       Stage and create GitHub releases, including GitHub pages
     contents:
     - build_analysis_site
+    - build_quarto_site
     - build_rdev_site
     - new_branch
     - stage_release
@@ -15,6 +16,7 @@ reference:
     - get_release
     - to_document
     - rmd_metadata
+    - unfreeze
   - title: Continuous Integration
     desc: >
       Local continuous integration checks and dependency management
