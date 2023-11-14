@@ -12,9 +12,13 @@ Added support for [Quarto](https://quarto.org), including:
 
 * Added "quarto" package type to `local_temppkg()`
 
+Additional changes:
+
 * Updated vignettes
 
 * Added "Introduction to rdev" getting started vignette
+
+* Added a `pkgdown::check_pkgdown()` check to `ci()`
 
 # rdev 1.7.2
 

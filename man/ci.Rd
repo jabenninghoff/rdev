@@ -7,6 +7,7 @@
 ci(
   renv = TRUE,
   missing = TRUE,
+  pkgdown = TRUE,
   styler = NULL,
   lintr = TRUE,
   document = TRUE,
@@ -20,6 +21,8 @@ ci(
 \item{renv}{check \code{\link[renv:status]{renv::status(dev = TRUE)}}}
 
 \item{missing}{run \code{\link[=missing_deps]{missing_deps()}}}
+
+\item{pkgdown}{check \code{\link[pkgdown:check_pkgdown]{pkgdown::check_pkgdown()}} if \verb{_pkgdown.yml} exists}
 
 \item{styler}{style all files using \code{\link[=style_all]{style_all()}}, see details}
 
@@ -43,6 +46,8 @@ Run continuous integration tests locally.
 If \code{\link[renv:status]{renv::status(dev = TRUE)}} is not synchronized, \code{ci()} will stop.
 
 If \code{\link[=missing_deps]{missing_deps()}} returns any missing dependencies, \code{ci()} will stop.
+
+\code{\link[pkgdown:check_pkgdown]{pkgdown::check_pkgdown()}} will halt \code{ci()} with an error if \verb{_pkgdown.yml} is invalid.
 
 If \code{styler} is set to \code{NULL} (the default), \code{\link[=style_all]{style_all()}} will be run only if there are no
 uncommitted changes to git. Setting the value to \code{TRUE} or \code{FALSE} overrides this check.

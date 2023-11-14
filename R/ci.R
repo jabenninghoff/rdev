@@ -78,6 +78,8 @@ print_tbl <- function(df) {
 #'
 #' If [missing_deps()] returns any missing dependencies, `ci()` will stop.
 #'
+#' [pkgdown::check_pkgdown()] will halt `ci()` with an error if `_pkgdown.yml` is invalid.
+#'
 #' If `styler` is set to `NULL` (the default), [style_all()] will be run only if there are no
 #'   uncommitted changes to git. Setting the value to `TRUE` or `FALSE` overrides this check.
 #'
@@ -88,6 +90,7 @@ print_tbl <- function(df) {
 #'
 #' @param renv check [`renv::status(dev = TRUE)`][renv::status()]
 #' @param missing run [missing_deps()]
+#' @param pkgdown check [pkgdown::check_pkgdown()] if `_pkgdown.yml` exists
 #' @param styler style all files using [style_all()], see details
 #' @param lintr lint all files using [lint_all()]
 #' @param document run [devtools::document()]
@@ -104,15 +107,25 @@ print_tbl <- function(df) {
 #' ci(styler = FALSE, rcmdcheck = FALSE)
 #' }
 #' @export
-ci <- function(renv = TRUE, missing = TRUE, styler = NULL, lintr = TRUE, # nolint: cyclocomp_linter.
-               document = TRUE, normalize = TRUE, extra = TRUE, urls = TRUE, rcmdcheck = TRUE) {
+ci <- function(renv = TRUE, # nolint: cyclocomp_linter.
+               missing = TRUE,
+               pkgdown = TRUE,
+               styler = NULL,
+               lintr = TRUE,
+               document = TRUE,
+               normalize = TRUE,
+               extra = TRUE,
+               urls = TRUE,
+               rcmdcheck = TRUE) {
   if (renv) {
     writeLines("renv::status(dev = TRUE)")
     status <- renv::status(dev = TRUE)
     if (!status$synchronized) {
       return(invisible(status))
     }
-    if (any(missing, is.null(styler), styler, lintr, document, normalize, extra, urls, rcmdcheck)) {
+    if (any(
+      missing, pkgdown, is.null(styler), styler, lintr, document, normalize, extra, urls, rcmdcheck
+    )) {
       writeLines("")
     }
   }
@@ -123,6 +136,14 @@ ci <- function(renv = TRUE, missing = TRUE, styler = NULL, lintr = TRUE, # nolin
     if (nrow(md) != 0) {
       return(tibble::as_tibble(md))
     }
+    if (any(pkgdown, is.null(styler), styler, lintr, document, normalize, extra, urls, rcmdcheck)) {
+      writeLines("")
+    }
+  }
+
+  if (pkgdown && fs::file_exists("_pkgdown.yml")) {
+    writeLines("pkgdown::check_pkgdown()")
+    pkgdown::check_pkgdown()
     if (any(is.null(styler), styler, lintr, document, normalize, extra, urls, rcmdcheck)) {
       writeLines("")
     }
