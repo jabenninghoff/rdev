@@ -3,6 +3,8 @@ CMD
 Changelog
 Codecov
 Dependabot
+DevOps
+Forsgren
 Homebrew
 Lato
 ORCID
@@ -22,7 +24,9 @@ Rproj
 Rrst
 Rtex
 Rtxt
+SIRAcon
 Tidyverse
+Uncheck
 WORDLIST
 YAML
 api
@@ -33,6 +37,7 @@ dev
 devtools
 discoverable
 dplyr
+env
 fs
 ggplot
 gh
@@ -50,11 +55,13 @@ linters
 lintr
 lockfile
 macOS
+macos
 md
 mergeable
 miniUI
 navbar
 nojekyll
+pak
 pkgdown
 po
 pre
@@ -63,12 +70,14 @@ rcmdcheck
 rebaseable
 renv
 renv's
+reproducibility
 rmarkdown
 rmd
 rnw
 roxygen
 rprofile
 rtraining
+siracon
 styler
 tcltk
 testthat

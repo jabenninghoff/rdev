@@ -14,6 +14,8 @@ Added support for [Quarto](https://quarto.org), including:
 
 * Updated vignettes
 
+* Added "Introduction to rdev" getting started vignette
+
 # rdev 1.7.2
 
 * Updated `.lintr` for `lintr` 3.1.1 (update `use_lintr()`)
