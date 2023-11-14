@@ -10,7 +10,7 @@
     
     <a class="navbar-brand me-2" href="../index.html">rdev</a>
 
-    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">1.7.2</small>
+    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">1.8.0</small>
 
     
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbar" aria-controls="navbar" aria-expanded="false" aria-label="Toggle navigation">
@@ -19,6 +19,9 @@
 
     <div id="navbar" class="collapse navbar-collapse ms-3">
       <ul class="navbar-nav me-auto"><li class="nav-item">
+  <a class="nav-link" href="../articles/rdev.html">Get started</a>
+</li>
+<li class="nav-item">
   <a class="nav-link" href="../reference/index.html">Reference</a>
 </li>
 <li class="nav-item dropdown">
@@ -51,6 +54,19 @@
       <small>Source: <a href="https://github.com/jabenninghoff/rdev/blob/HEAD/NEWS.md" class="external-link"><code>NEWS.md</code></a></small>
     </div>
 
+    <div class="section level2">
+<h2 class="pkg-version" data-toc-text="1.8.0" id="rdev-180">rdev 1.8.0<a class="anchor" aria-label="anchor" href="#rdev-180"></a></h2>
+<p>Added support for <a href="https://quarto.org" class="external-link">Quarto</a>, including:</p>
+<ul><li><p>New function <code><a href="../reference/build_quarto_site.html">build_quarto_site()</a></code>: a wrapper for <code><a href="https://quarto-dev.github.io/quarto-r/reference/quarto_render.html" class="external-link">quarto::quarto_render()</a></code> that also updates <code>README.md</code> and optionally deletes the Quarto <code>_freeze</code> directory to fully re-render the site</p></li>
+<li><p>New function <code><a href="../reference/unfreeze.html">unfreeze()</a></code>: delete the Quarto <code>_freeze</code> directory to fully re-render the site when <code><a href="https://quarto-dev.github.io/quarto-r/reference/quarto_render.html" class="external-link">quarto::quarto_render()</a></code> is called</p></li>
+<li><p>Updated <code><a href="../reference/stage_release.html">stage_release()</a></code> to run <code><a href="../reference/build_quarto_site.html">build_quarto_site()</a></code> when using Quarto</p></li>
+<li><p>Updated <code><a href="../reference/use_analysis_package.html">use_analysis_package()</a></code> to use Quarto for publishing by default</p></li>
+<li><p>Added “quarto” package type to <code><a href="../reference/local_temppkg.html">local_temppkg()</a></code></p></li>
+</ul><p>Additional changes:</p>
+<ul><li><p>Updated vignettes</p></li>
+<li><p>Added “Introduction to rdev” getting started vignette</p></li>
+<li><p>Added a <code><a href="https://pkgdown.r-lib.org/reference/check_pkgdown.html" class="external-link">pkgdown::check_pkgdown()</a></code> check to <code><a href="../reference/ci.html">ci()</a></code></p></li>
+</ul></div>
     <div class="section level2">
 <h2 class="pkg-version" data-toc-text="1.7.2" id="rdev-172">rdev 1.7.2<a class="anchor" aria-label="anchor" href="#rdev-172"></a></h2>
 <ul><li>Updated <code>.lintr</code> for <code>lintr</code> 3.1.1 (update <code><a href="../reference/use_lintr.html">use_lintr()</a></code>)</li>

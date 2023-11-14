@@ -10,7 +10,7 @@
     
     <a class="navbar-brand me-2" href="../index.html">rdev</a>
 
-    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">1.7.2</small>
+    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">1.8.0</small>
 
     
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbar" aria-controls="navbar" aria-expanded="false" aria-label="Toggle navigation">
@@ -18,7 +18,10 @@
     </button>
 
     <div id="navbar" class="collapse navbar-collapse ms-3">
-      <ul class="navbar-nav me-auto"><li class="active nav-item">
+      <ul class="navbar-nav me-auto"><li class="nav-item">
+  <a class="nav-link" href="../articles/rdev.html">Get started</a>
+</li>
+<li class="active nav-item">
   <a class="nav-link" href="../reference/index.html">Reference</a>
 </li>
 <li class="nav-item dropdown">
@@ -61,6 +64,7 @@
     <div class="sourceCode"><pre class="sourceCode r"><code><span><span class="fu">ci</span><span class="op">(</span></span>
 <span>  renv <span class="op">=</span> <span class="cn">TRUE</span>,</span>
 <span>  missing <span class="op">=</span> <span class="cn">TRUE</span>,</span>
+<span>  pkgdown <span class="op">=</span> <span class="cn">TRUE</span>,</span>
 <span>  styler <span class="op">=</span> <span class="cn">NULL</span>,</span>
 <span>  lintr <span class="op">=</span> <span class="cn">TRUE</span>,</span>
 <span>  document <span class="op">=</span> <span class="cn">TRUE</span>,</span>
@@ -79,6 +83,10 @@
 
 <dt>missing</dt>
 <dd><p>run <code><a href="deps_check.html">missing_deps()</a></code></p></dd>
+
+
+<dt>pkgdown</dt>
+<dd><p>check <code><a href="https://pkgdown.r-lib.org/reference/check_pkgdown.html" class="external-link">pkgdown::check_pkgdown()</a></code> if <code>_pkgdown.yml</code> exists</p></dd>
 
 
 <dt>styler</dt>
@@ -114,6 +122,7 @@
     <h2 id="details">Details<a class="anchor" aria-label="anchor" href="#details"></a></h2>
     <p>If <code><a href="https://rstudio.github.io/renv/reference/status.html" class="external-link">renv::status(dev = TRUE)</a></code> is not synchronized, <code>ci()</code> will stop.</p>
 <p>If <code><a href="deps_check.html">missing_deps()</a></code> returns any missing dependencies, <code>ci()</code> will stop.</p>
+<p><code><a href="https://pkgdown.r-lib.org/reference/check_pkgdown.html" class="external-link">pkgdown::check_pkgdown()</a></code> will halt <code>ci()</code> with an error if <code>_pkgdown.yml</code> is invalid.</p>
 <p>If <code>styler</code> is set to <code>NULL</code> (the default), <code><a href="style_all.html">style_all()</a></code> will be run only if there are no
 uncommitted changes to git. Setting the value to <code>TRUE</code> or <code>FALSE</code> overrides this check.</p>
 <p>If <code><a href="lint_all.html">lint_all()</a></code> finds any lints, <code>ci()</code> will stop and open the RStudio markers pane.</p>

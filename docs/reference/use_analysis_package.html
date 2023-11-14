@@ -12,7 +12,7 @@ to the current package."><!-- mathjax --><script src="https://cdnjs.cloudflare.c
     
     <a class="navbar-brand me-2" href="../index.html">rdev</a>
 
-    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">1.7.2</small>
+    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">1.8.0</small>
 
     
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbar" aria-controls="navbar" aria-expanded="false" aria-label="Toggle navigation">
@@ -20,7 +20,10 @@ to the current package."><!-- mathjax --><script src="https://cdnjs.cloudflare.c
     </button>
 
     <div id="navbar" class="collapse navbar-collapse ms-3">
-      <ul class="navbar-nav me-auto"><li class="active nav-item">
+      <ul class="navbar-nav me-auto"><li class="nav-item">
+  <a class="nav-link" href="../articles/rdev.html">Get started</a>
+</li>
+<li class="active nav-item">
   <a class="nav-link" href="../reference/index.html">Reference</a>
 </li>
 <li class="nav-item dropdown">
@@ -61,12 +64,17 @@ to the current package.</p>
 
     <div class="section level2">
     <h2 id="ref-usage">Usage<a class="anchor" aria-label="anchor" href="#ref-usage"></a></h2>
-    <div class="sourceCode"><pre class="sourceCode r"><code><span><span class="fu">use_analysis_package</span><span class="op">(</span>prompt <span class="op">=</span> <span class="cn">FALSE</span><span class="op">)</span></span></code></pre></div>
+    <div class="sourceCode"><pre class="sourceCode r"><code><span><span class="fu">use_analysis_package</span><span class="op">(</span>use_quarto <span class="op">=</span> <span class="cn">TRUE</span>, prompt <span class="op">=</span> <span class="cn">FALSE</span><span class="op">)</span></span></code></pre></div>
     </div>
 
     <div class="section level2">
     <h2 id="arguments">Arguments<a class="anchor" aria-label="anchor" href="#arguments"></a></h2>
-    <dl><dt>prompt</dt>
+    <dl><dt>use_quarto</dt>
+<dd><p>If <code>TRUE</code> (the default), use Quarto for publishing (<code><a href="build_quarto_site.html">build_quarto_site()</a></code>),
+otherwise use <code><a href="build_analysis_site.html">build_analysis_site()</a></code>.</p></dd>
+
+
+<dt>prompt</dt>
 <dd><p>If TRUE, prompt before writing <code>renv.lock</code>, passed to <code><a href="https://rstudio.github.io/renv/reference/snapshot.html" class="external-link">renv::snapshot()</a></code>.</p></dd>
 
 </dl></div>
@@ -81,11 +89,13 @@ to the current package.</p>
     </div>
     <div class="section level2">
     <h2 id="details">Details<a class="anchor" aria-label="anchor" href="#details"></a></h2>
-    <p>When run, <code>use_analysis_package()</code> creates analysis package directories, adds exclusions to
-.gitignore and .Rbuildignore, creates <code>_base.yml</code> in <code>pkgdown</code> from the first <code>URL</code> in
-<code>DESCRIPTION</code>, installs the <code>README.Rmd</code> template for analysis packages, and the <code>dplyr</code>
-package needed for the <code>README.Rmd</code> template.</p>
-    </div>
+    <p>When run, <code>use_analysis_package()</code>:</p><ol><li><p>Creates analysis package directories</p></li>
+<li><p>Adds exclusions to .gitignore and .Rbuildignore</p></li>
+<li><p>Adds <code>.nojekyll</code>, <code>_quarto.yml</code> and <code>index.qmd</code> from templates OR creates <code>_base.yml</code> in
+<code>pkgdown</code> from the first <code>URL</code> in <code>DESCRIPTION</code></p></li>
+<li><p>Installs the <code>README.Rmd</code> template for analysis packages, and the <code>dplyr</code>
+package needed for the <code>README.Rmd</code> template</p></li>
+</ol></div>
 
   </main><aside class="col-md-3"><nav id="toc"><h2>On this page</h2>
     </nav></aside></div>

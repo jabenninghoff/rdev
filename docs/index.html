@@ -28,7 +28,7 @@
     
     <a class="navbar-brand me-2" href="index.html">rdev</a>
 
-    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">1.7.2</small>
+    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">1.8.0</small>
 
     
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbar" aria-controls="navbar" aria-expanded="false" aria-label="Toggle navigation">
@@ -37,6 +37,9 @@
 
     <div id="navbar" class="collapse navbar-collapse ms-3">
       <ul class="navbar-nav me-auto">
+<li class="nav-item">
+  <a class="nav-link" href="articles/rdev.html">Get started</a>
+</li>
 <li class="nav-item">
   <a class="nav-link" href="reference/index.html">Reference</a>
 </li>
@@ -164,11 +167,15 @@
 <span><span class="co">#&gt; Finding R package dependencies ... Done!</span></span>
 <span><span class="co">#&gt; renv::dependencies() not in DESCRIPTION:</span></span>
 <span><span class="co">#&gt; </span></span>
+<span><span class="co">#&gt; pkgdown::check_pkgdown()</span></span>
+<span><span class="co">#&gt; No problems found</span></span>
+<span><span class="co">#&gt; </span></span>
 <span><span class="co">#&gt; style_all()</span></span>
-<span><span class="co">#&gt; Styling  51  files:</span></span>
+<span><span class="co">#&gt; Styling  53  files:</span></span>
 <span><span class="co">#&gt;  .Rprofile                                               ✔ </span></span>
 <span><span class="co">#&gt;  README.Rmd                                              ✔ </span></span>
 <span><span class="co">#&gt;  inst/rmarkdown/templates/analysis/skeleton/skeleton.Rmd ✔ </span></span>
+<span><span class="co">#&gt;  inst/templates/index.qmd                                ✔ </span></span>
 <span><span class="co">#&gt;  inst/templates/package.R                                ✔ </span></span>
 <span><span class="co">#&gt;  inst/templates/README-analysis.Rmd                      ✔ </span></span>
 <span><span class="co">#&gt;  inst/templates/README-rdev.Rmd                          ✔ </span></span>
@@ -216,10 +223,11 @@
 <span><span class="co">#&gt;  tests/testthat/test-to_document/valid.Rmd               ✔ </span></span>
 <span><span class="co">#&gt;  tests/testthat/test-to_document/with-code.Rmd           ✔ </span></span>
 <span><span class="co">#&gt;  vignettes/analysis-package-layout.Rmd                   ✔ </span></span>
+<span><span class="co">#&gt;  vignettes/rdev.Rmd                                      ✔ </span></span>
 <span><span class="co">#&gt;  vignettes/style-guide.Rmd                               ✔ </span></span>
 <span><span class="co">#&gt; ───────────────────────────────────────────────────────</span></span>
 <span><span class="co">#&gt; Status   Count   Legend </span></span>
-<span><span class="co">#&gt; ✔    51  File unchanged.</span></span>
+<span><span class="co">#&gt; ✔    53  File unchanged.</span></span>
 <span><span class="co">#&gt; ℹ    0   File changed.</span></span>
 <span><span class="co">#&gt; ✖    0   Styling threw an error.</span></span>
 <span><span class="co">#&gt; ───────────────────────────────────────────────────────</span></span>
@@ -266,10 +274,10 @@
 <span><span class="co">#&gt; * creating vignettes ... OK</span></span>
 <span><span class="co">#&gt; * checking for LF line-endings in source and make files and shell scripts</span></span>
 <span><span class="co">#&gt; * checking for empty or unneeded directories</span></span>
-<span><span class="co">#&gt; * building ‘rdev_1.7.2.tar.gz’</span></span>
+<span><span class="co">#&gt; * building ‘rdev_1.8.0.tar.gz’</span></span>
 <span><span class="co">#&gt; </span></span>
 <span><span class="co">#&gt; ── R CMD check ─────────────────────────────────────────────────────────────────</span></span>
-<span><span class="co">#&gt; * using log directory ‘/private/var/folders/vn/cw5f9gws42v9m8mdsds_zbl00000gp/T/RtmpqdwUkp/file134fe7af49db9/rdev.Rcheck’</span></span>
+<span><span class="co">#&gt; * using log directory ‘/private/var/folders/vn/cw5f9gws42v9m8mdsds_zbl00000gp/T/RtmprHyPLB/file13fcf2ac7a998/rdev.Rcheck’</span></span>
 <span><span class="co">#&gt; * using R version 4.3.2 (2023-10-31)</span></span>
 <span><span class="co">#&gt; * using platform: x86_64-apple-darwin20 (64-bit)</span></span>
 <span><span class="co">#&gt; * R was compiled by</span></span>
@@ -279,7 +287,7 @@
 <span><span class="co">#&gt; * using session charset: UTF-8</span></span>
 <span><span class="co">#&gt; * using option ‘--no-manual’</span></span>
 <span><span class="co">#&gt; * checking for file ‘rdev/DESCRIPTION’ ... OK</span></span>
-<span><span class="co">#&gt; * this is package ‘rdev’ version ‘1.7.2’</span></span>
+<span><span class="co">#&gt; * this is package ‘rdev’ version ‘1.8.0’</span></span>
 <span><span class="co">#&gt; * package encoding: UTF-8</span></span>
 <span><span class="co">#&gt; * checking package namespace information ... OK</span></span>
 <span><span class="co">#&gt; * checking package dependencies ... OK</span></span>
@@ -332,14 +340,15 @@
 <span><span class="co">#&gt; * checking package vignettes in ‘inst/doc’ ... OK</span></span>
 <span><span class="co">#&gt; * checking running R code from vignettes ...</span></span>
 <span><span class="co">#&gt;   ‘analysis-package-layout.Rmd’ using ‘UTF-8’... OK</span></span>
+<span><span class="co">#&gt;   ‘rdev.Rmd’ using ‘UTF-8’... OK</span></span>
 <span><span class="co">#&gt;   ‘style-guide.Rmd’ using ‘UTF-8’... OK</span></span>
 <span><span class="co">#&gt;  NONE</span></span>
 <span><span class="co">#&gt; * checking re-building of vignette outputs ... OK</span></span>
 <span><span class="co">#&gt; * DONE</span></span>
 <span><span class="co">#&gt; </span></span>
 <span><span class="co">#&gt; Status: OK</span></span>
-<span><span class="co">#&gt; ── R CMD check results ───────────────────────────────────────── rdev 1.7.2 ────</span></span>
-<span><span class="co">#&gt; Duration: 54.7s</span></span>
+<span><span class="co">#&gt; ── R CMD check results ───────────────────────────────────────── rdev 1.8.0 ────</span></span>
+<span><span class="co">#&gt; Duration: 1m 44.9s</span></span>
 <span><span class="co">#&gt; </span></span>
 <span><span class="co">#&gt; 0 errors ✔ | 0 warnings ✔ | 0 notes ✔</span></span></code></pre></div>
 </div>

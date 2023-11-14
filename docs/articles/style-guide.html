@@ -26,7 +26,7 @@
     
     <a class="navbar-brand me-2" href="../index.html">rdev</a>
 
-    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">1.7.2</small>
+    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">1.8.0</small>
 
     
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbar" aria-controls="navbar" aria-expanded="false" aria-label="Toggle navigation">
@@ -35,6 +35,9 @@
 
     <div id="navbar" class="collapse navbar-collapse ms-3">
       <ul class="navbar-nav me-auto">
+<li class="nav-item">
+  <a class="nav-link" href="../articles/rdev.html">Get started</a>
+</li>
 <li class="nav-item">
   <a class="nav-link" href="../reference/index.html">Reference</a>
 </li>
@@ -154,12 +157,13 @@ configuration (<code>.lintr</code>):</p>
 <span>    missing_package_linter <span class="op">=</span> <span class="cn">NULL</span>,</span>
 <span>    namespace_linter <span class="op">=</span> <span class="cn">NULL</span>,</span>
 <span>    nonportable_path_linter <span class="op">=</span> <span class="cn">NULL</span>,</span>
+<span>    <span class="fu">paste_linter</span><span class="op">(</span>allow_file_path <span class="op">=</span> <span class="st">"always"</span><span class="op">)</span>,</span>
 <span>    todo_comment_linter <span class="op">=</span> <span class="cn">NULL</span>,</span>
 <span>    <span class="fu">undesirable_function_linter</span><span class="op">(</span></span>
-<span>      <span class="fu"><a href="https://rdrr.io/r/base/with.html" class="external-link">within</a></span><span class="op">(</span><span class="va">all_undesirable_functions</span>, <span class="fu"><a href="https://rdrr.io/r/base/rm.html" class="external-link">rm</a></span><span class="op">(</span><span class="va">ifelse</span>, <span class="va">library</span>, <span class="va">require</span><span class="op">)</span><span class="op">)</span></span>
+<span>      <span class="fu"><a href="https://rdrr.io/r/base/with.html" class="external-link">within</a></span><span class="op">(</span><span class="va">all_undesirable_functions</span>, <span class="fu"><a href="https://rdrr.io/r/base/rm.html" class="external-link">rm</a></span><span class="op">(</span><span class="va">ifelse</span>, <span class="va">library</span>, <span class="va">require</span>, <span class="va">structure</span><span class="op">)</span><span class="op">)</span></span>
 <span>    <span class="op">)</span>,</span>
 <span>    <span class="fu">undesirable_operator_linter</span><span class="op">(</span><span class="va">all_undesirable_operators</span><span class="op">)</span>,</span>
-<span>    <span class="fu">unneeded_concatenation_linter</span><span class="op">(</span>allow_single_expression <span class="op">=</span> <span class="cn">FALSE</span><span class="op">)</span>,</span>
+<span>    <span class="fu">unnecessary_concatenation_linter</span><span class="op">(</span>allow_single_expression <span class="op">=</span> <span class="cn">FALSE</span><span class="op">)</span>,</span>
 <span>    <span class="fu">unused_import_linter</span><span class="op">(</span></span>
 <span>      except_packages <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"bit64"</span>, <span class="st">"data.table"</span>, <span class="st">"tidyverse"</span>, <span class="fu">pkgload</span><span class="fu">::</span><span class="fu"><a href="https://pkgload.r-lib.org/reference/packages.html" class="external-link">pkg_name</a></span><span class="op">(</span><span class="st">"."</span><span class="op">)</span><span class="op">)</span></span>
 <span>    <span class="op">)</span></span>
@@ -218,11 +222,14 @@ installed.</p>
 <div class="section level3">
 <h3 id="allow-non-portable-paths">Allow non-portable paths<a class="anchor" aria-label="anchor" href="#allow-non-portable-paths"></a>
 </h3>
-<div class="sourceCode" id="cb8"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb8-1"><a href="#cb8-1" tabindex="-1"></a>    nonportable_path_linter <span class="ot">=</span> <span class="cn">NULL</span>,</span></code></pre></div>
+<div class="sourceCode" id="cb8"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb8-1"><a href="#cb8-1" tabindex="-1"></a>    nonportable_path_linter <span class="ot">=</span> <span class="cn">NULL</span>,</span>
+<span id="cb8-2"><a href="#cb8-2" tabindex="-1"></a>    <span class="fu">paste_linter</span>(<span class="at">allow_file_path =</span> <span class="st">"always"</span>),</span></code></pre></div>
 <p>The non-portable path linter generates too many false positives,
 including calls to <a href="https://fs.r-lib.org" class="external-link">fs</a>, which
-essentially makes UNIX-style paths portable across operating
-systems.</p>
+essentially makes UNIX-style paths portable across operating systems.
+Similarly, the <code>allow_file_path</code> default option of
+<code>"double_slash"</code> generates false positives when used with
+fs.</p>
 </div>
 <div class="section level3">
 <h3 id="allow-todo-comments">Allow TODO comments<a class="anchor" aria-label="anchor" href="#allow-todo-comments"></a>
@@ -235,22 +242,24 @@ convenient way of identifying needed or planned updates inline.</p>
 <h3 id="disallow-almost-all-undesirable-functions-and-operators">Disallow almost all undesirable functions and operators<a class="anchor" aria-label="anchor" href="#disallow-almost-all-undesirable-functions-and-operators"></a>
 </h3>
 <div class="sourceCode" id="cb10"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb10-1"><a href="#cb10-1" tabindex="-1"></a>    <span class="fu">undesirable_function_linter</span>(</span>
-<span id="cb10-2"><a href="#cb10-2" tabindex="-1"></a>      <span class="fu">within</span>(all_undesirable_functions, <span class="fu">rm</span>(ifelse, library, require))</span>
+<span id="cb10-2"><a href="#cb10-2" tabindex="-1"></a>      <span class="fu">within</span>(all_undesirable_functions, <span class="fu">rm</span>(ifelse, library, require, structure))</span>
 <span id="cb10-3"><a href="#cb10-3" tabindex="-1"></a>    ),</span>
 <span id="cb10-4"><a href="#cb10-4" tabindex="-1"></a>    <span class="fu">undesirable_operator_linter</span>(all_undesirable_operators),</span></code></pre></div>
 <p>Enable all undesirable functions and operators, not just the
 defaults, except for <code><a href="https://rdrr.io/r/base/ifelse.html" class="external-link">ifelse()</a></code> which is more succinct than
-an <code>if</code>/<code>else</code> block, <code><a href="https://rdrr.io/r/base/library.html" class="external-link">library()</a></code> and
-<code><a href="https://rdrr.io/r/base/library.html" class="external-link">require()</a></code>. Use of <code><a href="https://rdrr.io/r/base/library.html" class="external-link">require()</a></code> within
-<code>.Rprofile</code> and <code><a href="https://rdrr.io/r/base/library.html" class="external-link">library()</a></code> within R Markdown
-documents is an appropriate and common practice, although neither should
-be used within package code.</p>
+an <code>if</code>/<code>else</code> block, <code><a href="https://rdrr.io/r/base/library.html" class="external-link">library()</a></code>,
+<code><a href="https://rdrr.io/r/base/library.html" class="external-link">require()</a></code>, and <code><a href="https://rdrr.io/r/base/structure.html" class="external-link">structure()</a></code>. Use of
+<code><a href="https://rdrr.io/r/base/library.html" class="external-link">require()</a></code> within <code>.Rprofile</code> and
+<code><a href="https://rdrr.io/r/base/library.html" class="external-link">library()</a></code> within R Markdown documents is an appropriate and
+common practice, although neither should be used within package code.
+<code><a href="https://rdrr.io/r/base/structure.html" class="external-link">structure()</a></code> is useful for comparing test results to values
+generated with <code><a href="https://rdrr.io/r/base/dput.html" class="external-link">dput()</a></code>.</p>
 </div>
 <div class="section level3">
-<h3 id="enforce-strict-unneeded-concatenation">Enforce strict unneeded concatenation<a class="anchor" aria-label="anchor" href="#enforce-strict-unneeded-concatenation"></a>
+<h3 id="enforce-strict-unnecessary-concatenation">Enforce strict unnecessary concatenation<a class="anchor" aria-label="anchor" href="#enforce-strict-unnecessary-concatenation"></a>
 </h3>
-<div class="sourceCode" id="cb11"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb11-1"><a href="#cb11-1" tabindex="-1"></a>    <span class="fu">unneeded_concatenation_linter</span>(<span class="at">allow_single_expression =</span> <span class="cn">FALSE</span>),</span></code></pre></div>
-<p>Enforce the stricter version of the unneeded concatenation
+<div class="sourceCode" id="cb11"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb11-1"><a href="#cb11-1" tabindex="-1"></a>    <span class="fu">unnecessary_concatenation_linter</span>(<span class="at">allow_single_expression =</span> <span class="cn">FALSE</span>),</span></code></pre></div>
+<p>Enforce the stricter version of the unnecessary concatenation
 linter.</p>
 </div>
 <div class="section level3">

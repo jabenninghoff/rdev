@@ -19,6 +19,9 @@
     <loc>https://jabenninghoff.github.io/rdev/articles/index.html</loc>
   </url>
   <url>
+    <loc>https://jabenninghoff.github.io/rdev/articles/rdev.html</loc>
+  </url>
+  <url>
     <loc>https://jabenninghoff.github.io/rdev/articles/style-guide.html</loc>
   </url>
   <url>
@@ -32,6 +35,9 @@
   </url>
   <url>
     <loc>https://jabenninghoff.github.io/rdev/reference/build_analysis_site.html</loc>
+  </url>
+  <url>
+    <loc>https://jabenninghoff.github.io/rdev/reference/build_quarto_site.html</loc>
   </url>
   <url>
     <loc>https://jabenninghoff.github.io/rdev/reference/build_rdev_site.html</loc>
@@ -101,6 +107,9 @@
   </url>
   <url>
     <loc>https://jabenninghoff.github.io/rdev/reference/to_document.html</loc>
+  </url>
+  <url>
+    <loc>https://jabenninghoff.github.io/rdev/reference/unfreeze.html</loc>
   </url>
   <url>
     <loc>https://jabenninghoff.github.io/rdev/reference/update_wordlist_notebooks.html</loc>
