@@ -117,11 +117,15 @@ ci()
 #> Finding R package dependencies ... Done!
 #> renv::dependencies() not in DESCRIPTION:
 #> 
+#> pkgdown::check_pkgdown()
+#> No problems found
+#> 
 #> style_all()
-#> Styling  51  files:
+#> Styling  53  files:
 #>  .Rprofile                                               ✔ 
 #>  README.Rmd                                              ✔ 
 #>  inst/rmarkdown/templates/analysis/skeleton/skeleton.Rmd ✔ 
+#>  inst/templates/index.qmd                                ✔ 
 #>  inst/templates/package.R                                ✔ 
 #>  inst/templates/README-analysis.Rmd                      ✔ 
 #>  inst/templates/README-rdev.Rmd                          ✔ 
@@ -169,10 +173,11 @@ ci()
 #>  tests/testthat/test-to_document/valid.Rmd               ✔ 
 #>  tests/testthat/test-to_document/with-code.Rmd           ✔ 
 #>  vignettes/analysis-package-layout.Rmd                   ✔ 
+#>  vignettes/rdev.Rmd                                      ✔ 
 #>  vignettes/style-guide.Rmd                               ✔ 
 #> ───────────────────────────────────────────────────────
 #> Status   Count   Legend 
-#> ✔    51  File unchanged.
+#> ✔    53  File unchanged.
 #> ℹ    0   File changed.
 #> ✖    0   Styling threw an error.
 #> ───────────────────────────────────────────────────────
@@ -219,10 +224,10 @@ ci()
 #> * creating vignettes ... OK
 #> * checking for LF line-endings in source and make files and shell scripts
 #> * checking for empty or unneeded directories
-#> * building ‘rdev_1.7.2.tar.gz’
+#> * building ‘rdev_1.8.0.tar.gz’
 #> 
 #> ── R CMD check ─────────────────────────────────────────────────────────────────
-#> * using log directory ‘/private/var/folders/vn/cw5f9gws42v9m8mdsds_zbl00000gp/T/RtmpqdwUkp/file134fe7af49db9/rdev.Rcheck’
+#> * using log directory ‘/private/var/folders/vn/cw5f9gws42v9m8mdsds_zbl00000gp/T/RtmprHyPLB/file13fcf2ac7a998/rdev.Rcheck’
 #> * using R version 4.3.2 (2023-10-31)
 #> * using platform: x86_64-apple-darwin20 (64-bit)
 #> * R was compiled by
@@ -232,7 +237,7 @@ ci()
 #> * using session charset: UTF-8
 #> * using option ‘--no-manual’
 #> * checking for file ‘rdev/DESCRIPTION’ ... OK
-#> * this is package ‘rdev’ version ‘1.7.2’
+#> * this is package ‘rdev’ version ‘1.8.0’
 #> * package encoding: UTF-8
 #> * checking package namespace information ... OK
 #> * checking package dependencies ... OK
@@ -285,14 +290,15 @@ ci()
 #> * checking package vignettes in ‘inst/doc’ ... OK
 #> * checking running R code from vignettes ...
 #>   ‘analysis-package-layout.Rmd’ using ‘UTF-8’... OK
+#>   ‘rdev.Rmd’ using ‘UTF-8’... OK
 #>   ‘style-guide.Rmd’ using ‘UTF-8’... OK
 #>  NONE
 #> * checking re-building of vignette outputs ... OK
 #> * DONE
 #> 
 #> Status: OK
-#> ── R CMD check results ───────────────────────────────────────── rdev 1.7.2 ────
-#> Duration: 54.7s
+#> ── R CMD check results ───────────────────────────────────────── rdev 1.8.0 ────
+#> Duration: 1m 44.9s
 #> 
 #> 0 errors ✔ | 0 warnings ✔ | 0 notes ✔
 ```

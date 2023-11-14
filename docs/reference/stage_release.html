@@ -12,7 +12,7 @@ release using merge_release()."><!-- mathjax --><script src="https://cdnjs.cloud
     
     <a class="navbar-brand me-2" href="../index.html">rdev</a>
 
-    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">1.7.2</small>
+    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">1.8.0</small>
 
     
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbar" aria-controls="navbar" aria-expanded="false" aria-label="Toggle navigation">
@@ -20,7 +20,10 @@ release using merge_release()."><!-- mathjax --><script src="https://cdnjs.cloud
     </button>
 
     <div id="navbar" class="collapse navbar-collapse ms-3">
-      <ul class="navbar-nav me-auto"><li class="active nav-item">
+      <ul class="navbar-nav me-auto"><li class="nav-item">
+  <a class="nav-link" href="../articles/rdev.html">Get started</a>
+</li>
+<li class="active nav-item">
   <a class="nav-link" href="../reference/index.html">Reference</a>
 </li>
 <li class="nav-item dropdown">
@@ -101,9 +104,9 @@ acceptable.</p></dd>
 <li><p>Updates <code>Version</code> in <code>DESCRIPTION</code> with <code><a href="http://r-lib.github.io/desc/reference/desc_set_version.html" class="external-link">desc::desc_set_version()</a></code>, commits and push to git
 with message <code>"GitHub release &lt;version&gt;"</code> using <code><a href="https://docs.ropensci.org/gert/reference/git_commit.html" class="external-link">gert::git_add()</a></code>, <code><a href="https://docs.ropensci.org/gert/reference/git_commit.html" class="external-link">gert::git_commit()</a></code> and
 <code><a href="https://docs.ropensci.org/gert/reference/git_fetch.html" class="external-link">gert::git_push()</a></code></p></li>
-<li><p>Runs <code><a href="build_analysis_site.html">build_analysis_site()</a></code> (if <code>pkgdown/_base.yml</code> exists) or <code><a href="build_rdev_site.html">build_rdev_site()</a></code> (if
-<code>_pkgdown.yml</code> exists), commits and pushes changes (if any) to git with message:
-<code>"&lt;builder&gt; for release &lt;version&gt;"</code></p></li>
+<li><p>Runs <code><a href="build_quarto_site.html">build_quarto_site()</a></code> (if <code>_quarto.yml</code> exists), <code><a href="build_analysis_site.html">build_analysis_site()</a></code> (if
+<code>pkgdown/_base.yml</code> exists) or <code><a href="build_rdev_site.html">build_rdev_site()</a></code> (if <code>_pkgdown.yml</code> exists), commits and
+pushes changes (if any) to git with message: <code>"&lt;builder&gt; for release &lt;version&gt;"</code></p></li>
 <li><p>Opens a pull request with the title <code>"&lt;package&gt; &lt;version&gt;"</code> and the release notes in the body
 using <code><a href="https://gh.r-lib.org/reference/gh.html" class="external-link">gh::gh()</a></code></p></li>
 </ol></div>

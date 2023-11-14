@@ -10,7 +10,7 @@
     
     <a class="navbar-brand me-2" href="../index.html">rdev</a>
 
-    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">1.7.2</small>
+    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">1.8.0</small>
 
     
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbar" aria-controls="navbar" aria-expanded="false" aria-label="Toggle navigation">
@@ -18,7 +18,10 @@
     </button>
 
     <div id="navbar" class="collapse navbar-collapse ms-3">
-      <ul class="navbar-nav me-auto"><li class="active nav-item">
+      <ul class="navbar-nav me-auto"><li class="nav-item">
+  <a class="nav-link" href="../articles/rdev.html">Get started</a>
+</li>
+<li class="active nav-item">
   <a class="nav-link" href="../reference/index.html">Reference</a>
 </li>
 <li class="nav-item dropdown">
@@ -69,7 +72,9 @@
 
 <dt>type</dt>
 <dd><p>type of package to create, one of "usethis" - <code><a href="https://usethis.r-lib.org/reference/create_package.html" class="external-link">usethis::create_package()</a></code>,
-"rdev" - <code><a href="use_rdev_package.html">use_rdev_package()</a></code>, or "analysis" - <code><a href="use_analysis_package.html">use_analysis_package()</a></code>.</p></dd>
+"rdev" - <code><a href="use_rdev_package.html">use_rdev_package()</a></code>, "analysis" -
+<code><a href="use_analysis_package.html">use_analysis_package(use_quarto = FALSE)</a></code>, or "quarto" -
+<code><a href="use_analysis_package.html">use_analysis_package(use_quarto = TRUE)</a></code>.</p></dd>
 
 
 <dt>env</dt>
