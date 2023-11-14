@@ -62,6 +62,8 @@ test_that("All renv functions are called according to ci logic", {
   )
   mockery::stub(ci, "renv::status", renv_sync_true)
   mockery::stub(ci, "missing_deps", missing_deps_empty)
+  mockery::stub(ci, "fs::file_exists", TRUE)
+  mockery::stub(ci, "pkgdown::check_pkgdown", NULL)
   mockery::stub(ci, "style_all", NULL)
   mockery::stub(ci, "lint_all", NULL)
   mockery::stub(ci, "gert::git_status", git_status_empty)
@@ -78,6 +80,7 @@ test_that("All renv functions are called according to ci logic", {
   sep <- "\\n\\n"
   renv <- "renv::status\\(dev = TRUE\\)"
   missing <- "missing_deps\\(\\)"
+  pkgdown <- "pkgdown::check_pkgdown\\(\\)"
   styler <- "style_all\\(\\)"
   lintr <- "lint_all\\(\\)"
   document <- "devtools::document\\(\\)"
@@ -93,28 +96,28 @@ test_that("All renv functions are called according to ci logic", {
   expect_output(
     ci(),
     paste0(
-      begin, renv, sep, missing, sep, styler, sep, lintr, sep, document, sep, normalize, sep,
-      extra, sep, urls, sep, rcmdcheck, end
+      begin, renv, sep, missing, sep, pkgdown, sep, styler, sep, lintr, sep, document, sep,
+      normalize, sep, extra, sep, urls, sep, rcmdcheck, end
     )
   )
 
   # all
   expect_output(
     ci(
-      renv = TRUE, missing = TRUE, styler = TRUE, lintr = TRUE, document = TRUE,
+      renv = TRUE, missing = TRUE, pkgdown = TRUE, styler = TRUE, lintr = TRUE, document = TRUE,
       normalize = TRUE, extra = TRUE, urls = TRUE, rcmdcheck = TRUE
     ),
     paste0(
-      begin, renv, sep, missing, sep, styler, sep, lintr, sep, document, sep, normalize, sep,
-      extra, sep, urls, sep, rcmdcheck, end
+      begin, renv, sep, missing, sep, pkgdown, sep, styler, sep, lintr, sep, document, sep,
+      normalize, sep, extra, sep, urls, sep, rcmdcheck, end
     )
   )
 
   # none
   expect_output(
     ci(
-      renv = FALSE, missing = FALSE, styler = FALSE, lintr = FALSE, document = FALSE,
-      normalize = FALSE, extra = FALSE, urls = FALSE, rcmdcheck = FALSE
+      renv = FALSE, missing = FALSE, pkgdown = FALSE, styler = FALSE, lintr = FALSE,
+      document = FALSE, normalize = FALSE, extra = FALSE, urls = FALSE, rcmdcheck = FALSE
     ), NA
   )
 
@@ -122,11 +125,11 @@ test_that("All renv functions are called according to ci logic", {
   mockery::stub(ci, "gert::git_status", git_status_changed)
   expect_output(
     ci(
-      renv = TRUE, missing = TRUE, styler = NULL, lintr = TRUE, document = TRUE,
+      renv = TRUE, missing = TRUE, pkgdown = TRUE, styler = NULL, lintr = TRUE, document = TRUE,
       normalize = TRUE, extra = TRUE, urls = TRUE, rcmdcheck = TRUE
     ),
     paste0(
-      begin, renv, sep, missing, sep, lintr, sep, document, sep, normalize, sep,
+      begin, renv, sep, missing, sep, pkgdown, sep, lintr, sep, document, sep, normalize, sep,
       extra, sep, urls, sep, rcmdcheck, end
     )
   )
@@ -136,7 +139,17 @@ test_that("All renv functions are called according to ci logic", {
   mockery::stub(ci, "lint_all", list("lint"))
   expect_output(
     ci(
-      renv = TRUE, missing = TRUE, styler = NULL, lintr = TRUE, document = TRUE,
+      renv = TRUE, missing = TRUE, pkgdown = TRUE, styler = NULL, lintr = TRUE, document = TRUE,
+      normalize = TRUE, extra = TRUE, urls = TRUE, rcmdcheck = TRUE
+    ),
+    paste0(begin, renv, sep, missing, sep, pkgdown, sep, styler, sep, lintr, end)
+  )
+
+  # no _pkgdown.yml
+  mockery::stub(ci, "fs::file_exists", FALSE)
+  expect_output(
+    ci(
+      renv = TRUE, missing = TRUE, pkgdown = TRUE, styler = NULL, lintr = TRUE, document = TRUE,
       normalize = TRUE, extra = TRUE, urls = TRUE, rcmdcheck = TRUE
     ),
     paste0(begin, renv, sep, missing, sep, styler, sep, lintr, end)
@@ -146,7 +159,7 @@ test_that("All renv functions are called according to ci logic", {
   mockery::stub(ci, "missing_deps", missing_deps_missing)
   expect_output(
     ci(
-      renv = TRUE, missing = TRUE, styler = NULL, lintr = TRUE, document = TRUE,
+      renv = TRUE, missing = TRUE, pkgdown = TRUE, styler = NULL, lintr = TRUE, document = TRUE,
       normalize = TRUE, extra = TRUE, urls = TRUE, rcmdcheck = TRUE
     ),
     paste0(begin, renv, sep, missing, end)
@@ -156,7 +169,7 @@ test_that("All renv functions are called according to ci logic", {
   mockery::stub(ci, "renv::status", renv_sync_false)
   expect_output(
     ci(
-      renv = TRUE, missing = TRUE, styler = NULL, lintr = TRUE, document = TRUE,
+      renv = TRUE, missing = TRUE, pkgdown = TRUE, styler = NULL, lintr = TRUE, document = TRUE,
       normalize = TRUE, extra = TRUE, urls = TRUE, rcmdcheck = TRUE
     ),
     paste0(begin, renv, end)
