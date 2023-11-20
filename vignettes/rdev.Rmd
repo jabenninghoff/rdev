@@ -97,7 +97,7 @@ sudo chown -R `whoami`:admin /Library/Frameworks/R.framework/Versions/*/Resource
 
 RVERSION=`Rscript -e 'cat(as.character(getRversion()[1,1:2]))'`
 USERLIB="$HOME/Library/R/`uname -m`/${RVERSION}/library"
-DEVPKG='c("renv", "styler", "lintr", "miniUI", "markdown", "rmarkdown", "devtools", "pkgdown", "available")'
+DEVPKG='c("renv", "styler", "lintr", "miniUI", "markdown", "rmarkdown", "devtools", "pkgdown", "available", "languageserver")'
 GITPKG='c("jabenninghoff/rdev")'
 
 if [ ! -d "${USERLIB}" ]
