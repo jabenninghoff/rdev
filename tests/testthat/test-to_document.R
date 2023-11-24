@@ -183,6 +183,11 @@ test_that("rmd_metadata returns analysis notebook metadata", {
     title = "Valid Notebook", url = "https://example.github.io/package/valid.html",
     date = "2022-01-22", description = "Valid Notebook from 'Analysis Notebook' template."
   )
+  valid_quarto <- valid
+  valid_quarto$url <- "https://example.github.io/package/analysis/valid.html"
 
   expect_identical(rmd_metadata("valid.Rmd"), valid)
+
+  mockery::stub(rmd_metadata, "fs::file_exists", TRUE)
+  expect_identical(rmd_metadata("valid.Rmd"), valid_quarto)
 })

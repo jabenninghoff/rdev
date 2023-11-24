@@ -105,6 +105,8 @@ rmd_metadata <- function(file_path) {
   }
   # set separator to "/" only if first URL doesn't end with "/"
   sep <- ifelse(endsWith(urls[1], "/"), "", "/")
+  # add analysis to path if using Quarto
+  sep <- ifelse(fs::file_exists("_quarto.yml"), paste0(sep, "analysis/"), sep)
   gh_url <- paste0(
     urls[1], sep, fs::path_ext_remove(fs::path_file(file_path)), ".html"
   )
