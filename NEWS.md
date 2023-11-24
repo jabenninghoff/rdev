@@ -1,3 +1,7 @@
+# rdev 1.8.2
+
+* pkgdown bug fixes
+
 # rdev 1.8.1
 
 * Added support for [Visual Studio Code](https://code.visualstudio.com) to `setup-r`
