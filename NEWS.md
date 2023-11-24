@@ -1,3 +1,9 @@
+# rdev 1.8.1
+
+* Added support for [Visual Studio Code](https://code.visualstudio.com) to `setup-r`
+
+* Quarto bug fixes
+
 # rdev 1.8.0
 
 Added support for [Quarto](https://quarto.org), including:
