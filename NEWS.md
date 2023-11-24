@@ -1,6 +1,6 @@
 # rdev 1.8.2
 
-* pkgdown bug fixes
+* Added rendering fixes to `use_analysis_package()` (update: re-run `use_analysis_package()` and update notebooks from Analysis Notebook template)
 
 # rdev 1.8.1
 

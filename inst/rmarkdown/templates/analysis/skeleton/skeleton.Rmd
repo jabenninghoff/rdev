@@ -9,6 +9,8 @@ output:
   html_notebook:
     theme:
       version: 5
+      preset: bootstrap
+    css: assets/extra.css
     toc: yes
     toc_float:
       collapsed: no
