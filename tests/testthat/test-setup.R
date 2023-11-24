@@ -261,3 +261,18 @@ test_that("use_analysis_package returns expected values", {
   expect_identical(use_analysis_package(use_quarto = FALSE), values)
   expect_identical(use_analysis_package(use_quarto = TRUE), values_quarto)
 })
+
+# use_rdev_pkgdown
+
+test_that("use_rdev_pkgdown adds customizations", {
+  withr::local_options(
+    .new = list(rdev.license = NULL, rdev.license.copyright = NULL, rdev.github.actions = NULL)
+  )
+  usethis::ui_silence(local_temppkg(type = "rdev"))
+  usethis::ui_silence(use_rdev_pkgdown())
+  pkg <- yaml::read_yaml("_pkgdown.yml")
+
+  expect_true(fs::file_exists("pkgdown/extra.css"))
+  expect_identical(pkg$template$bslib$preset, "bootstrap")
+  expect_identical(pkg$template$bootstrap, 5L)
+})

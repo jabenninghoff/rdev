@@ -38,6 +38,7 @@ reference:
     - use_lintr
     - use_package_r
     - use_rdev_package
+    - use_rdev_pkgdown
     - use_rprofile
     - use_spelling
     - use_todo

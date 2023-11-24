@@ -2,6 +2,8 @@
 
 * Added rendering fixes to `use_analysis_package()` (update: re-run `use_analysis_package()` and update notebooks from Analysis Notebook template)
 
+* Added function `use_rdev_pkgdown()`: add pkgdown with rdev customizations
+
 # rdev 1.8.1
 
 * Added support for [Visual Studio Code](https://code.visualstudio.com) to `setup-r`
