@@ -591,3 +591,25 @@ use_analysis_package <- function(use_quarto = TRUE, prompt = FALSE) {
   )
   return(invisible(ret))
 }
+
+#' Use rdev pkgdown
+#'
+#' Add pkgdown with rdev customizations. Implemented as a wrapper for [usethis::use_pkgdown()].
+#'
+#' In addition to running [usethis::use_pkgdown()], `use_rdev_pkgdown` adds `extra.css` to
+#'   `pkgdown` to fix rendering of GitHub-style
+# nolint next: line_length_linter.
+#'   [task lists](https://docs.github.com/en/get-started/writing-on-github/working-with-advanced-formatting/about-task-lists),
+#'   and disables the [bslib::bs_theme()] `"shiny"` preset.
+#'
+#' @inheritParams usethis::use_pkgdown
+#'
+#' @export
+use_rdev_pkgdown <- function(config_file = "_pkgdown.yml", destdir = "docs") {
+  usethis::use_pkgdown(config_file = config_file, destdir = destdir)
+  fs::dir_create("pkgdown")
+  usethis::use_template("extra.css", save_as = "pkgdown/extra.css", package = "rdev")
+  pkg <- yaml::read_yaml("_pkgdown.yml")
+  pkg$template$bslib$preset <- "bootstrap"
+  yaml::write_yaml(pkg, "_pkgdown.yml")
+}
