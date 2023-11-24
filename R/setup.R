@@ -454,6 +454,10 @@ use_rdev_package <- function(quiet = TRUE) {
 #' When run, `use_analysis_package()`:
 #' 1. Creates analysis package directories
 #' 1. Adds exclusions to .gitignore and .Rbuildignore
+#' 1. Adds `extra.css` to `analysis/assets` and `pkgdown` (when `use_quarto` is `FALSE`) to fix
+#'    rendering of GitHub-style
+# nolint next: line_length_linter.
+#'    [task lists](https://docs.github.com/en/get-started/writing-on-github/working-with-advanced-formatting/about-task-lists)
 #' 1. Adds `.nojekyll`, `_quarto.yml` and `index.qmd` from templates OR creates `_base.yml` in
 #'    `pkgdown` from the first `URL` in `DESCRIPTION`
 #' 1. Installs the `README.Rmd` template for analysis packages, and the `dplyr`
@@ -532,6 +536,8 @@ use_analysis_package <- function(use_quarto = TRUE, prompt = FALSE) {
   usethis::use_build_ignore(analysis_rbuildignore, escape = FALSE)
   sort_rbuildignore()
 
+  usethis::use_template("extra.css", save_as = "analysis/assets/extra.css", package = "rdev")
+
   urls <- desc::desc_get_urls()
   github_repo <- get_github_repo()
   if (use_quarto) {
@@ -548,8 +554,12 @@ use_analysis_package <- function(use_quarto = TRUE, prompt = FALSE) {
     usethis::use_template("index.qmd", package = "rdev", data = fields)
   } else {
     if (length(urls) >= 1 && !fs::file_exists("pkgdown/_base.yml")) {
-      yaml::write_yaml(list(url = urls[1], template = list(bootstrap = 5L)), "pkgdown/_base.yml")
+      yaml::write_yaml(
+        list(url = urls[1], template = list(bootstrap = 5L, bslib = list(preset = "bootstrap"))),
+        "pkgdown/_base.yml"
+      )
     }
+    usethis::use_template("extra.css", save_as = "pkgdown/extra.css", package = "rdev")
   }
 
   # always overwrite README.Rmd
