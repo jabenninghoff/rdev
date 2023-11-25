@@ -276,3 +276,18 @@ test_that("use_rdev_pkgdown adds customizations", {
   expect_identical(pkg$template$bslib$preset, "bootstrap")
   expect_identical(pkg$template$bootstrap, 5L)
 })
+
+test_that("use_rdev_pkgdown pauses when running interactively", {
+  pkg <- list(url = NULL, template = list(bootstrap = 5L))
+  mockery::stub(use_rdev_pkgdown, "usethis::use_pkgdown", NULL)
+  mockery::stub(use_rdev_pkgdown, "fs::dir_create", NULL)
+  mockery::stub(use_rdev_pkgdown, "usethis::use_template", NULL)
+  mockery::stub(use_rdev_pkgdown, "yaml::read_yaml", pkg)
+  mockery::stub(use_rdev_pkgdown, "yaml::write_yaml", NULL)
+
+  expect_output(
+    rlang::with_interactive(use_rdev_pkgdown(config_file = "_pkgdown.yml"), TRUE),
+    "^\\nupdating _pkgdown\\.yml\\.\\.\\.done!$"
+  )
+  expect_silent(rlang::with_interactive(use_rdev_pkgdown(), FALSE))
+})
