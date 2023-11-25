@@ -609,7 +609,13 @@ use_rdev_pkgdown <- function(config_file = "_pkgdown.yml", destdir = "docs") {
   usethis::use_pkgdown(config_file = config_file, destdir = destdir)
   fs::dir_create("pkgdown")
   usethis::use_template("extra.css", save_as = "pkgdown/extra.css", package = "rdev")
-  pkg <- yaml::read_yaml("_pkgdown.yml")
+  pkg <- yaml::read_yaml(config_file)
   pkg$template$bslib$preset <- "bootstrap"
-  yaml::write_yaml(pkg, "_pkgdown.yml")
+  # workaround for RStudio race condition
+  if (rlang::is_interactive()) {
+    writeLines(paste0("\nupdating ", config_file, "..."), sep = "")
+    Sys.sleep(1)
+    writeLines("done!")
+  }
+  yaml::write_yaml(pkg, config_file)
 }
