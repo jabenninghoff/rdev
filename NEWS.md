@@ -1,3 +1,7 @@
+# rdev 1.8.3
+
+* Check if `pandoc` is in `PATH` on launch (update: `use_rprofile()`)
+
 # rdev 1.8.2
 
 * Added rendering fixes to `use_analysis_package()` (update: re-run `use_analysis_package()` and update notebooks from Analysis Notebook template)

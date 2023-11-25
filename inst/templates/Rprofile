@@ -21,4 +21,6 @@ if (interactive()) {
       "pre-commit", readLines(fs::path_package("rdev", "templates", "pre-commit"))
     )
   }
+  # warn if pandoc not found in PATH
+  if (Sys.which("pandoc") == "") warning("pandoc not found, run `open /Applications/RStudio.app`")
 }
