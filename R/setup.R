@@ -475,44 +475,38 @@ use_analysis_package <- function(use_quarto = TRUE, prompt = FALSE) {
   # workaround for lintr, R CMD check
   create <- gitignore <- rbuildignore <- NULL
 
+  analysis_layout <- tibble::tribble(
+    ~pattern,             ~create, ~gitignore, ~rbuildignore,
+    "analysis",           TRUE,    FALSE,      FALSE,
+    "analysis/*.docx",    FALSE,   TRUE,       TRUE,
+    "analysis/*.html",    FALSE,   TRUE,       TRUE,
+    "analysis/*.md",      FALSE,   TRUE,       TRUE,
+    "analysis/*.pdf",     FALSE,   TRUE,       TRUE,
+    "analysis/*-figure/", FALSE,   TRUE,       TRUE,
+    "analysis/assets",    TRUE,    FALSE,      FALSE,
+    "analysis/data",      TRUE,    FALSE,      FALSE,
+    "analysis/import",    TRUE,    TRUE,       TRUE,
+    "analysis/rendered",  TRUE,    TRUE,       TRUE,
+    "docs",               TRUE,    FALSE,      TRUE
+  )
+
   if (use_quarto) {
-    analysis_layout <- tibble::tribble(
+    quarto_layout <- tibble::tribble(
       ~pattern,             ~create, ~gitignore, ~rbuildignore,
-      "analysis",           TRUE,    FALSE,      FALSE,
-      "analysis/*.docx",    FALSE,   TRUE,       TRUE,
-      "analysis/*.html",    FALSE,   TRUE,       TRUE,
-      "analysis/*.md",      FALSE,   TRUE,       TRUE,
-      "analysis/*.pdf",     FALSE,   TRUE,       TRUE,
-      "analysis/*-figure/", FALSE,   TRUE,       TRUE,
-      "analysis/assets",    TRUE,    FALSE,      FALSE,
-      "analysis/data",      TRUE,    FALSE,      FALSE,
-      "analysis/import",    TRUE,    TRUE,       TRUE,
-      "analysis/rendered",  TRUE,    TRUE,       TRUE,
-      "docs",               TRUE,    FALSE,      TRUE,
       ".nojekyll",          FALSE,   FALSE,      TRUE,
       ".quarto",            FALSE,   FALSE,      TRUE,
       "/.quarto/",          FALSE,   TRUE,       FALSE,
       "_freeze",            FALSE,   FALSE,      TRUE,
-      "/_freeze/",          FALSE,   TRUE,       FALSE,
       "_quarto.yml",        FALSE,   FALSE,      FALSE
     )
+    analysis_layout <- rbind(analysis_layout, quarto_layout)
   } else {
-    analysis_layout <- tibble::tribble(
+    pkgdown_layout <- tibble::tribble(
       ~pattern,             ~create, ~gitignore, ~rbuildignore,
-      "analysis",           TRUE,    FALSE,      FALSE,
-      "analysis/*.docx",    FALSE,   TRUE,       TRUE,
-      "analysis/*.html",    FALSE,   TRUE,       TRUE,
-      "analysis/*.md",      FALSE,   TRUE,       TRUE,
-      "analysis/*.pdf",     FALSE,   TRUE,       TRUE,
-      "analysis/*-figure/", FALSE,   TRUE,       TRUE,
-      "analysis/assets",    TRUE,    FALSE,      FALSE,
-      "analysis/data",      TRUE,    FALSE,      FALSE,
-      "analysis/import",    TRUE,    TRUE,       TRUE,
-      "analysis/rendered",  TRUE,    TRUE,       TRUE,
-      "docs",               TRUE,    FALSE,      TRUE,
       "pkgdown",            TRUE,    FALSE,      TRUE,
       "_pkgdown.yml",       FALSE,   FALSE,      TRUE
     )
+    analysis_layout <- rbind(analysis_layout, pkgdown_layout)
   }
 
   analysis_dirs <- subset(analysis_layout, create)$pattern

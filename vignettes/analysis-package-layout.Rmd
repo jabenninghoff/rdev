@@ -49,7 +49,7 @@ R                        |`x`|`x`| All project functions go here, with [roxygen2
 README.Rmd               |`x`|`x`| Generated with `usethis::use_readme_md()` or rdev template
 README.md                |`x`|`x`| Generated with `devtools::build_readme()`
 TODO.md                  |`x`|`x`| To-do list, inspired by renv's [historical TODO.md](https://github.com/rstudio/renv/blob/99737730ea69730b211770ba2bfa78301cf0e7b2/TODO.md)
-_freeze                  |   |   | Used by the Quarto [`freeze`](https://quarto.org/docs/projects/code-execution.html#freeze) option
+_freeze                  |   |`x`| Used by the Quarto [`freeze`](https://quarto.org/docs/projects/code-execution.html#freeze) option
 _pkgdown.yml             |   |`x`| [pkgdown](https://pkgdown.r-lib.org) metadata, stored in the project root to make it more [discoverable](https://github.com/search?q=filename%3Apkgdown.yml+path%3A%2F&type=Code) (not used with Quarto)
 _quarto.yml              |`x`|`x`| Quarto [configuration file](https://quarto.org/docs/projects/quarto-projects.html#project-metadata)
 analysis                 |   |`x`| Exploratory data analysis in R Notebooks and R Presentations. Include functions from the R directory using `library()`, not `source()`.
