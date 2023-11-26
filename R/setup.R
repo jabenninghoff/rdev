@@ -600,7 +600,7 @@ use_analysis_package <- function(use_quarto = TRUE, prompt = FALSE) {
 #'   `pkgdown` to fix rendering of GitHub-style
 # nolint next: line_length_linter.
 #'   [task lists](https://docs.github.com/en/get-started/writing-on-github/working-with-advanced-formatting/about-task-lists),
-#'   and disables the [bslib::bs_theme()] `"shiny"` preset.
+#'   adds the GitHub Pages URL, and disables the [bslib::bs_theme()] `"shiny"` preset.
 #'
 #' @inheritParams usethis::use_pkgdown
 #'
@@ -610,6 +610,8 @@ use_rdev_pkgdown <- function(config_file = "_pkgdown.yml", destdir = "docs") {
   fs::dir_create("pkgdown")
   usethis::use_template("extra.css", save_as = "pkgdown/extra.css", package = "rdev")
   pkg <- yaml::read_yaml(config_file)
+  urls <- desc::desc_get_urls()
+  pkg$url <- urls[1]
   pkg$template$bslib$preset <- "bootstrap"
   # workaround for RStudio race condition
   if (rlang::is_interactive()) {
