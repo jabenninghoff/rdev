@@ -1,3 +1,7 @@
+# rdev 1.8.5
+
+* Changed `use_analysis_package()` to store `_freeze` directory in git per Quarto [guide](https://quarto.org/docs/projects/code-execution.html#using-freeze)
+
 # rdev 1.8.4
 
 * Also set GitHub Pages URL in `use_rdev_pkgdown()`
