@@ -46,8 +46,8 @@
 - [x] Add trailing slash to GitHub Pages URL
 - [x] Update `lint_all()` to lint all types, including `.Rpres`
 - [x] ~~Add custom CSS files to [`_site.yml`](https://rmarkdown.rstudio.com/docs/reference/render_site.html) and analysis notebook templates to control font size, as described in this [article](https://medium.com/@HadrienD/how-to-customize-font-size-in-r-markdown-documents-f5adff36e2cc), or possibly using [`bs_theme()`](https://rstudio.github.io/bslib/articles/theming.html), since pkgdown customizes the default using [`build_bslib()`](https://github.com/r-lib/pkgdown/blob/main/R/theme.R)~~ (issue exists in unsupported Safari 14 but not Safari 15)
+- [x] ~~Remove `pkgdown/extra.css` if <https://github.com/r-lib/pkgdown/issues/2377> is accepted~~
 - [ ] Remove `preset: bootstrap` if <https://github.com/r-lib/pkgdown/issues/2376> is accepted
-- [ ] Remove `pkgdown/extra.css` if <https://github.com/r-lib/pkgdown/issues/2377> is accepted
 - [ ] Replace `dev = TRUE` logic if <https://github.com/rstudio/renv/issues/1695> is accepted
 - [ ] Update errors and messages after reading Advanced R [Conditions](https://adv-r.hadley.nz/conditions.html) and re-reading the Tidyverse [Style Guide](https://style.tidyverse.org/index.html)
 - [ ] Establish default [knitr options](https://yihui.org/knitr/options/), including `knitr::opts_chunk$set(fig.align = "center"")`, add to analysis template, also review [settings](https://github.com/hadley/adv-r/blob/master/common.R) for *Advanced R*
