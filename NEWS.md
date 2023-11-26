@@ -1,3 +1,7 @@
+# rdev 1.8.4
+
+* Also set GitHub Pages URL in `use_rdev_pkgdown()`
+
 # rdev 1.8.3
 
 * Check if `pandoc` is in `PATH` on launch (update: `use_rprofile()`)

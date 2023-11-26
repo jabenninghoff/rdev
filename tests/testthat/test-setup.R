@@ -279,10 +279,12 @@ test_that("use_rdev_pkgdown adds customizations", {
 
 test_that("use_rdev_pkgdown pauses when running interactively", {
   pkg <- list(url = NULL, template = list(bootstrap = 5L))
+  desc_urls <- c("https://example.github.io/package/", "https://github.com/example/package")
   mockery::stub(use_rdev_pkgdown, "usethis::use_pkgdown", NULL)
   mockery::stub(use_rdev_pkgdown, "fs::dir_create", NULL)
   mockery::stub(use_rdev_pkgdown, "usethis::use_template", NULL)
   mockery::stub(use_rdev_pkgdown, "yaml::read_yaml", pkg)
+  mockery::stub(use_rdev_pkgdown, "desc::desc_get_urls", desc_urls)
   mockery::stub(use_rdev_pkgdown, "yaml::write_yaml", NULL)
 
   expect_output(
