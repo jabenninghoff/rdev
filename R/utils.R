@@ -77,6 +77,7 @@ spell_check_notebooks <- function(path = "analysis", glob = "*.Rmd", use_wordlis
 #' @export
 update_wordlist_notebooks <- function(pkg = ".", vignettes = TRUE, path = "analysis",
                                       glob = "*.Rmd", confirm = TRUE) {
+  # nocov start
   as_package <- "spelling" %:::% "as_package"
   get_wordfile <- "spelling" %:::% "get_wordfile"
   get_wordlist <- spelling::get_wordlist
@@ -94,6 +95,7 @@ update_wordlist_notebooks <- function(pkg = ".", vignettes = TRUE, path = "analy
     )),
     method = "radix"
   )
+  # end change
   if (isTRUE(all.equal(old_words, new_words))) {
     cat(sprintf("No changes required to %s\n", wordfile))
   } else {
@@ -125,6 +127,7 @@ update_wordlist_notebooks <- function(pkg = ".", vignettes = TRUE, path = "analy
       "Added %d and removed %d words in %s\n", length(words_added), length(words_removed), wordfile
     ))
   }
+  # nocov end
 }
 
 deps_check <- function(type, exclude_base = TRUE) {
