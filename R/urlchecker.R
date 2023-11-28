@@ -17,12 +17,12 @@ url_check <- urlchecker::url_check
 # cli is not recorded in Imports. This function is a workaround to ensure use of cli is also
 # detected by renv.
 url_update_renv_workaround <- function(...) {
-  cli::cli_alert_success(...)
+  cli::cli_alert_success(...) # nocov
 }
 
 # NOTE: use of curl::new_pool() is considered a dependency by renv but not by R CMD check.
 curl_new_pool_renv_workaround <- function(...) {
-  curl::new_pool(...)
+  curl::new_pool(...) # nocov
 }
 
 #' @rdname urlchecker-reexports
