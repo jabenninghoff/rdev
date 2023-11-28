@@ -5,6 +5,7 @@
 - [x] Add README.Rmd
 - [x] Update `DESCRIPTION` and use description data in `README.Rmd`
 - [x] Add ORCID
+- [ ] Update my ORCID details
 
 ## Package
 
@@ -49,6 +50,9 @@
 - [x] ~~Remove `pkgdown/extra.css` if <https://github.com/r-lib/pkgdown/issues/2377> is accepted~~
 - [ ] Remove `preset: bootstrap` if <https://github.com/r-lib/pkgdown/issues/2376> is accepted
 - [ ] Replace `dev = TRUE` logic if <https://github.com/rstudio/renv/issues/1695> is accepted
+- [ ] Consider using RStudio [Extensions](https://rstudio.github.io/rstudio-extensions/index.html):
+  - [ ] Use Project [Templates](https://rstudio.github.io/rstudio-extensions/rstudio_project_templates.html) like [vertical](https://www.crumplab.com/vertical/) ?
+  - [ ] Add CSS to R Markdown [Template](https://rstudio.github.io/rstudio-extensions/rmarkdown_templates.html) instead of `assets/extra.css` ?
 - [ ] Update errors and messages after reading Advanced R [Conditions](https://adv-r.hadley.nz/conditions.html) and re-reading the Tidyverse [Style Guide](https://style.tidyverse.org/index.html)
 - [ ] Establish default [knitr options](https://yihui.org/knitr/options/), including `knitr::opts_chunk$set(fig.align = "center"")`, add to analysis template, also review [settings](https://github.com/hadley/adv-r/blob/master/common.R) for *Advanced R*
 - [ ] Reduce the number of Imports, per R CMD check:
