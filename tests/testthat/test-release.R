@@ -20,6 +20,24 @@ dev_ver <- structure(list(c(1L, 0L, 0L, 9000L)), class = c(
   "numeric_version"
 ))
 
+test_that("new_branch validates arguments", {
+  mockery::stub(new_branch, "gert::git_branch_exists", NULL)
+  mockery::stub(new_branch, "gert::git_branch_checkout", NULL)
+  mockery::stub(new_branch, "usethis::git_default_branch", NULL)
+  mockery::stub(new_branch, "gert::git_branch_create", NULL)
+  mockery::stub(new_branch, "desc::desc_get_version", NULL)
+  mockery::stub(new_branch, "desc::desc_bump_version", NULL)
+  mockery::stub(new_branch, "gert::git_add", NULL)
+  mockery::stub(new_branch, "gert::git_commit", NULL)
+  mockery::stub(new_branch, "gert::git_status", NULL)
+  mockery::stub(new_branch, "gert::git_stash_save", NULL)
+  mockery::stub(new_branch, "gert::git_stash_pop", NULL)
+
+  expect_error(new_branch(name = NA_character_), "'name'")
+  expect_error(new_branch("test", bump_ver = NA), "'bump_ver'")
+  expect_error(new_branch("test", current = NA), "'current'")
+})
+
 test_that("new_branch errors when local or remote branch exists", {
   g <- function(name, local = TRUE) {
     if (name == "local" & local) {
@@ -162,10 +180,11 @@ test_that("get_release returns correct package, version, and notes for first rel
   expect_identical(rel$notes, "Initial release.")
 })
 
-test_that('get_release stops when pkg != "."', {
+test_that("get_release validates arguments", {
   expect_error(
     get_release(pkg = "tpkg"), '^currently only get_release\\(pkg = "\\."\\) is supported$'
   )
+  expect_error(get_release(filename = NA_character_), "'filename'")
 })
 
 test_that("get_release returns error on invalid NEWS.md format", {
@@ -190,7 +209,7 @@ test_that("get_release returns valid but non-rdev version", {
 
 # stage_release
 
-test_that('stage_release stops when pkg != "."', {
+test_that("stage_release validates arguments", {
   # stub functions that change state
   mockery::stub(stage_release, "gert::git_branch_create", NULL)
   mockery::stub(stage_release, "desc::desc_set_version", NULL)
@@ -204,6 +223,8 @@ test_that('stage_release stops when pkg != "."', {
   expect_error(
     stage_release(pkg = "tpkg"), '^currently only stage_release\\(pkg = "\\."\\) is supported$'
   )
+  expect_error(stage_release(filename = NA_character_), "'filename'")
+  expect_error(stage_release(host = NA_character_), "'host'")
 })
 
 test_that("stage_release returns error on non-rdev version", {
@@ -495,4 +516,22 @@ test_that("merge_release errors when expected and returns list", {
   expect_error(
     merge_release(pkg = "tpkg"), '^currently only merge_release\\(pkg = "\\."\\) is supported$'
   )
+})
+
+test_that("merge_release validates arguments", {
+  mockery::stub(merge_release, "get_release", NULL)
+  mockery::stub(merge_release, "gert::git_remote_info", NULL)
+  mockery::stub(merge_release, "remotes::parse_github_url", NULL)
+  mockery::stub(merge_release, "gh::gh", NULL)
+  mockery::stub(merge_release, "gert::git_branch_checkout", NULL)
+  mockery::stub(merge_release, "gert::git_branch_delete", NULL)
+  mockery::stub(merge_release, "gert::git_pull", NULL)
+  mockery::stub(merge_release, "gert::git_tag_create", NULL)
+  mockery::stub(merge_release, "gert::git_tag_push", NULL)
+
+  expect_error(
+    merge_release(pkg = "tpkg"), '^currently only merge_release\\(pkg = "\\."\\) is supported$'
+  )
+  expect_error(merge_release(filename = NA_character_), "'filename'")
+  expect_error(merge_release(host = NA_character_), "'host'")
 })

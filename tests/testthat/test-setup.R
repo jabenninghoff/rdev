@@ -69,6 +69,12 @@ test_that("get_license validates options", {
 
 # fix_gitignore
 
+test_that("fix_gitignore validates arguments", {
+  withr::local_dir(withr::local_tempdir())
+
+  expect_error(fix_gitignore(path = NA_character_), "'path'")
+})
+
 test_that("fix_gitignore removes extra '.Rproj.user'", {
   withr::local_dir(withr::local_tempdir())
   gitignore_tidy <- c(
@@ -89,6 +95,20 @@ test_that("fix_gitignore removes extra '.Rproj.user'", {
 })
 
 # create_github_repo
+
+test_that("create_github_repo validates arguments", {
+  mockery::stub(create_github_repo, "fs::dir_exists", NULL)
+  mockery::stub(create_github_repo, "gh::gh", NULL)
+  mockery::stub(create_github_repo, "usethis::create_from_github", NULL)
+  mockery::stub(create_github_repo, "fs::file_delete", NULL)
+  mockery::stub(create_github_repo, "usethis::create_package", NULL)
+  mockery::stub(create_github_repo, "fix_gitignore", NULL)
+
+  expect_error(create_github_repo(repo_name = NA_character_), "'repo_name'")
+  expect_error(create_github_repo("test", repo_desc = NA_character_), "'repo_desc'")
+  expect_error(create_github_repo("test", org = NA_character_), "'org'")
+  expect_error(create_github_repo("test", host = NA_character_), "'host'")
+})
 
 test_that("create_github_repo errors when proposed repo directory exists locally", {
   mockery::stub(create_github_repo, "fs::dir_exists", TRUE)
@@ -209,7 +229,22 @@ test_that("get_server_url finds the correct server URL", {
   )
 })
 
+# use_rdev_package
+
+test_that("use_rdev_package validates arguments", {
+  withr::local_dir(withr::local_tempdir())
+  mockery::stub(use_rdev_package, "gh::gh", NULL)
+
+  expect_error(use_rdev_package(quiet = NA), "'quiet'")
+})
+
 # use_analysis_package
+
+test_that("use_analysis_package validates arguments", {
+  withr::local_dir(withr::local_tempdir())
+
+  expect_error(use_analysis_package(use_quarto = NA), "'use_quarto'")
+})
 
 test_that("use_analysis_package returns expected values", {
   values <- list(

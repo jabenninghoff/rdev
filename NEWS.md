@@ -1,3 +1,7 @@
+# rdev 1.8.6
+
+* Check function arguments with [checkmate](https://mllg.github.io/checkmate/index.html)
+
 # rdev 1.8.5
 
 * Changed `use_analysis_package()` to store `_freeze` directory in git per Quarto [guide](https://quarto.org/docs/projects/code-execution.html#using-freeze)

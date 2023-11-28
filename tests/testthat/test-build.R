@@ -40,6 +40,19 @@ test_that("unfreeze errors when components are missing", {
 
 # build_quarto_site
 
+test_that("build_quarto_site validates arguments", {
+  mockery::stub(build_quarto_site, "devtools::build_readme", NULL)
+  mockery::stub(build_quarto_site, "unfreeze", NULL)
+  mockery::stub(build_quarto_site, "quarto::quarto_render", NULL)
+  withr::local_dir(withr::local_tempdir())
+  fs::file_create("README.Rmd")
+  fs::dir_create("analysis")
+  fs::file_create("analysis/test.Rmd")
+  fs::file_create("_quarto.yml")
+
+  expect_error(build_quarto_site(unfreeze = NA), "'unfreeze'")
+})
+
 test_that("build_quarto_site errors when components are missing", {
   withr::local_dir(withr::local_tempdir())
 

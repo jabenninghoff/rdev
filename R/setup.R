@@ -166,6 +166,8 @@ get_github_repo <- function() {
 #' @keywords internal
 #' @noRd
 fix_gitignore <- function(path = ".") {
+  checkmate::assert_string(path)
+
   giti_path <- fs::path(path, ".gitignore")
   gitignore <- readLines(giti_path)
   gitignore <- gitignore[!grepl("^\\.Rproj\\.user$", gitignore)]
@@ -203,6 +205,11 @@ fix_gitignore <- function(path = ".") {
 #' @export
 create_github_repo <- function(repo_name, repo_desc = "", org = NULL,
                                host = getOption("rdev.host")) {
+  checkmate::assert_string(repo_name)
+  checkmate::assert_string(repo_desc)
+  checkmate::assert_string(org, null.ok = TRUE)
+  checkmate::assert_string(host, null.ok = TRUE)
+
   conspicuous_place <- "usethis" %:::% "conspicuous_place"
   user_path_prep <- "usethis" %:::% "user_path_prep"
 
@@ -343,6 +350,8 @@ get_server_url <- function() {
 #'
 #' @export
 use_rdev_package <- function(quiet = TRUE) {
+  checkmate::assert_flag(quiet)
+
   rlang::local_interactive(value = !quiet)
 
   # add templates
@@ -474,6 +483,8 @@ use_rdev_package <- function(quiet = TRUE) {
 use_analysis_package <- function(use_quarto = TRUE, prompt = FALSE) {
   # workaround for lintr, R CMD check
   create <- gitignore <- rbuildignore <- NULL
+
+  checkmate::assert_flag(use_quarto)
 
   analysis_layout <- tibble::tribble(
     ~pattern,             ~create, ~gitignore, ~rbuildignore,

@@ -1,7 +1,9 @@
 # local_temppkg
 
-test_that("local_temppkg errors with an invalid package type", {
-  expect_error(local_temppkg(type = "badtype"), "^unrecognized package type, 'badtype'$")
+test_that("local_temppkg validates arguments", {
+  expect_error(local_temppkg(dir = NA_character_), "'dir")
+  expect_error(local_temppkg(type = "badtype"), "'type'")
+  expect_error(local_temppkg(env = NA), "'env'")
 })
 
 test_that("local_temppkg creates a valid usethis package", {

@@ -59,6 +59,7 @@ unfreeze <- function() {
 #'
 #' @export
 build_quarto_site <- function(input = NULL, as_job = FALSE, unfreeze = FALSE, ...) {
+  checkmate::assert_flag(unfreeze)
   if (!fs::file_exists("README.Rmd")) {
     stop("README.Rmd does not exist")
   }

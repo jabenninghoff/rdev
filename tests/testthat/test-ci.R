@@ -2,6 +2,14 @@ withr::local_dir("test-ci")
 
 # check_renv
 
+test_that("check_renv validates arguments", {
+  mockery::stub(check_renv, "renv::status", NULL)
+  mockery::stub(check_renv, "renv::clean", NULL)
+  mockery::stub(check_renv, "renv::update", NULL)
+
+  expect_error(check_renv(update = NA), "'update'")
+})
+
 test_that("All renv functions are called, unless set to FALSE", {
   mockery::stub(check_renv, "renv::status", NULL)
   mockery::stub(check_renv, "renv::clean", NULL)
@@ -37,6 +45,34 @@ test_that("lint_all checks all file types", {
 })
 
 # ci
+
+test_that("ci validates arguments", {
+  mockery::stub(ci, "renv::status", NULL)
+  mockery::stub(ci, "missing_deps", NULL)
+  mockery::stub(ci, "fs::file_exists", NULL)
+  mockery::stub(ci, "pkgdown::check_pkgdown", NULL)
+  mockery::stub(ci, "style_all", NULL)
+  mockery::stub(ci, "lint_all", NULL)
+  mockery::stub(ci, "gert::git_status", NULL)
+  mockery::stub(ci, "devtools::document", NULL)
+  mockery::stub(ci, "desc::desc_normalize", NULL)
+  mockery::stub(ci, "print_tbl", NULL)
+  mockery::stub(ci, "extra_deps", NULL)
+  mockery::stub(ci, "url_check", NULL)
+  mockery::stub(ci, "html_url_check", NULL)
+  mockery::stub(ci, "rcmdcheck::rcmdcheck", NULL)
+
+  expect_error(ci(renv = NA), "'renv'")
+  expect_error(ci(missing = NA), "'missing'")
+  expect_error(ci(pkgdown = NA), "'pkgdown'")
+  expect_error(ci(styler = NA), "'styler'")
+  expect_error(ci(lintr = NA), "'lintr'")
+  expect_error(ci(document = NA), "'document'")
+  expect_error(ci(normalize = NA), "'normalize'")
+  expect_error(ci(extra = NA), "'extra'")
+  expect_error(ci(urls = NA), "'urls'")
+  expect_error(ci(rcmdcheck = NA), "'rcmdcheck'")
+})
 
 test_that("All renv functions are called according to ci logic", {
   renv_sync_true <- list(library = list(), lockfile = list(), synchronized = TRUE)
