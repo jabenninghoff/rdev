@@ -12,6 +12,8 @@
 #' }
 #' @export
 check_renv <- function(update = rlang::is_interactive()) {
+  checkmate::assert_flag(update)
+
   writeLines("renv::status(dev = TRUE)")
   renv::status(dev = TRUE)
 
@@ -117,6 +119,17 @@ ci <- function(renv = TRUE, # nolint: cyclocomp_linter.
                extra = TRUE,
                urls = TRUE,
                rcmdcheck = TRUE) {
+  checkmate::assert_flag(renv)
+  checkmate::assert_flag(missing)
+  checkmate::assert_flag(pkgdown)
+  checkmate::assert_flag(styler, null.ok = TRUE)
+  checkmate::assert_flag(lintr)
+  checkmate::assert_flag(document)
+  checkmate::assert_flag(normalize)
+  checkmate::assert_flag(extra)
+  checkmate::assert_flag(urls)
+  checkmate::assert_flag(rcmdcheck)
+
   if (renv) {
     writeLines("renv::status(dev = TRUE)")
     status <- renv::status(dev = TRUE)

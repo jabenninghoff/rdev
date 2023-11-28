@@ -20,6 +20,8 @@
 #' }
 #' @export
 sort_file <- function(filename) {
+  checkmate::assert_string(filename)
+
   if (!fs::file_exists(filename)) stop("cannot sort file, '", filename, "': no such file")
   writeLines(sort(readLines(filename)), filename)
 }
@@ -47,6 +49,11 @@ sort_rbuildignore <- function() {
 #' @export
 spell_check_notebooks <- function(path = "analysis", glob = "*.Rmd", use_wordlist = TRUE,
                                   lang = NULL) {
+  checkmate::assert_string(path)
+  checkmate::assert_string(glob)
+  checkmate::assert_flag(use_wordlist)
+  checkmate::assert_string(lang, null.ok = TRUE)
+
   if (is.null(lang)) {
     if (!fs::file_exists("DESCRIPTION")) {
       stop("DESCRIPTION not found")
@@ -131,11 +138,10 @@ update_wordlist_notebooks <- function(pkg = ".", vignettes = TRUE, path = "analy
 }
 
 deps_check <- function(type, exclude_base = TRUE) {
-  base_packages <- rownames(utils::installed.packages(priority = "base"))
+  checkmate::assert_choice(type, c("missing", "extra"))
+  checkmate::assert_flag(exclude_base)
 
-  if (!(type %in% c("missing", "extra"))) {
-    stop("invalid type '", type, "'")
-  }
+  base_packages <- rownames(utils::installed.packages(priority = "base"))
   renv_deps <- renv::dependencies()
   renv_deps <- renv_deps[!endsWith(renv_deps$Source, "/DESCRIPTION"), ]
   renv_deps <- renv_deps[!renv_deps$Package == pkgload::pkg_name("."), ]
@@ -179,6 +185,8 @@ deps_check <- function(type, exclude_base = TRUE) {
 #' @export
 #' @rdname deps_check
 missing_deps <- function(exclude_base = TRUE) {
+  checkmate::assert_flag(exclude_base)
+
   deps_check("missing", exclude_base)
 }
 

@@ -26,9 +26,9 @@
 #' }
 #' @export
 local_temppkg <- function(dir = fs::file_temp(), type = "usethis", env = parent.frame()) {
-  if (!(type %in% c("usethis", "rdev", "analysis", "quarto"))) {
-    stop("unrecognized package type, '", type, "'")
-  }
+  checkmate::assert_string(dir)
+  checkmate::assert_choice(type, c("usethis", "rdev", "analysis", "quarto"))
+  checkmate::assert_environment(env)
 
   # capture the current project - use try() since proj_get() will error within rcmdcheck()
   old_project <- NULL

@@ -11,6 +11,7 @@ URL: https://jabenninghoff.github.io/rdev/,
     https://github.com/jabenninghoff/rdev
 BugReports: https://github.com/jabenninghoff/rdev/issues
 Imports:
+    checkmate,
     cli,
     curl,
     desc,

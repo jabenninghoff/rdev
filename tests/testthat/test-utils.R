@@ -1,5 +1,9 @@
 # sort_file
 
+test_that("sort_file validates arguments", {
+  expect_error(sort_file(NA_character_), "'filename'")
+})
+
 test_that("sort_file errors when file does not exist", {
   expect_error(sort_file("nonexistant"), "^cannot sort file, 'nonexistant': no such file$")
 })
@@ -33,6 +37,15 @@ test_that("sort_rbuildignore sorts .Rbuildignore", {
 
 # spell_check_notebooks
 
+test_that("spell_check_notebooks validates arguments", {
+  withr::local_dir(withr::local_tempdir())
+
+  expect_error(spell_check_notebooks(path = NA_character_), "'path'")
+  expect_error(spell_check_notebooks(glob = NA_character_), "'glob'")
+  expect_error(spell_check_notebooks(use_wordlist = NA), "'use_wordlist'")
+  expect_error(spell_check_notebooks(lang = NA_character_), "'lang'")
+})
+
 test_that("spell_check_notebooks logic flows work", {
   withr::local_dir(withr::local_tempdir())
   fs::dir_create("inst")
@@ -65,11 +78,12 @@ test_that("spell_check_notebooks logic flows work", {
 
 # deps_check
 
-test_that("deps_check errors on invalid type", {
+test_that("deps_check validates arguments", {
   mockery::stub(deps_check, "renv::dependencies", NULL)
   mockery::stub(deps_check, "desc::desc_get_deps", NULL)
 
-  expect_error(deps_check("badtype"), "^invalid type 'badtype'$")
+  expect_error(deps_check("badtype"), "'badtype'")
+  expect_error(deps_check("missing", exclude_base = NA), "'exclude_base'")
 })
 
 test_that("deps_check finds correct missing and extra deps", {
@@ -154,6 +168,12 @@ test_that("deps_check finds correct missing and extra deps", {
   expect_identical(deps_check("missing"), missing)
   expect_identical(deps_check("missing", exclude_base = TRUE), missing)
   expect_identical(deps_check("missing", exclude_base = FALSE), missing_withbase)
+})
+
+test_that("missing_deps validates arguments", {
+  mockery::stub(missing_deps, "deps_check", NULL)
+
+  expect_error(missing_deps(exclude_base = NA), "'exclude_base'")
 })
 
 test_that("missing_deps and extra_deps call correct deps_check type", {
