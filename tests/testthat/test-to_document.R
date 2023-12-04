@@ -4,7 +4,9 @@ withr::local_dir("test-to_document")
 
 test_that("to_document validates arguments", {
   expect_error(to_document(file_path = NA_character_, new_path = "new.Rmd"), "'file_path'")
+  expect_error(to_document(file_path = "", new_path = "new.Rmd"), "'file_path'")
   expect_error(to_document(file_path = "old.Rmd", new_path = NA_character_), "'new_path'")
+  expect_error(to_document(file_path = "old.Rmd", new_path = ""), "'new_path'")
   expect_error(
     to_document(file_path = "old.Rmd", new_path = "new.Rmd", overwrite = NA), "'overwrite'"
   )
@@ -138,6 +140,7 @@ test_that("rmd_metadata validates arguments", {
   mockery::stub(rmd_metadata, "desc::desc_get_urls", desc_urls)
 
   expect_error(rmd_metadata(NA_character_), "'file_path'")
+  expect_error(rmd_metadata(""), "'file_path'")
 })
 
 test_that("rmd_metadata errors when file isn't a well-formed R markdown document", {

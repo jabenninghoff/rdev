@@ -17,8 +17,8 @@
 #' }
 #' @export
 to_document <- function(file_path, new_path, overwrite = FALSE) {
-  checkmate::assert_string(file_path)
-  checkmate::assert_string(new_path)
+  checkmate::assert_string(file_path, min.chars = 1)
+  checkmate::assert_string(new_path, min.chars = 1)
   checkmate::assert_flag(overwrite)
 
   if (!(fs::path_ext(file_path) %in% c("Rmd", "rmd"))) {
@@ -76,7 +76,7 @@ to_document <- function(file_path, new_path, overwrite = FALSE) {
 #' @return Named list containing analysis notebook title, URL, date, and description
 #' @export
 rmd_metadata <- function(file_path) {
-  checkmate::assert_string(file_path)
+  checkmate::assert_string(file_path, min.chars = 1)
 
   if (!(fs::path_ext(file_path) %in% c("Rmd", "rmd"))) {
     stop("'", file_path, "' is not an R Markdown (*.Rmd) file")

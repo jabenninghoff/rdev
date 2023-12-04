@@ -34,6 +34,7 @@ test_that("new_branch validates arguments", {
   mockery::stub(new_branch, "gert::git_stash_pop", NULL)
 
   expect_error(new_branch(name = NA_character_), "'name'")
+  expect_error(new_branch(name = ""), "'name'")
   expect_error(new_branch("test", bump_ver = NA), "'bump_ver'")
   expect_error(new_branch("test", current = NA), "'current'")
 })
@@ -185,6 +186,7 @@ test_that("get_release validates arguments", {
     get_release(pkg = "tpkg"), '^currently only get_release\\(pkg = "\\."\\) is supported$'
   )
   expect_error(get_release(filename = NA_character_), "'filename'")
+  expect_error(get_release(filename = ""), "'filename'")
 })
 
 test_that("get_release returns error on invalid NEWS.md format", {
@@ -224,7 +226,9 @@ test_that("stage_release validates arguments", {
     stage_release(pkg = "tpkg"), '^currently only stage_release\\(pkg = "\\."\\) is supported$'
   )
   expect_error(stage_release(filename = NA_character_), "'filename'")
+  expect_error(stage_release(filename = ""), "'filename'")
   expect_error(stage_release(host = NA_character_), "'host'")
+  expect_error(stage_release(host = ""), "'host'")
 })
 
 test_that("stage_release returns error on non-rdev version", {
@@ -533,5 +537,7 @@ test_that("merge_release validates arguments", {
     merge_release(pkg = "tpkg"), '^currently only merge_release\\(pkg = "\\."\\) is supported$'
   )
   expect_error(merge_release(filename = NA_character_), "'filename'")
+  expect_error(merge_release(filename = ""), "'filename'")
   expect_error(merge_release(host = NA_character_), "'host'")
+  expect_error(merge_release(host = ""), "'host'")
 })
