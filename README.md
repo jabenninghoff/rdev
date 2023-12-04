@@ -45,22 +45,19 @@ renv::install("jabenninghoff/rdev")
 rdev supports creation of new R packages following rdev conventions as
 well as new [R
 Analysis](https://jabenninghoff.github.io/rdev/articles/analysis-package-layout.html)
-packages. The typical setup workflow is:
+packages. The typical setup workflow (per `?quickstart`) is:
 
 1.  Use `available::available()` to check package name
-2.  Create new base package using `create_github_repo()`
-3.  Add new package to GitHub Desktop
-4.  Commit to git with message: `rdev::create_github_repo()`
-5.  Run `use_rdev_package()` within new project to add remaining
-    templates and settings
-6.  Commit to git with message: `rdev::use_rdev_package()`
-7.  Run either `use_analysis_package()` or `usethis::use_pkgdown()` for
-    GitHub Pages
-8.  Commit to git
-9.  Edit DESCRIPTION and add a Title and Description
-10. Update TODO.md, NEWS.md, README.Rmd, and DESCRIPTION as needed
-11. Run `check_renv()`, `ci()` to validate package
-12. Commit to git and begin development
+2.  With no project open, run `create_github_repo()` to initialize the
+    GitHub R repository
+3.  Without committing to git, run `init()` in the newly created project
+4.  Manually update the Title and Description fields in the
+    `DESCRIPTION` file without committing
+5.  Run `setup_analysis()` or `setup_rdev()` to configure the package as
+    an analysis package or rdev package respectively.
+6.  Update TODO.md, NEWS.md, README.Rmd, and DESCRIPTION as needed
+7.  Re-run `check_renv()`, `ci()` to validate package
+8.  Commit to git and begin development
 
 ## GitHub Releases
 
@@ -82,7 +79,7 @@ development workflow is:
     which merges the pull request, cleans up branches, and publishes a
     new GitHub release
 
-Feature branches can be merged without starting a new release;
+Feature branches *can* be merged without starting a new release;
 `stage_release()` just requires that everything is committed, including
 new release notes in NEWS.md before running. When ready to release,
 `stage_release()` will use the existing branch if on a feature branch,
@@ -224,10 +221,10 @@ ci()
 #> * creating vignettes ... OK
 #> * checking for LF line-endings in source and make files and shell scripts
 #> * checking for empty or unneeded directories
-#> * building ‘rdev_1.8.6.tar.gz’
+#> * building ‘rdev_1.9.0.tar.gz’
 #> 
 #> ── R CMD check ─────────────────────────────────────────────────────────────────
-#> * using log directory ‘/private/var/folders/vn/cw5f9gws42v9m8mdsds_zbl00000gp/T/RtmpC5kZVh/file180267d97952d/rdev.Rcheck’
+#> * using log directory ‘/private/var/folders/vn/cw5f9gws42v9m8mdsds_zbl00000gp/T/RtmplYogCR/file10b7d164e68ad/rdev.Rcheck’
 #> * using R version 4.3.2 (2023-10-31)
 #> * using platform: aarch64-apple-darwin20 (64-bit)
 #> * R was compiled by
@@ -237,7 +234,7 @@ ci()
 #> * using session charset: UTF-8
 #> * using option ‘--no-manual’
 #> * checking for file ‘rdev/DESCRIPTION’ ... OK
-#> * this is package ‘rdev’ version ‘1.8.6’
+#> * this is package ‘rdev’ version ‘1.9.0’
 #> * package encoding: UTF-8
 #> * checking package namespace information ... OK
 #> * checking package dependencies ... OK
@@ -297,8 +294,8 @@ ci()
 #> * DONE
 #> 
 #> Status: OK
-#> ── R CMD check results ───────────────────────────────────────── rdev 1.8.6 ────
-#> Duration: 31s
+#> ── R CMD check results ───────────────────────────────────────── rdev 1.9.0 ────
+#> Duration: 31.5s
 #> 
 #> 0 errors ✔ | 0 warnings ✔ | 0 notes ✔
 ```

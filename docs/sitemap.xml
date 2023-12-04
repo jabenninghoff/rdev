@@ -82,6 +82,12 @@
     <loc>https://jabenninghoff.github.io/rdev/reference/new_branch.html</loc>
   </url>
   <url>
+    <loc>https://jabenninghoff.github.io/rdev/reference/open_files.html</loc>
+  </url>
+  <url>
+    <loc>https://jabenninghoff.github.io/rdev/reference/quickstart.html</loc>
+  </url>
+  <url>
     <loc>https://jabenninghoff.github.io/rdev/reference/rdev-package.html</loc>
   </url>
   <url>
@@ -89,6 +95,9 @@
   </url>
   <url>
     <loc>https://jabenninghoff.github.io/rdev/reference/setup_analysis.html</loc>
+  </url>
+  <url>
+    <loc>https://jabenninghoff.github.io/rdev/reference/setup_rdev.html</loc>
   </url>
   <url>
     <loc>https://jabenninghoff.github.io/rdev/reference/sort_file.html</loc>
