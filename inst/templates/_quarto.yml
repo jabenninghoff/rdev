@@ -43,3 +43,8 @@ execute:
 format:
   html:
     toc: true
+    fig-width: 8.5
+    grid:
+      sidebar-width: 225px
+      body-width: 850px
+      margin-width: 225px
