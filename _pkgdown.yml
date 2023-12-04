@@ -50,6 +50,7 @@ reference:
     desc: >
       Utilities and test helpers
     contents:
+    - open_files
     - sort_file
     - sort_rbuildignore
     - spell_check_notebooks
