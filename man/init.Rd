@@ -8,8 +8,14 @@ init()
 }
 \description{
 Initialize a rdev package within a newly created \code{\link[=create_github_repo]{create_github_repo()}} project by creating a
-new git branch, committing all files, and running \code{\link[=use_rdev_package]{use_rdev_package()}}.
+new git branch, committing all changes, and running \code{\link[=use_rdev_package]{use_rdev_package()}}.
 }
 \details{
 \code{init()} will stop if \code{\link[rlang:is_interactive]{rlang::is_interactive()}} is \code{FALSE}.
+
+After running \code{init()}, update the Title and Description fields in the \code{DESCRIPTION} file without
+committing and run either \code{\link[=setup_analysis]{setup_analysis()}} or \code{\link[=setup_rdev]{setup_rdev()}} per the \link{quickstart}.
+}
+\seealso{
+\link{quickstart}
 }

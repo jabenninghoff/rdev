@@ -31,6 +31,7 @@ reference:
     desc: >
       Package setup tasks, typically performed once
     contents:
+    - quickstart
     - create_github_repo
     - get_license
     - use_analysis_package
@@ -44,6 +45,7 @@ reference:
     - use_todo
     - init
     - setup_analysis
+    - setup_rdev
   - title: Utilities
     desc: >
       Utilities and test helpers

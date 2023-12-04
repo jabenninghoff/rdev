@@ -195,6 +195,8 @@ fix_gitignore <- function(path = ".") {
 #' Set the `rdev.host` option when using a GitHub Enterprise server:
 #'   `options(rdev.host = "https://github.example.com/api/v3")`
 #'
+#' @seealso [quickstart]
+#'
 #' @inheritParams usethis::use_github
 #' @param repo_name The name of the GitHub repository to create
 #' @param repo_desc The description of the GitHub repository to create
@@ -307,8 +309,9 @@ create_github_repo <- function(repo_name, repo_desc = "", org = NULL,
 
   writeLines(paste0("\n", "Repository created at: ", create$html_url))
   writeLines(paste0("Open the repository by executing: $ github ", fs_path))
-  writeLines("Apply rdev conventions within the new project with use_rdev_package(),")
-  writeLines("and use either use_analysis_package() or usethis::use_pkgdown() for GitHub Pages.")
+  writeLines("Apply rdev conventions within the new project by running init() without committing,")
+  writeLines("update the Title and Description fields in `DESCRIPTION` without committing,")
+  writeLines("and run either setup_ananlysis() or setup_rdev() to finish configuration.")
 
   if (Sys.info()["sysname"] == "Darwin" && rlang::is_interactive()) {
     system(paste0("open ", create$html_url, "/settings"))
