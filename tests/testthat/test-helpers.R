@@ -1,7 +1,8 @@
 # local_temppkg
 
 test_that("local_temppkg validates arguments", {
-  expect_error(local_temppkg(dir = NA_character_), "'dir")
+  expect_error(local_temppkg(dir = NA_character_), "'dir'")
+  expect_error(local_temppkg(dir = ""), "'dir'")
   expect_error(local_temppkg(type = "badtype"), "'type'")
   expect_error(local_temppkg(env = NA), "'env'")
 })

@@ -73,6 +73,7 @@ test_that("fix_gitignore validates arguments", {
   withr::local_dir(withr::local_tempdir())
 
   expect_error(fix_gitignore(path = NA_character_), "'path'")
+  expect_error(fix_gitignore(path = ""), "'path'")
 })
 
 test_that("fix_gitignore removes extra '.Rproj.user'", {
@@ -105,9 +106,12 @@ test_that("create_github_repo validates arguments", {
   mockery::stub(create_github_repo, "fix_gitignore", NULL)
 
   expect_error(create_github_repo(repo_name = NA_character_), "'repo_name'")
+  expect_error(create_github_repo(repo_name = ""), "'repo_name'")
   expect_error(create_github_repo("test", repo_desc = NA_character_), "'repo_desc'")
   expect_error(create_github_repo("test", org = NA_character_), "'org'")
+  expect_error(create_github_repo("test", org = ""), "'org'")
   expect_error(create_github_repo("test", host = NA_character_), "'host'")
+  expect_error(create_github_repo("test", host = ""), "'host'")
 })
 
 test_that("create_github_repo errors when proposed repo directory exists locally", {

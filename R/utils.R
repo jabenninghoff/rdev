@@ -20,7 +20,7 @@
 #' }
 #' @export
 sort_file <- function(filename) {
-  checkmate::assert_string(filename)
+  checkmate::assert_string(filename, min.chars = 1)
 
   if (!fs::file_exists(filename)) stop("cannot sort file, '", filename, "': no such file")
   writeLines(sort(readLines(filename)), filename)
@@ -49,10 +49,10 @@ sort_rbuildignore <- function() {
 #' @export
 spell_check_notebooks <- function(path = "analysis", glob = "*.Rmd", use_wordlist = TRUE,
                                   lang = NULL) {
-  checkmate::assert_string(path)
-  checkmate::assert_string(glob)
+  checkmate::assert_string(path, min.chars = 1)
+  checkmate::assert_string(glob, min.chars = 1)
   checkmate::assert_flag(use_wordlist)
-  checkmate::assert_string(lang, null.ok = TRUE)
+  checkmate::assert_string(lang, min.chars = 1, null.ok = TRUE)
 
   if (is.null(lang)) {
     if (!fs::file_exists("DESCRIPTION")) {

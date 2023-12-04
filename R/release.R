@@ -20,7 +20,7 @@
 #'
 #' @export
 new_branch <- function(name, bump_ver = TRUE, current = FALSE) {
-  checkmate::assert_string(name)
+  checkmate::assert_string(name, min.chars = 1)
   checkmate::assert_flag(bump_ver)
   checkmate::assert_flag(current)
 
@@ -70,7 +70,7 @@ get_release <- function(pkg = ".", filename = "NEWS.md") {
   if (pkg != ".") {
     stop('currently only get_release(pkg = ".") is supported')
   }
-  checkmate::assert_string(filename)
+  checkmate::assert_string(filename, min.chars = 1)
 
   pkg_obj <- devtools::as.package(pkg)
   header_regex <- paste0(
@@ -139,8 +139,8 @@ stage_release <- function(pkg = ".", filename = "NEWS.md", host = getOption("rde
   if (pkg != ".") {
     stop('currently only stage_release(pkg = ".") is supported')
   }
-  checkmate::assert_string(filename)
-  checkmate::assert_string(host, null.ok = TRUE)
+  checkmate::assert_string(filename, min.chars = 1)
+  checkmate::assert_string(host, min.chars = 1, null.ok = TRUE)
 
   rel <- get_release(pkg = pkg, filename = filename)
 
@@ -243,8 +243,8 @@ merge_release <- function(pkg = ".", filename = "NEWS.md", host = getOption("rde
   if (pkg != ".") {
     stop('currently only merge_release(pkg = ".") is supported')
   }
-  checkmate::assert_string(filename)
-  checkmate::assert_string(host, null.ok = TRUE)
+  checkmate::assert_string(filename, min.chars = 1)
+  checkmate::assert_string(host, min.chars = 1, null.ok = TRUE)
 
   rel <- get_release(pkg = pkg, filename = filename)
   pr_title <- paste0(rel$package, " ", rel$version)

@@ -2,6 +2,7 @@
 
 test_that("sort_file validates arguments", {
   expect_error(sort_file(NA_character_), "'filename'")
+  expect_error(sort_file(""), "'filename'")
 })
 
 test_that("sort_file errors when file does not exist", {
@@ -41,9 +42,12 @@ test_that("spell_check_notebooks validates arguments", {
   withr::local_dir(withr::local_tempdir())
 
   expect_error(spell_check_notebooks(path = NA_character_), "'path'")
+  expect_error(spell_check_notebooks(path = ""), "'path'")
   expect_error(spell_check_notebooks(glob = NA_character_), "'glob'")
+  expect_error(spell_check_notebooks(glob = ""), "'glob'")
   expect_error(spell_check_notebooks(use_wordlist = NA), "'use_wordlist'")
   expect_error(spell_check_notebooks(lang = NA_character_), "'lang'")
+  expect_error(spell_check_notebooks(lang = ""), "'lang'")
 })
 
 test_that("spell_check_notebooks logic flows work", {

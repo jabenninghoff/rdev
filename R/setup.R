@@ -166,7 +166,7 @@ get_github_repo <- function() {
 #' @keywords internal
 #' @noRd
 fix_gitignore <- function(path = ".") {
-  checkmate::assert_string(path)
+  checkmate::assert_string(path, min.chars = 1)
 
   giti_path <- fs::path(path, ".gitignore")
   gitignore <- readLines(giti_path)
@@ -207,10 +207,10 @@ fix_gitignore <- function(path = ".") {
 #' @export
 create_github_repo <- function(repo_name, repo_desc = "", org = NULL,
                                host = getOption("rdev.host")) {
-  checkmate::assert_string(repo_name)
+  checkmate::assert_string(repo_name, min.chars = 1)
   checkmate::assert_string(repo_desc)
-  checkmate::assert_string(org, null.ok = TRUE)
-  checkmate::assert_string(host, null.ok = TRUE)
+  checkmate::assert_string(org, min.chars = 1, null.ok = TRUE)
+  checkmate::assert_string(host, min.chars = 1, null.ok = TRUE)
 
   conspicuous_place <- "usethis" %:::% "conspicuous_place"
   user_path_prep <- "usethis" %:::% "user_path_prep"

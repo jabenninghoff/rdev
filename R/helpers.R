@@ -26,7 +26,7 @@
 #' }
 #' @export
 local_temppkg <- function(dir = fs::file_temp(), type = "usethis", env = parent.frame()) {
-  checkmate::assert_string(dir)
+  checkmate::assert_string(dir, min.chars = 1)
   checkmate::assert_choice(type, c("usethis", "rdev", "analysis", "quarto"))
   checkmate::assert_environment(env)
 
