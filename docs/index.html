@@ -29,7 +29,7 @@
     
     <a class="navbar-brand me-2" href="index.html">rdev</a>
 
-    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">1.8.6</small>
+    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">1.9.0</small>
 
     
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbar" aria-controls="navbar" aria-expanded="false" aria-label="Toggle navigation">
@@ -108,22 +108,15 @@
 <div class="section level2">
 <h2 id="creating-packages">Creating Packages<a class="anchor" aria-label="anchor" href="#creating-packages"></a>
 </h2>
-<p>rdev supports creation of new R packages following rdev conventions as well as new <a href="https://jabenninghoff.github.io/rdev/articles/analysis-package-layout.html">R Analysis</a> packages. The typical setup workflow is:</p>
+<p>rdev supports creation of new R packages following rdev conventions as well as new <a href="https://jabenninghoff.github.io/rdev/articles/analysis-package-layout.html">R Analysis</a> packages. The typical setup workflow (per <code><a href="reference/quickstart.html">?quickstart</a></code>) is:</p>
 <ol style="list-style-type: decimal">
 <li>Use <code>available::available()</code> to check package name</li>
-<li>Create new base package using <code><a href="reference/create_github_repo.html">create_github_repo()</a></code>
-</li>
-<li>Add new package to GitHub Desktop</li>
-<li>Commit to git with message: <code><a href="reference/create_github_repo.html">rdev::create_github_repo()</a></code>
-</li>
-<li>Run <code><a href="reference/use_rdev_package.html">use_rdev_package()</a></code> within new project to add remaining templates and settings</li>
-<li>Commit to git with message: <code><a href="reference/use_rdev_package.html">rdev::use_rdev_package()</a></code>
-</li>
-<li>Run either <code><a href="reference/use_analysis_package.html">use_analysis_package()</a></code> or <code><a href="https://usethis.r-lib.org/reference/use_pkgdown.html" class="external-link">usethis::use_pkgdown()</a></code> for GitHub Pages</li>
-<li>Commit to git</li>
-<li>Edit DESCRIPTION and add a Title and Description</li>
+<li>With no project open, run <code><a href="reference/create_github_repo.html">create_github_repo()</a></code> to initialize the GitHub R repository</li>
+<li>Without committing to git, run <code><a href="reference/init.html">init()</a></code> in the newly created project</li>
+<li>Manually update the Title and Description fields in the <code>DESCRIPTION</code> file without committing</li>
+<li>Run <code><a href="reference/setup_analysis.html">setup_analysis()</a></code> or <code><a href="reference/setup_rdev.html">setup_rdev()</a></code> to configure the package as an analysis package or rdev package respectively.</li>
 <li>Update TODO.md, NEWS.md, README.Rmd, and DESCRIPTION as needed</li>
-<li>Run <code><a href="reference/check_renv.html">check_renv()</a></code>, <code><a href="reference/ci.html">ci()</a></code> to validate package</li>
+<li>Re-run <code><a href="reference/check_renv.html">check_renv()</a></code>, <code><a href="reference/ci.html">ci()</a></code> to validate package</li>
 <li>Commit to git and begin development</li>
 </ol>
 </div>
@@ -141,7 +134,7 @@
 <li>Run <code><a href="reference/stage_release.html">stage_release()</a></code> to create a new pull request on GitHub using details derived from NEWS.md, including updating the README and GitHub pages</li>
 <li>After the pull request has been reviewed and passes all required status checks, accept the staged release with <code><a href="reference/merge_release.html">merge_release()</a></code>, which merges the pull request, cleans up branches, and publishes a new GitHub release</li>
 </ol>
-<p>Feature branches can be merged without starting a new release; <code><a href="reference/stage_release.html">stage_release()</a></code> just requires that everything is committed, including new release notes in NEWS.md before running. When ready to release, <code><a href="reference/stage_release.html">stage_release()</a></code> will use the existing branch if on a feature branch, and create a new release branch if on the default.</p>
+<p>Feature branches <em>can</em> be merged without starting a new release; <code><a href="reference/stage_release.html">stage_release()</a></code> just requires that everything is committed, including new release notes in NEWS.md before running. When ready to release, <code><a href="reference/stage_release.html">stage_release()</a></code> will use the existing branch if on a feature branch, and create a new release branch if on the default.</p>
 </div>
 <div class="section level2">
 <h2 id="workflow">Workflow<a class="anchor" aria-label="anchor" href="#workflow"></a>
@@ -275,10 +268,10 @@
 <span><span class="co">#&gt; * creating vignettes ... OK</span></span>
 <span><span class="co">#&gt; * checking for LF line-endings in source and make files and shell scripts</span></span>
 <span><span class="co">#&gt; * checking for empty or unneeded directories</span></span>
-<span><span class="co">#&gt; * building ‘rdev_1.8.6.tar.gz’</span></span>
+<span><span class="co">#&gt; * building ‘rdev_1.9.0.tar.gz’</span></span>
 <span><span class="co">#&gt; </span></span>
 <span><span class="co">#&gt; ── R CMD check ─────────────────────────────────────────────────────────────────</span></span>
-<span><span class="co">#&gt; * using log directory ‘/private/var/folders/vn/cw5f9gws42v9m8mdsds_zbl00000gp/T/RtmpC5kZVh/file180267d97952d/rdev.Rcheck’</span></span>
+<span><span class="co">#&gt; * using log directory ‘/private/var/folders/vn/cw5f9gws42v9m8mdsds_zbl00000gp/T/RtmplYogCR/file10b7d164e68ad/rdev.Rcheck’</span></span>
 <span><span class="co">#&gt; * using R version 4.3.2 (2023-10-31)</span></span>
 <span><span class="co">#&gt; * using platform: aarch64-apple-darwin20 (64-bit)</span></span>
 <span><span class="co">#&gt; * R was compiled by</span></span>
@@ -288,7 +281,7 @@
 <span><span class="co">#&gt; * using session charset: UTF-8</span></span>
 <span><span class="co">#&gt; * using option ‘--no-manual’</span></span>
 <span><span class="co">#&gt; * checking for file ‘rdev/DESCRIPTION’ ... OK</span></span>
-<span><span class="co">#&gt; * this is package ‘rdev’ version ‘1.8.6’</span></span>
+<span><span class="co">#&gt; * this is package ‘rdev’ version ‘1.9.0’</span></span>
 <span><span class="co">#&gt; * package encoding: UTF-8</span></span>
 <span><span class="co">#&gt; * checking package namespace information ... OK</span></span>
 <span><span class="co">#&gt; * checking package dependencies ... OK</span></span>
@@ -348,8 +341,8 @@
 <span><span class="co">#&gt; * DONE</span></span>
 <span><span class="co">#&gt; </span></span>
 <span><span class="co">#&gt; Status: OK</span></span>
-<span><span class="co">#&gt; ── R CMD check results ───────────────────────────────────────── rdev 1.8.6 ────</span></span>
-<span><span class="co">#&gt; Duration: 31s</span></span>
+<span><span class="co">#&gt; ── R CMD check results ───────────────────────────────────────── rdev 1.9.0 ────</span></span>
+<span><span class="co">#&gt; Duration: 31.5s</span></span>
 <span><span class="co">#&gt; </span></span>
 <span><span class="co">#&gt; 0 errors ✔ | 0 warnings ✔ | 0 notes ✔</span></span></code></pre></div>
 </div>
