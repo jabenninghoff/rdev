@@ -32,6 +32,7 @@ Imports:
     renv (>= 1.0.3),
     rlang,
     rmarkdown,
+    rstudioapi,
     spelling,
     styler (>= 1.4.0),
     tibble,

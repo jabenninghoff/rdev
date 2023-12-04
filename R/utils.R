@@ -195,3 +195,24 @@ missing_deps <- function(exclude_base = TRUE) {
 extra_deps <- function() {
   deps_check("extra")
 }
+
+#' Open rdev files
+#'
+#' Open a standard set of files for editing in RStudio.
+#'
+#' By default, `open_files()` opens four documents in RStudio: `TODO.md`, `NEWS.md`, `README.Rmd`,
+#'   and `DESCRIPTION`.
+#'
+#' `open_files()` will stop with an error if RStudio is not running.
+#'
+#' @param files vector of files to open.
+#'
+#' @return named character vector of files opened.
+#' @export
+open_files <- function(files = c("TODO.md", "NEWS.md", "README.Rmd", "DESCRIPTION")) {
+  checkmate::assert_character(files, min.chars = 1, typed.missing = TRUE)
+  rstudioapi::verifyAvailable(version_needed = "0.99.719")
+
+  writeLines(paste0("Opening files: ", toString(files)))
+  invisible(vapply(files, rstudioapi::navigateToFile, character(1)))
+}

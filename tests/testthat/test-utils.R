@@ -186,3 +186,26 @@ test_that("missing_deps and extra_deps call correct deps_check type", {
   expect_identical(missing_deps(), "missing")
   expect_identical(extra_deps(), "extra")
 })
+
+# open_files
+
+test_that("open_files validates arguments", {
+  mockery::stub(open_files, "rstudioapi::verifyAvailable", NULL)
+  mockery::stub(open_files, "rstudioapi::navigateToFile", NULL)
+
+  expect_error(open_files(files = NA), "'files'")
+  expect_error(open_files(files = NULL), "'files'")
+  expect_error(open_files(files = ""), "'files'")
+})
+
+test_that("open_files opens all files", {
+  mockery::stub(open_files, "rstudioapi::verifyAvailable", NULL)
+  mockery::stub(open_files, "rstudioapi::navigateToFile", "2BC23D46")
+  files <- c("TODO.md", "NEWS.md", "README.Rmd", "DESCRIPTION")
+
+  expect_output(
+    ret <- open_files(files = files), # nolint: implicit_assignment_linter. suppresses output.
+    "^Opening files: TODO\\.md, NEWS\\.md, README\\.Rmd, DESCRIPTION$"
+  )
+  expect_named(ret, files)
+})

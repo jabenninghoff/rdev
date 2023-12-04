@@ -6,6 +6,8 @@
 
 * Added function `setup_rdev()`: set up an rdev package for traditional package development
 
+* Added function `open_files()`: open a standard set of files for editing in RStudio
+
 # rdev 1.8.6
 
 * Check function arguments with [checkmate](https://mllg.github.io/checkmate/index.html)
