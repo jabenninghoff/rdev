@@ -8,6 +8,8 @@
 
 * Added function `open_files()`: open a standard set of files for editing in RStudio
 
+* `setup_analysis()` and `setup_rdev()` now call `open_files()` if running in RStudio
+
 # rdev 1.8.6
 
 * Check function arguments with [checkmate](https://mllg.github.io/checkmate/index.html)

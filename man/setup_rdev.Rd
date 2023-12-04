@@ -12,7 +12,8 @@ Title and Description in \code{DESCRIPTION}, by committing changes and running \
 \code{\link[=use_spelling]{use_spelling()}}, \code{\link[=use_codecov]{use_codecov()}}, and \code{\link[=ci]{ci()}}.
 }
 \details{
-\code{setup_rdev()} will stop if \code{\link[rlang:is_interactive]{rlang::is_interactive()}} is \code{FALSE}.
+\code{setup_rdev()} will stop if \code{\link[rlang:is_interactive]{rlang::is_interactive()}} is \code{FALSE}, and will run \code{\link[=open_files]{open_files()}}
+if running in RStudio.
 }
 \seealso{
 \link{quickstart}

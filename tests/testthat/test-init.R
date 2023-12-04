@@ -40,6 +40,8 @@ test_that("setup_analysis errors if not running interactively", {
   mockery::stub(setup_analysis, "use_analysis_package", NULL)
   mockery::stub(setup_analysis, "use_spelling", NULL)
   mockery::stub(setup_analysis, "fs::file_delete", NULL)
+  mockery::stub(setup_analysis, "rstudioapi::isAvailable", FALSE)
+  mockery::stub(setup_analysis, "open_files", NULL)
   mockery::stub(setup_analysis, "ci", NULL)
   mockery::stub(setup_analysis, "utils::askYesNo", FALSE)
 
@@ -56,6 +58,8 @@ test_that("setup_analysis only runs when askYesNo is explicitly answered 'yes'",
   mockery::stub(setup_analysis, "use_analysis_package", NULL)
   mockery::stub(setup_analysis, "use_spelling", NULL)
   mockery::stub(setup_analysis, "fs::file_delete", NULL)
+  mockery::stub(setup_analysis, "rstudioapi::isAvailable", FALSE)
+  mockery::stub(setup_analysis, "open_files", NULL)
   mockery::stub(setup_analysis, "ci", NULL)
 
   mockery::stub(setup_analysis, "utils::askYesNo", FALSE)
@@ -84,6 +88,8 @@ test_that("setup_rdev errors if not running interactively", {
   mockery::stub(setup_rdev, "use_spelling", NULL)
   mockery::stub(setup_rdev, "fs::file_delete", NULL)
   mockery::stub(setup_rdev, "use_codecov", NULL)
+  mockery::stub(setup_rdev, "rstudioapi::isAvailable", FALSE)
+  mockery::stub(setup_rdev, "open_files", NULL)
   mockery::stub(setup_rdev, "ci", NULL)
   mockery::stub(setup_rdev, "utils::askYesNo", FALSE)
 
@@ -101,6 +107,8 @@ test_that("setup_rdev only runs when askYesNo is explicitly answered 'yes'", {
   mockery::stub(setup_rdev, "use_spelling", NULL)
   mockery::stub(setup_rdev, "fs::file_delete", NULL)
   mockery::stub(setup_rdev, "use_codecov", NULL)
+  mockery::stub(setup_rdev, "rstudioapi::isAvailable", FALSE)
+  mockery::stub(setup_rdev, "open_files", NULL)
   mockery::stub(setup_rdev, "ci", NULL)
 
   mockery::stub(setup_rdev, "utils::askYesNo", FALSE)
