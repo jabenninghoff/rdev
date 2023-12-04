@@ -1,3 +1,11 @@
+# rdev 1.9.0
+
+* Adjusted Quarto margins in `_quarto.yml`
+
+* Added `?quickstart` rdev Quick Start guide to creating a new rdev or analysis package and updated related functions (`create_github_repo()`, `init()`, `setup_analysis()`)
+
+* Added function `setup_rdev()`: set up an rdev package for traditional package development
+
 # rdev 1.8.6
 
 * Check function arguments with [checkmate](https://mllg.github.io/checkmate/index.html)
