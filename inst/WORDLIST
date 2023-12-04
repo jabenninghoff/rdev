@@ -68,6 +68,7 @@ pkgdown
 po
 pre
 qmd
+quickstart
 rcmdcheck
 rebaseable
 renv

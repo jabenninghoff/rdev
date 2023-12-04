@@ -7,9 +7,13 @@
 setup_analysis()
 }
 \description{
-Set up an analysis package within an rdev package newly initialized with \code{\link[=init]{init()}}, by committing
-and running \code{\link[=use_analysis_package]{use_analysis_package()}}, \code{\link[=use_spelling]{use_spelling()}}, and \code{\link[=ci]{ci()}}.
+Set up an analysis package within an rdev package newly initialized with \code{\link[=init]{init()}}, after updating
+Title and Description in \code{DESCRIPTION}, by committing changes and running
+\code{\link[=use_analysis_package]{use_analysis_package()}}, \code{\link[=use_spelling]{use_spelling()}}, and \code{\link[=ci]{ci()}}.
 }
 \details{
 \code{setup_analysis()} will stop if \code{\link[rlang:is_interactive]{rlang::is_interactive()}} is \code{FALSE}.
+}
+\seealso{
+\link{quickstart}
 }

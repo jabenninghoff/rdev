@@ -134,16 +134,18 @@ test_that("create_github_repo options work", {
     "PUT /repos/\\{owner\\}/\\{repo\\}/branches/\\{branch\\}/protection\\n",
     "\\nRepository created at: ", create$html_url, "\\n",
     "Open the repository by executing: \\$ github ", fs_path, "\\n",
-    "Apply rdev conventions within the new project with use_rdev_package\\(\\),\\n",
-    "and use either use_analysis_package\\(\\) or usethis::use_pkgdown\\(\\) for GitHub Pages\\.$"
+    "Apply rdev conventions within the new project by running init\\(\\) without committing,\\n",
+    "update the Title and Description fields in `DESCRIPTION` without committing,\\n",
+    "and run either setup_ananlysis\\(\\) or setup_rdev\\(\\) to finish configuration\\.$"
   )
   without_dependabot <- paste0(
     "^POST /user/repos\\n",
     "PUT /repos/\\{owner\\}/\\{repo\\}/branches/\\{branch\\}/protection\\n",
     "\\nRepository created at: ", create$html_url, "\\n",
     "Open the repository by executing: \\$ github ", fs_path, "\\n",
-    "Apply rdev conventions within the new project with use_rdev_package\\(\\),\\n",
-    "and use either use_analysis_package\\(\\) or usethis::use_pkgdown\\(\\) for GitHub Pages\\.$"
+    "Apply rdev conventions within the new project by running init\\(\\) without committing,\\n",
+    "update the Title and Description fields in `DESCRIPTION` without committing,\\n",
+    "and run either setup_ananlysis\\(\\) or setup_rdev\\(\\) to finish configuration\\.$"
   )
   gh_gh <- function(command, ...) {
     writeLines(command)
@@ -194,8 +196,9 @@ test_that("create_github_repo generates expected output", {
     paste0(
       "^\\nRepository created at: ", create$html_url, "\\n",
       "Open the repository by executing: \\$ github ", fs_path, "\\n",
-      "Apply rdev conventions within the new project with use_rdev_package\\(\\),\\n",
-      "and use either use_analysis_package\\(\\) or usethis::use_pkgdown\\(\\) for GitHub Pages\\.$"
+      "Apply rdev conventions within the new project by running init\\(\\) without committing,\\n",
+      "update the Title and Description fields in `DESCRIPTION` without committing,\\n",
+      "and run either setup_ananlysis\\(\\) or setup_rdev\\(\\) to finish configuration\\.$"
     )
   )
 })
