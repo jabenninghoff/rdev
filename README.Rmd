@@ -50,33 +50,41 @@ renv::install("jabenninghoff/rdev")
 
 ## Creating Packages
 
-rdev supports creation of new R packages following rdev conventions as well as new [R Analysis](https://jabenninghoff.github.io/rdev/articles/analysis-package-layout.html) packages. The typical setup workflow is:
+rdev supports creation of new R packages following rdev conventions as well as new
+[R Analysis](https://jabenninghoff.github.io/rdev/articles/analysis-package-layout.html) packages.
+The typical setup workflow (per `?quickstart`) is:
 
 1. Use `available::available()` to check package name
-1. Create new base package using `create_github_repo()`
-1. Add new package to GitHub Desktop
-1. Commit to git with message: `rdev::create_github_repo()`
-1. Run `use_rdev_package()` within new project to add remaining templates and settings
-1. Commit to git with message: `rdev::use_rdev_package()`
-1. Run either `use_analysis_package()` or `usethis::use_pkgdown()` for GitHub Pages
-1. Commit to git
-1. Edit DESCRIPTION and add a Title and Description
+1. With no project open, run `create_github_repo()` to initialize the GitHub R repository
+1. Without committing to git, run `init()` in the newly created project
+1. Manually update the Title and Description fields in the `DESCRIPTION` file without committing
+1. Run `setup_analysis()` or `setup_rdev()` to configure the package as an analysis package or
+   rdev package respectively.
 1. Update TODO.md, NEWS.md, README.Rmd, and DESCRIPTION as needed
-1. Run `check_renv()`, `ci()` to validate package
+1. Re-run `check_renv()`, `ci()` to validate package
 1. Commit to git and begin development
 
 ## GitHub Releases
 
-rdev automates the workflow for creating GitHub releases along with updating GitHub pages for either standard R packages or R analysis packages, using the release notes format in NEWS.md. A typical development workflow is:
+rdev automates the workflow for creating GitHub releases along with updating GitHub pages for either
+standard R packages or R analysis packages, using the release notes format in NEWS.md. A typical
+development workflow is:
 
 1. Bump version and create new feature branch with `new_branch()`
 1. *Write all the things*
-1. Update the release notes for the new version in NEWS.md, following the conventions described in `get_release()`
+1. Update the release notes for the new version in NEWS.md, following the conventions described in
+   `get_release()`
 1. Finalize the release and merge all changes to git
-1. Run `stage_release()` to create a new pull request on GitHub using details derived from NEWS.md, including updating the README and GitHub pages
-1. After the pull request has been reviewed and passes all required status checks, accept the staged release with `merge_release()`, which merges the pull request, cleans up branches, and publishes a new GitHub release
+1. Run `stage_release()` to create a new pull request on GitHub using details derived from NEWS.md,
+   including updating the README and GitHub pages
+1. After the pull request has been reviewed and passes all required status checks, accept the staged
+   release with `merge_release()`, which merges the pull request, cleans up branches, and publishes
+   a new GitHub release
 
-Feature branches can be merged without starting a new release; `stage_release()` just requires that everything is committed, including new release notes in NEWS.md before running. When ready to release, `stage_release()` will use the existing branch if on a feature branch, and create a new release branch if on the default.
+Feature branches *can* be merged without starting a new release; `stage_release()` just requires
+that everything is committed, including new release notes in NEWS.md before running. When ready to
+release, `stage_release()` will use the existing branch if on a feature branch, and create a new
+release branch if on the default.
 
 ## Workflow
 
