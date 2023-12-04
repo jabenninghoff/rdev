@@ -2,7 +2,7 @@
 
 * Adjusted Quarto margins in `_quarto.yml`
 
-* Added `?quickstart` rdev Quick Start guide to creating a new rdev or analysis package and updated related functions (`create_github_repo()`, `init()`, `setup_analysis()`)
+* Added `?quickstart` rdev Quick Start guide to creating a new rdev or analysis package and updated related functions (`create_github_repo()`, `init()`, `setup_analysis()`) and README
 
 * Added function `setup_rdev()`: set up an rdev package for traditional package development
 
