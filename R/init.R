@@ -54,7 +54,8 @@ init <- function() {
 #'   Title and Description in `DESCRIPTION`, by committing changes and running
 #'   [use_analysis_package()], [use_spelling()], and [ci()].
 #'
-#' `setup_analysis()` will stop if [rlang::is_interactive()] is `FALSE`.
+#' `setup_analysis()` will stop if [rlang::is_interactive()] is `FALSE`, and will run [open_files()]
+#'   if running in RStudio.
 #'
 #' @seealso [quickstart]
 #'
@@ -90,6 +91,8 @@ setup_analysis <- function() {
   gert::git_add(".")
   gert::git_commit("rdev::use_spelling()")
 
+  if (rstudioapi::isAvailable()) open_files()
+
   writeLines("ci()...")
   ci()
 }
@@ -100,7 +103,8 @@ setup_analysis <- function() {
 #'   Title and Description in `DESCRIPTION`, by committing changes and running [use_rdev_pkgdown()],
 #'   [use_spelling()], [use_codecov()], and [ci()].
 #'
-#' `setup_rdev()` will stop if [rlang::is_interactive()] is `FALSE`.
+#' `setup_rdev()` will stop if [rlang::is_interactive()] is `FALSE`, and will run [open_files()]
+#'   if running in RStudio.
 #'
 #' @seealso [quickstart]
 #'
@@ -142,6 +146,8 @@ setup_rdev <- function() {
   writeLines("Committing...")
   gert::git_add(".")
   gert::git_commit("rdev::use_codecov()")
+
+  if (rstudioapi::isAvailable()) open_files()
 
   writeLines("ci()...")
   ci()
