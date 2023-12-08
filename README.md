@@ -221,10 +221,15 @@ ci()
 #> * creating vignettes ... OK
 #> * checking for LF line-endings in source and make files and shell scripts
 #> * checking for empty or unneeded directories
-#> * building ‘rdev_1.9.0.tar.gz’
+#> Removed empty directory ‘rdev/analysis/assets’
+#> Removed empty directory ‘rdev/analysis/data’
+#> Removed empty directory ‘rdev/analysis/import’
+#> Removed empty directory ‘rdev/analysis/rendered’
+#> Removed empty directory ‘rdev/analysis’
+#> * building ‘rdev_1.9.1.tar.gz’
 #> 
 #> ── R CMD check ─────────────────────────────────────────────────────────────────
-#> * using log directory ‘/private/var/folders/vn/cw5f9gws42v9m8mdsds_zbl00000gp/T/RtmplYogCR/file10b7d164e68ad/rdev.Rcheck’
+#> * using log directory ‘/private/var/folders/vn/cw5f9gws42v9m8mdsds_zbl00000gp/T/Rtmp8F7dYf/filea4c372f1b526/rdev.Rcheck’
 #> * using R version 4.3.2 (2023-10-31)
 #> * using platform: aarch64-apple-darwin20 (64-bit)
 #> * R was compiled by
@@ -234,7 +239,7 @@ ci()
 #> * using session charset: UTF-8
 #> * using option ‘--no-manual’
 #> * checking for file ‘rdev/DESCRIPTION’ ... OK
-#> * this is package ‘rdev’ version ‘1.9.0’
+#> * this is package ‘rdev’ version ‘1.9.1’
 #> * package encoding: UTF-8
 #> * checking package namespace information ... OK
 #> * checking package dependencies ... OK
@@ -294,8 +299,8 @@ ci()
 #> * DONE
 #> 
 #> Status: OK
-#> ── R CMD check results ───────────────────────────────────────── rdev 1.9.0 ────
-#> Duration: 31.5s
+#> ── R CMD check results ───────────────────────────────────────── rdev 1.9.1 ────
+#> Duration: 36.9s
 #> 
 #> 0 errors ✔ | 0 warnings ✔ | 0 notes ✔
 ```
