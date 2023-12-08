@@ -34,7 +34,8 @@ use_lintr <- function(open = FALSE) {
 #'
 #' @export
 use_todo <- function(open = rlang::is_interactive()) {
-  usethis::use_template("TODO.md", package = "rdev", ignore = FALSE, open = open)
+  # TODO generates an R CMD check note if not ignored
+  usethis::use_template("TODO.md", package = "rdev", ignore = TRUE, open = open)
 }
 
 #' Use rdev package.R
@@ -541,6 +542,9 @@ use_analysis_package <- function(use_quarto = TRUE, prompt = FALSE) {
   ))
   usethis::use_git_ignore(analysis_gitignore)
 
+  # remove TODO.md from .Rbuildignore for analysis packages
+  rbi <- readLines(".Rbuildignore")
+  writeLines(rbi[!grepl("^TODO\\.md$", rbi, fixed = TRUE)], ".Rbuildignore")
   usethis::use_build_ignore(analysis_rbuildignore, escape = FALSE)
   sort_rbuildignore()
 
