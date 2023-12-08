@@ -286,6 +286,8 @@ test_that("use_analysis_package returns expected values", {
   )))
   mockery::stub(use_analysis_package, "fs::dir_create", NULL)
   mockery::stub(use_analysis_package, "usethis::use_git_ignore", NULL)
+  mockery::stub(use_analysis_package, "readLines", NULL)
+  mockery::stub(use_analysis_package, "writeLines", NULL)
   mockery::stub(use_analysis_package, "usethis::use_build_ignore", NULL)
   mockery::stub(use_analysis_package, "sort_rbuildignore", NULL)
   mockery::stub(use_analysis_package, "desc::desc_get_urls", desc_urls)
