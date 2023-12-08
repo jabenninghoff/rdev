@@ -1,3 +1,7 @@
+# rdev 1.9.1
+
+* Maintenance updates
+
 # rdev 1.9.0
 
 * Adjusted Quarto margins in `_quarto.yml`

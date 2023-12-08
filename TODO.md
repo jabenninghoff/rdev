@@ -48,18 +48,22 @@
 - [x] Update `lint_all()` to lint all types, including `.Rpres`
 - [x] ~~Add custom CSS files to [`_site.yml`](https://rmarkdown.rstudio.com/docs/reference/render_site.html) and analysis notebook templates to control font size, as described in this [article](https://medium.com/@HadrienD/how-to-customize-font-size-in-r-markdown-documents-f5adff36e2cc), or possibly using [`bs_theme()`](https://rstudio.github.io/bslib/articles/theming.html), since pkgdown customizes the default using [`build_bslib()`](https://github.com/r-lib/pkgdown/blob/main/R/theme.R)~~ (issue exists in unsupported Safari 14 but not Safari 15)
 - [x] ~~Remove `pkgdown/extra.css` if <https://github.com/r-lib/pkgdown/issues/2377> is accepted~~
+- [x] ~~Establish default [knitr options](https://yihui.org/knitr/options/), including `knitr::opts_chunk$set(fig.align = "center")`, add to analysis template, also review [settings](https://github.com/hadley/adv-r/blob/master/common.R) for *Advanced R*~~
 - [ ] Remove `preset: bootstrap` if <https://github.com/r-lib/pkgdown/issues/2376> is accepted
 - [ ] Replace `dev = TRUE` logic if <https://github.com/rstudio/renv/issues/1695> is accepted
 - [ ] Consider using RStudio [Extensions](https://rstudio.github.io/rstudio-extensions/index.html):
   - [ ] Use Project [Templates](https://rstudio.github.io/rstudio-extensions/rstudio_project_templates.html) like [vertical](https://www.crumplab.com/vertical/) ?
   - [ ] Add CSS to R Markdown [Template](https://rstudio.github.io/rstudio-extensions/rmarkdown_templates.html) instead of `assets/extra.css` ?
 - [ ] Update errors and messages after reading Advanced R [Conditions](https://adv-r.hadley.nz/conditions.html) and re-reading the Tidyverse [Style Guide](https://style.tidyverse.org/index.html)
-- [ ] Establish default [knitr options](https://yihui.org/knitr/options/), including `knitr::opts_chunk$set(fig.align = "center"")`, add to analysis template, also review [settings](https://github.com/hadley/adv-r/blob/master/common.R) for *Advanced R*
 - [ ] Reduce the number of Imports, per R CMD check:
 
 ```
+> devtools::check()
+
+...
+
 > checking package dependencies ... NOTE
-  Imports includes 26 non-default packages.
+  Imports includes 30 non-default packages.
   Importing from so many packages makes the package vulnerable to any of
   them becoming unavailable.  Move as many as possible to Suggests and
   use conditionally.
