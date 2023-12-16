@@ -34,7 +34,7 @@ use_lintr <- function(open = FALSE) {
 #'
 #' @export
 use_todo <- function(open = rlang::is_interactive()) {
-  # TODO generates an R CMD check note if not ignored
+  # note: TODO.md generates an R CMD check note if not ignored
   usethis::use_template("TODO.md", package = "rdev", ignore = TRUE, open = open)
 }
 
