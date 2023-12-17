@@ -238,6 +238,14 @@ Do you want to proceed? [Y/n]: y
 Do you want to proceed? [Y/n]: y
 ```
 
+Additionally, `ci()` will run successfully, generating the following `R CMD check` note:
+
+```
+> checking package subdirectories ... NOTE
+  Problems with news in ‘NEWS.md’:
+  No news entries found.
+```
+
 **Then:**
 
 If using RStudio, there will be 5 files open:
@@ -251,10 +259,12 @@ If using RStudio, there will be 5 files open:
 The following commits will be added to git:
 
 - [ ] `rdev::use_rdev_package()`: 22 new files or changed files from 'Initialize rdev package'
-- [ ] `rdev::use_rdev_pkgdown()`: 4 new or changed files:
+- [ ] `rdev::use_rdev_pkgdown()`: 6 new or changed files:
   - [ ] `.Rbuildignore`: changed, added `^_pkgdown\.yml$`, `^docs$`, `^pkgdown$`, sorted
   - [ ] `.gitignore`: changed, added `docs`
+  - [ ] `DESCRIPTION`: added pkgdown
   - [ ] `_pkgdown.yml`: new
+  - [ ] `man/rdtest1-package.Rd`: updated title and description
   - [ ] `pkgdown/extra.css`: new
 - [ ] `rdev::use_spelling()`: 5 new or changed files:
   - [ ] `DESCRIPTION`: added spelling, withr, Language
@@ -270,7 +280,7 @@ The following commits will be added to git:
   - [ ] `tests/testthat/test-package.R`: deleted
   - [ ] `tests/testthat/test-spelling.R`: new, from rdev template
 - [ ] `rdev::use_codecov()`: 6 new or changed files:
-  - [ ] `.Rbuildignore`: added `codecov.yml`, sorted
+  - [ ] `.Rbuildignore`: added `codecov.yml`
   - [ ] `.github/workflows/test-coverage.yaml`: new, added from rdev workflows
   - [ ] `DESCRIPTION`: added covr, DT
   - [ ] `README.Rmd`: added 'Codecov test coverage' badge
@@ -287,6 +297,12 @@ Revert the changes to test `use_analysis_package()`:
 - [ ] Undo `rdev::use_rdev_package()` (without discarding the 22 files)
 - [ ] Run `renv::clean()` to remove unused packages
 - [ ] Restart R Session
+
+## Regression
+
+Regression tests:
+
+- [ ] Confirm that there are no uncommitted changes in git
 
 # Set up analysis package
 
@@ -341,7 +357,7 @@ If using RStudio, there will be 4 files open:
 The following commits will be added to git:
 
 - [ ] `rdev::use_rdev_package()`: 22 new files or changed files from 'Initialize rdev package'
-- [ ] `rdev::use_analysis_package()`: 9 new or changed files:
+- [ ] `rdev::use_analysis_package()`: 10 new or changed files:
   - [ ] `.Rbuildignore`: added analysis package generated files, sorted
   - [ ] `.gitignore`: added `# analysis package generated files` section
   - [ ] `.nojekyll`: new, empty file
@@ -350,6 +366,7 @@ The following commits will be added to git:
   - [ ] `_quarto.yml`: new
   - [ ] `analysis/assets/extra.css`: new
   - [ ] `index.qmd`: new
+  - [ ] `man/rdtest1-package.Rd`: updated title and description
   - [ ] `renv.lock`: updated with dplyr and dependencies
 - [ ] `rdev::use_spelling()`: 5 new or changed files:
   - [ ] `DESCRIPTION`: added spelling, withr, Language
