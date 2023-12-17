@@ -444,6 +444,8 @@ use_rdev_package <- function(quiet = TRUE) {
   # add a test for package.R so that ci() passes immediately after use_rdev_package() is run
   usethis::use_test("package")
 
+  desc::desc_normalize()
+
   # run document() to create package .Rd file
   devtools::document()
   # build REAMDE.md so that modified git hook works as expected
