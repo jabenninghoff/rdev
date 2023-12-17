@@ -330,6 +330,7 @@ test_that("use_rdev_pkgdown pauses when running interactively", {
   mockery::stub(use_rdev_pkgdown, "yaml::read_yaml", pkg)
   mockery::stub(use_rdev_pkgdown, "desc::desc_get_urls", desc_urls)
   mockery::stub(use_rdev_pkgdown, "yaml::write_yaml", NULL)
+  mockery::stub(use_rdev_pkgdown, "sort_rbuildignore", NULL)
 
   expect_output(
     rlang::with_interactive(use_rdev_pkgdown(config_file = "_pkgdown.yml"), TRUE),

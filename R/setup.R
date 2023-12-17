@@ -632,4 +632,5 @@ use_rdev_pkgdown <- function(config_file = "_pkgdown.yml", destdir = "docs") {
     writeLines("done!")
   }
   yaml::write_yaml(pkg, config_file)
+  sort_rbuildignore()
 }
