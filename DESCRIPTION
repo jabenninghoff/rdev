@@ -47,9 +47,11 @@ Suggests:
     covr,
     diffviewer,
     DT,
+    htmltools,
     knitr,
     stringi,
-    testthat (>= 3.0.0)
+    testthat (>= 3.0.0),
+    xaringanExtra
 VignetteBuilder: 
     knitr
 Config/testthat/edition: 3

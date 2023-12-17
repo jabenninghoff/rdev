@@ -1,10 +1,14 @@
 ---
 title: "Package Setup Test"
+author: "John Benninghoff"
+date: "2023-12-16"
 output:
   html_notebook:
     theme:
       version: 5
+      preset: bootstrap
     code_folding: none
+    css: ../../inst/templates/extra.css
 ---
 
 Test script to manually validate creating a new rdev package or R analysis package.
@@ -15,16 +19,23 @@ Load devtools. Load package manually using `devtools::load_all(".")` (command-sh
 
 ```{r setup, message = FALSE, warning = FALSE}
 # devtools already loaded
+htmltools::tagList(
+  xaringanExtra::use_clipboard(
+    button_text = "<i class=\"fa fa-clipboard fa-2xl\"></i>",
+    success_text = "<i class=\"fa fa-check fa-2xl\" style=\"color: #90BE6D\"></i>"
+  ),
+  rmarkdown::html_dependency_font_awesome()
+)
 ```
 
 # Create GitHub Repository
 
-Given:
+**Given:**
 
 - rdev and dependencies are installed in the R site library (using `setup-r`)
 - Running in a session with no project open
 
-When:
+**When:**
 
 Creating a new GitHub repository with the following command:
 
@@ -32,125 +43,151 @@ Creating a new GitHub repository with the following command:
 rdev::create_github_repo("rdtest1", "rdev test package 1")
 ```
 
-Then:
+**Then:**
 
-- A new rdev package named "rdtest1" is created in the active GitHub account, downloaded to the
-  local system, and populated with package files using usethis options in `~/.Rprofile`
-- On macOS, the repository is opened in GitHub Desktop
-- On macOS, the repository settings are opened on github.com
-- Branch protection applied to the default branch:
-  - Require a pull request before merging
-  - Require status checks to pass before merging
-  - Require branches to be up to date before merging
-  - Status checks that are required:
-    - lint, GitHub Actions
-    - macos-latest (release), GitHub Actions
-    - missing-deps, GitHub Actions
-    - windows-latest (release), GitHub Actions
-  - Require linear history
-- Code security and analysis:
-  - Dependabot alerts
-  - Dependabot security updates
-- The git repository will contain a single commit, 'Initial commit', with:
-  - `LICENSE`: GitHub MIT License, with active GitHub user's name and current year in Copyright
-  - `.gitignore`: GitHub [R.gitignore](https://github.com/github/gitignore/blob/main/R.gitignore)
-- There will be 4 new files: (see note below)
-  - `.Rbuildignore`
-  - `DESCRIPTION`
-  - `NAMESPACE`
-  - `rdtest1.Rproj`
-
-Commit the changes to a new branch named package-setup and push to GitHub:
-
-```r
-gert::git_branch_create("package-setup")
-gert::git_add(".")
-gert::git_commit("rdev::create_github_repo()")
-gert::git_push()
-```
+- [ ] A new rdev package named "rdtest1" is created in the active GitHub account, downloaded to the
+      local system, and populated with package files using usethis options in `~/.Rprofile`
+- [ ] On macOS, the repository is opened in GitHub Desktop
+- [ ] On macOS, the repository settings are opened on github.com
+- [ ] Branch protection applied to the default branch:
+  - [ ] Require a pull request before merging
+  - [ ] Require status checks to pass before merging
+  - [ ] Require branches to be up to date before merging
+  - [ ] Status checks that are required:
+    - [ ] lint, GitHub Actions
+    - [ ] macos-latest (release), GitHub Actions
+    - [ ] missing-deps, GitHub Actions
+    - [ ] windows-latest (release), GitHub Actions
+  - [ ] Require linear history
+- [ ] Code security and analysis:
+  - [ ] Dependabot alerts
+  - [ ] Dependabot security updates
+- [ ] The git repository will contain a single commit, 'Initial commit', with:
+  - [ ] `LICENSE`: GitHub MIT License, with active GitHub user's name and current year in Copyright
+  - [ ] `.gitignore`: GitHub
+        [R.gitignore](https://github.com/github/gitignore/blob/main/R.gitignore)
+- [ ] There will be 4 new files:
+  - [ ] `.Rbuildignore`
+  - [ ] `DESCRIPTION`
+  - [ ] `NAMESPACE`
+  - [ ] `rdtest1.Rproj`
 
 ## Regression
 
 Regression tests:
 
-- Confirm that running `rdev::create_github_repo("test")` errors when the "test" directory exists
-  in `usethis:::conspicuous_place()`
+- [ ] Confirm that running `rdev::create_github_repo("rdtest1")` errors when the "rdtest1" directory
+      exists in `usethis:::conspicuous_place()`
 
-# Use rdev package
+```r
+rdev::create_github_repo("rdtest1")
+```
 
-Given:
+# Initialize rdev package
+
+**Given:**
 
 - Running in an interactive session at the rdtest1 project root
 - Commands in 'Create GitHub Repository' have been run
 
-When:
+**When:**
 
-Setting up rdev package conventions with the following command:
+Following `?quickstart`, without committing to git, initialize the rdev package by running `init()`
+in the newly created project:
 
 ```r
-use_rdev_package()
+rdev::init()
 ```
 
-Then:
+When prompted, select "Yes" and "implicit mode":
 
-There will be 21 new or changed files (new unless otherwise noted):
+```
+Initialize rdev package (run after create_github_repo)? (yes/No/cancel) y
 
-- `.github/.gitignore`
-- `.github/workflows/check-standard.yaml`
-- `.github/workflows/lint.yaml`
-- `.gitignore`: changed, add 'macOS, vim' section
-- `.lintr`
-- `.Rbuildignore`: changed, sorted
-- `.Rprofile`
-- `DESCRIPTION`: changed
-  - License: MIT
-  - URL: GitHub pages, GitHub repo
-  - BugReports: GitHub issues
-  - Suggests: devtools, rdev (>= 0.8.9), testthat (>= 3.0.0)
-  - Remotes: jabenninghoff/rdev
-  - Config/testthat/edition: 3
-- `LICENSE.md`
-- `man/rdtest1-package.Rd`
-- `NEWS.md`
-- `R/package.R`
-- `README.md`
-- `README.Rmd`
-- `renv.lock`
-- `renv/.gitignore`
-- `renv/activate.R`
-- `renv/settings.dcf`
-- `tests/testthat.R`
-- `tests/testthat/test-package.R`
-- `TODO.md`
+...
+
+This project contains a DESCRIPTION file.
+Which files should renv use for dependency discovery in this project? 
+
+1: Use only the DESCRIPTION file. (explicit mode)
+2: Use all files in this project. (implicit mode)
+
+Selection: 2
+```
+
+**Then:**
+
+- [ ] The 4 new files (`.Rbuildignore`, `DESCRIPTION`, `NAMESPACE`, `rdtest1.Rproj`) will be
+      committed to GitHub with the message `rdev::create_github_repo()`
+
+There will be 22 new or changed files (new unless otherwise noted):
+
+- [ ] `.github/.gitignore`
+- [ ] `.github/workflows/lint.yaml`
+- [ ] `.github/workflows/missing-deps.yaml`
+- [ ] `.github/workflows/R-CMD-check.yaml`
+- [ ] `.gitignore`: changed, add 'macOS, vim' section
+- [ ] `.lintr`
+- [ ] `.Rbuildignore`: changed, sorted
+- [ ] `.Rprofile`
+- [ ] `DESCRIPTION`: changed
+  - [ ] License: MIT
+  - [ ] Suggests: desc, devtools, fs, knitr, pkgload, rdev (>= 1.9.1), rmarkdown,
+        testthat (>= 3.0.0), usethis
+  - [ ] URL: GitHub pages, GitHub repo
+  - [ ] BugReports: GitHub issues
+  - [ ] Remotes: jabenninghoff/rdev
+  - [ ] Config/testthat/edition: 3
+- [ ] `LICENSE.md`
+- [ ] `man/rdtest1-package.Rd`
+- [ ] `NEWS.md`
+- [ ] `R/package.R`
+- [ ] `README.md`
+- [ ] `README.Rmd`
+- [ ] `renv.lock`
+- [ ] `renv/.gitignore`
+- [ ] `renv/activate.R`
+- [ ] `renv/settings.json`
+- [ ] `tests/testthat.R`
+- [ ] `tests/testthat/test-package.R`
+- [ ] `TODO.md`
 
 On GitHub:
 
-- GitHub Pages, enabled:
-  - Branch: default, folder: /docs
-- Website (homepage) set to GitHub Pages URL
+- [ ] GitHub Pages, enabled:
+  - [ ] Branch: default, folder: /docs
+- [ ] Website (homepage) set to GitHub Pages URL
 
-Commit the changes, check the new package, and push to GitHub:
+**Task:**
+
+Following `?quickstart`, manually update the Title and Description fields in the DESCRIPTION file
+(without committing):
 
 ```r
-gert::git_add(".")
-gert::git_commit("rdev::use_rdev_package()")
-ci()
-gert::git_push()
+desc::desc_set(Title = "Rdev Test Package 1")
+desc::desc_set(Description = "Used in manual testing of the rdev package.")
 ```
-
-The CI checks should all complete successfully.
 
 ## Regression
 
 Regression tests:
 
-- Confirm that `.git/hooks/pre-commit` is owner-executable (must be executable to work) and matches
-  the `pre-commit` template
+- [ ] Confirm that `.git/hooks/pre-commit` is owner-executable (must be executable to work) and
+      matches the `pre-commit` template:
 
 ```sh
-$ dir .git/hooks/pre-commit
+dir .git/hooks/pre-commit
+```
+
+```
 -rwxr--r--  1 agamemnon  staff  409 Jan 30 15:58 .git/hooks/pre-commit
-$ cat .git/hooks/pre-commit
+```
+
+```sh
+cat .git/hooks/pre-commit
+```
+
+```
 #!/bin/bash
 # forked from https://github.com/r-lib/usethis/blob/main/inst/templates/readme-rmd-pre-commit.sh
 README=($(git diff --cached --name-only | grep -Ei '^README\.[R]?md$'))
@@ -166,181 +203,189 @@ if [[ README.Rmd -nt README.md ]]; then
 fi
 ```
 
-# Use pkgdown
+# Setup rdev
 
-Given:
-
-- Running in an interactive session at the rdtest1 project root
-- Commands in 'Create GitHub Repository' have been run
-- Commands in 'Use rdev package' have been run
-
-When:
-
-Setting up pkgdown with the following command:
-
-```r
-usethis::use_pkgdown()
-```
-
-Then:
-
-There will be 3 new or changed files:
-
-- `.gitignore`: changed, added `docs`
-- `.Rbuildignore`: changed, added `^_pkgdown\.yml$`, `^docs$`, `^pkgdown$`
-- `_pkgdown.yml`: new
-
-Test the installation by running the rdev builder, which should complete successfully:
-
-```r
-build_rdev_site()
-```
-
-Discard the changes to test `use_analysis_package()`.
-
-# Use analysis package
-
-Given:
+**Given:**
 
 - Running in an interactive session at the rdtest1 project root
 - Commands in 'Create GitHub Repository' have been run
-- Commands in 'Use rdev package' have been run
+- Commands in 'Initialize rdev package' have been run
 
-When:
+**When:**
 
-Setting up an analysis package with the following command, and confirming to overwrite README.Rmd:
+Following `?quickstart`, without committing to git, running `setup_rdev()` to configure the package
+as an rdev package:
 
 ```r
-use_analysis_package()
+rdev::setup_rdev()
 ```
 
-Then:
+When prompted, answer "Yes" to all questions:
 
-There will be 6 new or changed files:
+```
+Set up rdev package (run after init)? (yes/No/cancel) y
+...
+Do you want to proceed? [Y/n]: y
+...
+Are you sure you want to update the wordlist?
+1: Yes
+2: No
 
-- `.gitignore`: added `# analysis package generated files` section
-- `.Rbuildignore`: added analysis package generated files, sorted
-- `DESCRIPTION`: added `dplyr` to `Suggests`
-- `pkgdown/_base.yml`: new, with GitHub pages `url`
-- `README.Rmd`: changed, with Notebooks section
-- `renv.lock`: updated with `dplyr` and dependencies
-
-Commit the changes to git:
-
-```r
-gert::git_add(".")
-gert::git_commit("rdev::use_analysis_package()")
-ci()
-gert::git_push()
+Selection: 1
+...
+Do you want to proceed? [Y/n]: y
+...
+Do you want to proceed? [Y/n]: y
 ```
 
-Test the installation by running CI checks and the analysis builder, which should throw an error:
+**Then:**
+
+If using RStudio, there will be 5 files open:
+
+- [ ] `_pkgdown.yml`
+- [ ] `TODO.md`
+- [ ] `NEWS.md`
+- [ ] `README.Rmd`
+- [ ] `DESCRIPTION`
+
+The following commits will be added to git:
+
+- [ ] `rdev::use_rdev_package()`: 22 new files or changed files from 'Initialize rdev package'
+- [ ] `rdev::use_rdev_pkgdown()`: 4 new or changed files:
+  - [ ] `.Rbuildignore`: changed, added `^_pkgdown\.yml$`, `^docs$`, `^pkgdown$`, sorted
+  - [ ] `.gitignore`: changed, added `docs`
+  - [ ] `_pkgdown.yml`: new
+  - [ ] `pkgdown/extra.css`: new
+- [ ] `rdev::use_spelling()`: 5 new or changed files:
+  - [ ] `DESCRIPTION`: added spelling, withr, Language
+  - [ ] `inst/WORDLIST`: new, with the following words in the list:
+    - [ ] CMD
+    - [ ] Changelog
+    - [ ] ORCID
+    - [ ] Rdev
+    - [ ] rdev
+    - [ ] rdtest
+    - [ ] renv
+  - [ ] `tests/spelling.R`: new, from rdev template
+  - [ ] `tests/testthat/test-package.R`: deleted
+  - [ ] `tests/testthat/test-spelling.R`: new, from rdev template
+- [ ] `rdev::use_codecov()`: 6 new or changed files:
+  - [ ] `.Rbuildignore`: added `codecov.yml`, sorted
+  - [ ] `.github/workflows/test-coverage.yaml`: new, added from rdev workflows
+  - [ ] `DESCRIPTION`: added covr, DT
+  - [ ] `README.Rmd`: added 'Codecov test coverage' badge
+  - [ ] `codecov.yml`: new
+  - [ ] `renv.lock`: added covr, DT, dependencies
+
+**Task:**
+
+Revert the changes to test `use_analysis_package()`:
+
+- [ ] Undo and discard `rdev::use_codecov()`
+- [ ] Undo and discard `rdev::use_spelling()`
+- [ ] Undo and discard `rdev::use_rdev_pkgdown()`
+- [ ] Undo `rdev::use_rdev_package()` (without discarding the 22 files)
+- [ ] Run `renv::clean()` to remove unused packages
+- [ ] Restart R Session
+
+# Set up analysis package
+
+**Given:**
+
+- Running in an interactive session at the rdtest1 project root
+- Commands in 'Create GitHub Repository' have been run
+- Commands in 'Initialize rdev package' have been run
+
+**When:**
+
+Following `?quickstart`, without committing to git, running `setup_analysis()` to configure the
+package as an analysis package:
 
 ```r
-build_analysis_site()
+rdev::setup_analysis()
+```
+
+When prompted, answer "Yes" to all questions:
+
+```
+Set up analysis package (run after init)? (yes/No/cancel) y
+...
+Do you want to proceed? [Y/n]: y
+...
+Do you want to proceed? [Y/n]: y
+...
+Are you sure you want to update the wordlist?
+1: Yes
+2: No
+
+Selection: 1
+```
+
+Additionally, `ci()` will run successfully, generating the following `R CMD check` note:
+
+```
+> checking package subdirectories ... NOTE
+  Problems with news in ‘NEWS.md’:
+  No news entries found.
+```
+
+**Then:**
+
+If using RStudio, there will be 4 files open:
+
+- [ ] `TODO.md`
+- [ ] `NEWS.md`
+- [ ] `README.Rmd`
+- [ ] `DESCRIPTION`
+
+The following commits will be added to git:
+
+- [ ] `rdev::use_rdev_package()`: 22 new files or changed files from 'Initialize rdev package'
+- [ ] `rdev::use_analysis_package()`: 9 new or changed files:
+  - [ ] `.Rbuildignore`: added analysis package generated files, sorted
+  - [ ] `.gitignore`: added `# analysis package generated files` section
+  - [ ] `.nojekyll`: new, empty file
+  - [ ] `DESCRIPTION`: added dplyr, purrr, quarto to `Suggests`
+  - [ ] `README.Rmd`: changed, with Notebooks section
+  - [ ] `_quarto.yml`: new
+  - [ ] `analysis/assets/extra.css`: new
+  - [ ] `index.qmd`: new
+  - [ ] `renv.lock`: updated with dplyr and dependencies
+- [ ] `rdev::use_spelling()`: 5 new or changed files:
+  - [ ] `DESCRIPTION`: added spelling, withr, Language
+  - [ ] `inst/WORDLIST`: new, with the following words in the list:
+    - [ ] CMD
+    - [ ] Changelog
+    - [ ] ORCID
+    - [ ] Rdev
+    - [ ] rdev
+    - [ ] rdtest
+    - [ ] renv
+  - [ ] `tests/spelling.R`: new, from rdev template
+  - [ ] `tests/testthat/test-package.R`: deleted
+  - [ ] `tests/testthat/test-spelling.R`: new, from rdev template
+
+## Regression
+
+Regression tests:
+
+- [ ] Confirm that there are no uncommitted changes in git
+
+## Build Quarto Site
+
+Test the installation by the Quarto builder, which should throw an error:
+
+```r
+build_quarto_site()
 
 #> Error in build_analysis_site() : No *.Rmd files in analysis directory
 ```
 
 Create an analysis notebook in RStudio using File > New File > R Markdown... > From Template >
 Analysis Notebook, save in `analysis` as `test.Rmd`, removing all `library` commands in the setup
-block except `library(dplyr)`, and re-run the checks, which should complete successfully:
+block except `library(dplyr)`, remove `order:` in the header, and re-run the checks, which should
+complete successfully:
 
 ```r
-build_analysis_site()
-```
-
-Commit the changes to git:
-
-```r
-gert::git_add(".")
-gert::git_commit("rdev::build_analysis_site()")
-ci()
-gert::git_push()
-```
-
-# Use spelling
-
-Given:
-
-- Running in an interactive session at the rdtest1 project root
-- Commands in 'Create GitHub Repository' have been run
-- Commands in 'Use rdev package' have been run
-- Optionally, commands in 'Use analysis package' have been run
-- All changes have been committed to git
-
-When:
-
-Activating spelling with the following commands, answering '1: Yes' when prompted to update the
-wordlist:
-
-```r
-use_spelling()
-```
-
-Then:
-
-There will be 4 new or changed files:
-
-- `DESCRIPTION`: added spelling, Language
-- `inst/WORDLIST`: new, with the following words in the list:
-  - CMD
-  - Changelog
-  - ORCID
-  - README
-  - md
-  - rdtest
-  - renv
-- `renv.lock`: added spelling, dependencies
-- `tests/spelling.R`: new, from rdev template
-
-Test the installation by running renv and CI checks which should pass:
-
-```r
-check_renv()
-ci()
-```
-
-Commit the changes to git:
-
-```r
-gert::git_add(".")
-gert::git_commit("rdev::use_spelling()")
-ci()
-gert::git_push()
-```
-
-# Use codecov
-
-Given:
-
-- Running in an interactive session at the rdtest1 project root
-- Commands in 'Create GitHub Repository' have been run
-- Commands in 'Use rdev package' have been run
-- Optionally, commands in 'Use analysis package' have been run
-
-When:
-
-Activating  codecov with the following commands:
-
-```r
-use_codecov()
-```
-
-Then:
-
-There will be 6 new or changed files:
-
-- `.github/workflows/test-coverage.yaml`: new, added from rdev workflows
-- `.Rbuildignore`: added codecov.yml
-- `codecov.yml`: new
-- `DESCRIPTION`: added covr, DT
-- `README.Rmd`: added 'Codecov test coverage' badge
-- `renv.lock`: added covr, DT, dependencies
-
-Test the installation by running renv and CI checks which should pass:
-
-```r
-check_renv()
-ci()
+build_quarto_site()
 ```
