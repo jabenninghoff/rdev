@@ -329,6 +329,7 @@ test_that("use_rdev_pkgdown pauses when running interactively", {
   pkg <- list(url = NULL, template = list(bootstrap = 5L))
   desc_urls <- c("https://example.github.io/package/", "https://github.com/example/package")
   mockery::stub(use_rdev_pkgdown, "usethis::use_pkgdown", NULL)
+  mockery::stub(use_rdev_pkgdown, "usethis::use_package", NULL)
   mockery::stub(use_rdev_pkgdown, "fs::dir_create", NULL)
   mockery::stub(use_rdev_pkgdown, "usethis::use_template", NULL)
   mockery::stub(use_rdev_pkgdown, "yaml::read_yaml", pkg)

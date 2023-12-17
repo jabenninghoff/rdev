@@ -620,6 +620,7 @@ use_analysis_package <- function(use_quarto = TRUE, prompt = FALSE) {
 #' @export
 use_rdev_pkgdown <- function(config_file = "_pkgdown.yml", destdir = "docs") {
   usethis::use_pkgdown(config_file = config_file, destdir = destdir)
+  usethis::use_package("pkgdown", type = "Suggests")
   fs::dir_create("pkgdown")
   usethis::use_template("extra.css", save_as = "pkgdown/extra.css", package = "rdev")
   pkg <- yaml::read_yaml(config_file)
