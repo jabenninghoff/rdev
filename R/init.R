@@ -76,6 +76,9 @@ setup_analysis <- function() {
   gert::git_add(".")
   gert::git_commit("rdev::use_rdev_package()")
 
+  # update documentation since quickstart directs user to manually update Title and Description
+  devtools::document()
+
   writeLines("use_analysis_package()...")
   use_analysis_package()
 
@@ -124,6 +127,9 @@ setup_rdev <- function() {
   writeLines("Committing...")
   gert::git_add(".")
   gert::git_commit("rdev::use_rdev_package()")
+
+  # update documentation since quickstart directs user to manually update Title and Description
+  devtools::document()
 
   writeLines("use_rdev_pkgdown()...")
   use_rdev_pkgdown()
