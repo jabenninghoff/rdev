@@ -37,6 +37,7 @@ test_that("init only runs when askYesNo is explicitly answered 'yes'", {
 test_that("setup_analysis errors if not running interactively", {
   mockery::stub(setup_analysis, "gert::git_add", NULL)
   mockery::stub(setup_analysis, "gert::git_commit", NULL)
+  mockery::stub(setup_analysis, "devtools::document", NULL)
   mockery::stub(setup_analysis, "use_analysis_package", NULL)
   mockery::stub(setup_analysis, "use_spelling", NULL)
   mockery::stub(setup_analysis, "fs::file_delete", NULL)
@@ -55,6 +56,7 @@ test_that("setup_analysis errors if not running interactively", {
 test_that("setup_analysis only runs when askYesNo is explicitly answered 'yes'", {
   mockery::stub(setup_analysis, "gert::git_add", NULL)
   mockery::stub(setup_analysis, "gert::git_commit", NULL)
+  mockery::stub(setup_analysis, "devtools::document", NULL)
   mockery::stub(setup_analysis, "use_analysis_package", NULL)
   mockery::stub(setup_analysis, "use_spelling", NULL)
   mockery::stub(setup_analysis, "fs::file_delete", NULL)
@@ -84,6 +86,7 @@ test_that("setup_analysis only runs when askYesNo is explicitly answered 'yes'",
 test_that("setup_rdev errors if not running interactively", {
   mockery::stub(setup_rdev, "gert::git_add", NULL)
   mockery::stub(setup_rdev, "gert::git_commit", NULL)
+  mockery::stub(setup_rdev, "devtools::document", NULL)
   mockery::stub(setup_rdev, "use_rdev_pkgdown", NULL)
   mockery::stub(setup_rdev, "use_spelling", NULL)
   mockery::stub(setup_rdev, "fs::file_delete", NULL)
@@ -103,6 +106,7 @@ test_that("setup_rdev errors if not running interactively", {
 test_that("setup_rdev only runs when askYesNo is explicitly answered 'yes'", {
   mockery::stub(setup_rdev, "gert::git_add", NULL)
   mockery::stub(setup_rdev, "gert::git_commit", NULL)
+  mockery::stub(setup_rdev, "devtools::document", NULL)
   mockery::stub(setup_rdev, "use_rdev_pkgdown", NULL)
   mockery::stub(setup_rdev, "use_spelling", NULL)
   mockery::stub(setup_rdev, "fs::file_delete", NULL)
