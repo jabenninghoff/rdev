@@ -115,9 +115,8 @@ use_codecov <- function(prompt = FALSE) {
         url = "https://github.com/jabenninghoff/rdev/blob/main/.github/workflows/test-coverage.yaml"
       )
     }
-  } else {
-    usethis::use_package("covr", type = "Suggests")
   }
+  usethis::use_package("covr", type = "Suggests")
   renv::install("DT")
   usethis::use_package("DT", type = "Suggests")
   renv::snapshot(dev = TRUE, prompt = prompt)

@@ -2,6 +2,8 @@
 
 * Updated manual tests
 
+* Bug fixes
+
 # rdev 1.9.1
 
 * Maintenance updates

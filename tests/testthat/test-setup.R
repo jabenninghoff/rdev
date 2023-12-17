@@ -24,21 +24,25 @@ test_that("rdev.codecov option skips installation of codecov.io components", {
   )
   mockery::stub(use_codecov, "usethis::use_package", u_pack)
 
+  cov_out <- "use_coverage\\nsort_rbuildignore\\n"
+  gha_out <- "use_github_action\\n"
+  use_out <- "package = 'covr', type ='Suggests'\\npackage = 'DT', type ='Suggests'"
+
   expect_output(
     withr::with_options(list(rdev.codecov = NULL, rdev.github.actions = NULL), use_codecov()),
-    "^use_coverage\\nsort_rbuildignore\\nuse_github_action\\npackage = 'DT', type ='Suggests'$"
+    paste0("^", cov_out, gha_out, use_out, "$")
   )
   expect_output(
     withr::with_options(list(rdev.codecov = TRUE, rdev.github.actions = TRUE), use_codecov()),
-    "^use_coverage\\nsort_rbuildignore\\nuse_github_action\\npackage = 'DT', type ='Suggests'$"
+    paste0("^", cov_out, gha_out, use_out, "$")
   )
   expect_output(
     withr::with_options(list(rdev.codecov = TRUE, rdev.github.actions = FALSE), use_codecov()),
-    "^use_coverage\\nsort_rbuildignore\\npackage = 'DT', type ='Suggests'$"
+    paste0("^", cov_out, use_out, "$")
   )
   expect_output(
     withr::with_options(list(rdev.codecov = FALSE, rdev.github.actions = TRUE), use_codecov()),
-    "^package = 'covr', type ='Suggests'\\npackage = 'DT', type ='Suggests'$"
+    paste0("^", use_out, "$")
   )
 })
 
