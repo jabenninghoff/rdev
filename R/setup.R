@@ -85,6 +85,7 @@ use_spelling <- function(lang = "en-US", prompt = FALSE) {
   }
   usethis::use_package("fs", type = "Suggests")
   usethis::use_package("withr", type = "Suggests")
+  desc::desc_normalize()
   renv::snapshot(dev = TRUE, prompt = prompt)
 }
 
