@@ -10,7 +10,7 @@
     
     <a class="navbar-brand me-2" href="../index.html">rdev</a>
 
-    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">1.9.1</small>
+    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">1.9.2</small>
 
     
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbar" aria-controls="navbar" aria-expanded="false" aria-label="Toggle navigation">
@@ -76,12 +76,12 @@
     <h2 id="value">Value<a class="anchor" aria-label="anchor" href="#value"></a></h2>
     
 
-<p>data.frame from either <code><a href="https://rstudio.github.io/renv/reference/dependencies.html" class="external-link">renv::dependencies()</a></code> or <code><a href="http://r-lib.github.io/desc/reference/desc_get_deps.html" class="external-link">desc::desc_get_deps()</a></code>.</p>
+<p>data.frame from either <code><a href="https://rstudio.github.io/renv/reference/dependencies.html" class="external-link">renv::dependencies()</a></code> or <code><a href="https://desc.r-lib.org/reference/desc_get_deps.html" class="external-link">desc::desc_get_deps()</a></code>.</p>
     </div>
     <div class="section level2">
     <h2 id="details">Details<a class="anchor" aria-label="anchor" href="#details"></a></h2>
     <p><code>missing_deps()</code> reports <code><a href="https://rstudio.github.io/renv/reference/dependencies.html" class="external-link">renv::dependencies()</a></code> not in DESCRIPTION.</p>
-<p><code>extra_deps()</code> reports <code><a href="http://r-lib.github.io/desc/reference/desc_get_deps.html" class="external-link">desc::desc_get_deps()</a></code> not found by renv.</p>
+<p><code>extra_deps()</code> reports <code><a href="https://desc.r-lib.org/reference/desc_get_deps.html" class="external-link">desc::desc_get_deps()</a></code> not found by renv.</p>
 <p>The current package (<code><a href="https://pkgload.r-lib.org/reference/packages.html" class="external-link">pkgload::pkg_name(".")</a></code>) and <code>renv</code> (in <code>renv.lock</code>
 only) are automatically removed from <code><a href="https://rstudio.github.io/renv/reference/dependencies.html" class="external-link">renv::dependencies()</a></code>, along with 'base' R packages if
 <code>exclude_base</code> is <code>TRUE</code> (base, compiler, datasets, grDevices, graphics, grid, methods, parallel, splines, stats, stats4, tcltk, tools, utils).</p>
