@@ -55,15 +55,15 @@ stopifnot(
   desc::desc_get(c("License", "URL", "BugReports", "Remotes")) == c(
     License = "MIT + file LICENSE",
     URL = paste0(
-      "https://", gh_pages_server, "/", repo_name, ",\n    https://", gh_server, "/", gh_login, "/",
-      repo_name
+      "https://", gh_pages_server, "/", repo_name, "/,\n    https://", gh_server, "/", gh_login,
+      "/", repo_name
     ),
     BugReports = paste0("https://", gh_server, "/", gh_login, "/", repo_name, "/issues"),
     Remotes = "\n    jabenninghoff/rdev"
   ),
   gh_pages$source$branch == gh_repo$default_branch,
   gh_pages$source$path == "/docs",
-  gh_repo$homepage == paste0("https://", gh_pages_server, "/rdtest1"),
+  gh_repo$homepage == paste0("https://", gh_pages_server, "/rdtest1/"),
   fs::file_info(".git/hooks/pre-commit")$permissions == structure(33252L, class = "fs_perms"),
   readLines(".git/hooks/pre-commit") == c(
     "#!/bin/bash",
@@ -79,11 +79,11 @@ stopifnot(
     structure(
       list(
         file = c(
-          ".github/.gitignore", ".github/workflows/check-standard.yaml",
-          ".github/workflows/lint.yaml", ".github/workflows/missing-deps.yaml", ".gitignore",
+          ".github/.gitignore", ".github/workflows/lint.yaml",
+          ".github/workflows/missing-deps.yaml", ".github/workflows/R-CMD-check.yaml", ".gitignore",
           ".lintr", ".Rbuildignore", ".Rprofile", "DESCRIPTION", "LICENSE.md",
           "man/rdtest1-package.Rd", "NEWS.md", "R/package.R", "README.md", "README.Rmd",
-          "renv.lock", "renv/.gitignore", "renv/activate.R", "renv/settings.dcf",
+          "renv.lock", "renv/.gitignore", "renv/activate.R", "renv/settings.json",
           "tests/testthat.R", "tests/testthat/test-package.R", "TODO.md"
         ),
         status = c(
@@ -104,4 +104,3 @@ writeLines("3. use_rdev_package() changes")
 # validate ci() and commit changes
 gert::git_commit("rdev::use_rdev_package()")
 ci()
-gert::git_push()

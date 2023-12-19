@@ -26,7 +26,9 @@ preconditions <- c(
   "  local system, and populated with package files using usethis options in `~/.Rprofile`",
   "- The repository is opened as a new project in RStudio",
   "- On macOS, the repository is opened in GitHub Desktop",
-  "- On macOS, the repository settings on ", gh_server, " are opened in the default browser",
+  paste0(
+    "- On macOS, the repository settings on ", gh_server, " are opened in the default browser"
+  ),
   "- Re-running the create_github_repo command returns an error\n"
 )
 writeLines(preconditions)
@@ -95,5 +97,4 @@ writeLines("2. branch protection, dependabot settings, git commits, git status")
 gert::git_branch_create("package-setup")
 gert::git_add(".")
 gert::git_commit("rdev::create_github_repo()")
-gert::git_push()
-use_rdev_package()
+rdev::use_rdev_package()
