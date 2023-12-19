@@ -10,7 +10,7 @@
     
     <a class="navbar-brand me-2" href="../index.html">rdev</a>
 
-    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">1.9.1</small>
+    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">1.9.2</small>
 
     
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbar" aria-controls="navbar" aria-expanded="false" aria-label="Toggle navigation">
@@ -54,6 +54,11 @@
       <small>Source: <a href="https://github.com/jabenninghoff/rdev/blob/HEAD/NEWS.md" class="external-link"><code>NEWS.md</code></a></small>
     </div>
 
+    <div class="section level2">
+<h2 class="pkg-version" data-toc-text="1.9.2" id="rdev-192">rdev 1.9.2<a class="anchor" aria-label="anchor" href="#rdev-192"></a></h2>
+<ul><li><p>Updated manual tests</p></li>
+<li><p>Bug fixes</p></li>
+</ul></div>
     <div class="section level2">
 <h2 class="pkg-version" data-toc-text="1.9.1" id="rdev-191">rdev 1.9.1<a class="anchor" aria-label="anchor" href="#rdev-191"></a></h2>
 <ul><li>Maintenance updates</li>
@@ -155,7 +160,7 @@
     <div class="section level2">
 <h2 class="pkg-version" data-toc-text="1.6.2" id="rdev-162">rdev 1.6.2<a class="anchor" aria-label="anchor" href="#rdev-162"></a></h2>
 <ul><li><p><code><a href="../reference/deps_check.html">missing_deps()</a></code> now excludes base R packages by default</p></li>
-<li><p>Added new checks to <code><a href="../reference/ci.html">ci()</a></code>: <code><a href="../reference/deps_check.html">missing_deps()</a></code>, <code><a href="http://r-lib.github.io/desc/reference/desc_normalize.html" class="external-link">desc::desc_normalize()</a></code>, <code><a href="../reference/deps_check.html">extra_deps()</a></code>, <code><a href="../reference/urlchecker-reexports.html">url_check()</a></code>, and <code><a href="../reference/html_url_check.html">html_url_check()</a></code>; <code><a href="../reference/ci.html">ci()</a></code> will stop if <code><a href="../reference/deps_check.html">missing_deps()</a></code> returns one or more rows</p></li>
+<li><p>Added new checks to <code><a href="../reference/ci.html">ci()</a></code>: <code><a href="../reference/deps_check.html">missing_deps()</a></code>, <code><a href="https://desc.r-lib.org/reference/desc_normalize.html" class="external-link">desc::desc_normalize()</a></code>, <code><a href="../reference/deps_check.html">extra_deps()</a></code>, <code><a href="../reference/urlchecker-reexports.html">url_check()</a></code>, and <code><a href="../reference/html_url_check.html">html_url_check()</a></code>; <code><a href="../reference/ci.html">ci()</a></code> will stop if <code><a href="../reference/deps_check.html">missing_deps()</a></code> returns one or more rows</p></li>
 <li><p>Added <code>missing-deps.yaml</code> GitHub Action</p></li>
 </ul></div>
     <div class="section level2">
@@ -257,7 +262,7 @@
 </ul></div>
     <div class="section level2">
 <h2 class="pkg-version" data-toc-text="1.4.0" id="rdev-140">rdev 1.4.0<a class="anchor" aria-label="anchor" href="#rdev-140"></a></h2>
-<ul><li><p>Added functions to check dependencies: <code><a href="../reference/deps_check.html">missing_deps()</a></code> reports <code><a href="https://rstudio.github.io/renv/reference/dependencies.html" class="external-link">renv::dependencies()</a></code> not in DESCRIPTION, <code><a href="../reference/deps_check.html">extra_deps()</a></code> reports <code><a href="http://r-lib.github.io/desc/reference/desc_get_deps.html" class="external-link">desc::desc_get_deps()</a></code> not found by renv</p></li>
+<ul><li><p>Added functions to check dependencies: <code><a href="../reference/deps_check.html">missing_deps()</a></code> reports <code><a href="https://rstudio.github.io/renv/reference/dependencies.html" class="external-link">renv::dependencies()</a></code> not in DESCRIPTION, <code><a href="../reference/deps_check.html">extra_deps()</a></code> reports <code><a href="https://desc.r-lib.org/reference/desc_get_deps.html" class="external-link">desc::desc_get_deps()</a></code> not found by renv</p></li>
 <li><p>Added <code>renv</code> check to <code><a href="../reference/ci.html">ci()</a></code>: if <code><a href="https://rstudio.github.io/renv/reference/status.html" class="external-link">renv::status()</a></code> is not synchronized, <code><a href="../reference/ci.html">ci()</a></code> will stop</p></li>
 </ul></div>
     <div class="section level2">
