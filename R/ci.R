@@ -28,8 +28,9 @@ check_renv <- function(update = rlang::is_interactive()) {
 
 #' Style all files
 #'
-#' Style all files in a project. Implemented as a wrapper for [styler::style_dir()] that styles
-#'   `.R`, `.Rprofile`, `.Rmd`, `.Rmarkdown`, `.Rnw`, and `.Qmd` files by default.
+#' Style all files in a project. Implemented as a wrapper for [styler::style_dir()] that defaults
+#'   to styling `.R`, `.Rprofile`, `.Rmd`, `.Rmarkdown`, `.Rnw`, and `.Qmd` files, excluding
+#'   files in `packrat`, `renv`, and `R/RcppExports.R`.
 #'
 #' @inheritParams styler::style_dir
 #' @inheritDotParams styler::style_dir
@@ -42,8 +43,13 @@ check_renv <- function(update = rlang::is_interactive()) {
 #' @export
 style_all <- function(path = ".",
                       filetype = c("R", "Rprofile", "Rmd", "Rmarkdown", "Rnw", "Qmd"),
+                      exclude_dirs = c("packrat", "renv"),
+                      exclude_files = "R/RcppExports.R",
                       ...) {
-  styler::style_dir(path = path, filetype = filetype, ...)
+  styler::style_dir(
+    path = path, filetype = filetype, exclude_dirs = exclude_dirs,
+    exclude_files = exclude_files, ...
+  )
 }
 
 #' Lint all files
@@ -64,8 +70,10 @@ style_all <- function(path = ".",
 #' lint_all("analysis")
 #' }
 #' @export
-lint_all <- function(pattern = "(?i)[.](r|rmd|qmd|rnw|rhtml|rpres|rrst|rtex|rtxt)$", ...) {
-  lintr::lint_dir(pattern = pattern, ...)
+lint_all <- function(pattern = "(?i)[.](r|rmd|qmd|rnw|rhtml|rpres|rrst|rtex|rtxt)$",
+                     exclusions = list("renv", "packrat", "R/RcppExports.R"),
+                     ...) {
+  lintr::lint_dir(pattern = pattern, exclusions = exclusions, ...)
 }
 
 print_tbl <- function(df) {

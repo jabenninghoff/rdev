@@ -7,6 +7,8 @@
 style_all(
   path = ".",
   filetype = c("R", "Rprofile", "Rmd", "Rmarkdown", "Rnw", "Qmd"),
+  exclude_dirs = c("packrat", "renv"),
+  exclude_files = "R/RcppExports.R",
   ...
 )
 }
@@ -17,6 +19,12 @@ style_all(
 be styled. Case is ignored, and the \code{.} is optional, e.g. \code{c(".R", ".Rmd")}, or \code{c("r", "rmd")}. Supported values (after standardization) are:
 "r", "rprofile", "rmd", "rmarkdown", "rnw", "qmd". Rmarkdown is treated as
 Rmd.}
+
+\item{exclude_dirs}{Character vector with directories to exclude
+(recursively).}
+
+\item{exclude_files}{Character vector with paths to files that should be
+excluded from styling.}
 
 \item{...}{
   Arguments passed on to \code{\link[styler:style_dir]{styler::style_dir}}
@@ -30,10 +38,6 @@ conveniently constructed via the \code{style} argument and \code{...}. See
 'Examples'.}
     \item{\code{recursive}}{A logical value indicating whether or not files in
 sub directories of \code{path} should be styled as well.}
-    \item{\code{exclude_files}}{Character vector with paths to files that should be
-excluded from styling.}
-    \item{\code{exclude_dirs}}{Character vector with directories to exclude
-(recursively).}
     \item{\code{include_roxygen_examples}}{Whether or not to style code in roxygen
 examples.}
     \item{\code{base_indention}}{Integer scalar indicating by how many spaces the whole
@@ -48,8 +52,9 @@ styling are not identical.}
   }}
 }
 \description{
-Style all files in a project. Implemented as a wrapper for \code{\link[styler:style_dir]{styler::style_dir()}} that styles
-\code{.R}, \code{.Rprofile}, \code{.Rmd}, \code{.Rmarkdown}, \code{.Rnw}, and \code{.Qmd} files by default.
+Style all files in a project. Implemented as a wrapper for \code{\link[styler:style_dir]{styler::style_dir()}} that defaults
+to styling \code{.R}, \code{.Rprofile}, \code{.Rmd}, \code{.Rmarkdown}, \code{.Rnw}, and \code{.Qmd} files, excluding
+files in \code{packrat}, \code{renv}, and \code{R/RcppExports.R}.
 }
 \examples{
 \dontrun{
