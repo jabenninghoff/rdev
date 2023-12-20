@@ -1,3 +1,7 @@
+# rdev 1.9.3
+
+* `lint_all()` and `style_all()` now (properly) exclude `R/RcppExports.R`
+
 # rdev 1.9.2
 
 * Updated manual tests
