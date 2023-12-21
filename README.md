@@ -118,7 +118,7 @@ ci()
 #> No problems found
 #> 
 #> style_all()
-#> Styling  53  files:
+#> Styling  56  files:
 #>  .Rprofile                                               ✔ 
 #>  README.Rmd                                              ✔ 
 #>  inst/rmarkdown/templates/analysis/skeleton/skeleton.Rmd ✔ 
@@ -160,6 +160,9 @@ ci()
 #>  tests/testthat/test-ci/testcode_2.R                     ✔ 
 #>  tests/testthat/test-ci/testcode.Rmd                     ✔ 
 #>  tests/testthat/test-ci/testcode.Rnw                     ✔ 
+#>  tests/testthat/test-ci/packrat/test.R                   ✔ 
+#>  tests/testthat/test-ci/R/RcppExports.R                  ✔ 
+#>  tests/testthat/test-ci/renv/test.R                      ✔ 
 #>  tests/testthat/test-to_document/document.Rmd            ✔ 
 #>  tests/testthat/test-to_document/extra-spaces.Rmd        ✔ 
 #>  tests/testthat/test-to_document/minimal-document.Rmd    ✔ 
@@ -174,7 +177,7 @@ ci()
 #>  vignettes/style-guide.Rmd                               ✔ 
 #> ───────────────────────────────────────────────────────
 #> Status   Count   Legend 
-#> ✔    53  File unchanged.
+#> ✔    56  File unchanged.
 #> ℹ    0   File changed.
 #> ✖    0   Styling threw an error.
 #> ───────────────────────────────────────────────────────
@@ -199,17 +202,12 @@ ci()
 #> 
 #> url_check()
 #> html_url_check()
-#> # A tibble: 8 × 9
+#> # A tibble: 3 × 9
 #>   URL                        From  Status Message New   CRAN  Spaces R     root 
 #>   <chr>                      <nam> <chr>  <chr>   <chr> <chr> <chr>  <chr> <chr>
 #> 1 http://covr.r-lib.org/ref… <chr> 200    OK      http… ""    ""     ""    /Use…
-#> 2 http://r-lib.github.io/de… <chr> 200    OK      http… ""    ""     ""    /Use…
-#> 3 http://r-lib.github.io/de… <chr> 200    OK      http… ""    ""     ""    /Use…
-#> 4 http://r-lib.github.io/de… <chr> 200    OK      http… ""    ""     ""    /Use…
-#> 5 http://r-lib.github.io/de… <chr> 200    OK      http… ""    ""     ""    /Use…
-#> 6 http://r-lib.github.io/de… <chr> 200    OK      http… ""    ""     ""    /Use…
-#> 7 http://r-lib.github.io/rc… <chr> 200    OK      http… ""    ""     ""    /Use…
-#> 8 https://opensource.org/li… <chr> 200    OK      http… ""    ""     ""    /Use…
+#> 2 http://r-lib.github.io/rc… <chr> 200    OK      http… ""    ""     ""    /Use…
+#> 3 https://opensource.org/li… <chr> 200    OK      http… ""    ""     ""    /Use…
 #> 
 #> Setting env vars: NOT_CRAN="true", CI="true"
 #> rcmdcheck::rcmdcheck(args = "--no-manual", error_on = "warning")
@@ -221,10 +219,10 @@ ci()
 #> * creating vignettes ... OK
 #> * checking for LF line-endings in source and make files and shell scripts
 #> * checking for empty or unneeded directories
-#> * building ‘rdev_1.9.2.tar.gz’
+#> * building ‘rdev_1.9.3.tar.gz’
 #> 
 #> ── R CMD check ─────────────────────────────────────────────────────────────────
-#> * using log directory ‘/private/var/folders/vn/cw5f9gws42v9m8mdsds_zbl00000gp/T/RtmpkHzzyU/file181774699a149/rdev.Rcheck’
+#> * using log directory ‘/private/var/folders/vn/cw5f9gws42v9m8mdsds_zbl00000gp/T/Rtmp1BtapZ/file1de03f172728/rdev.Rcheck’
 #> * using R version 4.3.2 (2023-10-31)
 #> * using platform: aarch64-apple-darwin20 (64-bit)
 #> * R was compiled by
@@ -234,7 +232,7 @@ ci()
 #> * using session charset: UTF-8
 #> * using option ‘--no-manual’
 #> * checking for file ‘rdev/DESCRIPTION’ ... OK
-#> * this is package ‘rdev’ version ‘1.9.2’
+#> * this is package ‘rdev’ version ‘1.9.3’
 #> * package encoding: UTF-8
 #> * checking package namespace information ... OK
 #> * checking package dependencies ... OK
@@ -294,8 +292,8 @@ ci()
 #> * DONE
 #> 
 #> Status: OK
-#> ── R CMD check results ───────────────────────────────────────── rdev 1.9.2 ────
-#> Duration: 31.2s
+#> ── R CMD check results ───────────────────────────────────────── rdev 1.9.3 ────
+#> Duration: 31.5s
 #> 
 #> 0 errors ✔ | 0 warnings ✔ | 0 notes ✔
 ```
