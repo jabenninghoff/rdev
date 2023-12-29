@@ -27,7 +27,7 @@ jobs:
         shell: Rscript {0}
 
       - name: Lint all files
-        run: lintr::lint_dir(path = ".")
+        run: lintr::lint_dir(path = ".", exclusions = list("renv", "packrat", "R/RcppExports.R"))
         shell: Rscript {0}
         env:
           LINTR_ERROR_ON_LINT: true
