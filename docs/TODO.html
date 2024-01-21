@@ -10,7 +10,7 @@
     
     <a class="navbar-brand me-2" href="index.html">rdev</a>
 
-    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">1.9.4</small>
+    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">1.9.5</small>
 
     
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbar" aria-controls="navbar" aria-expanded="false" aria-label="Toggle navigation">
@@ -105,13 +105,13 @@
 <li><label><input type="checkbox" checked><del>Add custom CSS files to <a href="https://rmarkdown.rstudio.com/docs/reference/render_site.html" class="external-link"><code>_site.yml</code></a> and analysis notebook templates to control font size, as described in this <a href="https://medium.com/@HadrienD/how-to-customize-font-size-in-r-markdown-documents-f5adff36e2cc" class="external-link">article</a>, or possibly using <a href="https://rstudio.github.io/bslib/articles/theming.html" class="external-link"><code>bs_theme()</code></a>, since pkgdown customizes the default using <a href="https://github.com/r-lib/pkgdown/blob/main/R/theme.R" class="external-link"><code>build_bslib()</code></a></del> (issue exists in unsupported Safari 14 but not Safari 15)</label></li>
 <li><label><input type="checkbox" checked><del>Remove <code>pkgdown/extra.css</code> if <a href="https://github.com/r-lib/pkgdown/issues/2377" class="external-link uri">https://github.com/r-lib/pkgdown/issues/2377</a> is accepted</del></label></li>
 <li><label><input type="checkbox" checked><del>Establish default <a href="https://yihui.org/knitr/options/" class="external-link">knitr options</a>, including <code>knitr::opts_chunk$set(fig.align = "center")</code>, add to analysis template, also review <a href="https://github.com/hadley/adv-r/blob/master/common.R" class="external-link">settings</a> for <em>Advanced R</em></del></label></li>
+<li>
+<label><input type="checkbox" checked><del>Consider using RStudio <a href="https://rstudio.github.io/rstudio-extensions/index.html" class="external-link">Extensions</a>:</del></label>
+<ul class="task-list"><li><label><input type="checkbox" checked><del>Use Project <a href="https://rstudio.github.io/rstudio-extensions/rstudio_project_templates.html" class="external-link">Templates</a> like <a href="https://www.crumplab.com/vertical/" class="external-link">vertical</a>?</del></label></li>
+<li><label><input type="checkbox" checked><del>Add CSS to R Markdown <a href="https://rstudio.github.io/rstudio-extensions/rmarkdown_templates.html" class="external-link">Template</a> instead of <code>assets/extra.css</code>?</del></label></li>
+</ul></li>
 <li><label><input type="checkbox">Remove <code>preset: bootstrap</code> if <a href="https://github.com/r-lib/pkgdown/issues/2376" class="external-link uri">https://github.com/r-lib/pkgdown/issues/2376</a> is accepted</label></li>
 <li><label><input type="checkbox">Replace <code>dev = TRUE</code> logic if <a href="https://github.com/rstudio/renv/issues/1695" class="external-link uri">https://github.com/rstudio/renv/issues/1695</a> is accepted</label></li>
-<li>
-<label><input type="checkbox">Consider using RStudio <a href="https://rstudio.github.io/rstudio-extensions/index.html" class="external-link">Extensions</a>:</label>
-<ul class="task-list"><li><label><input type="checkbox">Use Project <a href="https://rstudio.github.io/rstudio-extensions/rstudio_project_templates.html" class="external-link">Templates</a> like <a href="https://www.crumplab.com/vertical/" class="external-link">vertical</a> ?</label></li>
-<li><label><input type="checkbox">Add CSS to R Markdown <a href="https://rstudio.github.io/rstudio-extensions/rmarkdown_templates.html" class="external-link">Template</a> instead of <code>assets/extra.css</code> ?</label></li>
-</ul></li>
 <li><label><input type="checkbox">Update errors and messages after reading Advanced R <a href="https://adv-r.hadley.nz/conditions.html" class="external-link">Conditions</a> and re-reading the Tidyverse <a href="https://style.tidyverse.org/index.html" class="external-link">Style Guide</a></label></li>
 <li><label><input type="checkbox">Reduce the number of Imports, per R CMD check:</label></li>
 </ul><pre><code>&gt; devtools::check()
