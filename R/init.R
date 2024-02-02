@@ -57,10 +57,11 @@ init <- function() {
 #' `setup_analysis()` will stop if [rlang::is_interactive()] is `FALSE`, and will run [open_files()]
 #'   if running in RStudio.
 #'
+#' @inheritParams use_analysis_package
 #' @seealso [quickstart]
 #'
 #' @export
-setup_analysis <- function() {
+setup_analysis <- function(use_quarto = TRUE) {
   if (!rlang::is_interactive()) stop("setup_analysis() must be run interactively")
 
   continue <- utils::askYesNo(
@@ -79,12 +80,18 @@ setup_analysis <- function() {
   # update documentation since quickstart directs user to manually update Title and Description
   devtools::document()
 
-  writeLines("use_analysis_package()...")
-  use_analysis_package()
+  if (use_quarto) {
+    use_msg <- "use_analysis_package()"
+  } else {
+    use_msg <- "use_analysis_package(use_quarto = FALSE)"
+  }
+
+  writeLines(paste0(use_msg, "..."))
+  use_analysis_package(use_quarto = use_quarto)
 
   writeLines("Committing...")
   gert::git_add(".")
-  gert::git_commit("rdev::use_analysis_package()")
+  gert::git_commit(paste0("rdev::", use_msg))
 
   writeLines("use_spelling()...")
   use_spelling()

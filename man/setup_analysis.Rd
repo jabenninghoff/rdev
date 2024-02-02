@@ -4,7 +4,11 @@
 \alias{setup_analysis}
 \title{Set up analysis package}
 \usage{
-setup_analysis()
+setup_analysis(use_quarto = TRUE)
+}
+\arguments{
+\item{use_quarto}{If \code{TRUE} (the default), use Quarto for publishing (\code{\link[=build_quarto_site]{build_quarto_site()}}),
+otherwise use \code{\link[=build_analysis_site]{build_analysis_site()}}.}
 }
 \description{
 Set up an analysis package within an rdev package newly initialized with \code{\link[=init]{init()}}, after updating
