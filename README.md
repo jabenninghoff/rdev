@@ -117,6 +117,71 @@ ci()
 #> pkgdown::check_pkgdown()
 #> No problems found
 #> 
+#> style_all()
+#> Styling  56  files:
+#>  .Rprofile                                               ✔ 
+#>  README.Rmd                                              ✔ 
+#>  inst/rmarkdown/templates/analysis/skeleton/skeleton.Rmd ✔ 
+#>  inst/templates/index.qmd                                ✔ 
+#>  inst/templates/package.R                                ✔ 
+#>  inst/templates/README-analysis.Rmd                      ✔ 
+#>  inst/templates/README-rdev.Rmd                          ✔ 
+#>  inst/templates/spelling.R                               ✔ 
+#>  inst/templates/test-spelling.R                          ✔ 
+#>  R/build.R                                               ✔ 
+#>  R/ci.R                                                  ✔ 
+#>  R/helpers.R                                             ✔ 
+#>  R/init.R                                                ✔ 
+#>  R/package.R                                             ✔ 
+#>  R/release.R                                             ✔ 
+#>  R/setup.R                                               ✔ 
+#>  R/to_document.R                                         ✔ 
+#>  R/urlchecker.R                                          ✔ 
+#>  R/utils.R                                               ✔ 
+#>  tests/spelling.R                                        ✔ 
+#>  tests/testthat.R                                        ✔ 
+#>  tests/manual/setup.Rmd                                  ✔ 
+#>  tests/manual/test-new-repo-1.R                          ✔ 
+#>  tests/manual/test-new-repo-2.R                          ✔ 
+#>  tests/manual/test-new-repo-3-analysis.R                 ✔ 
+#>  tests/manual/test-new-repo-3-package.R                  ✔ 
+#>  tests/testthat/test-build.R                             ✔ 
+#>  tests/testthat/test-ci.R                                ✔ 
+#>  tests/testthat/test-helpers.R                           ✔ 
+#>  tests/testthat/test-init.R                              ✔ 
+#>  tests/testthat/test-inst.R                              ✔ 
+#>  tests/testthat/test-release.R                           ✔ 
+#>  tests/testthat/test-setup.R                             ✔ 
+#>  tests/testthat/test-spelling.R                          ✔ 
+#>  tests/testthat/test-to_document.R                       ✔ 
+#>  tests/testthat/test-utils.R                             ✔ 
+#>  tests/testthat/test-ci/test.Rprofile                    ✔ 
+#>  tests/testthat/test-ci/testcode_1.R                     ✔ 
+#>  tests/testthat/test-ci/testcode_2.R                     ✔ 
+#>  tests/testthat/test-ci/testcode.Rmd                     ✔ 
+#>  tests/testthat/test-ci/testcode.Rnw                     ✔ 
+#>  tests/testthat/test-ci/packrat/test.R                   ✔ 
+#>  tests/testthat/test-ci/R/RcppExports.R                  ✔ 
+#>  tests/testthat/test-ci/renv/test.R                      ✔ 
+#>  tests/testthat/test-to_document/document.Rmd            ✔ 
+#>  tests/testthat/test-to_document/extra-spaces.Rmd        ✔ 
+#>  tests/testthat/test-to_document/minimal-document.Rmd    ✔ 
+#>  tests/testthat/test-to_document/minimal.Rmd             ✔ 
+#>  tests/testthat/test-to_document/multiple.Rmd            ✔ 
+#>  tests/testthat/test-to_document/no-front-matter.Rmd     ✔ 
+#>  tests/testthat/test-to_document/no-yaml.Rmd             ✔ 
+#>  tests/testthat/test-to_document/valid.Rmd               ✔ 
+#>  tests/testthat/test-to_document/with-code.Rmd           ✔ 
+#>  vignettes/analysis-package-layout.Rmd                   ✔ 
+#>  vignettes/rdev.Rmd                                      ✔ 
+#>  vignettes/style-guide.Rmd                               ✔ 
+#> ───────────────────────────────────────────────────────
+#> Status   Count   Legend 
+#> ✔    56  File unchanged.
+#> ℹ    0   File changed.
+#> ✖    0   Styling threw an error.
+#> ───────────────────────────────────────────────────────
+#> 
 #> lint_all()
 #> 
 #> devtools::document()
@@ -154,10 +219,10 @@ ci()
 #> * creating vignettes ... OK
 #> * checking for LF line-endings in source and make files and shell scripts
 #> * checking for empty or unneeded directories
-#> * building ‘rdev_1.9.5.9000.tar.gz’
+#> * building ‘rdev_1.9.6.tar.gz’
 #> 
 #> ── R CMD check ─────────────────────────────────────────────────────────────────
-#> * using log directory ‘/private/var/folders/vn/cw5f9gws42v9m8mdsds_zbl00000gp/T/RtmpzR1r5f/filea04c363445e1/rdev.Rcheck’
+#> * using log directory ‘/private/var/folders/vn/cw5f9gws42v9m8mdsds_zbl00000gp/T/RtmpKYDJCt/filecf3c2d154b54/rdev.Rcheck’
 #> * using R version 4.3.2 (2023-10-31)
 #> * using platform: aarch64-apple-darwin20 (64-bit)
 #> * R was compiled by
@@ -167,7 +232,7 @@ ci()
 #> * using session charset: UTF-8
 #> * using option ‘--no-manual’
 #> * checking for file ‘rdev/DESCRIPTION’ ... OK
-#> * this is package ‘rdev’ version ‘1.9.5.9000’
+#> * this is package ‘rdev’ version ‘1.9.6’
 #> * package encoding: UTF-8
 #> * checking package namespace information ... OK
 #> * checking package dependencies ... OK
@@ -225,10 +290,9 @@ ci()
 #>  NONE
 #> * checking re-building of vignette outputs ... OK
 #> * DONE
-#> 
 #> Status: OK
-#> ── R CMD check results ──────────────────────────────────── rdev 1.9.5.9000 ────
-#> Duration: 30.1s
+#> ── R CMD check results ───────────────────────────────────────── rdev 1.9.6 ────
+#> Duration: 30s
 #> 
 #> 0 errors ✔ | 0 warnings ✔ | 0 notes ✔
 ```
