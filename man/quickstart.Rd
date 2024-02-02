@@ -14,6 +14,7 @@ To quickly create and configure a new rdev or analysis package, use the followin
 \item Manually update the Title and Description fields in the \code{DESCRIPTION} file without committing
 \item Run \code{\link[=setup_analysis]{setup_analysis()}} or \code{\link[=setup_rdev]{setup_rdev()}} to configure the package as an analysis package or
 rdev package respectively.
+\item Manually update \code{.gitignore}: remove the \verb{docs/} exclusion and add line breaks
 }
 
 After this, the package configuration is complete and ready for development.

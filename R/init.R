@@ -9,6 +9,7 @@
 #' 1. Manually update the Title and Description fields in the `DESCRIPTION` file without committing
 #' 1. Run [setup_analysis()] or [setup_rdev()] to configure the package as an analysis package or
 #'    rdev package respectively.
+#' 1. Manually update `.gitignore`: remove the `docs/` exclusion and add line breaks
 #'
 #' After this, the package configuration is complete and ready for development.
 #' @name quickstart
