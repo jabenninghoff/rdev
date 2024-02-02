@@ -13,7 +13,7 @@ knitr::opts_chunk$set(
 )
 ```
 
-# rdev
+# rdev <img src="man/figures/logo.png" align="right" alt="logo" width="120" />
 
 <!-- badges: start -->
 [![R-CMD-check](https://github.com/jabenninghoff/rdev/workflows/R-CMD-check/badge.svg)](https://github.com/jabenninghoff/rdev/actions)

@@ -6,6 +6,8 @@
 \alias{rdev-package}
 \title{rdev: R Development Tools}
 \description{
+\if{html}{\figure{logo.png}{options: style='float: right' alt='logo' width='120'}}
+
 An opinionated collection of development tools, packages, and utilities.
 }
 \seealso{
