@@ -457,7 +457,8 @@ use_rdev_package <- function(quiet = TRUE) {
   sort_rbuildignore()
 
   # run renv::init() last to restart the session
-  renv::init()
+  # specify repos to use CRAN mirror instead of Posit Public Package Manager
+  renv::init(repos = "https://cloud.r-project.org")
 }
 
 #' Use Analysis Package Layout
