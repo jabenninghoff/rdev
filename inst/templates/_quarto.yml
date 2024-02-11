@@ -45,6 +45,7 @@ format:
     theme:
       light: flatly
       dark: darkly
+    shift-heading-level-by: 1
     toc: true
     fig-width: 8.5
     grid:
