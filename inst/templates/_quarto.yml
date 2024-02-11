@@ -42,6 +42,9 @@ execute:
 
 format:
   html:
+    theme:
+      light: flatly
+      dark: darkly
     toc: true
     fig-width: 8.5
     grid:
