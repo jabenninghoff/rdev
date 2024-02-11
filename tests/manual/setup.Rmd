@@ -7,8 +7,9 @@ output:
     theme:
       version: 5
       preset: bootstrap
-    code_folding: none
     css: ../../inst/templates/extra.css
+    pandoc_args: --shift-heading-level-by=1
+    code_folding: none
 ---
 
 Test script to manually validate creating a new rdev package or R analysis package.

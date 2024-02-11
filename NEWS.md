@@ -2,6 +2,8 @@
 
 * Added quarto themes (flatly, darkly) (update: `use_analysis_package()`)
 
+* Updated analysis template
+
 # rdev 1.9.7
 
 * Maintenance updates
