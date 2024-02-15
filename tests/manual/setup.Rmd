@@ -365,7 +365,9 @@ The following commits will be added to git:
   - [ ] `DESCRIPTION`: added dplyr, purrr, quarto to `Suggests`
   - [ ] `README.Rmd`: changed, with Notebooks section
   - [ ] `_quarto.yml`: new
+  - [ ] `analysis/_metadata.yml`: new
   - [ ] `analysis/assets/extra.css`: new
+  - [ ] `changelog.qmd`: new
   - [ ] `index.qmd`: new
   - [ ] `man/rdtest1-package.Rd`: updated title and description
   - [ ] `renv.lock`: updated with dplyr and dependencies

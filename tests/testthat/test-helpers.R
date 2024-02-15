@@ -147,7 +147,9 @@ test_that("local_temppkg creates a valid analysis package", {
   # no quarto files
   expect_false(fs::file_exists(".nojekyll"))
   expect_false(fs::file_exists("_quarto.yml"))
+  expect_false(fs::file_exists("changelog.qmd"))
   expect_false(fs::file_exists("index.qmd"))
+  expect_false(fs::file_exists("analysis/_metadata.yml"))
 })
 
 test_that("local_temppkg creates a valid quarto package", {
@@ -188,7 +190,9 @@ test_that("local_temppkg creates a valid quarto package", {
   expect_true(fs::dir_exists("docs"))
   expect_true(fs::file_exists(".nojekyll"))
   expect_true(fs::file_exists("_quarto.yml"))
+  expect_true(fs::file_exists("changelog.qmd"))
   expect_true(fs::file_exists("index.qmd"))
+  expect_true(fs::file_exists("analysis/_metadata.yml"))
 
   # no pkgdown files
   expect_false(fs::file_exists("pkgdown/_base.yml"))

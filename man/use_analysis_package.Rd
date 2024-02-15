@@ -28,8 +28,8 @@ When run, \code{use_analysis_package()}:
 \item Adds \code{extra.css} to \code{analysis/assets} and \code{pkgdown} (when \code{use_quarto} is \code{FALSE}) to fix
 rendering of GitHub-style
 \href{https://docs.github.com/en/get-started/writing-on-github/working-with-advanced-formatting/about-task-lists}{task lists}
-\item Adds \code{.nojekyll}, \verb{_quarto.yml} and \code{index.qmd} from templates OR creates \verb{_base.yml} in
-\code{pkgdown} from the first \code{URL} in \code{DESCRIPTION}
+\item Adds \code{.nojekyll}, \verb{_quarto.yml}, \code{changelog.qmd}, \code{index.qmd} and \verb{analysis/_metadata.yml}
+from templates OR creates \verb{_base.yml} in \code{pkgdown} from the first \code{URL} in \code{DESCRIPTION}
 \item Installs the \code{README.Rmd} template for analysis packages, and the \code{dplyr}
 package needed for the \code{README.Rmd} template
 }

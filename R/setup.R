@@ -474,8 +474,8 @@ use_rdev_package <- function(quiet = TRUE) {
 #'    rendering of GitHub-style
 # nolint next: line_length_linter.
 #'    [task lists](https://docs.github.com/en/get-started/writing-on-github/working-with-advanced-formatting/about-task-lists)
-#' 1. Adds `.nojekyll`, `_quarto.yml` and `index.qmd` from templates OR creates `_base.yml` in
-#'    `pkgdown` from the first `URL` in `DESCRIPTION`
+#' 1. Adds `.nojekyll`, `_quarto.yml`, `changelog.qmd`, `index.qmd` and `analysis/_metadata.yml`
+#'    from templates OR creates `_base.yml` in `pkgdown` from the first `URL` in `DESCRIPTION`
 #' 1. Installs the `README.Rmd` template for analysis packages, and the `dplyr`
 #'    package needed for the `README.Rmd` template
 #'
@@ -566,7 +566,9 @@ use_analysis_package <- function(use_quarto = TRUE, prompt = FALSE) {
     )
     fs::file_create(".nojekyll")
     usethis::use_template("_quarto.yml", package = "rdev", data = fields)
+    usethis::use_template("changelog.qmd", package = "rdev")
     usethis::use_template("index.qmd", package = "rdev", data = fields)
+    usethis::use_template("_metadata.yml", save_as = "analysis/_metadata.yml", package = "rdev")
   } else {
     if (length(urls) >= 1 && !fs::file_exists("pkgdown/_base.yml")) {
       yaml::write_yaml(

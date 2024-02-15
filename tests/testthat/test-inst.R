@@ -12,7 +12,9 @@ test_that("inst/templates match rdev package locally", {
   expect_identical(rp, readLines(".Rprofile"))
 
   # TODO.md
+  # _metadata.yml
   # _quarto.yml
+  # changelog.qmd
   # extra.css
   expect_identical(readLines("inst/templates/extra.css"), readLines("pkgdown/extra.css"))
 

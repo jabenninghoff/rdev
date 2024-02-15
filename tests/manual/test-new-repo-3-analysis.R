@@ -19,15 +19,16 @@ stopifnot(
     structure(
       list(
         file = c(
-          "_quarto.yml", ".gitignore", ".nojekyll", ".Rbuildignore", "analysis/", "DESCRIPTION",
-          "index.qmd", "README.Rmd", "renv.lock"
+          "_quarto.yml", ".gitignore", ".nojekyll", ".Rbuildignore", "analysis/", "changelog.qmd",
+          "DESCRIPTION", "index.qmd", "README.Rmd", "renv.lock"
         ),
         status = c(
-          "new", "modified", "new", "modified", "new", "modified", "new", "modified", "modified"
+          "new", "modified", "new", "modified", "new", "new",
+          "modified", "new", "modified", "modified"
         ),
-        staged = c(FALSE, FALSE, FALSE, FALSE, FALSE, FALSE, FALSE, FALSE, FALSE)
+        staged = c(FALSE, FALSE, FALSE, FALSE, FALSE, FALSE, FALSE, FALSE, FALSE, FALSE)
       ),
-      row.names = c(NA, -9L), class = c("tbl_df", "tbl", "data.frame")
+      row.names = c(NA, -10L), class = c("tbl_df", "tbl", "data.frame")
     )
   ),
   tail(readLines(".gitignore"), 10) == c(

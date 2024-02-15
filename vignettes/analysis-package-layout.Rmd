@@ -53,10 +53,12 @@ _freeze                  |   |`x`| Used by the Quarto [`freeze`](https://quarto.
 _pkgdown.yml             |   |`x`| [pkgdown](https://pkgdown.r-lib.org) metadata, stored in the project root to make it more [discoverable](https://github.com/search?q=filename%3Apkgdown.yml+path%3A%2F&type=Code) (not used with Quarto)
 _quarto.yml              |`x`|`x`| Quarto [configuration file](https://quarto.org/docs/projects/quarto-projects.html#project-metadata)
 analysis                 |`x`|`x`| Exploratory data analysis in R Notebooks and R Presentations. Include functions from the R directory using `library()`, not `source()`.
+analysis/_metadata.yml   |`x`|`x`| Quarto [directory configuration file](https://quarto.org/docs/projects/quarto-projects.html#directory-metadata)
 analysis/assets          |`x`|`x`| External assets (images, other files) included in R Notebooks
 analysis/data            |`x`|`x`| Used to store small data sets used for analysis and exported data as `csv` files
 analysis/import          |   |   | Used for local storage of large data sets
 analysis/rendered        |   |   | Manually rendered versions of `analysis/` files to be included in `docs/`, like [.Rpres files](https://stackoverflow.com/questions/27930127/render-r-presentation-from-the-command-line)
+changelog.qmd            |`x`|`x`| Quarto front-end to NEWS.md
 demos                    |`x`|   | Not used, as recommended by [R Packages](https://r-pkgs.org/misc.html)
 docs                     |   |`x`| Used by `build_analysis_site()` and `build_quarto_site()` to render the R Package and Notebooks for GitHub Pages
 exec                     |`x`|   | Command line executable scripts - not used
