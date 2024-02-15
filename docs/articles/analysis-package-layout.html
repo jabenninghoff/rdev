@@ -34,7 +34,7 @@
     
     <a class="navbar-brand me-2" href="../index.html">rdev</a>
 
-    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">1.9.8</small>
+    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">1.9.9</small>
 
     
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbar" aria-controls="navbar" aria-expanded="false" aria-label="Toggle navigation">
@@ -137,7 +137,7 @@ directory</li>
 <tbody>
 <tr class="odd">
 <td align="left">.Rbuildignore</td>
-<td align="left"><code>x</code></td>
+<td align="left"></td>
 <td align="left"><code>x</code></td>
 <td align="left">Files excluded from the package, sorted using
 <code><a href="../reference/sort_rbuildignore.html">sort_rbuildignore()</a></code>
@@ -157,7 +157,7 @@ directory</li>
 </tr>
 <tr class="even">
 <td align="left">.Rprofile</td>
-<td align="left"><code>x</code></td>
+<td align="left"></td>
 <td align="left"><code>x</code></td>
 <td align="left">Used by <code>renv</code> and to <a href="https://r-pkgs.org/setup.html?#personal-startup-configuration" class="external-link">attach
 development tools</a> and set project options</td>
@@ -182,7 +182,7 @@ development tools</a> and set project options</td>
 </tr>
 <tr class="even">
 <td align="left">.gitignore</td>
-<td align="left"><code>x</code></td>
+<td align="left"></td>
 <td align="left"><code>x</code></td>
 <td align="left">git exclusions based on <a href="https://github.com/github/gitignore/blob/master/R.gitignore" class="external-link">GitHub
 R</a>. Generated files outside of <code>docs</code> (used by GitHub
@@ -247,7 +247,7 @@ per <a href="https://rstudio.github.io/renv/articles/faq.html#how-should-i-handl
 </tr>
 <tr class="even">
 <td align="left">NEWS.md</td>
-<td align="left"></td>
+<td align="left"><code>x</code></td>
 <td align="left"><code>x</code></td>
 <td align="left">Release notes, used by <code><a href="../reference/get_release.html">get_release()</a></code>, <a href="https://pkgdown.r-lib.org" class="external-link">pkgdown</a> and <a href="https://quarto.org" class="external-link">Quarto</a>
 </td>
@@ -260,7 +260,7 @@ per <a href="https://rstudio.github.io/renv/articles/faq.html#how-should-i-handl
 </tr>
 <tr class="even">
 <td align="left">README.Rmd</td>
-<td align="left"><code>x</code></td>
+<td align="left"></td>
 <td align="left"><code>x</code></td>
 <td align="left">Generated with <code><a href="https://usethis.r-lib.org/reference/use_readme_rmd.html" class="external-link">usethis::use_readme_md()</a></code> or
 rdev template</td>
@@ -307,33 +307,41 @@ file</a>
 </tr>
 <tr class="even">
 <td align="left">analysis</td>
-<td align="left"></td>
+<td align="left"><code>x</code></td>
 <td align="left"><code>x</code></td>
 <td align="left">Exploratory data analysis in R Notebooks and R
 Presentations. Include functions from the R directory using
 <code><a href="https://rdrr.io/r/base/library.html" class="external-link">library()</a></code>, not <code><a href="https://rdrr.io/r/base/source.html" class="external-link">source()</a></code>.</td>
 </tr>
 <tr class="odd">
+<td align="left">analysis/_metadata.yml</td>
+<td align="left"><code>x</code></td>
+<td align="left"><code>x</code></td>
+<td align="left">Quarto <a href="https://quarto.org/docs/projects/quarto-projects.html#directory-metadata" class="external-link">directory
+configuration file</a>
+</td>
+</tr>
+<tr class="even">
 <td align="left">analysis/assets</td>
-<td align="left"></td>
+<td align="left"><code>x</code></td>
 <td align="left"><code>x</code></td>
 <td align="left">External assets (images, other files) included in R
 Notebooks</td>
 </tr>
-<tr class="even">
+<tr class="odd">
 <td align="left">analysis/data</td>
-<td align="left"></td>
+<td align="left"><code>x</code></td>
 <td align="left"><code>x</code></td>
 <td align="left">Used to store small data sets used for analysis and
 exported data as <code>csv</code> files</td>
 </tr>
-<tr class="odd">
+<tr class="even">
 <td align="left">analysis/import</td>
 <td align="left"></td>
 <td align="left"></td>
 <td align="left">Used for local storage of large data sets</td>
 </tr>
-<tr class="even">
+<tr class="odd">
 <td align="left">analysis/rendered</td>
 <td align="left"></td>
 <td align="left"></td>
@@ -341,6 +349,12 @@ exported data as <code>csv</code> files</td>
 files to be included in <code>docs/</code>, like <a href="https://stackoverflow.com/questions/27930127/render-r-presentation-from-the-command-line" class="external-link">.Rpres
 files</a>
 </td>
+</tr>
+<tr class="even">
+<td align="left">changelog.qmd</td>
+<td align="left"><code>x</code></td>
+<td align="left"><code>x</code></td>
+<td align="left">Quarto front-end to NEWS.md</td>
 </tr>
 <tr class="odd">
 <td align="left">demos</td>
