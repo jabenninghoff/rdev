@@ -29,14 +29,14 @@ The table below documents the complete R Analysis Package layout:
 
 Path                     | R | g | Function
 :------------------------|:--|:--|:-----------------------------------------------------------------------------------------------------------------------------------------------------
-.Rbuildignore            |`x`|`x`| Files excluded from the package, sorted using `sort_rbuildignore()`
+.Rbuildignore            |   |`x`| Files excluded from the package, sorted using `sort_rbuildignore()`
 .RData                   |   |   | Saved workspace - not used
 .Rhistory                |   |   | R command history
-.Rprofile                |`x`|`x`| Used by `renv` and to [attach development tools](https://r-pkgs.org/setup.html?#personal-startup-configuration) and set project options
+.Rprofile                |   |`x`| Used by `renv` and to [attach development tools](https://r-pkgs.org/setup.html?#personal-startup-configuration) and set project options
 .Rproj.user              |   |   | RStudio local project files
 .git                     |   |   | git version control
 .github                  |   |`x`| GitHub templates and workflows
-.gitignore               |`x`|`x`| git exclusions based on [GitHub R](https://github.com/github/gitignore/blob/master/R.gitignore). Generated files outside of `docs` (used by GitHub Pages) are excluded.
+.gitignore               |   |`x`| git exclusions based on [GitHub R](https://github.com/github/gitignore/blob/master/R.gitignore). Generated files outside of `docs` (used by GitHub Pages) are excluded.
 .lintr                   |   |`x`| [lintr](https://lintr.r-lib.org/index.html) configuration as described in the Style Guide, `vignette("style-guide")`
 .nojekyll                |   |`x`| [Disable](https://github.blog/2009-12-29-bypassing-jekyll-on-github-pages/) Jekyll processing on [GitHub Pages](https://pages.github.com)
 .quarto                  |   |   | Used by [Quarto](https://quarto.org)
@@ -44,17 +44,17 @@ DESCRIPTION              |`x`|`x`| Package metadata. Use "Suggests" for developm
 LICENSE                  |`x`|`x`| Generated with `usethis::use_mit_license()`
 LICENSE.md               |   |`x`| See above, used by [pkgdown](https://pkgdown.r-lib.org) and [Quarto](https://quarto.org)
 NAMESPACE                |`x`|`x`| Automatically generated with [roxygen2](https://roxygen2.r-lib.org)
-NEWS.md                  |   |`x`| Release notes, used by `get_release()`, [pkgdown](https://pkgdown.r-lib.org) and [Quarto](https://quarto.org)
+NEWS.md                  |`x`|`x`| Release notes, used by `get_release()`, [pkgdown](https://pkgdown.r-lib.org) and [Quarto](https://quarto.org)
 R                        |`x`|`x`| All project functions go here, with [roxygen2](https://roxygen2.r-lib.org) comments
-README.Rmd               |`x`|`x`| Generated with `usethis::use_readme_md()` or rdev template
+README.Rmd               |   |`x`| Generated with `usethis::use_readme_md()` or rdev template
 README.md                |`x`|`x`| Generated with `devtools::build_readme()`
 TODO.md                  |`x`|`x`| To-do list, inspired by renv's [historical TODO.md](https://github.com/rstudio/renv/blob/99737730ea69730b211770ba2bfa78301cf0e7b2/TODO.md)
 _freeze                  |   |`x`| Used by the Quarto [`freeze`](https://quarto.org/docs/projects/code-execution.html#freeze) option
 _pkgdown.yml             |   |`x`| [pkgdown](https://pkgdown.r-lib.org) metadata, stored in the project root to make it more [discoverable](https://github.com/search?q=filename%3Apkgdown.yml+path%3A%2F&type=Code) (not used with Quarto)
 _quarto.yml              |`x`|`x`| Quarto [configuration file](https://quarto.org/docs/projects/quarto-projects.html#project-metadata)
-analysis                 |   |`x`| Exploratory data analysis in R Notebooks and R Presentations. Include functions from the R directory using `library()`, not `source()`.
-analysis/assets          |   |`x`| External assets (images, other files) included in R Notebooks
-analysis/data            |   |`x`| Used to store small data sets used for analysis and exported data as `csv` files
+analysis                 |`x`|`x`| Exploratory data analysis in R Notebooks and R Presentations. Include functions from the R directory using `library()`, not `source()`.
+analysis/assets          |`x`|`x`| External assets (images, other files) included in R Notebooks
+analysis/data            |`x`|`x`| Used to store small data sets used for analysis and exported data as `csv` files
 analysis/import          |   |   | Used for local storage of large data sets
 analysis/rendered        |   |   | Manually rendered versions of `analysis/` files to be included in `docs/`, like [.Rpres files](https://stackoverflow.com/questions/27930127/render-r-presentation-from-the-command-line)
 demos                    |`x`|   | Not used, as recommended by [R Packages](https://r-pkgs.org/misc.html)
