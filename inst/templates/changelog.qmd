@@ -1,0 +1,10 @@
+---
+title: "Changelog"
+format:
+  html:
+    shift-heading-level-by: 1
+---
+
+{{! change delimeters per https://mustache.github.io/mustache.5.html to render the following line as-is}}
+{{=<% %>=}}
+{{< include NEWS.md >}}

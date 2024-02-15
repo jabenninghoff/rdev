@@ -31,6 +31,7 @@ WORDLIST
 YAML
 api
 bugfix
+changelog
 codecov
 config
 customised

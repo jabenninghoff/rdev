@@ -17,7 +17,7 @@ website:
     search: true
     left:
       - text: Changelog
-        file: NEWS.md
+        file: changelog.qmd
       - text: TODO
         file: TODO.md
     tools:
@@ -45,7 +45,6 @@ format:
     theme:
       light: flatly
       dark: darkly
-    shift-heading-level-by: 1
     toc: true
     fig-width: 8.5
     grid:
