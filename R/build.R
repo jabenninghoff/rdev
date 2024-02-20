@@ -1,12 +1,11 @@
 #' Build rdev Site
 #'
-#' `build_rdev_site()` is a wrapper for [pkgdown::build_site()] optimized for rdev workflow that
-#'   updates `README.md` and performs a clean build using `pkgdown`.
+#' `build_rdev_site()` is a wrapper for [pkgdown::build_site_github_pages()] optimized for rdev
+#'   workflow that updates `README.md` and performs a clean GitHub pages build using `pkgdown`.
 #'
 #' When run, `build_rdev_site()` calls:
 #' 1. [devtools::build_readme()]
-#' 1. [pkgdown::clean_site()]
-#' 1. [pkgdown::build_site()]
+#' 1. [pkgdown::build_site_github_pages()] with `install = TRUE` and `new_process = TRUE`
 #'
 #' @section Continuous Integration:
 #' Both [build_rdev_site()] and [build_analysis_site()] are meant to be used as part of a CI/CD
@@ -15,7 +14,7 @@
 #'   [pkgdown::build_reference()].
 #'
 #' @param pkg Path to package. Currently, only `pkg = "."` is supported.
-#' @param ... additional arguments passed to [pkgdown::build_site()] (not implemented)
+#' @param ... additional arguments passed to [pkgdown::build_site_github_pages()] (not implemented)
 #'
 #' @export
 build_rdev_site <- function(pkg = ".", ...) {
@@ -24,10 +23,11 @@ build_rdev_site <- function(pkg = ".", ...) {
   }
   writeLines("devtools::build_readme()")
   devtools::build_readme()
-  writeLines("\npkgdown::clean_site()")
-  pkgdown::clean_site()
-  writeLines("\npkgdown::build_site()")
-  withr::with_envvar(c(CI = "TRUE"), pkgdown::build_site())
+  writeLines("\npkgdown::build_site_github_pages(install = TRUE, new_process = TRUE)")
+  withr::with_envvar(
+    c(CI = "TRUE"),
+    pkgdown::build_site_github_pages(install = TRUE, new_process = TRUE)
+  )
 }
 
 #' Unfreeze Quarto site
@@ -84,8 +84,8 @@ build_quarto_site <- function(input = NULL, as_job = FALSE, unfreeze = FALSE, ..
 
 #' Build Analysis Site
 #'
-#' `build_analysis_site()` is a wrapper for [pkgdown::build_site()] that adds an 'Analysis' menu
-#'   containing rendered versions of all .Rmd files in `analysis/`.
+#' `build_analysis_site()` is a wrapper for [pkgdown::build_site_github_pages()] that adds an
+#'   'Analysis' menu containing rendered versions of all .Rmd files in `analysis/`.
 #'
 #' When run, `build_analysis_site()`:
 #' 1. Reads base [pkgdown] settings from `pkgdown/_base.yml`
@@ -95,7 +95,7 @@ build_quarto_site <- function(input = NULL, as_job = FALSE, unfreeze = FALSE, ..
 #' 1. Writes the template to `_pkgdown.yml`
 #' 1. Updates `README.md` by running [devtools::build_readme()] (if `README.Rmd` exists) to update
 #'   the list of notebooks
-#' 1. Runs [pkgdown::clean_site()] and [pkgdown::build_site()]
+#' 1. Runs [pkgdown::build_site_github_pages()] with `install = TRUE` and `new_process = TRUE`
 #' 1. Creates a `_site.yml` file based on the final `_pkgdown.yml` that clones the [pkgdown] navbar
 #'   in a temporary build directory
 #' 1. Copies the following from `analysis/` into the build directory: `*.Rmd`, `assets/`, `data/`,
@@ -160,10 +160,11 @@ build_analysis_site <- function(pkg = ".", ...) {
     devtools::build_readme(pkg)
   }
 
-  writeLines("pkgdown::clean_site()")
-  pkgdown::clean_site()
-  writeLines("pkgdown::build_site()")
-  withr::with_envvar(c(CI = "TRUE"), pkgdown::build_site())
+  writeLines("\npkgdown::build_site_github_pages(install = TRUE, new_process = TRUE)")
+  withr::with_envvar(
+    c(CI = "TRUE"),
+    pkgdown::build_site_github_pages(install = TRUE, new_process = TRUE)
+  )
 
   writeLines("creating `_site.yml` from `_pkgdown.yml` in temporary directory")
   desc <- desc::description$new(pkg)

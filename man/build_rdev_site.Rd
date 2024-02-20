@@ -9,18 +9,17 @@ build_rdev_site(pkg = ".", ...)
 \arguments{
 \item{pkg}{Path to package. Currently, only \code{pkg = "."} is supported.}
 
-\item{...}{additional arguments passed to \code{\link[pkgdown:build_site]{pkgdown::build_site()}} (not implemented)}
+\item{...}{additional arguments passed to \code{\link[pkgdown:build_site_github_pages]{pkgdown::build_site_github_pages()}} (not implemented)}
 }
 \description{
-\code{build_rdev_site()} is a wrapper for \code{\link[pkgdown:build_site]{pkgdown::build_site()}} optimized for rdev workflow that
-updates \code{README.md} and performs a clean build using \code{pkgdown}.
+\code{build_rdev_site()} is a wrapper for \code{\link[pkgdown:build_site_github_pages]{pkgdown::build_site_github_pages()}} optimized for rdev
+workflow that updates \code{README.md} and performs a clean GitHub pages build using \code{pkgdown}.
 }
 \details{
 When run, \code{build_rdev_site()} calls:
 \enumerate{
 \item \code{\link[devtools:build_rmd]{devtools::build_readme()}}
-\item \code{\link[pkgdown:clean_site]{pkgdown::clean_site()}}
-\item \code{\link[pkgdown:build_site]{pkgdown::build_site()}}
+\item \code{\link[pkgdown:build_site_github_pages]{pkgdown::build_site_github_pages()}} with \code{install = TRUE} and \code{new_process = TRUE}
 }
 }
 \section{Continuous Integration}{
