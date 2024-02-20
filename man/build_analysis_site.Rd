@@ -9,14 +9,14 @@ build_analysis_site(pkg = ".", ...)
 \arguments{
 \item{pkg}{Path to package. Currently, only \code{pkg = "."} is supported.}
 
-\item{...}{additional arguments passed to \code{\link[pkgdown:build_site]{pkgdown::build_site()}} (not implemented)}
+\item{...}{additional arguments passed to \code{\link[pkgdown:build_site_github_pages]{pkgdown::build_site_github_pages()}} (not implemented)}
 }
 \value{
 rmarkdown _site.yml as yaml, invisibly
 }
 \description{
-\code{build_analysis_site()} is a wrapper for \code{\link[pkgdown:build_site]{pkgdown::build_site()}} that adds an 'Analysis' menu
-containing rendered versions of all .Rmd files in \verb{analysis/}.
+\code{build_analysis_site()} is a wrapper for \code{\link[pkgdown:build_site_github_pages]{pkgdown::build_site_github_pages()}} that adds an
+'Analysis' menu containing rendered versions of all .Rmd files in \verb{analysis/}.
 }
 \details{
 When run, \code{build_analysis_site()}:
@@ -28,7 +28,7 @@ links to html versions of each .Rmd file in \verb{analysis/}
 \item Writes the template to \verb{_pkgdown.yml}
 \item Updates \code{README.md} by running \code{\link[devtools:build_rmd]{devtools::build_readme()}} (if \code{README.Rmd} exists) to update
 the list of notebooks
-\item Runs \code{\link[pkgdown:clean_site]{pkgdown::clean_site()}} and \code{\link[pkgdown:build_site]{pkgdown::build_site()}}
+\item Runs \code{\link[pkgdown:build_site_github_pages]{pkgdown::build_site_github_pages()}} with \code{install = TRUE} and \code{new_process = TRUE}
 \item Creates a \verb{_site.yml} file based on the final \verb{_pkgdown.yml} that clones the \link{pkgdown} navbar
 in a temporary build directory
 \item Copies the following from \verb{analysis/} into the build directory: \verb{*.Rmd}, \verb{assets/}, \verb{data/},

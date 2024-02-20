@@ -2,8 +2,7 @@
 
 test_that('build_rdev_site errors when pkg is something other than "."', {
   mockery::stub(build_rdev_site, "devtools::build_readme", NULL)
-  mockery::stub(build_rdev_site, "pkgdown::clean_site", NULL)
-  mockery::stub(build_rdev_site, "pkgdown::build_site", NULL)
+  mockery::stub(build_rdev_site, "pkgdown::build_site_github_pages", NULL)
 
   expect_error(
     build_rdev_site(pkg = "tpkg"), '^currently only build_rdev_site\\(pkg = "."\\) is supported$'
@@ -12,21 +11,19 @@ test_that('build_rdev_site errors when pkg is something other than "."', {
 
 test_that("all build_rdev_site functions are called", {
   mockery::stub(build_rdev_site, "devtools::build_readme", NULL)
-  mockery::stub(build_rdev_site, "pkgdown::clean_site", NULL)
-  mockery::stub(build_rdev_site, "pkgdown::build_site", NULL)
+  mockery::stub(build_rdev_site, "pkgdown::build_site_github_pages", NULL)
 
   begin <- "^"
   end <- "$"
   sep <- "\\n\\n"
   build_readme <- "devtools::build_readme\\(\\)"
-  clean_site <- "pkgdown::clean_site\\(\\)"
-  build_site <- "pkgdown::build_site\\(\\)"
+  build_site_ghp <- "pkgdown::build_site_github_pages\\(install = TRUE, new_process = TRUE\\)"
 
   expect_output(
-    build_rdev_site(), paste0(begin, build_readme, sep, clean_site, sep, build_site, end)
+    build_rdev_site(), paste0(begin, build_readme, sep, build_site_ghp, end)
   )
   expect_output(
-    build_rdev_site(pkg = "."), paste0(begin, build_readme, sep, clean_site, sep, build_site, end)
+    build_rdev_site(pkg = "."), paste0(begin, build_readme, sep, build_site_ghp, end)
   )
 })
 
