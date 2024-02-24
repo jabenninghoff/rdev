@@ -1,3 +1,7 @@
+# rdev 1.9.11
+
+* Maintenance updates
+
 # rdev 1.9.10
 
 * Updated `build_rdev_site()` and `build_analysis_site()` to use `pkgdown::build_site_github_pages()` instead of `pkgdown::build_site()`, which disables Jekyll rendering and adds a `CNAME` if needed
