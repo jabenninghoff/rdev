@@ -12,7 +12,7 @@ release using merge_release()."><meta property="og:image" content="https://jaben
     
     <a class="navbar-brand me-2" href="../index.html">rdev</a>
 
-    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">1.9.11</small>
+    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">1.10.1</small>
 
     
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbar" aria-controls="navbar" aria-expanded="false" aria-label="Toggle navigation">
@@ -64,7 +64,12 @@ release using <code><a href="merge_release.html">merge_release()</a></code>.</p>
 
     <div class="section level2">
     <h2 id="ref-usage">Usage<a class="anchor" aria-label="anchor" href="#ref-usage"></a></h2>
-    <div class="sourceCode"><pre class="sourceCode r"><code><span><span class="fu">stage_release</span><span class="op">(</span>pkg <span class="op">=</span> <span class="st">"."</span>, filename <span class="op">=</span> <span class="st">"NEWS.md"</span>, host <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/options.html" class="external-link">getOption</a></span><span class="op">(</span><span class="st">"rdev.host"</span><span class="op">)</span><span class="op">)</span></span></code></pre></div>
+    <div class="sourceCode"><pre class="sourceCode r"><code><span><span class="fu">stage_release</span><span class="op">(</span></span>
+<span>  pkg <span class="op">=</span> <span class="st">"."</span>,</span>
+<span>  filename <span class="op">=</span> <span class="st">"NEWS.md"</span>,</span>
+<span>  unfreeze <span class="op">=</span> <span class="cn">FALSE</span>,</span>
+<span>  host <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/options.html" class="external-link">getOption</a></span><span class="op">(</span><span class="st">"rdev.host"</span><span class="op">)</span></span>
+<span><span class="op">)</span></span></code></pre></div>
     </div>
 
     <div class="section level2">
@@ -75,6 +80,10 @@ release using <code><a href="merge_release.html">merge_release()</a></code>.</p>
 
 <dt>filename</dt>
 <dd><p>name of file containing release notes, defaults to <code>NEWS.md</code>.</p></dd>
+
+
+<dt>unfreeze</dt>
+<dd><p>If <code>TRUE</code>, delete the Quarto <code>_freeze</code> directory to fully re-render the site.</p></dd>
 
 
 <dt>host</dt>
