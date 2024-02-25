@@ -227,6 +227,7 @@ test_that("stage_release validates arguments", {
   )
   expect_error(stage_release(filename = NA_character_), "'filename'")
   expect_error(stage_release(filename = ""), "'filename'")
+  expect_error(stage_release(unfreeze = NA), "'unfreeze'")
   expect_error(stage_release(host = NA_character_), "'host'")
   expect_error(stage_release(host = ""), "'host'")
 })
@@ -380,7 +381,7 @@ test_that("stage_release runs proper builder", {
   analysis <- function() {
     stop("build_analysis_site")
   }
-  quarto <- function() {
+  quarto <- function(unfreeze = TRUE) {
     stop("build_quarto_site")
   }
   rdev <- function() {

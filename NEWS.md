@@ -1,3 +1,7 @@
+# rdev 1.10.1
+
+* Added an `unfreeze` parameter to `stage_release()`, which is passed on to `build_quarto_site()`
+
 # rdev 1.9.11
 
 * Maintenance updates
