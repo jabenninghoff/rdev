@@ -4,12 +4,19 @@
 \alias{stage_release}
 \title{Stage a GitHub release}
 \usage{
-stage_release(pkg = ".", filename = "NEWS.md", host = getOption("rdev.host"))
+stage_release(
+  pkg = ".",
+  filename = "NEWS.md",
+  unfreeze = FALSE,
+  host = getOption("rdev.host")
+)
 }
 \arguments{
 \item{pkg}{path to package. Currently, only \code{pkg = "."} is supported.}
 
 \item{filename}{name of file containing release notes, defaults to \code{NEWS.md}.}
+
+\item{unfreeze}{If \code{TRUE}, delete the Quarto \verb{_freeze} directory to fully re-render the site.}
 
 \item{host}{GitHub host to target, passed to the \code{.api_url} argument of
 \code{\link[gh:gh]{gh::gh()}}. If unspecified, gh defaults to "https://api.github.com",
