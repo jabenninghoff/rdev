@@ -130,16 +130,21 @@ get_release <- function(pkg = ".", filename = "NEWS.md") {
 #' @inheritSection create_github_repo Host
 #'
 #' @inheritParams get_release
+#' @inheritParams build_quarto_site
 #' @inheritParams usethis::use_github
 #'
 #' @return results of GitHub pull request, invisibly
 #'
 #' @export
-stage_release <- function(pkg = ".", filename = "NEWS.md", host = getOption("rdev.host")) {
+stage_release <- function(pkg = ".",
+                          filename = "NEWS.md",
+                          unfreeze = FALSE,
+                          host = getOption("rdev.host")) {
   if (pkg != ".") {
     stop('currently only stage_release(pkg = ".") is supported')
   }
   checkmate::assert_string(filename, min.chars = 1)
+  checkmate::assert_flag(unfreeze)
   checkmate::assert_string(host, min.chars = 1, null.ok = TRUE)
 
   rel <- get_release(pkg = pkg, filename = filename)
@@ -175,8 +180,8 @@ stage_release <- function(pkg = ".", filename = "NEWS.md", host = getOption("rde
   gert::git_commit(rel_message)
 
   if (fs::file_exists("_quarto.yml")) {
-    builder <- "build_quarto_site()"
-    build_quarto_site()
+    builder <- paste0("build_quarto_site(unfreeze = ", unfreeze, ")")
+    build_quarto_site(unfreeze = unfreeze)
   } else if (fs::file_exists("pkgdown/_base.yml")) {
     builder <- "build_analysis_site()"
     build_analysis_site()
