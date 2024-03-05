@@ -1,5 +1,7 @@
 # rdev 1.10.2
 
+* `build_quarto_site()` now supports use of both `Rmd` and/or `qmd` notebooks in `analysis`
+
 * `spell_check_notebooks()` and `update_wordlist_notebooks()` now check both `Rmd` and `qmd` files in the `analysis` directory
 
 # rdev 1.10.1

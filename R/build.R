@@ -53,6 +53,10 @@ unfreeze <- function() {
 #' 1. [unfreeze()] (if `unfreeze = TRUE`)
 #' 1. [quarto::quarto_render()]
 #'
+#' @section Supported File Types:
+#' While [build_quarto_site()] supports both R Markdown (`.Rmd`) and Quarto (`.qmd`) notebooks in
+#'   the `analysis` directory interchangeably, [build_analysis_site()] supports `.Rmd` files only.
+#'
 #' @param unfreeze If `TRUE`, delete the Quarto `_freeze` directory to fully re-render the site.
 #' @param ... Arguments passed to [quarto::quarto_render()].
 #' @inheritParams quarto::quarto_render
@@ -66,8 +70,8 @@ build_quarto_site <- function(input = NULL, as_job = FALSE, unfreeze = FALSE, ..
   if (!fs::dir_exists("analysis")) {
     stop("no analysis directory found")
   }
-  if (length(fs::dir_ls("analysis", glob = "*.Rmd")) == 0) {
-    stop("no *.Rmd files in analysis directory")
+  if (length(fs::dir_ls("analysis", regexp = "[.][Rq]md$")) == 0) {
+    stop("no *.Rmd or *.qmd files in analysis directory")
   }
   if (!fs::file_exists("_quarto.yml")) {
     stop("_quarto.yml does not exist")
@@ -79,7 +83,7 @@ build_quarto_site <- function(input = NULL, as_job = FALSE, unfreeze = FALSE, ..
     unfreeze()
   }
   writeLines("\nquarto::quarto_render()")
-  quarto::quarto_render(input = input, as_job = as_job)
+  quarto::quarto_render(input = input, as_job = as_job, ...)
 }
 
 #' Build Analysis Site
@@ -109,6 +113,7 @@ build_quarto_site <- function(input = NULL, as_job = FALSE, unfreeze = FALSE, ..
 #'   `pkgdown/_base.yml` does not exist.
 #'
 #' @inheritSection build_rdev_site Continuous Integration
+#' @inheritSection build_quarto_site Supported File Types
 #'
 #' @inheritParams build_rdev_site
 #'

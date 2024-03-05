@@ -57,8 +57,11 @@ test_that("build_quarto_site errors when components are missing", {
   fs::file_create("README.Rmd")
   expect_error(build_quarto_site(), "^no analysis directory found$")
   fs::dir_create("analysis")
-  expect_error(build_quarto_site(), "^no \\*\\.Rmd files in analysis directory$")
+  expect_error(build_quarto_site(), "^no \\*\\.Rmd or \\*\\.qmd files in analysis directory$")
   fs::file_create("analysis/test.Rmd")
+  expect_error(build_quarto_site(), "^_quarto\\.yml does not exist$")
+  fs::file_delete("analysis/test.Rmd")
+  fs::file_create("analysis/test.qmd")
   expect_error(build_quarto_site(), "^_quarto\\.yml does not exist$")
 })
 
