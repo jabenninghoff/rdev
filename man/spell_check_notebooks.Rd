@@ -6,7 +6,7 @@
 \usage{
 spell_check_notebooks(
   path = "analysis",
-  glob = "*.Rmd",
+  regexp = "[.][Rq]md$",
   use_wordlist = TRUE,
   lang = NULL
 )
@@ -14,7 +14,7 @@ spell_check_notebooks(
 \arguments{
 \item{path}{A character vector of one or more paths.}
 
-\item{glob}{A wildcard aka globbing pattern (e.g. \verb{*.csv}) passed on to \code{\link[=grep]{grep()}} to filter paths.}
+\item{regexp}{A regular expression (e.g. \verb{[.]csv$}) passed on to \code{\link[=grep]{grep()}} to filter paths.}
 
 \item{use_wordlist}{ignore words in the package \link[spelling:wordlist]{WORDLIST} file.}
 
