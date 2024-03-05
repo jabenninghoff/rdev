@@ -53,7 +53,7 @@ styling are not identical.}
 }
 \description{
 Style all files in a project. Implemented as a wrapper for \code{\link[styler:style_dir]{styler::style_dir()}} that defaults
-to styling \code{.R}, \code{.Rprofile}, \code{.Rmd}, \code{.Rmarkdown}, \code{.Rnw}, and \code{.Qmd} files, excluding
+to styling \code{.R}, \code{.Rprofile}, \code{.Rmd}, \code{.Rmarkdown}, \code{.Rnw}, and \code{.qmd} files, excluding
 files in \code{packrat}, \code{renv}, and \code{R/RcppExports.R}.
 }
 \examples{

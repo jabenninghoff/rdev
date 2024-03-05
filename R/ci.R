@@ -29,7 +29,7 @@ check_renv <- function(update = rlang::is_interactive()) {
 #' Style all files
 #'
 #' Style all files in a project. Implemented as a wrapper for [styler::style_dir()] that defaults
-#'   to styling `.R`, `.Rprofile`, `.Rmd`, `.Rmarkdown`, `.Rnw`, and `.Qmd` files, excluding
+#'   to styling `.R`, `.Rprofile`, `.Rmd`, `.Rmarkdown`, `.Rnw`, and `.qmd` files, excluding
 #'   files in `packrat`, `renv`, and `R/RcppExports.R`.
 #'
 #' @inheritParams styler::style_dir
