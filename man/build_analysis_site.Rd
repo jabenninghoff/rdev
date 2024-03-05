@@ -50,3 +50,9 @@ fail when non-internal topics are not included on the reference index page per
 \code{\link[pkgdown:build_reference]{pkgdown::build_reference()}}.
 }
 
+\section{Supported File Types}{
+
+While \code{\link[=build_quarto_site]{build_quarto_site()}} supports both R Markdown (\code{.Rmd}) and Quarto (\code{.qmd}) notebooks in
+the \code{analysis} directory interchangeably, \code{\link[=build_analysis_site]{build_analysis_site()}} supports \code{.Rmd} files only.
+}
+
