@@ -47,10 +47,10 @@ sort_rbuildignore <- function() {
 #' @inheritParams spelling::spell_check_files
 #'
 #' @export
-spell_check_notebooks <- function(path = "analysis", glob = "*.Rmd", use_wordlist = TRUE,
+spell_check_notebooks <- function(path = "analysis", regexp = "[.][Rq]md$", use_wordlist = TRUE,
                                   lang = NULL) {
   checkmate::assert_string(path, min.chars = 1)
-  checkmate::assert_string(glob, min.chars = 1)
+  checkmate::assert_string(regexp, min.chars = 1)
   checkmate::assert_flag(use_wordlist)
   checkmate::assert_string(lang, min.chars = 1, null.ok = TRUE)
 
@@ -67,7 +67,7 @@ spell_check_notebooks <- function(path = "analysis", glob = "*.Rmd", use_wordlis
   if (!fs::dir_exists(path)) {
     stop("'", path, "' directory not found")
   }
-  files <- fs::dir_ls(path = path, glob = glob)
+  files <- fs::dir_ls(path = path, regexp = regexp)
   spelling::spell_check_files(files, ignore = ignore, lang = lang)
 }
 
@@ -83,7 +83,7 @@ spell_check_notebooks <- function(path = "analysis", glob = "*.Rmd", use_wordlis
 #'
 #' @export
 update_wordlist_notebooks <- function(pkg = ".", vignettes = TRUE, path = "analysis",
-                                      glob = "*.Rmd", confirm = TRUE) {
+                                      regexp = "[.][Rq]md$", confirm = TRUE) {
   # nocov start
   as_package <- "spelling" %:::% "as_package"
   get_wordfile <- "spelling" %:::% "get_wordfile"
@@ -98,7 +98,7 @@ update_wordlist_notebooks <- function(pkg = ".", vignettes = TRUE, path = "analy
   new_words <- sort(
     unique(c(
       spell_check_package(pkg$path, vignettes = vignettes, use_wordlist = FALSE)$word,
-      spell_check_notebooks(path = path, glob = glob, use_wordlist = FALSE)$word
+      spell_check_notebooks(path = path, regexp = regexp, use_wordlist = FALSE)$word
     )),
     method = "radix"
   )

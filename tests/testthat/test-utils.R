@@ -43,8 +43,8 @@ test_that("spell_check_notebooks validates arguments", {
 
   expect_error(spell_check_notebooks(path = NA_character_), "'path'")
   expect_error(spell_check_notebooks(path = ""), "'path'")
-  expect_error(spell_check_notebooks(glob = NA_character_), "'glob'")
-  expect_error(spell_check_notebooks(glob = ""), "'glob'")
+  expect_error(spell_check_notebooks(regexp = NA_character_), "'regexp'")
+  expect_error(spell_check_notebooks(regexp = ""), "'regexp'")
   expect_error(spell_check_notebooks(use_wordlist = NA), "'use_wordlist'")
   expect_error(spell_check_notebooks(lang = NA_character_), "'lang'")
   expect_error(spell_check_notebooks(lang = ""), "'lang'")
@@ -53,7 +53,7 @@ test_that("spell_check_notebooks validates arguments", {
 test_that("spell_check_notebooks logic flows work", {
   withr::local_dir(withr::local_tempdir())
   fs::dir_create("inst")
-  writeLines("spelltest", "inst/WORDLIST")
+  writeLines(c("spelltest", "anothertest"), "inst/WORDLIST")
   writeLines("Package: test\nLanguage: en-US", "DESCRIPTION")
 
   expect_error(spell_check_notebooks(), "^'analysis' directory not found$")
@@ -62,22 +62,24 @@ test_that("spell_check_notebooks logic flows work", {
   fs::dir_create("analysis")
   expect_length(spell_check_notebooks()$found, 0)
 
-  writeLines(c("spelltest", "valid US English words"), "analysis/test.Rmd")
+  writeLines(c("spelltest", "valid US English words"), "analysis/test-notebook.Rmd")
+  writeLines(c("anothertest", "valid US English words"), "analysis/test-quarto.qmd")
   expect_length(spell_check_notebooks()$found, 0)
-  expect_length(spell_check_notebooks(use_wordlist = FALSE)$found, 1)
+  expect_length(spell_check_notebooks(use_wordlist = FALSE)$found, 2)
 
   fs::file_delete("inst/WORDLIST")
-  expect_length(spell_check_notebooks()$found, 1)
-  expect_length(spell_check_notebooks(use_wordlist = FALSE)$found, 1)
-  expect_length(spell_check_notebooks(glob = "*.tmp")$found, 0)
-  expect_length(spell_check_notebooks(glob = "*.Rmd")$found, 1)
+  expect_length(spell_check_notebooks()$found, 2)
+  expect_length(spell_check_notebooks(use_wordlist = FALSE)$found, 2)
+  expect_length(spell_check_notebooks(regexp = "[.]tmp$")$found, 0)
+  expect_length(spell_check_notebooks(regexp = "[.]Rmd$")$found, 1)
+  expect_length(spell_check_notebooks(regexp = "[.]qmd$")$found, 1)
 
   writeLines("Package: test", "DESCRIPTION")
   expect_error(spell_check_notebooks(), "^Field 'Language' not found$")
 
   fs::file_delete("DESCRIPTION")
   expect_error(spell_check_notebooks(), "^DESCRIPTION not found$")
-  expect_length(spell_check_notebooks(lang = "en_US")$found, 1)
+  expect_length(spell_check_notebooks(lang = "en_US")$found, 2)
 })
 
 # deps_check

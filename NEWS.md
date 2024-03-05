@@ -1,3 +1,7 @@
+# rdev 1.10.2
+
+* `spell_check_notebooks()` and `update_wordlist_notebooks()` now check both `Rmd` and `qmd` files in the `analysis` directory
+
 # rdev 1.10.1
 
 * Added an `unfreeze` parameter to `stage_release()`, which is passed on to `build_quarto_site()`

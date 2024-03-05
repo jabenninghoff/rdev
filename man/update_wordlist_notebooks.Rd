@@ -8,7 +8,7 @@ update_wordlist_notebooks(
   pkg = ".",
   vignettes = TRUE,
   path = "analysis",
-  glob = "*.Rmd",
+  regexp = "[.][Rq]md$",
   confirm = TRUE
 )
 }
@@ -20,7 +20,7 @@ update_wordlist_notebooks(
 
 \item{path}{A character vector of one or more paths.}
 
-\item{glob}{A wildcard aka globbing pattern (e.g. \verb{*.csv}) passed on to \code{\link[=grep]{grep()}} to filter paths.}
+\item{regexp}{A regular expression (e.g. \verb{[.]csv$}) passed on to \code{\link[=grep]{grep()}} to filter paths.}
 
 \item{confirm}{show changes and ask confirmation before adding new words to the list}
 }
