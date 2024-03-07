@@ -398,7 +398,7 @@ Test the installation by the Quarto builder, which should throw an error:
 ```r
 build_quarto_site()
 
-#> Error in build_analysis_site() : No *.Rmd files in analysis directory
+#> Error in build_analysis_site() : no *.Rmd or *.qmd files in analysis directory
 ```
 
 Create an analysis notebook in RStudio using File > New File > R Markdown... > From Template >
