@@ -31,7 +31,7 @@ test_that("All renv functions are called, unless set to FALSE", {
 test_that("style_all tests all file types", {
   # test files include renv/test.R, packrat/test.R, and R/RcppExports.R which should be excluded
   # set styler.quiet = TRUE to suppress output
-  expect_identical(nrow(withr::with_options(list(styler.quiet = TRUE), style_all())), 5L)
+  expect_identical(nrow(withr::with_options(list(styler.quiet = TRUE), style_all())), 7L)
 })
 
 # lint_all
@@ -39,8 +39,8 @@ test_that("style_all tests all file types", {
 test_that("lint_all checks all file types", {
   # test files include renv/test.R, packrat/test.R, and R/RcppExports.R which should be excluded
   all_files <- c(
-    "test.Rrst", "test.Rtex", "test.Rtxt", "testcode.Rhtml", "testcode.Rmd",
-    "testcode.Rnw", "testcode.Rpres", "testcode_1.R", "testcode_2.R"
+    "test-revealjs.qmd", "test.Rrst", "test.Rtex", "test.Rtxt", "testcode.Rhtml", "testcode.Rmd",
+    "testcode.Rnw", "testcode.Rpres", "testcode.qmd", "testcode_1.R", "testcode_2.R"
   )
   withr::local_options(lintr.linter_file = "lintr_test_config")
   expect_named(lint_all(), all_files)
