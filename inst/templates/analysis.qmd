@@ -5,17 +5,10 @@ date: '2024-00-00'
 date-modified: '2024-00-00'
 categories: []
 order:
-output:
-  html_notebook:
-    theme:
-      version: 5
-      preset: bootstrap
+format:
+  html:
     css: assets/extra.css
-    pandoc_args: --shift-heading-level-by=1
-    toc: yes
-    toc_float:
-      collapsed: no
-      smooth_scroll: no
+    shift-heading-level-by: 1
 ---
 
 One sentence description of the analysis contained in the notebook. Save this file to the "analysis" directory using the [Analysis Package Layout](https://jabenninghoff.github.io/rdev/articles/analysis-package-layout.html). The title, date, and description line (this line) will automatically be added to README.md when built using [`devtools:build_readme()`](https://devtools.r-lib.org/reference/build_rmd.html) or `build_analysis_site()`.
