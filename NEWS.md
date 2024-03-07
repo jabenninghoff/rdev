@@ -2,6 +2,8 @@
 
 rdev now supports Quarto Documents (`.qmd`) as analysis notebooks:
 
+* `rmd_metadata()` will extract the YAML front matter and description from Quarto format (`.qmd`) notebooks if `_quarto.yml` is present
+
 * Added reference Quarto Document analysis template to `inst/templates/analysis.qmd` (RStudio currently doesn't support [`.qmd` files as document templates](https://github.com/rstudio/rstudio/issues/11316))
 
 * `build_quarto_site()` now supports use of both `Rmd` and/or `qmd` notebooks in `analysis`

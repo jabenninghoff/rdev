@@ -1,0 +1,31 @@
+---
+title: "Minimal Quarto Notebook"
+date: '2024-03-07'
+format: docx
+---
+
+Valid Quarto notebook with minimal `html` format.
+
+# Questions/TODO
+
+- [ ] Questions/TODO list here
+
+```{r setup, message = FALSE, warning = FALSE}
+# setup code here
+```
+
+# Import
+
+Import data (typically from external CSV).
+
+# Tidy/Transform
+
+Clean and Tidy data.
+
+# Explore
+
+Graph and model data to ask and answer questions.
+
+# Communicate
+
+Communicate results.

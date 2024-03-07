@@ -71,34 +71,68 @@ to_document <- function(file_path, new_path, overwrite = FALSE) {
 #' The 'description' line is the the first non-blank line in the body of an R notebook that serves
 #'   as a brief description of the work.
 #'
+#' If `_quarto.yml` is present, `rmd_metadata()` will extract the YAML front matter and description
+#'   from Quarto format (`.qmd`) notebooks.
+#'
 #' @param file_path Path to analysis notebook
 #'
 #' @return Named list containing analysis notebook title, URL, date, and description
 #' @export
-rmd_metadata <- function(file_path) {
+rmd_metadata <- function(file_path) { # nolint: cyclocomp_linter.
   checkmate::assert_string(file_path, min.chars = 1)
 
-  if (!(fs::path_ext(file_path) %in% c("Rmd", "rmd"))) {
-    stop("'", file_path, "' is not an R Markdown (*.Rmd) file")
+  quarto <- fs::file_exists("_quarto.yml")
+  file_ext <- fs::path_ext(file_path)
+
+  if (quarto) {
+    if (!(file_ext %in% c("Rmd", "rmd", "qmd"))) {
+      stop("'", file_path, "' is not an R Markdown (*.Rmd) or Quarto (*.qmd) file")
+    }
+    invalid_file_msg <- "is not a valid R Notebook or Quarto file"
+  } else {
+    if (!(file_ext %in% c("Rmd", "rmd"))) {
+      stop("'", file_path, "' is not an R Markdown (*.Rmd) file")
+    }
+    invalid_file_msg <- "is not a valid R Notebook"
   }
 
   notebook <- readLines(file_path)
   header <- grep("^---$", notebook)
   yaml <- rmarkdown::yaml_front_matter(file_path)
   if (length(header) < 2 || length(yaml) < 1) {
-    stop("'", file_path, "' is not a valid R Notebook")
+    stop("'", file_path, "' ", invalid_file_msg)
   }
 
-  if (is.character(yaml$output)) {
-    if (yaml$output != "html_notebook") {
-      stop("'", file_path, "' does not contain `output: html_notebook`")
-    }
-  } else if (is.list(yaml$output)) {
-    if (is.null(yaml$output$html_notebook)) {
-      stop("'", file_path, "' does not contain `output: html_notebook`")
+  if (file_ext == "qmd") {
+    # qmd files require format: html
+    if (is.null(yaml$format)) {
+      stop("'", file_path, "' does not contain `format: html`")
+    } else if (is.character(yaml$format)) {
+      if (yaml$format != "html") {
+        stop("'", file_path, "' does not contain `format: html`")
+      }
+    } else if (is.list(yaml$format)) {
+      if (is.null(yaml$format$html)) {
+        stop("'", file_path, "' does not contain `format: html`")
+      }
+    } else {
+      stop("unexpected output object type '", typeof(yaml$format), "'")
     }
   } else {
-    stop("unexpected output object type '", typeof(yaml$output), "'")
+    # Rmd files require output: html_notebook
+    if (is.null(yaml$output)) {
+      stop("'", file_path, "' does not contain `output: html_notebook`")
+    } else if (is.character(yaml$output)) {
+      if (yaml$output != "html_notebook") {
+        stop("'", file_path, "' does not contain `output: html_notebook`")
+      }
+    } else if (is.list(yaml$output)) {
+      if (is.null(yaml$output$html_notebook)) {
+        stop("'", file_path, "' does not contain `output: html_notebook`")
+      }
+    } else {
+      stop("unexpected output object type '", typeof(yaml$output), "'")
+    }
   }
 
   body_start <- header[2] + 1
@@ -112,7 +146,7 @@ rmd_metadata <- function(file_path) {
   # set separator to "/" only if first URL doesn't end with "/"
   sep <- ifelse(endsWith(urls[1], "/"), "", "/")
   # add analysis to path if using Quarto
-  sep <- ifelse(fs::file_exists("_quarto.yml"), paste0(sep, "analysis/"), sep)
+  sep <- ifelse(quarto, paste0(sep, "analysis/"), sep)
   gh_url <- paste0(
     urls[1], sep, fs::path_ext_remove(fs::path_file(file_path)), ".html"
   )

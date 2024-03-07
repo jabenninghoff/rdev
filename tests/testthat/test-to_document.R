@@ -151,11 +151,24 @@ test_that("rmd_metadata errors when file isn't a well-formed R markdown document
     rmd_metadata("no-front-matter.Rmd"), "^'no-front-matter.Rmd' is not a valid R Notebook$"
   )
   expect_error(rmd_metadata("no-yaml.Rmd"), "^'no-yaml.Rmd' is not a valid R Notebook$")
+
+  mockery::stub(rmd_metadata, "fs::file_exists", TRUE) # set quarto to TRUE
+  expect_error(
+    rmd_metadata("test.txt"),
+    "^'test.txt' is not an R Markdown \\(\\*\\.Rmd\\) or Quarto \\(\\*\\.qmd\\) file$"
+  )
+  expect_error(
+    rmd_metadata("no-yaml.qmd"),
+    "^'no-yaml.qmd' is not a valid R Notebook or Quarto file$"
+  )
 })
 
-test_that("rmd_metadata errors when yaml front matter doesn't contain `html_notebook`", {
+test_that("rmd_metadata errors when Rmd yaml front matter doesn't contain `html_notebook`", {
   mockery::stub(rmd_metadata, "desc::desc_get_urls", desc_urls)
 
+  expect_error(
+    rmd_metadata("no-output.Rmd"), "^'no-output.Rmd' does not contain `output: html_notebook`$"
+  )
   expect_error(
     rmd_metadata("document.Rmd"), "^'document.Rmd' does not contain `output: html_notebook`$"
   )
@@ -165,12 +178,34 @@ test_that("rmd_metadata errors when yaml front matter doesn't contain `html_note
   )
 })
 
+test_that("rmd_metadata errors when qmd yaml front matter doesn't contain `html`", {
+  mockery::stub(rmd_metadata, "desc::desc_get_urls", desc_urls)
+  mockery::stub(rmd_metadata, "fs::file_exists", TRUE) # set quarto to TRUE
+
+  expect_error(
+    rmd_metadata("no-format.qmd"), "^'no-format.qmd' does not contain `format: html`$"
+  )
+  expect_error(
+    rmd_metadata("docx.qmd"), "^'docx.qmd' does not contain `format: html`$"
+  )
+  expect_error(
+    rmd_metadata("minimal-docx.qmd"),
+    "^'minimal-docx.qmd' does not contain `format: html`$"
+  )
+})
+
 test_that("rmd_metadata errors when output contains an unexpected object type", {
   mockery::stub(rmd_metadata, "desc::desc_get_urls", desc_urls)
   bad_object <- list(title = "Minimal Notebook", date = "2022-01-22", output = 42)
   mockery::stub(rmd_metadata, "rmarkdown::yaml_front_matter", bad_object)
 
   expect_error(rmd_metadata("minimal.Rmd"), "^unexpected output object type 'double'$")
+
+  mockery::stub(rmd_metadata, "fs::file_exists", TRUE) # set quarto to TRUE
+  bad_object <- list(title = "Minimal Quarto Document", date = "2024-03-07", format = 42)
+  mockery::stub(rmd_metadata, "rmarkdown::yaml_front_matter", bad_object)
+
+  expect_error(rmd_metadata("minimal.qmd"), "^unexpected output object type 'double'$")
 })
 
 test_that("rmd_metadata returns correct description with extra spaces", {
@@ -205,6 +240,12 @@ test_that("rmd_metadata returns analysis notebook metadata", {
 
   expect_identical(rmd_metadata("valid.Rmd"), valid)
 
-  mockery::stub(rmd_metadata, "fs::file_exists", TRUE)
+  mockery::stub(rmd_metadata, "fs::file_exists", TRUE) # set quarto to TRUE
   expect_identical(rmd_metadata("valid.Rmd"), valid_quarto)
+
+  valid_qmd <- list(
+    title = "Valid Quarto Notebook", url = "https://example.github.io/package/analysis/valid.html",
+    date = "2024-03-07", description = "Valid Quarto notebook from `analysis.qmd` template."
+  )
+  expect_identical(rmd_metadata("valid.qmd"), valid_qmd)
 })
