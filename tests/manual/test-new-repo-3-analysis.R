@@ -108,7 +108,8 @@ ci()
 
 # validate build_quarto_site()
 stopifnot(
-  testthat::expect_error(build_quarto_site())$message == "no *.Rmd files in analysis directory"
+  testthat::expect_error(build_quarto_site())$message ==
+    "no *.Rmd or *.qmd files in analysis directory"
 )
 writeLines(
   c(
