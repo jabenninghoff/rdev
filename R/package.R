@@ -12,6 +12,5 @@
 .datatable.aware <- TRUE # nolint: object_name_linter.
 
 # Suppress R CMD check note
-#' @importFrom markdown renderMarkdown
 #' @importFrom miniUI miniPage
 NULL
