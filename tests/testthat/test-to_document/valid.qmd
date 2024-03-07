@@ -1,0 +1,34 @@
+---
+title: "Valid Quarto Notebook"
+date: '2024-03-07'
+format:
+  html:
+    css: assets/extra.css
+    shift-heading-level-by: 1
+---
+
+Valid Quarto notebook from `analysis.qmd` template.
+
+# Questions/TODO
+
+- [ ] Questions/TODO list here
+
+```{r setup, message = FALSE, warning = FALSE}
+# setup code here
+```
+
+# Import
+
+Import data (typically from external CSV).
+
+# Tidy/Transform
+
+Clean and Tidy data.
+
+# Explore
+
+Graph and model data to ask and answer questions.
+
+# Communicate
+
+Communicate results.

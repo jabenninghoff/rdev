@@ -1,0 +1,8 @@
+---
+---
+
+This may technically be a valid Quarto notebook, but has no yaml front matter.
+
+# Markdown
+
+This is valid markdown.

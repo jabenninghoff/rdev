@@ -20,4 +20,7 @@ and construct a URL to the notebook's location on GitHub pages.
 \details{
 The 'description' line is the the first non-blank line in the body of an R notebook that serves
 as a brief description of the work.
+
+If \verb{_quarto.yml} is present, \code{rmd_metadata()} will extract the YAML front matter and description
+from Quarto format (\code{.qmd}) notebooks.
 }
