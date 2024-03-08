@@ -36,7 +36,7 @@ Feel free to use and/or fork this project!
 Notebooks in this package:
 
 ```{r notebooks, echo = FALSE, results = 'asis'}
-notebooks <- dir_ls("analysis", glob = "*.Rmd") |>
+notebooks <- dir_ls("analysis", regexp = "[.][Rq]md$") |>
   map_dfr(rmd_metadata) |>
   mutate(bullet = paste0("- [", title, "](", url, ") (", date, "): ", description)) |>
   pull(bullet)
