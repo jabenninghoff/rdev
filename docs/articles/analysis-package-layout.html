@@ -34,7 +34,7 @@
     
     <a class="navbar-brand me-2" href="../index.html">rdev</a>
 
-    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">1.10.1</small>
+    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">1.10.2</small>
 
     
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbar" aria-controls="navbar" aria-expanded="false" aria-label="Toggle navigation">
@@ -108,6 +108,10 @@ is run.</p>
 <p>Starting in version 1.8.0, rdev also supports publishing Analysis
 Notebooks using <a href="https://quarto.org" class="external-link">Quarto</a> as an
 alternative to the original <code><a href="../reference/use_analysis_package.html">use_analysis_package()</a></code>.</p>
+<p>rdev versions 1.10.2 and newer also support use of Quarto Documents
+(<code>.qmd</code>) for Analysis Notebooks, although RStudio currently
+doesn’t support <a href="https://github.com/rstudio/rstudio/issues/11316" class="external-link"><code>.qmd</code>
+files as document templates</a>.</p>
 <p>The table below documents the complete R Analysis Package layout:</p>
 <ul>
 <li>
@@ -309,9 +313,9 @@ file</a>
 <td align="left">analysis</td>
 <td align="left"><code>x</code></td>
 <td align="left"><code>x</code></td>
-<td align="left">Exploratory data analysis in R Notebooks and R
-Presentations. Include functions from the R directory using
-<code><a href="https://rdrr.io/r/base/library.html" class="external-link">library()</a></code>, not <code><a href="https://rdrr.io/r/base/source.html" class="external-link">source()</a></code>.</td>
+<td align="left">Exploratory data analysis in R Notebooks, R
+Presentations, and Quarto documents. Include functions from the R
+directory using <code><a href="https://rdrr.io/r/base/library.html" class="external-link">library()</a></code>, not <code><a href="https://rdrr.io/r/base/source.html" class="external-link">source()</a></code>.</td>
 </tr>
 <tr class="odd">
 <td align="left">analysis/_metadata.yml</td>

@@ -118,10 +118,11 @@ ci()
 #> No problems found
 #> 
 #> style_all()
-#> Styling  57  files:
+#> Styling  67  files:
 #>  .Rprofile                                               ✔ 
 #>  README.Rmd                                              ✔ 
 #>  inst/rmarkdown/templates/analysis/skeleton/skeleton.Rmd ✔ 
+#>  inst/templates/analysis.qmd                             ✔ 
 #>  inst/templates/changelog.qmd                            ✔ 
 #>  inst/templates/index.qmd                                ✔ 
 #>  inst/templates/package.R                                ✔ 
@@ -156,21 +157,30 @@ ci()
 #>  tests/testthat/test-spelling.R                          ✔ 
 #>  tests/testthat/test-to_document.R                       ✔ 
 #>  tests/testthat/test-utils.R                             ✔ 
+#>  tests/testthat/test-ci/test-revealjs.qmd                ✔ 
 #>  tests/testthat/test-ci/test.Rprofile                    ✔ 
 #>  tests/testthat/test-ci/testcode_1.R                     ✔ 
 #>  tests/testthat/test-ci/testcode_2.R                     ✔ 
+#>  tests/testthat/test-ci/testcode.qmd                     ✔ 
 #>  tests/testthat/test-ci/testcode.Rmd                     ✔ 
 #>  tests/testthat/test-ci/testcode.Rnw                     ✔ 
 #>  tests/testthat/test-ci/packrat/test.R                   ✔ 
 #>  tests/testthat/test-ci/R/RcppExports.R                  ✔ 
 #>  tests/testthat/test-ci/renv/test.R                      ✔ 
 #>  tests/testthat/test-to_document/document.Rmd            ✔ 
+#>  tests/testthat/test-to_document/docx.qmd                ✔ 
 #>  tests/testthat/test-to_document/extra-spaces.Rmd        ✔ 
 #>  tests/testthat/test-to_document/minimal-document.Rmd    ✔ 
+#>  tests/testthat/test-to_document/minimal-docx.qmd        ✔ 
+#>  tests/testthat/test-to_document/minimal.qmd             ✔ 
 #>  tests/testthat/test-to_document/minimal.Rmd             ✔ 
 #>  tests/testthat/test-to_document/multiple.Rmd            ✔ 
+#>  tests/testthat/test-to_document/no-format.qmd           ✔ 
 #>  tests/testthat/test-to_document/no-front-matter.Rmd     ✔ 
+#>  tests/testthat/test-to_document/no-output.Rmd           ✔ 
+#>  tests/testthat/test-to_document/no-yaml.qmd             ✔ 
 #>  tests/testthat/test-to_document/no-yaml.Rmd             ✔ 
+#>  tests/testthat/test-to_document/valid.qmd               ✔ 
 #>  tests/testthat/test-to_document/valid.Rmd               ✔ 
 #>  tests/testthat/test-to_document/with-code.Rmd           ✔ 
 #>  vignettes/analysis-package-layout.Rmd                   ✔ 
@@ -178,7 +188,7 @@ ci()
 #>  vignettes/style-guide.Rmd                               ✔ 
 #> ───────────────────────────────────────────────────────
 #> Status   Count   Legend 
-#> ✔    57  File unchanged.
+#> ✔    67  File unchanged.
 #> ℹ    0   File changed.
 #> ✖    0   Styling threw an error.
 #> ───────────────────────────────────────────────────────
@@ -219,11 +229,11 @@ ci()
 #> * creating vignettes ... OK
 #> * checking for LF line-endings in source and make files and shell scripts
 #> * checking for empty or unneeded directories
-#> * building ‘rdev_1.10.1.tar.gz’
+#> * building ‘rdev_1.10.2.tar.gz’
 #> 
 #> ── R CMD check ─────────────────────────────────────────────────────────────────
-#> * using log directory ‘/private/var/folders/vn/cw5f9gws42v9m8mdsds_zbl00000gp/T/RtmpTv7OgN/filec48b4d298a11/rdev.Rcheck’
-#> * using R version 4.3.2 (2023-10-31)
+#> * using log directory ‘/private/var/folders/vn/cw5f9gws42v9m8mdsds_zbl00000gp/T/RtmpR2SckY/file16a196f52f83e/rdev.Rcheck’
+#> * using R version 4.3.3 (2024-02-29)
 #> * using platform: aarch64-apple-darwin20 (64-bit)
 #> * R was compiled by
 #>     Apple clang version 14.0.0 (clang-1400.0.29.202)
@@ -232,7 +242,7 @@ ci()
 #> * using session charset: UTF-8
 #> * using option ‘--no-manual’
 #> * checking for file ‘rdev/DESCRIPTION’ ... OK
-#> * this is package ‘rdev’ version ‘1.10.1’
+#> * this is package ‘rdev’ version ‘1.10.2’
 #> * package encoding: UTF-8
 #> * checking package namespace information ... OK
 #> * checking package dependencies ... OK
@@ -292,8 +302,8 @@ ci()
 #> * DONE
 #> 
 #> Status: OK
-#> ── R CMD check results ──────────────────────────────────────── rdev 1.10.1 ────
-#> Duration: 29.6s
+#> ── R CMD check results ──────────────────────────────────────── rdev 1.10.2 ────
+#> Duration: 1m 25s
 #> 
 #> 0 errors ✔ | 0 warnings ✔ | 0 notes ✔
 ```

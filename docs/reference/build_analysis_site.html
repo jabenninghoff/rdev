@@ -12,7 +12,7 @@
     
     <a class="navbar-brand me-2" href="../index.html">rdev</a>
 
-    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">1.10.1</small>
+    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">1.10.2</small>
 
     
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbar" aria-controls="navbar" aria-expanded="false" aria-label="Toggle navigation">
@@ -112,6 +112,13 @@ to render files with the look and feel of <code>html_notebook</code></p></li>
 workflow, and temporarily set the environment variable <code>CI == "TRUE"</code> so that the build will
 fail when non-internal topics are not included on the reference index page per
 <code><a href="https://pkgdown.r-lib.org/reference/build_reference.html" class="external-link">pkgdown::build_reference()</a></code>.</p>
+    </div>
+    <div class="section level2">
+    <h2 id="supported-file-types">Supported File Types<a class="anchor" aria-label="anchor" href="#supported-file-types"></a></h2>
+    
+
+<p>While <code><a href="build_quarto_site.html">build_quarto_site()</a></code> supports both R Markdown (<code>.Rmd</code>) and Quarto (<code>.qmd</code>) notebooks in
+the <code>analysis</code> directory interchangeably, <code>build_analysis_site()</code> supports <code>.Rmd</code> files only.</p>
     </div>
 
   </main><aside class="col-md-3"><nav id="toc"><h2>On this page</h2>
