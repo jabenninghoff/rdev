@@ -14,9 +14,9 @@ knitr::opts_chunk$set(
 )
 ```
 
-The R Style Guide describes the rdev style conventions, along with automated checks ([styler](https://styler.r-lib.org) and
-[lintr](https://lintr.r-lib.org)). The rdev R Style Guide incorporates both the
-[Tidyverse Style Guide](https://style.tidyverse.org) and
+The R Style Guide describes the rdev style conventions, along with automated checks
+([styler](https://styler.r-lib.org) and [lintr](https://lintr.r-lib.org)). The rdev R Style Guide
+incorporates both the [Tidyverse Style Guide](https://style.tidyverse.org) and
 [Google's R Style Guide](https://google.github.io/styleguide/Rguide.html).
 
 ## rdev conventions
@@ -40,7 +40,7 @@ return structure.
 
 Use of `@import` and `@importFrom` are discouraged, instead using `::` in functions defined in `R/`.
 An exception is infix functions (`%name%`), which are always imported, using roxygen `@importFrom`.
-Within R Notebooks, use of `library()` is encouraged for readability.
+Within R and Quarto Notebooks, use of `library()` is encouraged for readability.
 
 ### Package-level documentation
 
@@ -56,12 +56,15 @@ Notebook 'description line' (the first non-blank line in the body), and long hyp
 
 The rdev package implements [styler](https://styler.r-lib.org) using the styler defaults, with
 permanent caching enabled (`options(styler.cache_root = "styler-perm")`). The `style_all()` function
-applies the tidyverse style to all R files (`R`, `Rprofile`, `Rmd`, `Rnw`) in the package directory
-structure.
+applies the tidyverse style to all R and Quarto files (`R`, `Rprofile`, `Rmd`, `Rnw`, `qmd`) in the
+package directory structure.
 
 ## lintr
 
-rdev uses an opinionated [lintr](https://lintr.r-lib.org) configuration (`.lintr`):
+
+The `lint_all()` function lints all R and Quarto files (`R`, `Rmd`, `qmd`, `Rnw`, `Rhtml`, `Rpres`,
+`Rrst`, `Rtex`, `Rtxt`) with [lintr](https://lintr.r-lib.org) using an opinionated
+configuration (`.lintr`):
 
 ```r
 linters: linters_with_tags(
@@ -160,7 +163,7 @@ positives when used with fs.
     todo_comment_linter = NULL,
 ```
 
-rdev conventions encourage use of `# TODO` comments as a convenient way of identifying needed or
+rdev conventions encourage use of `# TODO:` comments as a convenient way of identifying needed or
 planned updates inline.
 
 ### Disallow almost all undesirable functions and operators

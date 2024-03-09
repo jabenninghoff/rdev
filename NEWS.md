@@ -12,6 +12,8 @@ rdev now supports Quarto Documents (`.qmd`) as analysis notebooks:
 
 * `spell_check_notebooks()` and `update_wordlist_notebooks()` now check both `Rmd` and `qmd` files in the `analysis` directory
 
+* Updated vignettes
+
 # rdev 1.10.1
 
 * Added an `unfreeze` parameter to `stage_release()`, which is passed on to `build_quarto_site()`

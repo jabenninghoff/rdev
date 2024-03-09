@@ -19,16 +19,21 @@ knitr::opts_chunk$set(
 rdev supports my personal workflow, including creation of both traditional R packages and R Analysis
 Packages (`vignette("analysis-package-layout")`), enforcing consistency across packages, and
 providing Continuous Integration/Continuous Delivery (CI/CD) automation. I use the tools in rdev to
-improve code quality, speed up development of R code, and publish results of analyses in R Notebooks
-as HTML to make them accessible to non-R users.
+improve code quality, speed up development of R code, and publish results of analyses in R and
+Quarto Notebooks as HTML to make them accessible to non-R users.
 
 ## Installation
 
-My current R development environment uses [Homebrew](https://brew.sh), [rig](https://github.com/r-lib/rig/), [RStudio](https://posit.co/download/rstudio-desktop/), [GitHub](https://github.com), a collection of R packages including rdev, [Visual Studio Code](https://code.visualstudio.com), and [Vim](https://www.vim.org).
+My current R development environment uses [Homebrew](https://brew.sh),
+[rig](https://github.com/r-lib/rig/), [RStudio](https://posit.co/download/rstudio-desktop/),
+[GitHub](https://github.com), a collection of R packages including rdev,
+[Visual Studio Code](https://code.visualstudio.com), and [Vim](https://www.vim.org).
 
 ### Homebrew
 
-I use [Homebrew Bundle](https://github.com/Homebrew/homebrew-bundle) to install all software on my systems; my basic macOS working environment is published on GitHub in [macos-env](https://github.com/jabenninghoff/macos-env/tree/master).
+I use [Homebrew Bundle](https://github.com/Homebrew/homebrew-bundle) to install all software on my
+systems; my basic macOS working environment is published on GitHub in
+[macos-env](https://github.com/jabenninghoff/macos-env/tree/master).
 
 ### Installing R
 

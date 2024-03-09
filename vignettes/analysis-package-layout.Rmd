@@ -14,11 +14,24 @@ knitr::opts_chunk$set(
 )
 ```
 
-R Analysis Packages are an extension of the standard R package layout designed to support publishing a collection of R notebooks used for data analysis as static html, typically using [GitHub Pages](https://pages.github.com).
+R Analysis Packages are an extension of the standard R package layout designed to support publishing
+a collection of R notebooks used for data analysis as static html, typically using
+[GitHub Pages](https://pages.github.com).
 
-[R Notebooks](https://bookdown.org/yihui/rmarkdown/notebook.html) include a YAML header and [R Markdown](https://github.com/rstudio/rmarkdown) body. The Analysis Package Layout follows the convention that the first non-blank line in the body of an R notebook serves as a brief description of the work. `rdev` includes an "Analysis Notebook" RStudio R Markdown template (File > New File > Rmarkdown > From Template) and a `README.Rmd` template optionally installed with `use_analysis_package()` that dynamically builds a list of notebooks and descriptions when [`devtools:build_readme()`](https://devtools.r-lib.org/reference/build_rmd.html) is run.
+[R Notebooks](https://bookdown.org/yihui/rmarkdown/notebook.html) include a YAML header and
+[R Markdown](https://github.com/rstudio/rmarkdown) body. The Analysis Package Layout follows the
+convention that the first non-blank line in the body of an R notebook serves as a brief description
+of the work. `rdev` includes an "Analysis Notebook" RStudio R Markdown template (File > New File >
+Rmarkdown > From Template) and a `README.Rmd` template optionally installed with
+`use_analysis_package()` that dynamically builds a list of notebooks and descriptions when
+[`devtools:build_readme()`](https://devtools.r-lib.org/reference/build_rmd.html) is run.
 
-Starting in version 1.8.0, rdev also supports publishing Analysis Notebooks using [Quarto](https://quarto.org) as an alternative to the original `use_analysis_package()`.
+Starting in version 1.8.0, rdev also supports publishing Analysis Notebooks using
+[Quarto](https://quarto.org) as an alternative to the original `use_analysis_package()`.
+
+rdev versions 1.10.2 and newer also support use of Quarto Documents (`.qmd`) for Analysis Notebooks,
+although RStudio currently doesn't support
+[`.qmd` files as document templates](https://github.com/rstudio/rstudio/issues/11316).
 
 The table below documents the complete R Analysis Package layout:
 
@@ -52,7 +65,7 @@ TODO.md                  |`x`|`x`| To-do list, inspired by renv's [historical TO
 _freeze                  |   |`x`| Used by the Quarto [`freeze`](https://quarto.org/docs/projects/code-execution.html#freeze) option
 _pkgdown.yml             |   |`x`| [pkgdown](https://pkgdown.r-lib.org) metadata, stored in the project root to make it more [discoverable](https://github.com/search?q=filename%3Apkgdown.yml+path%3A%2F&type=Code) (not used with Quarto)
 _quarto.yml              |`x`|`x`| Quarto [configuration file](https://quarto.org/docs/projects/quarto-projects.html#project-metadata)
-analysis                 |`x`|`x`| Exploratory data analysis in R Notebooks and R Presentations. Include functions from the R directory using `library()`, not `source()`.
+analysis                 |`x`|`x`| Exploratory data analysis in R Notebooks, R Presentations, and Quarto documents. Include functions from the R directory using `library()`, not `source()`.
 analysis/_metadata.yml   |`x`|`x`| Quarto [directory configuration file](https://quarto.org/docs/projects/quarto-projects.html#directory-metadata)
 analysis/assets          |`x`|`x`| External assets (images, other files) included in R Notebooks
 analysis/data            |`x`|`x`| Used to store small data sets used for analysis and exported data as `csv` files
