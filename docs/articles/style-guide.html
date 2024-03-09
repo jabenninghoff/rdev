@@ -34,7 +34,7 @@
     
     <a class="navbar-brand me-2" href="../index.html">rdev</a>
 
-    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">1.10.1</small>
+    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">1.10.2</small>
 
     
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbar" aria-controls="navbar" aria-expanded="false" aria-label="Toggle navigation">
@@ -126,8 +126,8 @@ or to construct a specific return structure.</p>
 discouraged, instead using <code>::</code> in functions defined in
 <code>R/</code>. An exception is infix functions (<code>%name%</code>),
 which are always imported, using roxygen <code>@importFrom</code>.
-Within R Notebooks, use of <code><a href="https://rdrr.io/r/base/library.html" class="external-link">library()</a></code> is encouraged for
-readability.</p>
+Within R and Quarto Notebooks, use of <code><a href="https://rdrr.io/r/base/library.html" class="external-link">library()</a></code> is
+encouraged for readability.</p>
 </div>
 <div class="section level3">
 <h3 id="package-level-documentation">Package-level documentation<a class="anchor" aria-label="anchor" href="#package-level-documentation"></a>
@@ -148,13 +148,17 @@ non-blank line in the body), and long hyperlinks.</p>
 with permanent caching enabled
 (<code>options(styler.cache_root = "styler-perm")</code>). The
 <code><a href="../reference/style_all.html">style_all()</a></code> function applies the tidyverse style to all R
-files (<code>R</code>, <code>Rprofile</code>, <code>Rmd</code>,
-<code>Rnw</code>) in the package directory structure.</p>
+and Quarto files (<code>R</code>, <code>Rprofile</code>,
+<code>Rmd</code>, <code>Rnw</code>, <code>qmd</code>) in the package
+directory structure.</p>
 </div>
 <div class="section level2">
 <h2 id="lintr">lintr<a class="anchor" aria-label="anchor" href="#lintr"></a>
 </h2>
-<p>rdev uses an opinionated <a href="https://lintr.r-lib.org" class="external-link">lintr</a>
+<p>The <code><a href="../reference/lint_all.html">lint_all()</a></code> function lints all R and Quarto files
+(<code>R</code>, <code>Rmd</code>, <code>qmd</code>, <code>Rnw</code>,
+<code>Rhtml</code>, <code>Rpres</code>, <code>Rrst</code>,
+<code>Rtex</code>, <code>Rtxt</code>) with <a href="https://lintr.r-lib.org" class="external-link">lintr</a> using an opinionated
 configuration (<code>.lintr</code>):</p>
 <div class="sourceCode" id="cb1"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">linters</span><span class="op">:</span> <span class="fu">linters_with_tags</span><span class="op">(</span></span>
@@ -243,7 +247,7 @@ fs.</p>
 <h3 id="allow-todo-comments">Allow TODO comments<a class="anchor" aria-label="anchor" href="#allow-todo-comments"></a>
 </h3>
 <div class="sourceCode" id="cb9"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb9-1"><a href="#cb9-1" tabindex="-1"></a>    todo_comment_linter <span class="ot">=</span> <span class="cn">NULL</span>,</span></code></pre></div>
-<p>rdev conventions encourage use of <code># TODO</code> comments as a
+<p>rdev conventions encourage use of <code># TODO:</code> comments as a
 convenient way of identifying needed or planned updates inline.</p>
 </div>
 <div class="section level3">
