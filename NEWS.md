@@ -1,3 +1,7 @@
+# rdev 1.10.3
+
+* Updated `R-CMD-check.yaml` GitHub Action (update: `use_rdev_package()`)
+
 # rdev 1.10.2
 
 rdev now supports Quarto Documents (`.qmd`) as analysis notebooks:
