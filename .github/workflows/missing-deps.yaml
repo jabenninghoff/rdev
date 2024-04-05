@@ -10,7 +10,7 @@ name: missing-deps
 
 jobs:
   missing-deps:
-    runs-on: macos-latest
+    runs-on: macos-13
     env:
       GITHUB_PAT: ${{ secrets.GITHUB_TOKEN }}
 
