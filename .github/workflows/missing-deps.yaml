@@ -21,7 +21,10 @@ jobs:
 
       - uses: r-lib/actions/setup-renv@v2
       - name: Install dependencies
-        run: renv::install("jabenninghoff/rdev")
+        run: |
+          getOption("download.file.method")
+          Sys.setenv(RENV_DOWNLOAD_METHOD = "libcurl")
+          renv::install("jabenninghoff/rdev")
         shell: Rscript {0}
 
       - name: Find missing dependencies
