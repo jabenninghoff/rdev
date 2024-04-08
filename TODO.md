@@ -53,7 +53,7 @@
   - [x] ~~Use Project [Templates](https://rstudio.github.io/rstudio-extensions/rstudio_project_templates.html) like [vertical](https://www.crumplab.com/vertical/)?~~
   - [x] ~~Add CSS to R Markdown [Template](https://rstudio.github.io/rstudio-extensions/rmarkdown_templates.html) instead of `assets/extra.css`?~~
 - [x] Move `shift-heading-level-by: 1` from `_quarto.yml` to `analysis/_metadata.yml`, so `TODO.md` renders properly
-- [ ] Remove `preset: bootstrap` if <https://github.com/r-lib/pkgdown/issues/2376> is accepted
+- [ ] Remove `preset: bootstrap` workaround when pkgdown 2.0.8+ is released (per <https://github.com/r-lib/pkgdown/issues/2376>)
 - [ ] Replace `dev = TRUE` logic if <https://github.com/rstudio/renv/issues/1695> is accepted
 - [ ] Update errors and messages after reading Advanced R [Conditions](https://adv-r.hadley.nz/conditions.html) and re-reading the Tidyverse [Style Guide](https://style.tidyverse.org/index.html)
 - [ ] Reduce the number of Imports, per R CMD check:
