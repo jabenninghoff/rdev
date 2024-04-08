@@ -16,15 +16,16 @@ style_all(
 \item{path}{Path to a directory with files to transform.}
 
 \item{filetype}{Vector of file extensions indicating which file types should
-be styled. Case is ignored, and the \code{.} is optional, e.g. \code{c(".R", ".Rmd")}, or \code{c("r", "rmd")}. Supported values (after standardization) are:
-"r", "rprofile", "rmd", "rmarkdown", "rnw", "qmd". Rmarkdown is treated as
-Rmd.}
+be styled. Case is ignored, and the \code{.} is optional, e.g. \code{c(".R",".Rmd")},
+or \code{c("r", "rmd")}. Supported values (after standardization) are:
+"qmd", "r", "rmd", "rmarkdown", "rnw", and "rprofile".
+Rmarkdown is treated as Rmd.}
 
 \item{exclude_dirs}{Character vector with directories to exclude
 (recursively).}
 
-\item{exclude_files}{Character vector with paths to files that should be
-excluded from styling.}
+\item{exclude_files}{Character vector with regular expressions to files
+that should be excluded from styling.}
 
 \item{...}{
   Arguments passed on to \code{\link[styler:style_dir]{styler::style_dir}}
