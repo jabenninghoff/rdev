@@ -1,3 +1,7 @@
+# rdev 1.10.4
+
+* Maintenance updates
+
 # rdev 1.10.3
 
 * Updated `R-CMD-check.yaml` GitHub Action (update: `use_rdev_package()`)
