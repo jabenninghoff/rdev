@@ -2,13 +2,11 @@
 local({
 
   # the requested version of renv
-  version <- "1.0.5.9000"
-  attr(version, "sha") <- "7f423f98f18e1a69a1fa3ebec0dfffb7db1ba1ce"
+  version <- "1.0.5"
+  attr(version, "sha") <- NULL
 
   # the project directory
-  project <- Sys.getenv("RENV_PROJECT")
-  if (!nzchar(project))
-    project <- getwd()
+  project <- getwd()
 
   # use start-up diagnostics if enabled
   diagnostics <- Sys.getenv("RENV_STARTUP_DIAGNOSTICS", unset = "FALSE")
@@ -633,9 +631,6 @@ local({
   
     # if the user has requested an automatic prefix, generate it
     auto <- Sys.getenv("RENV_PATHS_PREFIX_AUTO", unset = NA)
-    if (is.na(auto) && getRversion() >= "4.4.0")
-      auto <- "TRUE"
-  
     if (auto %in% c("TRUE", "True", "true", "1"))
       return(renv_bootstrap_platform_prefix_auto())
   
@@ -827,23 +822,24 @@ local({
   
     # the loaded version of renv doesn't match the requested version;
     # give the user instructions on how to proceed
-    dev <- identical(description[["RemoteType"]], "github")
-    remote <- if (dev)
+    remote <- if (!is.null(description[["RemoteSha"]])) {
       paste("rstudio/renv", description[["RemoteSha"]], sep = "@")
-    else
+    } else {
       paste("renv", description[["Version"]], sep = "@")
+    }
   
     # display both loaded version + sha if available
     friendly <- renv_bootstrap_version_friendly(
       version = description[["Version"]],
-      sha     = if (dev) description[["RemoteSha"]]
+      sha     = description[["RemoteSha"]]
     )
   
-    fmt <- heredoc("
-      renv %1$s was loaded from project library, but this project is configured to use renv %2$s.
-      - Use `renv::record(\"%3$s\")` to record renv %1$s in the lockfile.
-      - Use `renv::restore(packages = \"renv\")` to install renv %2$s into the project library.
-    ")
+    fmt <- paste(
+      "renv %1$s was loaded from project library, but this project is configured to use renv %2$s.",
+      "- Use `renv::record(\"%3$s\")` to record renv %1$s in the lockfile.",
+      "- Use `renv::restore(packages = \"renv\")` to install renv %2$s into the project library.",
+      sep = "\n"
+    )
     catf(fmt, friendly, renv_bootstrap_version_friendly(version), remote)
   
     FALSE
