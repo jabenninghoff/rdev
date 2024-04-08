@@ -23,10 +23,6 @@ jobs:
 
       - uses: r-lib/actions/setup-renv@v2
 
-      - name: Install covr
-        run: renv::install("covr")
-        shell: Rscript {0}
-
       - uses: r-lib/actions/setup-pandoc@v2
 
       - name: Test coverage

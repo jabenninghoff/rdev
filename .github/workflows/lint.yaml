@@ -23,8 +23,8 @@ jobs:
 
       - uses: r-lib/actions/setup-renv@v2
 
-      - name: Install dependencies
-        run: renv::install(c("lintr", "."))
+      - name: Install current package
+        run: remotes::install_local(".", upgrade = "never")
         shell: Rscript {0}
 
       - name: Lint all files
