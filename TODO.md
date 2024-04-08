@@ -54,6 +54,7 @@
   - [x] ~~Add CSS to R Markdown [Template](https://rstudio.github.io/rstudio-extensions/rmarkdown_templates.html) instead of `assets/extra.css`?~~
 - [x] Move `shift-heading-level-by: 1` from `_quarto.yml` to `analysis/_metadata.yml`, so `TODO.md` renders properly
 - [ ] Remove `preset: bootstrap` workaround when pkgdown 2.0.8+ is released (per <https://github.com/r-lib/pkgdown/issues/2376>)
+- [ ] Switch to CRAN version of renv when renv 1.0.6+ is released (per <https://github.com/rstudio/renv/issues/1869>)
 - [ ] Replace `dev = TRUE` logic if <https://github.com/rstudio/renv/issues/1695> is accepted
 - [ ] Update errors and messages after reading Advanced R [Conditions](https://adv-r.hadley.nz/conditions.html) and re-reading the Tidyverse [Style Guide](https://style.tidyverse.org/index.html)
 - [ ] Reduce the number of Imports, per R CMD check:
