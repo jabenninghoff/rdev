@@ -21,8 +21,8 @@ jobs:
 
       - uses: r-lib/actions/setup-renv@v2
 
-      - name: Install dependencies
-        run: renv::install("jabenninghoff/rdev")
+      - name: Install rdev for rdev
+        run: if (!requireNamespace("rdev")) remotes::install_local(".", upgrade = "never") # only TRUE for rdev itself
         shell: Rscript {0}
 
       - name: Find missing dependencies
