@@ -1,3 +1,7 @@
+# rdev 1.10.5
+
+* Maintenance updates
+
 # rdev 1.10.4
 
 * Updated GitHub Actions to work better with renv (update from <https://github.com/jabenninghoff/rdev/tree/main/.github/workflows>)
