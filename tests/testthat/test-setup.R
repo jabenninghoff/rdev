@@ -321,7 +321,6 @@ test_that("use_rdev_pkgdown adds customizations", {
   pkg <- yaml::read_yaml("_pkgdown.yml")
 
   expect_true(fs::file_exists("pkgdown/extra.css"))
-  expect_identical(pkg$template$bslib$preset, "bootstrap")
   expect_identical(pkg$template$bootstrap, 5L)
 })
 

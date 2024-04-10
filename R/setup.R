@@ -571,10 +571,7 @@ use_analysis_package <- function(use_quarto = TRUE, prompt = FALSE) {
     usethis::use_template("_metadata.yml", save_as = "analysis/_metadata.yml", package = "rdev")
   } else {
     if (length(urls) >= 1 && !fs::file_exists("pkgdown/_base.yml")) {
-      yaml::write_yaml(
-        list(url = urls[1], template = list(bootstrap = 5L, bslib = list(preset = "bootstrap"))),
-        "pkgdown/_base.yml"
-      )
+      yaml::write_yaml(list(url = urls[1], template = list(bootstrap = 5L)), "pkgdown/_base.yml")
     }
     usethis::use_template("extra.css", save_as = "pkgdown/extra.css", package = "rdev")
   }
@@ -617,7 +614,7 @@ use_analysis_package <- function(use_quarto = TRUE, prompt = FALSE) {
 #'   `pkgdown` to fix rendering of GitHub-style
 # nolint next: line_length_linter.
 #'   [task lists](https://docs.github.com/en/get-started/writing-on-github/working-with-advanced-formatting/about-task-lists),
-#'   adds the GitHub Pages URL, and disables the [bslib::bs_theme()] `"shiny"` preset.
+#'   and adds the GitHub Pages URL.
 #'
 #' @inheritParams usethis::use_pkgdown
 #'
@@ -630,7 +627,6 @@ use_rdev_pkgdown <- function(config_file = "_pkgdown.yml", destdir = "docs") {
   pkg <- yaml::read_yaml(config_file)
   urls <- desc::desc_get_urls()
   pkg$url <- urls[1]
-  pkg$template$bslib$preset <- "bootstrap"
   # workaround for RStudio race condition
   if (rlang::is_interactive()) {
     writeLines(paste0("\nupdating ", config_file, "..."), sep = "")
