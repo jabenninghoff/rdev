@@ -1,6 +1,6 @@
 # rdev 1.10.5
 
-* Maintenance updates
+* Updated pkgdown templates (update: `use_rdev_pkgdown()` or `use_analysis_package(use_quarto = FALSE)`)
 
 # rdev 1.10.4
 

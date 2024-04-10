@@ -19,5 +19,5 @@ Add pkgdown with rdev customizations. Implemented as a wrapper for \code{\link[u
 In addition to running \code{\link[usethis:use_pkgdown]{usethis::use_pkgdown()}}, \code{use_rdev_pkgdown} adds \code{extra.css} to
 \code{pkgdown} to fix rendering of GitHub-style
 \href{https://docs.github.com/en/get-started/writing-on-github/working-with-advanced-formatting/about-task-lists}{task lists},
-adds the GitHub Pages URL, and disables the \code{\link[bslib:bs_theme]{bslib::bs_theme()}} \code{"shiny"} preset.
+and adds the GitHub Pages URL.
 }
