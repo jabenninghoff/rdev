@@ -115,7 +115,7 @@ ci()
 #> renv::dependencies() not in DESCRIPTION:
 #> 
 #> pkgdown::check_pkgdown()
-#> No problems found
+#> ✔ No problems found in _pkgdown.yml
 #> 
 #> style_all()
 #> Styling  67  files:
@@ -229,10 +229,10 @@ ci()
 #> * creating vignettes ... OK
 #> * checking for LF line-endings in source and make files and shell scripts
 #> * checking for empty or unneeded directories
-#> * building ‘rdev_1.10.4.tar.gz’
+#> * building ‘rdev_1.10.5.tar.gz’
 #> 
 #> ── R CMD check ─────────────────────────────────────────────────────────────────
-#> * using log directory ‘/private/var/folders/vn/cw5f9gws42v9m8mdsds_zbl00000gp/T/RtmpOJvBhK/file17eb4289c348/rdev.Rcheck’
+#> * using log directory ‘/private/var/folders/vn/cw5f9gws42v9m8mdsds_zbl00000gp/T/Rtmp4h31p8/file8b151ef6eb5/rdev.Rcheck’
 #> * using R version 4.3.3 (2024-02-29)
 #> * using platform: aarch64-apple-darwin20 (64-bit)
 #> * R was compiled by
@@ -242,7 +242,7 @@ ci()
 #> * using session charset: UTF-8
 #> * using option ‘--no-manual’
 #> * checking for file ‘rdev/DESCRIPTION’ ... OK
-#> * this is package ‘rdev’ version ‘1.10.4’
+#> * this is package ‘rdev’ version ‘1.10.5’
 #> * package encoding: UTF-8
 #> * checking package namespace information ... OK
 #> * checking package dependencies ... OK
@@ -297,13 +297,13 @@ ci()
 #>   ‘analysis-package-layout.Rmd’ using ‘UTF-8’... OK
 #>   ‘rdev.Rmd’ using ‘UTF-8’... OK
 #>   ‘style-guide.Rmd’ using ‘UTF-8’... OK
-#>  NONE
+#>  OK
 #> * checking re-building of vignette outputs ... OK
 #> * DONE
 #> 
 #> Status: OK
-#> ── R CMD check results ──────────────────────────────────────── rdev 1.10.4 ────
-#> Duration: 31s
+#> ── R CMD check results ──────────────────────────────────────── rdev 1.10.5 ────
+#> Duration: 35.8s
 #> 
 #> 0 errors ✔ | 0 warnings ✔ | 0 notes ✔
 ```
