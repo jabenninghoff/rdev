@@ -1,3 +1,7 @@
+# rdev 1.10.6
+
+* Updated for R 4.4.0
+
 # rdev 1.10.5
 
 * Updated pkgdown templates (update: `use_rdev_pkgdown()` or `use_analysis_package(use_quarto = FALSE)`)
