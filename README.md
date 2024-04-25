@@ -229,12 +229,12 @@ ci()
 #> * creating vignettes ... OK
 #> * checking for LF line-endings in source and make files and shell scripts
 #> * checking for empty or unneeded directories
-#> * building ‘rdev_1.10.5.tar.gz’
+#> * building ‘rdev_1.10.6.tar.gz’
 #> 
 #> ── R CMD check ─────────────────────────────────────────────────────────────────
-#> * using log directory ‘/private/var/folders/vn/cw5f9gws42v9m8mdsds_zbl00000gp/T/Rtmp4h31p8/file8b151ef6eb5/rdev.Rcheck’
-#> * using R version 4.3.3 (2024-02-29)
-#> * using platform: aarch64-apple-darwin20 (64-bit)
+#> * using log directory ‘/private/var/folders/vn/cw5f9gws42v9m8mdsds_zbl00000gp/T/Rtmp2qkxor/filefb283c69d259/rdev.Rcheck’
+#> * using R version 4.4.0 (2024-04-24)
+#> * using platform: aarch64-apple-darwin20
 #> * R was compiled by
 #>     Apple clang version 14.0.0 (clang-1400.0.29.202)
 #>     GNU Fortran (GCC) 12.2.0
@@ -242,7 +242,7 @@ ci()
 #> * using session charset: UTF-8
 #> * using option ‘--no-manual’
 #> * checking for file ‘rdev/DESCRIPTION’ ... OK
-#> * this is package ‘rdev’ version ‘1.10.5’
+#> * this is package ‘rdev’ version ‘1.10.6’
 #> * package encoding: UTF-8
 #> * checking package namespace information ... OK
 #> * checking package dependencies ... OK
@@ -261,7 +261,7 @@ ci()
 #> * checking for left-over files ... OK
 #> * checking index information ... OK
 #> * checking package subdirectories ... OK
-#> * checking R files for non-ASCII characters ... OK
+#> * checking code files for non-ASCII characters ... OK
 #> * checking R files for syntax errors ... OK
 #> * checking whether the package can be loaded ... OK
 #> * checking whether the package can be loaded with stated dependencies ... OK
@@ -292,18 +292,13 @@ ci()
 #>   Running ‘testthat.R’
 #>  OK
 #> * checking for unstated dependencies in vignettes ... OK
-#> * checking package vignettes in ‘inst/doc’ ... OK
-#> * checking running R code from vignettes ...
-#>   ‘analysis-package-layout.Rmd’ using ‘UTF-8’... OK
-#>   ‘rdev.Rmd’ using ‘UTF-8’... OK
-#>   ‘style-guide.Rmd’ using ‘UTF-8’... OK
-#>  OK
+#> * checking package vignettes ... OK
 #> * checking re-building of vignette outputs ... OK
 #> * DONE
 #> 
 #> Status: OK
-#> ── R CMD check results ──────────────────────────────────────── rdev 1.10.5 ────
-#> Duration: 35.8s
+#> ── R CMD check results ──────────────────────────────────────── rdev 1.10.6 ────
+#> Duration: 32.8s
 #> 
 #> 0 errors ✔ | 0 warnings ✔ | 0 notes ✔
 ```
