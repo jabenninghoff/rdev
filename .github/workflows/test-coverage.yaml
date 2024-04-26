@@ -26,6 +26,8 @@ jobs:
       - uses: r-lib/actions/setup-pandoc@v2
 
       - name: Test coverage
+        env:
+          CODECOV_TOKEN: ${{ secrets.CODECOV_TOKEN }}
         run: |
           covr::codecov(
             quiet = FALSE,
