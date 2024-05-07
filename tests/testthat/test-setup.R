@@ -112,6 +112,7 @@ test_that("create_github_repo validates arguments", {
   expect_error(create_github_repo(repo_name = NA_character_), "'repo_name'")
   expect_error(create_github_repo(repo_name = ""), "'repo_name'")
   expect_error(create_github_repo("test", repo_desc = NA_character_), "'repo_desc'")
+  expect_error(create_github_repo("test", private = NA), "'private'")
   expect_error(create_github_repo("test", org = NA_character_), "'org'")
   expect_error(create_github_repo("test", org = ""), "'org'")
   expect_error(create_github_repo("test", host = NA_character_), "'host'")
@@ -132,7 +133,7 @@ test_that("create_github_repo errors when proposed repo directory exists locally
   )
 })
 
-test_that("create_github_repo options work", {
+test_that("create_github_repo options and flags work", {
   fs_path <- "/Users/test/Desktop/rdtest9" # nolint: absolute_path_linter.
   create <- list(html_url = "https://github.com/test/rdtest9")
   with_dependabot <- paste0(
@@ -155,6 +156,17 @@ test_that("create_github_repo options work", {
     "update the Title and Description fields in `DESCRIPTION` without committing,\\n",
     "and run either setup_ananlysis\\(\\) or setup_rdev\\(\\) to finish configuration\\.$"
   )
+  with_private <- paste0(
+    "^POST /user/repos\\n",
+    "PUT /repos/\\{owner\\}/\\{repo\\}/vulnerability-alerts\\n",
+    "PUT /repos/\\{owner\\}/\\{repo\\}/automated-security-fixes\\n",
+    "\\nRepository created at: ", create$html_url, "\\n",
+    "Open the repository by executing: \\$ github ", fs_path, "\\n",
+    "Apply rdev conventions within the new project by running init\\(\\) without committing,\\n",
+    "update the Title and Description fields in `DESCRIPTION` without committing,\\n",
+    "and run either setup_ananlysis\\(\\) or setup_rdev\\(\\) to finish configuration\\.$"
+  )
+  without_private <- with_dependabot
   gh_gh <- function(command, ...) {
     writeLines(command)
     create
@@ -186,6 +198,15 @@ test_that("create_github_repo options work", {
       create_github_repo("rdtest9", "rdev test analysis package 9")
     ),
     without_dependabot
+  )
+
+  expect_output(
+    create_github_repo("rdtest9", "rdev test analysis package 9", private = FALSE),
+    without_private
+  )
+  expect_output(
+    create_github_repo("rdtest9", "rdev test analysis package 9", private = TRUE),
+    with_private
   )
 })
 

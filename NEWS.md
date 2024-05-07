@@ -1,3 +1,7 @@
+# rdev 1.10.7
+
+* Added support for creating private repositories to `create_github_repo()`
+
 # rdev 1.10.6
 
 * Updated for R 4.4.0
