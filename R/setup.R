@@ -183,7 +183,7 @@ fix_gitignore <- function(path = ".") {
 #'   1. Creates a new GitHub repository using [gh::gh()] with license template from [get_license()]
 #'   1. Activates Dependabot alerts per `getOption("rdev.dependabot", default = TRUE)`
 #'   1. Activates Dependabot security updates per `getOption("rdev.dependabot", default = TRUE)`
-#'   1. Adds branch protection to the default branch
+#'   1. Adds branch protection to the default branch (if `private` is `FALSE`)
 #'   1. Clones the repository locally with [usethis::create_from_github()]
 #'   1. Creates a basic package using [usethis::create_package()]
 #'   1. If running interactively on macOS, the repository will automatically be opened in RStudio,
@@ -206,10 +206,11 @@ fix_gitignore <- function(path = ".") {
 #'
 #' @return return value from [gh::gh()] creating the repository, invisibly
 #' @export
-create_github_repo <- function(repo_name, repo_desc = "", org = NULL,
+create_github_repo <- function(repo_name, repo_desc = "", private = FALSE, org = NULL,
                                host = getOption("rdev.host")) {
   checkmate::assert_string(repo_name, min.chars = 1)
   checkmate::assert_string(repo_desc)
+  checkmate::assert_flag(private)
   checkmate::assert_string(org, min.chars = 1, null.ok = TRUE)
   checkmate::assert_string(host, min.chars = 1, null.ok = TRUE)
 
@@ -229,6 +230,7 @@ create_github_repo <- function(repo_name, repo_desc = "", org = NULL,
       "POST /user/repos",
       name = repo_name,
       description = repo_desc,
+      private = private,
       gitignore_template = "R",
       license_template = license_template,
       .api_url = host
@@ -239,6 +241,7 @@ create_github_repo <- function(repo_name, repo_desc = "", org = NULL,
       org = org,
       name = repo_name,
       description = repo_desc,
+      private = private,
       gitignore_template = "R",
       license_template = license_template,
       .api_url = host
@@ -283,18 +286,20 @@ create_github_repo <- function(repo_name, repo_desc = "", org = NULL,
   } else {
     required_pull_request_reviews <- NA
   }
-  gh::gh(
-    "PUT /repos/{owner}/{repo}/branches/{branch}/protection",
-    owner = create$owner$login,
-    repo = create$name,
-    branch = create$default_branch,
-    required_status_checks = required_status_checks,
-    enforce_admins = NA,
-    required_pull_request_reviews = required_pull_request_reviews,
-    restrictions = NA,
-    required_linear_history = TRUE,
-    .api_url = host
-  )
+  if (!private) {
+    gh::gh(
+      "PUT /repos/{owner}/{repo}/branches/{branch}/protection",
+      owner = create$owner$login,
+      repo = create$name,
+      branch = create$default_branch,
+      required_status_checks = required_status_checks,
+      enforce_admins = NA,
+      required_pull_request_reviews = required_pull_request_reviews,
+      restrictions = NA,
+      required_linear_history = TRUE,
+      .api_url = host
+    )
+  }
 
   # warning: duplicates .Rproj.user in .gitignore
   fs_path <- usethis::create_from_github(

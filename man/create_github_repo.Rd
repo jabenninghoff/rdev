@@ -7,6 +7,7 @@
 create_github_repo(
   repo_name,
   repo_desc = "",
+  private = FALSE,
   org = NULL,
   host = getOption("rdev.host")
 )
@@ -15,6 +16,8 @@ create_github_repo(
 \item{repo_name}{The name of the GitHub repository to create}
 
 \item{repo_desc}{The description of the GitHub repository to create}
+
+\item{private}{If \code{TRUE}, creates a private repository.}
 
 \item{org}{The organization to create the repository in. If \code{NULL}, create the repository in the
 active user's account.}
@@ -40,7 +43,7 @@ When run, \code{create_github_repo()}:
 \item Creates a new GitHub repository using \code{\link[gh:gh]{gh::gh()}} with license template from \code{\link[=get_license]{get_license()}}
 \item Activates Dependabot alerts per \code{getOption("rdev.dependabot", default = TRUE)}
 \item Activates Dependabot security updates per \code{getOption("rdev.dependabot", default = TRUE)}
-\item Adds branch protection to the default branch
+\item Adds branch protection to the default branch (if \code{private} is \code{FALSE})
 \item Clones the repository locally with \code{\link[usethis:create_from_github]{usethis::create_from_github()}}
 \item Creates a basic package using \code{\link[usethis:create_package]{usethis::create_package()}}
 \item If running interactively on macOS, the repository will automatically be opened in RStudio,
