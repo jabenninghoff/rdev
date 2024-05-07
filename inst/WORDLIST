@@ -56,7 +56,6 @@ linter
 linters
 lintr
 lockfile
-macOS
 macos
 md
 mergeable
@@ -68,7 +67,6 @@ pkgdown
 po
 pre
 qmd
-quickstart
 rcmdcheck
 rebaseable
 renv
