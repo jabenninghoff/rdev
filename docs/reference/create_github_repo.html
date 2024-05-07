@@ -10,7 +10,7 @@
     
     <a class="navbar-brand me-2" href="../index.html">rdev</a>
 
-    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">1.10.6</small>
+    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">1.10.7</small>
 
     
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbar" aria-controls="navbar" aria-expanded="false" aria-label="Toggle navigation">
@@ -64,6 +64,7 @@
     <div class="sourceCode"><pre class="sourceCode r"><code><span><span class="fu">create_github_repo</span><span class="op">(</span></span>
 <span>  <span class="va">repo_name</span>,</span>
 <span>  repo_desc <span class="op">=</span> <span class="st">""</span>,</span>
+<span>  private <span class="op">=</span> <span class="cn">FALSE</span>,</span>
 <span>  org <span class="op">=</span> <span class="cn">NULL</span>,</span>
 <span>  host <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/options.html" class="external-link">getOption</a></span><span class="op">(</span><span class="st">"rdev.host"</span><span class="op">)</span></span>
 <span><span class="op">)</span></span></code></pre></div>
@@ -77,6 +78,10 @@
 
 <dt>repo_desc</dt>
 <dd><p>The description of the GitHub repository to create</p></dd>
+
+
+<dt>private</dt>
+<dd><p>If <code>TRUE</code>, creates a private repository.</p></dd>
 
 
 <dt>org</dt>
@@ -105,7 +110,7 @@ acceptable.</p></dd>
     <p>When run, <code>create_github_repo()</code>:</p><ol><li><p>Creates a new GitHub repository using <code><a href="https://gh.r-lib.org/reference/gh.html" class="external-link">gh::gh()</a></code> with license template from <code><a href="get_license.html">get_license()</a></code></p></li>
 <li><p>Activates Dependabot alerts per <code>getOption("rdev.dependabot", default = TRUE)</code></p></li>
 <li><p>Activates Dependabot security updates per <code>getOption("rdev.dependabot", default = TRUE)</code></p></li>
-<li><p>Adds branch protection to the default branch</p></li>
+<li><p>Adds branch protection to the default branch (if <code>private</code> is <code>FALSE</code>)</p></li>
 <li><p>Clones the repository locally with <code><a href="https://usethis.r-lib.org/reference/create_from_github.html" class="external-link">usethis::create_from_github()</a></code></p></li>
 <li><p>Creates a basic package using <code><a href="https://usethis.r-lib.org/reference/create_package.html" class="external-link">usethis::create_package()</a></code></p></li>
 <li><p>If running interactively on macOS, the repository will automatically be opened in RStudio,
