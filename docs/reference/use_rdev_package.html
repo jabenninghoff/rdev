@@ -12,7 +12,7 @@ up a package."><meta property="og:image" content="https://jabenninghoff.github.i
     
     <a class="navbar-brand me-2" href="../index.html">rdev</a>
 
-    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">1.10.7</small>
+    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">1.10.8</small>
 
     
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbar" aria-controls="navbar" aria-expanded="false" aria-label="Toggle navigation">
@@ -75,8 +75,10 @@ up a package.</p>
 </dl></div>
     <div class="section level2">
     <h2 id="github-pages">GitHub Pages<a class="anchor" aria-label="anchor" href="#github-pages"></a></h2>
-    <p>GitHub Pages can be disabled by setting <code>rdev.github.pages</code> to <code>FALSE</code>:
-<code>options(rdev.github.pages = FALSE)</code></p>
+    <p>GitHub Pages is enabled by default for public repositories, and can be
+disabled by setting <code>rdev.github.pages</code> to <code>FALSE</code>: <code>options(rdev.github.pages = FALSE)</code>.
+GitHub Pages is disabled by default for private repositories (as it is not supported on the
+free plan), and can be enabled by setting <code>rdev.github.pages</code> to <code>TRUE</code>.</p>
     </div>
     <div class="section level2">
     <h2 id="github-actions">GitHub Actions<a class="anchor" aria-label="anchor" href="#github-actions"></a></h2>
