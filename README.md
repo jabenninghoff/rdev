@@ -218,7 +218,7 @@ ci()
 #>   <chr>                      <nam> <chr>  <chr>   <chr> <chr> <chr>  <chr> <chr>
 #> 1 http://covr.r-lib.org/ref… <chr> 200    OK      "htt… ""    ""     ""    /Use…
 #> 2 http://r-lib.github.io/rc… <chr> 200    OK      "htt… ""    ""     ""    /Use…
-#> 3 https://opensource.org/li… <chr> Error  SSL: n… ""    ""    ""     ""    /Use…
+#> 3 https://stat.ethz.ch/R-ma… <chr> 403    Forbid… ""    ""    ""     ""    /Use…
 #> 
 #> Setting env vars: NOT_CRAN="true", CI="true"
 #> rcmdcheck::rcmdcheck(args = "--no-manual", error_on = "warning")
@@ -230,10 +230,10 @@ ci()
 #> * creating vignettes ... OK
 #> * checking for LF line-endings in source and make files and shell scripts
 #> * checking for empty or unneeded directories
-#> * building ‘rdev_1.10.8.tar.gz’
+#> * building ‘rdev_1.10.9.tar.gz’
 #> 
 #> ── R CMD check ─────────────────────────────────────────────────────────────────
-#> * using log directory ‘/private/var/folders/vn/cw5f9gws42v9m8mdsds_zbl00000gp/T/RtmpzKEj9a/file3f2e61a7d5ca/rdev.Rcheck’
+#> * using log directory ‘/private/var/folders/vn/cw5f9gws42v9m8mdsds_zbl00000gp/T/Rtmp9PKibi/file10b015c59645a/rdev.Rcheck’
 #> * using R version 4.4.0 (2024-04-24)
 #> * using platform: aarch64-apple-darwin20
 #> * R was compiled by
@@ -243,7 +243,7 @@ ci()
 #> * using session charset: UTF-8
 #> * using option ‘--no-manual’
 #> * checking for file ‘rdev/DESCRIPTION’ ... OK
-#> * this is package ‘rdev’ version ‘1.10.8’
+#> * this is package ‘rdev’ version ‘1.10.9’
 #> * package encoding: UTF-8
 #> * checking package namespace information ... OK
 #> * checking package dependencies ... OK
@@ -298,8 +298,8 @@ ci()
 #> * DONE
 #> 
 #> Status: OK
-#> ── R CMD check results ──────────────────────────────────────── rdev 1.10.8 ────
-#> Duration: 31.6s
+#> ── R CMD check results ──────────────────────────────────────── rdev 1.10.9 ────
+#> Duration: 33.5s
 #> 
 #> 0 errors ✔ | 0 warnings ✔ | 0 notes ✔
 ```
