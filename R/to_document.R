@@ -142,14 +142,21 @@ rmd_metadata <- function(file_path) { # nolint: cyclocomp_linter.
   urls <- desc::desc_get_urls()
   if (length(urls) < 1) {
     stop("no URL found in DESCRIPTION")
+  } else if (length(urls) == 1) {
+    # assume urls[1] is repository URL, no GitHub Pages URL
+    base_url <- "."
+    ext <- ".Rmd"
+  } else {
+    # assume urls[1] is GitHub Pages URL, urls[2] is repository URL
+    base_url <- urls[1]
+    ext <- ".html"
   }
-  base_url <- ifelse(!is.na(urls[2]), urls[1], "~")
   # set separator to "/" only if first URL doesn't end with "/"
   sep <- ifelse(endsWith(base_url, "/"), "", "/")
-  # add analysis to path if using Quarto
-  sep <- ifelse(quarto, paste0(sep, "analysis/"), sep)
+  # add analysis to path if using Quarto or no GitHub Pages URL
+  sep <- ifelse(quarto || length(urls) == 1, paste0(sep, "analysis/"), sep)
   gh_url <- paste0(
-    base_url, sep, fs::path_ext_remove(fs::path_file(file_path)), ".html"
+    base_url, sep, fs::path_ext_remove(fs::path_file(file_path)), ext
   )
 
   list(title = yaml$title, url = gh_url, date = yaml$date, description = notebook[desc_line])
