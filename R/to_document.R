@@ -143,12 +143,13 @@ rmd_metadata <- function(file_path) { # nolint: cyclocomp_linter.
   if (length(urls) < 1) {
     stop("no URL found in DESCRIPTION")
   }
+  base_url <- ifelse(!is.na(urls[2]), urls[1], "~")
   # set separator to "/" only if first URL doesn't end with "/"
-  sep <- ifelse(endsWith(urls[1], "/"), "", "/")
+  sep <- ifelse(endsWith(base_url, "/"), "", "/")
   # add analysis to path if using Quarto
   sep <- ifelse(quarto, paste0(sep, "analysis/"), sep)
   gh_url <- paste0(
-    urls[1], sep, fs::path_ext_remove(fs::path_file(file_path)), ".html"
+    base_url, sep, fs::path_ext_remove(fs::path_file(file_path)), ".html"
   )
 
   list(title = yaml$title, url = gh_url, date = yaml$date, description = notebook[desc_line])

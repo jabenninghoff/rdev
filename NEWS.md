@@ -1,3 +1,7 @@
+# rdev 1.10.9
+
+* Add support for single URL in DESCRIPTION
+
 # rdev 1.10.8
 
 * Added support for private repositories to `use_rdev_package()`
