@@ -345,6 +345,29 @@ get_server_url <- function() {
   paste0(host_url$scheme, "://", user, host_url$server, port, "/")
 }
 
+#' Is GitHub repository private?
+#'
+#' Query GitHub to determine if a repository is private or not. Written as an internal function so
+#'   it can be stubbed out in local_temppkg().
+#'
+#' @param owner repository owner
+#' @param repo repository name
+#'
+#' @return logical, `TRUE` if the repository is private
+#'
+#' @keywords internal
+#' @noRd
+gh_repo_private <- function(owner, repo) {
+  gh_json <- gh::gh(
+    "GET /repos/{owner}/{repo}",
+    owner = owner,
+    repo = repo,
+    .api_url = getOption("rdev.host")
+  )
+
+  gh_json$private
+}
+
 #' Use rdev package conventions
 #'
 #' Add rdev templates and settings within the active package. Normally invoked when first setting
@@ -352,8 +375,10 @@ get_server_url <- function() {
 #'
 #' @inheritSection create_github_repo GitHub Actions
 #'
-#' @section GitHub Pages: GitHub Pages can be disabled by setting `rdev.github.pages` to `FALSE`:
-#'   `options(rdev.github.pages = FALSE)`
+#' @section GitHub Pages: GitHub Pages is enabled by default for public repositories, and can be
+#'   disabled by setting `rdev.github.pages` to `FALSE`: `options(rdev.github.pages = FALSE)`.
+#'   GitHub Pages is disabled by default for private repositories (as it is not supported on the
+#'   free plan), and can be enabled by setting `rdev.github.pages` to `TRUE`.
 #'
 #' @param quiet If TRUE, disable user prompts by setting [rlang::local_interactive()] to FALSE.
 #'
@@ -421,8 +446,9 @@ use_rdev_package <- function(quiet = TRUE) {
   gh_repo <- get_github_repo()
   gh_url <- paste0(get_server_url(), gh_repo$username, "/", gh_repo$repo)
   gh_issues <- paste0(gh_url, "/issues")
+  private <- gh_repo_private(owner = gh_repo$username, repo = gh_repo$repo)
 
-  if (getOption("rdev.github.pages", default = TRUE)) {
+  if (getOption("rdev.github.pages", default = !private)) {
     gh_pages <- usethis::use_github_pages(branch = usethis::git_default_branch(), path = "/docs")
     pages_url <- gh_pages$html_url
     urls <- c(pages_url, gh_url)

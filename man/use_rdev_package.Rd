@@ -14,8 +14,10 @@ Add rdev templates and settings within the active package. Normally invoked when
 up a package.
 }
 \section{GitHub Pages}{
- GitHub Pages can be disabled by setting \code{rdev.github.pages} to \code{FALSE}:
-\code{options(rdev.github.pages = FALSE)}
+ GitHub Pages is enabled by default for public repositories, and can be
+disabled by setting \code{rdev.github.pages} to \code{FALSE}: \code{options(rdev.github.pages = FALSE)}.
+GitHub Pages is disabled by default for private repositories (as it is not supported on the
+free plan), and can be enabled by setting \code{rdev.github.pages} to \code{TRUE}.
 }
 
 \section{GitHub Actions}{
