@@ -591,7 +591,7 @@ use_analysis_package <- function(use_quarto = TRUE, prompt = FALSE) {
     fields <- list(
       repo = github_repo$repo,
       description = desc::desc_get_field("Description"),
-      site_url = ifelse(!is.na(urls[2]), urls[1], "~"),
+      site_url = ifelse(!is.na(urls[2]), urls[1], "."),
       repo_url = ifelse(!is.na(urls[2]), urls[2], urls[1]),
       year = format(Sys.Date(), "%Y"),
       author = paste(desc::desc_get_author()$given, desc::desc_get_author()$family)
@@ -604,7 +604,7 @@ use_analysis_package <- function(use_quarto = TRUE, prompt = FALSE) {
   } else {
     if (!fs::file_exists("pkgdown/_base.yml")) {
       yaml::write_yaml(
-        list(url = ifelse(!is.na(urls[2]), urls[1], "~"), template = list(bootstrap = 5L)),
+        list(url = ifelse(!is.na(urls[2]), urls[1], "."), template = list(bootstrap = 5L)),
         "pkgdown/_base.yml"
       )
     }
@@ -661,7 +661,7 @@ use_rdev_pkgdown <- function(config_file = "_pkgdown.yml", destdir = "docs") {
   usethis::use_template("extra.css", save_as = "pkgdown/extra.css", package = "rdev")
   pkg <- yaml::read_yaml(config_file)
   urls <- desc::desc_get_urls()
-  pkg$url <- ifelse(!is.na(urls[2]), urls[1], "~")
+  pkg$url <- ifelse(!is.na(urls[2]), urls[1], ".")
   # workaround for RStudio race condition
   if (rlang::is_interactive()) {
     writeLines(paste0("\nupdating ", config_file, "..."), sep = "")
