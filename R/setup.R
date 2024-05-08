@@ -223,8 +223,6 @@ create_github_repo <- function(repo_name, repo_desc = "", private = FALSE, org =
     stop("create_from_github() target, '", ut_destdir, "' already exists")
   }
 
-  license_template <- get_license()
-  if (license_template == "proprietary") license_template <- NULL
   if (is.null(org)) {
     create <- gh::gh(
       "POST /user/repos",
@@ -232,7 +230,7 @@ create_github_repo <- function(repo_name, repo_desc = "", private = FALSE, org =
       description = repo_desc,
       private = private,
       gitignore_template = "R",
-      license_template = license_template,
+      license_template = NULL,
       .api_url = host
     )
   } else {
@@ -243,7 +241,7 @@ create_github_repo <- function(repo_name, repo_desc = "", private = FALSE, org =
       description = repo_desc,
       private = private,
       gitignore_template = "R",
-      license_template = license_template,
+      license_template = NULL,
       .api_url = host
     )
   }
