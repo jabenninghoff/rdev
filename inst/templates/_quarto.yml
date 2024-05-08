@@ -4,10 +4,10 @@ project:
 
 website:
   title: "{{{ repo }}}"
-  site-url: {{{ site_url }}}
+  site-url: "{{{ site_url }}}"
   description:
     "{{{ description }}}"
-  repo-url: {{{ repo_url }}}
+  repo-url: "{{{ repo_url }}}"
   repo-actions: [source, issue]
   page-navigation: true
   sidebar:
