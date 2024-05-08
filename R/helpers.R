@@ -58,6 +58,7 @@ local_temppkg <- function(dir = fs::file_temp(), type = "usethis", env = parent.
     gh_repo <- list(username = "example", repo = "tpkg")
     gh_pages <- list(html_url = "https://example.github.io/tpkg/")
     mockery::stub(use_rdev_package, "get_github_repo", gh_repo)
+    mockery::stub(use_rdev_package, "gh_repo_private", FALSE)
     mockery::stub(use_rdev_package, "usethis::use_github_pages", gh_pages)
     mockery::stub(use_rdev_package, "gh::gh", NULL)
     mockery::stub(use_rdev_package, "remotes::install_github", NULL)

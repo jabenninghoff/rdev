@@ -1,3 +1,7 @@
+# rdev 1.10.8
+
+* Added support for private repositories to `use_rdev_package()`
+
 # rdev 1.10.7
 
 * Added support for creating private repositories to `create_github_repo()`
