@@ -5,7 +5,7 @@
 - [x] Add README.Rmd
 - [x] Update `DESCRIPTION` and use description data in `README.Rmd`
 - [x] Add ORCID
-- [ ] Update my ORCID details
+- [x] Update my ORCID details
 
 ## Package
 
