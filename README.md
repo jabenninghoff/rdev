@@ -213,12 +213,11 @@ ci()
 #> 
 #> url_check()
 #> html_url_check()
-#> # A tibble: 3 × 9
+#> # A tibble: 2 × 9
 #>   URL                        From  Status Message New   CRAN  Spaces R     root 
 #>   <chr>                      <nam> <chr>  <chr>   <chr> <chr> <chr>  <chr> <chr>
-#> 1 http://covr.r-lib.org/ref… <chr> 200    OK      "htt… ""    ""     ""    /Use…
-#> 2 http://r-lib.github.io/rc… <chr> 200    OK      "htt… ""    ""     ""    /Use…
-#> 3 https://stat.ethz.ch/R-ma… <chr> 403    Forbid… ""    ""    ""     ""    /Use…
+#> 1 http://covr.r-lib.org/ref… <chr> 200    OK      http… ""    ""     ""    /Use…
+#> 2 http://r-lib.github.io/rc… <chr> 200    OK      http… ""    ""     ""    /Use…
 #> 
 #> Setting env vars: NOT_CRAN="true", CI="true"
 #> rcmdcheck::rcmdcheck(args = "--no-manual", error_on = "warning")
@@ -230,20 +229,20 @@ ci()
 #> * creating vignettes ... OK
 #> * checking for LF line-endings in source and make files and shell scripts
 #> * checking for empty or unneeded directories
-#> * building ‘rdev_1.10.10.tar.gz’
+#> * building ‘rdev_1.10.11.tar.gz’
 #> 
 #> ── R CMD check ─────────────────────────────────────────────────────────────────
-#> * using log directory ‘/private/var/folders/vn/cw5f9gws42v9m8mdsds_zbl00000gp/T/RtmpLddd7C/file16ec935d24789/rdev.Rcheck’
+#> * using log directory ‘/private/var/folders/vn/cw5f9gws42v9m8mdsds_zbl00000gp/T/RtmpbGt8X8/filef8553618c29d/rdev.Rcheck’
 #> * using R version 4.4.0 (2024-04-24)
 #> * using platform: aarch64-apple-darwin20
 #> * R was compiled by
 #>     Apple clang version 14.0.0 (clang-1400.0.29.202)
 #>     GNU Fortran (GCC) 12.2.0
-#> * running under: macOS Ventura 13.6.6
+#> * running under: macOS Ventura 13.6.7
 #> * using session charset: UTF-8
 #> * using option ‘--no-manual’
 #> * checking for file ‘rdev/DESCRIPTION’ ... OK
-#> * this is package ‘rdev’ version ‘1.10.10’
+#> * this is package ‘rdev’ version ‘1.10.11’
 #> * package encoding: UTF-8
 #> * checking package namespace information ... OK
 #> * checking package dependencies ... OK
@@ -298,8 +297,8 @@ ci()
 #> * DONE
 #> 
 #> Status: OK
-#> ── R CMD check results ─────────────────────────────────────── rdev 1.10.10 ────
-#> Duration: 32.8s
+#> ── R CMD check results ─────────────────────────────────────── rdev 1.10.11 ────
+#> Duration: 33.1s
 #> 
 #> 0 errors ✔ | 0 warnings ✔ | 0 notes ✔
 ```
