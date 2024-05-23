@@ -172,14 +172,14 @@
     },
     "cachem": {
       "Package": "cachem",
-      "Version": "1.0.8",
+      "Version": "1.1.0",
       "Source": "Repository",
       "Repository": "CRAN",
       "Requirements": [
         "fastmap",
         "rlang"
       ],
-      "Hash": "c35768291560ce302c0a6589f92e837d"
+      "Hash": "cd9a672193789068eb5a2aad65a0dedf"
     },
     "callr": {
       "Package": "callr",
@@ -477,10 +477,10 @@
     },
     "fastmap": {
       "Package": "fastmap",
-      "Version": "1.1.1",
+      "Version": "1.2.0",
       "Source": "Repository",
       "Repository": "CRAN",
-      "Hash": "f7736a18de97dea803bde0a2daaafb27"
+      "Hash": "aa5e1cd11c2d15497494c5292d7ffcc8"
     },
     "fontawesome": {
       "Package": "fontawesome",
@@ -817,13 +817,13 @@
     },
     "openssl": {
       "Package": "openssl",
-      "Version": "2.1.2",
+      "Version": "2.2.0",
       "Source": "Repository",
       "Repository": "CRAN",
       "Requirements": [
         "askpass"
       ],
-      "Hash": "ea2475b073243d9d338aa8f086ce973e"
+      "Hash": "2bcca3848e4734eb3b16103bc9aa4b8e"
     },
     "pillar": {
       "Package": "pillar",
@@ -1027,14 +1027,14 @@
     },
     "ragg": {
       "Package": "ragg",
-      "Version": "1.3.1",
+      "Version": "1.3.2",
       "Source": "Repository",
       "Repository": "CRAN",
       "Requirements": [
         "systemfonts",
         "textshaping"
       ],
-      "Hash": "539dcb63ce611fe389b4c8e2b546cf24"
+      "Hash": "e3087db406e079a8a2fd87f413918ed3"
     },
     "rappdirs": {
       "Package": "rappdirs",
@@ -1125,7 +1125,7 @@
     },
     "rmarkdown": {
       "Package": "rmarkdown",
-      "Version": "2.26",
+      "Version": "2.27",
       "Source": "Repository",
       "Repository": "CRAN",
       "Requirements": [
@@ -1144,7 +1144,7 @@
         "xfun",
         "yaml"
       ],
-      "Hash": "9b148e7f95d33aac01f31282d49e4f44"
+      "Hash": "27f9502e1cdbfa195f94e03b0f517484"
     },
     "roxygen2": {
       "Package": "roxygen2",
@@ -1342,14 +1342,15 @@
     },
     "systemfonts": {
       "Package": "systemfonts",
-      "Version": "1.0.6",
+      "Version": "1.1.0",
       "Source": "Repository",
       "Repository": "CRAN",
       "Requirements": [
         "R",
-        "cpp11"
+        "cpp11",
+        "lifecycle"
       ],
-      "Hash": "6d538cff441f0f1f36db2209ac7495ac"
+      "Hash": "213b6b8ed5afbf934843e6c3b090d418"
     },
     "testthat": {
       "Package": "testthat",
@@ -1539,7 +1540,7 @@
     },
     "xaringanExtra": {
       "Package": "xaringanExtra",
-      "Version": "0.7.0",
+      "Version": "0.8.0",
       "Source": "Repository",
       "Repository": "CRAN",
       "Requirements": [
@@ -1549,11 +1550,11 @@
         "utils",
         "uuid"
       ],
-      "Hash": "b700278c14be355c081d130d48abc83d"
+      "Hash": "e13b6d3cbb08e856fa73a565c074db40"
     },
     "xfun": {
       "Package": "xfun",
-      "Version": "0.43",
+      "Version": "0.44",
       "Source": "Repository",
       "Repository": "CRAN",
       "Requirements": [
@@ -1561,7 +1562,7 @@
         "stats",
         "tools"
       ],
-      "Hash": "ab6371d8653ce5f2f9290f4ec7b42a8e"
+      "Hash": "317a0538d32f4a009658bcedb7923f4b"
     },
     "xml2": {
       "Package": "xml2",
