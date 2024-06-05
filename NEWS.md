@@ -1,3 +1,7 @@
+# rdev 1.11.0
+
+* Added function `package_downloads()`: A wrapper for `cranlogs::cran_downloads()` that summarizes the number of package downloads from the RStudio CRAN mirror
+
 # rdev 1.10.11
 
 * Minor updates

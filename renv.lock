@@ -274,6 +274,17 @@
       ],
       "Hash": "5a295d7d963cc5035284dcdbaf334f4e"
     },
+    "cranlogs": {
+      "Package": "cranlogs",
+      "Version": "2.1.1",
+      "Source": "Repository",
+      "Repository": "CRAN",
+      "Requirements": [
+        "httr",
+        "jsonlite"
+      ],
+      "Hash": "cfa4eec97df94fd69cb8652368966020"
+    },
     "crayon": {
       "Package": "crayon",
       "Version": "1.5.2",

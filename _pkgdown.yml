@@ -58,6 +58,7 @@ reference:
     - extra_deps
     - urlchecker-reexports
     - html_url_check
+    - package_downloads
   - title: rdev Package
     desc: >
       rdev package documentation
