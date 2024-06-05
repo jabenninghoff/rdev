@@ -13,6 +13,7 @@ BugReports: https://github.com/jabenninghoff/rdev/issues
 Imports:
     checkmate,
     cli,
+    cranlogs,
     curl,
     desc,
     devtools,

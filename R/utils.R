@@ -216,3 +216,29 @@ open_files <- function(files = c("TODO.md", "NEWS.md", "README.Rmd", "DESCRIPTIO
   writeLines(paste0("Opening files: ", toString(files)))
   invisible(vapply(files, rstudioapi::navigateToFile, character(1)))
 }
+
+#' Summarize package downloads
+#'
+#' A wrapper for [cranlogs::cran_downloads()] that summarizes the number of package downloads from
+#'   the RStudio CRAN mirror.
+#'
+#' By default, the summary is for the last month.
+#'
+#' @param packages A character vector of the packages to query.
+#' @param when The period to summarize, one of `last-day`, `last-week` or `last-month`
+#'   (the default).
+#'
+#' @return A data frame containing the total number of downloads by package for the specified
+#'   period, sorted by popularity.
+#' @export
+package_downloads <- function(packages, when = "last-month") {
+  checkmate::assert_character(packages, min.chars = 1)
+  if ("R" %in% packages) {
+    stop("Querying downloads of R is not supported!")
+  }
+
+  df <- cranlogs::cran_downloads(packages = packages, when = when) |>
+    stats::aggregate(by = count ~ package, FUN = sum)
+
+  df[order(df$count, decreasing = TRUE), ]
+}

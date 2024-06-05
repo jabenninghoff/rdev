@@ -215,3 +215,15 @@ test_that("open_files opens all files", {
   )
   expect_named(ret, files)
 })
+
+# package_downloads
+
+test_that("package_downloads validates arguments", {
+  mockery::stub(package_downloads, "cranlogs::cran_downloads", NULL)
+
+  expect_error(package_downloads(NULL), "'packages'")
+  expect_error(package_downloads(""), "'packages'")
+  expect_error(package_downloads(c("checkmate", "")), "'packages'")
+  expect_error(package_downloads("R"), "Querying downloads of R is not supported!")
+  expect_error(package_downloads(c("checkmate", "R")), "Querying downloads of R is not supported!")
+})
