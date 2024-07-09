@@ -1,159 +1,55 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
-  <url>
-    <loc>https://jabenninghoff.github.io/rdev/404.html</loc>
-  </url>
-  <url>
-    <loc>https://jabenninghoff.github.io/rdev/LICENSE-text.html</loc>
-  </url>
-  <url>
-    <loc>https://jabenninghoff.github.io/rdev/LICENSE.html</loc>
-  </url>
-  <url>
-    <loc>https://jabenninghoff.github.io/rdev/TODO.html</loc>
-  </url>
-  <url>
-    <loc>https://jabenninghoff.github.io/rdev/articles/analysis-package-layout.html</loc>
-  </url>
-  <url>
-    <loc>https://jabenninghoff.github.io/rdev/articles/index.html</loc>
-  </url>
-  <url>
-    <loc>https://jabenninghoff.github.io/rdev/articles/rdev.html</loc>
-  </url>
-  <url>
-    <loc>https://jabenninghoff.github.io/rdev/articles/style-guide.html</loc>
-  </url>
-  <url>
-    <loc>https://jabenninghoff.github.io/rdev/authors.html</loc>
-  </url>
-  <url>
-    <loc>https://jabenninghoff.github.io/rdev/index.html</loc>
-  </url>
-  <url>
-    <loc>https://jabenninghoff.github.io/rdev/news/index.html</loc>
-  </url>
-  <url>
-    <loc>https://jabenninghoff.github.io/rdev/reference/build_analysis_site.html</loc>
-  </url>
-  <url>
-    <loc>https://jabenninghoff.github.io/rdev/reference/build_quarto_site.html</loc>
-  </url>
-  <url>
-    <loc>https://jabenninghoff.github.io/rdev/reference/build_rdev_site.html</loc>
-  </url>
-  <url>
-    <loc>https://jabenninghoff.github.io/rdev/reference/check_renv.html</loc>
-  </url>
-  <url>
-    <loc>https://jabenninghoff.github.io/rdev/reference/ci.html</loc>
-  </url>
-  <url>
-    <loc>https://jabenninghoff.github.io/rdev/reference/create_github_repo.html</loc>
-  </url>
-  <url>
-    <loc>https://jabenninghoff.github.io/rdev/reference/deps_check.html</loc>
-  </url>
-  <url>
-    <loc>https://jabenninghoff.github.io/rdev/reference/get_license.html</loc>
-  </url>
-  <url>
-    <loc>https://jabenninghoff.github.io/rdev/reference/get_release.html</loc>
-  </url>
-  <url>
-    <loc>https://jabenninghoff.github.io/rdev/reference/html_url_check.html</loc>
-  </url>
-  <url>
-    <loc>https://jabenninghoff.github.io/rdev/reference/index.html</loc>
-  </url>
-  <url>
-    <loc>https://jabenninghoff.github.io/rdev/reference/init.html</loc>
-  </url>
-  <url>
-    <loc>https://jabenninghoff.github.io/rdev/reference/lint_all.html</loc>
-  </url>
-  <url>
-    <loc>https://jabenninghoff.github.io/rdev/reference/local_temppkg.html</loc>
-  </url>
-  <url>
-    <loc>https://jabenninghoff.github.io/rdev/reference/merge_release.html</loc>
-  </url>
-  <url>
-    <loc>https://jabenninghoff.github.io/rdev/reference/new_branch.html</loc>
-  </url>
-  <url>
-    <loc>https://jabenninghoff.github.io/rdev/reference/open_files.html</loc>
-  </url>
-  <url>
-    <loc>https://jabenninghoff.github.io/rdev/reference/package_downloads.html</loc>
-  </url>
-  <url>
-    <loc>https://jabenninghoff.github.io/rdev/reference/quickstart.html</loc>
-  </url>
-  <url>
-    <loc>https://jabenninghoff.github.io/rdev/reference/rdev-package.html</loc>
-  </url>
-  <url>
-    <loc>https://jabenninghoff.github.io/rdev/reference/rmd_metadata.html</loc>
-  </url>
-  <url>
-    <loc>https://jabenninghoff.github.io/rdev/reference/setup_analysis.html</loc>
-  </url>
-  <url>
-    <loc>https://jabenninghoff.github.io/rdev/reference/setup_rdev.html</loc>
-  </url>
-  <url>
-    <loc>https://jabenninghoff.github.io/rdev/reference/sort_file.html</loc>
-  </url>
-  <url>
-    <loc>https://jabenninghoff.github.io/rdev/reference/sort_rbuildignore.html</loc>
-  </url>
-  <url>
-    <loc>https://jabenninghoff.github.io/rdev/reference/spell_check_notebooks.html</loc>
-  </url>
-  <url>
-    <loc>https://jabenninghoff.github.io/rdev/reference/stage_release.html</loc>
-  </url>
-  <url>
-    <loc>https://jabenninghoff.github.io/rdev/reference/style_all.html</loc>
-  </url>
-  <url>
-    <loc>https://jabenninghoff.github.io/rdev/reference/to_document.html</loc>
-  </url>
-  <url>
-    <loc>https://jabenninghoff.github.io/rdev/reference/unfreeze.html</loc>
-  </url>
-  <url>
-    <loc>https://jabenninghoff.github.io/rdev/reference/update_wordlist_notebooks.html</loc>
-  </url>
-  <url>
-    <loc>https://jabenninghoff.github.io/rdev/reference/urlchecker-reexports.html</loc>
-  </url>
-  <url>
-    <loc>https://jabenninghoff.github.io/rdev/reference/use_analysis_package.html</loc>
-  </url>
-  <url>
-    <loc>https://jabenninghoff.github.io/rdev/reference/use_codecov.html</loc>
-  </url>
-  <url>
-    <loc>https://jabenninghoff.github.io/rdev/reference/use_lintr.html</loc>
-  </url>
-  <url>
-    <loc>https://jabenninghoff.github.io/rdev/reference/use_package_r.html</loc>
-  </url>
-  <url>
-    <loc>https://jabenninghoff.github.io/rdev/reference/use_rdev_package.html</loc>
-  </url>
-  <url>
-    <loc>https://jabenninghoff.github.io/rdev/reference/use_rdev_pkgdown.html</loc>
-  </url>
-  <url>
-    <loc>https://jabenninghoff.github.io/rdev/reference/use_rprofile.html</loc>
-  </url>
-  <url>
-    <loc>https://jabenninghoff.github.io/rdev/reference/use_spelling.html</loc>
-  </url>
-  <url>
-    <loc>https://jabenninghoff.github.io/rdev/reference/use_todo.html</loc>
-  </url>
+<urlset xmlns = 'http://www.sitemaps.org/schemas/sitemap/0.9'>
+<url><loc>https://jabenninghoff.github.io/rdev/404.html</loc></url>
+<url><loc>https://jabenninghoff.github.io/rdev/LICENSE-text.html</loc></url>
+<url><loc>https://jabenninghoff.github.io/rdev/LICENSE.html</loc></url>
+<url><loc>https://jabenninghoff.github.io/rdev/TODO.html</loc></url>
+<url><loc>https://jabenninghoff.github.io/rdev/articles/analysis-package-layout.html</loc></url>
+<url><loc>https://jabenninghoff.github.io/rdev/articles/index.html</loc></url>
+<url><loc>https://jabenninghoff.github.io/rdev/articles/rdev.html</loc></url>
+<url><loc>https://jabenninghoff.github.io/rdev/articles/style-guide.html</loc></url>
+<url><loc>https://jabenninghoff.github.io/rdev/authors.html</loc></url>
+<url><loc>https://jabenninghoff.github.io/rdev/index.html</loc></url>
+<url><loc>https://jabenninghoff.github.io/rdev/news/index.html</loc></url>
+<url><loc>https://jabenninghoff.github.io/rdev/reference/build_analysis_site.html</loc></url>
+<url><loc>https://jabenninghoff.github.io/rdev/reference/build_quarto_site.html</loc></url>
+<url><loc>https://jabenninghoff.github.io/rdev/reference/build_rdev_site.html</loc></url>
+<url><loc>https://jabenninghoff.github.io/rdev/reference/check_renv.html</loc></url>
+<url><loc>https://jabenninghoff.github.io/rdev/reference/ci.html</loc></url>
+<url><loc>https://jabenninghoff.github.io/rdev/reference/create_github_repo.html</loc></url>
+<url><loc>https://jabenninghoff.github.io/rdev/reference/deps_check.html</loc></url>
+<url><loc>https://jabenninghoff.github.io/rdev/reference/get_license.html</loc></url>
+<url><loc>https://jabenninghoff.github.io/rdev/reference/get_release.html</loc></url>
+<url><loc>https://jabenninghoff.github.io/rdev/reference/html_url_check.html</loc></url>
+<url><loc>https://jabenninghoff.github.io/rdev/reference/index.html</loc></url>
+<url><loc>https://jabenninghoff.github.io/rdev/reference/init.html</loc></url>
+<url><loc>https://jabenninghoff.github.io/rdev/reference/lint_all.html</loc></url>
+<url><loc>https://jabenninghoff.github.io/rdev/reference/local_temppkg.html</loc></url>
+<url><loc>https://jabenninghoff.github.io/rdev/reference/merge_release.html</loc></url>
+<url><loc>https://jabenninghoff.github.io/rdev/reference/new_branch.html</loc></url>
+<url><loc>https://jabenninghoff.github.io/rdev/reference/open_files.html</loc></url>
+<url><loc>https://jabenninghoff.github.io/rdev/reference/package_downloads.html</loc></url>
+<url><loc>https://jabenninghoff.github.io/rdev/reference/quickstart.html</loc></url>
+<url><loc>https://jabenninghoff.github.io/rdev/reference/rdev-package.html</loc></url>
+<url><loc>https://jabenninghoff.github.io/rdev/reference/rmd_metadata.html</loc></url>
+<url><loc>https://jabenninghoff.github.io/rdev/reference/setup_analysis.html</loc></url>
+<url><loc>https://jabenninghoff.github.io/rdev/reference/setup_rdev.html</loc></url>
+<url><loc>https://jabenninghoff.github.io/rdev/reference/sort_file.html</loc></url>
+<url><loc>https://jabenninghoff.github.io/rdev/reference/sort_rbuildignore.html</loc></url>
+<url><loc>https://jabenninghoff.github.io/rdev/reference/spell_check_notebooks.html</loc></url>
+<url><loc>https://jabenninghoff.github.io/rdev/reference/stage_release.html</loc></url>
+<url><loc>https://jabenninghoff.github.io/rdev/reference/style_all.html</loc></url>
+<url><loc>https://jabenninghoff.github.io/rdev/reference/to_document.html</loc></url>
+<url><loc>https://jabenninghoff.github.io/rdev/reference/unfreeze.html</loc></url>
+<url><loc>https://jabenninghoff.github.io/rdev/reference/update_wordlist_notebooks.html</loc></url>
+<url><loc>https://jabenninghoff.github.io/rdev/reference/urlchecker-reexports.html</loc></url>
+<url><loc>https://jabenninghoff.github.io/rdev/reference/use_analysis_package.html</loc></url>
+<url><loc>https://jabenninghoff.github.io/rdev/reference/use_codecov.html</loc></url>
+<url><loc>https://jabenninghoff.github.io/rdev/reference/use_lintr.html</loc></url>
+<url><loc>https://jabenninghoff.github.io/rdev/reference/use_package_r.html</loc></url>
+<url><loc>https://jabenninghoff.github.io/rdev/reference/use_rdev_package.html</loc></url>
+<url><loc>https://jabenninghoff.github.io/rdev/reference/use_rdev_pkgdown.html</loc></url>
+<url><loc>https://jabenninghoff.github.io/rdev/reference/use_rprofile.html</loc></url>
+<url><loc>https://jabenninghoff.github.io/rdev/reference/use_spelling.html</loc></url>
+<url><loc>https://jabenninghoff.github.io/rdev/reference/use_todo.html</loc></url>
 </urlset>
+

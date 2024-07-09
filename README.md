@@ -115,7 +115,7 @@ ci()
 #> renv::dependencies() not in DESCRIPTION:
 #> 
 #> pkgdown::check_pkgdown()
-#> ✔ No problems found in _pkgdown.yml
+#> ✔ No problems found.
 #> 
 #> style_all()
 #> Styling  67  files:
@@ -229,11 +229,12 @@ ci()
 #> * creating vignettes ... OK
 #> * checking for LF line-endings in source and make files and shell scripts
 #> * checking for empty or unneeded directories
-#> * building ‘rdev_1.11.0.tar.gz’
+#> Removed empty directory ‘rdev/tests/testthat/_snaps’
+#> * building ‘rdev_1.11.1.tar.gz’
 #> 
 #> ── R CMD check ─────────────────────────────────────────────────────────────────
-#> * using log directory ‘/private/var/folders/vn/cw5f9gws42v9m8mdsds_zbl00000gp/T/Rtmpl0ug8f/filefaae5bd77b88/rdev.Rcheck’
-#> * using R version 4.4.0 (2024-04-24)
+#> * using log directory ‘/private/var/folders/vn/cw5f9gws42v9m8mdsds_zbl00000gp/T/Rtmpba8T7N/file1450c797d54e4/rdev.Rcheck’
+#> * using R version 4.4.1 (2024-06-14)
 #> * using platform: aarch64-apple-darwin20
 #> * R was compiled by
 #>     Apple clang version 14.0.0 (clang-1400.0.29.202)
@@ -242,7 +243,7 @@ ci()
 #> * using session charset: UTF-8
 #> * using option ‘--no-manual’
 #> * checking for file ‘rdev/DESCRIPTION’ ... OK
-#> * this is package ‘rdev’ version ‘1.11.0’
+#> * this is package ‘rdev’ version ‘1.11.1’
 #> * package encoding: UTF-8
 #> * checking package namespace information ... OK
 #> * checking package dependencies ... OK
@@ -297,8 +298,8 @@ ci()
 #> * DONE
 #> 
 #> Status: OK
-#> ── R CMD check results ──────────────────────────────────────── rdev 1.11.0 ────
-#> Duration: 31.7s
+#> ── R CMD check results ──────────────────────────────────────── rdev 1.11.1 ────
+#> Duration: 35.2s
 #> 
 #> 0 errors ✔ | 0 warnings ✔ | 0 notes ✔
 ```
