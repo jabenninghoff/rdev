@@ -19,5 +19,6 @@ Add pkgdown with rdev customizations. Implemented as a wrapper for \code{\link[u
 In addition to running \code{\link[usethis:use_pkgdown]{usethis::use_pkgdown()}}, \code{use_rdev_pkgdown} adds \code{extra.css} to
 \code{pkgdown} to fix rendering of GitHub-style
 \href{https://docs.github.com/en/get-started/writing-on-github/working-with-advanced-formatting/about-task-lists}{task lists},
-and adds the GitHub Pages URL.
+adds the GitHub Pages URL, and enables
+\href{https://pkgdown.r-lib.org/articles/customise.html#light-switch}{\code{template.light-switch}}.
 }

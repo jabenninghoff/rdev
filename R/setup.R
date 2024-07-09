@@ -649,7 +649,8 @@ use_analysis_package <- function(use_quarto = TRUE, prompt = FALSE) {
 #'   `pkgdown` to fix rendering of GitHub-style
 # nolint next: line_length_linter.
 #'   [task lists](https://docs.github.com/en/get-started/writing-on-github/working-with-advanced-formatting/about-task-lists),
-#'   and adds the GitHub Pages URL.
+#'   adds the GitHub Pages URL, and enables
+#'   [`template.light-switch`](https://pkgdown.r-lib.org/articles/customise.html#light-switch).
 #'
 #' @inheritParams usethis::use_pkgdown
 #'
@@ -662,12 +663,13 @@ use_rdev_pkgdown <- function(config_file = "_pkgdown.yml", destdir = "docs") {
   pkg <- yaml::read_yaml(config_file)
   urls <- desc::desc_get_urls()
   pkg$url <- ifelse(!is.na(urls[2]), urls[1], ".")
+  pkg$template <- append(pkg$template, list(`light-switch` = TRUE))
   # workaround for RStudio race condition
   if (rlang::is_interactive()) {
     writeLines(paste0("\nupdating ", config_file, "..."), sep = "")
     Sys.sleep(1)
     writeLines("done!")
   }
-  yaml::write_yaml(pkg, config_file)
+  yaml::write_yaml(pkg, config_file, handlers = list(logical = yaml::verbatim_logical))
   sort_rbuildignore()
 }

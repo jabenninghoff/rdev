@@ -343,6 +343,7 @@ test_that("use_rdev_pkgdown adds customizations", {
 
   expect_true(fs::file_exists("pkgdown/extra.css"))
   expect_identical(pkg$template$bootstrap, 5L)
+  expect_true(pkg$template$`light-switch`)
 })
 
 test_that("use_rdev_pkgdown pauses when running interactively", {

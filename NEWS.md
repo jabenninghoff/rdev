@@ -1,3 +1,7 @@
+# rdev 1.11.1
+
+* Enabled pkgdown ["light switch"](https://pkgdown.r-lib.org/articles/customise.html#light-switch) by default for packages using `use_rdev_pkgdown()`
+
 # rdev 1.11.0
 
 * Added function `package_downloads()`: A wrapper for `cranlogs::cran_downloads()` that summarizes the number of package downloads from the RStudio CRAN mirror
