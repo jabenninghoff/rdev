@@ -154,9 +154,10 @@ test_that("build_analysis_site creates analysis site", {
         )))
       ),
       right = list(
+        search = list(search = list()),
         github = list(
           icon = "fab fa-github fa-lg", href = "https://github.com/example/tpkg/",
-          `aria-label` = "github"
+          `aria-label` = "GitHub"
         )
       )
     ),
