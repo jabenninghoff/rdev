@@ -10,9 +10,9 @@ build_quarto_site(input = NULL, as_job = FALSE, unfreeze = FALSE, ...)
 \item{input}{The input file or project directory to be rendered (defaults
 to rendering the project in the current working directory).}
 
-\item{as_job}{Render as an RStudio background job. Default is "auto",
+\item{as_job}{Render as an RStudio background job. Default is \code{"auto"},
 which will render individual documents normally and projects as
-background jobs. Use the \code{quarto.render_as_job} R option to control
+background jobs. Use the \code{quarto.render_as_job} \R option to control
 the default globally.}
 
 \item{unfreeze}{If \code{TRUE}, delete the Quarto \verb{_freeze} directory to fully re-render the site.}
