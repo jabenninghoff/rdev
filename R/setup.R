@@ -110,6 +110,7 @@ use_codecov <- function(prompt = FALSE) {
   renv::install("covr")
   if (getOption("rdev.codecov", default = TRUE)) {
     usethis::use_coverage(type = "codecov")
+    spelling::update_wordlist(confirm = prompt) # use_coverage creates a "Codecov" badge
     sort_rbuildignore()
     if (getOption("rdev.github.actions", default = TRUE)) {
       usethis::use_github_action(
