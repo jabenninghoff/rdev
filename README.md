@@ -212,12 +212,18 @@ ci()
 #> 3 Suggests DT         *      
 #> 
 #> url_check()
-#> html_url_check()
-#> # A tibble: 2 × 9
+#> # A tibble: 1 × 9
 #>   URL                        From  Status Message New   CRAN  Spaces R     root 
 #>   <chr>                      <nam> <chr>  <chr>   <chr> <chr> <chr>  <chr> <chr>
-#> 1 http://covr.r-lib.org/ref… <chr> 200    OK      http… ""    ""     ""    /Use…
-#> 2 http://r-lib.github.io/rc… <chr> 200    OK      http… ""    ""     ""    /Use…
+#> 1 https://code.visualstudio… <chr> 500    Intern… ""    ""    ""     ""    /Use…
+#> html_url_check()
+#> # A tibble: 4 × 9
+#>   URL                        From  Status Message New   CRAN  Spaces R     root 
+#>   <chr>                      <nam> <chr>  <chr>   <chr> <chr> <chr>  <chr> <chr>
+#> 1 http://covr.r-lib.org/ref… <chr> 200    OK      "htt… ""    ""     ""    /Use…
+#> 2 http://r-lib.github.io/rc… <chr> 200    OK      "htt… ""    ""     ""    /Use…
+#> 3 https://code.visualstudio… <chr> 500    Intern… ""    ""    ""     ""    /Use…
+#> 4 https://github.blog/2009-… <chr> 200    OK      "htt… ""    ""     ""    /Use…
 #> 
 #> Setting env vars: NOT_CRAN="true", CI="true"
 #> rcmdcheck::rcmdcheck(args = "--no-manual", error_on = "warning")
@@ -229,21 +235,20 @@ ci()
 #> * creating vignettes ... OK
 #> * checking for LF line-endings in source and make files and shell scripts
 #> * checking for empty or unneeded directories
-#> Removed empty directory ‘rdev/tests/testthat/_snaps’
-#> * building ‘rdev_1.11.1.tar.gz’
+#> * building ‘rdev_1.11.2.tar.gz’
 #> 
 #> ── R CMD check ─────────────────────────────────────────────────────────────────
-#> * using log directory ‘/private/var/folders/vn/cw5f9gws42v9m8mdsds_zbl00000gp/T/Rtmpba8T7N/file1450c797d54e4/rdev.Rcheck’
+#> * using log directory ‘/private/var/folders/vn/cw5f9gws42v9m8mdsds_zbl00000gp/T/RtmpCOd41c/file724b5a7ec10b/rdev.Rcheck’
 #> * using R version 4.4.1 (2024-06-14)
 #> * using platform: aarch64-apple-darwin20
 #> * R was compiled by
 #>     Apple clang version 14.0.0 (clang-1400.0.29.202)
 #>     GNU Fortran (GCC) 12.2.0
-#> * running under: macOS Ventura 13.6.7
+#> * running under: macOS Sonoma 14.6.1
 #> * using session charset: UTF-8
 #> * using option ‘--no-manual’
 #> * checking for file ‘rdev/DESCRIPTION’ ... OK
-#> * this is package ‘rdev’ version ‘1.11.1’
+#> * this is package ‘rdev’ version ‘1.11.2’
 #> * package encoding: UTF-8
 #> * checking package namespace information ... OK
 #> * checking package dependencies ... OK
@@ -298,8 +303,8 @@ ci()
 #> * DONE
 #> 
 #> Status: OK
-#> ── R CMD check results ──────────────────────────────────────── rdev 1.11.1 ────
-#> Duration: 35.2s
+#> ── R CMD check results ──────────────────────────────────────── rdev 1.11.2 ────
+#> Duration: 30.5s
 #> 
 #> 0 errors ✔ | 0 warnings ✔ | 0 notes ✔
 ```
