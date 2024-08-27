@@ -18,13 +18,16 @@ test_that("rdev.codecov option skips installation of codecov.io components", {
   mockery::stub(use_codecov, "renv::install", NULL)
   mockery::stub(use_codecov, "renv::snapshot", NULL)
   mockery::stub(use_codecov, "usethis::use_coverage", function(type) writeLines("use_coverage"))
+  mockery::stub(
+    use_codecov, "spelling::update_wordlist", function(confirm) writeLines("update_wordlist")
+  )
   mockery::stub(use_codecov, "sort_rbuildignore", function() writeLines("sort_rbuildignore"))
   mockery::stub(
     use_codecov, "usethis::use_github_action", function(url) writeLines("use_github_action")
   )
   mockery::stub(use_codecov, "usethis::use_package", u_pack)
 
-  cov_out <- "use_coverage\\nsort_rbuildignore\\n"
+  cov_out <- "use_coverage\\nupdate_wordlist\\nsort_rbuildignore\\n"
   gha_out <- "use_github_action\\n"
   use_out <- "package = 'covr', type ='Suggests'\\npackage = 'DT', type ='Suggests'"
 
