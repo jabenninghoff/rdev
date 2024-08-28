@@ -20,6 +20,7 @@ Imports:
     fs,
     gert,
     gh,
+    languageserver,
     lintr (>= 3.0.0),
     miniUI,
     mockery,

@@ -13,4 +13,5 @@
 
 # Suppress R CMD check note
 #' @importFrom miniUI miniPage
+#' @importFrom languageserver run
 NULL

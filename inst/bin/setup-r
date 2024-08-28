@@ -1,5 +1,5 @@
 #!/bin/sh
-# install development packages to site repository
+# install development packages to user repository
 # thanks to https://blog.sellorm.com/2017/10/21/quick-script-to-install-an-r-package-from-the-command-line/
 # https://r-pkgs.org/setup.html
 # and https://github.com/Homebrew/homebrew-core/blob/master/Formula/r/r.rb
@@ -16,7 +16,7 @@ sudo chown -R "$(whoami)":admin /Library/Frameworks/R.framework/Versions/*/Resou
 
 RVERSION="$(Rscript -e 'cat(as.character(getRversion()[1,1:2]))')"
 USERLIB="$HOME/Library/R/$(uname -m)/${RVERSION}/library"
-DEVPKG='c("renv", "styler", "lintr", "miniUI", "markdown", "rmarkdown", "devtools", "pkgdown", "available", "languageserver")'
+DEVPKG='c("renv", "styler", "lintr", "miniUI", "languageserver", "rmarkdown", "devtools", "available")'
 GITPKG='c("jabenninghoff/rdev")'
 
 if [ ! -d "${USERLIB}" ]
