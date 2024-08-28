@@ -12,10 +12,10 @@ set -ex # halt script on error, echo on
 # rig default release
 
 # fix rig permissions
-sudo chown -R `whoami`:admin /Library/Frameworks/R.framework/Versions/*/Resources/library
+sudo chown -R "$(whoami)":admin /Library/Frameworks/R.framework/Versions/*/Resources/library
 
-RVERSION=`Rscript -e 'cat(as.character(getRversion()[1,1:2]))'`
-USERLIB="$HOME/Library/R/`uname -m`/${RVERSION}/library"
+RVERSION="$(Rscript -e 'cat(as.character(getRversion()[1,1:2]))')"
+USERLIB="$HOME/Library/R/$(uname -m)/${RVERSION}/library"
 DEVPKG='c("renv", "styler", "lintr", "miniUI", "markdown", "rmarkdown", "devtools", "pkgdown", "available", "languageserver")'
 GITPKG='c("jabenninghoff/rdev")'
 
