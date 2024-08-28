@@ -1,3 +1,7 @@
+# rdev 1.11.3
+
+* Added support for Visual Studio Code (`languageserver` package) by default
+
 # rdev 1.11.2
 
 * Minor updates
