@@ -14,8 +14,6 @@ knitr::opts_chunk$set(
 )
 ```
 
-<!-- # TODO: update setup-r script docs, mention positron, review all docs -->
-
 ## Overview
 
 rdev supports my personal workflow, including creation of both traditional R packages and R Analysis
@@ -47,13 +45,12 @@ brew tap r-lib/rig
 brew install --cask rig
 ```
 
-Then install desired versions of R. The following installs R 3.4 through 4.3 on Intel based macs
-(as of 2023-11-13):
+Then install desired versions of R. The following installs R 3.6 through 4.4 on ARM based macs
+(as of 2024-09-03):
 
 ```sh
-rig install oldrel/6 --without-pak
-rig install oldrel/5 --without-pak
-rig install oldrel/4 --without-pak
+rig install oldrel/5 --without-pak --arch x86_64
+rig install oldrel/4 --without-pak --arch x86_64
 rig install oldrel/3 --without-pak
 rig install oldrel/2 --without-pak
 rig install oldrel/1 --without-pak
@@ -62,8 +59,14 @@ rig install release --without-pak
 rig default release
 ```
 
-I don't use [pak](https://pak.r-lib.org), which rig installs by default, as it is not yet fully
-[supported](https://github.com/rstudio/renv/issues/1210) by renv.
+Note that:
+
+1. I don't use [pak](https://pak.r-lib.org), which rig installs by default, as it is not yet fully
+   [supported](https://github.com/rstudio/renv/issues/1210) by renv.
+1. The oldest version of R I install is 3.6, since RStudio now requires R 3.6 or newer (as of
+   version [2024.04.00](https://docs.posit.co/ide/news/#rstudio-2024.04.0))
+1. Since there was no ARM binary release for R 3.6 (`oldrel/5`) or R 4.0 (`oldrel/4`), I install the
+   Intel binaries and run them with [Rosetta 2](https://support.apple.com/en-us/102527).
 
 ### Development Tools
 
@@ -71,6 +74,10 @@ Well, obviously, I use [RStudio](https://posit.co/download/rstudio-desktop/). RS
 IDE for R development and integrates with many R packages, although it sometimes falls short; I use
 GitHub and the command line for Git, and occasionally Visual Studio Code (which has better support
 for markdown) and Vim (which is faster for some types of edits).
+
+Posit is developing a next-generation IDE based on Visual Studio Code,
+[Positron](https://github.com/posit-dev/positron). While I've tried using Positron, I've found that
+it's still too new to replace RStudio for my development.
 
 RStudio, the GitHub desktop client, and Visual Studio Code are easily installed using Homebrew:
 
@@ -100,11 +107,11 @@ Library. A streamlined version of that script is included below.
 
 ```sh
 # fix rig permissions
-sudo chown -R `whoami`:admin /Library/Frameworks/R.framework/Versions/*/Resources/library
+sudo chown -R "$(whoami)":admin /Library/Frameworks/R.framework/Versions/*/Resources/library
 
-RVERSION=`Rscript -e 'cat(as.character(getRversion()[1,1:2]))'`
-USERLIB="$HOME/Library/R/`uname -m`/${RVERSION}/library"
-DEVPKG='c("renv", "styler", "lintr", "miniUI", "markdown", "rmarkdown", "devtools", "pkgdown", "available", "languageserver")'
+RVERSION="$(Rscript -e 'cat(as.character(getRversion()[1,1:2]))')"
+USERLIB="$HOME/Library/R/$(uname -m)/${RVERSION}/library"
+DEVPKG='c("renv", "styler", "lintr", "miniUI", "languageserver", "rmarkdown", "devtools", "available")'
 GITPKG='c("jabenninghoff/rdev")'
 
 if [ ! -d "${USERLIB}" ]
