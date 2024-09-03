@@ -1,6 +1,6 @@
 # rdev 1.11.4
 
-* Minor updates
+* Updated "Introduction to rdev" vignette, `vignette("rdev")`
 
 # rdev 1.11.3
 
