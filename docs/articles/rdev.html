@@ -27,7 +27,7 @@
 
     <a class="navbar-brand me-2" href="../index.html">rdev</a>
 
-    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">1.11.3</small>
+    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">1.11.4</small>
 
 
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbar" aria-controls="navbar" aria-expanded="false" aria-label="Toggle navigation">
@@ -114,20 +114,27 @@ binaries, which I use for reproducibility. To install R using rig, first
 install rig:</p>
 <div class="sourceCode" id="cb1"><pre class="sourceCode sh"><code class="sourceCode bash"><span id="cb1-1"><a href="#cb1-1" tabindex="-1"></a><span class="ex">brew</span> tap r-lib/rig</span>
 <span id="cb1-2"><a href="#cb1-2" tabindex="-1"></a><span class="ex">brew</span> install <span class="at">--cask</span> rig</span></code></pre></div>
-<p>Then install desired versions of R. The following installs R 3.4
-through 4.3 on Intel based macs (as of 2023-11-13):</p>
-<div class="sourceCode" id="cb2"><pre class="sourceCode sh"><code class="sourceCode bash"><span id="cb2-1"><a href="#cb2-1" tabindex="-1"></a><span class="ex">rig</span> install oldrel/6 <span class="at">--without-pak</span></span>
-<span id="cb2-2"><a href="#cb2-2" tabindex="-1"></a><span class="ex">rig</span> install oldrel/5 <span class="at">--without-pak</span></span>
-<span id="cb2-3"><a href="#cb2-3" tabindex="-1"></a><span class="ex">rig</span> install oldrel/4 <span class="at">--without-pak</span></span>
-<span id="cb2-4"><a href="#cb2-4" tabindex="-1"></a><span class="ex">rig</span> install oldrel/3 <span class="at">--without-pak</span></span>
-<span id="cb2-5"><a href="#cb2-5" tabindex="-1"></a><span class="ex">rig</span> install oldrel/2 <span class="at">--without-pak</span></span>
-<span id="cb2-6"><a href="#cb2-6" tabindex="-1"></a><span class="ex">rig</span> install oldrel/1 <span class="at">--without-pak</span></span>
-<span id="cb2-7"><a href="#cb2-7" tabindex="-1"></a><span class="ex">rig</span> install oldrel <span class="at">--without-pak</span></span>
-<span id="cb2-8"><a href="#cb2-8" tabindex="-1"></a><span class="ex">rig</span> install release <span class="at">--without-pak</span></span>
-<span id="cb2-9"><a href="#cb2-9" tabindex="-1"></a><span class="ex">rig</span> default release</span></code></pre></div>
-<p>I don’t use <a href="https://pak.r-lib.org" class="external-link">pak</a>, which rig
+<p>Then install desired versions of R. The following installs R 3.6
+through 4.4 on ARM based macs (as of 2024-09-03):</p>
+<div class="sourceCode" id="cb2"><pre class="sourceCode sh"><code class="sourceCode bash"><span id="cb2-1"><a href="#cb2-1" tabindex="-1"></a><span class="ex">rig</span> install oldrel/5 <span class="at">--without-pak</span> <span class="at">--arch</span> x86_64</span>
+<span id="cb2-2"><a href="#cb2-2" tabindex="-1"></a><span class="ex">rig</span> install oldrel/4 <span class="at">--without-pak</span> <span class="at">--arch</span> x86_64</span>
+<span id="cb2-3"><a href="#cb2-3" tabindex="-1"></a><span class="ex">rig</span> install oldrel/3 <span class="at">--without-pak</span></span>
+<span id="cb2-4"><a href="#cb2-4" tabindex="-1"></a><span class="ex">rig</span> install oldrel/2 <span class="at">--without-pak</span></span>
+<span id="cb2-5"><a href="#cb2-5" tabindex="-1"></a><span class="ex">rig</span> install oldrel/1 <span class="at">--without-pak</span></span>
+<span id="cb2-6"><a href="#cb2-6" tabindex="-1"></a><span class="ex">rig</span> install oldrel <span class="at">--without-pak</span></span>
+<span id="cb2-7"><a href="#cb2-7" tabindex="-1"></a><span class="ex">rig</span> install release <span class="at">--without-pak</span></span>
+<span id="cb2-8"><a href="#cb2-8" tabindex="-1"></a><span class="ex">rig</span> default release</span></code></pre></div>
+<p>Note that:</p>
+<ol style="list-style-type: decimal">
+<li>I don’t use <a href="https://pak.r-lib.org" class="external-link">pak</a>, which rig
 installs by default, as it is not yet fully <a href="https://github.com/rstudio/renv/issues/1210" class="external-link">supported</a> by
-renv.</p>
+renv.</li>
+<li>The oldest version of R I install is 3.6, since RStudio now requires
+R 3.6 or newer (as of version <a href="https://docs.posit.co/ide/news/#rstudio-2024.04.0" class="external-link">2024.04.00</a>)</li>
+<li>Since there was no ARM binary release for R 3.6
+(<code>oldrel/5</code>) or R 4.0 (<code>oldrel/4</code>), I install the
+Intel binaries and run them with <a href="https://support.apple.com/en-us/102527" class="external-link">Rosetta 2</a>.</li>
+</ol>
 </div>
 <div class="section level3">
 <h3 id="development-tools">Development Tools<a class="anchor" aria-label="anchor" href="#development-tools"></a>
@@ -138,6 +145,10 @@ packages, although it sometimes falls short; I use GitHub and the
 command line for Git, and occasionally Visual Studio Code (which has
 better support for markdown) and Vim (which is faster for some types of
 edits).</p>
+<p>Posit is developing a next-generation IDE based on Visual Studio
+Code, <a href="https://github.com/posit-dev/positron" class="external-link">Positron</a>.
+While I’ve tried using Positron, I’ve found that it’s still too new to
+replace RStudio for my development.</p>
 <p>RStudio, the GitHub desktop client, and Visual Studio Code are easily
 installed using Homebrew:</p>
 <div class="sourceCode" id="cb3"><pre class="sourceCode sh"><code class="sourceCode bash"><span id="cb3-1"><a href="#cb3-1" tabindex="-1"></a><span class="ex">brew</span> install <span class="at">--cask</span> rstudio</span>
@@ -165,11 +176,11 @@ of my projects.</p>
 packages needed to run rdev in the R User Library. A streamlined version
 of that script is included below.</p>
 <div class="sourceCode" id="cb4"><pre class="sourceCode sh"><code class="sourceCode bash"><span id="cb4-1"><a href="#cb4-1" tabindex="-1"></a><span class="co"># fix rig permissions</span></span>
-<span id="cb4-2"><a href="#cb4-2" tabindex="-1"></a><span class="fu">sudo</span> chown <span class="at">-R</span> <span class="kw">`</span><span class="fu">whoami</span><span class="kw">`</span>:admin /Library/Frameworks/R.framework/Versions/<span class="pp">*</span>/Resources/library</span>
+<span id="cb4-2"><a href="#cb4-2" tabindex="-1"></a><span class="fu">sudo</span> chown <span class="at">-R</span> <span class="st">"</span><span class="va">$(</span><span class="fu">whoami</span><span class="va">)</span><span class="st">"</span>:admin /Library/Frameworks/R.framework/Versions/<span class="pp">*</span>/Resources/library</span>
 <span id="cb4-3"><a href="#cb4-3" tabindex="-1"></a></span>
-<span id="cb4-4"><a href="#cb4-4" tabindex="-1"></a><span class="va">RVERSION</span><span class="op">=</span><span class="kw">`</span><span class="ex">Rscript</span> <span class="at">-e</span> <span class="st">'cat(as.character(getRversion()[1,1:2]))'</span><span class="kw">`</span></span>
-<span id="cb4-5"><a href="#cb4-5" tabindex="-1"></a><span class="va">USERLIB</span><span class="op">=</span><span class="st">"</span><span class="va">$HOME</span><span class="st">/Library/R/</span><span class="kw">`</span><span class="fu">uname</span> <span class="at">-m</span><span class="kw">`</span><span class="st">/</span><span class="va">${RVERSION}</span><span class="st">/library"</span></span>
-<span id="cb4-6"><a href="#cb4-6" tabindex="-1"></a><span class="va">DEVPKG</span><span class="op">=</span><span class="st">'c("renv", "styler", "lintr", "miniUI", "markdown", "rmarkdown", "devtools", "pkgdown", "available", "languageserver")'</span></span>
+<span id="cb4-4"><a href="#cb4-4" tabindex="-1"></a><span class="va">RVERSION</span><span class="op">=</span><span class="st">"</span><span class="va">$(</span><span class="ex">Rscript</span> <span class="at">-e</span> <span class="st">'cat(as.character(getRversion()[1,1:2]))'</span><span class="va">)</span><span class="st">"</span></span>
+<span id="cb4-5"><a href="#cb4-5" tabindex="-1"></a><span class="va">USERLIB</span><span class="op">=</span><span class="st">"</span><span class="va">$HOME</span><span class="st">/Library/R/</span><span class="va">$(</span><span class="fu">uname</span> <span class="at">-m</span><span class="va">)</span><span class="st">/</span><span class="va">${RVERSION}</span><span class="st">/library"</span></span>
+<span id="cb4-6"><a href="#cb4-6" tabindex="-1"></a><span class="va">DEVPKG</span><span class="op">=</span><span class="st">'c("renv", "styler", "lintr", "miniUI", "languageserver", "rmarkdown", "devtools", "available")'</span></span>
 <span id="cb4-7"><a href="#cb4-7" tabindex="-1"></a><span class="va">GITPKG</span><span class="op">=</span><span class="st">'c("jabenninghoff/rdev")'</span></span>
 <span id="cb4-8"><a href="#cb4-8" tabindex="-1"></a></span>
 <span id="cb4-9"><a href="#cb4-9" tabindex="-1"></a><span class="cf">if</span> <span class="bu">[</span> <span class="ot">!</span> <span class="ot">-d</span> <span class="st">"</span><span class="va">${USERLIB}</span><span class="st">"</span> <span class="bu">]</span></span>
