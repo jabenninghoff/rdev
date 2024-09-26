@@ -2,6 +2,8 @@
 
 * rdev now depends on R >= 4.0.0
 
+* `use_analysis_package()` now records dependency on R native pipes (R >= 4.1.0)
+
 # rdev 1.11.4
 
 * Updated "Introduction to rdev" vignette, `vignette("rdev")`
