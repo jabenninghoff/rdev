@@ -237,8 +237,8 @@ package_downloads <- function(packages, when = "last-month") {
     stop("Querying downloads of R is not supported!")
   }
 
-  df <- cranlogs::cran_downloads(packages = packages, when = when) |>
-    stats::aggregate(by = count ~ package, FUN = sum)
+  cl <- cranlogs::cran_downloads(packages = packages, when = when)
+  df <- stats::aggregate(count ~ package, data = cl, sum)
 
   df[order(df$count, decreasing = TRUE), ]
 }
