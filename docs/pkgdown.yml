@@ -1,11 +1,11 @@
-pandoc: '3.3'
-pkgdown: 2.1.0
+pandoc: '3.4'
+pkgdown: 2.1.1
 pkgdown_sha: ~
 articles:
   analysis-package-layout: analysis-package-layout.html
   rdev: rdev.html
   style-guide: style-guide.html
-last_built: 2024-09-03T14:57Z
+last_built: 2024-09-26T18:31Z
 urls:
   reference: https://jabenninghoff.github.io/rdev/reference
   article: https://jabenninghoff.github.io/rdev/articles
