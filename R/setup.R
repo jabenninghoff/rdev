@@ -624,6 +624,8 @@ use_analysis_package <- function(use_quarto = TRUE, prompt = FALSE) {
     ignore = TRUE,
     open = rlang::is_interactive()
   )
+  desc::desc_set_dep("R", type = "Depends", version = ">= 4.1.0")
+  desc::desc_normalize()
 
   renv::install("dplyr")
   usethis::use_package("dplyr", type = "Suggests")
