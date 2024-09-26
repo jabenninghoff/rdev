@@ -1,3 +1,7 @@
+# rdev 1.11.5
+
+* rdev now depends on R >= 4.0.0
+
 # rdev 1.11.4
 
 * Updated "Introduction to rdev" vignette, `vignette("rdev")`
