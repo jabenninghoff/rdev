@@ -1,3 +1,7 @@
+# rdev 1.11.6
+
+* Minor updates
+
 # rdev 1.11.5
 
 * rdev now depends on R >= 4.0.0

@@ -12,7 +12,7 @@
 - [x] Write a utility function to sort `.Rbuildignore`
 - [x] Implement [pkgdown](https://pkgdown.r-lib.org)
 - [x] Add links / update [Rd formatting](https://roxygen2.r-lib.org/articles/rd-formatting.html) for all function documentation.
-- [x] Add dummy imports to silence R CMD check note per [tidyverse](https://github.com/tidyverse/tidyverse/blob/master/R/tidyverse.R)
+- [x] Add dummy imports to silence R CMD check note per [tidyverse](https://github.com/tidyverse/tidyverse/blob/main/R/tidyverse-package.R)
 - [x] Migrate `build_analysis_site()` to rdev
 - [x] Switch from development version of `styler` (1.3.2.9000) when a new release becomes available
 - [x] ~~Validate that `lint_all` works as expected within `ci`~~
