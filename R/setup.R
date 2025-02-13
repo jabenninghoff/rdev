@@ -155,8 +155,8 @@ get_license <- function() {
 #' @noRd
 get_github_repo <- function() {
   # nocov start
-  url <- usethis::git_remotes()$origin
-  remotes::parse_github_url(url)
+  github_url <- usethis::git_remotes()$origin
+  remotes::parse_github_url(github_url)
   # nocov end
 }
 
@@ -172,7 +172,7 @@ fix_gitignore <- function(path = ".") {
 
   giti_path <- fs::path(path, ".gitignore")
   gitignore <- readLines(giti_path)
-  gitignore <- gitignore[!grepl("^\\.Rproj\\.user$", gitignore)]
+  gitignore <- gitignore[gitignore != ".Rproj.user"]
   writeLines(gitignore, giti_path)
 }
 

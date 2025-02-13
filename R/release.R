@@ -86,7 +86,7 @@ get_release <- function(pkg = ".", filename = "NEWS.md") {
     stop("unexpected header in '", filename, "'", call. = FALSE)
   }
 
-  version <- sub(paste0("^# ", pkg_obj$package, " "), "", news_md[releases[1]])
+  release_version <- sub(paste0("^# ", pkg_obj$package, " "), "", news_md[releases[1]])
 
   # assumes only one leading/trailing blank line at most
   notes_start <- releases[1] + 1
@@ -103,7 +103,7 @@ get_release <- function(pkg = ".", filename = "NEWS.md") {
     notes <- news_md[notes_start:notes_end]
   }
 
-  list(package = pkg_obj$package, version = version, notes = notes)
+  list(package = pkg_obj$package, version = release_version, notes = notes)
 }
 
 #' Stage a GitHub release
@@ -152,7 +152,7 @@ stage_release <- function(pkg = ".",
   if (!grepl("^[0-9]*\\.[0-9]*\\.[0-9]*$", rel$version)) {
     stop("invalid package version '", rel$version, "'", call. = FALSE)
   }
-  if (length(rel$notes[rel$notes != ""]) < 1) {
+  if (!any(nzchar(rel$notes))) {
     stop("no release notes found", call. = FALSE)
   }
 
@@ -207,7 +207,7 @@ stage_release <- function(pkg = ".",
     title = paste0(rel$package, " ", rel$version),
     head = gert::git_branch(),
     base = usethis::git_default_branch(),
-    body = paste0(rel$notes, collapse = "\n"),
+    body = paste(rel$notes, collapse = "\n"),
     .api_url = host
   )
 
@@ -325,7 +325,7 @@ merge_release <- function(pkg = ".", filename = "NEWS.md", host = getOption("rde
     repo = gh_remote$repo,
     tag_name = rel$version,
     name = rel$version,
-    body = paste0(rel$notes, collapse = "\n"),
+    body = paste(rel$notes, collapse = "\n"),
     .api_url = host
   )
 

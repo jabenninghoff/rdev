@@ -145,16 +145,16 @@ build_analysis_site <- function(pkg = ".", ...) {
   pkg_yml$navbar$structure$left <- append(pkg_yml$navbar$structure$left, "analysis")
 
   analysis_menu_item <- function(str_file) {
-    title <- rmarkdown::yaml_front_matter(str_file)$title
+    menu_title <- rmarkdown::yaml_front_matter(str_file)$title
     link <- as.character(fs::path_ext_set(fs::path_file(str_file), ".html"))
-    list(text = title, href = link)
+    list(text = menu_title, href = link)
   }
-  menu <- unname(purrr::map(notebooks, analysis_menu_item))
+  analysis_menu <- unname(purrr::map(notebooks, analysis_menu_item))
 
   # warning: this assumes that there is only one element on the right, all others on the left
   pkg_yml$navbar$components <- append(
     pkg_yml$navbar$components,
-    list(analysis = list(text = "Analysis", menu = menu)),
+    list(analysis = list(text = "Analysis", menu = analysis_menu)),
     length(pkg_yml$navbar$components) - 1
   )
 
@@ -173,7 +173,7 @@ build_analysis_site <- function(pkg = ".", ...) {
 
   writeLines("creating `_site.yml` from `_pkgdown.yml` in temporary directory")
   desc <- desc::description$new(pkg)
-  title <- paste0(desc$get("Package")[[1]], " notebooks")
+  menu_title <- paste0(desc$get("Package")[[1]], " notebooks")
 
   get_component <- function(str_component, list_pkg) {
     list_pkg$navbar$components[[str_component]]
@@ -192,7 +192,7 @@ build_analysis_site <- function(pkg = ".", ...) {
   site_yml <- list(
     output_dir = "docs",
     # warning: this assumes at least one element in left_nav and right_nav
-    navbar = list(title = title, type = "default", left = left_nav, right = right_nav),
+    navbar = list(title = menu_title, type = "default", left = left_nav, right = right_nav),
     # simulate html_notebook output
     output = list(html_document = list(
       code_download = TRUE, code_folding = "show", df_print = "paged",

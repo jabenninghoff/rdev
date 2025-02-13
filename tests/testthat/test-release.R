@@ -455,6 +455,8 @@ test_that("merge_release errors when expected and returns list", {
     html_url = "https://github.com/example/test"
   )
   gh_merge <- list(merged = TRUE)
+  gh_release <- list(tag_name = "1.2.0")
+  gh_delete_branch <- NULL
   gh <- function(command, ...) {
     if (command == "GET /repos/{owner}/{repo}/pulls") {
       return(gh_pulls)
@@ -465,6 +467,13 @@ test_that("merge_release errors when expected and returns list", {
     if (command == "PUT /repos/{owner}/{repo}/pulls/{pull_number}/merge") {
       return(gh_merge)
     }
+    if (command == "POST /repos/{owner}/{repo}/releases") {
+      return(gh_release)
+    }
+    if (command == "DELETE /repos/{owner}/{repo}/git/refs/heads/{branch}") {
+      return(gh_delete_branch)
+    }
+    stop("unknown command", call. = FALSE)
   }
 
   mockery::stub(get_release, "devtools::as.package", pkg_test)
