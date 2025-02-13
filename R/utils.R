@@ -22,7 +22,9 @@
 sort_file <- function(filename) {
   checkmate::assert_string(filename, min.chars = 1)
 
-  if (!fs::file_exists(filename)) stop("cannot sort file, '", filename, "': no such file")
+  if (!fs::file_exists(filename)) {
+    stop("cannot sort file, '", filename, "': no such file", call. = FALSE)
+  }
   writeLines(sort(readLines(filename)), filename)
 }
 
@@ -56,7 +58,7 @@ spell_check_notebooks <- function(path = "analysis", regexp = "[.][Rq]md$", use_
 
   if (is.null(lang)) {
     if (!fs::file_exists("DESCRIPTION")) {
-      stop("DESCRIPTION not found")
+      stop("DESCRIPTION not found", call. = FALSE)
     }
     lang <- desc::desc_get_field("Language")
   }
@@ -65,7 +67,7 @@ spell_check_notebooks <- function(path = "analysis", regexp = "[.][Rq]md$", use_
     ignore <- readLines("inst/WORDLIST")
   }
   if (!fs::dir_exists(path)) {
-    stop("'", path, "' directory not found")
+    stop("'", path, "' directory not found", call. = FALSE)
   }
   files <- fs::dir_ls(path = path, regexp = regexp)
   spelling::spell_check_files(files, ignore = ignore, lang = lang)
@@ -234,7 +236,7 @@ open_files <- function(files = c("TODO.md", "NEWS.md", "README.Rmd", "DESCRIPTIO
 package_downloads <- function(packages, when = "last-month") {
   checkmate::assert_character(packages, min.chars = 1)
   if ("R" %in% packages) {
-    stop("Querying downloads of R is not supported!")
+    stop("Querying downloads of R is not supported!", call. = FALSE)
   }
 
   cl <- cranlogs::cran_downloads(packages = packages, when = when)

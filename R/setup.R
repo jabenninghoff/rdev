@@ -137,10 +137,10 @@ use_codecov <- function(prompt = FALSE) {
 get_license <- function() {
   lic <- getOption("rdev.license", default = "mit")
   if (!lic %in% c("mit", "gpl", "lgpl", "proprietary")) {
-    stop("invalid rdev.license type, '", lic, "'")
+    stop("invalid rdev.license type, '", lic, "'", call. = FALSE)
   }
   if (lic == "proprietary" && is.null(getOption("rdev.license.copyright"))) {
-    stop("rdev.license is 'proprietary' and rdev.license.copyright is not set")
+    stop("rdev.license is 'proprietary' and rdev.license.copyright is not set", call. = FALSE)
   }
   lic
 }
@@ -221,7 +221,7 @@ create_github_repo <- function(repo_name, repo_desc = "", private = FALSE, org =
   # determine target dir for create_from_github() and verify it doesn't exist before calling gh
   ut_destdir <- paste0(user_path_prep(conspicuous_place()), "/", repo_name)
   if (fs::dir_exists(ut_destdir)) {
-    stop("create_from_github() target, '", ut_destdir, "' already exists")
+    stop("create_from_github() target, '", ut_destdir, "' already exists", call. = FALSE)
   }
 
   if (is.null(org)) {
@@ -585,7 +585,7 @@ use_analysis_package <- function(use_quarto = TRUE, prompt = FALSE) {
 
   urls <- desc::desc_get_urls()
   if (length(urls) < 1) {
-    stop("no URL found in DESCRIPTION")
+    stop("no URL found in DESCRIPTION", call. = FALSE)
   }
   github_repo <- get_github_repo()
   if (use_quarto) {

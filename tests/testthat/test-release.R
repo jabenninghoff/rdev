@@ -68,7 +68,7 @@ test_that("new_branch errors when local or remote branch exists", {
 
 test_that("new_branch branches from default branch when current = FALSE and current when TRUE", {
   s <- function(x) {
-    stop("gert::git_branch_checkout")
+    stop("gert::git_branch_checkout", call. = FALSE)
   }
   mockery::stub(new_branch, "gert::git_branch_exists", FALSE)
   mockery::stub(new_branch, "gert::git_branch_checkout", s)
@@ -130,8 +130,10 @@ test_that("new_branch stashes files", {
   mockery::stub(new_branch, "gert::git_add", NULL)
   mockery::stub(new_branch, "gert::git_commit", "Bump version")
   mockery::stub(new_branch, "gert::git_status", git_status_empty)
-  mockery::stub(new_branch, "gert::git_stash_save", function() stop("git_stash_save"))
-  mockery::stub(new_branch, "gert::git_stash_pop", function() stop("git_stash_pop"))
+  mockery::stub(
+    new_branch, "gert::git_stash_save", function() stop("git_stash_save", call. = FALSE)
+  )
+  mockery::stub(new_branch, "gert::git_stash_pop", function() stop("git_stash_pop", call. = FALSE))
 
   # git_status_empty skips stash
   expect_identical(new_branch("test"), "Bump version")
@@ -326,7 +328,7 @@ test_that("stage_release creates new branch", {
   mockery::stub(stage_release, "usethis::git_default_branch", "main")
   # stub functions that change state
   g <- function(x) {
-    stop(x)
+    stop(x, call. = FALSE)
   }
   mockery::stub(stage_release, "gert::git_branch_create", g)
   mockery::stub(stage_release, "desc::desc_set_version", NULL)
@@ -379,13 +381,13 @@ test_that("stage_release runs proper builder", {
   mockery::stub(stage_release, "remotes::parse_github_url", NULL)
   # stub functions that change state
   analysis <- function() {
-    stop("build_analysis_site")
+    stop("build_analysis_site", call. = FALSE)
   }
   quarto <- function(unfreeze = TRUE) {
-    stop("build_quarto_site")
+    stop("build_quarto_site", call. = FALSE)
   }
   rdev <- function() {
-    stop("build_rdev_site")
+    stop("build_rdev_site", call. = FALSE)
   }
   mockery::stub(stage_release, "gert::git_branch_create", NULL)
   mockery::stub(stage_release, "desc::desc_set_version", NULL)
