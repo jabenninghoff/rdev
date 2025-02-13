@@ -217,13 +217,12 @@ ci()
 #>   <chr>                      <nam> <chr>  <chr>   <chr> <chr> <chr>  <chr> <chr>
 #> 1 https://code.visualstudio… <chr> 500    Intern… ""    ""    ""     ""    /Use…
 #> html_url_check()
-#> # A tibble: 4 × 9
+#> # A tibble: 3 × 9
 #>   URL                        From  Status Message New   CRAN  Spaces R     root 
 #>   <chr>                      <nam> <chr>  <chr>   <chr> <chr> <chr>  <chr> <chr>
 #> 1 http://covr.r-lib.org/ref… <chr> 200    OK      "htt… ""    ""     ""    /Use…
 #> 2 http://r-lib.github.io/rc… <chr> 200    OK      "htt… ""    ""     ""    /Use…
 #> 3 https://code.visualstudio… <chr> 500    Intern… ""    ""    ""     ""    /Use…
-#> 4 https://github.com/tidyve… <chr> 404    Not Fo… ""    ""    ""     ""    /Use…
 #> 
 #> Setting env vars: NOT_CRAN="true", CI="true"
 #> rcmdcheck::rcmdcheck(args = "--no-manual", error_on = "warning")
@@ -235,20 +234,20 @@ ci()
 #> * creating vignettes ... OK
 #> * checking for LF line-endings in source and make files and shell scripts
 #> * checking for empty or unneeded directories
-#> * building ‘rdev_1.11.6.tar.gz’
+#> * building ‘rdev_1.12.0.tar.gz’
 #> 
 #> ── R CMD check ─────────────────────────────────────────────────────────────────
-#> * using log directory ‘/private/var/folders/vn/cw5f9gws42v9m8mdsds_zbl00000gp/T/RtmpKQEp6Y/file7bfb6e5764d3/rdev.Rcheck’
+#> * using log directory ‘/private/var/folders/vn/cw5f9gws42v9m8mdsds_zbl00000gp/T/Rtmp2WV9Ky/filed87039da1f71/rdev.Rcheck’
 #> * using R version 4.4.2 (2024-10-31)
 #> * using platform: aarch64-apple-darwin20
 #> * R was compiled by
 #>     Apple clang version 14.0.0 (clang-1400.0.29.202)
 #>     GNU Fortran (GCC) 12.2.0
-#> * running under: macOS Sequoia 15.3
+#> * running under: macOS Sequoia 15.3.1
 #> * using session charset: UTF-8
 #> * using option ‘--no-manual’
 #> * checking for file ‘rdev/DESCRIPTION’ ... OK
-#> * this is package ‘rdev’ version ‘1.11.6’
+#> * this is package ‘rdev’ version ‘1.12.0’
 #> * package encoding: UTF-8
 #> * checking package namespace information ... OK
 #> * checking package dependencies ... OK
@@ -303,8 +302,8 @@ ci()
 #> * DONE
 #> 
 #> Status: OK
-#> ── R CMD check results ──────────────────────────────────────── rdev 1.11.6 ────
-#> Duration: 29.6s
+#> ── R CMD check results ──────────────────────────────────────── rdev 1.12.0 ────
+#> Duration: 27.4s
 #> 
 #> 0 errors ✔ | 0 warnings ✔ | 0 notes ✔
 ```
