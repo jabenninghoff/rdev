@@ -29,7 +29,7 @@ NULL
 #'
 #' @export
 init <- function() {
-  if (!rlang::is_interactive()) stop("init() must be run interactively")
+  if (!rlang::is_interactive()) stop("init() must be run interactively", call. = FALSE)
 
   continue <- utils::askYesNo(
     "Initialize rdev package (run after create_github_repo)?",
@@ -63,7 +63,7 @@ init <- function() {
 #'
 #' @export
 setup_analysis <- function(use_quarto = TRUE) {
-  if (!rlang::is_interactive()) stop("setup_analysis() must be run interactively")
+  if (!rlang::is_interactive()) stop("setup_analysis() must be run interactively", call. = FALSE)
 
   continue <- utils::askYesNo(
     "Set up analysis package (run after init)?",
@@ -121,7 +121,7 @@ setup_analysis <- function(use_quarto = TRUE) {
 #'
 #' @export
 setup_rdev <- function() {
-  if (!rlang::is_interactive()) stop("setup_rdev() must be run interactively")
+  if (!rlang::is_interactive()) stop("setup_rdev() must be run interactively", call. = FALSE)
 
   continue <- utils::askYesNo(
     "Set up rdev package (run after init)?",

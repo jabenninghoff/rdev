@@ -25,10 +25,10 @@ new_branch <- function(name, bump_ver = TRUE, current = FALSE) {
   checkmate::assert_flag(current)
 
   if (gert::git_branch_exists(name, local = TRUE)) {
-    stop("local branch exists")
+    stop("local branch exists", call. = FALSE)
   }
   if (gert::git_branch_exists(paste0("origin/", name), local = FALSE)) {
-    stop("branch exists on remote (origin/", name, ")")
+    stop("branch exists on remote (origin/", name, ")", call. = FALSE)
   }
   if (!current) {
     gert::git_branch_checkout(usethis::git_default_branch())
@@ -68,7 +68,7 @@ new_branch <- function(name, bump_ver = TRUE, current = FALSE) {
 #' @export
 get_release <- function(pkg = ".", filename = "NEWS.md") {
   if (pkg != ".") {
-    stop('currently only get_release(pkg = ".") is supported')
+    stop('currently only get_release(pkg = ".") is supported', call. = FALSE)
   }
   checkmate::assert_string(filename, min.chars = 1)
 
@@ -80,10 +80,10 @@ get_release <- function(pkg = ".", filename = "NEWS.md") {
   releases <- grep(header_regex, news_md)
 
   if (length(releases) < 1) {
-    stop("no valid releases found in '", filename, "'")
+    stop("no valid releases found in '", filename, "'", call. = FALSE)
   }
   if (releases[1] != 1) {
-    stop("unexpected header in '", filename, "'")
+    stop("unexpected header in '", filename, "'", call. = FALSE)
   }
 
   version <- sub(paste0("^# ", pkg_obj$package, " "), "", news_md[releases[1]])
@@ -141,7 +141,7 @@ stage_release <- function(pkg = ".",
                           unfreeze = FALSE,
                           host = getOption("rdev.host")) {
   if (pkg != ".") {
-    stop('currently only stage_release(pkg = ".") is supported')
+    stop('currently only stage_release(pkg = ".") is supported', call. = FALSE)
   }
   checkmate::assert_string(filename, min.chars = 1)
   checkmate::assert_flag(unfreeze)
@@ -150,18 +150,18 @@ stage_release <- function(pkg = ".",
   rel <- get_release(pkg = pkg, filename = filename)
 
   if (!grepl("^[0-9]*\\.[0-9]*\\.[0-9]*$", rel$version)) {
-    stop("invalid package version '", rel$version, "'")
+    stop("invalid package version '", rel$version, "'", call. = FALSE)
   }
   if (length(rel$notes[rel$notes != ""]) < 1) {
-    stop("no release notes found")
+    stop("no release notes found", call. = FALSE)
   }
 
   if (nrow(gert::git_tag_list(match = rel$version, repo = pkg)) > 0) {
-    stop("release tag '", rel$version, "' already exists")
+    stop("release tag '", rel$version, "' already exists", call. = FALSE)
   }
 
   if (nrow(gert::git_status()) != 0) {
-    stop("uncommitted changes present")
+    stop("uncommitted changes present", call. = FALSE)
   }
 
   if (gert::git_branch() == usethis::git_default_branch()) {
@@ -171,7 +171,7 @@ stage_release <- function(pkg = ".",
 
   # double-check we're not on the default branch before making commits
   if (gert::git_branch() == usethis::git_default_branch()) {
-    stop("on default branch (this should never happen)")
+    stop("on default branch (this should never happen)", call. = FALSE)
   }
 
   rel_message <- paste0("GitHub release ", rel$version)
@@ -189,7 +189,7 @@ stage_release <- function(pkg = ".",
     builder <- "build_rdev_site()"
     build_rdev_site()
   } else {
-    stop("could not determine builder type")
+    stop("could not determine builder type", call. = FALSE)
   }
 
   # commit builder changes if there are any
@@ -246,7 +246,7 @@ stage_release <- function(pkg = ".",
 #' @export
 merge_release <- function(pkg = ".", filename = "NEWS.md", host = getOption("rdev.host")) {
   if (pkg != ".") {
-    stop('currently only merge_release(pkg = ".") is supported')
+    stop('currently only merge_release(pkg = ".") is supported', call. = FALSE)
   }
   checkmate::assert_string(filename, min.chars = 1)
   checkmate::assert_string(host, min.chars = 1, null.ok = TRUE)
@@ -263,10 +263,10 @@ merge_release <- function(pkg = ".", filename = "NEWS.md", host = getOption("rde
   )
   pr_list <- Filter(function(x) x$title == pr_title, pr_list)
   if (length(pr_list) == 0) {
-    stop("found no open pull requests with the title '", pr_title, "'")
+    stop("found no open pull requests with the title '", pr_title, "'", call. = FALSE)
   }
   if (length(pr_list) > 1) {
-    stop("found more than one pull request with the title '", pr_title, "'")
+    stop("found more than one pull request with the title '", pr_title, "'", call. = FALSE)
   }
   staged_pr <- gh::gh(
     "GET /repos/{owner}/{repo}/pulls/{pull_number}",
@@ -277,16 +277,16 @@ merge_release <- function(pkg = ".", filename = "NEWS.md", host = getOption("rde
   )
 
   if (staged_pr$locked) {
-    stop("pull request '", staged_pr$html_url, "' is marked as locked")
+    stop("pull request '", staged_pr$html_url, "' is marked as locked", call. = FALSE)
   }
   if (staged_pr$draft) {
-    stop("pull request '", staged_pr$html_url, "' is marked as draft")
+    stop("pull request '", staged_pr$html_url, "' is marked as draft", call. = FALSE)
   }
   if (!staged_pr$mergeable) {
-    stop("pull request '", staged_pr$html_url, "' is not marked as mergeable")
+    stop("pull request '", staged_pr$html_url, "' is not marked as mergeable", call. = FALSE)
   }
   if (!staged_pr$rebaseable) {
-    stop("pull request '", staged_pr$html_url, "' is not marked as rebaseable")
+    stop("pull request '", staged_pr$html_url, "' is not marked as rebaseable", call. = FALSE)
   }
 
   pr_merge <- gh::gh(
@@ -299,7 +299,7 @@ merge_release <- function(pkg = ".", filename = "NEWS.md", host = getOption("rde
     .api_url = host
   )
   if (!pr_merge$merged) {
-    stop("pull request merge '", staged_pr$html_url, "' failed")
+    stop("pull request merge '", staged_pr$html_url, "' failed", call. = FALSE)
   }
 
   gh::gh(

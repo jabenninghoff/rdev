@@ -34,7 +34,7 @@ preconditions <- c(
 writeLines(preconditions)
 writeLines("Manually validated?")
 if (utils::menu(c("Yes", "No")) != 1) {
-  stop("terminating script")
+  stop("terminating script", call. = FALSE)
 }
 writeLines("\nValidated:")
 writeLines("1. repository is created and opened in RStudio, GitHub Desktop, and default browser")

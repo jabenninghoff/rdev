@@ -19,7 +19,7 @@
 #' @export
 build_rdev_site <- function(pkg = ".", ...) {
   if (pkg != ".") {
-    stop('currently only build_rdev_site(pkg = ".") is supported')
+    stop('currently only build_rdev_site(pkg = ".") is supported', call. = FALSE)
   }
   writeLines("devtools::build_readme()")
   devtools::build_readme()
@@ -38,7 +38,7 @@ build_rdev_site <- function(pkg = ".", ...) {
 #' @export
 unfreeze <- function() {
   if (!fs::file_exists("_quarto.yml")) {
-    stop("_quarto.yml does not exist")
+    stop("_quarto.yml does not exist", call. = FALSE)
   }
   fs::dir_delete("_freeze")
 }
@@ -65,16 +65,16 @@ unfreeze <- function() {
 build_quarto_site <- function(input = NULL, as_job = FALSE, unfreeze = FALSE, ...) {
   checkmate::assert_flag(unfreeze)
   if (!fs::file_exists("README.Rmd")) {
-    stop("README.Rmd does not exist")
+    stop("README.Rmd does not exist", call. = FALSE)
   }
   if (!fs::dir_exists("analysis")) {
-    stop("no analysis directory found")
+    stop("no analysis directory found", call. = FALSE)
   }
   if (length(fs::dir_ls("analysis", regexp = "[.][Rq]md$")) == 0) {
-    stop("no *.Rmd or *.qmd files in analysis directory")
+    stop("no *.Rmd or *.qmd files in analysis directory", call. = FALSE)
   }
   if (!fs::file_exists("_quarto.yml")) {
-    stop("_quarto.yml does not exist")
+    stop("_quarto.yml does not exist", call. = FALSE)
   }
   writeLines("devtools::build_readme()")
   devtools::build_readme()
@@ -122,19 +122,19 @@ build_quarto_site <- function(input = NULL, as_job = FALSE, unfreeze = FALSE, ..
 #' @export
 build_analysis_site <- function(pkg = ".", ...) {
   if (pkg != ".") {
-    stop('currently only build_analysis_site(pkg = ".") is supported')
+    stop('currently only build_analysis_site(pkg = ".") is supported', call. = FALSE)
   }
 
   if (!fs::dir_exists("analysis")) {
-    stop("no analysis directory found")
+    stop("no analysis directory found", call. = FALSE)
   }
   notebooks <- fs::dir_ls("analysis", glob = "*.Rmd")
   if (length(notebooks) == 0) {
-    stop("no *.Rmd files in analysis directory")
+    stop("no *.Rmd files in analysis directory", call. = FALSE)
   }
 
   if (!fs::file_exists("pkgdown/_base.yml")) {
-    stop("pkgdown/_base.yml does not exist")
+    stop("pkgdown/_base.yml does not exist", call. = FALSE)
   }
   writeLines("creating `_pkgdown.yml` from `pkgdown/_base.yml`")
   pkg_yml <- yaml::read_yaml("pkgdown/_base.yml")

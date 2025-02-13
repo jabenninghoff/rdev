@@ -22,28 +22,28 @@ to_document <- function(file_path, new_path, overwrite = FALSE) {
   checkmate::assert_flag(overwrite)
 
   if (!(fs::path_ext(file_path) %in% c("Rmd", "rmd"))) {
-    stop("'", file_path, "' is not an R Markdown (*.Rmd) file")
+    stop("'", file_path, "' is not an R Markdown (*.Rmd) file", call. = FALSE)
   }
 
   notebook <- readLines(file_path)
   header <- grep("^---$", notebook)
   yaml <- rmarkdown::yaml_front_matter(file_path)
   if (length(header) < 2 || length(yaml) < 1) {
-    stop("'", file_path, "' is not a valid R Notebook")
+    stop("'", file_path, "' is not a valid R Notebook", call. = FALSE)
   }
 
   if (is.character(yaml$output)) {
     if (yaml$output != "html_notebook") {
-      stop("'", file_path, "' does not contain `output: html_notebook`")
+      stop("'", file_path, "' does not contain `output: html_notebook`", call. = FALSE)
     }
     yaml$output <- "html_document"
   } else if (is.list(yaml$output)) {
     if (is.null(yaml$output$html_notebook)) {
-      stop("'", file_path, "' does not contain `output: html_notebook`")
+      stop("'", file_path, "' does not contain `output: html_notebook`", call. = FALSE)
     }
     yaml$output <- list(html_document = yaml$output$html_notebook)
   } else {
-    stop("unexpected output object type '", typeof(yaml$output), "'")
+    stop("unexpected output object type '", typeof(yaml$output), "'", call. = FALSE)
   }
 
   body_start <- header[2] + 1
@@ -86,12 +86,12 @@ rmd_metadata <- function(file_path) { # nolint: cyclocomp_linter.
 
   if (quarto) {
     if (!(file_ext %in% c("Rmd", "rmd", "qmd"))) {
-      stop("'", file_path, "' is not an R Markdown (*.Rmd) or Quarto (*.qmd) file")
+      stop("'", file_path, "' is not an R Markdown (*.Rmd) or Quarto (*.qmd) file", call. = FALSE)
     }
     invalid_file_msg <- "is not a valid R Notebook or Quarto file"
   } else {
     if (!(file_ext %in% c("Rmd", "rmd"))) {
-      stop("'", file_path, "' is not an R Markdown (*.Rmd) file")
+      stop("'", file_path, "' is not an R Markdown (*.Rmd) file", call. = FALSE)
     }
     invalid_file_msg <- "is not a valid R Notebook"
   }
@@ -100,38 +100,38 @@ rmd_metadata <- function(file_path) { # nolint: cyclocomp_linter.
   header <- grep("^---$", notebook)
   yaml <- rmarkdown::yaml_front_matter(file_path)
   if (length(header) < 2 || length(yaml) < 1) {
-    stop("'", file_path, "' ", invalid_file_msg)
+    stop("'", file_path, "' ", invalid_file_msg, call. = FALSE)
   }
 
   if (file_ext == "qmd") {
     # qmd files require format: html
     if (is.null(yaml$format)) {
-      stop("'", file_path, "' does not contain `format: html`")
+      stop("'", file_path, "' does not contain `format: html`", call. = FALSE)
     } else if (is.character(yaml$format)) {
       if (yaml$format != "html") {
-        stop("'", file_path, "' does not contain `format: html`")
+        stop("'", file_path, "' does not contain `format: html`", call. = FALSE)
       }
     } else if (is.list(yaml$format)) {
       if (is.null(yaml$format$html)) {
-        stop("'", file_path, "' does not contain `format: html`")
+        stop("'", file_path, "' does not contain `format: html`", call. = FALSE)
       }
     } else {
-      stop("unexpected output object type '", typeof(yaml$format), "'")
+      stop("unexpected output object type '", typeof(yaml$format), "'", call. = FALSE)
     }
   } else {
     # Rmd files require output: html_notebook
     if (is.null(yaml$output)) {
-      stop("'", file_path, "' does not contain `output: html_notebook`")
+      stop("'", file_path, "' does not contain `output: html_notebook`", call. = FALSE)
     } else if (is.character(yaml$output)) {
       if (yaml$output != "html_notebook") {
-        stop("'", file_path, "' does not contain `output: html_notebook`")
+        stop("'", file_path, "' does not contain `output: html_notebook`", call. = FALSE)
       }
     } else if (is.list(yaml$output)) {
       if (is.null(yaml$output$html_notebook)) {
-        stop("'", file_path, "' does not contain `output: html_notebook`")
+        stop("'", file_path, "' does not contain `output: html_notebook`", call. = FALSE)
       }
     } else {
-      stop("unexpected output object type '", typeof(yaml$output), "'")
+      stop("unexpected output object type '", typeof(yaml$output), "'", call. = FALSE)
     }
   }
 
@@ -141,7 +141,7 @@ rmd_metadata <- function(file_path) { # nolint: cyclocomp_linter.
 
   urls <- desc::desc_get_urls()
   if (length(urls) < 1) {
-    stop("no URL found in DESCRIPTION")
+    stop("no URL found in DESCRIPTION", call. = FALSE)
   } else if (length(urls) == 1) {
     # assume urls[1] is repository URL, no GitHub Pages URL
     base_url <- "."
