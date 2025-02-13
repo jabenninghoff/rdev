@@ -19,8 +19,8 @@ lint_all(
 \item{...}{
   Arguments passed on to \code{\link[lintr:lint]{lintr::lint_dir}}
   \describe{
-    \item{\code{parse_settings}}{Logical, default \code{TRUE}. Whether to try and parse the settings;
-otherwise, the \code{\link[lintr:default_settings]{default_settings()}} are used.}
+    \item{\code{parse_settings}}{Logical, default \code{TRUE}. Whether to try and parse the \link[lintr:read_settings]{settings}. Otherwise,
+the \code{\link[lintr:default_settings]{default_settings()}} are used.}
     \item{\code{path}}{For the base directory of the project (for \code{lint_dir()}) or
 package (for \code{lint_package()}).}
     \item{\code{relative_path}}{if \code{TRUE}, file paths are printed using their path relative to the base directory.

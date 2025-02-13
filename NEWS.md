@@ -1,3 +1,7 @@
+# rdev 1.2.0
+
+* Updated for `lintr` 3.2.0 (update `use_lintr()`)
+
 # rdev 1.11.6
 
 * Minor updates
