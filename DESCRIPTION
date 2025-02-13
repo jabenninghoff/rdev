@@ -17,6 +17,7 @@ Imports:
     cli,
     cranlogs,
     curl,
+    cyclocomp,
     desc,
     devtools,
     fs,

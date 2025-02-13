@@ -14,4 +14,5 @@
 # Suppress R CMD check note
 #' @importFrom miniUI miniPage
 #' @importFrom languageserver run
+#' @importFrom cyclocomp cyclocomp
 NULL

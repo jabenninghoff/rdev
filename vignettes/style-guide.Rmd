@@ -69,7 +69,6 @@ configuration (`.lintr`):
 ```r
 linters: linters_with_tags(
     tags = NULL,
-    extraction_operator_linter = NULL,
     implicit_integer_linter = NULL,
     line_length_linter(100),
     missing_package_linter = NULL,
@@ -101,16 +100,6 @@ This selects all linters, including the new
 [Google linters](https://lintr.r-lib.org/news/index.html#google-linters-3-0-0). By selecting all
 linters, not just the defaults, this forces evaluation of new linters as they are added to lintr.
 Specific linters are disabled or configured per rdev style.
-
-### Allow $ extraction operator
-
-```r
-    extraction_operator_linter = NULL,
-```
-
-The extraction operator linter enforces use of `[[` over `$`. Since `$` is intended for interactive
-use and supports partial mapping, it is safer to use `[[`. However, use of `$` is common practice,
-including within the lintr code, and leads to more readable code.
 
 ### Allow implicit integers
 
