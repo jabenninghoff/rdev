@@ -68,12 +68,12 @@ stopifnot(
     )
   ),
   # returns 404 if vulnerability-alerts are not enabled
-  gh::gh(
+  !nzchar(gh::gh(
     "GET /repos/{owner}/{repo}/vulnerability-alerts",
     owner = gh_login,
     repo = repo_name,
     .api_url = host
-  ) == "",
+  )),
   # no method to check if automated-security-fixes are enabled
   nrow(gert::git_log()) == 1,
   gert::git_log()$message == "Initial commit",

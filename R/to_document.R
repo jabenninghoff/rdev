@@ -82,15 +82,15 @@ rmd_metadata <- function(file_path) { # nolint: cyclocomp_linter.
   checkmate::assert_string(file_path, min.chars = 1)
 
   quarto <- fs::file_exists("_quarto.yml")
-  file_ext <- fs::path_ext(file_path)
+  notebook_ext <- fs::path_ext(file_path)
 
   if (quarto) {
-    if (!(file_ext %in% c("Rmd", "rmd", "qmd"))) {
+    if (!(notebook_ext %in% c("Rmd", "rmd", "qmd"))) {
       stop("'", file_path, "' is not an R Markdown (*.Rmd) or Quarto (*.qmd) file", call. = FALSE)
     }
     invalid_file_msg <- "is not a valid R Notebook or Quarto file"
   } else {
-    if (!(file_ext %in% c("Rmd", "rmd"))) {
+    if (!(notebook_ext %in% c("Rmd", "rmd"))) {
       stop("'", file_path, "' is not an R Markdown (*.Rmd) file", call. = FALSE)
     }
     invalid_file_msg <- "is not a valid R Notebook"
@@ -103,7 +103,7 @@ rmd_metadata <- function(file_path) { # nolint: cyclocomp_linter.
     stop("'", file_path, "' ", invalid_file_msg, call. = FALSE)
   }
 
-  if (file_ext == "qmd") {
+  if (notebook_ext == "qmd") {
     # qmd files require format: html
     if (is.null(yaml$format)) {
       stop("'", file_path, "' does not contain `format: html`", call. = FALSE)
@@ -120,7 +120,7 @@ rmd_metadata <- function(file_path) { # nolint: cyclocomp_linter.
     }
   } else {
     # Rmd files require output: html_notebook
-    if (is.null(yaml$output)) {
+    if (is.null(yaml$output)) { # nolint: unnecessary_nesting_linter. kept for clarity.
       stop("'", file_path, "' does not contain `output: html_notebook`", call. = FALSE)
     } else if (is.character(yaml$output)) {
       if (yaml$output != "html_notebook") {

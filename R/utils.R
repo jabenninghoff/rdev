@@ -146,12 +146,12 @@ deps_check <- function(type, exclude_base = TRUE) {
   base_packages <- rownames(utils::installed.packages(priority = "base"))
   renv_deps <- renv::dependencies()
   renv_deps <- renv_deps[!endsWith(renv_deps$Source, "/DESCRIPTION"), ]
-  renv_deps <- renv_deps[!renv_deps$Package == pkgload::pkg_name("."), ]
+  renv_deps <- renv_deps[renv_deps$Package != pkgload::pkg_name("."), ]
   renv_deps <-
     renv_deps[!(renv_deps$Package == "renv" & endsWith(renv_deps$Source, "/renv.lock")), ]
   desc_deps <- desc::desc_get_deps()
   # desc_get_deps() will return Depends R which is not a valid package
-  desc_deps <- desc_deps[!desc_deps$package == "R", ]
+  desc_deps <- desc_deps[desc_deps$package != "R", ]
   if (type == "missing") {
     writeLines("renv::dependencies() not in DESCRIPTION:")
     if (exclude_base) {
@@ -240,7 +240,7 @@ package_downloads <- function(packages, when = "last-month") {
   }
 
   cl <- cranlogs::cran_downloads(packages = packages, when = when)
-  df <- stats::aggregate(count ~ package, data = cl, sum)
+  pkgc <- stats::aggregate(count ~ package, data = cl, sum)
 
-  df[order(df$count, decreasing = TRUE), ]
+  pkgc[order(pkgc$count, decreasing = TRUE), ]
 }
