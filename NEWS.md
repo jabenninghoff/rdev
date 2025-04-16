@@ -1,3 +1,7 @@
+# rdev 1.12.2
+
+* Minor fixes
+
 # rdev 1.12.1
 
 * Updated for R 4.5.0
