@@ -63,6 +63,7 @@ init <- function() {
 #'
 #' @export
 setup_analysis <- function(use_quarto = TRUE) {
+  checkmate::assert_flag(use_quarto)
   if (!rlang::is_interactive()) stop("setup_analysis() must be run interactively", call. = FALSE)
 
   continue <- utils::askYesNo(
