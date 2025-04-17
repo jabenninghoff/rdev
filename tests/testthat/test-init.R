@@ -34,6 +34,21 @@ test_that("init only runs when askYesNo is explicitly answered 'yes'", {
 
 # setup_analysis
 
+test_that("setup_analysis validates arguments", {
+  mockery::stub(setup_analysis, "gert::git_add", NULL)
+  mockery::stub(setup_analysis, "gert::git_commit", NULL)
+  mockery::stub(setup_analysis, "devtools::document", NULL)
+  mockery::stub(setup_analysis, "use_analysis_package", NULL)
+  mockery::stub(setup_analysis, "use_spelling", NULL)
+  mockery::stub(setup_analysis, "fs::file_delete", NULL)
+  mockery::stub(setup_analysis, "rstudioapi::isAvailable", FALSE)
+  mockery::stub(setup_analysis, "open_files", NULL)
+  mockery::stub(setup_analysis, "ci", NULL)
+  mockery::stub(setup_analysis, "utils::askYesNo", FALSE)
+
+  expect_error(setup_analysis(use_quarto = NA), "'use_quarto'")
+})
+
 test_that("setup_analysis errors if not running interactively", {
   mockery::stub(setup_analysis, "gert::git_add", NULL)
   mockery::stub(setup_analysis, "gert::git_commit", NULL)
