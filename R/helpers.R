@@ -82,6 +82,8 @@ local_temppkg <- function(dir = fs::file_temp(), type = "usethis", env = parent.
     mockery::stub(use_rdev_package, "devtools::build_readme", NULL)
 
     usethis::use_git()
+    gert::git_config_set("user.name", "John Barleycorn")
+    gert::git_config_set("user.email", "john@example.com")
     gert::git_add(".")
     gert::git_commit_all("Initial commit")
     use_rdev_package()
