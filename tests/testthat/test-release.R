@@ -131,7 +131,7 @@ test_that("new_branch stashes files", {
   mockery::stub(new_branch, "gert::git_commit", "Bump version")
   mockery::stub(new_branch, "gert::git_status", git_status_empty)
   mockery::stub(
-    new_branch, "gert::git_stash_save", function() stop("git_stash_save", call. = FALSE)
+    new_branch, "gert::git_stash_save", function(...) stop("git_stash_save", call. = FALSE)
   )
   mockery::stub(new_branch, "gert::git_stash_pop", function() stop("git_stash_pop", call. = FALSE))
 

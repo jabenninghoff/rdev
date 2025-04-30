@@ -39,7 +39,7 @@ new_branch <- function(name, bump_ver = TRUE, current = FALSE) {
     stash <- FALSE
     if (nrow(gert::git_status()) != 0) {
       stash <- TRUE
-      gert::git_stash_save()
+      gert::git_stash_save(include_untracked = TRUE)
     }
 
     desc::desc_bump_version("dev")

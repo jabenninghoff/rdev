@@ -1,3 +1,7 @@
+# rdev 1.12.3
+
+* `new_branch()` now stashes untracked files
+
 # rdev 1.12.2
 
 * Minor fixes
