@@ -28,12 +28,10 @@ SIRAcon
 Tidyverse
 Uncheck
 WORDLIST
-YAML
 api
 bugfix
 changelog
 codecov
-config
 customised
 customizations
 dev
@@ -71,7 +69,6 @@ rcmdcheck
 rebaseable
 renv
 renv's
-reproducibility
 rmarkdown
 rmd
 rnw
@@ -83,6 +80,7 @@ styler
 tcltk
 testthat
 tidyverse
+untracked
 urlchecker
 usethis
 yaml
