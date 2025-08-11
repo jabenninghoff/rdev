@@ -149,6 +149,7 @@ The functions included in rdev support many of the technical capabilities, inclu
 - Trunk-based development
 - Version control
 
-An outline of my [SIRAcon](https://societyinforisk.org/SiRAcon) 2022 talk,
-"Making R Work for You (With Automation)" is available on GitHub in
+An outline of my
+[SIRAcon 2022](https://web.archive.org/web/20221205210229/https://societyinforisk.org/SiRAcon)
+talk, "Making R Work for You (With Automation)" is available on GitHub in
 [siracon2022](https://jabenninghoff.github.io/siracon2022/).
