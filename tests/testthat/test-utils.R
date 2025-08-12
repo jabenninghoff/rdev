@@ -210,16 +210,16 @@ test_that("package_type validates arguments", {
 test_that("package_type detects type", {
   withr::local_dir(withr::local_tempdir())
   fs::dir_create("pkgdown")
-  expect_error(package_type(strict = TRUE), "could not determine package type")
+  expect_identical(package_type(strict = TRUE), "unknown")
   expect_identical(package_type(strict = FALSE), "rdev")
 
   fs::file_create("analysis")
-  expect_error(package_type(strict = TRUE), "could not determine package type")
+  expect_identical(package_type(strict = TRUE), "unknown")
   expect_identical(package_type(strict = FALSE), "rdev")
 
   fs::file_delete("analysis")
   fs::dir_create("analysis")
-  expect_error(package_type(strict = TRUE), "could not determine package type")
+  expect_identical(package_type(strict = TRUE), "unknown")
   expect_identical(package_type(strict = FALSE), "analysis")
 
   fs::file_create("_pkgdown.yml")
