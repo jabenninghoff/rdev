@@ -71,8 +71,8 @@ to_document <- function(file_path, new_path, overwrite = FALSE) {
 #' The 'description' line is the the first non-blank line in the body of an R notebook that serves
 #'   as a brief description of the work.
 #'
-#' If `_quarto.yml` is present, `rmd_metadata()` will extract the YAML front matter and description
-#'   from Quarto format (`.qmd`) notebooks.
+#' For quarto packages, `rmd_metadata()` will extract the YAML front matter and description from
+#'   Quarto format (`.qmd`) notebooks.
 #'
 #' @param file_path Path to analysis notebook
 #'
@@ -81,7 +81,7 @@ to_document <- function(file_path, new_path, overwrite = FALSE) {
 rmd_metadata <- function(file_path) { # nolint: cyclocomp_linter.
   checkmate::assert_string(file_path, min.chars = 1)
 
-  quarto <- fs::file_exists("_quarto.yml")
+  quarto <- package_type(strict = TRUE) == "quarto"
   notebook_ext <- fs::path_ext(file_path)
 
   if (quarto) {
