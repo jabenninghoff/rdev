@@ -60,6 +60,8 @@ test_that("ci validates arguments", {
   mockery::stub(ci, "desc::desc_normalize", NULL)
   mockery::stub(ci, "print_tbl", NULL)
   mockery::stub(ci, "extra_deps", NULL)
+  mockery::stub(ci, "spelling::update_wordlist", NULL)
+  mockery::stub(ci, "update_wordlist_notebooks", NULL)
   mockery::stub(ci, "url_check", NULL)
   mockery::stub(ci, "html_url_check", NULL)
   mockery::stub(ci, "rcmdcheck::rcmdcheck", NULL)
@@ -72,6 +74,7 @@ test_that("ci validates arguments", {
   expect_error(ci(document = NA), "'document'")
   expect_error(ci(normalize = NA), "'normalize'")
   expect_error(ci(extra = NA), "'extra'")
+  expect_error(ci(spelling = NA), "'spelling'")
   expect_error(ci(urls = NA), "'urls'")
   expect_error(ci(rcmdcheck = NA), "'rcmdcheck'")
 })
@@ -109,6 +112,8 @@ test_that("All renv functions are called according to ci logic", {
   mockery::stub(ci, "desc::desc_normalize", NULL)
   mockery::stub(ci, "print_tbl", NULL)
   mockery::stub(ci, "extra_deps", NULL)
+  mockery::stub(ci, "spelling::update_wordlist", NULL)
+  mockery::stub(ci, "update_wordlist_notebooks", NULL)
   mockery::stub(ci, "url_check", NULL)
   mockery::stub(ci, "html_url_check", NULL)
   mockery::stub(ci, "rcmdcheck::rcmdcheck", NULL)
@@ -124,10 +129,30 @@ test_that("All renv functions are called according to ci logic", {
   document <- "devtools::document\\(\\)"
   normalize <- "desc::desc_normalize\\(\\)"
   extra <- "extra_deps\\(\\)"
+  spelling <- "spelling::update_wordlist\\(\\)"
+  spelling_analysis <- "update_wordlist_notebooks\\(\\)"
   urls <- "url_check\\((\\))\nhtml_url_check\\(\\)"
   rcmdcheck <- paste0(
     'Setting env vars: NOT_CRAN="true", CI="true"\\n',
     'rcmdcheck::rcmdcheck\\(args = "--no-manual", error_on = "warning"\\)'
+  )
+
+  # spelling package types
+  mockery::stub(ci, "package_type", "analysis")
+  expect_output(
+    ci(
+      renv = FALSE, missing = FALSE, pkgdown = FALSE, styler = FALSE, lintr = FALSE,
+      document = FALSE, normalize = FALSE, extra = FALSE, spelling = TRUE, urls = FALSE,
+      rcmdcheck = FALSE
+    ), spelling_analysis
+  )
+  mockery::stub(ci, "package_type", "rdev")
+  expect_output(
+    ci(
+      renv = FALSE, missing = FALSE, pkgdown = FALSE, styler = FALSE, lintr = FALSE,
+      document = FALSE, normalize = FALSE, extra = FALSE, spelling = TRUE, urls = FALSE,
+      rcmdcheck = FALSE
+    ), spelling
   )
 
   # default
@@ -135,7 +160,7 @@ test_that("All renv functions are called according to ci logic", {
     ci(),
     paste0(
       begin, renv, sep, missing, sep, pkgdown, sep, styler, sep, lintr, sep, document, sep,
-      normalize, sep, extra, sep, urls, sep, rcmdcheck, end
+      normalize, sep, extra, sep, spelling, sep, urls, sep, rcmdcheck, end
     )
   )
 
@@ -143,11 +168,11 @@ test_that("All renv functions are called according to ci logic", {
   expect_output(
     ci(
       renv = TRUE, missing = TRUE, pkgdown = TRUE, styler = TRUE, lintr = TRUE, document = TRUE,
-      normalize = TRUE, extra = TRUE, urls = TRUE, rcmdcheck = TRUE
+      normalize = TRUE, extra = TRUE, spelling = TRUE, urls = TRUE, rcmdcheck = TRUE
     ),
     paste0(
       begin, renv, sep, missing, sep, pkgdown, sep, styler, sep, lintr, sep, document, sep,
-      normalize, sep, extra, sep, urls, sep, rcmdcheck, end
+      normalize, sep, extra, sep, spelling, sep, urls, sep, rcmdcheck, end
     )
   )
 
@@ -155,7 +180,8 @@ test_that("All renv functions are called according to ci logic", {
   expect_output(
     ci(
       renv = FALSE, missing = FALSE, pkgdown = FALSE, styler = FALSE, lintr = FALSE,
-      document = FALSE, normalize = FALSE, extra = FALSE, urls = FALSE, rcmdcheck = FALSE
+      document = FALSE, normalize = FALSE, extra = FALSE, spelling = FALSE, urls = FALSE,
+      rcmdcheck = FALSE
     ), NA
   )
 
@@ -164,11 +190,11 @@ test_that("All renv functions are called according to ci logic", {
   expect_output(
     ci(
       renv = TRUE, missing = TRUE, pkgdown = TRUE, styler = NULL, lintr = TRUE, document = TRUE,
-      normalize = TRUE, extra = TRUE, urls = TRUE, rcmdcheck = TRUE
+      normalize = TRUE, extra = TRUE, spelling = TRUE, urls = TRUE, rcmdcheck = TRUE
     ),
     paste0(
       begin, renv, sep, missing, sep, pkgdown, sep, lintr, sep, document, sep, normalize, sep,
-      extra, sep, urls, sep, rcmdcheck, end
+      extra, sep, spelling, sep, urls, sep, rcmdcheck, end
     )
   )
 
@@ -178,7 +204,7 @@ test_that("All renv functions are called according to ci logic", {
   expect_output(
     ci(
       renv = TRUE, missing = TRUE, pkgdown = TRUE, styler = NULL, lintr = TRUE, document = TRUE,
-      normalize = TRUE, extra = TRUE, urls = TRUE, rcmdcheck = TRUE
+      normalize = TRUE, extra = TRUE, spelling = TRUE, urls = TRUE, rcmdcheck = TRUE
     ),
     paste0(begin, renv, sep, missing, sep, pkgdown, sep, styler, sep, lintr, end)
   )
@@ -188,7 +214,7 @@ test_that("All renv functions are called according to ci logic", {
   expect_output(
     ci(
       renv = TRUE, missing = TRUE, pkgdown = TRUE, styler = NULL, lintr = TRUE, document = TRUE,
-      normalize = TRUE, extra = TRUE, urls = TRUE, rcmdcheck = TRUE
+      normalize = TRUE, extra = TRUE, spelling = TRUE, urls = TRUE, rcmdcheck = TRUE
     ),
     paste0(begin, renv, sep, missing, sep, styler, sep, lintr, end)
   )
@@ -198,7 +224,7 @@ test_that("All renv functions are called according to ci logic", {
   expect_output(
     ci(
       renv = TRUE, missing = TRUE, pkgdown = TRUE, styler = NULL, lintr = TRUE, document = TRUE,
-      normalize = TRUE, extra = TRUE, urls = TRUE, rcmdcheck = TRUE
+      normalize = TRUE, extra = TRUE, spelling = TRUE, urls = TRUE, rcmdcheck = TRUE
     ),
     paste0(begin, renv, sep, missing, end)
   )
@@ -208,7 +234,7 @@ test_that("All renv functions are called according to ci logic", {
   expect_output(
     ci(
       renv = TRUE, missing = TRUE, pkgdown = TRUE, styler = NULL, lintr = TRUE, document = TRUE,
-      normalize = TRUE, extra = TRUE, urls = TRUE, rcmdcheck = TRUE
+      normalize = TRUE, extra = TRUE, spelling = TRUE, urls = TRUE, rcmdcheck = TRUE
     ),
     paste0(begin, renv, end)
   )
