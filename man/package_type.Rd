@@ -12,7 +12,7 @@ package_type(pkg = ".", strict = FALSE)
 \item{strict}{strictly determine package type (see description)}
 }
 \value{
-type string, one of \code{c("rdev", "analysis", "quarto")}
+type string, one of \verb{c("unknown", rdev", "analysis", "quarto")}
 }
 \description{
 Use heuristics (when \code{strict = FALSE}) or presence of specific files (when \code{strict = TRUE}) to
@@ -25,6 +25,7 @@ determine package type. If one of the files is found, the package is strictly de
 \item If \verb{_pkgdown.yml} is found, the type is \code{rdev}
 }
 
-If strict checking fails, the package is assumed to be \code{analysis} if an \code{analysis} directory is
-present, and \code{rdev} if not.
+\code{package_type} will return \code{unknown} if \code{strict = TRUE} and none of the files are present. When
+strict checking is disabled, the package is assumed to be \code{analysis} if an \code{analysis} directory
+is present, and \code{rdev} if not.
 }

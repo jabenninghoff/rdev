@@ -207,13 +207,14 @@ extra_deps <- function() {
 #' - If `pkgdown/_base.yml` is found, the type is `analysis`
 #' - If `_pkgdown.yml` is found, the type is `rdev`
 #'
-#' If strict checking fails, the package is assumed to be `analysis` if an `analysis` directory is
-#' present, and `rdev` if not.
+#' `package_type` will return `unknown` if `strict = TRUE` and none of the files are present. When
+#' strict checking is disabled, the package is assumed to be `analysis` if an `analysis` directory
+#' is present, and `rdev` if not.
 #'
 #' @param pkg path to package
 #' @param strict strictly determine package type (see description)
 #'
-#' @return type string, one of `c("rdev", "analysis", "quarto")`
+#' @return type string, one of `c("unknown", rdev", "analysis", "quarto")`
 #' @export
 package_type <- function(pkg = ".", strict = FALSE) {
   checkmate::assert_character(pkg, min.chars = 1, any.missing = FALSE)
@@ -225,7 +226,7 @@ package_type <- function(pkg = ".", strict = FALSE) {
   } else if (fs::file_exists(fs::path(pkg, "_pkgdown.yml"))) {
     type <- "rdev"
   } else if (strict) {
-    stop("could not determine package type", call. = FALSE)
+    type <- "unknown"
   } else if (fs::dir_exists(fs::path(pkg, "analysis"))) {
     type <- "analysis"
   } else {
