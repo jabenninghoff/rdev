@@ -403,12 +403,12 @@ test_that("stage_release runs proper builder", {
   expect_error(stage_release(), "^could not determine builder type$")
 
   pkgdown <- fs::file_create("_pkgdown.yml")
-  writeLines("url: ~", pkgdown)
+  writeLines("url: .", pkgdown)
   expect_error(stage_release(), "^build_rdev_site$")
 
   fs::dir_create("pkgdown")
   base <- fs::file_create("pkgdown/_base.yml")
-  writeLines("url: ~", base)
+  writeLines("url: .", base)
   expect_error(stage_release(), "^build_analysis_site$")
 
   fs::file_create("_quarto.yml")
