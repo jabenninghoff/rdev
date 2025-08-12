@@ -70,9 +70,8 @@ use_package_r <- function(open = FALSE) {
 #'
 #' @export
 use_gitattributes <- function(open = FALSE) {
-  # TODO: consider refactoring to an internal function to determine package type
-  #       here and in stage_release()
-  if (fs::dir_exists("analysis")) {
+  pkg_type <- package_type()
+  if (pkg_type == "analysis" || pkg_type == "quarto") {
     gitattributes <- "gitattributes-analysis"
   } else {
     gitattributes <- "gitattributes-rdev"
