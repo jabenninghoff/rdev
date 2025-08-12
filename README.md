@@ -217,12 +217,13 @@ ci()
 #>   <chr>                      <nam> <chr>  <chr>   <chr> <chr> <chr>  <chr> <chr>
 #> 1 https://code.visualstudio… <chr> 500    Intern… ""    ""    ""     ""    /Use…
 #> html_url_check()
-#> # A tibble: 3 × 9
+#> # A tibble: 4 × 9
 #>   URL                        From  Status Message New   CRAN  Spaces R     root 
 #>   <chr>                      <nam> <chr>  <chr>   <chr> <chr> <chr>  <chr> <chr>
 #> 1 http://covr.r-lib.org/ref… <chr> 200    OK      "htt… ""    ""     ""    /Use…
 #> 2 http://r-lib.github.io/rc… <chr> 200    OK      "htt… ""    ""     ""    /Use…
 #> 3 https://code.visualstudio… <chr> 500    Intern… ""    ""    ""     ""    /Use…
+#> 4 https://societyinforisk.o… <chr> 404    Not Fo… ""    ""    ""     ""    /Use…
 #> 
 #> Setting env vars: NOT_CRAN="true", CI="true"
 #> rcmdcheck::rcmdcheck(args = "--no-manual", error_on = "warning")
@@ -234,20 +235,20 @@ ci()
 #> * creating vignettes ... OK
 #> * checking for LF line-endings in source and make files and shell scripts
 #> * checking for empty or unneeded directories
-#> * building ‘rdev_1.12.3.tar.gz’
+#> * building ‘rdev_1.13.0.tar.gz’
 #> 
 #> ── R CMD check ─────────────────────────────────────────────────────────────────
-#> * using log directory ‘/private/var/folders/vn/cw5f9gws42v9m8mdsds_zbl00000gp/T/RtmpFW9PEG/filed76c35ee47f7/rdev.Rcheck’
-#> * using R version 4.5.0 (2025-04-11)
+#> * using log directory ‘/private/var/folders/vn/cw5f9gws42v9m8mdsds_zbl00000gp/T/RtmpRj1WuE/file1544866a7d1f/rdev.Rcheck’
+#> * using R version 4.5.1 (2025-06-13)
 #> * using platform: aarch64-apple-darwin20
 #> * R was compiled by
-#>     Apple clang version 14.0.0 (clang-1400.0.29.202)
+#>     Apple clang version 16.0.0 (clang-1600.0.26.6)
 #>     GNU Fortran (GCC) 14.2.0
-#> * running under: macOS Sequoia 15.4.1
+#> * running under: macOS Sequoia 15.6
 #> * using session charset: UTF-8
 #> * using option ‘--no-manual’
 #> * checking for file ‘rdev/DESCRIPTION’ ... OK
-#> * this is package ‘rdev’ version ‘1.12.3’
+#> * this is package ‘rdev’ version ‘1.13.0’
 #> * package encoding: UTF-8
 #> * checking package namespace information ... OK
 #> * checking package dependencies ... OK
@@ -302,8 +303,8 @@ ci()
 #> * DONE
 #> 
 #> Status: OK
-#> ── R CMD check results ──────────────────────────────────────── rdev 1.12.3 ────
-#> Duration: 26s
+#> ── R CMD check results ──────────────────────────────────────── rdev 1.13.0 ────
+#> Duration: 21.7s
 #> 
 #> 0 errors ✔ | 0 warnings ✔ | 0 notes ✔
 ```
