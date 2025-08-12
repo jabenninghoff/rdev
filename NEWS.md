@@ -1,3 +1,7 @@
+# rdev 1.14.0
+
+* Added utility function `package_type()`: determine rdev package type
+
 # rdev 1.13.0
 
 * Added function `use_gitattributes()`: Install rdev .gitattributes template using `usethis::use_template()` to set GitHub Linguist [overrides](https://github.com/github-linguist/linguist/blob/main/docs/overrides.md)

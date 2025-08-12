@@ -55,6 +55,7 @@ reference:
     - sort_rbuildignore
     - spell_check_notebooks
     - update_wordlist_notebooks
+    - package_type
     - local_temppkg
     - missing_deps
     - extra_deps

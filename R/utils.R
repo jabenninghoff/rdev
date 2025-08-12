@@ -198,6 +198,42 @@ extra_deps <- function() {
   deps_check("extra")
 }
 
+#' Determine rdev package type
+#'
+#' Use heuristics (when `strict = FALSE`) or presence of specific files (when `strict = TRUE`) to
+#' determine package type. If one of the files is found, the package is strictly determined:
+#'
+#' - If `_quarto.yml` is found, the type is `quarto`
+#' - If `pkgdown/_base.yml` is found, the type is `analysis`
+#' - If `_pkgdown.yml` is found, the type is `rdev`
+#'
+#' If strict checking fails, the package is assumed to be `analysis` if an `analysis` directory is
+#' present, and `rdev` if not.
+#'
+#' @param pkg path to package
+#' @param strict strictly determine package type (see description)
+#'
+#' @return type string, one of `c("rdev", "analysis", "quarto")`
+#' @export
+package_type <- function(pkg = ".", strict = FALSE) {
+  checkmate::assert_character(pkg, min.chars = 1, any.missing = FALSE)
+  checkmate::assert_flag(strict)
+  if (fs::file_exists(fs::path(pkg, "_quarto.yml"))) {
+    type <- "quarto"
+  } else if (fs::file_exists(fs::path(pkg, "pkgdown/_base.yml"))) {
+    type <- "analysis"
+  } else if (fs::file_exists(fs::path(pkg, "_pkgdown.yml"))) {
+    type <- "rdev"
+  } else if (strict) {
+    stop("could not determine package type", call. = FALSE)
+  } else if (fs::dir_exists(fs::path(pkg, "analysis"))) {
+    type <- "analysis"
+  } else {
+    type <- "rdev"
+  }
+  type
+}
+
 #' Open rdev files
 #'
 #' Open a standard set of files for editing in RStudio.
