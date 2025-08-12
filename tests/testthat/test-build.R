@@ -32,7 +32,7 @@ test_that("all build_rdev_site functions are called", {
 test_that("unfreeze errors when components are missing", {
   withr::local_dir(withr::local_tempdir())
 
-  expect_error(unfreeze(), "^_quarto\\.yml does not exist$")
+  expect_error(unfreeze(), "^Not a quarto package$")
 })
 
 # build_quarto_site
@@ -59,10 +59,10 @@ test_that("build_quarto_site errors when components are missing", {
   fs::dir_create("analysis")
   expect_error(build_quarto_site(), "^no \\*\\.Rmd or \\*\\.qmd files in analysis directory$")
   fs::file_create("analysis/test.Rmd")
-  expect_error(build_quarto_site(), "^_quarto\\.yml does not exist$")
+  expect_error(build_quarto_site(), "^Not a quarto package$")
   fs::file_delete("analysis/test.Rmd")
   fs::file_create("analysis/test.qmd")
-  expect_error(build_quarto_site(), "^_quarto\\.yml does not exist$")
+  expect_error(build_quarto_site(), "^Not a quarto package$")
 })
 
 test_that("all build_quarto_site functions are called", {

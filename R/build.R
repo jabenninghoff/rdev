@@ -37,8 +37,8 @@ build_rdev_site <- function(pkg = ".", ...) {
 #'
 #' @export
 unfreeze <- function() {
-  if (!fs::file_exists("_quarto.yml")) {
-    stop("_quarto.yml does not exist", call. = FALSE)
+  if (package_type(strict = TRUE) != "quarto") {
+    stop("Not a quarto package", call. = FALSE)
   }
   fs::dir_delete("_freeze")
 }
@@ -73,8 +73,8 @@ build_quarto_site <- function(input = NULL, as_job = FALSE, unfreeze = FALSE, ..
   if (length(fs::dir_ls("analysis", regexp = "[.][Rq]md$")) == 0) {
     stop("no *.Rmd or *.qmd files in analysis directory", call. = FALSE)
   }
-  if (!fs::file_exists("_quarto.yml")) {
-    stop("_quarto.yml does not exist", call. = FALSE)
+  if (package_type(strict = TRUE) != "quarto") {
+    stop("Not a quarto package", call. = FALSE)
   }
   writeLines("devtools::build_readme()")
   devtools::build_readme()
