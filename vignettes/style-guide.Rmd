@@ -61,7 +61,6 @@ package directory structure.
 
 ## lintr
 
-
 The `lint_all()` function lints all R and Quarto files (`R`, `Rmd`, `qmd`, `Rnw`, `Rhtml`, `Rpres`,
 `Rrst`, `Rtex`, `Rtxt`) with [lintr](https://lintr.r-lib.org) using an opinionated
 configuration (`.lintr`):
