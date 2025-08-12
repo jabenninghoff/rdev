@@ -179,13 +179,14 @@ stage_release <- function(pkg = ".",
   gert::git_add("DESCRIPTION")
   gert::git_commit(rel_message)
 
-  if (fs::file_exists("_quarto.yml")) {
+  pkg_type <- package_type(pkg = pkg, strict = TRUE)
+  if (pkg_type == "quarto") { # nolint: if_switch_linter. `if` is cleaner here.
     builder <- paste0("build_quarto_site(unfreeze = ", unfreeze, ")")
     build_quarto_site(unfreeze = unfreeze)
-  } else if (fs::file_exists("pkgdown/_base.yml")) {
+  } else if (pkg_type == "analysis") {
     builder <- "build_analysis_site()"
     build_analysis_site()
-  } else if (fs::file_exists("_pkgdown.yml")) {
+  } else if (pkg_type == "rdev") {
     builder <- "build_rdev_site()"
     build_rdev_site()
   } else {
