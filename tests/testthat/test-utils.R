@@ -193,6 +193,48 @@ test_that("missing_deps and extra_deps call correct deps_check type", {
   expect_identical(extra_deps(), "extra")
 })
 
+# package_type
+
+test_that("package_type validates arguments", {
+  mockery::stub(package_type, "fs::file_exists", NULL)
+
+  expect_error(package_type(pkg = NA), "'pkg'")
+  expect_error(package_type(pkg = NULL), "'pkg'")
+  expect_error(package_type(pkg = ""), "'pkg'")
+  expect_error(package_type(strict = NA), "'strict'")
+  expect_error(package_type(strict = NULL), "'strict'")
+  expect_error(package_type(strict = "string"), "'strict'")
+  expect_error(package_type(strict = 1234), "'strict'")
+})
+
+test_that("package_type detects type", {
+  withr::local_dir(withr::local_tempdir())
+  fs::dir_create("pkgdown")
+  expect_error(package_type(strict = TRUE), "could not determine package type")
+  expect_identical(package_type(strict = FALSE), "rdev")
+
+  fs::file_create("analysis")
+  expect_error(package_type(strict = TRUE), "could not determine package type")
+  expect_identical(package_type(strict = FALSE), "rdev")
+
+  fs::file_delete("analysis")
+  fs::dir_create("analysis")
+  expect_error(package_type(strict = TRUE), "could not determine package type")
+  expect_identical(package_type(strict = FALSE), "analysis")
+
+  fs::file_create("_pkgdown.yml")
+  expect_identical(package_type(strict = TRUE), "rdev")
+  expect_identical(package_type(strict = FALSE), "rdev")
+
+  fs::file_create("pkgdown/_base.yml")
+  expect_identical(package_type(strict = TRUE), "analysis")
+  expect_identical(package_type(strict = FALSE), "analysis")
+
+  fs::file_create("_quarto.yml")
+  expect_identical(package_type(strict = TRUE), "quarto")
+  expect_identical(package_type(strict = FALSE), "quarto")
+})
+
 # open_files
 
 test_that("open_files validates arguments", {
