@@ -106,6 +106,7 @@ print_tbl <- function(df) {
 #' @param document run [devtools::document()]
 #' @param normalize run [desc::desc_normalize()]
 #' @param extra run [extra_deps()]
+#' @param spelling update spelling [`WORDLIST`][spelling::wordlist]
 #' @param urls validate URLs with [url_check()] and [html_url_check()]
 #' @param rcmdcheck run `R CMD check` using:
 #'   [`rcmdcheck::rcmdcheck(args = "--no-manual", error_on = "warning")`][rcmdcheck::rcmdcheck]
@@ -125,6 +126,7 @@ ci <- function(renv = TRUE, # nolint: cyclocomp_linter.
                document = TRUE,
                normalize = TRUE,
                extra = TRUE,
+               spelling = TRUE,
                urls = TRUE,
                rcmdcheck = TRUE) {
   checkmate::assert_flag(renv)
@@ -135,6 +137,7 @@ ci <- function(renv = TRUE, # nolint: cyclocomp_linter.
   checkmate::assert_flag(document)
   checkmate::assert_flag(normalize)
   checkmate::assert_flag(extra)
+  checkmate::assert_flag(spelling)
   checkmate::assert_flag(urls)
   checkmate::assert_flag(rcmdcheck)
 
@@ -145,7 +148,8 @@ ci <- function(renv = TRUE, # nolint: cyclocomp_linter.
       return(invisible(status))
     }
     if (any(
-      missing, pkgdown, is.null(styler), styler, lintr, document, normalize, extra, urls, rcmdcheck
+      missing, pkgdown, is.null(styler), styler, lintr, document, normalize, extra, spelling, urls,
+      rcmdcheck
     )) {
       writeLines("")
     }
@@ -157,7 +161,9 @@ ci <- function(renv = TRUE, # nolint: cyclocomp_linter.
     if (nrow(md) != 0) {
       return(tibble::as_tibble(md))
     }
-    if (any(pkgdown, is.null(styler), styler, lintr, document, normalize, extra, urls, rcmdcheck)) {
+    if (any(
+      pkgdown, is.null(styler), styler, lintr, document, normalize, extra, spelling, urls, rcmdcheck
+    )) {
       writeLines("")
     }
   }
@@ -165,7 +171,9 @@ ci <- function(renv = TRUE, # nolint: cyclocomp_linter.
   if (pkgdown && fs::file_exists("_pkgdown.yml")) {
     writeLines("pkgdown::check_pkgdown()")
     pkgdown::check_pkgdown()
-    if (any(is.null(styler), styler, lintr, document, normalize, extra, urls, rcmdcheck)) {
+    if (any(
+      is.null(styler), styler, lintr, document, normalize, extra, spelling, urls, rcmdcheck
+    )) {
       writeLines("")
     }
   }
@@ -177,7 +185,7 @@ ci <- function(renv = TRUE, # nolint: cyclocomp_linter.
   if (styler) {
     writeLines("style_all()")
     style_all()
-    if (any(lintr, document, normalize, extra, urls, rcmdcheck)) writeLines("")
+    if (any(lintr, document, normalize, extra, spelling, urls, rcmdcheck)) writeLines("")
   }
 
   if (lintr) {
@@ -186,24 +194,35 @@ ci <- function(renv = TRUE, # nolint: cyclocomp_linter.
     if (length(lints) > 0) {
       return(lints)
     }
-    if (any(document, normalize, extra, urls, rcmdcheck)) writeLines("")
+    if (any(document, normalize, extra, spelling, urls, rcmdcheck)) writeLines("")
   }
 
   if (document) {
     writeLines("devtools::document()")
     devtools::document()
-    if (any(normalize, extra, urls, rcmdcheck)) writeLines("")
+    if (any(normalize, extra, spelling, urls, rcmdcheck)) writeLines("")
   }
 
   if (normalize) {
     writeLines("desc::desc_normalize()")
     desc::desc_normalize()
-    if (any(extra, urls, rcmdcheck)) writeLines("")
+    if (any(extra, spelling, urls, rcmdcheck)) writeLines("")
   }
 
   if (extra) {
     writeLines("extra_deps()")
     print_tbl(extra_deps())
+    if (any(spelling, urls, rcmdcheck)) writeLines("")
+  }
+
+  if (spelling) {
+    if (package_type() == "rdev") {
+      writeLines("spelling::update_wordlist()")
+      spelling::update_wordlist()
+    } else {
+      writeLines("update_wordlist_notebooks()")
+      update_wordlist_notebooks()
+    }
     if (any(urls, rcmdcheck)) writeLines("")
   }
 

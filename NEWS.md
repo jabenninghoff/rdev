@@ -2,6 +2,8 @@
 
 * Added utility function `package_type()`: determine rdev package type
 
+* Added an option to update the spelling `WORDLIST` to `ci()` (on by default)
+
 # rdev 1.13.0
 
 * Added function `use_gitattributes()`: Install rdev .gitattributes template using `usethis::use_template()` to set GitHub Linguist [overrides](https://github.com/github-linguist/linguist/blob/main/docs/overrides.md)

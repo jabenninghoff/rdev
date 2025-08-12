@@ -13,6 +13,7 @@ ci(
   document = TRUE,
   normalize = TRUE,
   extra = TRUE,
+  spelling = TRUE,
   urls = TRUE,
   rcmdcheck = TRUE
 )
@@ -33,6 +34,8 @@ ci(
 \item{normalize}{run \code{\link[desc:desc_normalize]{desc::desc_normalize()}}}
 
 \item{extra}{run \code{\link[=extra_deps]{extra_deps()}}}
+
+\item{spelling}{update spelling \code{\link[spelling:wordlist]{WORDLIST}}}
 
 \item{urls}{validate URLs with \code{\link[=url_check]{url_check()}} and \code{\link[=html_url_check]{html_url_check()}}}
 
