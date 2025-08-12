@@ -121,8 +121,9 @@ Selection: 2
 - [ ] The 4 new files (`.Rbuildignore`, `DESCRIPTION`, `NAMESPACE`, `rdtest1.Rproj`) will be
       committed to GitHub with the message `rdev::create_github_repo()`
 
-There will be 22 new or changed files (new unless otherwise noted):
+There will be 23 new or changed files (new unless otherwise noted):
 
+- [ ] `.gitattributes`
 - [ ] `.github/.gitignore`
 - [ ] `.github/workflows/lint.yaml`
 - [ ] `.github/workflows/missing-deps.yaml`

@@ -30,20 +30,20 @@ stopifnot(
     structure(
       list(
         file = c(
-          ".github/", ".gitignore", ".lintr", ".Rbuildignore", ".Rprofile", "DESCRIPTION",
-          "LICENSE.md", "man/", "NEWS.md", "R/", "README.md", "README.Rmd", "renv.lock", "renv/",
-          "tests/", "TODO.md"
+          ".gitattributes", ".github/", ".gitignore", ".lintr", ".Rbuildignore", ".Rprofile",
+          "DESCRIPTION", "LICENSE.md", "man/", "NEWS.md", "R/", "README.md", "README.Rmd",
+          "renv.lock", "renv/", "tests/", "TODO.md"
         ),
         status = c(
-          "new", "modified", "new", "modified", "new", "modified", "new", "new", "new", "new",
-          "new", "new", "new", "new", "new", "new"
+          "new", "new", "modified", "new", "modified", "new", "modified", "new", "new", "new",
+          "new", "new", "new", "new", "new", "new", "new"
         ),
         staged = c(
           FALSE, FALSE, FALSE, FALSE, FALSE, FALSE, FALSE, FALSE, FALSE, FALSE, FALSE, FALSE, FALSE,
-          FALSE, FALSE, FALSE
+          FALSE, FALSE, FALSE, FALSE
         )
       ),
-      row.names = c(NA, -16L),
+      row.names = c(NA, -17L),
       class = c("tbl_df", "tbl", "data.frame")
     )
   ),
@@ -79,7 +79,7 @@ stopifnot(
     structure(
       list(
         file = c(
-          ".github/.gitignore", ".github/workflows/lint.yaml",
+          ".gitattributes", ".github/.gitignore", ".github/workflows/lint.yaml",
           ".github/workflows/missing-deps.yaml", ".github/workflows/R-CMD-check.yaml", ".gitignore",
           ".lintr", ".Rbuildignore", ".Rprofile", "DESCRIPTION", "LICENSE.md",
           "man/rdtest1-package.Rd", "NEWS.md", "R/package.R", "README.md", "README.Rmd",
@@ -87,15 +87,15 @@ stopifnot(
           "tests/testthat.R", "tests/testthat/test-package.R", "TODO.md"
         ),
         status = c(
-          "new", "new", "new", "new", "modified", "new", "modified", "new", "modified", "new",
-          "new", "new", "new", "new", "new", "new", "new", "new", "new", "new", "new", "new"
+          "new", "new", "new", "new", "new", "modified", "new", "modified", "new", "modified",
+          "new", "new", "new", "new", "new", "new", "new", "new", "new", "new", "new", "new", "new"
         ),
         staged = c(
           TRUE, TRUE, TRUE, TRUE, TRUE, TRUE, TRUE, TRUE, TRUE, TRUE, TRUE, TRUE, TRUE, TRUE, TRUE,
-          TRUE, TRUE, TRUE, TRUE, TRUE, TRUE, TRUE
+          TRUE, TRUE, TRUE, TRUE, TRUE, TRUE, TRUE, TRUE
         )
       ),
-      row.names = c(NA, -22L), class = c("tbl_df", "tbl", "data.frame")
+      row.names = c(NA, -23L), class = c("tbl_df", "tbl", "data.frame")
     )
   )
 )

@@ -48,6 +48,7 @@ Path                     | R | g | Function
 .Rprofile                |   |`x`| Used by `renv` and to [attach development tools](https://r-pkgs.org/setup.html?#personal-startup-configuration) and set project options
 .Rproj.user              |   |   | RStudio local project files
 .git                     |   |   | git version control
+.gitattributes           |   |`x`| Used to configure GitHub [language statistics](https://github.com/github-linguist/linguist)
 .github                  |   |`x`| GitHub templates and workflows
 .gitignore               |   |`x`| git exclusions based on [GitHub R](https://github.com/github/gitignore/blob/master/R.gitignore). Generated files outside of `docs` (used by GitHub Pages) are excluded.
 .lintr                   |   |`x`| [lintr](https://lintr.r-lib.org/index.html) configuration as described in the Style Guide, `vignette("style-guide")`

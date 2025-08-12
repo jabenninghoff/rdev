@@ -10,6 +10,7 @@ Lato
 ORCID
 RData
 README
+RMarkdown
 RStudio
 Rbuildignore
 Rebase
@@ -43,6 +44,7 @@ fs
 ggplot
 gh
 gh's
+gitattributes
 github
 gitignore
 grDevices
