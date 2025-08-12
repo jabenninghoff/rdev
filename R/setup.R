@@ -60,6 +60,31 @@ use_package_r <- function(open = FALSE) {
   )
 }
 
+#' Use rdev .gitattributes
+#'
+#' Install rdev .gitattributes template using [usethis::use_template()] to set GitHub Linguist
+#' [overrides](https://github.com/github-linguist/linguist/blob/main/docs/overrides.md). If an
+#' analysis package is detected, RMarkdown will be enabled as a language for GitHub statistics.
+#'
+#' @inheritParams usethis::use_template
+#'
+#' @export
+use_gitattributes <- function(open = FALSE) {
+  # TODO: consider refactoring to an internal function to determine package type
+  #       here and in stage_release()
+  if (fs::dir_exists("analysis")) {
+    gitattributes <- "gitattributes-analysis"
+  } else {
+    gitattributes <- "gitattributes-rdev"
+  }
+  usethis::use_template(
+    gitattributes,
+    save_as = ".gitattributes",
+    package = "rdev",
+    open = open
+  )
+}
+
 #' Use rdev spelling
 #'
 #' Install [spelling][spelling::spelling] with rdev conventions.
@@ -388,6 +413,7 @@ use_rdev_package <- function(quiet = TRUE) {
   rlang::local_interactive(value = !quiet)
 
   # add templates
+  use_gitattributes()
   use_lintr()
   use_package_r()
   if (getOption("rdev.github.actions", default = TRUE)) {
@@ -611,6 +637,12 @@ use_analysis_package <- function(use_quarto = TRUE, prompt = FALSE) {
     }
     usethis::use_template("extra.css", save_as = "pkgdown/extra.css", package = "rdev")
   }
+
+  # always overwrite .gitattributes
+  if (fs::file_exists(".gitattributes")) {
+    fs::file_delete(".gitattributes")
+  }
+  use_gitattributes()
 
   # always overwrite README.Rmd
   if (fs::file_exists("README.Rmd")) {

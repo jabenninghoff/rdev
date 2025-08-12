@@ -326,6 +326,7 @@ test_that("use_analysis_package returns expected values", {
   mockery::stub(use_analysis_package, "fs::file_exists", FALSE)
   mockery::stub(use_analysis_package, "yaml::write_yaml", NULL)
   mockery::stub(use_analysis_package, "usethis::use_template", NULL)
+  mockery::stub(use_analysis_package, "use_gitattributes", NULL)
   mockery::stub(use_analysis_package, "desc::desc_set_dep", NULL)
   mockery::stub(use_analysis_package, "desc::desc_normalize", NULL)
   mockery::stub(use_analysis_package, "renv::install", NULL)

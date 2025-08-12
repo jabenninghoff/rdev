@@ -35,6 +35,7 @@ reference:
     - get_license
     - use_analysis_package
     - use_codecov
+    - use_gitattributes
     - use_lintr
     - use_package_r
     - use_rdev_package

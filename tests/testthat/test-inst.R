@@ -19,6 +19,20 @@ test_that("inst/templates match rdev package locally", {
   expect_identical(readLines("inst/templates/extra.css"), readLines("pkgdown/extra.css"))
 
   # index.qmd
+
+  # gitignore
+  gir <- readLines("inst/templates/gitattributes-rdev")
+  gia <- readLines("inst/templates/gitattributes-analysis")
+  expect_identical(
+    gia,
+    append(
+      gir,
+      c("# detect RMarkdown in analysis packages", "*.Rmd linguist-detectable", ""),
+      length(gir) - 1
+    )
+  )
+  expect_identical(gir, readLines(".gitattributes", n = length(gir)))
+
   # lintr
   ln <- readLines("inst/templates/lintr")
   expect_identical(ln, readLines("tests/testthat/test-ci/lintr_test_config"))
