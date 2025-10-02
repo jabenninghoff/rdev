@@ -569,6 +569,7 @@ use_analysis_package <- function(use_quarto = TRUE, prompt = FALSE) {
       ".nojekyll",          FALSE,   FALSE,      TRUE,
       ".quarto",            FALSE,   FALSE,      TRUE,
       "/.quarto/",          FALSE,   TRUE,       FALSE,
+      "**/*.quarto_ipynb",  FALSE,   TRUE,       FALSE,
       "_freeze",            FALSE,   FALSE,      TRUE,
       "_quarto.yml",        FALSE,   FALSE,      FALSE
     )

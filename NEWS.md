@@ -2,6 +2,8 @@
 
 * Improved checks for `merge_release()`
 
+* Added new quarto .gitignore exclusions
+
 # rdev 1.14.0
 
 * Added utility function `package_type()`: determine rdev package type
