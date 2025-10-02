@@ -9,7 +9,7 @@
 
     <a class="navbar-brand me-2" href="../index.html">rdev</a>
 
-    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">1.14.0</small>
+    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">1.14.1</small>
 
 
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbar" aria-controls="navbar" aria-expanded="false" aria-label="Toggle navigation">
@@ -74,7 +74,7 @@
     </div>
     <div class="section level2">
     <h2 id="details">Details<a class="anchor" aria-label="anchor" href="#details"></a></h2>
-    <p>When run, <code>build_analysis_site()</code>:</p><ol><li><p>Reads base pkgdown settings from <code>pkgdown/_base.yml</code></p></li>
+    <p>When run, <code>build_analysis_site()</code>:</p><ol><li><p>Reads base <a href="https://pkgdown.r-lib.org/reference/pkgdown-package.html" class="external-link">pkgdown::pkgdown</a> settings from <code>pkgdown/_base.yml</code></p></li>
 <li><p>Writes base settings to <code>_pkgdown.yml</code></p></li>
 <li><p>Creates a template using <code><a href="https://pkgdown.r-lib.org/reference/templates.html" class="external-link">pkgdown::template_navbar()</a></code> and inserts an <code>analysis</code> menu with
 links to html versions of each .Rmd file in <code>analysis/</code></p></li>
@@ -82,7 +82,7 @@ links to html versions of each .Rmd file in <code>analysis/</code></p></li>
 <li><p>Updates <code>README.md</code> by running <code><a href="https://devtools.r-lib.org/reference/build_rmd.html" class="external-link">devtools::build_readme()</a></code> (if <code>README.Rmd</code> exists) to update
 the list of notebooks</p></li>
 <li><p>Runs <code><a href="https://pkgdown.r-lib.org/reference/build_site_github_pages.html" class="external-link">pkgdown::build_site_github_pages()</a></code> with <code>install = TRUE</code> and <code>new_process = TRUE</code></p></li>
-<li><p>Creates a <code>_site.yml</code> file based on the final <code>_pkgdown.yml</code> that clones the pkgdown navbar
+<li><p>Creates a <code>_site.yml</code> file based on the final <code>_pkgdown.yml</code> that clones the <a href="https://pkgdown.r-lib.org/reference/pkgdown-package.html" class="external-link">pkgdown::pkgdown</a> navbar
 in a temporary build directory</p></li>
 <li><p>Copies the following from <code>analysis/</code> into the build directory: <code>*.Rmd</code>, <code>assets/</code>, <code>data/</code>,
 <code>import/</code>, <code>rendered/</code></p></li>
