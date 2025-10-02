@@ -31,11 +31,11 @@ stopifnot(
       row.names = c(NA, -10L), class = c("tbl_df", "tbl", "data.frame")
     )
   ),
-  tail(readLines(".gitignore"), 10) == c(
+  tail(readLines(".gitignore"), 11) == c(
     "# analysis package generated files",
     "# see: https://jabenninghoff.github.io/rdev/articles/analysis-package-layout.html",
     "analysis/*.docx", "analysis/*.html", "analysis/*.md", "analysis/*.pdf", "analysis/*-figure/",
-    "analysis/import", "analysis/rendered", "/.quarto/"
+    "analysis/import", "analysis/rendered", "/.quarto/", "**/*.quarto_ipynb"
   ),
   readLines("README.Rmd")[[34]] == "## Notebooks"
 )

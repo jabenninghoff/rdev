@@ -305,7 +305,7 @@ test_that("use_analysis_package returns expected values", {
       "^docs$", "^\\.nojekyll$", "^\\.quarto$", "^_freeze$"
     ), gitignore = c(
       "analysis/*.docx", "analysis/*.html", "analysis/*.md", "analysis/*.pdf", "analysis/*-figure/",
-      "analysis/import", "analysis/rendered", "/.quarto/"
+      "analysis/import", "analysis/rendered", "/.quarto/", "**/*.quarto_ipynb"
     )
   )
   desc_urls <- c("https://example.github.io/package/", "https://github.com/example/package")
