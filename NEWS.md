@@ -1,3 +1,7 @@
+# rdev 1.14.1
+
+* Improved checks for `merge_release()`
+
 # rdev 1.14.0
 
 * Added utility function `package_type()`: determine rdev package type

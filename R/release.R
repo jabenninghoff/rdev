@@ -252,6 +252,10 @@ merge_release <- function(pkg = ".", filename = "NEWS.md", host = getOption("rde
   checkmate::assert_string(filename, min.chars = 1)
   checkmate::assert_string(host, min.chars = 1, null.ok = TRUE)
 
+  if (nrow(gert::git_status()) != 0) {
+    stop("uncommitted changes present", call. = FALSE)
+  }
+
   rel <- get_release(pkg = pkg, filename = filename)
   pr_title <- paste0(rel$package, " ", rel$version)
 

@@ -476,6 +476,7 @@ test_that("merge_release errors when expected and returns list", {
     stop("unknown command", call. = FALSE)
   }
 
+  mockery::stub(merge_release, "gert::git_status", git_status_empty)
   mockery::stub(get_release, "devtools::as.package", pkg_test)
   rel <- get_release()
   mockery::stub(merge_release, "get_release", rel)
@@ -544,6 +545,7 @@ test_that("merge_release validates arguments", {
   mockery::stub(merge_release, "gert::git_pull", NULL)
   mockery::stub(merge_release, "gert::git_tag_create", NULL)
   mockery::stub(merge_release, "gert::git_tag_push", NULL)
+  mockery::stub(merge_release, "gert::git_status", git_status_empty)
 
   expect_error(
     merge_release(pkg = "tpkg"), '^currently only merge_release\\(pkg = "\\."\\) is supported$'
@@ -552,4 +554,19 @@ test_that("merge_release validates arguments", {
   expect_error(merge_release(filename = ""), "'filename'")
   expect_error(merge_release(host = NA_character_), "'host'")
   expect_error(merge_release(host = ""), "'host'")
+})
+
+test_that("merge_release returns error if uncommitted changes are present", {
+  mockery::stub(merge_release, "get_release", NULL)
+  mockery::stub(merge_release, "gert::git_remote_info", NULL)
+  mockery::stub(merge_release, "remotes::parse_github_url", NULL)
+  mockery::stub(merge_release, "gh::gh", NULL)
+  mockery::stub(merge_release, "gert::git_branch_checkout", NULL)
+  mockery::stub(merge_release, "gert::git_branch_delete", NULL)
+  mockery::stub(merge_release, "gert::git_pull", NULL)
+  mockery::stub(merge_release, "gert::git_tag_create", NULL)
+  mockery::stub(merge_release, "gert::git_tag_push", NULL)
+  mockery::stub(merge_release, "gert::git_status", git_status_changed)
+
+  expect_error(merge_release(), "^uncommitted changes present$")
 })
