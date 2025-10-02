@@ -2,7 +2,7 @@
 
 * Improved checks for `merge_release()`
 
-* Added new quarto .gitignore exclusions
+* Added new quarto .gitignore exclusions (update `use_analysis_package()`)
 
 * Updated Get Started vignette with current usethis advice on storing GitHub credentials
 
