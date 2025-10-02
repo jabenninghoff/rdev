@@ -55,7 +55,7 @@
 - [x] Move `shift-heading-level-by: 1` from `_quarto.yml` to `analysis/_metadata.yml`, so `TODO.md` renders properly
 - [x] Remove `preset: bootstrap` workaround when pkgdown 2.0.8+ is released (per <https://github.com/r-lib/pkgdown/issues/2376>)
 - [x] Replace `GITHUB_PAT` in `.Renviron` with [gitcreds](https://usethis.r-lib.org/articles/git-credentials.html)
-- [ ] Review use of [usethis functions](https://usethis.r-lib.org/reference/index.html), including [pull request helpers](https://usethis.r-lib.org/articles/pr-functions.html)
+- [x] Review use of [usethis functions](https://usethis.r-lib.org/reference/index.html), including [pull request helpers](https://usethis.r-lib.org/articles/pr-functions.html)
 - [ ] Replace `dev = TRUE` logic if <https://github.com/rstudio/renv/issues/1695> is accepted
 - [ ] Update errors and messages after reading Advanced R [Conditions](https://adv-r.hadley.nz/conditions.html) and re-reading the Tidyverse [Style Guide](https://style.tidyverse.org/index.html)
 - [ ] Reduce the number of Imports, per R CMD check:
