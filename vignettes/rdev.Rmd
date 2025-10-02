@@ -127,9 +127,11 @@ The `chown` command is needed to allow updating the base packages using the RStu
 "Update" function. I generally update packages in RStudio with no projects open before starting
 development, then update packages in projects using `renv::update()`.
 
-If you're installing (development) versions of packages from GitHub, it is recommended to set up a
-personal access token using `usethis::create_github_token()` and adding it to your `.Renviron` as
-`GITHUB_PAT=` using `usethis::edit_r_environ()`.
+If you're installing (development) versions of packages from GitHub, it is
+[recommended](https://usethis.r-lib.org/articles/git-credentials.html) to set up a personal access
+token using `usethis::create_github_token()` and adding it to your Git credential store using
+`gitcreds::gitcreds_set()`. You can verify GitHub is set up following usethis recommendations with
+`usethis::git_sitrep()`.
 
 ### Further Reading
 

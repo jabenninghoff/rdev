@@ -4,6 +4,8 @@
 
 * Added new quarto .gitignore exclusions
 
+* Updated Get Started vignette with current usethis advice on storing GitHub credentials
+
 # rdev 1.14.0
 
 * Added utility function `package_type()`: determine rdev package type
