@@ -45,12 +45,13 @@ brew tap r-lib/rig
 brew install --cask rig
 ```
 
-Then install desired versions of R. The following installs R 3.6 through 4.4 on ARM based macs
-(as of 2024-09-03):
+Then install desired versions of R. The following installs R 3.6 through 4.5 on ARM based macs
+(as of 2025-10-08):
 
 ```sh
+rig install oldrel/6 --without-pak --arch x86_64
 rig install oldrel/5 --without-pak --arch x86_64
-rig install oldrel/4 --without-pak --arch x86_64
+rig install oldrel/4 --without-pak
 rig install oldrel/3 --without-pak
 rig install oldrel/2 --without-pak
 rig install oldrel/1 --without-pak
@@ -65,7 +66,7 @@ Note that:
    [supported](https://github.com/rstudio/renv/issues/1210) by renv.
 1. The oldest version of R I install is 3.6, since RStudio now requires R 3.6 or newer (as of
    version [2024.04.00](https://docs.posit.co/ide/news/#rstudio-2024.04.0))
-1. Since there was no ARM binary release for R 3.6 (`oldrel/5`) or R 4.0 (`oldrel/4`), I install the
+1. Since there was no ARM binary release for R 3.6 (`oldrel/6`) or R 4.0 (`oldrel/5`), I install the
    Intel binaries and run them with [Rosetta 2](https://support.apple.com/en-us/102527).
 
 ### Development Tools
