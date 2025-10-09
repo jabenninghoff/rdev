@@ -1,3 +1,9 @@
+# rdev 1.14.2
+
+* Updated base GitHub Actions (`R-CMD-check`, `lint`, `missing-deps`) (update `use_rdev_package()`)
+
+* Updated code coverage GitHub Action (`test-coverage`) (update `use_codecov()`)
+
 # rdev 1.14.1
 
 * Improved checks for `merge_release()`
