@@ -4,6 +4,8 @@
 
 * Updated code coverage GitHub Action (`test-coverage`) (update `use_codecov()`)
 
+* Updated Get Started vignette with additional notes on replacing [RStudio](https://posit.co/download/rstudio-desktop/) with [Positron](https://github.com/posit-dev/positron)
+
 # rdev 1.14.1
 
 * Improved checks for `merge_release()`

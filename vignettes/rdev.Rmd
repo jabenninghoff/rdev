@@ -76,9 +76,16 @@ IDE for R development and integrates with many R packages, although it sometimes
 GitHub and the command line for Git, and occasionally Visual Studio Code (which has better support
 for markdown) and Vim (which is faster for some types of edits).
 
-Posit is developing a next-generation IDE based on Visual Studio Code,
+Posit is developing a next-generation R and Python IDE based on Visual Studio Code,
 [Positron](https://github.com/posit-dev/positron). While I've tried using Positron, I've found that
-it's still too new to replace RStudio for my development.
+has too many [missing features](https://positron.posit.co/migrate-rstudio-compare.html) to replace
+RStudio for my development, including:
+
+- Lack of a notebook-style interface for RMarkdown or Quarto documents
+- No support for lintr
+- No command History or package Build panes
+
+Of these, the first two are showstoppers and the missing panes are nearly so.
 
 RStudio, the GitHub desktop client, and Visual Studio Code are easily installed using Homebrew:
 
