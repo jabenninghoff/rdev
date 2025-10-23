@@ -1,11 +1,3 @@
-# workaround for ::: per https://stat.ethz.ch/pipermail/r-devel/2013-August/067210.html
-`%:::%` <- function(pkg, fun) {
-  get(fun,
-    envir = asNamespace(pkg),
-    inherits = FALSE
-  )
-}
-
 #' Sort file
 #'
 #' Sorts a file using R [sort()].

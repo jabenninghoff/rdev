@@ -46,6 +46,12 @@ reference:
     - init
     - setup_analysis
     - setup_rdev
+  - title: Maintenance
+    desc: >
+      Package maintenance tasks, performed annually
+    contents:
+    - use_upkeep_issue
+    - upkeep_checklist
   - title: Utilities
     desc: >
       Utilities and test helpers
