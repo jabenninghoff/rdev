@@ -343,6 +343,7 @@ create_github_repo <- function(repo_name, repo_desc = "", private = FALSE, org =
   writeLines("and run either setup_ananlysis() or setup_rdev() to finish configuration.")
 
   if (Sys.info()["sysname"] == "Darwin" && rlang::is_interactive()) {
+    # TODO: replace open with view_url
     system(paste0("open ", create$html_url, "/settings"))
     system(paste0("github ", fs_path))
   }
