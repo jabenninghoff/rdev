@@ -158,7 +158,7 @@ upkeep_checklist <- function(last_upkeep = last_upkeep_year()) {
     ),
     todo(
       "Add alt-text to pictures, plots, etc; see https://posit.co/blog/knitr-fig-alt/ for \\
-      examples and https://posit.co/blog/knitr-fig-alt/ for additional guidance."
+      examples and https://pkgdown.r-lib.org/articles/accessibility.html for additional guidance."
     ),
     ""
   )
