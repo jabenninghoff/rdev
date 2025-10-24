@@ -8,7 +8,7 @@
 [![R-CMD-check](https://github.com/jabenninghoff/rdev/workflows/R-CMD-check/badge.svg)](https://github.com/jabenninghoff/rdev/actions)
 [![lint](https://github.com/jabenninghoff/rdev/workflows/lint/badge.svg)](https://github.com/jabenninghoff/rdev/actions)
 [![Codecov test
-coverage](https://codecov.io/gh/jabenninghoff/rdev/branch/main/graph/badge.svg)](https://app.codecov.io/gh/jabenninghoff/rdev?branch=main)
+coverage](https://codecov.io/gh/jabenninghoff/rdev/graph/badge.svg)](https://app.codecov.io/gh/jabenninghoff/rdev)
 <!-- badges: end -->
 
 ## Overview
@@ -234,10 +234,10 @@ ci()
 #> * creating vignettes ... OK
 #> * checking for LF line-endings in source and make files and shell scripts
 #> * checking for empty or unneeded directories
-#> * building ‘rdev_1.15.0.tar.gz’
+#> * building ‘rdev_1.15.0.9000.tar.gz’
 #> 
 #> ── R CMD check ─────────────────────────────────────────────────────────────────
-#> * using log directory ‘/private/var/folders/vn/cw5f9gws42v9m8mdsds_zbl00000gp/T/Rtmp3eVLau/file4c093ddd9292/rdev.Rcheck’
+#> * using log directory ‘/private/var/folders/vn/cw5f9gws42v9m8mdsds_zbl00000gp/T/RtmpH9vOOd/file8247c911e1c/rdev.Rcheck’
 #> * using R version 4.5.1 (2025-06-13)
 #> * using platform: aarch64-apple-darwin20
 #> * R was compiled by
@@ -247,7 +247,7 @@ ci()
 #> * using session charset: UTF-8
 #> * using option ‘--no-manual’
 #> * checking for file ‘rdev/DESCRIPTION’ ... OK
-#> * this is package ‘rdev’ version ‘1.15.0’
+#> * this is package ‘rdev’ version ‘1.15.0.9000’
 #> * package encoding: UTF-8
 #> * checking package namespace information ... OK
 #> * checking package dependencies ... OK
@@ -302,8 +302,8 @@ ci()
 #> * DONE
 #> 
 #> Status: OK
-#> ── R CMD check results ──────────────────────────────────────── rdev 1.15.0 ────
-#> Duration: 37.7s
+#> ── R CMD check results ─────────────────────────────────── rdev 1.15.0.9000 ────
+#> Duration: 29.9s
 #> 
 #> 0 errors ✔ | 0 warnings ✔ | 0 notes ✔
 ```
