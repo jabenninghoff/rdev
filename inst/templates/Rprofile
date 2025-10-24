@@ -4,6 +4,7 @@ options(
   warnPartialMatchArgs = TRUE,
   warnPartialMatchAttr = TRUE,
   warnPartialMatchDollar = TRUE,
+  rdev.license.copyright = "John Benninghoff",
   styler.cache_root = "styler-perm"
 )
 

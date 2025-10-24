@@ -2,6 +2,8 @@
 
 * Minor updates to `upkeep_checklist()`
 
+* Initial upkeep using `use_upkeep_issue()`
+
 # rdev 1.15.0
 
 * Added functions `use_upkeep_issue()` and `upkeep_checklist()`, used to open an issue in the package repository with a checklist of maintenance tasks, based on `usethis::use_upkeep_issue()` and `usethis::use_tidy_upkeep_issue()`
