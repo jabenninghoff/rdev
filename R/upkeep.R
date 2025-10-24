@@ -76,7 +76,6 @@ upkeep_checklist <- function(last_upkeep = last_upkeep_year()) {
       "### 2022",
       "",
       todo("`rdev::use_spelling()`"),
-      todo("`rdev::use_codecov()`", length(fs::dir_ls("R")) > 1),
       todo("Add `rdev.license.copyright` to `.Rprofile`", lic == "mit"),
       ""
     )
@@ -109,6 +108,7 @@ upkeep_checklist <- function(last_upkeep = last_upkeep_year()) {
       todo("`rdev::use_lintr()`"),
       todo("`rdev::use_gitattributes()`"),
       todo("`rdev::use_analysis_package(use_quarto = TRUE)`", ptype == "quarto"),
+      todo("`rdev::use_codecov()`", length(fs::dir_ls("R")) > 1),
       ""
     )
   }
