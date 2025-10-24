@@ -26,7 +26,7 @@
 
     <a class="navbar-brand me-2" href="../index.html">rdev</a>
 
-    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">1.14.1</small>
+    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">1.15.0</small>
 
 
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbar" aria-controls="navbar" aria-expanded="false" aria-label="Toggle navigation">
@@ -114,15 +114,16 @@ install rig:</p>
 <div class="sourceCode" id="cb1"><pre class="sourceCode sh"><code class="sourceCode bash"><span id="cb1-1"><a href="#cb1-1" tabindex="-1"></a><span class="ex">brew</span> tap r-lib/rig</span>
 <span id="cb1-2"><a href="#cb1-2" tabindex="-1"></a><span class="ex">brew</span> install <span class="at">--cask</span> rig</span></code></pre></div>
 <p>Then install desired versions of R. The following installs R 3.6
-through 4.4 on ARM based macs (as of 2024-09-03):</p>
-<div class="sourceCode" id="cb2"><pre class="sourceCode sh"><code class="sourceCode bash"><span id="cb2-1"><a href="#cb2-1" tabindex="-1"></a><span class="ex">rig</span> install oldrel/5 <span class="at">--without-pak</span> <span class="at">--arch</span> x86_64</span>
-<span id="cb2-2"><a href="#cb2-2" tabindex="-1"></a><span class="ex">rig</span> install oldrel/4 <span class="at">--without-pak</span> <span class="at">--arch</span> x86_64</span>
-<span id="cb2-3"><a href="#cb2-3" tabindex="-1"></a><span class="ex">rig</span> install oldrel/3 <span class="at">--without-pak</span></span>
-<span id="cb2-4"><a href="#cb2-4" tabindex="-1"></a><span class="ex">rig</span> install oldrel/2 <span class="at">--without-pak</span></span>
-<span id="cb2-5"><a href="#cb2-5" tabindex="-1"></a><span class="ex">rig</span> install oldrel/1 <span class="at">--without-pak</span></span>
-<span id="cb2-6"><a href="#cb2-6" tabindex="-1"></a><span class="ex">rig</span> install oldrel <span class="at">--without-pak</span></span>
-<span id="cb2-7"><a href="#cb2-7" tabindex="-1"></a><span class="ex">rig</span> install release <span class="at">--without-pak</span></span>
-<span id="cb2-8"><a href="#cb2-8" tabindex="-1"></a><span class="ex">rig</span> default release</span></code></pre></div>
+through 4.5 on ARM based macs (as of 2025-10-08):</p>
+<div class="sourceCode" id="cb2"><pre class="sourceCode sh"><code class="sourceCode bash"><span id="cb2-1"><a href="#cb2-1" tabindex="-1"></a><span class="ex">rig</span> install oldrel/6 <span class="at">--without-pak</span> <span class="at">--arch</span> x86_64</span>
+<span id="cb2-2"><a href="#cb2-2" tabindex="-1"></a><span class="ex">rig</span> install oldrel/5 <span class="at">--without-pak</span> <span class="at">--arch</span> x86_64</span>
+<span id="cb2-3"><a href="#cb2-3" tabindex="-1"></a><span class="ex">rig</span> install oldrel/4 <span class="at">--without-pak</span></span>
+<span id="cb2-4"><a href="#cb2-4" tabindex="-1"></a><span class="ex">rig</span> install oldrel/3 <span class="at">--without-pak</span></span>
+<span id="cb2-5"><a href="#cb2-5" tabindex="-1"></a><span class="ex">rig</span> install oldrel/2 <span class="at">--without-pak</span></span>
+<span id="cb2-6"><a href="#cb2-6" tabindex="-1"></a><span class="ex">rig</span> install oldrel/1 <span class="at">--without-pak</span></span>
+<span id="cb2-7"><a href="#cb2-7" tabindex="-1"></a><span class="ex">rig</span> install oldrel <span class="at">--without-pak</span></span>
+<span id="cb2-8"><a href="#cb2-8" tabindex="-1"></a><span class="ex">rig</span> install release <span class="at">--without-pak</span></span>
+<span id="cb2-9"><a href="#cb2-9" tabindex="-1"></a><span class="ex">rig</span> default release</span></code></pre></div>
 <p>Note that:</p>
 <ol style="list-style-type: decimal">
 <li>I don’t use <a href="https://pak.r-lib.org" class="external-link">pak</a>, which rig
@@ -131,7 +132,7 @@ renv.</li>
 <li>The oldest version of R I install is 3.6, since RStudio now requires
 R 3.6 or newer (as of version <a href="https://docs.posit.co/ide/news/#rstudio-2024.04.0" class="external-link">2024.04.00</a>)</li>
 <li>Since there was no ARM binary release for R 3.6
-(<code>oldrel/5</code>) or R 4.0 (<code>oldrel/4</code>), I install the
+(<code>oldrel/6</code>) or R 4.0 (<code>oldrel/5</code>), I install the
 Intel binaries and run them with <a href="https://support.apple.com/en-us/102527" class="external-link">Rosetta 2</a>.</li>
 </ol>
 </div>
@@ -144,10 +145,18 @@ packages, although it sometimes falls short; I use GitHub and the
 command line for Git, and occasionally Visual Studio Code (which has
 better support for markdown) and Vim (which is faster for some types of
 edits).</p>
-<p>Posit is developing a next-generation IDE based on Visual Studio
-Code, <a href="https://github.com/posit-dev/positron" class="external-link">Positron</a>.
-While I’ve tried using Positron, I’ve found that it’s still too new to
-replace RStudio for my development.</p>
+<p>Posit is developing a next-generation R and Python IDE based on
+Visual Studio Code, <a href="https://github.com/posit-dev/positron" class="external-link">Positron</a>. While I’ve
+tried using Positron, I’ve found that it has too many <a href="https://positron.posit.co/migrate-rstudio-compare.html" class="external-link">missing
+features</a> to replace RStudio for my development, including:</p>
+<ul>
+<li>Lack of a notebook-style interface for RMarkdown or Quarto
+documents</li>
+<li>No support for lintr</li>
+<li>No command History or package Build panes</li>
+</ul>
+<p>Of these, the first two are showstoppers and the missing panes are
+nearly so.</p>
 <p>RStudio, the GitHub desktop client, and Visual Studio Code are easily
 installed using Homebrew:</p>
 <div class="sourceCode" id="cb3"><pre class="sourceCode sh"><code class="sourceCode bash"><span id="cb3-1"><a href="#cb3-1" tabindex="-1"></a><span class="ex">brew</span> install <span class="at">--cask</span> rstudio</span>
