@@ -118,7 +118,7 @@ ci()
 #> ✔ No problems found.
 #> 
 #> style_all()
-#> Styling  67  files:
+#> Styling  69  files:
 #>  .Rprofile                                               ✔ 
 #>  README.Rmd                                              ✔ 
 #>  inst/rmarkdown/templates/analysis/skeleton/skeleton.Rmd ✔ 
@@ -138,6 +138,7 @@ ci()
 #>  R/release.R                                             ✔ 
 #>  R/setup.R                                               ✔ 
 #>  R/to_document.R                                         ✔ 
+#>  R/upkeep.R                                              ✔ 
 #>  R/urlchecker.R                                          ✔ 
 #>  R/utils.R                                               ✔ 
 #>  tests/spelling.R                                        ✔ 
@@ -156,6 +157,7 @@ ci()
 #>  tests/testthat/test-setup.R                             ✔ 
 #>  tests/testthat/test-spelling.R                          ✔ 
 #>  tests/testthat/test-to_document.R                       ✔ 
+#>  tests/testthat/test-upkeep.R                            ✔ 
 #>  tests/testthat/test-utils.R                             ✔ 
 #>  tests/testthat/test-ci/test-revealjs.qmd                ✔ 
 #>  tests/testthat/test-ci/test.Rprofile                    ✔ 
@@ -188,7 +190,7 @@ ci()
 #>  vignettes/style-guide.Rmd                               ✔ 
 #> ───────────────────────────────────────────────────────
 #> Status   Count   Legend 
-#> ✔    67  File unchanged.
+#> ✔    69  File unchanged.
 #> ℹ    0   File changed.
 #> ✖    0   Styling threw an error.
 #> ───────────────────────────────────────────────────────
@@ -215,17 +217,12 @@ ci()
 #> No changes required to /Users/agamemnon/GitHub/rdev/inst/WORDLIST
 #> 
 #> url_check()
-#> # A tibble: 1 × 9
-#>   URL                        From  Status Message New   CRAN  Spaces R     root 
-#>   <chr>                      <nam> <chr>  <chr>   <chr> <chr> <chr>  <chr> <chr>
-#> 1 https://code.visualstudio… <chr> 500    Intern… ""    ""    ""     ""    /Use…
 #> html_url_check()
-#> # A tibble: 3 × 9
+#> # A tibble: 2 × 9
 #>   URL                        From  Status Message New   CRAN  Spaces R     root 
 #>   <chr>                      <nam> <chr>  <chr>   <chr> <chr> <chr>  <chr> <chr>
-#> 1 http://covr.r-lib.org/ref… <chr> 200    OK      "htt… ""    ""     ""    /Use…
-#> 2 http://r-lib.github.io/rc… <chr> 200    OK      "htt… ""    ""     ""    /Use…
-#> 3 https://code.visualstudio… <chr> 500    Intern… ""    ""    ""     ""    /Use…
+#> 1 http://covr.r-lib.org/ref… <chr> 200    OK      http… ""    ""     ""    /Use…
+#> 2 http://r-lib.github.io/rc… <chr> 200    OK      http… ""    ""     ""    /Use…
 #> 
 #> Setting env vars: NOT_CRAN="true", CI="true"
 #> rcmdcheck::rcmdcheck(args = "--no-manual", error_on = "warning")
@@ -237,10 +234,10 @@ ci()
 #> * creating vignettes ... OK
 #> * checking for LF line-endings in source and make files and shell scripts
 #> * checking for empty or unneeded directories
-#> * building ‘rdev_1.14.1.tar.gz’
+#> * building ‘rdev_1.15.0.tar.gz’
 #> 
 #> ── R CMD check ─────────────────────────────────────────────────────────────────
-#> * using log directory ‘/private/var/folders/vn/cw5f9gws42v9m8mdsds_zbl00000gp/T/RtmpozUAJG/file2e412cc5f381/rdev.Rcheck’
+#> * using log directory ‘/private/var/folders/vn/cw5f9gws42v9m8mdsds_zbl00000gp/T/Rtmp3eVLau/file4c093ddd9292/rdev.Rcheck’
 #> * using R version 4.5.1 (2025-06-13)
 #> * using platform: aarch64-apple-darwin20
 #> * R was compiled by
@@ -250,7 +247,7 @@ ci()
 #> * using session charset: UTF-8
 #> * using option ‘--no-manual’
 #> * checking for file ‘rdev/DESCRIPTION’ ... OK
-#> * this is package ‘rdev’ version ‘1.14.1’
+#> * this is package ‘rdev’ version ‘1.15.0’
 #> * package encoding: UTF-8
 #> * checking package namespace information ... OK
 #> * checking package dependencies ... OK
@@ -305,8 +302,8 @@ ci()
 #> * DONE
 #> 
 #> Status: OK
-#> ── R CMD check results ──────────────────────────────────────── rdev 1.14.1 ────
-#> Duration: 23.4s
+#> ── R CMD check results ──────────────────────────────────────── rdev 1.15.0 ────
+#> Duration: 37.7s
 #> 
 #> 0 errors ✔ | 0 warnings ✔ | 0 notes ✔
 ```
