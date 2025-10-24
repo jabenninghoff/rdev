@@ -36,26 +36,29 @@ test_that("upkeep_checklist is expected length for first upkeep", {
   mockery::stub(upkeep_checklist, "package_type", "rdev")
   expect_length(upkeep_checklist(), base_length)
 
+  fs::dir_create("R/test")
+  expect_length(upkeep_checklist(), base_length + 1)
+
   mockery::stub(upkeep_checklist, "usethis::git_default_branch", "main")
-  expect_length(upkeep_checklist(), base_length - 1)
+  expect_length(upkeep_checklist(), base_length)
 
   desc_r_version <- data.frame(
     type = "Depends", package = "R", version = ">= 4.1.0", stringsAsFactors = FALSE
   )
   mockery::stub(upkeep_checklist, "desc::desc_get_deps", desc_r_version)
-  expect_length(upkeep_checklist(), base_length - 2)
+  expect_length(upkeep_checklist(), base_length - 1)
 
   mockery::stub(upkeep_checklist, "desc::desc_get_field", "rdev")
-  expect_length(upkeep_checklist(), base_length - 1)
+  expect_length(upkeep_checklist(), base_length)
 
   mockery::stub(upkeep_checklist, "get_license", "proprietary")
-  expect_length(upkeep_checklist(), base_length - 2)
-
-  fs::dir_create("inst/templates/test")
   expect_length(upkeep_checklist(), base_length - 1)
 
-  fs::dir_create("inst/rmarkdown/templates/test")
+  fs::dir_create("inst/templates/test")
   expect_length(upkeep_checklist(), base_length)
+
+  fs::dir_create("inst/rmarkdown/templates/test")
+  expect_length(upkeep_checklist(), base_length + 1)
 })
 
 test_that("upkeep_checklist is expected length for last upkeep year", {
