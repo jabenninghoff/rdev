@@ -78,8 +78,8 @@ for markdown) and Vim (which is faster for some types of edits).
 
 Posit is developing a next-generation R and Python IDE based on Visual Studio Code,
 [Positron](https://github.com/posit-dev/positron). While I've tried using Positron, I've found that
-has too many [missing features](https://positron.posit.co/migrate-rstudio-compare.html) to replace
-RStudio for my development, including:
+it has too many [missing features](https://positron.posit.co/migrate-rstudio-compare.html) to
+replace RStudio for my development, including:
 
 - Lack of a notebook-style interface for RMarkdown or Quarto documents
 - No support for lintr
