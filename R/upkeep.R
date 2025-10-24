@@ -140,7 +140,7 @@ upkeep_checklist <- function(last_upkeep = last_upkeep_year()) {
     todo("`rdev::use_rdev_package()`"),
     todo("`build_quarto_site(unfreeze = TRUE)`", ptype == "quarto"),
     todo(
-      '`usethis::use_mit_license(copyright_holder = getOption("rdev.license.copyright")`',
+      '`usethis::use_mit_license(copyright_holder = getOption("rdev.license.copyright"))`',
       lic == "mit"
     ),
     todo(
