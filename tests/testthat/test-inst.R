@@ -7,9 +7,11 @@ test_that("inst/templates match rdev package locally", {
   # README-analysis.Rmd
   # README-rdev.Rmd
   # Rprofile
-  rp <- readLines("inst/templates/Rprofile")
-  rp <- rp[!grepl("suppressMessages(require(rdev))", rp, fixed = TRUE)]
-  expect_identical(rp, readLines(".Rprofile"))
+  rpt <- readLines("inst/templates/Rprofile")
+  rpt <- rpt[!grepl("suppressMessages(require(rdev))", rpt, fixed = TRUE)]
+  rp <- readLines(".Rprofile")
+  rp <- rp[!grepl('rdev.license.copyright = "John Benninghoff",', rp, fixed = TRUE)]
+  expect_identical(rpt, rp)
 
   # TODO.md
   # _metadata.yml
