@@ -211,8 +211,8 @@ fix_gitignore <- function(path = ".") {
 #'   1. Adds branch protection to the default branch (if `private` is `FALSE`)
 #'   1. Clones the repository locally with [usethis::create_from_github()]
 #'   1. Creates a basic package using [usethis::create_package()]
-#'   1. If running interactively on macOS, the repository will automatically be opened in RStudio,
-#'      GitHub Desktop, and the default browser
+#'   1. If running interactively, the repository will automatically be opened in RStudio, GitHub
+#'      Desktop, and the default browser
 #'
 #' @section GitHub Actions: GitHub Actions can be disabled by setting `rdev.github.actions` to
 #'   `FALSE`: `options(rdev.github.actions = FALSE)`
@@ -342,10 +342,10 @@ create_github_repo <- function(repo_name, repo_desc = "", private = FALSE, org =
   writeLines("update the Title and Description fields in `DESCRIPTION` without committing,")
   writeLines("and run either setup_ananlysis() or setup_rdev() to finish configuration.")
 
-  if (Sys.info()["sysname"] == "Darwin" && rlang::is_interactive()) {
-    # TODO: replace open with view_url
-    system(paste0("open ", create$html_url, "/settings"))
-    system(paste0("github ", fs_path))
+  view_url(paste0(create$html_url, "/settings"))
+  gh_desk <- Sys.which("github")
+  if (gh_desk != "" && rlang::is_interactive()) {
+    system(paste0(gh_desk, " ", fs_path))
   }
 
   invisible(create)

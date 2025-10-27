@@ -46,8 +46,8 @@ When run, \code{create_github_repo()}:
 \item Adds branch protection to the default branch (if \code{private} is \code{FALSE})
 \item Clones the repository locally with \code{\link[usethis:create_from_github]{usethis::create_from_github()}}
 \item Creates a basic package using \code{\link[usethis:create_package]{usethis::create_package()}}
-\item If running interactively on macOS, the repository will automatically be opened in RStudio,
-GitHub Desktop, and the default browser
+\item If running interactively, the repository will automatically be opened in RStudio, GitHub
+Desktop, and the default browser
 }
 }
 \section{GitHub Actions}{
