@@ -137,7 +137,7 @@ upkeep_checklist <- function(last_upkeep = last_upkeep_year()) {
       "Check for GitHub Action updates since {last_upkeep_date()}",
       desc::desc_get_field("Package") == "rdev"
     ),
-    todo("`rdev::use_rdev_package()`"),
+    todo("`rdev::use_rdev_package(quiet = FALSE)`"),
     todo("`build_quarto_site(unfreeze = TRUE)`", ptype == "quarto"),
     todo(
       '`usethis::use_mit_license(copyright_holder = getOption("rdev.license.copyright"))`',
