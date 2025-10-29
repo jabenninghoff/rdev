@@ -1,3 +1,7 @@
+# rdev 1.15.2
+
+* Minor updates to `upkeep_checklist()`
+
 # rdev 1.15.1
 
 * Minor updates to `upkeep_checklist()`
