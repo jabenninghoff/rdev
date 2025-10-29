@@ -8,6 +8,8 @@ on:
 
 name: missing-deps
 
+permissions: read-all
+
 jobs:
   missing-deps:
     runs-on: macos-latest
