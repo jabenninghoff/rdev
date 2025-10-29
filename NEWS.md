@@ -1,6 +1,6 @@
 # rdev 1.15.2
 
-* Minor updates to `upkeep_checklist()`
+* Minor updates to `upkeep_checklist()`, GitHub Actions (`missing-deps`)
 
 # rdev 1.15.1
 
