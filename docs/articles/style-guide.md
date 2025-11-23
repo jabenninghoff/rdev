@@ -1,0 +1,207 @@
+# Style Guide
+
+The R Style Guide describes the rdev style conventions, along with
+automated checks ([styler](https://styler.r-lib.org) and
+[lintr](https://lintr.r-lib.org)). The rdev R Style Guide incorporates
+both the [Tidyverse Style Guide](https://style.tidyverse.org) and
+[Google’s R Style
+Guide](https://google.github.io/styleguide/Rguide.html).
+
+## rdev conventions
+
+rdev uses a mix of Google and tidyverse conventions.
+
+### Naming conventions
+
+rdev follows the tidyverse naming convention of `snake_case`.
+
+### Right-hand assignment
+
+rdev follows Google’s style guide, and does not use right-hand
+assignment.
+
+### Returns
+
+rdev typically uses implicit returns unless needed for flow control or
+to construct a specific return structure.
+
+### Qualifying namespaces
+
+Use of `@import` and `@importFrom` are discouraged, instead using `::`
+in functions defined in `R/`. An exception is infix functions
+(`%name%`), which are always imported, using roxygen `@importFrom`.
+Within R and Quarto Notebooks, use of
+[`library()`](https://rdrr.io/r/base/library.html) is encouraged for
+readability.
+
+### Package-level documentation
+
+rdev package documentation lives in `R/package.R`.
+
+Additionally, use of base R is encouraged within functions defined in
+`R/` (to control dependencies), where tidyverse R is encouraged within
+notebooks for readability.
+
+R Markdown documents should generally wrap at the same width as code,
+with exceptions for the R Notebook ‘description line’ (the first
+non-blank line in the body), and long hyperlinks.
+
+## styler
+
+The rdev package implements [styler](https://styler.r-lib.org) using the
+styler defaults, with permanent caching enabled
+(`options(styler.cache_root = "styler-perm")`). The
+[`style_all()`](https://jabenninghoff.github.io/rdev/reference/style_all.md)
+function applies the tidyverse style to all R and Quarto files (`R`,
+`Rprofile`, `Rmd`, `Rnw`, `qmd`) in the package directory structure.
+
+## lintr
+
+The
+[`lint_all()`](https://jabenninghoff.github.io/rdev/reference/lint_all.md)
+function lints all R and Quarto files (`R`, `Rmd`, `qmd`, `Rnw`,
+`Rhtml`, `Rpres`, `Rrst`, `Rtex`, `Rtxt`) with
+[lintr](https://lintr.r-lib.org) using an opinionated configuration
+(`.lintr`):
+
+``` r
+
+linters: linters_with_tags(
+    tags = NULL,
+    implicit_integer_linter = NULL,
+    line_length_linter(100),
+    missing_package_linter = NULL,
+    namespace_linter = NULL,
+    nonportable_path_linter = NULL,
+    paste_linter(allow_file_path = "always"),
+    todo_comment_linter = NULL,
+    undesirable_function_linter(
+      within(all_undesirable_functions, rm(ifelse, library, require, structure))
+    ),
+    undesirable_operator_linter(all_undesirable_operators),
+    unnecessary_concatenation_linter(allow_single_expression = FALSE),
+    unused_import_linter(
+      except_packages = c("bit64", "data.table", "tidyverse", pkgload::pkg_name("."))
+    )
+  )
+```
+
+These settings were deliberately chosen to meet specific goals:
+
+### Use all linters
+
+``` r
+linters: linters_with_tags(
+    tags = NULL,
+```
+
+This selects all linters, including the new [Google
+linters](https://lintr.r-lib.org/news/index.html#google-linters-3-0-0).
+By selecting all linters, not just the defaults, this forces evaluation
+of new linters as they are added to lintr. Specific linters are disabled
+or configured per rdev style.
+
+### Allow implicit integers
+
+``` r
+    implicit_integer_linter = NULL,
+```
+
+The implicit integer linter checks that integers are explicitly typed
+using the form `1L`. Again, while this is safer, implicit integers are
+common practice, including in the output of
+[`dput()`](https://rdrr.io/r/base/dput.html):
+
+``` r
+
+dput(character(0L))
+#> character(0)
+```
+
+### Set line length
+
+``` r
+    line_length_linter(100),
+```
+
+A line length of 100 is a reasonable width when working in the RStudio
+IDE on a laptop.
+
+### Use renv for missing packages
+
+``` r
+    missing_package_linter = NULL,
+    namespace_linter = NULL,
+```
+
+The missing package linter and the namespace linter both check for
+packages referenced in code that are not installed. rdev uses
+[renv](https://rstudio.github.io/renv/) to manage packages, which does a
+better job of detecting missing packages, including not complaining when
+the current package (`"."`) is not installed.
+
+### Allow non-portable paths
+
+``` r
+    nonportable_path_linter = NULL,
+    paste_linter(allow_file_path = "always"),
+```
+
+The non-portable path linter generates too many false positives,
+including calls to [fs](https://fs.r-lib.org), which essentially makes
+UNIX-style paths portable across operating systems. Similarly, the
+`allow_file_path` default option of `"double_slash"` generates false
+positives when used with fs.
+
+### Allow TODO comments
+
+``` r
+    todo_comment_linter = NULL,
+```
+
+rdev conventions encourage use of `# TODO:` comments as a convenient way
+of identifying needed or planned updates inline.
+
+### Disallow almost all undesirable functions and operators
+
+``` r
+    undesirable_function_linter(
+      within(all_undesirable_functions, rm(ifelse, library, require, structure))
+    ),
+    undesirable_operator_linter(all_undesirable_operators),
+```
+
+Enable all undesirable functions and operators, not just the defaults,
+except for [`ifelse()`](https://rdrr.io/r/base/ifelse.html) which is
+more succinct than an `if`/`else` block,
+[`library()`](https://rdrr.io/r/base/library.html),
+[`require()`](https://rdrr.io/r/base/library.html), and
+[`structure()`](https://rdrr.io/r/base/structure.html). Use of
+[`require()`](https://rdrr.io/r/base/library.html) within `.Rprofile`
+and [`library()`](https://rdrr.io/r/base/library.html) within R Markdown
+documents is an appropriate and common practice, although neither should
+be used within package code.
+[`structure()`](https://rdrr.io/r/base/structure.html) is useful for
+comparing test results to values generated with
+[`dput()`](https://rdrr.io/r/base/dput.html).
+
+### Enforce strict unnecessary concatenation
+
+``` r
+    unnecessary_concatenation_linter(allow_single_expression = FALSE),
+```
+
+Enforce the stricter version of the unnecessary concatenation linter.
+
+### Verify imported packages are used
+
+``` r
+    unused_import_linter(
+      except_packages = c("bit64", "data.table", "tidyverse", pkgload::pkg_name("."))
+    )
+  )
+```
+
+Verify that imported packages are used, except for packages that are
+attached for their side effects, and the current package (to support
+package development).

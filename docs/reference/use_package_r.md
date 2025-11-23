@@ -1,0 +1,23 @@
+# Use rdev package.R
+
+Install rdev package.R template using
+[`usethis::use_template()`](https://usethis.r-lib.org/reference/use_template.html)
+
+## Usage
+
+``` r
+use_package_r(open = FALSE)
+```
+
+## Arguments
+
+- open:
+
+  Open the newly created file for editing? Happens in RStudio, if
+  applicable, or via
+  [`utils::file.edit()`](https://rdrr.io/r/utils/file.edit.html)
+  otherwise.
+
+## Details
+
+package.R is saved as "R/package.R".
