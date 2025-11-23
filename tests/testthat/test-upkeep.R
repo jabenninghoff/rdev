@@ -18,7 +18,7 @@ test_that("use_upkeep_issue validates arguments", {
 
 # upkeep_checklist
 
-base_length <- 38
+base_length <- 39
 
 test_that("upkeep_checklist is expected length for first upkeep", {
   usethis::ui_silence(local_temppkg(type = "rdev"))
@@ -28,10 +28,10 @@ test_that("upkeep_checklist is expected length for first upkeep", {
   expect_length(upkeep_checklist(), base_length)
 
   mockery::stub(upkeep_checklist, "package_type", "analysis")
-  expect_length(upkeep_checklist(), base_length)
+  expect_length(upkeep_checklist(), base_length - 1)
 
   mockery::stub(upkeep_checklist, "package_type", "quarto")
-  expect_length(upkeep_checklist(), base_length + 1)
+  expect_length(upkeep_checklist(), base_length)
 
   mockery::stub(upkeep_checklist, "package_type", "rdev")
   expect_length(upkeep_checklist(), base_length)
@@ -70,5 +70,5 @@ test_that("upkeep_checklist is expected length for last upkeep year", {
   expect_length(upkeep_checklist(2023), base_length - 11)
   expect_length(upkeep_checklist(2024), base_length - 16)
   expect_length(upkeep_checklist(2025), base_length - 20)
-  expect_length(upkeep_checklist(2026), base_length - 25)
+  expect_length(upkeep_checklist(2026), base_length - 26)
 })
