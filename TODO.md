@@ -57,7 +57,7 @@
 - [x] Replace `GITHUB_PAT` in `.Renviron` with [gitcreds](https://usethis.r-lib.org/articles/git-credentials.html)
 - [x] Review use of [usethis functions](https://usethis.r-lib.org/reference/index.html), including [pull request helpers](https://usethis.r-lib.org/articles/pr-functions.html)
 - [ ] Update tests with new testthat features (`testthat::auto_test_package()`, `testthat::describe()`, Reporters, `testthat::local_mocked_bindings()`)
-- [ ] Replace `dev = TRUE` logic if <https://github.com/rstudio/renv/issues/1695> is accepted
+- [ ] Replace `dev = TRUE` logic after renv 1.1.6+ is released; see renv [#1695](https://github.com/rstudio/renv/issues/1695), [#2190](https://github.com/rstudio/renv/pull/2190)
 - [ ] Update errors and messages after reading Advanced R [Conditions](https://adv-r.hadley.nz/conditions.html) and re-reading the Tidyverse [Style Guide](https://style.tidyverse.org/index.html)
 - [ ] Reduce the number of Imports, per R CMD check:
 
