@@ -1,6 +1,6 @@
 # rdev 1.15.3
 
-* Minor updates
+* Updated `use_rdev_pkgdown()` to disable the new `pkgdown::build_llm_docs()` by default (update `use_rdev_pkgdown()`)
 
 # rdev 1.15.2
 
