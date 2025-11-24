@@ -69,6 +69,6 @@ test_that("upkeep_checklist is expected length for last upkeep year", {
   expect_length(upkeep_checklist(2022), base_length - 6)
   expect_length(upkeep_checklist(2023), base_length - 11)
   expect_length(upkeep_checklist(2024), base_length - 16)
-  expect_length(upkeep_checklist(2025), base_length - 20)
+  expect_length(upkeep_checklist(2025), base_length - 19)
   expect_length(upkeep_checklist(2026), base_length - 25)
 })

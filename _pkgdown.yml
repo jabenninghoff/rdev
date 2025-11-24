@@ -2,7 +2,6 @@ url: https://jabenninghoff.github.io/rdev/
 template:
   bootstrap: 5
   light-switch: true
-
 llm-docs: false
 
 reference:

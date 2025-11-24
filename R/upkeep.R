@@ -95,7 +95,6 @@ upkeep_checklist <- function(last_upkeep = last_upkeep_year()) {
       bullets,
       "### 2024",
       "",
-      todo("`rdev::use_rdev_pkgdown()`", ptype == "rdev"),
       todo("`rdev::use_analysis_package(use_quarto = FALSE)`", ptype == "analysis"),
       ""
     )
@@ -109,6 +108,7 @@ upkeep_checklist <- function(last_upkeep = last_upkeep_year()) {
       todo("`rdev::use_gitattributes()`"),
       todo("`rdev::use_analysis_package(use_quarto = TRUE)`", ptype == "quarto"),
       todo("`rdev::use_codecov()`", length(fs::dir_ls("R")) > 1),
+      todo("`rdev::use_rdev_pkgdown()", ptype == "rdev"),
       ""
     )
   }
