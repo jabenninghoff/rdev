@@ -233,5 +233,5 @@ build_analysis_site <- function(pkg = ".", ...) {
   fs::dir_copy(fs::path(tmp_dir, "docs"), pkg)
 
   writeLines("build_analysis_site() complete")
-  return(invisible(yaml::read_yaml(fs::path(tmp_dir, "_site.yml"))))
+  invisible(yaml::read_yaml(fs::path(tmp_dir, "_site.yml")))
 }

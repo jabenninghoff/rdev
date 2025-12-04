@@ -156,6 +156,7 @@ deps_check <- function(type, exclude_base = TRUE) {
   }
   if (type == "extra") {
     writeLines("desc::desc_get_deps() not found by renv:")
+    # nolint next: return_linter. kept for clarity.
     return(desc_deps[desc_deps$package %in% setdiff(desc_deps$package, renv_deps$Package), ])
   }
 }
