@@ -1,3 +1,7 @@
+# rdev 1.15.4
+
+* Updated for lintr 3.3.0
+
 # rdev 1.15.3
 
 * Updated `use_rdev_pkgdown()` to disable the new `pkgdown::build_llm_docs()` by default (update `use_rdev_pkgdown()`)

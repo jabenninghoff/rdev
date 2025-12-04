@@ -59,7 +59,7 @@ to_document <- function(file_path, new_path, overwrite = FALSE) {
 
   new_file <- fs::file_copy(file_path, new_path, overwrite = overwrite)
   writeLines(notebook, new_file)
-  return(new_file)
+  new_file
 }
 
 #' Get analysis notebook metadata

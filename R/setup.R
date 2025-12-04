@@ -674,7 +674,7 @@ use_analysis_package <- function(use_quarto = TRUE, prompt = FALSE) {
   ret <- list(
     dirs = analysis_dirs, rbuildignore = analysis_rbuildignore, gitignore = analysis_gitignore
   )
-  return(invisible(ret))
+  invisible(ret)
 }
 
 #' Use rdev pkgdown
