@@ -7,7 +7,7 @@
 
     <a class="navbar-brand me-2" href="../index.html">rdev</a>
 
-    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">1.15.3</small>
+    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">1.15.4</small>
 
 
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbar" aria-controls="navbar" aria-expanded="false" aria-label="Toggle navigation">
@@ -72,8 +72,8 @@
 
 <dt id="arg--">...<a class="anchor" aria-label="anchor" href="#arg--"></a></dt>
 <dd><p>Arguments passed on to <code><a href="https://lintr.r-lib.org/reference/lint.html" class="external-link">lintr::lint_dir</a></code></p><dl><dt><code>parse_settings</code></dt>
-<dd><p>Logical, default <code>TRUE</code>. Whether to try and parse the <a href="https://lintr.r-lib.org/reference/read_settings.html" class="external-link">settings</a>. Otherwise,
-the <code><a href="https://lintr.r-lib.org/reference/default_settings.html" class="external-link">default_settings()</a></code> are used.</p></dd>
+<dd><p>Logical. Whether to try and parse the <a href="https://lintr.r-lib.org/reference/read_settings.html" class="external-link">settings</a>. Otherwise, the
+<code><a href="https://lintr.r-lib.org/reference/default_settings.html" class="external-link">default_settings()</a></code> are used. <code>TRUE</code> by default when linting files, as opposed to <code>text=</code>.</p></dd>
 
     <dt><code>path</code></dt>
 <dd><p>For the base directory of the project (for <code>lint_dir()</code>) or
@@ -84,9 +84,9 @@ package (for <code>lint_package()</code>).</p></dd>
 If <code>FALSE</code>, use the full absolute path.</p></dd>
 
     <dt><code>show_progress</code></dt>
-<dd><p>Logical controlling whether to show linting progress with a simple text
-progress bar <em>via</em> <code><a href="https://rdrr.io/r/utils/txtProgressBar.html" class="external-link">utils::txtProgressBar()</a></code>. The default behavior is to show progress in
-<code><a href="https://rdrr.io/r/base/interactive.html" class="external-link">interactive()</a></code> sessions not running a testthat suite.</p></dd>
+<dd><p>Logical controlling whether to show linting progress with
+<code><a href="https://cli.r-lib.org/reference/cli_progress_along.html" class="external-link">cli::cli_progress_along()</a></code>. The default behavior is to show progress in <code><a href="https://rdrr.io/r/base/interactive.html" class="external-link">interactive()</a></code> sessions
+not running a testthat suite.</p></dd>
 
 
 </dl></dd>
