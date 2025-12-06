@@ -1,3 +1,7 @@
+# rdev 1.15.5
+
+* Minor updates to `upkeep_checklist()`
+
 # rdev 1.15.4
 
 * Updated for lintr 3.3.0
