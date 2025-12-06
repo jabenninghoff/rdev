@@ -48,7 +48,7 @@ use_upkeep_issue <- function(last_upkeep = last_upkeep_year()) {
 #' @return Upkeep checklist for current year as a GitHub markdown array.
 #'
 #' @export
-upkeep_checklist <- function(last_upkeep = last_upkeep_year()) {
+upkeep_checklist <- function(last_upkeep = last_upkeep_year()) { # nolint: cyclocomp_linter.
   lic <- get_license()
   ptype <- package_type()
 
@@ -90,7 +90,7 @@ upkeep_checklist <- function(last_upkeep = last_upkeep_year()) {
       ""
     )
   }
-  if (last_upkeep <= 2024) {
+  if (last_upkeep <= 2024 && ptype == "analysis") {
     bullets <- c(
       bullets,
       "### 2024",
@@ -108,7 +108,7 @@ upkeep_checklist <- function(last_upkeep = last_upkeep_year()) {
       todo("`rdev::use_gitattributes()`"),
       todo("`rdev::use_analysis_package(use_quarto = TRUE)`", ptype == "quarto"),
       todo("`rdev::use_codecov()`", length(fs::dir_ls("R")) > 1),
-      todo("`rdev::use_rdev_pkgdown()", ptype == "rdev"),
+      todo("`rdev::use_rdev_pkgdown()`", ptype == "rdev"),
       ""
     )
   }
@@ -137,7 +137,7 @@ upkeep_checklist <- function(last_upkeep = last_upkeep_year()) {
       "Check for GitHub Action updates since {last_upkeep_date()}",
       desc::desc_get_field("Package") == "rdev"
     ),
-    todo("`rdev::use_rdev_package(quiet = FALSE)`"),
+    todo("`rdev::use_rdev_package(quiet = FALSE)` (do this **first**)"),
     todo("`build_quarto_site(unfreeze = TRUE)`", ptype == "quarto"),
     todo(
       '`usethis::use_mit_license(copyright_holder = getOption("rdev.license.copyright"))`',
