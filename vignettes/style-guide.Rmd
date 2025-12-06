@@ -7,7 +7,8 @@ vignette: >
   %\VignetteEncoding{UTF-8}
 ---
 
-```{r, include = FALSE}
+```{r}
+#| include: false
 knitr::opts_chunk$set(
   collapse = TRUE,
   comment = "#>"
@@ -109,7 +110,8 @@ Specific linters are disabled or configured per rdev style.
 The implicit integer linter checks that integers are explicitly typed using the form `1L`. Again,
 while this is safer, implicit integers are common practice, including in the output of `dput()`:
 
-```{r implicit_integer}
+```{r}
+#| label: implicit_integer
 dput(character(0L))
 ```
 

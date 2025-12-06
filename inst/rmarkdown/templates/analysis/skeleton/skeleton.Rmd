@@ -24,7 +24,10 @@ One sentence description of the analysis contained in the notebook. Save this fi
 
 - [ ] Questions/TODO list here
 
-```{r setup, message = FALSE, warning = FALSE}
+```{r}
+#| label: setup
+#| message: false
+#| warning: false
 library(readr)
 library(dplyr)
 library(ggplot2)
