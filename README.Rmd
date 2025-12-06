@@ -4,7 +4,9 @@ output: github_document
 
 <!-- README.md is generated from README.Rmd. Please edit that file -->
 
-```{r setup, include = FALSE}
+```{r}
+#| label: setup
+#| include: false
 knitr::opts_chunk$set(
   collapse = TRUE,
   comment = "#>",
@@ -90,7 +92,8 @@ release branch if on the default.
 
 For my workflow, I typically check renv when I start:
 
-```{r check_renv}
+```{r}
+#| label: check_renv
 library(rdev)
 
 check_renv()
@@ -98,6 +101,7 @@ check_renv()
 
 I also have a `ci()` function to run all my continuous integration tests locally:
 
-```{r ci}
+```{r}
+#| label: ci
 ci()
 ```
