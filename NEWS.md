@@ -1,6 +1,6 @@
 # rdev 1.15.5
 
-* Minor updates to `upkeep_checklist()`
+* Added items for ggplot2 version 4 upgrade and switch to YAML chunk [options](https://yihui.org/knitr/options/) to `upkeep_checklist()`
 
 # rdev 1.15.4
 

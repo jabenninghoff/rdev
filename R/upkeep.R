@@ -51,6 +51,7 @@ use_upkeep_issue <- function(last_upkeep = last_upkeep_year()) {
 upkeep_checklist <- function(last_upkeep = last_upkeep_year()) { # nolint: cyclocomp_linter.
   lic <- get_license()
   ptype <- package_type()
+  uses_ggplot2 <- desc::desc_has_dep("ggplot2")
 
   bullets <- c(
     "### New branch",
@@ -109,6 +110,11 @@ upkeep_checklist <- function(last_upkeep = last_upkeep_year()) { # nolint: cyclo
       todo("`rdev::use_analysis_package(use_quarto = TRUE)`", ptype == "quarto"),
       todo("`rdev::use_codecov()`", length(fs::dir_ls("R")) > 1),
       todo("`rdev::use_rdev_pkgdown()`", ptype == "rdev"),
+      todo(
+        "Update for ggplot2 [version 4](https://tidyverse.org/blog/2025/09/ggplot2-4-0-0/)",
+        uses_ggplot2
+      ),
+      todo("Switch to chunk option YAML [syntax](https://yihui.org/knitr/options/"),
       ""
     )
   }
@@ -134,7 +140,8 @@ upkeep_checklist <- function(last_upkeep = last_upkeep_year()) { # nolint: cyclo
       length(r_version) == 0 || minimum_r_version > r_version
     ),
     todo(
-      "Check for GitHub Action updates since {last_upkeep_date()}",
+      "Check for GitHub Action [updates](https://github.com/r-lib/actions/tree/v2/examples) \\
+      since {last_upkeep_date()}",
       desc::desc_get_field("Package") == "rdev"
     ),
     todo("`rdev::use_rdev_package(quiet = FALSE)` (do this **first**)"),
