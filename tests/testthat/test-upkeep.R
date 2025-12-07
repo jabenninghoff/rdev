@@ -18,10 +18,11 @@ test_that("use_upkeep_issue validates arguments", {
 
 # upkeep_checklist
 
-base_length <- 35
+base_length <- 37
 
 test_that("upkeep_checklist is expected length for first upkeep", {
   usethis::ui_silence(local_temppkg(type = "rdev"))
+  mockery::stub(upkeep_checklist, "desc::desc_has_dep", TRUE)
 
   # get_license() "mit", package_type() "rdev", pkg_minimum_r_version NA, r_version character(0),
   # usethis::git_default_branch() "master", no inst/templates or inst/rmarkdown/templates
@@ -59,10 +60,14 @@ test_that("upkeep_checklist is expected length for first upkeep", {
 
   fs::dir_create("inst/rmarkdown/templates/test")
   expect_length(upkeep_checklist(), base_length + 1)
+
+  mockery::stub(upkeep_checklist, "desc::desc_has_dep", FALSE)
+  expect_length(upkeep_checklist(), base_length)
 })
 
 test_that("upkeep_checklist is expected length for last upkeep year", {
   usethis::ui_silence(local_temppkg(type = "rdev"))
+  mockery::stub(upkeep_checklist, "desc::desc_has_dep", TRUE)
 
   expect_length(upkeep_checklist(), base_length)
   expect_length(upkeep_checklist(2021), base_length)
@@ -70,5 +75,5 @@ test_that("upkeep_checklist is expected length for last upkeep year", {
   expect_length(upkeep_checklist(2023), base_length - 11)
   expect_length(upkeep_checklist(2024), base_length - 16)
   expect_length(upkeep_checklist(2025), base_length - 16)
-  expect_length(upkeep_checklist(2026), base_length - 22)
+  expect_length(upkeep_checklist(2026), base_length - 24)
 })
