@@ -2,6 +2,8 @@
 
 * Added instructions for YAML chunk syntax update to `upkeep_checklist()`
 
+* 2026 Upkeep
+
 # rdev 1.15.5
 
 * Added items for ggplot2 version 4 upgrade and switch to YAML chunk [options](https://yihui.org/knitr/options/) to `upkeep_checklist()`
