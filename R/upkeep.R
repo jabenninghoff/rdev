@@ -114,7 +114,16 @@ upkeep_checklist <- function(last_upkeep = last_upkeep_year()) { # nolint: cyclo
         "Update for ggplot2 [version 4](https://tidyverse.org/blog/2025/09/ggplot2-4-0-0/)",
         uses_ggplot2
       ),
-      todo("Switch to chunk option YAML [syntax](https://yihui.org/knitr/options/"),
+      todo("Switch to chunk option YAML [syntax](https://yihui.org/knitr/options/)"),
+      "",
+      "Update to YAML chunk syntax using:",
+      "",
+      "```",
+      paste0(
+        'lapply(list.files(pattern = "\\\\.Rmd$", recursive = TRUE), knitr::convert_chunk_header, ',
+        'output = identity, type = "yaml", width = 100)'
+      ),
+      "```",
       ""
     )
   }
