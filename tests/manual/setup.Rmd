@@ -18,7 +18,10 @@ Test script to manually validate creating a new rdev package or R analysis packa
 
 Load devtools. Load package manually using `devtools::load_all(".")` (command-shift-l).
 
-```{r setup, message = FALSE, warning = FALSE}
+```{r}
+#| label: setup
+#| message: false
+#| warning: false
 # devtools already loaded
 htmltools::tagList(
   xaringanExtra::use_clipboard(

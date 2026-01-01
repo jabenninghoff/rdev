@@ -17,7 +17,10 @@ Valid Notebook from 'Analysis Notebook' template that creates a cars plot.
 
 - [ ] Questions/TODO list here
 
-```{r setup, message = FALSE, warning = FALSE}
+```{r}
+#| label: setup
+#| message: false
+#| warning: false
 # setup code here
 ```
 
@@ -35,7 +38,8 @@ Graph and model data to ask and answer questions.
 
 Plot the speed and stopping distances from the `cars` dataset (circa 1920).
 
-```{r cars}
+```{r}
+#| label: cars
 plot(cars)
 ```
 

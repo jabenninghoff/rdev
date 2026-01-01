@@ -19,7 +19,10 @@ Valid Notebook from 'Analysis Notebook' template with extra spaces before the de
 
 - [ ] Questions/TODO list here
 
-```{r setup, message = FALSE, warning = FALSE}
+```{r}
+#| label: setup
+#| message: false
+#| warning: false
 # setup code here
 ```
 
