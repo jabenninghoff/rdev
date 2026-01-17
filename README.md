@@ -93,7 +93,7 @@ For my workflow, I typically check renv when I start:
 library(rdev)
 
 check_renv()
-#> renv::status(dev = TRUE)
+#> renv::status()
 #> No issues found -- the project is in a consistent state.
 #> 
 #> renv::clean()
@@ -107,7 +107,7 @@ locally:
 
 ``` r
 ci()
-#> renv::status(dev = TRUE)
+#> renv::status()
 #> No issues found -- the project is in a consistent state.
 #> 
 #> missing_deps()
@@ -234,10 +234,10 @@ ci()
 #> * creating vignettes ... OK
 #> * checking for LF line-endings in source and make files and shell scripts
 #> * checking for empty or unneeded directories
-#> * building ‘rdev_1.15.6.tar.gz’
+#> * building ‘rdev_1.16.0.tar.gz’
 #> 
 #> ── R CMD check ─────────────────────────────────────────────────────────────────
-#> * using log directory ‘/private/var/folders/vn/cw5f9gws42v9m8mdsds_zbl00000gp/T/RtmpqNxoSE/file820a21bb3a1a/rdev.Rcheck’
+#> * using log directory ‘/private/var/folders/vn/cw5f9gws42v9m8mdsds_zbl00000gp/T/RtmpxJhUXI/file155b515153087/rdev.Rcheck’
 #> * using R version 4.5.2 (2025-10-31)
 #> * using platform: aarch64-apple-darwin20
 #> * R was compiled by
@@ -247,7 +247,7 @@ ci()
 #> * using session charset: UTF-8
 #> * using option ‘--no-manual’
 #> * checking for file ‘rdev/DESCRIPTION’ ... OK
-#> * this is package ‘rdev’ version ‘1.15.6’
+#> * this is package ‘rdev’ version ‘1.16.0’
 #> * package encoding: UTF-8
 #> * checking package namespace information ... OK
 #> * checking package dependencies ... OK
@@ -302,8 +302,8 @@ ci()
 #> * DONE
 #> 
 #> Status: OK
-#> ── R CMD check results ──────────────────────────────────────── rdev 1.15.6 ────
-#> Duration: 26.8s
+#> ── R CMD check results ──────────────────────────────────────── rdev 1.16.0 ────
+#> Duration: 26.4s
 #> 
 #> 0 errors ✔ | 0 warnings ✔ | 0 notes ✔
 ```

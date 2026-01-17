@@ -7,7 +7,7 @@
 
     <a class="navbar-brand me-2" href="../index.html">rdev</a>
 
-    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">1.15.6</small>
+    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">1.16.0</small>
 
 
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbar" aria-controls="navbar" aria-expanded="false" aria-label="Toggle navigation">
@@ -70,7 +70,7 @@
 
 
 <dl><dt id="arg-renv">renv<a class="anchor" aria-label="anchor" href="#arg-renv"></a></dt>
-<dd><p>check <code><a href="https://rstudio.github.io/renv/reference/status.html" class="external-link">renv::status(dev = TRUE)</a></code></p></dd>
+<dd><p>check <code><a href="https://rstudio.github.io/renv/reference/status.html" class="external-link">renv::status()</a></code></p></dd>
 
 
 <dt id="arg-missing">missing<a class="anchor" aria-label="anchor" href="#arg-missing"></a></dt>
@@ -116,7 +116,7 @@
 </dl></div>
     <div class="section level2">
     <h2 id="details">Details<a class="anchor" aria-label="anchor" href="#details"></a></h2>
-    <p>If <code><a href="https://rstudio.github.io/renv/reference/status.html" class="external-link">renv::status(dev = TRUE)</a></code> is not synchronized, <code>ci()</code> will stop.</p>
+    <p>If <code><a href="https://rstudio.github.io/renv/reference/status.html" class="external-link">renv::status()</a></code> is not synchronized, <code>ci()</code> will stop.</p>
 <p>If <code><a href="deps_check.html">missing_deps()</a></code> returns any missing dependencies, <code>ci()</code> will stop.</p>
 <p><code><a href="https://pkgdown.r-lib.org/reference/check_pkgdown.html" class="external-link">pkgdown::check_pkgdown()</a></code> will halt <code>ci()</code> with an error if <code>_pkgdown.yml</code> is invalid.</p>
 <p>If <code>styler</code> is set to <code>NULL</code> (the default), <code><a href="style_all.html">style_all()</a></code> will be run only if there are no
