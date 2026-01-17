@@ -110,7 +110,7 @@ use_spelling <- function(lang = "en-US", prompt = FALSE) {
   usethis::use_package("fs", type = "Suggests")
   usethis::use_package("withr", type = "Suggests")
   desc::desc_normalize()
-  renv::snapshot(dev = TRUE, prompt = prompt)
+  renv::snapshot(prompt = prompt)
 }
 
 #' Use rdev code coverage
@@ -145,7 +145,7 @@ use_codecov <- function(prompt = FALSE) {
   usethis::use_package("covr", type = "Suggests")
   renv::install("DT")
   usethis::use_package("DT", type = "Suggests")
-  renv::snapshot(dev = TRUE, prompt = prompt)
+  renv::snapshot(prompt = prompt)
 }
 
 #' Get license option
@@ -514,7 +514,10 @@ use_rdev_package <- function(quiet = TRUE) {
 
   # run renv::init() last to restart the session
   # specify repos to use CRAN mirror instead of Posit Public Package Manager
-  renv::init(settings = list(snapshot.type = "implicit"), repos = "https://cloud.r-project.org")
+  renv::init(
+    settings = list(snapshot.type = "implicit", snapshot.dev = TRUE),
+    repos = "https://cloud.r-project.org"
+  )
 }
 
 #' Use Analysis Package Layout
@@ -669,7 +672,7 @@ use_analysis_package <- function(use_quarto = TRUE, prompt = FALSE) {
   } else {
     usethis::use_package("pkgdown", type = "Suggests")
   }
-  renv::snapshot(dev = TRUE, prompt = prompt)
+  renv::snapshot(prompt = prompt)
 
   ret <- list(
     dirs = analysis_dirs, rbuildignore = analysis_rbuildignore, gitignore = analysis_gitignore

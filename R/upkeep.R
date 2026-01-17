@@ -127,6 +127,15 @@ upkeep_checklist <- function(last_upkeep = last_upkeep_year()) { # nolint: cyclo
       ""
     )
   }
+  if (last_upkeep <= 2026 && !renv::settings$snapshot.dev()) {
+    bullets <- c(
+      bullets,
+      "### 2026",
+      "",
+      todo("`renv::settings$snapshot.dev(TRUE)`"),
+      ""
+    )
+  }
 
   minimum_r_version <- pkg_minimum_r_version()
   if (is.na(minimum_r_version) || "3.6.3" > minimum_r_version) minimum_r_version <- "3.6.3"

@@ -1,3 +1,7 @@
+# rdev 1.16.0
+
+* Updated `check_renv()` and `ci()`, replacing `renv::status(dev = TRUE)` with new renv 1.1.6 setting `renv::settings$snapshot.dev(TRUE)`
+
 # rdev 1.15.6
 
 * Added instructions for YAML chunk syntax update to `upkeep_checklist()`
