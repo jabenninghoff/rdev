@@ -1,7 +1,7 @@
 #' Check renv
 #'
-#' Runs [`renv`][renv::renv-package] [`status(dev = TRUE)`][renv::status()],
-#'   [`clean()`][renv::clean()], and optionally [`update()`][renv::update()]
+#' Runs [`renv`][renv::renv-package] [`status()`][renv::status()], [`clean()`][renv::clean()]
+#'   and optionally [`update()`][renv::update()]
 #'
 #' @param update run [renv::update()]
 #'
@@ -14,8 +14,8 @@
 check_renv <- function(update = rlang::is_interactive()) {
   checkmate::assert_flag(update)
 
-  writeLines("renv::status(dev = TRUE)")
-  renv::status(dev = TRUE)
+  writeLines("renv::status()")
+  renv::status()
 
   writeLines("\nrenv::clean()")
   renv::clean()
@@ -84,7 +84,7 @@ print_tbl <- function(df) {
 #'
 #' Run continuous integration tests locally.
 #'
-#' If [`renv::status(dev = TRUE)`][renv::status()] is not synchronized, `ci()` will stop.
+#' If [`renv::status()`][renv::status()] is not synchronized, `ci()` will stop.
 #'
 #' If [missing_deps()] returns any missing dependencies, `ci()` will stop.
 #'
@@ -98,7 +98,7 @@ print_tbl <- function(df) {
 #' Output from `missing`, `extra`, and `urls` is printed as a [tibble][tibble::tibble()] for
 #'   improved readability in the console.
 #'
-#' @param renv check [`renv::status(dev = TRUE)`][renv::status()]
+#' @param renv check [`renv::status()`][renv::status()]
 #' @param missing run [missing_deps()]
 #' @param pkgdown check [pkgdown::check_pkgdown()] if `_pkgdown.yml` exists
 #' @param styler style all files using [style_all()], see details
@@ -142,8 +142,8 @@ ci <- function(renv = TRUE, # nolint: cyclocomp_linter.
   checkmate::assert_flag(rcmdcheck)
 
   if (renv) {
-    writeLines("renv::status(dev = TRUE)")
-    status <- renv::status(dev = TRUE)
+    writeLines("renv::status()")
+    status <- renv::status()
     if (!status$synchronized) {
       return(invisible(status))
     }
