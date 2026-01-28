@@ -29,7 +29,7 @@
 
     <a class="navbar-brand me-2" href="index.html">rdev</a>
 
-    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">1.16.0</small>
+    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">1.16.1</small>
 
 
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbar" aria-controls="navbar" aria-expanded="false" aria-label="Toggle navigation">
@@ -148,12 +148,19 @@
 <span><span class="co">#&gt; renv::clean()</span></span>
 <span><span class="co">#&gt; - No stale package locks were found.</span></span>
 <span><span class="co">#&gt; - No temporary directories were found in the project library.</span></span>
-<span><span class="co">#&gt; - The project has been cleaned.</span></span></code></pre></div>
+<span><span class="co">#&gt; - The project has been cleaned.</span></span>
+<span><span class="co">#&gt; </span></span>
+<span><span class="co">#&gt; renv::vulns(repos = "https://packagemanager.posit.co/cran/latest")</span></span>
+<span><span class="co">#&gt; []</span></span></code></pre></div>
 <p>I also have a <code><a href="reference/ci.html">ci()</a></code> function to run all my continuous integration tests locally:</p>
 <div class="sourceCode" id="cb4"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu"><a href="reference/ci.html">ci</a></span><span class="op">(</span><span class="op">)</span></span>
 <span><span class="co">#&gt; renv::status()</span></span>
 <span><span class="co">#&gt; No issues found -- the project is in a consistent state.</span></span>
+<span><span class="co">#&gt; </span></span>
+<span><span class="co">#&gt; renv::vulns(repos = "https://packagemanager.posit.co/cran/latest")</span></span>
+<span><span class="co">#&gt; []</span></span>
+<span><span class="co">#&gt; </span></span>
 <span><span class="co">#&gt; </span></span>
 <span><span class="co">#&gt; missing_deps()</span></span>
 <span><span class="co">#&gt; Finding R package dependencies ... Done!</span></span>
@@ -279,10 +286,10 @@
 <span><span class="co">#&gt; * creating vignettes ... OK</span></span>
 <span><span class="co">#&gt; * checking for LF line-endings in source and make files and shell scripts</span></span>
 <span><span class="co">#&gt; * checking for empty or unneeded directories</span></span>
-<span><span class="co">#&gt; * building ‘rdev_1.16.0.tar.gz’</span></span>
+<span><span class="co">#&gt; * building ‘rdev_1.16.1.tar.gz’</span></span>
 <span><span class="co">#&gt; </span></span>
 <span><span class="co">#&gt; ── R CMD check ─────────────────────────────────────────────────────────────────</span></span>
-<span><span class="co">#&gt; * using log directory ‘/private/var/folders/vn/cw5f9gws42v9m8mdsds_zbl00000gp/T/RtmpxJhUXI/file155b515153087/rdev.Rcheck’</span></span>
+<span><span class="co">#&gt; * using log directory ‘/private/var/folders/vn/cw5f9gws42v9m8mdsds_zbl00000gp/T/RtmpXMaZ3x/filee8bb15b4a7a9/rdev.Rcheck’</span></span>
 <span><span class="co">#&gt; * using R version 4.5.2 (2025-10-31)</span></span>
 <span><span class="co">#&gt; * using platform: aarch64-apple-darwin20</span></span>
 <span><span class="co">#&gt; * R was compiled by</span></span>
@@ -292,7 +299,7 @@
 <span><span class="co">#&gt; * using session charset: UTF-8</span></span>
 <span><span class="co">#&gt; * using option ‘--no-manual’</span></span>
 <span><span class="co">#&gt; * checking for file ‘rdev/DESCRIPTION’ ... OK</span></span>
-<span><span class="co">#&gt; * this is package ‘rdev’ version ‘1.16.0’</span></span>
+<span><span class="co">#&gt; * this is package ‘rdev’ version ‘1.16.1’</span></span>
 <span><span class="co">#&gt; * package encoding: UTF-8</span></span>
 <span><span class="co">#&gt; * checking package namespace information ... OK</span></span>
 <span><span class="co">#&gt; * checking package dependencies ... OK</span></span>
@@ -345,10 +352,9 @@
 <span><span class="co">#&gt; * checking package vignettes ... OK</span></span>
 <span><span class="co">#&gt; * checking re-building of vignette outputs ... OK</span></span>
 <span><span class="co">#&gt; * DONE</span></span>
-<span><span class="co">#&gt; </span></span>
 <span><span class="co">#&gt; Status: OK</span></span>
-<span><span class="co">#&gt; ── R CMD check results ──────────────────────────────────────── rdev 1.16.0 ────</span></span>
-<span><span class="co">#&gt; Duration: 26.4s</span></span>
+<span><span class="co">#&gt; ── R CMD check results ──────────────────────────────────────── rdev 1.16.1 ────</span></span>
+<span><span class="co">#&gt; Duration: 25.8s</span></span>
 <span><span class="co">#&gt; </span></span>
 <span><span class="co">#&gt; 0 errors ✔ | 0 warnings ✔ | 0 notes ✔</span></span></code></pre></div>
 </div>
