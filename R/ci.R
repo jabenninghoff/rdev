@@ -1,7 +1,11 @@
+print_renv_vulns <- function() {
+  writeLines(yaml::as.yaml(renv::vulns(repos = "https://packagemanager.posit.co/cran/latest")))
+}
+
 #' Check renv
 #'
 #' Runs [`renv`][renv::renv-package] [`status()`][renv::status()], [`clean()`][renv::clean()],
-#'   [`vulns()`][renv::vulns()], and optionally [`update()`][renv::update()]
+#'   [`vulns()`][renv::vulns()] (as YAML), and optionally [`update()`][renv::update()]
 #'
 #' @param update run [renv::update()]
 #'
@@ -21,7 +25,7 @@ check_renv <- function(update = rlang::is_interactive()) {
   renv::clean()
 
   writeLines('\nrenv::vulns(repos = "https://packagemanager.posit.co/cran/latest")')
-  print(renv::vulns(repos = "https://packagemanager.posit.co/cran/latest"))
+  print_renv_vulns()
 
   if (update) {
     writeLines("\nrenv::update()")
@@ -101,7 +105,7 @@ print_tbl <- function(df) {
 #' Output from `missing`, `extra`, and `urls` is printed as a [tibble][tibble::tibble()] for
 #'   improved readability in the console.
 #'
-#' @param renv check [renv::status()] and report on [renv::vulns()]
+#' @param renv check [renv::status()] and report on [renv::vulns()] (as YAML)
 #' @param missing run [missing_deps()]
 #' @param pkgdown check [pkgdown::check_pkgdown()] if `_pkgdown.yml` exists
 #' @param styler style all files using [style_all()], see details
@@ -151,7 +155,7 @@ ci <- function(renv = TRUE, # nolint: cyclocomp_linter.
       return(invisible(status))
     }
     writeLines(c("", 'renv::vulns(repos = "https://packagemanager.posit.co/cran/latest")'))
-    print(renv::vulns(repos = "https://packagemanager.posit.co/cran/latest"))
+    print_renv_vulns()
     if (any(
       missing, pkgdown, is.null(styler), styler, lintr, document, normalize, extra, spelling, urls,
       rcmdcheck

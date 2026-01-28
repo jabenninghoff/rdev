@@ -19,7 +19,7 @@ ci(
 )
 }
 \arguments{
-\item{renv}{check \code{\link[renv:status]{renv::status()}} and report on \code{\link[renv:vulns]{renv::vulns()}}}
+\item{renv}{check \code{\link[renv:status]{renv::status()}} and report on \code{\link[renv:vulns]{renv::vulns()}} (as YAML)}
 
 \item{missing}{run \code{\link[=missing_deps]{missing_deps()}}}
 
