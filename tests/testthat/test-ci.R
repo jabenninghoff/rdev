@@ -5,7 +5,7 @@ withr::local_dir("test-ci")
 test_that("check_renv validates arguments", {
   mockery::stub(check_renv, "renv::status", NULL)
   mockery::stub(check_renv, "renv::clean", NULL)
-  mockery::stub(check_renv, "renv::vulns", list())
+  mockery::stub(check_renv, "print_renv_vulns", NULL)
   mockery::stub(check_renv, "renv::update", NULL)
 
   expect_error(check_renv(update = NA), "'update'")
@@ -14,14 +14,14 @@ test_that("check_renv validates arguments", {
 test_that("All renv functions are called, unless set to FALSE", {
   mockery::stub(check_renv, "renv::status", NULL)
   mockery::stub(check_renv, "renv::clean", NULL)
-  mockery::stub(check_renv, "renv::vulns", list())
+  mockery::stub(check_renv, "print_renv_vulns", NULL)
   mockery::stub(check_renv, "renv::update", NULL)
 
   begin <- "^"
   end <- "$"
   sep <- "\\n\\n"
   status <- "renv::status\\(\\)"
-  vulns <- 'renv::vulns\\(repos = "https://packagemanager.posit.co/cran/latest"\\)\nlist\\(\\)'
+  vulns <- 'renv::vulns\\(repos = "https://packagemanager.posit.co/cran/latest"\\)'
   clean <- "renv::clean\\(\\)"
   update <- "renv::update\\(\\)"
 
@@ -57,7 +57,7 @@ test_that("lint_all checks all file types", {
 
 test_that("ci validates arguments", {
   mockery::stub(ci, "renv::status", NULL)
-  mockery::stub(ci, "renv::vulns", list())
+  mockery::stub(ci, "print_renv_vulns", NULL)
   mockery::stub(ci, "missing_deps", NULL)
   mockery::stub(ci, "fs::file_exists", NULL)
   mockery::stub(ci, "pkgdown::check_pkgdown", NULL)
@@ -110,7 +110,7 @@ test_that("All renv functions are called according to ci logic", {
     row.names = c(NA, -1L), class = c("tbl_df", "tbl", "data.frame")
   )
   mockery::stub(ci, "renv::status", renv_sync_true)
-  mockery::stub(ci, "renv::vulns", list())
+  mockery::stub(ci, "print_renv_vulns", NULL)
   mockery::stub(ci, "missing_deps", missing_deps_empty)
   mockery::stub(ci, "fs::file_exists", TRUE)
   mockery::stub(ci, "pkgdown::check_pkgdown", NULL)
@@ -131,10 +131,7 @@ test_that("All renv functions are called according to ci logic", {
   end <- "$"
   sep <- "\\n\\n"
   renv_status <- "renv::status\\(\\)"
-  renv_vulns <- paste0(
-    'renv::vulns\\(repos = "https://packagemanager\\.posit\\.co/cran/latest"\\)\\n',
-    "list\\(\\)"
-  )
+  renv_vulns <- 'renv::vulns\\(repos = "https://packagemanager\\.posit\\.co/cran/latest"\\)'
   renv <- paste0(renv_status, sep, renv_vulns)
   missing <- "missing_deps\\(\\)"
   pkgdown <- "pkgdown::check_pkgdown\\(\\)"
