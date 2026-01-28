@@ -5,6 +5,7 @@ withr::local_dir("test-ci")
 test_that("check_renv validates arguments", {
   mockery::stub(check_renv, "renv::status", NULL)
   mockery::stub(check_renv, "renv::clean", NULL)
+  mockery::stub(check_renv, "renv::vulns", list())
   mockery::stub(check_renv, "renv::update", NULL)
 
   expect_error(check_renv(update = NA), "'update'")
@@ -13,17 +14,23 @@ test_that("check_renv validates arguments", {
 test_that("All renv functions are called, unless set to FALSE", {
   mockery::stub(check_renv, "renv::status", NULL)
   mockery::stub(check_renv, "renv::clean", NULL)
+  mockery::stub(check_renv, "renv::vulns", list())
   mockery::stub(check_renv, "renv::update", NULL)
 
   begin <- "^"
   end <- "$"
   sep <- "\\n\\n"
   status <- "renv::status\\(\\)"
+  vulns <- 'renv::vulns\\(repos = "https://packagemanager.posit.co/cran/latest"\\)\nlist\\(\\)'
   clean <- "renv::clean\\(\\)"
   update <- "renv::update\\(\\)"
 
-  expect_output(check_renv(update = TRUE), paste0(begin, status, sep, clean, sep, update, end))
-  expect_output(check_renv(update = FALSE), paste0(begin, status, sep, clean, end))
+  expect_output(
+    check_renv(update = TRUE), paste0(begin, status, sep, clean, sep, vulns, sep, update, end)
+  )
+  expect_output(
+    check_renv(update = FALSE), paste0(begin, status, sep, clean, sep, vulns, end)
+  )
 })
 
 # style_all
