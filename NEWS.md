@@ -1,3 +1,7 @@
+# rdev 1.16.1
+
+* Added new renv 1.1.6 function `renv::vulns()` to `ci()`
+
 # rdev 1.16.0
 
 * Updated `check_renv()` and `ci()`, replacing `renv::status(dev = TRUE)` with new renv 1.1.6 setting `renv::settings$snapshot.dev(TRUE)`

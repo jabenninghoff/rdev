@@ -50,6 +50,7 @@ test_that("lint_all checks all file types", {
 
 test_that("ci validates arguments", {
   mockery::stub(ci, "renv::status", NULL)
+  mockery::stub(ci, "renv::vulns", list())
   mockery::stub(ci, "missing_deps", NULL)
   mockery::stub(ci, "fs::file_exists", NULL)
   mockery::stub(ci, "pkgdown::check_pkgdown", NULL)
@@ -102,6 +103,7 @@ test_that("All renv functions are called according to ci logic", {
     row.names = c(NA, -1L), class = c("tbl_df", "tbl", "data.frame")
   )
   mockery::stub(ci, "renv::status", renv_sync_true)
+  mockery::stub(ci, "renv::vulns", list())
   mockery::stub(ci, "missing_deps", missing_deps_empty)
   mockery::stub(ci, "fs::file_exists", TRUE)
   mockery::stub(ci, "pkgdown::check_pkgdown", NULL)
@@ -121,7 +123,12 @@ test_that("All renv functions are called according to ci logic", {
   begin <- "^"
   end <- "$"
   sep <- "\\n\\n"
-  renv <- "renv::status\\(\\)"
+  renv_status <- "renv::status\\(\\)"
+  renv_vulns <- paste0(
+    'renv::vulns\\(repos = "https://packagemanager\\.posit\\.co/cran/latest"\\)\\n',
+    "list\\(\\)"
+  )
+  renv <- paste0(renv_status, sep, renv_vulns)
   missing <- "missing_deps\\(\\)"
   pkgdown <- "pkgdown::check_pkgdown\\(\\)"
   styler <- "style_all\\(\\)"
@@ -236,6 +243,6 @@ test_that("All renv functions are called according to ci logic", {
       renv = TRUE, missing = TRUE, pkgdown = TRUE, styler = NULL, lintr = TRUE, document = TRUE,
       normalize = TRUE, extra = TRUE, spelling = TRUE, urls = TRUE, rcmdcheck = TRUE
     ),
-    paste0(begin, renv, end)
+    paste0(begin, renv_status, end)
   )
 })

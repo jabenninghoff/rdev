@@ -84,7 +84,7 @@ print_tbl <- function(df) {
 #'
 #' Run continuous integration tests locally.
 #'
-#' If [`renv::status()`][renv::status()] is not synchronized, `ci()` will stop.
+#' If [renv::status()] is not synchronized, `ci()` will stop.
 #'
 #' If [missing_deps()] returns any missing dependencies, `ci()` will stop.
 #'
@@ -98,7 +98,7 @@ print_tbl <- function(df) {
 #' Output from `missing`, `extra`, and `urls` is printed as a [tibble][tibble::tibble()] for
 #'   improved readability in the console.
 #'
-#' @param renv check [`renv::status()`][renv::status()]
+#' @param renv check [renv::status()] and report on [renv::vulns()]
 #' @param missing run [missing_deps()]
 #' @param pkgdown check [pkgdown::check_pkgdown()] if `_pkgdown.yml` exists
 #' @param styler style all files using [style_all()], see details
@@ -147,6 +147,8 @@ ci <- function(renv = TRUE, # nolint: cyclocomp_linter.
     if (!status$synchronized) {
       return(invisible(status))
     }
+    writeLines(c("", 'renv::vulns(repos = "https://packagemanager.posit.co/cran/latest")'))
+    print(renv::vulns(repos = "https://packagemanager.posit.co/cran/latest"))
     if (any(
       missing, pkgdown, is.null(styler), styler, lintr, document, normalize, extra, spelling, urls,
       rcmdcheck
