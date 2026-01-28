@@ -1,7 +1,7 @@
 #' Check renv
 #'
-#' Runs [`renv`][renv::renv-package] [`status()`][renv::status()], [`clean()`][renv::clean()]
-#'   and optionally [`update()`][renv::update()]
+#' Runs [`renv`][renv::renv-package] [`status()`][renv::status()], [`clean()`][renv::clean()],
+#'   [`vulns()`][renv::vulns()], and optionally [`update()`][renv::update()]
 #'
 #' @param update run [renv::update()]
 #'
@@ -19,6 +19,9 @@ check_renv <- function(update = rlang::is_interactive()) {
 
   writeLines("\nrenv::clean()")
   renv::clean()
+
+  writeLines('\nrenv::vulns(repos = "https://packagemanager.posit.co/cran/latest")')
+  print(renv::vulns(repos = "https://packagemanager.posit.co/cran/latest"))
 
   if (update) {
     writeLines("\nrenv::update()")

@@ -1,6 +1,6 @@
 # rdev 1.16.1
 
-* Added new renv 1.1.6 function `renv::vulns()` to `ci()`
+* Added new renv 1.1.6 function `renv::vulns()` to `check_renv()` and `ci()`
 
 # rdev 1.16.0
 
