@@ -100,6 +100,9 @@ check_renv()
 #> - No stale package locks were found.
 #> - No temporary directories were found in the project library.
 #> - The project has been cleaned.
+#> 
+#> renv::vulns(repos = "https://packagemanager.posit.co/cran/latest")
+#> []
 ```
 
 I also have a `ci()` function to run all my continuous integration tests
@@ -109,6 +112,10 @@ locally:
 ci()
 #> renv::status()
 #> No issues found -- the project is in a consistent state.
+#> 
+#> renv::vulns(repos = "https://packagemanager.posit.co/cran/latest")
+#> []
+#> 
 #> 
 #> missing_deps()
 #> Finding R package dependencies ... Done!
@@ -234,10 +241,10 @@ ci()
 #> * creating vignettes ... OK
 #> * checking for LF line-endings in source and make files and shell scripts
 #> * checking for empty or unneeded directories
-#> * building ‘rdev_1.16.0.tar.gz’
+#> * building ‘rdev_1.16.1.tar.gz’
 #> 
 #> ── R CMD check ─────────────────────────────────────────────────────────────────
-#> * using log directory ‘/private/var/folders/vn/cw5f9gws42v9m8mdsds_zbl00000gp/T/RtmpxJhUXI/file155b515153087/rdev.Rcheck’
+#> * using log directory ‘/private/var/folders/vn/cw5f9gws42v9m8mdsds_zbl00000gp/T/RtmpXMaZ3x/filee8bb15b4a7a9/rdev.Rcheck’
 #> * using R version 4.5.2 (2025-10-31)
 #> * using platform: aarch64-apple-darwin20
 #> * R was compiled by
@@ -247,7 +254,7 @@ ci()
 #> * using session charset: UTF-8
 #> * using option ‘--no-manual’
 #> * checking for file ‘rdev/DESCRIPTION’ ... OK
-#> * this is package ‘rdev’ version ‘1.16.0’
+#> * this is package ‘rdev’ version ‘1.16.1’
 #> * package encoding: UTF-8
 #> * checking package namespace information ... OK
 #> * checking package dependencies ... OK
@@ -300,10 +307,9 @@ ci()
 #> * checking package vignettes ... OK
 #> * checking re-building of vignette outputs ... OK
 #> * DONE
-#> 
 #> Status: OK
-#> ── R CMD check results ──────────────────────────────────────── rdev 1.16.0 ────
-#> Duration: 26.4s
+#> ── R CMD check results ──────────────────────────────────────── rdev 1.16.1 ────
+#> Duration: 25.8s
 #> 
 #> 0 errors ✔ | 0 warnings ✔ | 0 notes ✔
 ```
