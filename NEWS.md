@@ -1,3 +1,7 @@
+# rdev 1.16.2
+
+* Added dplyr 1.2 update check to `upkeep_checklist()`
+
 # rdev 1.16.1
 
 * Added new renv 1.1.6 function `renv::vulns()` to `check_renv()` and `ci()`
