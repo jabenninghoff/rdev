@@ -51,7 +51,6 @@ use_upkeep_issue <- function(last_upkeep = last_upkeep_year()) {
 upkeep_checklist <- function(last_upkeep = last_upkeep_year()) { # nolint: cyclocomp_linter.
   lic <- get_license()
   ptype <- package_type()
-  uses_ggplot2 <- desc::desc_has_dep("ggplot2")
 
   bullets <- c(
     "### New branch",
@@ -112,7 +111,7 @@ upkeep_checklist <- function(last_upkeep = last_upkeep_year()) { # nolint: cyclo
       todo("`rdev::use_rdev_pkgdown()`", ptype == "rdev"),
       todo(
         "Update for ggplot2 [version 4](https://tidyverse.org/blog/2025/09/ggplot2-4-0-0/)",
-        uses_ggplot2
+        desc::desc_has_dep("ggplot2")
       ),
       todo("Switch to chunk option YAML [syntax](https://yihui.org/knitr/options/)"),
       "",
@@ -127,12 +126,18 @@ upkeep_checklist <- function(last_upkeep = last_upkeep_year()) { # nolint: cyclo
       ""
     )
   }
-  if (last_upkeep <= 2026 && !renv::settings$snapshot.dev()) {
+  snapshot_dev <- renv::settings$snapshot.dev()
+  uses_dplyr <- desc::desc_has_dep("dplyr")
+  if (last_upkeep <= 2026 && (!snapshot_dev || uses_dplyr)) {
     bullets <- c(
       bullets,
       "### 2026",
       "",
-      todo("`renv::settings$snapshot.dev(TRUE)`"),
+      todo("`renv::settings$snapshot.dev(TRUE)`", !snapshot_dev),
+      todo(
+        "Update for dplyr [version 1.2](https://tidyverse.org/blog/2026/02/dplyr-1-2-0/)",
+        uses_dplyr
+      ),
       ""
     )
   }
