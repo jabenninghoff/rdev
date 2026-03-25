@@ -26,7 +26,7 @@ and optionally deletes the Quarto \verb{_freeze} directory to fully re-render th
 \details{
 When run, \code{build_quarto_site()} calls:
 \enumerate{
-\item \code{\link[devtools:build_rmd]{devtools::build_readme()}}
+\item \code{\link[devtools:build_readme]{devtools::build_readme()}}
 \item \code{\link[=unfreeze]{unfreeze()}} (if \code{unfreeze = TRUE})
 \item \code{\link[quarto:quarto_render]{quarto::quarto_render()}}
 }

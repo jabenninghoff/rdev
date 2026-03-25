@@ -18,7 +18,7 @@ workflow that updates \code{README.md} and performs a clean GitHub pages build u
 \details{
 When run, \code{build_rdev_site()} calls:
 \enumerate{
-\item \code{\link[devtools:build_rmd]{devtools::build_readme()}}
+\item \code{\link[devtools:build_readme]{devtools::build_readme()}}
 \item \code{\link[pkgdown:build_site_github_pages]{pkgdown::build_site_github_pages()}} with \code{install = TRUE} and \code{new_process = TRUE}
 }
 }
