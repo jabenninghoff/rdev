@@ -66,7 +66,7 @@ test_that("upkeep_checklist is expected length for first upkeep", {
   expect_length(upkeep_checklist(), base_length - 1)
 
   mockery::stub(upkeep_checklist, "renv::settings$snapshot.dev", TRUE)
-  expect_length(upkeep_checklist(), base_length - 5)
+  expect_length(upkeep_checklist(), base_length - 2)
 })
 
 test_that("upkeep_checklist is expected length for last upkeep year", {
@@ -78,8 +78,8 @@ test_that("upkeep_checklist is expected length for last upkeep year", {
   expect_length(upkeep_checklist(2021), base_length)
   expect_length(upkeep_checklist(2022), base_length - 6)
   expect_length(upkeep_checklist(2023), base_length - 11)
-  expect_length(upkeep_checklist(2024), base_length - 16)
-  expect_length(upkeep_checklist(2025), base_length - 16)
-  expect_length(upkeep_checklist(2026), base_length - 30)
+  expect_length(upkeep_checklist(2024), base_length - 15)
+  expect_length(upkeep_checklist(2025), base_length - 15)
+  expect_length(upkeep_checklist(2026), base_length - 29)
   expect_length(upkeep_checklist(2027), base_length - 35)
 })
