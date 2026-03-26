@@ -85,7 +85,6 @@ upkeep_checklist <- function(last_upkeep = last_upkeep_year()) { # nolint: cyclo
       bullets,
       "### 2023",
       "",
-      todo("`rdev::use_rprofile()`"),
       todo("`setup-r`"),
       ""
     )
@@ -126,18 +125,17 @@ upkeep_checklist <- function(last_upkeep = last_upkeep_year()) { # nolint: cyclo
       ""
     )
   }
-  snapshot_dev <- renv::settings$snapshot.dev()
-  uses_dplyr <- desc::desc_has_dep("dplyr")
-  if (last_upkeep <= 2026 && (!snapshot_dev || uses_dplyr)) {
+  if (last_upkeep <= 2026) {
     bullets <- c(
       bullets,
       "### 2026",
       "",
-      todo("`renv::settings$snapshot.dev(TRUE)`", !snapshot_dev),
+      todo("`renv::settings$snapshot.dev(TRUE)`", !renv::settings$snapshot.dev()),
       todo(
         "Update for dplyr [version 1.2](https://tidyverse.org/blog/2026/02/dplyr-1-2-0/)",
-        uses_dplyr
+        desc::desc_has_dep("dplyr")
       ),
+      todo("`rdev::use_rprofile()`"),
       ""
     )
   }
