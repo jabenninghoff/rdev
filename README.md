@@ -225,12 +225,11 @@ ci()
 #> 
 #> url_check()
 #> html_url_check()
-#> # A tibble: 3 × 9
+#> # A tibble: 2 × 9
 #>   URL                        From  Status Message New   CRAN  Spaces R     root 
 #>   <chr>                      <nam> <chr>  <chr>   <chr> <chr> <chr>  <chr> <chr>
 #> 1 http://covr.r-lib.org/ref… <chr> 200    OK      http… ""    ""     ""    /Use…
 #> 2 http://r-lib.github.io/rc… <chr> 200    OK      http… ""    ""     ""    /Use…
-#> 3 https://bookdown.org/yihu… <chr> 200    OK      http… ""    ""     ""    /Use…
 #> 
 #> Setting env vars: NOT_CRAN="true", CI="true"
 #> rcmdcheck::rcmdcheck(args = "--no-manual", error_on = "warning")
@@ -242,10 +241,10 @@ ci()
 #> * creating vignettes ... OK
 #> * checking for LF line-endings in source and make files and shell scripts
 #> * checking for empty or unneeded directories
-#> * building ‘rdev_1.16.3.tar.gz’
+#> * building ‘rdev_1.16.4.tar.gz’
 #> 
 #> ── R CMD check ─────────────────────────────────────────────────────────────────
-#> * using log directory ‘/private/var/folders/vn/cw5f9gws42v9m8mdsds_zbl00000gp/T/RtmpnOqHUB/file8729610dd4f1/rdev.Rcheck’
+#> * using log directory ‘/private/var/folders/vn/cw5f9gws42v9m8mdsds_zbl00000gp/T/RtmpHUtRCI/filea0ae1769537d/rdev.Rcheck’
 #> * using R version 4.5.3 (2026-03-11)
 #> * using platform: aarch64-apple-darwin20
 #> * R was compiled by
@@ -255,7 +254,7 @@ ci()
 #> * using session charset: UTF-8
 #> * using option ‘--no-manual’
 #> * checking for file ‘rdev/DESCRIPTION’ ... OK
-#> * this is package ‘rdev’ version ‘1.16.3’
+#> * this is package ‘rdev’ version ‘1.16.4’
 #> * package encoding: UTF-8
 #> * checking package namespace information ... OK
 #> * checking package dependencies ... OK
@@ -310,8 +309,8 @@ ci()
 #> * DONE
 #> 
 #> Status: OK
-#> ── R CMD check results ──────────────────────────────────────── rdev 1.16.3 ────
-#> Duration: 27.1s
+#> ── R CMD check results ──────────────────────────────────────── rdev 1.16.4 ────
+#> Duration: 26.8s
 #> 
 #> 0 errors ✔ | 0 warnings ✔ | 0 notes ✔
 ```
