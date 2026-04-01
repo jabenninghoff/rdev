@@ -1,3 +1,7 @@
+# rdev 1.16.4
+
+* Pin GitHub Actions to specific commits and add Dependabot automated updates to improve supply chain security
+
 # rdev 1.16.3
 
 * Set `renv.config.crandb.enabled = TRUE` in `.Rprofile` to improve package compatibility for older versions of R (new in renv [1.2.0](https://rstudio.github.io/renv/news/index.html#renv-120))
