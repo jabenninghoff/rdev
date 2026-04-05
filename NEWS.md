@@ -1,3 +1,7 @@
+# rdev 1.16.5
+
+* Add cooldown to Dependabot automated updates
+
 # rdev 1.16.4
 
 * Pin GitHub Actions to specific commits and add Dependabot automated updates to improve supply chain security
