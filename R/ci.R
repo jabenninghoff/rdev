@@ -1,11 +1,30 @@
-print_renv_vulns <- function() {
-  writeLines(yaml::as.yaml(renv::vulns(repos = "https://packagemanager.posit.co/cran/latest")))
+#' Print Vulnerable Packages using YAML
+#'
+#' Inspect packages using [renv::vulns()] and pretty-print vulnerable packages using
+#'   [yaml::as.yaml()]
+#'
+#' @inheritParams renv::vulns
+#'
+#' @returns An \R list of vulnerable packages, invisibly.
+#'
+#' @export
+print_renv_vulns <- function(packages = NULL) {
+  results <- renv::vulns(packages = packages, repos = "https://packagemanager.posit.co/cran/latest")
+  vulns <- Filter(function(x) length(x$vulns) > 0, results)
+
+  writeLines(paste0(
+    length(results), " packages scanned, ", length(vulns), " vulnerable:\n",
+    yaml::as.yaml(vulns)
+  ))
+
+  invisible(vulns)
 }
 
 #' Check renv
 #'
 #' Runs [`renv`][renv::renv-package] [`status()`][renv::status()], [`clean()`][renv::clean()],
-#'   [`vulns()`][renv::vulns()] (as YAML), and optionally [`update()`][renv::update()]
+#'   [`vulns()`][renv::vulns()] (using [print_renv_vulns()]), and optionally
+#'   [`update()`][renv::update()]
 #'
 #' @param update run [renv::update()]
 #'
@@ -25,8 +44,7 @@ check_renv <- function(update = rlang::is_interactive()) {
   renv::clean()
 
   writeLines('\nrenv::vulns(repos = "https://packagemanager.posit.co/cran/latest")')
-  # TODO: uncomment when fixed: https://github.com/rstudio/renv/issues/2292
-  # print_renv_vulns() # nolint: commented_code_linter.
+  print_renv_vulns()
 
   if (update) {
     writeLines("\nrenv::update()")

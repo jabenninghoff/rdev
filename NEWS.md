@@ -1,6 +1,8 @@
-# rdev 1.16.6
+# rdev 1.17.0
 
 * Updated `setup-r` script for R 4.6
+
+* Updated and exported function `print_renv_vulns()`, which prints vulnerable packages using YAML
 
 # rdev 1.16.5
 
