@@ -1,3 +1,7 @@
+# rdev 1.16.6
+
+* Updated `setup-r` script for R 4.6
+
 # rdev 1.16.5
 
 * Add cooldown to Dependabot automated updates
