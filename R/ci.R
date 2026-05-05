@@ -18,7 +18,7 @@ print_renv_vulns <- function(packages = NULL, silent = FALSE) {
   if (!silent) {
     writeLines(paste0(
       length(results), " packages scanned, ", length(vulns), " vulnerable:\n",
-      yaml::as.yaml(vulns)
+      gsub("\\n$", "", yaml::as.yaml(vulns))
     ))
   }
 
