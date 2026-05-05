@@ -7,22 +7,106 @@ test_that("print_renv_vulns validates arguments", {
 })
 
 test_that("print_renv_vulns properly filters results", {
-  no_vulns <- c("curl==7.1.0", "openssl==2.4.0")
-  all_vulns <- c("jsonlite==1.8.7", "gh==1.4.1")
-  mixed_vulns <- c(no_vulns, all_vulns)
-  expect_output(
-    print_renv_vulns(packages = no_vulns), "^2 packages scanned, 0 vulnerable:\\\n\\[\\]\n$"
-  )
-  expect_output(
-    print_renv_vulns(packages = all_vulns), "^2 packages scanned, 2 vulnerable:\\\n"
-  )
-  expect_output(
-    print_renv_vulns(packages = mixed_vulns), "^4 packages scanned, 2 vulnerable:\\\n"
-  )
+  no_vulns <- list(list(
+    name = "curl", version = "7.1.0", type = "R", source_id = 1L,
+    repo_id = 2L, licenses = list("MIT + file LICENSE"), license_types = list(
+      "MIT"
+    ), blocked = FALSE
+  ), list(
+    name = "openssl", version = "2.4.0",
+    type = "R", source_id = 1L, repo_id = 2L, licenses = list(
+      "MIT + file LICENSE"
+    ), license_types = list("MIT"), blocked = FALSE
+  ))
 
-  expect_length(print_renv_vulns(no_vulns, silent = TRUE), 0)
-  expect_length(print_renv_vulns(all_vulns, silent = TRUE), 2)
-  expect_length(print_renv_vulns(mixed_vulns, silent = TRUE), 2)
+  all_vulns <- list(list(
+    name = "gh", version = "1.4.1", type = "R", vulns = list(
+      list(
+        id = "RSEC-2025-0", versions = list(
+          `1.1.0` = structure(list(), names = character(0)),
+          `1.2.0` = structure(list(), names = character(0)),
+          `1.2.1` = structure(list(), names = character(0)),
+          `1.3.0` = structure(list(), names = character(0)),
+          `1.3.1` = structure(list(), names = character(0)),
+          `1.4.0` = structure(list(), names = character(0)),
+          `1.4.1` = structure(list(), names = character(0))
+        ),
+        ranges = list(list(type = "ECOSYSTEM", events = list(
+          list(introduced = "1.1.0"), list(fixed = "1.5.0")
+        ))),
+        summary = "Arbitrary Code Execution (ACE) Vulnerability",
+        details = "A bug was identified in releases of the GH R package prior to version 1.5. This flaw could expose sensitive information, such as authentication tokens, through request headers during its operation if responses were cached to disk. \nWe issued a Posit Security Advisory with the 1.5 release and attributed the submitter in the release notes.\n", # nolint: line_length_linter.
+        modified = "2025-08-04T20:30:50.48787Z", published = "2025-07-31T15:00:00Z"
+      )
+    ),
+    source_id = 1L, repo_id = 2L, licenses = list("MIT + file LICENSE"),
+    license_types = list("MIT"), blocked = FALSE
+  ), list(
+    name = "jsonlite",
+    version = "1.8.7", type = "R", vulns = list(list(
+      id = "RSEC-2023-3",
+      versions = list(
+        `0.9.12` = structure(list(), names = character(0)),
+        `0.9.13` = structure(list(), names = character(0)),
+        `0.9.14` = structure(list(), names = character(0)),
+        `0.9.15` = structure(list(), names = character(0)),
+        `0.9.16` = structure(list(), names = character(0)),
+        `0.9.17` = structure(list(), names = character(0)),
+        `0.9.18` = structure(list(), names = character(0)),
+        `0.9.19` = structure(list(), names = character(0)),
+        `0.9.20` = structure(list(), names = character(0)),
+        `0.9.21` = structure(list(), names = character(0)),
+        `0.9.22` = structure(list(), names = character(0)),
+        `1.0` = structure(list(), names = character(0)),
+        `1.1` = structure(list(), names = character(0)),
+        `1.2` = structure(list(), names = character(0)),
+        `1.3` = structure(list(), names = character(0)),
+        `1.4` = structure(list(), names = character(0)),
+        `1.5` = structure(list(), names = character(0)),
+        `1.6` = structure(list(), names = character(0)),
+        `1.6.1` = structure(list(), names = character(0)),
+        `1.7.0` = structure(list(), names = character(0)),
+        `1.7.1` = structure(list(), names = character(0)),
+        `1.7.2` = structure(list(), names = character(0)),
+        `1.7.3` = structure(list(), names = character(0)),
+        `1.8.0` = structure(list(), names = character(0)),
+        `1.8.1` = structure(list(), names = character(0)),
+        `1.8.2` = structure(list(), names = character(0)),
+        `1.8.3` = structure(list(), names = character(0)),
+        `1.8.4` = structure(list(), names = character(0)),
+        `1.8.5` = structure(list(), names = character(0)),
+        `1.8.6` = structure(list(), names = character(0)),
+        `1.8.7` = structure(list(), names = character(0))
+      ),
+      ranges = list(list(type = "ECOSYSTEM", events = list(
+        list(introduced = "0.9.12"), list(fixed = "1.8.8")
+      ))),
+      summary = "Memory leak vulnerability", details = "The jsonlite R package is exposed to a vulnerability due to its use of yajl library version 2.1.0. The vulnerability originates from the yajl_tree_parse function within yajl. Attackers can exploit this flaw to cause a memory leak, which will result in out-of-memory in server and lead to a crash.", # nolint: line_length_linter.
+      modified = "2025-05-19T19:43:48.343626Z", published = "2023-07-18T04:37:21.6Z"
+    )),
+    source_id = 1L, repo_id = 2L, licenses = list("MIT + file LICENSE"),
+    license_types = list("MIT"), blocked = FALSE
+  ))
+
+  mixed_vulns <- c(no_vulns, all_vulns)
+
+  mockery::stub(print_renv_vulns, "renv::vulns", no_vulns)
+  expect_output(
+    print_renv_vulns(), "^2 packages scanned, 0 vulnerable:\\\n\\[\\]$"
+  )
+  expect_length(print_renv_vulns(silent = TRUE), 0)
+
+  mockery::stub(print_renv_vulns, "renv::vulns", all_vulns)
+  expect_output(
+    print_renv_vulns(), "^2 packages scanned, 2 vulnerable:\\\n"
+  )
+  expect_length(print_renv_vulns(silent = TRUE), 2)
+
+  mockery::stub(print_renv_vulns, "renv::vulns", mixed_vulns)
+  expect_output(
+    print_renv_vulns(), "^4 packages scanned, 2 vulnerable:\\\n"
+  )
+  expect_length(print_renv_vulns(silent = TRUE), 2)
 })
 
 # check_renv
