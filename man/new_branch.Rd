@@ -16,7 +16,7 @@ branch (\code{FALSE}), see details.}
 }
 \description{
 Create a new "feature" branch from the current or default branch of the project git repository
-using \code{\link[gert:git_branch]{gert::git_branch_create()}} and bump 'dev' version to 9000 with
+using \code{\link[gert:git_branch_create]{gert::git_branch_create()}} and bump 'dev' version to 9000 with
 \code{\link[desc:desc_bump_version]{desc::desc_bump_version()}}.
 }
 \details{
@@ -27,5 +27,5 @@ default), the fourth component, 'dev' will be bumped to 9000 and checked in to t
 If the version already has 4 components, it is not changed.
 
 If \code{current = FALSE} (the default), the new branch will be created from the default branch as
-determined by \code{\link[usethis:git-default-branch]{usethis::git_default_branch()}}.
+determined by \code{\link[usethis:git_default_branch]{usethis::git_default_branch()}}.
 }

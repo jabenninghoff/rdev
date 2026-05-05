@@ -15,5 +15,5 @@ upkeep, the issue will contain the full checklist.}
 Opens an issue in the package repository with a checklist of tasks for regular maintenance and
 adherence to rdev package standards. Some tasks are meant to be done only once, and others should
 be reviewed periodically. Adapted from \code{\link[usethis:use_upkeep_issue]{usethis::use_upkeep_issue()}} and
-\code{\link[usethis:tidyverse]{usethis::use_tidy_upkeep_issue()}}.
+\code{\link[usethis:use_tidy_upkeep_issue]{usethis::use_tidy_upkeep_issue()}}.
 }

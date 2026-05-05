@@ -23,7 +23,7 @@ Check dependencies in DESCRIPTION.
 
 \code{extra_deps()} reports \code{\link[desc:desc_get_deps]{desc::desc_get_deps()}} not found by renv.
 
-The current package (\code{\link[pkgload:packages]{pkgload::pkg_name(".")}}) and \code{renv} (in \code{renv.lock}
+The current package (\code{\link[pkgload:pkg_name]{pkgload::pkg_name(".")}}) and \code{renv} (in \code{renv.lock}
 only) are automatically removed from \code{\link[renv:dependencies]{renv::dependencies()}}, along with 'base' R packages if
 \code{exclude_base} is \code{TRUE} (base, compiler, datasets, grDevices, graphics, grid, methods, parallel, splines, stats, stats4, tcltk, tools, utils).
 }

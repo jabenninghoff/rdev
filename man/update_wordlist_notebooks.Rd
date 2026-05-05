@@ -28,6 +28,6 @@ update_wordlist_notebooks(
 Update package \code{inst/WORDLIST} with words from \code{\link[=spell_check_notebooks]{spell_check_notebooks()}}.
 }
 \details{
-\code{update_wordlist_notebooks} is a customized version of \code{\link[spelling:wordlist]{spelling::update_wordlist()}} using
+\code{update_wordlist_notebooks} is a customized version of \code{\link[spelling:update_wordlist]{spelling::update_wordlist()}} using
 code from \href{https://github.com/ropensci/spelling/blob/master/R/wordlist.R}{\code{wordlist.R}}.
 }

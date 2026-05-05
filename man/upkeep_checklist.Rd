@@ -13,5 +13,5 @@ upkeep_checklist(last_upkeep = last_upkeep_year())
 Upkeep checklist for current year as a GitHub markdown array.
 }
 \description{
-Build an upkeep checklist following the format of \code{\link[usethis:tidyverse]{usethis::use_tidy_upkeep_issue()}}.
+Build an upkeep checklist following the format of \code{\link[usethis:use_tidy_upkeep_issue]{usethis::use_tidy_upkeep_issue()}}.
 }

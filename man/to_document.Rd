@@ -9,15 +9,15 @@ to_document(file_path, new_path, overwrite = FALSE)
 \arguments{
 \item{file_path}{Path to the source file}
 
-\item{new_path}{Path to copy the converted file using \code{\link[fs:copy]{fs::file_copy()}}}
+\item{new_path}{Path to copy the converted file using \code{\link[fs:file_copy]{fs::file_copy()}}}
 
-\item{overwrite}{Overwrite file if it exists, passed to \code{\link[fs:copy]{fs::file_copy()}}}
+\item{overwrite}{Overwrite file if it exists, passed to \code{\link[fs:file_copy]{fs::file_copy()}}}
 }
 \value{
 Path to new file
 }
 \description{
-Copies a file using \code{\link[fs:copy]{fs::file_copy()}} and changes the output type in the yaml front matter from
+Copies a file using \code{\link[fs:file_copy]{fs::file_copy()}} and changes the output type in the yaml front matter from
 \code{html_notebook} to \code{html_document}, removing all other output types.
 }
 \examples{

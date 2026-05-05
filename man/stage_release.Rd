@@ -39,13 +39,13 @@ When run, \code{stage_release()}:
 \enumerate{
 \item Extracts release version and release notes from \code{NEWS.md} using \code{\link[=get_release]{get_release()}}
 \item Validates version conforms to rdev conventions (#.#.#) and release notes aren't empty
-\item Verifies that version tag doesn't already exist using \code{\link[gert:git_tag]{gert::git_tag_list()}}
-\item Checks for uncommitted changes and stops if any exist using \code{\link[gert:git_commit]{gert::git_status()}}
+\item Verifies that version tag doesn't already exist using \code{\link[gert:git_tag_list]{gert::git_tag_list()}}
+\item Checks for uncommitted changes and stops if any exist using \code{\link[gert:git_status]{gert::git_status()}}
 \item Creates a new branch if on the default branch (\code{\link[gert:git_branch]{gert::git_branch()}} \code{==}
-\code{\link[usethis:git-default-branch]{usethis::git_default_branch()}}) using \code{\link[gert:git_branch]{gert::git_branch_create()}}
+\code{\link[usethis:git_default_branch]{usethis::git_default_branch()}}) using \code{\link[gert:git_branch_create]{gert::git_branch_create()}}
 \item Updates \code{Version} in \code{DESCRIPTION} with \code{\link[desc:desc_set_version]{desc::desc_set_version()}}, commits and push to git
-with message \code{"GitHub release <version>"} using \code{\link[gert:git_commit]{gert::git_add()}}, \code{\link[gert:git_commit]{gert::git_commit()}} and
-\code{\link[gert:git_fetch]{gert::git_push()}}
+with message \code{"GitHub release <version>"} using \code{\link[gert:git_add]{gert::git_add()}}, \code{\link[gert:git_commit]{gert::git_commit()}} and
+\code{\link[gert:git_push]{gert::git_push()}}
 \item Runs \code{\link[=build_quarto_site]{build_quarto_site()}} (if \verb{_quarto.yml} exists), \code{\link[=build_analysis_site]{build_analysis_site()}} (if
 \verb{pkgdown/_base.yml} exists) or \code{\link[=build_rdev_site]{build_rdev_site()}} (if \verb{_pkgdown.yml} exists), commits and
 pushes changes (if any) to git with message: \code{"<builder> for release <version>"}

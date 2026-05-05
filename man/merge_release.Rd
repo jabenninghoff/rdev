@@ -39,10 +39,10 @@ or less than one matching PR using \code{\link[gh:gh]{gh::gh()}}
 mergeable, and rebaseable flags
 \item Merges the pull request into the default branch using "Rebase and merge" using \code{\link[gh:gh]{gh::gh()}}
 \item Deletes the pull request branch remotely and locally using \code{\link[gh:gh]{gh::gh()}} and
-\code{\link[gert:git_branch]{gert::git_branch_delete()}}
-\item Updates the default branch with \code{\link[gert:git_fetch]{gert::git_pull()}}
+\code{\link[gert:git_branch_delete]{gert::git_branch_delete()}}
+\item Updates the default branch with \code{\link[gert:git_pull]{gert::git_pull()}}
 \item Adds the version tag to the \code{DESCRIPTION} commit with the message \code{"GitHub release <version>"}
-with \code{\link[gert:git_tag]{gert::git_tag_create()}} and pushes using \code{\link[gert:git_tag]{gert::git_tag_push()}}
+with \code{\link[gert:git_tag_create]{gert::git_tag_create()}} and pushes using \code{\link[gert:git_tag_push]{gert::git_tag_push()}}
 \item Create the GitHub release from the newly created tag, with the name \code{"<version>"} and the
 release notes in the body, using \code{\link[gh:gh]{gh::gh()}}
 }

@@ -17,10 +17,18 @@ lint_all(
 \item{exclusions}{exclusions for \code{\link[lintr:exclude]{exclude()}}, relative to the package path.}
 
 \item{...}{
-  Arguments passed on to \code{\link[lintr:lint]{lintr::lint_dir}}
+  Arguments passed on to \code{\link[lintr:lint_dir]{lintr::lint_dir}}
   \describe{
+    \item{\code{filename}}{Either the filename for a file to lint, or a character string of inline R code for linting.
+The latter (inline data) applies whenever \code{filename} has a newline character (\\n).}
+    \item{\code{linters}}{A named list of linter functions to apply. See \link[lintr]{linters} for a full list of default and available
+linters.}
+    \item{\code{cache}}{When logical, toggle caching of lint results. If passed a character string, store the cache in this
+directory.}
     \item{\code{parse_settings}}{Logical. Whether to try and parse the \link[lintr:read_settings]{settings}. Otherwise, the
 \code{\link[lintr:default_settings]{default_settings()}} are used. \code{TRUE} by default when linting files, as opposed to \verb{text=}.}
+    \item{\code{text}}{Optional argument for supplying a string or lines directly, e.g. if the file is already in memory or
+linting is being done ad hoc.}
     \item{\code{path}}{For the base directory of the project (for \code{lint_dir()}) or
 package (for \code{lint_package()}).}
     \item{\code{relative_path}}{if \code{TRUE}, file paths are printed using their path relative to the base directory.
@@ -34,7 +42,7 @@ not running a testthat suite.}
 A list of lint objects.
 }
 \description{
-Lint all files in a project. Implemented as a wrapper for \code{\link[lintr:lint]{lintr::lint_dir()}}.
+Lint all files in a project. Implemented as a wrapper for \code{\link[lintr:lint_dir]{lintr::lint_dir()}}.
 }
 \examples{
 \dontrun{

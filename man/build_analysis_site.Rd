@@ -21,15 +21,15 @@ rmarkdown _site.yml as yaml, invisibly
 \details{
 When run, \code{build_analysis_site()}:
 \enumerate{
-\item Reads base \link[pkgdown:pkgdown-package]{pkgdown::pkgdown} settings from \verb{pkgdown/_base.yml}
+\item Reads base \link[pkgdown:pkgdown]{pkgdown} settings from \verb{pkgdown/_base.yml}
 \item Writes base settings to \verb{_pkgdown.yml}
-\item Creates a template using \code{\link[pkgdown:templates]{pkgdown::template_navbar()}} and inserts an \code{analysis} menu with
+\item Creates a template using \code{\link[pkgdown:template_navbar]{pkgdown::template_navbar()}} and inserts an \code{analysis} menu with
 links to html versions of each .Rmd file in \verb{analysis/}
 \item Writes the template to \verb{_pkgdown.yml}
 \item Updates \code{README.md} by running \code{\link[devtools:build_readme]{devtools::build_readme()}} (if \code{README.Rmd} exists) to update
 the list of notebooks
 \item Runs \code{\link[pkgdown:build_site_github_pages]{pkgdown::build_site_github_pages()}} with \code{install = TRUE} and \code{new_process = TRUE}
-\item Creates a \verb{_site.yml} file based on the final \verb{_pkgdown.yml} that clones the \link[pkgdown:pkgdown-package]{pkgdown::pkgdown} navbar
+\item Creates a \verb{_site.yml} file based on the final \verb{_pkgdown.yml} that clones the \link[pkgdown:pkgdown]{pkgdown} navbar
 in a temporary build directory
 \item Copies the following from \verb{analysis/} into the build directory: \verb{*.Rmd}, \verb{assets/}, \verb{data/},
 \verb{import/}, \verb{rendered/}
