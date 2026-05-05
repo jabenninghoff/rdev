@@ -4,18 +4,23 @@
 #'   [yaml::as.yaml()]
 #'
 #' @inheritParams renv::vulns
+#' @param silent disable output and only return the list of vulnerable packages (invisibly).
 #'
 #' @returns An \R list of vulnerable packages, invisibly.
 #'
 #' @export
-print_renv_vulns <- function(packages = NULL) {
+print_renv_vulns <- function(packages = NULL, silent = FALSE) {
+  checkmate::assert_flag(silent)
+
   results <- renv::vulns(packages = packages, repos = "https://packagemanager.posit.co/cran/latest")
   vulns <- Filter(function(x) length(x$vulns) > 0, results)
 
-  writeLines(paste0(
-    length(results), " packages scanned, ", length(vulns), " vulnerable:\n",
-    yaml::as.yaml(vulns)
-  ))
+  if (!silent) {
+    writeLines(paste0(
+      length(results), " packages scanned, ", length(vulns), " vulnerable:\n",
+      yaml::as.yaml(vulns)
+    ))
+  }
 
   invisible(vulns)
 }
