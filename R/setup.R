@@ -459,6 +459,13 @@ use_rdev_package <- function(quiet = TRUE) {
     "pre-commit", readLines(fs::path_package("rdev", "templates", "pre-commit"))
   )
 
+  # add RStudio 2026.04.0+526 exclusions
+  usethis::use_git_ignore(c(
+    "# RStudio 2026.04.0+526",
+    ".positai"
+  ))
+  usethis::use_build_ignore(c(".positai", ".claude"))
+
   # add macOS/vim gitignores
   usethis::use_git_ignore(c(
     "# macOS, vim",
