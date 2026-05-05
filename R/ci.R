@@ -25,7 +25,8 @@ check_renv <- function(update = rlang::is_interactive()) {
   renv::clean()
 
   writeLines('\nrenv::vulns(repos = "https://packagemanager.posit.co/cran/latest")')
-  print_renv_vulns()
+  # TODO: uncomment when fixed: https://github.com/rstudio/renv/issues/2292
+  # print_renv_vulns() # nolint: commented_code_linter.
 
   if (update) {
     writeLines("\nrenv::update()")
