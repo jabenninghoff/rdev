@@ -4,11 +4,13 @@
 \alias{print_renv_vulns}
 \title{Print Vulnerable Packages using YAML}
 \usage{
-print_renv_vulns(packages = NULL)
+print_renv_vulns(packages = NULL, silent = FALSE)
 }
 \arguments{
 \item{packages}{A vector of package specifications, of the form
 \verb{<package>==<version>} or \verb{<package>@<version>}.}
+
+\item{silent}{disable output and only return the list of vulnerable packages (invisibly).}
 }
 \value{
 An \R list of vulnerable packages, invisibly.

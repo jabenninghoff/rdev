@@ -2,6 +2,10 @@ withr::local_dir("test-ci")
 
 # print_renv_vulns
 
+test_that("print_renv_vulns validates arguments", {
+  expect_error(print_renv_vulns(silent = NA), "'silent'")
+})
+
 test_that("print_renv_vulns properly filters results", {
   no_vulns <- c("curl==7.1.0", "openssl==2.4.0")
   all_vulns <- c("jsonlite==1.8.7", "gh==1.4.1")
@@ -16,12 +20,9 @@ test_that("print_renv_vulns properly filters results", {
     print_renv_vulns(packages = mixed_vulns), "^4 packages scanned, 2 vulnerable:\\\n"
   )
 
-  # suppress writeLines output
-  mockery::stub(print_renv_vulns, "writeLines", NULL)
-
-  expect_length(print_renv_vulns(no_vulns), 0)
-  expect_length(print_renv_vulns(all_vulns), 2)
-  expect_length(print_renv_vulns(mixed_vulns), 2)
+  expect_length(print_renv_vulns(no_vulns, silent = TRUE), 0)
+  expect_length(print_renv_vulns(all_vulns, silent = TRUE), 2)
+  expect_length(print_renv_vulns(mixed_vulns, silent = TRUE), 2)
 })
 
 # check_renv
