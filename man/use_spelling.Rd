@@ -13,9 +13,9 @@ use_spelling(lang = "en-US", prompt = FALSE)
 \item{prompt}{If TRUE, prompt before writing \code{renv.lock}, passed to \code{\link[renv:snapshot]{renv::snapshot()}}.}
 }
 \description{
-Install \link[spelling:spell_check_package]{spelling} with rdev conventions.
+Install \link[spelling:spelling]{spelling} with rdev conventions.
 }
 \details{
-Since \code{\link[spelling:spell_check_package]{spelling::spell_check_setup()}} requires user interaction, \code{use_spelling()} is not run in
+Since \code{\link[spelling:spell_check_setup]{spelling::spell_check_setup()}} requires user interaction, \code{use_spelling()} is not run in
 \code{\link[=use_rdev_package]{use_rdev_package()}}.
 }

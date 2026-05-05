@@ -36,5 +36,5 @@ test_that("local_temppkg creates a directory", {
 }
 }
 \seealso{
-\link[withr:withr]{withr::withr-package}
+\link[withr:withr-package]{withr::withr-package}
 }
