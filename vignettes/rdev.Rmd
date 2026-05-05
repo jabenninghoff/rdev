@@ -26,7 +26,7 @@ Quarto Notebooks as HTML to make them accessible to non-R users.
 ## Installation
 
 My current R development environment uses [Homebrew](https://brew.sh),
-[rig](https://github.com/r-lib/rig/), [RStudio](https://posit.co/download/rstudio-desktop/),
+[rig](https://github.com/r-lib/rig/), [RStudio](https://posit.co/download/rstudio-desktop),
 [GitHub](https://github.com), a collection of R packages including rdev,
 [Visual Studio Code](https://code.visualstudio.com), and [Vim](https://www.vim.org).
 
@@ -72,7 +72,7 @@ Note that:
 
 ### Development Tools
 
-Well, obviously, I use [RStudio](https://posit.co/download/rstudio-desktop/). RStudio is the leading
+Well, obviously, I use [RStudio](https://posit.co/download/rstudio-desktop). RStudio is the leading
 IDE for R development and integrates with many R packages, although it sometimes falls short; I use
 GitHub and the command line for Git, and occasionally Visual Studio Code (which has better support
 for markdown) and Vim (which is faster for some types of edits).
