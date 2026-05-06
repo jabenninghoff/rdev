@@ -1,12 +1,13 @@
 withr::local_dir("test-ci")
 
-# print_renv_vulns
+# renv_vulns
 
-test_that("print_renv_vulns validates arguments", {
-  expect_error(print_renv_vulns(silent = NA), "'silent'")
+test_that("renv_vulns validates arguments", {
+  expect_error(renv_vulns(quiet = NA), "'quiet'")
 })
 
-test_that("print_renv_vulns properly filters results", {
+test_that("renv_vulns properly filters results", {
+  # dput(renv::vulns(packages = c("curl==7.1.0", "openssl==2.4.0"), repos = "https://packagemanager.posit.co/cran/latest")) # nolint
   no_vulns <- list(list(
     name = "curl", version = "7.1.0", type = "R", source_id = 1L,
     repo_id = 2L, licenses = list("MIT + file LICENSE"), license_types = list(
@@ -19,6 +20,7 @@ test_that("print_renv_vulns properly filters results", {
     ), license_types = list("MIT"), blocked = FALSE
   ))
 
+  # dput(renv::vulns(packages = c("jsonlite==1.8.7", "gh==1.4.1"), repos = "https://packagemanager.posit.co/cran/latest")) # nolint
   all_vulns <- list(list(
     name = "gh", version = "1.4.1", type = "R", vulns = list(
       list(
@@ -90,23 +92,23 @@ test_that("print_renv_vulns properly filters results", {
 
   mixed_vulns <- c(no_vulns, all_vulns)
 
-  mockery::stub(print_renv_vulns, "renv::vulns", no_vulns)
+  mockery::stub(renv_vulns, "renv::vulns", no_vulns)
   expect_output(
-    print_renv_vulns(), "^2 packages scanned, 0 vulnerable:\\\n\\[\\]$"
+    renv_vulns(), "^2 packages scanned, 0 vulnerable:\\\n\\[\\]$"
   )
-  expect_length(print_renv_vulns(silent = TRUE), 0)
+  expect_length(renv_vulns(quiet = TRUE), 0)
 
-  mockery::stub(print_renv_vulns, "renv::vulns", all_vulns)
+  mockery::stub(renv_vulns, "renv::vulns", all_vulns)
   expect_output(
-    print_renv_vulns(), "^2 packages scanned, 2 vulnerable:\\\n"
+    renv_vulns(), "^2 packages scanned, 2 vulnerable:\\\n"
   )
-  expect_length(print_renv_vulns(silent = TRUE), 2)
+  expect_length(renv_vulns(quiet = TRUE), 2)
 
-  mockery::stub(print_renv_vulns, "renv::vulns", mixed_vulns)
+  mockery::stub(renv_vulns, "renv::vulns", mixed_vulns)
   expect_output(
-    print_renv_vulns(), "^4 packages scanned, 2 vulnerable:\\\n"
+    renv_vulns(), "^4 packages scanned, 2 vulnerable:\\\n"
   )
-  expect_length(print_renv_vulns(silent = TRUE), 2)
+  expect_length(renv_vulns(quiet = TRUE), 2)
 })
 
 # check_renv
@@ -114,7 +116,7 @@ test_that("print_renv_vulns properly filters results", {
 test_that("check_renv validates arguments", {
   mockery::stub(check_renv, "renv::status", NULL)
   mockery::stub(check_renv, "renv::clean", NULL)
-  mockery::stub(check_renv, "print_renv_vulns", NULL)
+  mockery::stub(check_renv, "renv_vulns", NULL)
   mockery::stub(check_renv, "renv::update", NULL)
 
   expect_error(check_renv(update = NA), "'update'")
@@ -123,7 +125,7 @@ test_that("check_renv validates arguments", {
 test_that("All renv functions are called, unless set to FALSE", {
   mockery::stub(check_renv, "renv::status", NULL)
   mockery::stub(check_renv, "renv::clean", NULL)
-  mockery::stub(check_renv, "print_renv_vulns", NULL)
+  mockery::stub(check_renv, "renv_vulns", NULL)
   mockery::stub(check_renv, "renv::update", NULL)
 
   begin <- "^"
@@ -166,7 +168,7 @@ test_that("lint_all checks all file types", {
 
 test_that("ci validates arguments", {
   mockery::stub(ci, "renv::status", NULL)
-  mockery::stub(ci, "print_renv_vulns", NULL)
+  mockery::stub(ci, "renv_vulns", NULL)
   mockery::stub(ci, "missing_deps", NULL)
   mockery::stub(ci, "fs::file_exists", NULL)
   mockery::stub(ci, "pkgdown::check_pkgdown", NULL)
@@ -219,7 +221,7 @@ test_that("All renv functions are called according to ci logic", {
     row.names = c(NA, -1L), class = c("tbl_df", "tbl", "data.frame")
   )
   mockery::stub(ci, "renv::status", renv_sync_true)
-  mockery::stub(ci, "print_renv_vulns", NULL)
+  mockery::stub(ci, "renv_vulns", NULL)
   mockery::stub(ci, "missing_deps", missing_deps_empty)
   mockery::stub(ci, "fs::file_exists", TRUE)
   mockery::stub(ci, "pkgdown::check_pkgdown", NULL)

@@ -1,21 +1,21 @@
-#' Print Vulnerable Packages using YAML
+#' Identify Vulnerable Packages
 #'
 #' Inspect packages using [renv::vulns()] and pretty-print vulnerable packages using
 #'   [yaml::as.yaml()]
 #'
 #' @inheritParams renv::vulns
-#' @param silent disable output and only return the list of vulnerable packages (invisibly).
+#' @param quiet disable output and only return the list of vulnerable packages (invisibly).
 #'
 #' @returns An \R list of vulnerable packages, invisibly.
 #'
 #' @export
-print_renv_vulns <- function(packages = NULL, silent = FALSE) {
-  checkmate::assert_flag(silent)
+renv_vulns <- function(packages = NULL, quiet = FALSE) {
+  checkmate::assert_flag(quiet)
 
   results <- renv::vulns(packages = packages, repos = "https://packagemanager.posit.co/cran/latest")
   vulns <- Filter(function(x) length(x$vulns) > 0, results)
 
-  if (!silent) {
+  if (!quiet) {
     writeLines(paste0(
       length(results), " packages scanned, ", length(vulns), " vulnerable:\n",
       gsub("\\n$", "", yaml::as.yaml(vulns))
@@ -28,7 +28,7 @@ print_renv_vulns <- function(packages = NULL, silent = FALSE) {
 #' Check renv
 #'
 #' Runs [`renv`][renv::renv-package] [`status()`][renv::status()], [`clean()`][renv::clean()],
-#'   [`vulns()`][renv::vulns()] (using [print_renv_vulns()]), and optionally
+#'   [`vulns()`][renv::vulns()] (using [renv_vulns()]), and optionally
 #'   [`update()`][renv::update()]
 #'
 #' @param update run [renv::update()]
@@ -49,7 +49,7 @@ check_renv <- function(update = rlang::is_interactive()) {
   renv::clean()
 
   writeLines('\nrenv::vulns(repos = "https://packagemanager.posit.co/cran/latest")')
-  print_renv_vulns()
+  renv_vulns()
 
   if (update) {
     writeLines("\nrenv::update()")
@@ -179,7 +179,7 @@ ci <- function(renv = TRUE, # nolint: cyclocomp_linter.
       return(invisible(status))
     }
     writeLines(c("", 'renv::vulns(repos = "https://packagemanager.posit.co/cran/latest")'))
-    print_renv_vulns()
+    renv_vulns()
     if (any(
       missing, pkgdown, is.null(styler), styler, lintr, document, normalize, extra, spelling, urls,
       rcmdcheck
