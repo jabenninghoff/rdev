@@ -23,7 +23,7 @@ reference:
     desc: >
       Local continuous integration checks and dependency management
     contents:
-    - print_renv_vulns
+    - renv_vulns
     - check_renv
     - style_all
     - lint_all

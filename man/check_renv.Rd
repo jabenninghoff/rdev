@@ -11,7 +11,7 @@ check_renv(update = rlang::is_interactive())
 }
 \description{
 Runs \code{\link[renv:renv-package]{renv}} \code{\link[renv:status]{status()}}, \code{\link[renv:clean]{clean()}},
-\code{\link[renv:vulns]{vulns()}} (using \code{\link[=print_renv_vulns]{print_renv_vulns()}}), and optionally
+\code{\link[renv:vulns]{vulns()}} (using \code{\link[=renv_vulns]{renv_vulns()}}), and optionally
 \code{\link[renv:update]{update()}}
 }
 \examples{
