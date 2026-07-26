@@ -42,13 +42,13 @@ url_update <- urlchecker::url_update
 #'   class with a custom print method.
 #' @export
 html_url_check <- function(path = "docs", parallel = TRUE, pool = curl::new_pool(),
-                           progress = TRUE) {
+                           progress = TRUE, fail = FALSE) {
   # nocov start
   url_db_from_HTML_files <- "tools" %:::% "url_db_from_HTML_files" # nolint: object_name_linter.
 
   urlchecker::url_check(
     path = path, db = url_db_from_HTML_files(normalizePath(path), recursive = TRUE),
-    parallel = parallel, pool = pool, progress = progress
+    parallel = parallel, pool = pool, progress = progress, fail = FALSE
   )
   # nocov end
 }

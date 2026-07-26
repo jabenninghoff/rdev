@@ -84,6 +84,7 @@ tcltk
 testthat
 tidyverse
 untracked
+urlcheck
 urlchecker
 usethis
 yaml
