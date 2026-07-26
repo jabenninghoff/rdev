@@ -27,7 +27,9 @@ test_that("upkeep_checklist is expected length for first upkeep", {
   mockery::stub(upkeep_checklist, "usethis::git_default_branch", "master")
 
   # get_license() "mit", package_type() "rdev", pkg_minimum_r_version NA, r_version character(0),
-  # usethis::git_default_branch() "master", no inst/templates or inst/rmarkdown/templates
+  # usethis::git_default_branch() "master", no inst/templates or inst/rmarkdown/templates,
+  # and length(fs::dir_ls("R")) == 1
+
   expect_length(upkeep_checklist(), base_length)
 
   mockery::stub(upkeep_checklist, "package_type", "analysis")
@@ -39,7 +41,7 @@ test_that("upkeep_checklist is expected length for first upkeep", {
   mockery::stub(upkeep_checklist, "package_type", "rdev")
   expect_length(upkeep_checklist(), base_length)
 
-  fs::dir_create("R/test")
+  fs::file_create("R/function.R")
   expect_length(upkeep_checklist(), base_length + 1)
 
   mockery::stub(upkeep_checklist, "usethis::git_default_branch", "main")
