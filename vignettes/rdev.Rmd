@@ -42,8 +42,7 @@ rig supports installation of multiple versions of official R binaries, which I u
 reproducibility. To install R using rig, first install rig:
 
 ```sh
-brew tap r-lib/rig
-brew install --cask rig
+brew install --cask r-rig-app
 ```
 
 Then install desired versions of R. The following installs R 3.6 through 4.5 on ARM based macs
