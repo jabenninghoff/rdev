@@ -8,7 +8,8 @@ html_url_check(
   path = "docs",
   parallel = TRUE,
   pool = curl::new_pool(),
-  progress = TRUE
+  progress = TRUE,
+  fail = FALSE
 )
 }
 \arguments{
@@ -19,6 +20,11 @@ html_url_check(
 \item{pool}{A multi handle created by \code{\link[curl:new_pool]{curl::new_pool()}}. If \code{NULL} use a global pool.}
 
 \item{progress}{Whether to show the progress bar for parallel checks}
+
+\item{fail}{If \code{TRUE} (the default), throw an error when one or more URLs
+are flagged, after printing the report. This yields a non-zero exit status,
+which is useful in CI/CD workflows. Set to \code{FALSE} to return the results
+instead of failing.}
 }
 \value{
 A \code{url_checker_db} object (invisibly). This is a \code{check_url_db} object with an added
