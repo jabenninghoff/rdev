@@ -16,7 +16,7 @@ html_url_check(
 
 \item{parallel}{If \code{TRUE}, check the URLs in parallel}
 
-\item{pool}{A multi handle created by \code{\link[curl:multi]{curl::new_pool()}}. If \code{NULL} use a global pool.}
+\item{pool}{A multi handle created by \code{\link[curl:new_pool]{curl::new_pool()}}. If \code{NULL} use a global pool.}
 
 \item{progress}{Whether to show the progress bar for parallel checks}
 }
