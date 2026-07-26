@@ -24,6 +24,7 @@ test_that("upkeep_checklist is expected length for first upkeep", {
   usethis::ui_silence(local_temppkg(type = "rdev"))
   mockery::stub(upkeep_checklist, "desc::desc_has_dep", TRUE)
   mockery::stub(upkeep_checklist, "renv::settings$snapshot.dev", FALSE)
+  mockery::stub(upkeep_checklist, "usethis::git_default_branch", "master")
 
   # get_license() "mit", package_type() "rdev", pkg_minimum_r_version NA, r_version character(0),
   # usethis::git_default_branch() "master", no inst/templates or inst/rmarkdown/templates
@@ -73,6 +74,7 @@ test_that("upkeep_checklist is expected length for last upkeep year", {
   usethis::ui_silence(local_temppkg(type = "rdev"))
   mockery::stub(upkeep_checklist, "desc::desc_has_dep", TRUE)
   mockery::stub(upkeep_checklist, "renv::settings$snapshot.dev", FALSE)
+  mockery::stub(upkeep_checklist, "usethis::git_default_branch", "master")
 
   expect_length(upkeep_checklist(), base_length)
   expect_length(upkeep_checklist(2021), base_length)
