@@ -1,4 +1,8 @@
-# rdev 1.18.0
+# rdev 1.17.0
+
+* Updated `setup-r` script for R 4.6
+
+* Updated and exported function `renv_vulns()`, which prints vulnerable packages using YAML
 
 * Updated for lintr 3.4.0 (update `use_lintr()`)
 
@@ -9,12 +13,6 @@
   * `html_url_check()` sets the new `fail` argument to `FALSE`, since generated pages shouldn't stop `ci()`
   
 * Added stringr to base development packages, since rendering R Markdown in RStudio now requires stringr
-
-# rdev 1.17.0
-
-* Updated `setup-r` script for R 4.6
-
-* Updated and exported function `renv_vulns()`, which prints vulnerable packages using YAML
 
 # rdev 1.16.5
 
