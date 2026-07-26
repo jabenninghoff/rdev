@@ -1,3 +1,7 @@
+# rdev 1.18.0
+
+* Updated for lintr 3.4.0 (update `use_lintr()`)
+
 # rdev 1.17.0
 
 * Updated `setup-r` script for R 4.6
