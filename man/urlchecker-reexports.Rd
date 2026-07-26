@@ -11,21 +11,40 @@ url_check(
   db = NULL,
   parallel = TRUE,
   pool = curl::new_pool(),
-  progress = TRUE
+  progress = TRUE,
+  fail = TRUE
 )
 
-url_update(path = ".", results = url_check(path))
+url_update(path = ".", results = url_check(path, fail = FALSE))
 }
 \arguments{
-\item{path}{Path to the package}
+\item{path}{Path(s) to check. Each element may be:
+\itemize{
+\item A package's (development) source directory tree, a directory holding an
+unpacked source package, or a source package tarball (\code{.tar.gz}). A
+tarball is unpacked into a temporary directory (kept for the rest of the
+session, so the printed report can point into the sources).
+\item A directory that is not an R package. All supported files found within
+(recursively) are scanned for URLs. Supported files are HTML, PDF, Rd,
+Markdown (\code{.md}, \code{.markdown}), R Markdown (\code{.Rmd}), Quarto (\code{.qmd}) and
+BibTeX (\code{.bib}).
+\item A single file of one of the supported types above.
+}
+
+\code{path} may be a character vector mixing any of these.}
 
 \item{db}{A url database}
 
 \item{parallel}{If \code{TRUE}, check the URLs in parallel}
 
-\item{pool}{A multi handle created by \code{\link[curl:multi]{curl::new_pool()}}. If \code{NULL} use a global pool.}
+\item{pool}{A multi handle created by \code{\link[curl:new_pool]{curl::new_pool()}}. If \code{NULL} use a global pool.}
 
 \item{progress}{Whether to show the progress bar for parallel checks}
+
+\item{fail}{If \code{TRUE} (the default), throw an error when one or more URLs
+are flagged, after printing the report. This yields a non-zero exit status,
+which is useful in CI/CD workflows. Set to \code{FALSE} to return the results
+instead of failing.}
 
 \item{results}{results from \link[urlchecker]{url_check}.}
 }
