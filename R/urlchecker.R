@@ -48,7 +48,7 @@ html_url_check <- function(path = "docs", parallel = TRUE, pool = curl::new_pool
 
   urlchecker::url_check(
     path = path, db = url_db_from_HTML_files(normalizePath(path), recursive = TRUE),
-    parallel = parallel, pool = pool, progress = progress, fail = FALSE
+    parallel = parallel, pool = pool, progress = progress, fail = fail
   )
   # nocov end
 }
