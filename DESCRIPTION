@@ -39,6 +39,7 @@ Imports:
     rmarkdown,
     rstudioapi,
     spelling,
+    stringr,
     styler (>= 1.4.0),
     tibble,
     urlchecker,

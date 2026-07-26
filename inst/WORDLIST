@@ -79,6 +79,7 @@ roxygen
 rprofile
 rtraining
 siracon
+stringr
 styler
 tcltk
 testthat

@@ -7,6 +7,8 @@
   * `url_check()` uses the default `fail` argument setting of `TRUE`, which will stop `ci()`
   
   * `html_url_check()` sets the new `fail` argument to `FALSE`, since generated pages shouldn't stop `ci()`
+  
+* Added stringr to base development packages, since rendering R Markdown in RStudio now requires stringr
 
 # rdev 1.17.0
 
