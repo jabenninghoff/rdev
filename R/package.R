@@ -15,4 +15,5 @@
 #' @importFrom miniUI miniPage
 #' @importFrom languageserver run
 #' @importFrom cyclocomp cyclocomp
+#' @importFrom stringr str_c
 NULL
