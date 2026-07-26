@@ -41,10 +41,10 @@ test_that("new_branch validates arguments", {
 
 test_that("new_branch errors when local or remote branch exists", {
   g <- function(name, local = TRUE) {
-    if (name == "local" & local) {
+    if (name == "local" && local) {
       return(TRUE)
     }
-    if (name == "origin/remote" & !local) {
+    if (name == "origin/remote" && !local) {
       return(TRUE)
     }
     FALSE
