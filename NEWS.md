@@ -14,6 +14,8 @@
   
 * Added stringr to base development packages, since rendering R Markdown in RStudio now requires stringr
 
+* Switch renv from [CRAN](https://cloud.r-project.org) to [Posit Package Manager](https://packagemanager.posit.co)
+
 # rdev 1.16.5
 
 * Add cooldown to Dependabot automated updates

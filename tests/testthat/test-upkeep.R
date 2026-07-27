@@ -18,7 +18,7 @@ test_that("use_upkeep_issue validates arguments", {
 
 # upkeep_checklist
 
-base_length <- 48
+base_length <- 55
 
 test_that("upkeep_checklist is expected length for first upkeep", {
   usethis::ui_silence(local_temppkg(type = "rdev"))
@@ -85,5 +85,5 @@ test_that("upkeep_checklist is expected length for last upkeep year", {
   expect_length(upkeep_checklist(2024), base_length - 15)
   expect_length(upkeep_checklist(2025), base_length - 15)
   expect_length(upkeep_checklist(2026), base_length - 28)
-  expect_length(upkeep_checklist(2027), base_length - 35)
+  expect_length(upkeep_checklist(2027), base_length - 42)
 })
