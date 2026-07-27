@@ -114,7 +114,7 @@ upkeep_checklist <- function(last_upkeep = last_upkeep_year()) { # nolint: cyclo
       "",
       "Update to YAML chunk syntax using:",
       "",
-      "```",
+      "```r",
       paste0(
         'lapply(list.files(pattern = "\\\\.Rmd$", recursive = TRUE), knitr::convert_chunk_header, ',
         'output = identity, type = "yaml", width = 100)'
@@ -136,6 +136,13 @@ upkeep_checklist <- function(last_upkeep = last_upkeep_year()) { # nolint: cyclo
       todo("`rdev::use_rprofile()`"),
       todo("`rdev::use_codecov()`", length(fs::dir_ls("R")) > 1),
       todo("`rdev::use_lintr()`"),
+      todo("Switch to [Posit Package Manager](https://packagemanager.posit.co) (PPM)"),
+      "",
+      "Updated renv init command:",
+      "",
+      "```r",
+      'renv::init(settings = list(snapshot.type = "implicit", snapshot.dev = TRUE))',
+      "```",
       ""
     )
   }
