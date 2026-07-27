@@ -12,8 +12,8 @@
 <link rel="icon" sizes="any" href="../favicon.ico">
 <link rel="manifest" href="../site.webmanifest">
 <script src="../lightswitch.js"></script><script src="../deps/jquery-3.6.0/jquery-3.6.0.min.js"></script><meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-<link href="../deps/bootstrap-5.3.1/bootstrap.min.css" rel="stylesheet">
-<script src="../deps/bootstrap-5.3.1/bootstrap.bundle.min.js"></script><link href="../deps/font-awesome-6.5.2/css/all.min.css" rel="stylesheet">
+<link href="../deps/bootstrap-5.3.8/bootstrap.min.css" rel="stylesheet">
+<script src="../deps/bootstrap-5.3.8/bootstrap.bundle.min.js"></script><link href="../deps/font-awesome-6.5.2/css/all.min.css" rel="stylesheet">
 <link href="../deps/font-awesome-6.5.2/css/v4-shims.min.css" rel="stylesheet">
 <script src="../deps/headroom-0.11.0/headroom.min.js"></script><script src="../deps/headroom-0.11.0/jQuery.headroom.min.js"></script><script src="../deps/bootstrap-toc-1.0.1/bootstrap-toc.min.js"></script><script src="../deps/clipboard.js-2.0.11/clipboard.min.js"></script><script src="../deps/search-1.0.0/autocomplete.jquery.min.js"></script><script src="../deps/search-1.0.0/fuse.min.js"></script><script src="../deps/search-1.0.0/mark.min.js"></script><!-- pkgdown --><script src="../pkgdown.js"></script><link href="../extra.css" rel="stylesheet">
 <meta property="og:title" content="Introduction to rdev">
@@ -26,7 +26,7 @@
 
     <a class="navbar-brand me-2" href="../index.html">rdev</a>
 
-    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">1.16.5</small>
+    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">1.17.0</small>
 
 
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbar" aria-controls="navbar" aria-expanded="false" aria-label="Toggle navigation">
@@ -95,7 +95,8 @@ them accessible to non-R users.</p>
 <div class="section level2">
 <h2 id="installation">Installation<a class="anchor" aria-label="anchor" href="#installation"></a>
 </h2>
-<p>My current R development environment uses <a href="https://brew.sh" class="external-link">Homebrew</a>, <a href="https://github.com/r-lib/rig/" class="external-link">rig</a>, <a href="https://posit.co/download/rstudio-desktop/" class="external-link">RStudio</a>, <a href="https://github.com" class="external-link">GitHub</a>, a collection of R packages
+<p>My current R development environment uses <a href="https://brew.sh" class="external-link">Homebrew</a>, <a href="https://github.com/r-lib/rig/" class="external-link">rig</a>, <a href="https://docs.posit.co/ide/user/#rstudio-ide-oss-downloads" class="external-link">RStudio</a>,
+<a href="https://github.com" class="external-link">GitHub</a>, a collection of R packages
 including rdev, <a href="https://code.visualstudio.com" class="external-link">Visual Studio
 Code</a>, and <a href="https://www.vim.org" class="external-link">Vim</a>.</p>
 <div class="section level3">
@@ -111,36 +112,35 @@ environment is published on GitHub in <a href="https://github.com/jabenninghoff/
 <p>rig supports installation of multiple versions of official R
 binaries, which I use for reproducibility. To install R using rig, first
 install rig:</p>
-<div class="sourceCode" id="cb1"><pre class="sourceCode sh"><code class="sourceCode bash"><span id="cb1-1"><a href="#cb1-1" tabindex="-1"></a><span class="ex">brew</span> tap r-lib/rig</span>
-<span id="cb1-2"><a href="#cb1-2" tabindex="-1"></a><span class="ex">brew</span> install <span class="at">--cask</span> rig</span></code></pre></div>
-<p>Then install desired versions of R. The following installs R 3.6
-through 4.5 on ARM based macs (as of 2025-10-08):</p>
-<div class="sourceCode" id="cb2"><pre class="sourceCode sh"><code class="sourceCode bash"><span id="cb2-1"><a href="#cb2-1" tabindex="-1"></a><span class="ex">rig</span> install oldrel/6 <span class="at">--without-pak</span> <span class="at">--arch</span> x86_64</span>
-<span id="cb2-2"><a href="#cb2-2" tabindex="-1"></a><span class="ex">rig</span> install oldrel/5 <span class="at">--without-pak</span> <span class="at">--arch</span> x86_64</span>
-<span id="cb2-3"><a href="#cb2-3" tabindex="-1"></a><span class="ex">rig</span> install oldrel/4 <span class="at">--without-pak</span></span>
-<span id="cb2-4"><a href="#cb2-4" tabindex="-1"></a><span class="ex">rig</span> install oldrel/3 <span class="at">--without-pak</span></span>
-<span id="cb2-5"><a href="#cb2-5" tabindex="-1"></a><span class="ex">rig</span> install oldrel/2 <span class="at">--without-pak</span></span>
-<span id="cb2-6"><a href="#cb2-6" tabindex="-1"></a><span class="ex">rig</span> install oldrel/1 <span class="at">--without-pak</span></span>
-<span id="cb2-7"><a href="#cb2-7" tabindex="-1"></a><span class="ex">rig</span> install oldrel <span class="at">--without-pak</span></span>
-<span id="cb2-8"><a href="#cb2-8" tabindex="-1"></a><span class="ex">rig</span> install release <span class="at">--without-pak</span></span>
-<span id="cb2-9"><a href="#cb2-9" tabindex="-1"></a><span class="ex">rig</span> default release</span></code></pre></div>
+<div class="sourceCode" id="cb1"><pre class="sourceCode sh"><code class="sourceCode bash"><span id="cb1-1"><a href="#cb1-1" tabindex="-1"></a><span class="ex">brew</span> install <span class="at">--cask</span> r-rig-app</span></code></pre></div>
+<p>Then install desired versions of R. The following installs R 4.1
+through 4.6 on ARM based macs (as of 2026-07-26):</p>
+<div class="sourceCode" id="cb2"><pre class="sourceCode sh"><code class="sourceCode bash"><span id="cb2-1"><a href="#cb2-1" tabindex="-1"></a><span class="ex">rig</span> install oldrel/5 <span class="at">--without-pak</span></span>
+<span id="cb2-2"><a href="#cb2-2" tabindex="-1"></a><span class="ex">rig</span> install oldrel/4 <span class="at">--without-pak</span></span>
+<span id="cb2-3"><a href="#cb2-3" tabindex="-1"></a><span class="ex">rig</span> install oldrel/3 <span class="at">--without-pak</span></span>
+<span id="cb2-4"><a href="#cb2-4" tabindex="-1"></a><span class="ex">rig</span> install oldrel/2 <span class="at">--without-pak</span></span>
+<span id="cb2-5"><a href="#cb2-5" tabindex="-1"></a><span class="ex">rig</span> install oldrel <span class="at">--without-pak</span></span>
+<span id="cb2-6"><a href="#cb2-6" tabindex="-1"></a><span class="ex">rig</span> install release <span class="at">--without-pak</span></span>
+<span id="cb2-7"><a href="#cb2-7" tabindex="-1"></a><span class="ex">rig</span> default release</span></code></pre></div>
 <p>Note that:</p>
 <ol style="list-style-type: decimal">
 <li>I don’t use <a href="https://pak.r-lib.org" class="external-link">pak</a>, which rig
 installs by default, as it is not yet fully <a href="https://github.com/rstudio/renv/issues/1210" class="external-link">supported</a> by
 renv.</li>
-<li>The oldest version of R I install is 3.6, since RStudio now requires
-R 3.6 or newer (as of version <a href="https://docs.posit.co/ide/news/#rstudio-2024.04.0" class="external-link">2024.04.00</a>)</li>
-<li>Since there was no ARM binary release for R 3.6
-(<code>oldrel/6</code>) or R 4.0 (<code>oldrel/5</code>), I install the
-Intel binaries and run them with <a href="https://support.apple.com/en-us/102527" class="external-link">Rosetta 2</a>.</li>
+<li>The oldest version of R I install is 4.1 (on ARM) or 4.3 (on Intel),
+which are the oldest versions of R that install into <code>/opt</code>
+instead of <code>/usr/local</code> (which causes issues for
+Homebrew)</li>
 </ol>
+<p>Also note that RStudio requires R 3.6 or newer (as of version <a href="https://docs.posit.co/ide/news/#rstudio-2024.04.0" class="external-link">2024.04.00</a>).
+Since there was no ARM binary release for R 3.6 or R 4.0, running these
+versions requires installing the Intel binaries and running them with <a href="https://support.apple.com/en-us/102527" class="external-link">Rosetta 2</a>.</p>
 </div>
 <div class="section level3">
 <h3 id="development-tools">Development Tools<a class="anchor" aria-label="anchor" href="#development-tools"></a>
 </h3>
-<p>Well, obviously, I use <a href="https://posit.co/download/rstudio-desktop/" class="external-link">RStudio</a>. RStudio
-is the leading IDE for R development and integrates with many R
+<p>Well, obviously, I use <a href="https://docs.posit.co/ide/user/#rstudio-ide-oss-downloads" class="external-link">RStudio</a>.
+RStudio is the leading IDE for R development and integrates with many R
 packages, although it sometimes falls short; I use GitHub and the
 command line for Git, and occasionally Visual Studio Code (which has
 better support for markdown) and Vim (which is faster for some types of
@@ -188,7 +188,7 @@ of that script is included below.</p>
 <span id="cb4-3"><a href="#cb4-3" tabindex="-1"></a></span>
 <span id="cb4-4"><a href="#cb4-4" tabindex="-1"></a><span class="va">RVERSION</span><span class="op">=</span><span class="st">"</span><span class="va">$(</span><span class="ex">Rscript</span> <span class="at">-e</span> <span class="st">'cat(as.character(getRversion()[1,1:2]))'</span><span class="va">)</span><span class="st">"</span></span>
 <span id="cb4-5"><a href="#cb4-5" tabindex="-1"></a><span class="va">USERLIB</span><span class="op">=</span><span class="st">"</span><span class="va">$HOME</span><span class="st">/Library/R/</span><span class="va">$(</span><span class="fu">uname</span> <span class="at">-m</span><span class="va">)</span><span class="st">/</span><span class="va">${RVERSION}</span><span class="st">/library"</span></span>
-<span id="cb4-6"><a href="#cb4-6" tabindex="-1"></a><span class="va">DEVPKG</span><span class="op">=</span><span class="st">'c("renv", "styler", "lintr", "miniUI", "languageserver", "rmarkdown", "devtools", "available")'</span></span>
+<span id="cb4-6"><a href="#cb4-6" tabindex="-1"></a><span class="va">DEVPKG</span><span class="op">=</span><span class="st">'c("renv", "styler", "lintr", "miniUI", "languageserver", "rmarkdown", "stringr", "devtools", "available", "remotes")'</span></span>
 <span id="cb4-7"><a href="#cb4-7" tabindex="-1"></a><span class="va">GITPKG</span><span class="op">=</span><span class="st">'c("jabenninghoff/rdev")'</span></span>
 <span id="cb4-8"><a href="#cb4-8" tabindex="-1"></a></span>
 <span id="cb4-9"><a href="#cb4-9" tabindex="-1"></a><span class="cf">if</span> <span class="bu">[</span> <span class="ot">!</span> <span class="ot">-d</span> <span class="st">"</span><span class="va">${USERLIB}</span><span class="st">"</span> <span class="bu">]</span></span>
@@ -210,6 +210,82 @@ to set up a personal access token using
 credential store using <code><a href="https://gitcreds.r-lib.org/reference/gitcreds_get.html" class="external-link">gitcreds::gitcreds_set()</a></code>. You can
 verify GitHub is set up following usethis recommendations with
 <code><a href="https://usethis.r-lib.org/reference/git_sitrep.html" class="external-link">usethis::git_sitrep()</a></code>.</p>
+</div>
+<div class="section level3">
+<h3 id="makevars">Makevars<a class="anchor" aria-label="anchor" href="#makevars"></a>
+</h3>
+<p>When building from source, R uses <code>~/.R/Makevars</code> to
+customize how C, C++, or Fortran code is compiled. I’ve developed a
+personalized Makevars file for macOS that detects Homebrew installed
+libraries, adds OpenMP support via libomp, and includes notes on
+officially supported versions of gfortran, along with instructions on
+how to use gfortran from Homebrew.</p>
+<div class="sourceCode" id="cb5"><pre class="sourceCode makefile"><code class="sourceCode makefile"><span id="cb5-1"><a href="#cb5-1" tabindex="-1"></a><span class="co"># macOS .R/Makevars</span></span>
+<span id="cb5-2"><a href="#cb5-2" tabindex="-1"></a><span class="co"># adapted from https://github.com/Rdatatable/data.table/wiki/Installation</span></span>
+<span id="cb5-3"><a href="#cb5-3" tabindex="-1"></a><span class="co"># https://firas.io/posts/data_table_openmp/</span></span>
+<span id="cb5-4"><a href="#cb5-4" tabindex="-1"></a><span class="co"># and https://cran.r-project.org/doc/manuals/r-devel/R-exts.html#Using-Makevars</span></span>
+<span id="cb5-5"><a href="#cb5-5" tabindex="-1"></a></span>
+<span id="cb5-6"><a href="#cb5-6" tabindex="-1"></a><span class="co"># CPPFLAGS is set in ${R_HOME}/etc/Makeconf and is set to "-I/opt/R/arm64/include" for ARM versions of R (&gt;= 4.1)</span></span>
+<span id="cb5-7"><a href="#cb5-7" tabindex="-1"></a><span class="co"># we use this to determine the (default) HOMEBREW_PREFIX for each architecture</span></span>
+<span id="cb5-8"><a href="#cb5-8" tabindex="-1"></a><span class="cf">ifeq</span> <span class="st">"</span><span class="ch">$(</span><span class="dt">CPPFLAGS</span><span class="ch">)</span><span class="st">"</span> <span class="st">"-I/opt/R/arm64/include"</span></span>
+<span id="cb5-9"><a href="#cb5-9" tabindex="-1"></a><span class="dt">HOMEBREW_PREFIX</span><span class="ch">=</span><span class="st">/opt/homebrew</span></span>
+<span id="cb5-10"><a href="#cb5-10" tabindex="-1"></a><span class="cf">else</span></span>
+<span id="cb5-11"><a href="#cb5-11" tabindex="-1"></a><span class="dt">HOMEBREW_PREFIX</span><span class="ch">=</span><span class="st">/usr/local</span></span>
+<span id="cb5-12"><a href="#cb5-12" tabindex="-1"></a><span class="cf">endif</span></span>
+<span id="cb5-13"><a href="#cb5-13" tabindex="-1"></a></span>
+<span id="cb5-14"><a href="#cb5-14" tabindex="-1"></a><span class="co"># include homebrew installed libraries</span></span>
+<span id="cb5-15"><a href="#cb5-15" tabindex="-1"></a><span class="co"># https://stackoverflow.com/questions/79740057/libintl-h-not-found-when-installing-matrix-with-renv</span></span>
+<span id="cb5-16"><a href="#cb5-16" tabindex="-1"></a><span class="dt">LDFLAGS</span><span class="ch">+=</span><span class="st">-L</span><span class="ch">$(</span><span class="dt">HOMEBREW_PREFIX</span><span class="ch">)</span><span class="st">/lib</span></span>
+<span id="cb5-17"><a href="#cb5-17" tabindex="-1"></a><span class="dt">CPPFLAGS</span><span class="ch">+=</span><span class="st">-I</span><span class="ch">$(</span><span class="dt">HOMEBREW_PREFIX</span><span class="ch">)</span><span class="st">/include</span></span>
+<span id="cb5-18"><a href="#cb5-18" tabindex="-1"></a></span>
+<span id="cb5-19"><a href="#cb5-19" tabindex="-1"></a><span class="co"># install libomp with `brew install libomp`</span></span>
+<span id="cb5-20"><a href="#cb5-20" tabindex="-1"></a><span class="co"># libomp is keg only, set flags per libomp caveats</span></span>
+<span id="cb5-21"><a href="#cb5-21" tabindex="-1"></a><span class="dt">LDFLAGS</span><span class="ch">+=</span><span class="st">-L</span><span class="ch">$(</span><span class="dt">HOMEBREW_PREFIX</span><span class="ch">)</span><span class="st">/opt/libomp/lib</span></span>
+<span id="cb5-22"><a href="#cb5-22" tabindex="-1"></a><span class="dt">CPPFLAGS</span><span class="ch">+=</span><span class="st">-I</span><span class="ch">$(</span><span class="dt">HOMEBREW_PREFIX</span><span class="ch">)</span><span class="st">/opt/libomp/include</span></span>
+<span id="cb5-23"><a href="#cb5-23" tabindex="-1"></a></span>
+<span id="cb5-24"><a href="#cb5-24" tabindex="-1"></a><span class="dt">LDFLAGS</span><span class="ch">+=</span><span class="st">-lomp</span></span>
+<span id="cb5-25"><a href="#cb5-25" tabindex="-1"></a></span>
+<span id="cb5-26"><a href="#cb5-26" tabindex="-1"></a><span class="co"># Flags for OpenMP support that should allow packages that want to use</span></span>
+<span id="cb5-27"><a href="#cb5-27" tabindex="-1"></a><span class="co"># OpenMP to do so (data.table), and other packages that bork with</span></span>
+<span id="cb5-28"><a href="#cb5-28" tabindex="-1"></a><span class="co"># -fopenmp flag (stringi) to be left alone</span></span>
+<span id="cb5-29"><a href="#cb5-29" tabindex="-1"></a><span class="co"># Support for C++98 was removed in R 4.1.0: https://cran.r-project.org/bin/windows/base/old/4.1.0/NEWS.R-4.1.0.html</span></span>
+<span id="cb5-30"><a href="#cb5-30" tabindex="-1"></a><span class="co"># Supported C++ Standards in R 4.6.0: https://github.com/wch/r-source/tree/tags/R-4-6-0/tests/C%2B%2BStandards</span></span>
+<span id="cb5-31"><a href="#cb5-31" tabindex="-1"></a><span class="dt">SHLIB_OPENMP_CFLAGS</span><span class="ch">=</span><span class="st">-Xclang -fopenmp</span></span>
+<span id="cb5-32"><a href="#cb5-32" tabindex="-1"></a><span class="dt">SHLIB_OPENMP_CXXFLAGS</span><span class="ch">=</span><span class="st">-Xclang -fopenmp</span></span>
+<span id="cb5-33"><a href="#cb5-33" tabindex="-1"></a><span class="dt">SHLIB_OPENMP_CXX11FLAGS</span><span class="ch">=</span><span class="st">-Xclang -fopenmp</span></span>
+<span id="cb5-34"><a href="#cb5-34" tabindex="-1"></a><span class="dt">SHLIB_OPENMP_CXX14FLAGS</span><span class="ch">=</span><span class="st">-Xclang -fopenmp</span></span>
+<span id="cb5-35"><a href="#cb5-35" tabindex="-1"></a><span class="dt">SHLIB_OPENMP_CXX17FLAGS</span><span class="ch">=</span><span class="st">-Xclang -fopenmp</span></span>
+<span id="cb5-36"><a href="#cb5-36" tabindex="-1"></a><span class="dt">SHLIB_OPENMP_CXX20FLAGS</span><span class="ch">=</span><span class="st">-Xclang -fopenmp</span></span>
+<span id="cb5-37"><a href="#cb5-37" tabindex="-1"></a><span class="dt">SHLIB_OPENMP_CXX23FLAGS</span><span class="ch">=</span><span class="st">-Xclang -fopenmp</span></span>
+<span id="cb5-38"><a href="#cb5-38" tabindex="-1"></a><span class="dt">SHLIB_OPENMP_CXX26FLAGS</span><span class="ch">=</span><span class="st">-Xclang -fopenmp</span></span>
+<span id="cb5-39"><a href="#cb5-39" tabindex="-1"></a><span class="dt">SHLIB_OPENMP_FCFLAGS</span><span class="ch">=</span><span class="st">-Xclang -fopenmp</span></span>
+<span id="cb5-40"><a href="#cb5-40" tabindex="-1"></a><span class="dt">SHLIB_OPENMP_FFLAGS</span><span class="ch">=</span><span class="st">-Xclang -fopenmp</span></span>
+<span id="cb5-41"><a href="#cb5-41" tabindex="-1"></a></span>
+<span id="cb5-42"><a href="#cb5-42" tabindex="-1"></a><span class="co"># gfortran is included with `brew install gcc`</span></span>
+<span id="cb5-43"><a href="#cb5-43" tabindex="-1"></a><span class="co"># adapted from https://www.cynkra.com/blog/2021-03-16-gfortran-macos/</span></span>
+<span id="cb5-44"><a href="#cb5-44" tabindex="-1"></a><span class="co"># with help from https://cran.r-project.org/doc/manuals/r-release/R-admin.html#macOS-packages</span></span>
+<span id="cb5-45"><a href="#cb5-45" tabindex="-1"></a><span class="co"># and https://github.com/r-lib/rig/issues/207</span></span>
+<span id="cb5-46"><a href="#cb5-46" tabindex="-1"></a><span class="co"># note: ignore linker duplicate libraries warning per https://github.com/orgs/Homebrew/discussions/4794</span></span>
+<span id="cb5-47"><a href="#cb5-47" tabindex="-1"></a><span class="co"># -lemutls_w added here: https://github.com/wch/r-source/commit/22fab0d7a9f50afd4960e68d57bea137a004f03e</span></span>
+<span id="cb5-48"><a href="#cb5-48" tabindex="-1"></a><span class="co">#</span></span>
+<span id="cb5-49"><a href="#cb5-49" tabindex="-1"></a><span class="co"># CRAN uses specific gfortran binaries from https://mac.r-project.org/tools/:</span></span>
+<span id="cb5-50"><a href="#cb5-50" tabindex="-1"></a><span class="co">#</span></span>
+<span id="cb5-51"><a href="#cb5-51" tabindex="-1"></a><span class="co"># - gfortran 4.2.3 for R 3.6 (https://cran.r-project.org/bin/macosx/tools/)</span></span>
+<span id="cb5-52"><a href="#cb5-52" tabindex="-1"></a><span class="co"># - gfortran 8.2 for intel R 4.0 through 4.2 (https://github.com/fxcoudert/gfortran-for-macOS)</span></span>
+<span id="cb5-53"><a href="#cb5-53" tabindex="-1"></a><span class="co"># - gfortran 11.0.0 for arm64 R 4.1 (https://mac.r-project.org/libs-arm64/gfortran-f51f1da0-darwin20.0-arm64.tar.gz)</span></span>
+<span id="cb5-54"><a href="#cb5-54" tabindex="-1"></a><span class="co"># - gfortran 12.0.1 for arm64 R 4.2 (https://github.com/R-macos/gcc-darwin-arm64)</span></span>
+<span id="cb5-55"><a href="#cb5-55" tabindex="-1"></a><span class="co"># - gfortran-12.2-universal.pkg for R 4.3 and 4.4 (https://github.com/R-macos/gcc-12-branch)</span></span>
+<span id="cb5-56"><a href="#cb5-56" tabindex="-1"></a><span class="co"># - gfortran-14.2-universal.pkg (r-gfortran) for R 4.5 and newer (https://github.com/R-macos/gcc-14-branch)</span></span>
+<span id="cb5-57"><a href="#cb5-57" tabindex="-1"></a><span class="co">#</span></span>
+<span id="cb5-58"><a href="#cb5-58" tabindex="-1"></a><span class="co"># uncomment the following lines when using homebrew gfortran</span></span>
+<span id="cb5-59"><a href="#cb5-59" tabindex="-1"></a><span class="co">#FC=$(HOMEBREW_PREFIX)/bin/gfortran</span></span>
+<span id="cb5-60"><a href="#cb5-60" tabindex="-1"></a><span class="co">#F77=$(HOMEBREW_PREFIX)/bin/gfortran</span></span>
+<span id="cb5-61"><a href="#cb5-61" tabindex="-1"></a><span class="co">#FLIBS=-L$(HOMEBREW_PREFIX)/lib/gcc/current -lgfortran -lquadmath</span></span></code></pre></div>
+<p>The latest version of R gfortran 14.2 (for R 4.5 and newer) can be
+installed from <a href="https://github.com/jabenninghoff/homebrew-edge" class="external-link">jabenninghoff/homebrew-edge</a>:</p>
+<div class="sourceCode" id="cb6"><pre class="sourceCode sh"><code class="sourceCode bash"><span id="cb6-1"><a href="#cb6-1" tabindex="-1"></a><span class="ex">brew</span> tap jabenninghoff/edge</span>
+<span id="cb6-2"><a href="#cb6-2" tabindex="-1"></a><span class="ex">brew</span> trust <span class="at">--tap</span> jabenninghoff/edge</span>
+<span id="cb6-3"><a href="#cb6-3" tabindex="-1"></a><span class="ex">brew</span> install <span class="at">--cask</span> r-gfortran</span></code></pre></div>
 </div>
 <div class="section level3">
 <h3 id="further-reading">Further Reading<a class="anchor" aria-label="anchor" href="#further-reading"></a>
@@ -248,7 +324,7 @@ GitHub in <a href="https://jabenninghoff.github.io/siracon2022/" class="external
 </div>
 
 <div class="pkgdown-footer-right">
-  <p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.2.0.</p>
+  <p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.2.1.</p>
 </div>
 
     </footer>
