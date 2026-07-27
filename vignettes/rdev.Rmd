@@ -26,7 +26,8 @@ Quarto Notebooks as HTML to make them accessible to non-R users.
 ## Installation
 
 My current R development environment uses [Homebrew](https://brew.sh),
-[rig](https://github.com/r-lib/rig/), [RStudio](https://docs.posit.co/ide/user/#rstudio-ide-oss-downloads),
+[rig](https://github.com/r-lib/rig/),
+[RStudio](https://docs.posit.co/ide/user/#rstudio-ide-oss-downloads),
 [GitHub](https://github.com), a collection of R packages including rdev,
 [Visual Studio Code](https://code.visualstudio.com), and [Vim](https://www.vim.org).
 
@@ -45,16 +46,14 @@ reproducibility. To install R using rig, first install rig:
 brew install --cask r-rig-app
 ```
 
-Then install desired versions of R. The following installs R 3.6 through 4.5 on ARM based macs
-(as of 2025-10-08):
+Then install desired versions of R. The following installs R 4.1 through 4.6 on ARM based macs
+(as of 2026-07-26):
 
 ```sh
-rig install oldrel/6 --without-pak --arch x86_64
-rig install oldrel/5 --without-pak --arch x86_64
+rig install oldrel/5 --without-pak
 rig install oldrel/4 --without-pak
 rig install oldrel/3 --without-pak
 rig install oldrel/2 --without-pak
-rig install oldrel/1 --without-pak
 rig install oldrel --without-pak
 rig install release --without-pak
 rig default release
@@ -64,17 +63,20 @@ Note that:
 
 1. I don't use [pak](https://pak.r-lib.org), which rig installs by default, as it is not yet fully
    [supported](https://github.com/rstudio/renv/issues/1210) by renv.
-1. The oldest version of R I install is 3.6, since RStudio now requires R 3.6 or newer (as of
-   version [2024.04.00](https://docs.posit.co/ide/news/#rstudio-2024.04.0))
-1. Since there was no ARM binary release for R 3.6 (`oldrel/6`) or R 4.0 (`oldrel/5`), I install the
-   Intel binaries and run them with [Rosetta 2](https://support.apple.com/en-us/102527).
+1. The oldest version of R I install is 4.1 (on ARM) or 4.3 (on Intel), which are the oldest
+   versions of R that install into `/opt` instead of `/usr/local` (which causes issues for Homebrew)
+
+Also note that RStudio requires R 3.6 or newer (as of version
+[2024.04.00](https://docs.posit.co/ide/news/#rstudio-2024.04.0)). Since there was no ARM binary
+release for R 3.6 or R 4.0, running these versions requires installing the Intel binaries and
+running them with [Rosetta 2](https://support.apple.com/en-us/102527).
 
 ### Development Tools
 
-Well, obviously, I use [RStudio](https://docs.posit.co/ide/user/#rstudio-ide-oss-downloads). RStudio is the leading
-IDE for R development and integrates with many R packages, although it sometimes falls short; I use
-GitHub and the command line for Git, and occasionally Visual Studio Code (which has better support
-for markdown) and Vim (which is faster for some types of edits).
+Well, obviously, I use [RStudio](https://docs.posit.co/ide/user/#rstudio-ide-oss-downloads). RStudio
+is the leading IDE for R development and integrates with many R packages, although it sometimes
+falls short; I use GitHub and the command line for Git, and occasionally Visual Studio Code (which
+has better support for markdown) and Vim (which is faster for some types of edits).
 
 Posit is developing a next-generation R and Python IDE based on Visual Studio Code,
 [Positron](https://github.com/posit-dev/positron). While I've tried using Positron, I've found that
@@ -140,6 +142,86 @@ If you're installing (development) versions of packages from GitHub, it is
 token using `usethis::create_github_token()` and adding it to your Git credential store using
 `gitcreds::gitcreds_set()`. You can verify GitHub is set up following usethis recommendations with
 `usethis::git_sitrep()`.
+
+### Makevars
+
+When building from source, R uses `~/.R/Makevars` to customize how C, C++, or Fortran code is
+compiled. I've developed a personalized Makevars file for macOS that detects Homebrew installed
+libraries, adds OpenMP support via libomp, and includes notes on officially supported versions of
+gfortran, along with instructions on how to use gfortran from Homebrew.
+
+```makefile
+# macOS .R/Makevars
+# adapted from https://github.com/Rdatatable/data.table/wiki/Installation
+# https://firas.io/posts/data_table_openmp/
+# and https://cran.r-project.org/doc/manuals/r-devel/R-exts.html#Using-Makevars
+
+# CPPFLAGS is set in ${R_HOME}/etc/Makeconf and is set to "-I/opt/R/arm64/include" for ARM versions of R (>= 4.1)
+# we use this to determine the (default) HOMEBREW_PREFIX for each architecture
+ifeq "$(CPPFLAGS)" "-I/opt/R/arm64/include"
+HOMEBREW_PREFIX=/opt/homebrew
+else
+HOMEBREW_PREFIX=/usr/local
+endif
+
+# include homebrew installed libraries
+# https://stackoverflow.com/questions/79740057/libintl-h-not-found-when-installing-matrix-with-renv
+LDFLAGS+=-L$(HOMEBREW_PREFIX)/lib
+CPPFLAGS+=-I$(HOMEBREW_PREFIX)/include
+
+# install libomp with `brew install libomp`
+# libomp is keg only, set flags per libomp caveats
+LDFLAGS+=-L$(HOMEBREW_PREFIX)/opt/libomp/lib
+CPPFLAGS+=-I$(HOMEBREW_PREFIX)/opt/libomp/include
+
+LDFLAGS+=-lomp
+
+# Flags for OpenMP support that should allow packages that want to use
+# OpenMP to do so (data.table), and other packages that bork with
+# -fopenmp flag (stringi) to be left alone
+# Support for C++98 was removed in R 4.1.0: https://cran.r-project.org/bin/windows/base/old/4.1.0/NEWS.R-4.1.0.html
+# Supported C++ Standards in R 4.6.0: https://github.com/wch/r-source/tree/tags/R-4-6-0/tests/C%2B%2BStandards
+SHLIB_OPENMP_CFLAGS=-Xclang -fopenmp
+SHLIB_OPENMP_CXXFLAGS=-Xclang -fopenmp
+SHLIB_OPENMP_CXX11FLAGS=-Xclang -fopenmp
+SHLIB_OPENMP_CXX14FLAGS=-Xclang -fopenmp
+SHLIB_OPENMP_CXX17FLAGS=-Xclang -fopenmp
+SHLIB_OPENMP_CXX20FLAGS=-Xclang -fopenmp
+SHLIB_OPENMP_CXX23FLAGS=-Xclang -fopenmp
+SHLIB_OPENMP_CXX26FLAGS=-Xclang -fopenmp
+SHLIB_OPENMP_FCFLAGS=-Xclang -fopenmp
+SHLIB_OPENMP_FFLAGS=-Xclang -fopenmp
+
+# gfortran is included with `brew install gcc`
+# adapted from https://www.cynkra.com/blog/2021-03-16-gfortran-macos/
+# with help from https://cran.r-project.org/doc/manuals/r-release/R-admin.html#macOS-packages
+# and https://github.com/r-lib/rig/issues/207
+# note: ignore linker duplicate libraries warning per https://github.com/orgs/Homebrew/discussions/4794
+# -lemutls_w added here: https://github.com/wch/r-source/commit/22fab0d7a9f50afd4960e68d57bea137a004f03e
+#
+# CRAN uses specific gfortran binaries from https://mac.r-project.org/tools/:
+#
+# - gfortran 4.2.3 for R 3.6 (https://cran.r-project.org/bin/macosx/tools/)
+# - gfortran 8.2 for intel R 4.0 through 4.2 (https://github.com/fxcoudert/gfortran-for-macOS)
+# - gfortran 11.0.0 for arm64 R 4.1 (https://mac.r-project.org/libs-arm64/gfortran-f51f1da0-darwin20.0-arm64.tar.gz)
+# - gfortran 12.0.1 for arm64 R 4.2 (https://github.com/R-macos/gcc-darwin-arm64)
+# - gfortran-12.2-universal.pkg for R 4.3 and 4.4 (https://github.com/R-macos/gcc-12-branch)
+# - gfortran-14.2-universal.pkg (r-gfortran) for R 4.5 and newer (https://github.com/R-macos/gcc-14-branch)
+#
+# uncomment the following lines when using homebrew gfortran
+#FC=$(HOMEBREW_PREFIX)/bin/gfortran
+#F77=$(HOMEBREW_PREFIX)/bin/gfortran
+#FLIBS=-L$(HOMEBREW_PREFIX)/lib/gcc/current -lgfortran -lquadmath
+```
+
+The latest version of R gfortran 14.2 (for R 4.5 and newer) can be installed from
+[jabenninghoff/homebrew-edge](https://github.com/jabenninghoff/homebrew-edge):
+
+```sh
+brew tap jabenninghoff/edge
+brew trust --tap jabenninghoff/edge
+brew install --cask r-gfortran
+```
 
 ### Further Reading
 

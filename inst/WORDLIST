@@ -7,7 +7,9 @@ DevOps
 Forsgren
 Homebrew
 Lato
+Makevars
 ORCID
+OpenMP
 RData
 README
 RMarkdown
@@ -42,6 +44,7 @@ discoverable
 dplyr
 env
 fs
+gfortran
 ggplot
 gh
 gh's
@@ -49,10 +52,13 @@ gitattributes
 github
 gitignore
 grDevices
+homebrew
 htmlproofer
 https
 hunspell
 io
+jabenninghoff
+libomp
 linter
 linters
 lintr

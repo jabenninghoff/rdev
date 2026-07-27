@@ -16,6 +16,8 @@
 
 * Switch renv from [CRAN](https://cloud.r-project.org) to [Posit Package Manager](https://packagemanager.posit.co)
 
+* Updated "Introduction to rdev" vignette, added macOS `.R/Makevars` example
+
 # rdev 1.16.5
 
 * Add cooldown to Dependabot automated updates
