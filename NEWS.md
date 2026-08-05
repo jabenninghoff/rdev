@@ -1,3 +1,7 @@
+# rdev 1.17.1
+
+* Updated `use_upkeep_issue()` for renv 1.2.4
+
 # rdev 1.17.0
 
 * Updated `setup-r` script for R 4.6
