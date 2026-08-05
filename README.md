@@ -102,7 +102,7 @@ check_renv()
 #> - The project has been cleaned.
 #> 
 #> renv::vulns(repos = "https://packagemanager.posit.co/cran/latest")
-#> 174 packages scanned, 0 vulnerable:
+#> 175 packages scanned, 0 vulnerable:
 #> []
 ```
 
@@ -115,7 +115,7 @@ ci()
 #> No issues found -- the project is in a consistent state.
 #> 
 #> renv::vulns(repos = "https://packagemanager.posit.co/cran/latest")
-#> 174 packages scanned, 0 vulnerable:
+#> 175 packages scanned, 0 vulnerable:
 #> []
 #> 
 #> missing_deps()
@@ -229,13 +229,11 @@ ci()
 #> ℹ Checking that VignetteBuilder package knitr is installed.
 #> ✔ VignetteBuilder package knitr is installed.
 #> html_url_check()
-#> # A tibble: 4 × 9
+#> # A tibble: 2 × 9
 #>   URL                        From  Status Message New   CRAN  Spaces R     root 
 #>   <chr>                      <nam> <chr>  <chr>   <chr> <chr> <chr>  <chr> <chr>
 #> 1 http://covr.r-lib.org/ref… <chr> 200    OK      http… ""    ""     ""    /Use…
 #> 2 http://r-lib.github.io/rc… <chr> 200    OK      http… ""    ""     ""    /Use…
-#> 3 https://posit.co/download… <chr> 200    OK      http… ""    ""     ""    /Use…
-#> 4 https://yihui.org/rmarkdo… <chr> 200    OK      http… ""    ""     ""    /Use…
 #> 
 #> Setting env vars: NOT_CRAN="true", CI="true"
 #> rcmdcheck::rcmdcheck(args = "--no-manual", error_on = "warning")
@@ -247,21 +245,21 @@ ci()
 #> * creating vignettes ... OK
 #> * checking for LF line-endings in source and make files and shell scripts
 #> * checking for empty or unneeded directories
-#> * building ‘rdev_1.17.0.tar.gz’
+#> * building ‘rdev_1.17.1.tar.gz’
 #> 
 #> ── R CMD check ─────────────────────────────────────────────────────────────────
-#> * using log directory ‘/private/var/folders/vn/cw5f9gws42v9m8mdsds_zbl00000gp/T/Rtmp8biAFl/filea0c910951567/rdev.Rcheck’
+#> * using log directory ‘/private/var/folders/vn/cw5f9gws42v9m8mdsds_zbl00000gp/T/RtmpSo5nrl/file135cd1c8fd5af/rdev.Rcheck’
 #> * using R version 4.6.1 (2026-06-24)
 #> * using platform: aarch64-apple-darwin23
 #> * R was compiled by
 #>     Apple clang version 17.0.0 (clang-1700.3.19.1)
 #>     GNU Fortran (GCC) 14.2.0
-#> * running under: macOS Sequoia 15.7.7
+#> * running under: macOS Sequoia 15.7.8
 #> * using session charset: UTF-8
-#> * current time: 2026-07-27 03:47:54 UTC
+#> * current time: 2026-08-05 17:52:40 UTC
 #> * using option ‘--no-manual’
 #> * checking for file ‘rdev/DESCRIPTION’ ... OK
-#> * this is package ‘rdev’ version ‘1.17.0’
+#> * this is package ‘rdev’ version ‘1.17.1’
 #> * package encoding: UTF-8
 #> * checking package namespace information ... OK
 #> * checking package dependencies ... OK
@@ -314,10 +312,9 @@ ci()
 #> * checking package vignettes ... OK
 #> * checking re-building of vignette outputs ... OK
 #> * DONE
-#> 
 #> Status: OK
-#> ── R CMD check results ──────────────────────────────────────── rdev 1.17.0 ────
-#> Duration: 28.2s
+#> ── R CMD check results ──────────────────────────────────────── rdev 1.17.1 ────
+#> Duration: 42.9s
 #> 
 #> 0 errors ✔ | 0 warnings ✔ | 0 notes ✔
 ```
