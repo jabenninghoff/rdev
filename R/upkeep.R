@@ -136,6 +136,9 @@ upkeep_checklist <- function(last_upkeep = last_upkeep_year()) { # nolint: cyclo
       todo("`rdev::use_rprofile()`"),
       todo("`rdev::use_codecov()`", length(fs::dir_ls("R")) > 1),
       todo("`rdev::use_lintr()`"),
+      todo(
+        "update `renv/settings.json` for renv 1.2.4: `renv::settings$bioconductor.enabled(TRUE)`"
+      ),
       todo("Switch to [Posit Package Manager](https://packagemanager.posit.co) (PPM)"),
       "",
       "Updated renv init command:",
