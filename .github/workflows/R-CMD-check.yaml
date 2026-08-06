@@ -41,6 +41,8 @@ jobs:
         with:
           r-version: ${{ matrix.config.r }}
           http-user-agent: ${{ matrix.config.http-user-agent }}
+          # disable default Posit Package Manager URL (https://packagemanager.posit.co/cran/latest)
+          use-public-rspm: false
 
       - uses: r-lib/actions/setup-renv@d3c5be51b12e724e68f33216ca3c148b66d5f0b6 # v2.12.1
 
