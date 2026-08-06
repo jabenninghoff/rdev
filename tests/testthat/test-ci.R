@@ -114,11 +114,15 @@ test_that("renv_vulns properly filters results", {
 # update_ppm_snapshot
 
 test_that("update_ppm_snapshot validates arguments", {
+  mockery::stub(update_ppm_snapshot, "renv::lockfile_write", NULL)
+  mockery::stub(update_ppm_snapshot, "renv::lockfile_modify", NULL)
+
   expect_error(update_ppm_snapshot(prompt = NA), "'prompt'")
   expect_error(update_ppm_snapshot(cooldown = NA), "'cooldown'")
   expect_error(update_ppm_snapshot(cooldown = "latest"), "'cooldown'")
+  expect_error(update_ppm_snapshot(cooldown = -1), "'cooldown'")
+  expect_error(update_ppm_snapshot(cooldown = 1.5), "'cooldown'")
 })
-
 
 # check_renv
 
