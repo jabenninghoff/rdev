@@ -29,7 +29,7 @@ renv_vulns <- function(packages = NULL, quiet = FALSE) {
 #'
 #' Set the renv lockfile CRAN repository URL to a Posit Package Manager (PPM) snapshot date
 #'   following PPM set up [instructions](https://packagemanager.posit.co/client/#/repos/cran/setup),
-#'   for example, `https://packagemanager.posit.co/cran/2026-07-29`.
+#'   for example, `https://packagemanager.posit.co/cran/2026-08-04`.
 #'
 #' Using a PPM snapshot offers two key advantages:
 #'
