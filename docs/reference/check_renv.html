@@ -11,7 +11,7 @@ update()"><meta property="og:image" content="https://jabenninghoff.github.io/rde
 
     <a class="navbar-brand me-2" href="../index.html">rdev</a>
 
-    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">1.17.1</small>
+    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">1.18.0</small>
 
 
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbar" aria-controls="navbar" aria-expanded="false" aria-label="Toggle navigation">
@@ -56,7 +56,7 @@ update()"><meta property="og:image" content="https://jabenninghoff.github.io/rde
 
     <div class="section level2">
     <h2 id="ref-usage">Usage<a class="anchor" aria-label="anchor" href="#ref-usage"></a></h2>
-    <div class="sourceCode"><pre class="sourceCode r"><code><span><span class="fu">check_renv</span><span class="op">(</span>update <span class="op">=</span> <span class="fu">rlang</span><span class="fu">::</span><span class="fu"><a href="https://rlang.r-lib.org/reference/is_interactive.html" class="external-link">is_interactive</a></span><span class="op">(</span><span class="op">)</span><span class="op">)</span></span></code></pre></div>
+    <div class="sourceCode"><pre class="sourceCode r"><code><span><span class="fu">check_renv</span><span class="op">(</span>update <span class="op">=</span> <span class="fu">rlang</span><span class="fu">::</span><span class="fu"><a href="https://rlang.r-lib.org/reference/is_interactive.html" class="external-link">is_interactive</a></span><span class="op">(</span><span class="op">)</span>, cooldown <span class="op">=</span> <span class="fl">7</span><span class="op">)</span></span></code></pre></div>
     </div>
 
     <div class="section level2">
@@ -65,6 +65,10 @@ update()"><meta property="og:image" content="https://jabenninghoff.github.io/rde
 
 <dl><dt id="arg-update">update<a class="anchor" aria-label="anchor" href="#arg-update"></a></dt>
 <dd><p>run <code><a href="https://rstudio.github.io/renv/reference/update.html" class="external-link">renv::update()</a></code></p></dd>
+
+
+<dt id="arg-cooldown">cooldown<a class="anchor" aria-label="anchor" href="#arg-cooldown"></a></dt>
+<dd><p>Number of days ago to set the PPM snapshot date.</p></dd>
 
 </dl></div>
 
