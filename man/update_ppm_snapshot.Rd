@@ -17,7 +17,7 @@ Results of \code{\link[renv:lockfile_write]{renv::lockfile_write()}}, invisibly
 \description{
 Set the renv lockfile CRAN repository URL to a Posit Package Manager (PPM) snapshot date
 following PPM set up \href{https://packagemanager.posit.co/client/#/repos/cran/setup}{instructions},
-for example, \verb{https://packagemanager.posit.co/cran/2026-07-29}.
+for example, \verb{https://packagemanager.posit.co/cran/2026-08-04}.
 }
 \details{
 Using a PPM snapshot offers two key advantages:
