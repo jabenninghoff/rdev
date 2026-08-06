@@ -4,10 +4,12 @@
 \alias{check_renv}
 \title{Check renv}
 \usage{
-check_renv(update = rlang::is_interactive())
+check_renv(update = rlang::is_interactive(), cooldown = 7)
 }
 \arguments{
 \item{update}{run \code{\link[renv:update]{renv::update()}}}
+
+\item{cooldown}{Number of days ago to set the PPM snapshot date.}
 }
 \description{
 Runs \code{\link[renv:renv-package]{renv}} \code{\link[renv:status]{status()}}, \code{\link[renv:clean]{clean()}},

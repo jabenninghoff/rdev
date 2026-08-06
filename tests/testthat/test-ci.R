@@ -111,12 +111,22 @@ test_that("renv_vulns properly filters results", {
   expect_length(renv_vulns(quiet = TRUE), 2)
 })
 
+# update_ppm_snapshot
+
+test_that("update_ppm_snapshot validates arguments", {
+  expect_error(update_ppm_snapshot(prompt = NA), "'prompt'")
+  expect_error(update_ppm_snapshot(cooldown = NA), "'cooldown'")
+  expect_error(update_ppm_snapshot(cooldown = "latest"), "'cooldown'")
+})
+
+
 # check_renv
 
 test_that("check_renv validates arguments", {
   mockery::stub(check_renv, "renv::status", NULL)
   mockery::stub(check_renv, "renv::clean", NULL)
   mockery::stub(check_renv, "renv_vulns", NULL)
+  mockery::stub(check_renv, "update_ppm_snapshot", NULL)
   mockery::stub(check_renv, "renv::update", NULL)
 
   expect_error(check_renv(update = NA), "'update'")
@@ -126,6 +136,7 @@ test_that("All renv functions are called, unless set to FALSE", {
   mockery::stub(check_renv, "renv::status", NULL)
   mockery::stub(check_renv, "renv::clean", NULL)
   mockery::stub(check_renv, "renv_vulns", NULL)
+  mockery::stub(check_renv, "update_ppm_snapshot", NULL)
   mockery::stub(check_renv, "renv::update", NULL)
 
   begin <- "^"
@@ -133,11 +144,12 @@ test_that("All renv functions are called, unless set to FALSE", {
   sep <- "\\n\\n"
   status <- "renv::status\\(\\)"
   vulns <- 'renv::vulns\\(repos = "https://packagemanager.posit.co/cran/latest"\\)'
+  ppm <- "\\n"
   clean <- "renv::clean\\(\\)"
   update <- "renv::update\\(\\)"
 
   expect_output(
-    check_renv(update = TRUE), paste0(begin, status, sep, clean, sep, vulns, sep, update, end)
+    check_renv(update = TRUE), paste0(begin, status, sep, clean, sep, vulns, sep, ppm, update, end)
   )
   expect_output(
     check_renv(update = FALSE), paste0(begin, status, sep, clean, sep, vulns, end)
