@@ -47,7 +47,7 @@ renv_vulns <- function(packages = NULL, quiet = FALSE) {
 #'
 #' @export
 update_ppm_snapshot <- function(cooldown = 7, prompt = rlang::is_interactive()) {
-  checkmate::assert_int(cooldown)
+  checkmate::assert_int(cooldown, lower = 0)
   checkmate::assert_flag(prompt)
 
   if (prompt) {
@@ -93,7 +93,7 @@ check_renv <- function(update = rlang::is_interactive(), cooldown = 7) {
 
   if (update) {
     writeLines("")
-    update_ppm_snapshot(cooldown = cooldown, prompt = TRUE)
+    update_ppm_snapshot(cooldown = cooldown)
     writeLines("\nrenv::update()")
     renv::update()
   }
