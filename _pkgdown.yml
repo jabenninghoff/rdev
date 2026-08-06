@@ -24,6 +24,7 @@ reference:
       Local continuous integration checks and dependency management
     contents:
     - renv_vulns
+    - update_ppm_snapshot
     - check_renv
     - style_all
     - lint_all

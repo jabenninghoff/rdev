@@ -1,3 +1,9 @@
+# rdev 1.18.0
+
+* Added function `update_ppm_snapshot()`, which sets the renv lockfile CRAN repository URL to a Posit Package Manager (PPM) snapshot date (`https://packagemanager.posit.co/cran/2026-07-29`)
+
+* Temporarily disable `renv.config.crandb.enabled = TRUE` due to an upstream [issue](https://github.com/rstudio/renv/issues/2345)
+
 # rdev 1.17.1
 
 * Updated `use_upkeep_issue()` for renv 1.2.4

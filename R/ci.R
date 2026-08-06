@@ -25,12 +25,52 @@ renv_vulns <- function(packages = NULL, quiet = FALSE) {
   invisible(vulns)
 }
 
+#' Update Posit Package Manager Snapshot Date
+#'
+#' Set the renv lockfile CRAN repository URL to a Posit Package Manager (PPM) snapshot date
+#'   following PPM set up [instructions](https://packagemanager.posit.co/client/#/repos/cran/setup),
+#'   for example, `https://packagemanager.posit.co/cran/2026-07-29`.
+#'
+#' Using a PPM snapshot offers two key advantages:
+#'
+#' - Faster restores and greater reproducibility using [renv::restore()], since renv will restore
+#'   the PPM archived macOS and Windows binaries from that date, which will not be available at
+#'   `https://packagemanager.posit.co/cran/latest` if newer versions have been published.
+#' - The snapshot date can be used to implement a CRAN [dependency cooldown](https://cooldowns.dev),
+#'   which delays installing the latest version of packages unless they are at least N days old,
+#'   (typically 7), providing some protection against supply chain attacks.
+#'
+#' @param cooldown Number of days ago to set the PPM snapshot date.
+#' @param prompt Boolean; prompt the user before updating [renv::lockfiles]?
+#'
+#' @returns Results of [renv::lockfile_write()], invisibly
+#'
+#' @export
+update_ppm_snapshot <- function(cooldown = 7, prompt = rlang::is_interactive()) {
+  checkmate::assert_int(cooldown)
+  checkmate::assert_flag(prompt)
+
+  if (prompt) {
+    set_url <- utils::askYesNo("Update PPM snapshot date in renv lockfile?")
+  } else {
+    set_url <- TRUE
+  }
+  if (!is.na(set_url) && set_url) {
+    ppm_url <- paste0("https://packagemanager.posit.co/cran/", Sys.Date() - cooldown)
+    writeLines(paste0("Using CRAN = ", ppm_url))
+    ret <- renv::lockfile_write(renv::lockfile_modify(repos = c(CRAN = ppm_url)))
+    renv::load(quiet = TRUE) # reload renv lockfile
+    invisible(ret)
+  }
+}
+
 #' Check renv
 #'
 #' Runs [`renv`][renv::renv-package] [`status()`][renv::status()], [`clean()`][renv::clean()],
 #'   [`vulns()`][renv::vulns()] (using [renv_vulns()]), and optionally
 #'   [`update()`][renv::update()]
 #'
+#' @inheritParams update_ppm_snapshot cooldown
 #' @param update run [renv::update()]
 #'
 #' @examples
@@ -39,7 +79,7 @@ renv_vulns <- function(packages = NULL, quiet = FALSE) {
 #' check_renv(update = FALSE)
 #' }
 #' @export
-check_renv <- function(update = rlang::is_interactive()) {
+check_renv <- function(update = rlang::is_interactive(), cooldown = 7) {
   checkmate::assert_flag(update)
 
   writeLines("renv::status()")
@@ -52,6 +92,8 @@ check_renv <- function(update = rlang::is_interactive()) {
   renv_vulns()
 
   if (update) {
+    writeLines("")
+    update_ppm_snapshot(cooldown = cooldown, prompt = TRUE)
     writeLines("\nrenv::update()")
     renv::update()
   }
