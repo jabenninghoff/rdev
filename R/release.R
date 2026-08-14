@@ -106,6 +106,15 @@ get_release <- function(pkg = ".", filename = "NEWS.md") {
   list(package = pkg_obj$package, version = release_version, notes = notes)
 }
 
+#' Validate release
+#'
+#' Run steps:
+#'
+#' 1. Validates version conforms to rdev conventions (#.#.#) and release notes aren't empty
+#' 1. Verifies that version tag doesn't already exist using [gert::git_tag_list()]
+#'
+#' @keywords internal
+#' @noRd
 validate_release <- function(pkg, rel) {
   if (!grepl("^[0-9]*\\.[0-9]*\\.[0-9]*$", rel$version)) {
     stop("invalid package version '", rel$version, "'", call. = FALSE)
@@ -119,6 +128,19 @@ validate_release <- function(pkg, rel) {
   }
 }
 
+#' Commit release and build site
+#'
+#' Run steps:
+#'
+#' 1. Updates `Version` in `DESCRIPTION` with [desc::desc_set_version()], commits and push to git
+#'   with message `"GitHub release <version>"` using [gert::git_add()], [gert::git_commit()] and
+#'   [gert::git_push()]
+#' 1. Runs [build_quarto_site()] (if `_quarto.yml` exists), [build_analysis_site()] (if
+#'   `pkgdown/_base.yml` exists) or [build_rdev_site()] (if `_pkgdown.yml` exists), commits and
+#'   pushes changes (if any) to git with message: `"<builder> for release <version>"`
+#'
+#' @keywords internal
+#' @noRd
 commit_build_release <- function(pkg, rel, unfreeze) {
   # double-check we're not on the default branch before making commits
   if (gert::git_branch() == usethis::git_default_branch()) {
