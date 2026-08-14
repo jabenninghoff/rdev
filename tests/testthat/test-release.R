@@ -215,6 +215,59 @@ test_that("get_release returns valid but non-rdev version", {
   expect_identical(rel$version, "1.1")
 })
 
+# commit_build_release
+
+test_that("commit_build_release and errors on default branch", {
+  mockery::stub(commit_build_release, "gert::git_branch", "main")
+  mockery::stub(commit_build_release, "usethis::git_default_branch", "main")
+  mockery::stub(commit_build_release, "desc::desc_set_version", NULL)
+  mockery::stub(commit_build_release, "gert::git_add", NULL)
+  mockery::stub(commit_build_release, "gert::git_commit", NULL)
+  mockery::stub(commit_build_release, "package_type", NULL)
+  mockery::stub(commit_build_release, "build_quarto_site", NULL)
+  mockery::stub(commit_build_release, "build_analysis_site", NULL)
+  mockery::stub(commit_build_release, "build_rdev_site", NULL)
+  mockery::stub(commit_build_release, "gert::git_push", NULL)
+
+  pkg <- rel <- unfreeze <- NULL
+  expect_error(
+    commit_build_release(pkg, rel, unfreeze), "^on default branch \\(this should never happen\\)$"
+  )
+})
+
+test_that("commit_build_release runs proper builder", {
+  mockery::stub(commit_build_release, "gert::git_branch", "stage-release")
+  mockery::stub(commit_build_release, "usethis::git_default_branch", "main")
+  mockery::stub(commit_build_release, "desc::desc_set_version", NULL)
+  mockery::stub(commit_build_release, "gert::git_add", NULL)
+  mockery::stub(commit_build_release, "gert::git_commit", NULL)
+  mockery::stub(commit_build_release, "package_type", NULL)
+  quarto <- function(unfreeze = TRUE) stop("build_quarto_site", call. = FALSE)
+  analysis <- function() stop("build_analysis_site", call. = FALSE)
+  rdev <- function() stop("build_rdev_site", call. = FALSE)
+  mockery::stub(commit_build_release, "build_quarto_site", quarto)
+  mockery::stub(commit_build_release, "build_analysis_site", analysis)
+  mockery::stub(commit_build_release, "build_rdev_site", rdev)
+  mockery::stub(commit_build_release, "gert::git_push", NULL)
+
+  pkg <- NULL
+  mockery::stub(get_release, "devtools::as.package", pkg_test)
+  rel <- get_release()
+  unfreeze <- TRUE
+
+  mockery::stub(commit_build_release, "package_type", "fake")
+  expect_error(commit_build_release(pkg, rel, unfreeze), "^could not determine builder type$")
+
+  mockery::stub(commit_build_release, "package_type", "quarto")
+  expect_error(commit_build_release(pkg, rel, unfreeze), "^build_quarto_site$")
+
+  mockery::stub(commit_build_release, "package_type", "analysis")
+  expect_error(commit_build_release(pkg, rel, unfreeze), "^build_analysis_site$")
+
+  mockery::stub(commit_build_release, "package_type", "rdev")
+  expect_error(commit_build_release(pkg, rel, unfreeze), "^build_rdev_site$")
+})
+
 # stage_release
 
 test_that("stage_release validates arguments", {
@@ -224,14 +277,7 @@ test_that("stage_release validates arguments", {
   mockery::stub(stage_release, "gert::git_branch", NULL)
   mockery::stub(stage_release, "usethis::git_default_branch", NULL)
   mockery::stub(stage_release, "gert::git_branch_create", NULL)
-  mockery::stub(stage_release, "desc::desc_set_version", NULL)
-  mockery::stub(stage_release, "gert::git_add", NULL)
-  mockery::stub(stage_release, "gert::git_commit", NULL)
-  mockery::stub(stage_release, "package_type", NULL)
-  mockery::stub(stage_release, "build_quarto_site", NULL)
-  mockery::stub(stage_release, "build_analysis_site", NULL)
-  mockery::stub(stage_release, "build_rdev_site", NULL)
-  mockery::stub(stage_release, "gert::git_push", NULL)
+  mockery::stub(stage_release, "commit_build_release", NULL)
   mockery::stub(stage_release, "gert::git_remote_info", NULL)
   mockery::stub(stage_release, "gh::gh", NULL)
 
@@ -252,14 +298,7 @@ test_that("stage_release validates release notes", {
   mockery::stub(stage_release, "gert::git_branch", NULL)
   mockery::stub(stage_release, "usethis::git_default_branch", NULL)
   mockery::stub(stage_release, "gert::git_branch_create", NULL)
-  mockery::stub(stage_release, "desc::desc_set_version", NULL)
-  mockery::stub(stage_release, "gert::git_add", NULL)
-  mockery::stub(stage_release, "gert::git_commit", NULL)
-  mockery::stub(stage_release, "package_type", NULL)
-  mockery::stub(stage_release, "build_quarto_site", NULL)
-  mockery::stub(stage_release, "build_analysis_site", NULL)
-  mockery::stub(stage_release, "build_rdev_site", NULL)
-  mockery::stub(stage_release, "gert::git_push", NULL)
+  mockery::stub(stage_release, "commit_build_release", NULL)
   mockery::stub(stage_release, "gert::git_remote_info", NULL)
   mockery::stub(stage_release, "gh::gh", NULL)
 
@@ -289,14 +328,7 @@ test_that("stage_release returns error if git tag matching version exists", {
   mockery::stub(stage_release, "gert::git_branch", NULL)
   mockery::stub(stage_release, "usethis::git_default_branch", NULL)
   mockery::stub(stage_release, "gert::git_branch_create", NULL)
-  mockery::stub(stage_release, "desc::desc_set_version", NULL)
-  mockery::stub(stage_release, "gert::git_add", NULL)
-  mockery::stub(stage_release, "gert::git_commit", NULL)
-  mockery::stub(stage_release, "package_type", NULL)
-  mockery::stub(stage_release, "build_quarto_site", NULL)
-  mockery::stub(stage_release, "build_analysis_site", NULL)
-  mockery::stub(stage_release, "build_rdev_site", NULL)
-  mockery::stub(stage_release, "gert::git_push", NULL)
+  mockery::stub(stage_release, "commit_build_release", NULL)
   mockery::stub(stage_release, "gert::git_remote_info", NULL)
   mockery::stub(stage_release, "gh::gh", NULL)
 
@@ -315,21 +347,14 @@ test_that("stage_release returns error if uncommitted changes are present", {
   mockery::stub(stage_release, "gert::git_branch", NULL)
   mockery::stub(stage_release, "usethis::git_default_branch", NULL)
   mockery::stub(stage_release, "gert::git_branch_create", NULL)
-  mockery::stub(stage_release, "desc::desc_set_version", NULL)
-  mockery::stub(stage_release, "gert::git_add", NULL)
-  mockery::stub(stage_release, "gert::git_commit", NULL)
-  mockery::stub(stage_release, "package_type", NULL)
-  mockery::stub(stage_release, "build_quarto_site", NULL)
-  mockery::stub(stage_release, "build_analysis_site", NULL)
-  mockery::stub(stage_release, "build_rdev_site", NULL)
-  mockery::stub(stage_release, "gert::git_push", NULL)
+  mockery::stub(stage_release, "commit_build_release", NULL)
   mockery::stub(stage_release, "gert::git_remote_info", NULL)
   mockery::stub(stage_release, "gh::gh", NULL)
 
   expect_error(stage_release(), "^uncommitted changes present$")
 })
 
-test_that("stage_release creates new branch and errors on default branch", {
+test_that("stage_release creates new branch", {
   no_tags <- structure(list(name = character(0), ref = character(0), commit = character(0)),
     row.names = integer(0), class = c("tbl_df", "tbl", "data.frame")
   )
@@ -344,61 +369,11 @@ test_that("stage_release creates new branch and errors on default branch", {
     stop(x, call. = FALSE)
   }
   mockery::stub(stage_release, "gert::git_branch_create", g)
-  mockery::stub(stage_release, "desc::desc_set_version", NULL)
-  mockery::stub(stage_release, "gert::git_add", NULL)
-  mockery::stub(stage_release, "gert::git_commit", NULL)
-  mockery::stub(stage_release, "package_type", NULL)
-  mockery::stub(stage_release, "build_quarto_site", NULL)
-  mockery::stub(stage_release, "build_analysis_site", NULL)
-  mockery::stub(stage_release, "build_rdev_site", NULL)
-  mockery::stub(stage_release, "gert::git_push", NULL)
+  mockery::stub(stage_release, "commit_build_release", NULL)
   mockery::stub(stage_release, "gert::git_remote_info", NULL)
   mockery::stub(stage_release, "gh::gh", NULL)
 
   expect_error(stage_release(), "^testpkg-120$")
-
-  mockery::stub(stage_release, "gert::git_branch_create", NULL)
-  expect_error(stage_release(), "^on default branch \\(this should never happen\\)$")
-})
-
-test_that("stage_release runs proper builder", {
-  no_tags <- structure(list(name = character(0), ref = character(0), commit = character(0)),
-    row.names = integer(0), class = c("tbl_df", "tbl", "data.frame")
-  )
-  mockery::stub(get_release, "devtools::as.package", pkg_test)
-  rel <- get_release()
-  mockery::stub(stage_release, "get_release", rel)
-  mockery::stub(stage_release, "gert::git_tag_list", no_tags)
-  mockery::stub(stage_release, "gert::git_status", git_status_empty)
-  mockery::stub(stage_release, "gert::git_branch", "stage-release")
-  mockery::stub(stage_release, "usethis::git_default_branch", "main")
-  mockery::stub(stage_release, "remotes::parse_github_url", NULL)
-  quarto <- function(unfreeze = TRUE) stop("build_quarto_site", call. = FALSE)
-  analysis <- function() stop("build_analysis_site", call. = FALSE)
-  rdev <- function() stop("build_rdev_site", call. = FALSE)
-  mockery::stub(stage_release, "gert::git_branch_create", NULL)
-  mockery::stub(stage_release, "desc::desc_set_version", NULL)
-  mockery::stub(stage_release, "gert::git_add", NULL)
-  mockery::stub(stage_release, "gert::git_commit", NULL)
-  mockery::stub(stage_release, "package_type", NULL)
-  mockery::stub(stage_release, "build_quarto_site", quarto)
-  mockery::stub(stage_release, "build_analysis_site", analysis)
-  mockery::stub(stage_release, "build_rdev_site", rdev)
-  mockery::stub(stage_release, "gert::git_push", NULL)
-  mockery::stub(stage_release, "gert::git_remote_info", NULL)
-  mockery::stub(stage_release, "gh::gh", NULL)
-
-  mockery::stub(stage_release, "package_type", "fake")
-  expect_error(stage_release(), "^could not determine builder type$")
-
-  mockery::stub(stage_release, "package_type", "quarto")
-  expect_error(stage_release(), "^build_quarto_site$")
-
-  mockery::stub(stage_release, "package_type", "analysis")
-  expect_error(stage_release(), "^build_analysis_site$")
-
-  mockery::stub(stage_release, "package_type", "rdev")
-  expect_error(stage_release(), "^build_rdev_site$")
 })
 
 test_that("stage_release returns pull request results", {
@@ -413,14 +388,7 @@ test_that("stage_release returns pull request results", {
   mockery::stub(stage_release, "gert::git_branch", "stage-release")
   mockery::stub(stage_release, "usethis::git_default_branch", "main")
   mockery::stub(stage_release, "gert::git_branch_create", NULL)
-  mockery::stub(stage_release, "desc::desc_set_version", NULL)
-  mockery::stub(stage_release, "gert::git_add", NULL)
-  mockery::stub(stage_release, "gert::git_commit", NULL)
-  mockery::stub(stage_release, "package_type", "rdev")
-  mockery::stub(stage_release, "build_quarto_site", NULL)
-  mockery::stub(stage_release, "build_analysis_site", NULL)
-  mockery::stub(stage_release, "build_rdev_site", NULL)
-  mockery::stub(stage_release, "gert::git_push", NULL)
+  mockery::stub(stage_release, "commit_build_release", NULL)
   rem <- list(name = "origin", url = "https://github.com/example/test.git")
   mockery::stub(stage_release, "gert::git_remote_info", rem)
   mockery::stub(stage_release, "gh::gh", "pull_request")
