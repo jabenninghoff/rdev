@@ -106,6 +106,39 @@ get_release <- function(pkg = ".", filename = "NEWS.md") {
   list(package = pkg_obj$package, version = release_version, notes = notes)
 }
 
+commit_build_release <- function(pkg, rel, unfreeze) {
+  # double-check we're not on the default branch before making commits
+  if (gert::git_branch() == usethis::git_default_branch()) {
+    stop("on default branch (this should never happen)", call. = FALSE)
+  }
+
+  rel_message <- paste0("GitHub release ", rel$version)
+  desc::desc_set_version(rel$version, file = pkg)
+  gert::git_add("DESCRIPTION")
+  gert::git_commit(rel_message)
+
+  pkg_type <- package_type(pkg = pkg, strict = TRUE)
+  if (pkg_type == "quarto") { # nolint: if_switch_linter. `if` is cleaner here.
+    builder <- paste0("build_quarto_site(unfreeze = ", unfreeze, ")")
+    build_quarto_site(unfreeze = unfreeze)
+  } else if (pkg_type == "analysis") {
+    builder <- "build_analysis_site()"
+    build_analysis_site()
+  } else if (pkg_type == "rdev") {
+    builder <- "build_rdev_site()"
+    build_rdev_site()
+  } else {
+    stop("could not determine builder type", call. = FALSE)
+  }
+
+  # commit builder changes if there are any
+  if (nrow(gert::git_status()) != 0) {
+    gert::git_add(".")
+    gert::git_commit(paste0(builder, " for release ", rel$version))
+  }
+  gert::git_push()
+}
+
 #' Stage a GitHub release
 #'
 #' Open a GitHub pull request for a new release from `NEWS.md`. Approve, merge, and create the
@@ -169,36 +202,7 @@ stage_release <- function(pkg = ".",
     gert::git_branch_create(new_branch)
   }
 
-  # double-check we're not on the default branch before making commits
-  if (gert::git_branch() == usethis::git_default_branch()) {
-    stop("on default branch (this should never happen)", call. = FALSE)
-  }
-
-  rel_message <- paste0("GitHub release ", rel$version)
-  desc::desc_set_version(rel$version, file = pkg)
-  gert::git_add("DESCRIPTION")
-  gert::git_commit(rel_message)
-
-  pkg_type <- package_type(pkg = pkg, strict = TRUE)
-  if (pkg_type == "quarto") { # nolint: if_switch_linter. `if` is cleaner here.
-    builder <- paste0("build_quarto_site(unfreeze = ", unfreeze, ")")
-    build_quarto_site(unfreeze = unfreeze)
-  } else if (pkg_type == "analysis") {
-    builder <- "build_analysis_site()"
-    build_analysis_site()
-  } else if (pkg_type == "rdev") {
-    builder <- "build_rdev_site()"
-    build_rdev_site()
-  } else {
-    stop("could not determine builder type", call. = FALSE)
-  }
-
-  # commit builder changes if there are any
-  if (nrow(gert::git_status()) != 0) {
-    gert::git_add(".")
-    gert::git_commit(paste0(builder, " for release ", rel$version))
-  }
-  gert::git_push()
+  commit_build_release(pkg, rel, unfreeze)
 
   gh_remote <- remotes::parse_github_url(gert::git_remote_info()$url)
   pr <- gh::gh(
