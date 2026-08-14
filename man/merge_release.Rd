@@ -32,6 +32,7 @@ doesn't currently validate that status checks are successful.
 
 When run, \code{merge_release()}:
 \enumerate{
+\item Checks for uncommitted changes and stops if any exist using \code{\link[gert:git_status]{gert::git_status()}}
 \item Determines the staged release title from \code{NEWS.md} using \code{\link[=get_release]{get_release()}}
 \item Selects the GitHub pull request that matches the staged release title, stops if there is more
 or less than one matching PR using \code{\link[gh:gh]{gh::gh()}}
