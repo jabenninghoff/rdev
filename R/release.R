@@ -106,6 +106,19 @@ get_release <- function(pkg = ".", filename = "NEWS.md") {
   list(package = pkg_obj$package, version = release_version, notes = notes)
 }
 
+validate_release <- function(pkg, rel) {
+  if (!grepl("^[0-9]*\\.[0-9]*\\.[0-9]*$", rel$version)) {
+    stop("invalid package version '", rel$version, "'", call. = FALSE)
+  }
+  if (!any(nzchar(rel$notes))) {
+    stop("no release notes found", call. = FALSE)
+  }
+
+  if (nrow(gert::git_tag_list(match = rel$version, repo = pkg)) > 0) {
+    stop("release tag '", rel$version, "' already exists", call. = FALSE)
+  }
+}
+
 commit_build_release <- function(pkg, rel, unfreeze) {
   # double-check we're not on the default branch before making commits
   if (gert::git_branch() == usethis::git_default_branch()) {
@@ -182,16 +195,7 @@ stage_release <- function(pkg = ".",
 
   rel <- get_release(pkg = pkg, filename = filename)
 
-  if (!grepl("^[0-9]*\\.[0-9]*\\.[0-9]*$", rel$version)) {
-    stop("invalid package version '", rel$version, "'", call. = FALSE)
-  }
-  if (!any(nzchar(rel$notes))) {
-    stop("no release notes found", call. = FALSE)
-  }
-
-  if (nrow(gert::git_tag_list(match = rel$version, repo = pkg)) > 0) {
-    stop("release tag '", rel$version, "' already exists", call. = FALSE)
-  }
+  validate_release(pkg, rel)
 
   if (nrow(gert::git_status()) != 0) {
     stop("uncommitted changes present", call. = FALSE)

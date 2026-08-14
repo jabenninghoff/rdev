@@ -215,6 +215,38 @@ test_that("get_release returns valid but non-rdev version", {
   expect_identical(rel$version, "1.1")
 })
 
+# validate_release
+
+test_that("validate_release validates release notes", {
+  mockery::stub(validate_release, "gert::git_tag_list", NULL)
+
+  pkg <- NULL
+  mockery::stub(get_release, "devtools::as.package", pkg_test)
+
+  rel <- get_release(filename = "bad-version.md")
+  expect_error(validate_release(pkg, rel), "^invalid package version '1\\.1'$")
+
+  rel <- get_release(filename = "bad-notes.md")
+  expect_error(validate_release(pkg, rel), "^no release notes found$")
+})
+
+test_that("validate_release returns error if git tag matching version exists", {
+  tag_12 <- structure(list(
+    name = "1.2.0", ref = "refs/tags/1.2.0",
+    commit = "a7422084c6e7f89206b37bd567f66e8111e7e219"
+  ), row.names = 1L, class = c(
+    "tbl_df",
+    "tbl", "data.frame"
+  ))
+  mockery::stub(validate_release, "gert::git_tag_list", tag_12)
+
+  pkg <- NULL
+  mockery::stub(get_release, "devtools::as.package", pkg_test)
+  rel <- get_release()
+
+  expect_error(validate_release(pkg, rel), "^release tag '1\\.2\\.0' already exists$")
+})
+
 # commit_build_release
 
 test_that("commit_build_release and errors on default branch", {
@@ -272,7 +304,7 @@ test_that("commit_build_release runs proper builder", {
 
 test_that("stage_release validates arguments", {
   mockery::stub(stage_release, "get_release", NULL)
-  mockery::stub(stage_release, "gert::git_tag_list", NULL)
+  mockery::stub(stage_release, "validate_release", NULL)
   mockery::stub(stage_release, "gert::git_status", NULL)
   mockery::stub(stage_release, "gert::git_branch", NULL)
   mockery::stub(stage_release, "usethis::git_default_branch", NULL)
@@ -291,50 +323,6 @@ test_that("stage_release validates arguments", {
   expect_error(stage_release(host = ""), "'host'")
 })
 
-test_that("stage_release validates release notes", {
-  mockery::stub(stage_release, "get_release", NULL)
-  mockery::stub(stage_release, "gert::git_tag_list", NULL)
-  mockery::stub(stage_release, "gert::git_status", NULL)
-  mockery::stub(stage_release, "gert::git_branch", NULL)
-  mockery::stub(stage_release, "usethis::git_default_branch", NULL)
-  mockery::stub(stage_release, "gert::git_branch_create", NULL)
-  mockery::stub(stage_release, "commit_build_release", NULL)
-  mockery::stub(stage_release, "gert::git_remote_info", NULL)
-  mockery::stub(stage_release, "gh::gh", NULL)
-
-  mockery::stub(get_release, "devtools::as.package", pkg_test)
-  rel <- get_release(filename = "bad-version.md")
-  mockery::stub(stage_release, "get_release", rel)
-  expect_error(stage_release(filename = "bad-version.md"), "^invalid package version '1\\.1'$")
-
-  rel <- get_release(filename = "bad-notes.md")
-  mockery::stub(stage_release, "get_release", rel)
-  expect_error(stage_release(filename = "bad-notes.md"), "^no release notes found$")
-})
-
-test_that("stage_release returns error if git tag matching version exists", {
-  tag_12 <- structure(list(
-    name = "1.2.0", ref = "refs/tags/1.2.0",
-    commit = "a7422084c6e7f89206b37bd567f66e8111e7e219"
-  ), row.names = 1L, class = c(
-    "tbl_df",
-    "tbl", "data.frame"
-  ))
-  mockery::stub(get_release, "devtools::as.package", pkg_test)
-  rel <- get_release()
-  mockery::stub(stage_release, "get_release", rel)
-  mockery::stub(stage_release, "gert::git_tag_list", tag_12)
-  mockery::stub(stage_release, "gert::git_status", NULL)
-  mockery::stub(stage_release, "gert::git_branch", NULL)
-  mockery::stub(stage_release, "usethis::git_default_branch", NULL)
-  mockery::stub(stage_release, "gert::git_branch_create", NULL)
-  mockery::stub(stage_release, "commit_build_release", NULL)
-  mockery::stub(stage_release, "gert::git_remote_info", NULL)
-  mockery::stub(stage_release, "gh::gh", NULL)
-
-  expect_error(stage_release(), "^release tag '1\\.2\\.0' already exists$")
-})
-
 test_that("stage_release returns error if uncommitted changes are present", {
   no_tags <- structure(list(name = character(0), ref = character(0), commit = character(0)),
     row.names = integer(0), class = c("tbl_df", "tbl", "data.frame")
@@ -342,7 +330,7 @@ test_that("stage_release returns error if uncommitted changes are present", {
   mockery::stub(get_release, "devtools::as.package", pkg_test)
   rel <- get_release()
   mockery::stub(stage_release, "get_release", rel)
-  mockery::stub(stage_release, "gert::git_tag_list", no_tags)
+  mockery::stub(stage_release, "validate_release", NULL)
   mockery::stub(stage_release, "gert::git_status", git_status_changed)
   mockery::stub(stage_release, "gert::git_branch", NULL)
   mockery::stub(stage_release, "usethis::git_default_branch", NULL)
@@ -361,7 +349,7 @@ test_that("stage_release creates new branch", {
   mockery::stub(get_release, "devtools::as.package", pkg_test)
   rel <- get_release()
   mockery::stub(stage_release, "get_release", rel)
-  mockery::stub(stage_release, "gert::git_tag_list", no_tags)
+  mockery::stub(stage_release, "validate_release", NULL)
   mockery::stub(stage_release, "gert::git_status", git_status_empty)
   mockery::stub(stage_release, "gert::git_branch", "main")
   mockery::stub(stage_release, "usethis::git_default_branch", "main")
@@ -383,7 +371,7 @@ test_that("stage_release returns pull request results", {
   mockery::stub(get_release, "devtools::as.package", pkg_test)
   rel <- get_release()
   mockery::stub(stage_release, "get_release", rel)
-  mockery::stub(stage_release, "gert::git_tag_list", no_tags)
+  mockery::stub(stage_release, "validate_release", NULL)
   mockery::stub(stage_release, "gert::git_status", git_status_empty)
   mockery::stub(stage_release, "gert::git_branch", "stage-release")
   mockery::stub(stage_release, "usethis::git_default_branch", "main")
