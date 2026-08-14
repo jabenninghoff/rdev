@@ -247,6 +247,16 @@ test_that("validate_release returns error if git tag matching version exists", {
   expect_error(validate_release(pkg, rel), "^release tag '1\\.2\\.0' already exists$")
 })
 
+# stop_uncommitted
+
+test_that("stop_uncommitted returns error if uncommitted changes are present", {
+  mockery::stub(stop_uncommitted, "gert::git_status", git_status_changed)
+  expect_error(stop_uncommitted(), "^uncommitted changes present$")
+
+  mockery::stub(stop_uncommitted, "gert::git_status", git_status_empty)
+  expect_no_error(stop_uncommitted())
+})
+
 # commit_build_release
 
 test_that("commit_build_release and errors on default branch", {
@@ -305,7 +315,7 @@ test_that("commit_build_release runs proper builder", {
 test_that("stage_release validates arguments", {
   mockery::stub(stage_release, "get_release", NULL)
   mockery::stub(stage_release, "validate_release", NULL)
-  mockery::stub(stage_release, "gert::git_status", NULL)
+  mockery::stub(stage_release, "stop_uncommitted", NULL)
   mockery::stub(stage_release, "gert::git_branch", NULL)
   mockery::stub(stage_release, "usethis::git_default_branch", NULL)
   mockery::stub(stage_release, "gert::git_branch_create", NULL)
@@ -323,25 +333,6 @@ test_that("stage_release validates arguments", {
   expect_error(stage_release(host = ""), "'host'")
 })
 
-test_that("stage_release returns error if uncommitted changes are present", {
-  no_tags <- structure(list(name = character(0), ref = character(0), commit = character(0)),
-    row.names = integer(0), class = c("tbl_df", "tbl", "data.frame")
-  )
-  mockery::stub(get_release, "devtools::as.package", pkg_test)
-  rel <- get_release()
-  mockery::stub(stage_release, "get_release", rel)
-  mockery::stub(stage_release, "validate_release", NULL)
-  mockery::stub(stage_release, "gert::git_status", git_status_changed)
-  mockery::stub(stage_release, "gert::git_branch", NULL)
-  mockery::stub(stage_release, "usethis::git_default_branch", NULL)
-  mockery::stub(stage_release, "gert::git_branch_create", NULL)
-  mockery::stub(stage_release, "commit_build_release", NULL)
-  mockery::stub(stage_release, "gert::git_remote_info", NULL)
-  mockery::stub(stage_release, "gh::gh", NULL)
-
-  expect_error(stage_release(), "^uncommitted changes present$")
-})
-
 test_that("stage_release creates new branch", {
   no_tags <- structure(list(name = character(0), ref = character(0), commit = character(0)),
     row.names = integer(0), class = c("tbl_df", "tbl", "data.frame")
@@ -350,7 +341,7 @@ test_that("stage_release creates new branch", {
   rel <- get_release()
   mockery::stub(stage_release, "get_release", rel)
   mockery::stub(stage_release, "validate_release", NULL)
-  mockery::stub(stage_release, "gert::git_status", git_status_empty)
+  mockery::stub(stage_release, "stop_uncommitted", NULL)
   mockery::stub(stage_release, "gert::git_branch", "main")
   mockery::stub(stage_release, "usethis::git_default_branch", "main")
   g <- function(x) {
@@ -372,7 +363,7 @@ test_that("stage_release returns pull request results", {
   rel <- get_release()
   mockery::stub(stage_release, "get_release", rel)
   mockery::stub(stage_release, "validate_release", NULL)
-  mockery::stub(stage_release, "gert::git_status", git_status_empty)
+  mockery::stub(stage_release, "stop_uncommitted", NULL)
   mockery::stub(stage_release, "gert::git_branch", "stage-release")
   mockery::stub(stage_release, "usethis::git_default_branch", "main")
   mockery::stub(stage_release, "gert::git_branch_create", NULL)
@@ -390,7 +381,7 @@ test_that("stage_release returns pull request results", {
 # merge_release
 
 test_that("merge_release validates arguments", {
-  mockery::stub(merge_release, "gert::git_status", NULL)
+  mockery::stub(stage_release, "stop_uncommitted", NULL)
   mockery::stub(merge_release, "get_release", NULL)
   mockery::stub(merge_release, "gert::git_remote_info", NULL)
   mockery::stub(merge_release, "gh::gh", NULL)
@@ -438,7 +429,7 @@ test_that("merge_release errors when expected and returns list", {
     stop("unknown command", call. = FALSE)
   }
 
-  mockery::stub(merge_release, "gert::git_status", git_status_empty)
+  mockery::stub(merge_release, "stop_uncommitted", NULL)
   mockery::stub(get_release, "devtools::as.package", pkg_test)
   rel <- get_release()
   mockery::stub(merge_release, "get_release", rel)
@@ -495,18 +486,4 @@ test_that("merge_release errors when expected and returns list", {
   expect_error(
     merge_release(pkg = "tpkg"), '^currently only merge_release\\(pkg = "\\."\\) is supported$'
   )
-})
-
-test_that("merge_release returns error if uncommitted changes are present", {
-  mockery::stub(merge_release, "gert::git_status", git_status_changed)
-  mockery::stub(merge_release, "get_release", NULL)
-  mockery::stub(merge_release, "gert::git_remote_info", NULL)
-  mockery::stub(merge_release, "gh::gh", NULL)
-  mockery::stub(merge_release, "gert::git_branch_checkout", NULL)
-  mockery::stub(merge_release, "gert::git_branch_delete", NULL)
-  mockery::stub(merge_release, "gert::git_pull", NULL)
-  mockery::stub(merge_release, "gert::git_tag_create", NULL)
-  mockery::stub(merge_release, "gert::git_tag_push", NULL)
-
-  expect_error(merge_release(), "^uncommitted changes present$")
 })

@@ -128,6 +128,20 @@ validate_release <- function(pkg, rel) {
   }
 }
 
+#' Stop on uncommitted changes
+#'
+#' Run steps:
+#'
+#' 1. Checks for uncommitted changes and stops if any exist using [gert::git_status()]
+#'
+#' @keywords internal
+#' @noRd
+stop_uncommitted <- function() {
+  if (nrow(gert::git_status()) != 0) {
+    stop("uncommitted changes present", call. = FALSE)
+  }
+}
+
 #' Commit release and build site
 #'
 #' Run steps:
@@ -219,9 +233,7 @@ stage_release <- function(pkg = ".",
 
   validate_release(pkg, rel)
 
-  if (nrow(gert::git_status()) != 0) {
-    stop("uncommitted changes present", call. = FALSE)
-  }
+  stop_uncommitted()
 
   if (gert::git_branch() == usethis::git_default_branch()) {
     new_branch <- paste0(rel$package, "-", gsub(".", "", rel$version, fixed = TRUE))
@@ -253,6 +265,7 @@ stage_release <- function(pkg = ".",
 #'  doesn't currently validate that status checks are successful.
 #'
 #' When run, `merge_release()`:
+#' 1. Checks for uncommitted changes and stops if any exist using [gert::git_status()]
 #' 1. Determines the staged release title from `NEWS.md` using [get_release()]
 #' 1. Selects the GitHub pull request that matches the staged release title, stops if there is more
 #'   or less than one matching PR using [gh::gh()]
@@ -282,9 +295,7 @@ merge_release <- function(pkg = ".", filename = "NEWS.md", host = getOption("rde
   checkmate::assert_string(filename, min.chars = 1)
   checkmate::assert_string(host, min.chars = 1, null.ok = TRUE)
 
-  if (nrow(gert::git_status()) != 0) {
-    stop("uncommitted changes present", call. = FALSE)
-  }
+  stop_uncommitted()
 
   rel <- get_release(pkg = pkg, filename = filename)
   pr_title <- paste0(rel$package, " ", rel$version)
