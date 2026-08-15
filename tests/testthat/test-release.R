@@ -257,6 +257,45 @@ test_that("stop_uncommitted returns error if uncommitted changes are present", {
   expect_no_error(stop_uncommitted())
 })
 
+# find_staged_pr
+
+test_that("find_staged_pr errors when expected", {
+  # sophisticated stub for gh::gh
+  gh_pull_number <- list(
+    locked = FALSE, draft = FALSE, mergeable = TRUE, rebaseable = TRUE,
+    html_url = "https://github.com/example/test"
+  )
+  gh <- function(command, ...) {
+    if (command == "GET /repos/{owner}/{repo}/pulls") {
+      return(gh_pulls)
+    }
+    if (command == "GET /repos/{owner}/{repo}/pulls/{pull_number}") {
+      return(gh_pull_number)
+    }
+    stop("unknown command", call. = FALSE)
+  }
+  mockery::stub(find_staged_pr, "gh::gh", gh)
+  mockery::stub(get_release, "devtools::as.package", pkg_test)
+  rel <- get_release()
+  gh_remote <- list(name = "origin", url = "https://github.com/example/test.git")
+  host <- NULL
+
+  gh_pulls <- list(list(title = "testpkg 1.2.0"))
+  expect_no_error(find_staged_pr(rel, gh_remote, host))
+
+  gh_pulls <- list(list(title = "testpkg 1.2.0"), list(title = "testpkg 1.2.0"))
+  expect_error(
+    find_staged_pr(rel, gh_remote, host),
+    "^found more than one pull request with the title 'testpkg 1\\.2\\.0'$"
+  )
+
+  gh_pulls <- list(list(title = "test PR"), list(title = "test PR 2"))
+  expect_error(
+    find_staged_pr(rel, gh_remote, host),
+    "^found no open pull requests with the title 'testpkg 1\\.2\\.0'$"
+  )
+})
+
 # commit_build_release
 
 test_that("commit_build_release and errors on default branch", {
@@ -384,6 +423,7 @@ test_that("merge_release validates arguments", {
   mockery::stub(stage_release, "stop_uncommitted", NULL)
   mockery::stub(merge_release, "get_release", NULL)
   mockery::stub(merge_release, "gert::git_remote_info", NULL)
+  mockery::stub(stage_release, "find_staged_pr", NULL)
   mockery::stub(merge_release, "gh::gh", NULL)
   mockery::stub(merge_release, "gert::git_branch_checkout", NULL)
   mockery::stub(merge_release, "gert::git_branch_delete", NULL)
@@ -402,7 +442,6 @@ test_that("merge_release validates arguments", {
 
 test_that("merge_release errors when expected and returns list", {
   # sophisticated stub for gh::gh
-  gh_pulls <- list(list(title = "testpkg 1.2.0"))
   gh_pull_number <- list(
     locked = FALSE, draft = FALSE, mergeable = TRUE, rebaseable = TRUE,
     html_url = "https://github.com/example/test"
@@ -411,12 +450,6 @@ test_that("merge_release errors when expected and returns list", {
   gh_release <- list(tag_name = "1.2.0")
   gh_delete_branch <- NULL
   gh <- function(command, ...) {
-    if (command == "GET /repos/{owner}/{repo}/pulls") {
-      return(gh_pulls)
-    }
-    if (command == "GET /repos/{owner}/{repo}/pulls/{pull_number}") {
-      return(gh_pull_number)
-    }
     if (command == "PUT /repos/{owner}/{repo}/pulls/{pull_number}/merge") {
       return(gh_merge)
     }
@@ -435,7 +468,7 @@ test_that("merge_release errors when expected and returns list", {
   mockery::stub(merge_release, "get_release", rel)
   rem <- list(name = "origin", url = "https://github.com/example/test.git")
   mockery::stub(merge_release, "gert::git_remote_info", rem)
-  # stub functions that change state
+  mockery::stub(merge_release, "find_staged_pr", gh_pull_number)
   mockery::stub(merge_release, "gh::gh", gh)
   mockery::stub(merge_release, "gert::git_branch_checkout", NULL)
   mockery::stub(merge_release, "gert::git_branch_delete", NULL)
@@ -453,34 +486,28 @@ test_that("merge_release errors when expected and returns list", {
   expect_error(merge_release(), "^pull request merge 'https://github\\.com/example/test' failed$")
 
   gh_pull_number$rebaseable <- FALSE
+  mockery::stub(merge_release, "find_staged_pr", gh_pull_number)
   expect_error(
     merge_release(),
     "^pull request 'https://github\\.com/example/test' is not marked as rebaseable$"
   )
 
   gh_pull_number$mergeable <- FALSE
+  mockery::stub(merge_release, "find_staged_pr", gh_pull_number)
   expect_error(
     merge_release(), "^pull request 'https://github\\.com/example/test' is not marked as mergeable$"
   )
 
   gh_pull_number$draft <- TRUE
+  mockery::stub(merge_release, "find_staged_pr", gh_pull_number)
   expect_error(
     merge_release(), "^pull request 'https://github\\.com/example/test' is marked as draft$"
   )
 
   gh_pull_number$locked <- TRUE
+  mockery::stub(merge_release, "find_staged_pr", gh_pull_number)
   expect_error(
     merge_release(), "^pull request 'https://github\\.com/example/test' is marked as locked$"
-  )
-
-  gh_pulls <- list(list(title = "testpkg 1.2.0"), list(title = "testpkg 1.2.0"))
-  expect_error(
-    merge_release(), "^found more than one pull request with the title 'testpkg 1\\.2\\.0'$"
-  )
-
-  gh_pulls <- list(list(title = "test PR"), list(title = "test PR 2"))
-  expect_error(
-    merge_release(), "^found no open pull requests with the title 'testpkg 1\\.2\\.0'$"
   )
 
   expect_error(
