@@ -142,6 +142,39 @@ stop_uncommitted <- function() {
   }
 }
 
+#' Find staged pull request
+#'
+#' Run steps:
+#'
+#' 1. Selects the GitHub pull request that matches the staged release title, stops if there is more
+#'   or less than one matching PR using [gh::gh()]
+#'
+#' @keywords internal
+#' @noRd
+find_staged_pr <- function(rel, gh_remote, host) {
+  pr_title <- paste0(rel$package, " ", rel$version)
+  pr_list <- gh::gh(
+    "GET /repos/{owner}/{repo}/pulls",
+    owner = gh_remote$username,
+    repo = gh_remote$repo,
+    .api_url = host
+  )
+  pr_list <- Filter(function(x) x$title == pr_title, pr_list)
+  if (length(pr_list) == 0) {
+    stop("found no open pull requests with the title '", pr_title, "'", call. = FALSE)
+  }
+  if (length(pr_list) > 1) {
+    stop("found more than one pull request with the title '", pr_title, "'", call. = FALSE)
+  }
+  gh::gh(
+    "GET /repos/{owner}/{repo}/pulls/{pull_number}",
+    owner = gh_remote$username,
+    repo = gh_remote$repo,
+    pull_number = pr_list[[1]]$number,
+    .api_url = host
+  )
+}
+
 #' Commit release and build site
 #'
 #' Run steps:
@@ -298,29 +331,9 @@ merge_release <- function(pkg = ".", filename = "NEWS.md", host = getOption("rde
   stop_uncommitted()
 
   rel <- get_release(pkg = pkg, filename = filename)
-  pr_title <- paste0(rel$package, " ", rel$version)
-
   gh_remote <- remotes::parse_github_url(gert::git_remote_info()$url)
-  pr_list <- gh::gh(
-    "GET /repos/{owner}/{repo}/pulls",
-    owner = gh_remote$username,
-    repo = gh_remote$repo,
-    .api_url = host
-  )
-  pr_list <- Filter(function(x) x$title == pr_title, pr_list)
-  if (length(pr_list) == 0) {
-    stop("found no open pull requests with the title '", pr_title, "'", call. = FALSE)
-  }
-  if (length(pr_list) > 1) {
-    stop("found more than one pull request with the title '", pr_title, "'", call. = FALSE)
-  }
-  staged_pr <- gh::gh(
-    "GET /repos/{owner}/{repo}/pulls/{pull_number}",
-    owner = gh_remote$username,
-    repo = gh_remote$repo,
-    pull_number = pr_list[[1]]$number,
-    .api_url = host
-  )
+
+  staged_pr <- find_staged_pr(rel, gh_remote, host)
 
   if (staged_pr$locked) {
     stop("pull request '", staged_pr$html_url, "' is marked as locked", call. = FALSE)
