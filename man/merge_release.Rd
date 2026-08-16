@@ -24,7 +24,8 @@ acceptable.}
 list containing results of pull request merge and GitHub release, invisibly
 }
 \description{
-Merge a pull request staged with \code{\link[=stage_release]{stage_release()}} and create a new release on GitHub.
+Merge a pull request staged with \code{\link[=stage_release]{stage_release()}}, approved with \code{\link[=approve_release]{approve_release()}}, and create
+a new release on GitHub.
 }
 \details{
 Manually verify that all status checks have completed before running, as \code{merge_release()}
@@ -36,6 +37,7 @@ When run, \code{merge_release()}:
 \item Determines the staged release title from \code{NEWS.md} using \code{\link[=get_release]{get_release()}}
 \item Selects the GitHub pull request that matches the staged release title, stops if there is more
 or less than one matching PR using \code{\link[gh:gh]{gh::gh()}}
+\item Verifies the release has been approved by searching for the release commit
 \item Verifies the staged pull request is ready to be merged by checking the locked, draft,
 mergeable, and rebaseable flags
 \item Merges the pull request into the default branch using "Rebase and merge" using \code{\link[gh:gh]{gh::gh()}}
