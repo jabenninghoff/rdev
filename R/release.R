@@ -63,7 +63,7 @@ new_branch <- function(name, bump_ver = TRUE, current = FALSE) {
 #' @param pkg path to package. Currently, only `pkg = "."` is supported.
 #' @param filename name of file containing release notes, defaults to `NEWS.md`.
 #'
-#' @return list containing the package, version and release notes from the first release contained
+#' @returns list containing the package, version and release notes from the first release contained
 #'   in `NEWS.md`
 #' @export
 get_release <- function(pkg = ".", filename = "NEWS.md") {
@@ -223,8 +223,8 @@ commit_build_release <- function(pkg, rel, unfreeze) {
 
 #' Stage a GitHub release
 #'
-#' Open a GitHub pull request for a new release from `NEWS.md`. Approve, merge, and create the
-#'   release using [merge_release()].
+#' Open a GitHub pull request for a new release from `NEWS.md`. Approve with [approve_release()].
+#'   Merge and create the release using [merge_release()].
 #'
 #' When run, `stage_release()`:
 #' 1. Extracts release version and release notes from `NEWS.md` using [get_release()]
@@ -233,12 +233,6 @@ commit_build_release <- function(pkg, rel, unfreeze) {
 #' 1. Checks for uncommitted changes and stops if any exist using [gert::git_status()]
 #' 1. Creates a new branch if on the default branch ([gert::git_branch()] `==`
 #'   [usethis::git_default_branch()]) using [gert::git_branch_create()]
-#' 1. Updates `Version` in `DESCRIPTION` with [desc::desc_set_version()], commits and push to git
-#'   with message `"GitHub release <version>"` using [gert::git_add()], [gert::git_commit()] and
-#'   [gert::git_push()]
-#' 1. Runs [build_quarto_site()] (if `_quarto.yml` exists), [build_analysis_site()] (if
-#'   `pkgdown/_base.yml` exists) or [build_rdev_site()] (if `_pkgdown.yml` exists), commits and
-#'   pushes changes (if any) to git with message: `"<builder> for release <version>"`
 #' 1. Opens a pull request with the title `"<package> <version>"` and the release notes in the body
 #'   using [gh::gh()]
 #'
@@ -248,7 +242,7 @@ commit_build_release <- function(pkg, rel, unfreeze) {
 #' @inheritParams build_quarto_site
 #' @inheritParams usethis::use_github
 #'
-#' @return results of GitHub pull request, invisibly
+#' @returns results of GitHub pull request, invisibly
 #'
 #' @export
 stage_release <- function(pkg = ".",
@@ -273,8 +267,6 @@ stage_release <- function(pkg = ".",
     gert::git_branch_create(new_branch)
   }
 
-  commit_build_release(pkg, rel, unfreeze)
-
   gh_remote <- remotes::parse_github_url(gert::git_remote_info()$url)
   pr <- gh::gh(
     "POST /repos/{owner}/{repo}/pulls",
@@ -290,9 +282,79 @@ stage_release <- function(pkg = ".",
   invisible(pr)
 }
 
+#' Approve a GitHub release
+#'
+#' Approve a pull request staged with [stage_release()], and prepare for release. Merge an approved
+#'   release with [merge_release()].
+#'
+#' When run, `approve_release()`:
+#' 1. Checks for uncommitted changes and stops if any exist using [gert::git_status()]
+#' 1. Determines the staged release title from `NEWS.md` using [get_release()]
+#' 1. Selects the GitHub pull request that matches the staged release title, stops if there is more
+#'   or less than one matching PR using [gh::gh()]
+#' 1. Verifies the release is not already approved by searching for the release commit
+#' 1. Updates the PR description if the release notes have changed
+#' 1. Updates `Version` in `DESCRIPTION` with [desc::desc_set_version()], commits and push to git
+#'   with message `"GitHub release <version>"` using [gert::git_add()], [gert::git_commit()] and
+#'   [gert::git_push()]
+#' 1. Runs [build_quarto_site()] (if `_quarto.yml` exists), [build_analysis_site()] (if
+#'   `pkgdown/_base.yml` exists) or [build_rdev_site()] (if `_pkgdown.yml` exists), commits and
+#'   pushes changes (if any) to git with message: `"<builder> for release <version>"`
+#'
+#' @inheritSection create_github_repo Host
+#'
+#' @inheritParams get_release
+#' @inheritParams usethis::use_github
+#'
+#' @returns Staged GitHub pull request, invisibly
+#'
+#' @export
+approve_release <- function(pkg = ".", filename = "NEWS.md", host = getOption("rdev.host")) {
+  if (pkg != ".") {
+    stop('currently only approve_release(pkg = ".") is supported', call. = FALSE)
+  }
+  checkmate::assert_string(filename, min.chars = 1)
+  checkmate::assert_string(host, min.chars = 1, null.ok = TRUE)
+
+  stop_uncommitted()
+
+  rel <- get_release(pkg = pkg, filename = filename)
+  gh_remote <- remotes::parse_github_url(gert::git_remote_info()$url)
+
+  staged_pr <- find_staged_pr(rel, gh_remote, host)
+
+  gert::git_branch_checkout(staged_pr$head$ref)
+  gert::git_pull()
+
+  # approved PRs will have the release message as the first or second commit
+  release_commits <- gert::git_log(max = 2)
+  rel_message <- paste0("GitHub release ", rel$version)
+  if (paste0(rel_message, "\n") %in% release_commits$message) {
+    stop("pull request '", staged_pr$html_url, "' is already approved", call. = FALSE)
+  }
+  rel_body <- paste(rel$notes, collapse = "\n")
+  if (staged_pr$body != rel_body) {
+    pr <- gh::gh(
+      "PATCH /repos/{owner}/{repo}/pulls/{pull_number}",
+      owner = gh_remote$username,
+      repo = gh_remote$repo,
+      pull_number = staged_pr$number,
+      body = rel_body,
+      .api_url = host
+    )
+  } else {
+    pr <- staged_pr
+  }
+
+  commit_build_release(pkg, rel, unfreeze)
+
+  invisible(pr)
+}
+
 #' Merge staged GitHub release
 #'
-#' Merge a pull request staged with [stage_release()] and create a new release on GitHub.
+#' Merge a pull request staged with [stage_release()], approved with [approve_release()], and create
+#'   a new release on GitHub.
 #'
 #' Manually verify that all status checks have completed before running, as `merge_release()`
 #'  doesn't currently validate that status checks are successful.
@@ -302,6 +364,7 @@ stage_release <- function(pkg = ".",
 #' 1. Determines the staged release title from `NEWS.md` using [get_release()]
 #' 1. Selects the GitHub pull request that matches the staged release title, stops if there is more
 #'   or less than one matching PR using [gh::gh()]
+#' 1. Verifies the release has been approved by searching for the release commit
 #' 1. Verifies the staged pull request is ready to be merged by checking the locked, draft,
 #'   mergeable, and rebaseable flags
 #' 1. Merges the pull request into the default branch using "Rebase and merge" using [gh::gh()]
@@ -318,7 +381,7 @@ stage_release <- function(pkg = ".",
 #' @inheritParams get_release
 #' @inheritParams usethis::use_github
 #'
-#' @return list containing results of pull request merge and GitHub release, invisibly
+#' @returns list containing results of pull request merge and GitHub release, invisibly
 #'
 #' @export
 merge_release <- function(pkg = ".", filename = "NEWS.md", host = getOption("rdev.host")) {
@@ -334,6 +397,13 @@ merge_release <- function(pkg = ".", filename = "NEWS.md", host = getOption("rde
   gh_remote <- remotes::parse_github_url(gert::git_remote_info()$url)
 
   staged_pr <- find_staged_pr(rel, gh_remote, host)
+
+  # approved PRs will have the release message as the first or second commit
+  release_commits <- gert::git_log(max = 2)
+  rel_message <- paste0("GitHub release ", rel$version)
+  if (!(paste0(rel_message, "\n") %in% release_commits$message)) {
+    stop("pull request '", staged_pr$html_url, "' is not properly approved", call. = FALSE)
+  }
 
   if (staged_pr$locked) {
     stop("pull request '", staged_pr$html_url, "' is marked as locked", call. = FALSE)
@@ -373,7 +443,6 @@ merge_release <- function(pkg = ".", filename = "NEWS.md", host = getOption("rde
 
   gert::git_pull()
 
-  rel_message <- paste0("GitHub release ", rel$version)
   # see https://stackoverflow.com/questions/23303549/what-are-commit-ish-and-tree-ish-in-git
   gert::git_tag_create(rel$version, rel_message, ref = paste0("HEAD^{/", rel_message, "}"))
   gert::git_tag_push(rel$version)

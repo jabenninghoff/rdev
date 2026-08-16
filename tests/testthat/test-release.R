@@ -358,7 +358,6 @@ test_that("stage_release validates arguments", {
   mockery::stub(stage_release, "gert::git_branch", NULL)
   mockery::stub(stage_release, "usethis::git_default_branch", NULL)
   mockery::stub(stage_release, "gert::git_branch_create", NULL)
-  mockery::stub(stage_release, "commit_build_release", NULL)
   mockery::stub(stage_release, "gert::git_remote_info", NULL)
   mockery::stub(stage_release, "gh::gh", NULL)
 
@@ -387,7 +386,6 @@ test_that("stage_release creates new branch", {
     stop(x, call. = FALSE)
   }
   mockery::stub(stage_release, "gert::git_branch_create", g)
-  mockery::stub(stage_release, "commit_build_release", NULL)
   mockery::stub(stage_release, "gert::git_remote_info", NULL)
   mockery::stub(stage_release, "gh::gh", NULL)
 
@@ -406,7 +404,6 @@ test_that("stage_release returns pull request results", {
   mockery::stub(stage_release, "gert::git_branch", "stage-release")
   mockery::stub(stage_release, "usethis::git_default_branch", "main")
   mockery::stub(stage_release, "gert::git_branch_create", NULL)
-  mockery::stub(stage_release, "commit_build_release", NULL)
   rem <- list(name = "origin", url = "https://github.com/example/test.git")
   mockery::stub(stage_release, "gert::git_remote_info", rem)
   mockery::stub(stage_release, "gh::gh", "pull_request")
@@ -417,13 +414,78 @@ test_that("stage_release returns pull request results", {
   expect_identical(stage_release(), "pull_request")
 })
 
+# approve_release
+
+test_that("approve_release validates arguments", {
+  mockery::stub(approve_release, "stop_uncommitted", NULL)
+  mockery::stub(approve_release, "get_release", NULL)
+  mockery::stub(approve_release, "remotes::parse_github_url", NULL)
+  mockery::stub(approve_release, "gert::git_remote_info", NULL)
+  mockery::stub(approve_release, "find_staged_pr", NULL)
+  mockery::stub(approve_release, "gert::git_branch_checkout", NULL)
+  mockery::stub(approve_release, "gert::git_pull", NULL)
+  mockery::stub(approve_release, "gert::git_log", NULL)
+  mockery::stub(approve_release, "gh::gh", NULL)
+  mockery::stub(approve_release, "commit_build_release", NULL)
+
+  expect_error(
+    approve_release(pkg = "tpkg"), '^currently only approve_release\\(pkg = "\\."\\) is supported$'
+  )
+  expect_error(approve_release(filename = NA_character_), "'filename'")
+  expect_error(approve_release(filename = ""), "'filename'")
+  expect_error(approve_release(host = NA_character_), "'host'")
+  expect_error(approve_release(host = ""), "'host'")
+})
+
+test_that("approve_release checks PR approval, updates PR description", {
+  rel <- list(
+    package = "testpkg",
+    version = "1.2.0",
+    notes = "* Updated `test_function()` for R 4.0"
+  )
+  mockery::stub(approve_release, "stop_uncommitted", NULL)
+  mockery::stub(approve_release, "get_release", rel)
+  mockery::stub(approve_release, "remotes::parse_github_url", NULL)
+  mockery::stub(approve_release, "gert::git_remote_info", NULL)
+  pr <- list(
+    body = "* Updated `test_function()` for R 4.0",
+    html_url = "https://github.com/example/test"
+  )
+  mockery::stub(approve_release, "find_staged_pr", pr)
+  mockery::stub(approve_release, "gert::git_branch_checkout", NULL)
+  mockery::stub(approve_release, "gert::git_pull", NULL)
+  git_log <- data.frame(message = "test commit\n", stringsAsFactors = FALSE)
+  mockery::stub(approve_release, "gert::git_log", git_log)
+  mockery::stub(approve_release, "gh::gh", "PR updated")
+  mockery::stub(approve_release, "commit_build_release", NULL)
+
+  expect_no_error(approve_release())
+  expect_identical(approve_release(), pr)
+
+  rel <- list(
+    package = "testpkg",
+    version = "1.2.0",
+    notes = c("* Updated `test_function()` for R 4.0", "* Updated README")
+  )
+  mockery::stub(approve_release, "get_release", rel)
+  # if PR is updated, approve_release will return the results of gh::gh
+  expect_identical(approve_release(), "PR updated")
+
+  git_log <- data.frame(message = "GitHub release 1.2.0\n", stringsAsFactors = FALSE)
+  mockery::stub(approve_release, "gert::git_log", git_log)
+  expect_error(
+    approve_release(), "^pull request 'https://github\\.com/example/test' is already approved$"
+  )
+})
+
 # merge_release
 
 test_that("merge_release validates arguments", {
-  mockery::stub(stage_release, "stop_uncommitted", NULL)
+  mockery::stub(merge_release, "stop_uncommitted", NULL)
   mockery::stub(merge_release, "get_release", NULL)
   mockery::stub(merge_release, "gert::git_remote_info", NULL)
-  mockery::stub(stage_release, "find_staged_pr", NULL)
+  mockery::stub(merge_release, "find_staged_pr", NULL)
+  mockery::stub(merge_release, "gert::git_log", NULL)
   mockery::stub(merge_release, "gh::gh", NULL)
   mockery::stub(merge_release, "gert::git_branch_checkout", NULL)
   mockery::stub(merge_release, "gert::git_branch_delete", NULL)
@@ -469,6 +531,8 @@ test_that("merge_release errors when expected and returns list", {
   rem <- list(name = "origin", url = "https://github.com/example/test.git")
   mockery::stub(merge_release, "gert::git_remote_info", rem)
   mockery::stub(merge_release, "find_staged_pr", gh_pull_number)
+  git_log <- data.frame(message = "GitHub release 1.2.0\n", stringsAsFactors = FALSE)
+  mockery::stub(merge_release, "gert::git_log", git_log)
   mockery::stub(merge_release, "gh::gh", gh)
   mockery::stub(merge_release, "gert::git_branch_checkout", NULL)
   mockery::stub(merge_release, "gert::git_branch_delete", NULL)
@@ -510,7 +574,9 @@ test_that("merge_release errors when expected and returns list", {
     merge_release(), "^pull request 'https://github\\.com/example/test' is marked as locked$"
   )
 
+  git_log <- data.frame(message = "test commit\n", stringsAsFactors = FALSE)
+  mockery::stub(merge_release, "gert::git_log", git_log)
   expect_error(
-    merge_release(pkg = "tpkg"), '^currently only merge_release\\(pkg = "\\."\\) is supported$'
+    merge_release(), "^pull request 'https://github\\.com/example/test' is not properly approved$"
   )
 })

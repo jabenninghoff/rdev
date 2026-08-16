@@ -31,8 +31,8 @@ acceptable.}
 results of GitHub pull request, invisibly
 }
 \description{
-Open a GitHub pull request for a new release from \code{NEWS.md}. Approve, merge, and create the
-release using \code{\link[=merge_release]{merge_release()}}.
+Open a GitHub pull request for a new release from \code{NEWS.md}. Approve with \code{\link[=approve_release]{approve_release()}}.
+Merge and create the release using \code{\link[=merge_release]{merge_release()}}.
 }
 \details{
 When run, \code{stage_release()}:
@@ -43,12 +43,6 @@ When run, \code{stage_release()}:
 \item Checks for uncommitted changes and stops if any exist using \code{\link[gert:git_status]{gert::git_status()}}
 \item Creates a new branch if on the default branch (\code{\link[gert:git_branch]{gert::git_branch()}} \code{==}
 \code{\link[usethis:git_default_branch]{usethis::git_default_branch()}}) using \code{\link[gert:git_branch_create]{gert::git_branch_create()}}
-\item Updates \code{Version} in \code{DESCRIPTION} with \code{\link[desc:desc_set_version]{desc::desc_set_version()}}, commits and push to git
-with message \code{"GitHub release <version>"} using \code{\link[gert:git_add]{gert::git_add()}}, \code{\link[gert:git_commit]{gert::git_commit()}} and
-\code{\link[gert:git_push]{gert::git_push()}}
-\item Runs \code{\link[=build_quarto_site]{build_quarto_site()}} (if \verb{_quarto.yml} exists), \code{\link[=build_analysis_site]{build_analysis_site()}} (if
-\verb{pkgdown/_base.yml} exists) or \code{\link[=build_rdev_site]{build_rdev_site()}} (if \verb{_pkgdown.yml} exists), commits and
-pushes changes (if any) to git with message: \code{"<builder> for release <version>"}
 \item Opens a pull request with the title \code{"<package> <version>"} and the release notes in the body
 using \code{\link[gh:gh]{gh::gh()}}
 }

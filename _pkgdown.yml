@@ -14,6 +14,7 @@ reference:
     - build_rdev_site
     - new_branch
     - stage_release
+    - approve_release
     - merge_release
     - get_release
     - to_document

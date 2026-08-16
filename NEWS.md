@@ -1,3 +1,12 @@
+# rdev 1.19.0
+
+Added function `approve_release()` and changed the GitHub release workflow:
+
+1. `stage_release()` opens a pull request (PR) for a release candidate
+1. Any changes to correct issues discovered by continuous integration or code review are pushed to the PR
+1. `approve_release()` updates the release notes in the PR, adds the release commit, builds and commits GitHub pages (if present)
+1. `merge_release()` merges the PR and creates the GitHub release
+
 # rdev 1.18.0
 
 * Added function `update_ppm_snapshot()`, which sets the renv lockfile CRAN repository URL to a Posit Package Manager (PPM) snapshot date (`https://packagemanager.posit.co/cran/2026-08-04`)
