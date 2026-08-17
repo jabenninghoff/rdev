@@ -102,7 +102,7 @@ check_renv()
 #> - The project has been cleaned.
 #> 
 #> renv::vulns(repos = "https://packagemanager.posit.co/cran/latest")
-#> 174 packages scanned, 0 vulnerable:
+#> 175 packages scanned, 0 vulnerable:
 #> []
 ```
 
@@ -115,7 +115,7 @@ ci()
 #> No issues found -- the project is in a consistent state.
 #> 
 #> renv::vulns(repos = "https://packagemanager.posit.co/cran/latest")
-#> 174 packages scanned, 0 vulnerable:
+#> 175 packages scanned, 0 vulnerable:
 #> []
 #> 
 #> missing_deps()
@@ -245,21 +245,21 @@ ci()
 #> * creating vignettes ... OK
 #> * checking for LF line-endings in source and make files and shell scripts
 #> * checking for empty or unneeded directories
-#> * building ‘rdev_1.18.0.tar.gz’
+#> * building ‘rdev_1.19.0.tar.gz’
 #> 
 #> ── R CMD check ─────────────────────────────────────────────────────────────────
-#> * using log directory ‘/private/var/folders/vn/cw5f9gws42v9m8mdsds_zbl00000gp/T/Rtmp9EJNCU/file14f074824f0d9/rdev.Rcheck’
+#> * using log directory ‘/private/var/folders/vn/cw5f9gws42v9m8mdsds_zbl00000gp/T/RtmpfpPkzV/file90e285cc8de/rdev.Rcheck’
 #> * using R version 4.6.1 (2026-06-24)
 #> * using platform: aarch64-apple-darwin23
 #> * R was compiled by
 #>     Apple clang version 17.0.0 (clang-1700.3.19.1)
 #>     GNU Fortran (GCC) 14.2.0
-#> * running under: macOS Sequoia 15.7.8
+#> * running under: macOS Sequoia 15.7.9
 #> * using session charset: UTF-8
-#> * current time: 2026-08-06 02:17:29 UTC
+#> * current time: 2026-08-17 13:28:17 UTC
 #> * using option ‘--no-manual’
 #> * checking for file ‘rdev/DESCRIPTION’ ... OK
-#> * this is package ‘rdev’ version ‘1.18.0’
+#> * this is package ‘rdev’ version ‘1.19.0’
 #> * package encoding: UTF-8
 #> * checking package namespace information ... OK
 #> * checking package dependencies ... OK
@@ -314,8 +314,8 @@ ci()
 #> * DONE
 #> 
 #> Status: OK
-#> ── R CMD check results ──────────────────────────────────────── rdev 1.18.0 ────
-#> Duration: 27.1s
+#> ── R CMD check results ──────────────────────────────────────── rdev 1.19.0 ────
+#> Duration: 27.7s
 #> 
 #> 0 errors ✔ | 0 warnings ✔ | 0 notes ✔
 ```
