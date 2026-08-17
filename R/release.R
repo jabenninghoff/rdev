@@ -325,6 +325,9 @@ approve_release <- function(pkg = ".",
   if (gert::git_branch() != staged_pr$head$ref) {
     stop("not on PR branch '", staged_pr$head$ref, "'", call. = FALSE)
   }
+  # ensure local branch is up to date with remote
+  gert::git_pull()
+  rel <- get_release(pkg = pkg, filename = filename)
 
   # approved PRs will have the release message as the first or second commit
   release_commits <- gert::git_log(max = 2)
