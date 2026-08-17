@@ -7,7 +7,7 @@
 
     <a class="navbar-brand me-2" href="../index.html">rdev</a>
 
-    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">1.18.0</small>
+    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">1.19.0</small>
 
 
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbar" aria-controls="navbar" aria-expanded="false" aria-label="Toggle navigation">
@@ -43,6 +43,18 @@
       <small>Source: <a href="https://github.com/jabenninghoff/rdev/blob/HEAD/NEWS.md" class="external-link"><code>NEWS.md</code></a></small>
     </div>
 
+    <div class="section level2">
+<h2 class="pkg-version" data-toc-text="1.19.0" id="rdev-1190">rdev 1.19.0<a class="anchor" aria-label="anchor" href="#rdev-1190"></a></h2>
+<p>Added function <code><a href="../reference/approve_release.html">approve_release()</a></code> and changed the GitHub release workflow:</p>
+<ol style="list-style-type: decimal"><li>
+<code><a href="../reference/stage_release.html">stage_release()</a></code> opens a pull request (PR) for a release candidate</li>
+<li>Any changes to correct issues discovered by continuous integration or code review are pushed to the PR</li>
+<li>
+<code><a href="../reference/approve_release.html">approve_release()</a></code> updates the release notes in the PR, adds the release commit, builds and commits GitHub pages (if present)</li>
+<li>
+<code><a href="../reference/merge_release.html">merge_release()</a></code> merges the PR and creates the GitHub release</li>
+</ol><ul><li>Changed <code><a href="../reference/stage_release.html">stage_release()</a></code> to stop when on the default branch</li>
+</ul></div>
     <div class="section level2">
 <h2 class="pkg-version" data-toc-text="1.18.0" id="rdev-1180">rdev 1.18.0<a class="anchor" aria-label="anchor" href="#rdev-1180"></a></h2>
 <ul><li><p>Added function <code><a href="../reference/update_ppm_snapshot.html">update_ppm_snapshot()</a></code>, which sets the renv lockfile CRAN repository URL to a Posit Package Manager (PPM) snapshot date (<code>https://packagemanager.posit.co/cran/2026-08-04</code>)</p></li>
