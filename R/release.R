@@ -290,6 +290,7 @@ stage_release <- function(pkg = ".",
 #' 1. Determines the staged release title from `NEWS.md` using [get_release()]
 #' 1. Selects the GitHub pull request that matches the staged release title, stops if there is more
 #'   or less than one matching PR using [gh::gh()]
+#' 1. Checks if on the PR branch and stops if not (using [gert::git_branch()])
 #' 1. Verifies the release is not already approved by searching for the release commit
 #' 1. Updates the PR description if the release notes have changed
 #' 1. Updates `Version` in `DESCRIPTION` with [desc::desc_set_version()], commits and push to git
@@ -321,8 +322,9 @@ approve_release <- function(pkg = ".", filename = "NEWS.md", host = getOption("r
 
   staged_pr <- find_staged_pr(rel, gh_remote, host)
 
-  gert::git_branch_checkout(staged_pr$head$ref)
-  gert::git_pull()
+  if (gert::git_branch() != staged_pr$head$ref) {
+    stop("not on PR branch '", staged_pr$head$ref, "'", call. = FALSE)
+  }
 
   # approved PRs will have the release message as the first or second commit
   release_commits <- gert::git_log(max = 2)

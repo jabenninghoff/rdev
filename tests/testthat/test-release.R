@@ -431,7 +431,7 @@ test_that("approve_release validates arguments", {
   expect_error(approve_release(host = ""), "'host'")
 })
 
-test_that("approve_release checks PR approval, updates PR description", {
+test_that("approve_release checks PR branch, PR approval, updates PR description", {
   rel <- list(
     package = "testpkg",
     version = "1.2.0",
@@ -442,10 +442,12 @@ test_that("approve_release checks PR approval, updates PR description", {
   mockery::stub(approve_release, "remotes::parse_github_url", NULL)
   mockery::stub(approve_release, "gert::git_remote_info", NULL)
   pr <- list(
+    head = list(ref = "update-test-function"),
     body = "* Updated `test_function()` for R 4.0",
     html_url = "https://github.com/example/test"
   )
   mockery::stub(approve_release, "find_staged_pr", pr)
+  mockery::stub(approve_release, "gert::git_branch", "update-test-function")
   mockery::stub(approve_release, "gert::git_branch_checkout", NULL)
   mockery::stub(approve_release, "gert::git_pull", NULL)
   git_log <- data.frame(message = "test commit\n", stringsAsFactors = FALSE)
@@ -470,6 +472,9 @@ test_that("approve_release checks PR approval, updates PR description", {
   expect_error(
     approve_release(), "^pull request 'https://github\\.com/example/test' is already approved$"
   )
+
+  mockery::stub(approve_release, "gert::git_branch", "add-feature-x")
+  expect_error(approve_release(), "^not on PR branch 'update-test-function'$")
 })
 
 # merge_release
