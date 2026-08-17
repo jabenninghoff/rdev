@@ -238,21 +238,16 @@ commit_build_release <- function(pkg, rel, unfreeze) {
 #' @inheritSection create_github_repo Host
 #'
 #' @inheritParams get_release
-#' @inheritParams build_quarto_site
 #' @inheritParams usethis::use_github
 #'
 #' @returns results of GitHub pull request, invisibly
 #'
 #' @export
-stage_release <- function(pkg = ".",
-                          filename = "NEWS.md",
-                          unfreeze = FALSE,
-                          host = getOption("rdev.host")) {
+stage_release <- function(pkg = ".", filename = "NEWS.md", host = getOption("rdev.host")) {
   if (pkg != ".") {
     stop('currently only stage_release(pkg = ".") is supported', call. = FALSE)
   }
   checkmate::assert_string(filename, min.chars = 1)
-  checkmate::assert_flag(unfreeze)
   checkmate::assert_string(host, min.chars = 1, null.ok = TRUE)
 
   rel <- get_release(pkg = pkg, filename = filename)
@@ -303,16 +298,21 @@ stage_release <- function(pkg = ".",
 #' @inheritSection create_github_repo Host
 #'
 #' @inheritParams get_release
+#' @inheritParams build_quarto_site
 #' @inheritParams usethis::use_github
 #'
 #' @returns Staged GitHub pull request, invisibly
 #'
 #' @export
-approve_release <- function(pkg = ".", filename = "NEWS.md", host = getOption("rdev.host")) {
+approve_release <- function(pkg = ".",
+                            filename = "NEWS.md",
+                            unfreeze = FALSE,
+                            host = getOption("rdev.host")) {
   if (pkg != ".") {
     stop('currently only approve_release(pkg = ".") is supported', call. = FALSE)
   }
   checkmate::assert_string(filename, min.chars = 1)
+  checkmate::assert_flag(unfreeze)
   checkmate::assert_string(host, min.chars = 1, null.ok = TRUE)
 
   stop_uncommitted()
