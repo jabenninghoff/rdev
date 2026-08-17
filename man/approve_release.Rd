@@ -34,6 +34,7 @@ When run, \code{approve_release()}:
 \item Determines the staged release title from \code{NEWS.md} using \code{\link[=get_release]{get_release()}}
 \item Selects the GitHub pull request that matches the staged release title, stops if there is more
 or less than one matching PR using \code{\link[gh:gh]{gh::gh()}}
+\item Checks if on the PR branch and stops if not (using \code{\link[gert:git_branch]{gert::git_branch()}})
 \item Verifies the release is not already approved by searching for the release commit
 \item Updates the PR description if the release notes have changed
 \item Updates \code{Version} in \code{DESCRIPTION} with \code{\link[desc:desc_set_version]{desc::desc_set_version()}}, commits and push to git
