@@ -357,8 +357,8 @@ test_that("stage_release validates arguments", {
   mockery::stub(stage_release, "stop_uncommitted", NULL)
   mockery::stub(stage_release, "gert::git_branch", NULL)
   mockery::stub(stage_release, "usethis::git_default_branch", NULL)
-  mockery::stub(stage_release, "gert::git_branch_create", NULL)
   mockery::stub(stage_release, "gert::git_remote_info", NULL)
+  mockery::stub(stage_release, "remotes::parse_github_url", NULL)
   mockery::stub(stage_release, "gh::gh", NULL)
 
   expect_error(
@@ -371,31 +371,25 @@ test_that("stage_release validates arguments", {
   expect_error(stage_release(host = ""), "'host'")
 })
 
-test_that("stage_release creates new branch", {
-  no_tags <- structure(list(name = character(0), ref = character(0), commit = character(0)),
-    row.names = integer(0), class = c("tbl_df", "tbl", "data.frame")
-  )
+test_that("stage_release stops on default branch", {
   mockery::stub(get_release, "devtools::as.package", pkg_test)
   rel <- get_release()
   mockery::stub(stage_release, "get_release", rel)
   mockery::stub(stage_release, "validate_release", NULL)
   mockery::stub(stage_release, "stop_uncommitted", NULL)
-  mockery::stub(stage_release, "gert::git_branch", "main")
+  mockery::stub(stage_release, "gert::git_branch", "add-feature")
   mockery::stub(stage_release, "usethis::git_default_branch", "main")
-  g <- function(x) {
-    stop(x, call. = FALSE)
-  }
-  mockery::stub(stage_release, "gert::git_branch_create", g)
   mockery::stub(stage_release, "gert::git_remote_info", NULL)
+  mockery::stub(stage_release, "remotes::parse_github_url", NULL)
   mockery::stub(stage_release, "gh::gh", NULL)
 
-  expect_error(stage_release(), "^testpkg-120$")
+  expect_no_error(stage_release())
+
+  mockery::stub(stage_release, "gert::git_branch", "main")
+  expect_error(stage_release(), "^on default branch$")
 })
 
 test_that("stage_release returns pull request results", {
-  no_tags <- structure(list(name = character(0), ref = character(0), commit = character(0)),
-    row.names = integer(0), class = c("tbl_df", "tbl", "data.frame")
-  )
   mockery::stub(get_release, "devtools::as.package", pkg_test)
   rel <- get_release()
   mockery::stub(stage_release, "get_release", rel)

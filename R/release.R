@@ -231,8 +231,7 @@ commit_build_release <- function(pkg, rel, unfreeze) {
 #' 1. Validates version conforms to rdev conventions (#.#.#) and release notes aren't empty
 #' 1. Verifies that version tag doesn't already exist using [gert::git_tag_list()]
 #' 1. Checks for uncommitted changes and stops if any exist using [gert::git_status()]
-#' 1. Creates a new branch if on the default branch ([gert::git_branch()] `==`
-#'   [usethis::git_default_branch()]) using [gert::git_branch_create()]
+#' 1. Stops if on the default branch ([gert::git_branch()] `==` [usethis::git_default_branch()])
 #' 1. Opens a pull request with the title `"<package> <version>"` and the release notes in the body
 #'   using [gh::gh()]
 #'
@@ -263,8 +262,7 @@ stage_release <- function(pkg = ".",
   stop_uncommitted()
 
   if (gert::git_branch() == usethis::git_default_branch()) {
-    new_branch <- paste0(rel$package, "-", gsub(".", "", rel$version, fixed = TRUE))
-    gert::git_branch_create(new_branch)
+    stop("on default branch", call. = FALSE)
   }
 
   gh_remote <- remotes::parse_github_url(gert::git_remote_info()$url)
