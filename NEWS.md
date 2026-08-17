@@ -7,6 +7,8 @@ Added function `approve_release()` and changed the GitHub release workflow:
 1. `approve_release()` updates the release notes in the PR, adds the release commit, builds and commits GitHub pages (if present)
 1. `merge_release()` merges the PR and creates the GitHub release
 
+* Changed `stage_release()` to stop when on the default branch
+
 # rdev 1.18.0
 
 * Added function `update_ppm_snapshot()`, which sets the renv lockfile CRAN repository URL to a Posit Package Manager (PPM) snapshot date (`https://packagemanager.posit.co/cran/2026-08-04`)
