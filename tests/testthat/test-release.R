@@ -298,7 +298,7 @@ test_that("find_staged_pr errors when expected", {
 
 # commit_build_release
 
-test_that("commit_build_release and errors on default branch", {
+test_that("commit_build_release errors on default branch", {
   mockery::stub(commit_build_release, "gert::git_branch", "main")
   mockery::stub(commit_build_release, "usethis::git_default_branch", "main")
   mockery::stub(commit_build_release, "desc::desc_set_version", NULL)
