@@ -1,3 +1,7 @@
+# rdev 1.19.1
+
+* `stage_release()` now opens the newly created pull request in the default browser when running interactively.
+
 # rdev 1.19.0
 
 Added function `approve_release()` and changed the GitHub release workflow:
