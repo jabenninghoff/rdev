@@ -381,6 +381,7 @@ test_that("stage_release stops on default branch", {
   mockery::stub(stage_release, "gert::git_remote_info", NULL)
   mockery::stub(stage_release, "remotes::parse_github_url", NULL)
   mockery::stub(stage_release, "gh::gh", NULL)
+  mockery::stub(stage_release, "view_url", NULL)
 
   expect_no_error(stage_release())
 
@@ -400,6 +401,7 @@ test_that("stage_release returns pull request results", {
   rem <- list(name = "origin", url = "https://github.com/example/test.git")
   mockery::stub(stage_release, "gert::git_remote_info", rem)
   mockery::stub(stage_release, "gh::gh", "pull_request")
+  mockery::stub(stage_release, "view_url", NULL)
 
   withr::local_dir(withr::local_tempdir())
   fs::file_create("_quarto.yml")

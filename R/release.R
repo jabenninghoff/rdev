@@ -235,6 +235,8 @@ commit_build_release <- function(pkg, rel, unfreeze) {
 #' 1. Opens a pull request with the title `"<package> <version>"` and the release notes in the body
 #'   using [gh::gh()]
 #'
+#' `stage_release()` will open the pull request in the default browser when running interactively.
+#'
 #' @inheritSection create_github_repo Host
 #'
 #' @inheritParams get_release
@@ -271,6 +273,8 @@ stage_release <- function(pkg = ".", filename = "NEWS.md", host = getOption("rde
     body = paste(rel$notes, collapse = "\n"),
     .api_url = host
   )
+  Sys.sleep(1)
+  view_url(pr$html_url)
 
   invisible(pr)
 }

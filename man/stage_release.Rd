@@ -38,6 +38,8 @@ When run, \code{stage_release()}:
 \item Opens a pull request with the title \code{"<package> <version>"} and the release notes in the body
 using \code{\link[gh:gh]{gh::gh()}}
 }
+
+\code{stage_release()} will open the pull request in the default browser when running interactively.
 }
 \section{Host}{
 
