@@ -9,7 +9,7 @@ Merge and create the release using merge_release()."><meta property="og:image" c
 
     <a class="navbar-brand me-2" href="../index.html">rdev</a>
 
-    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">1.19.0</small>
+    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">1.19.1</small>
 
 
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbar" aria-controls="navbar" aria-expanded="false" aria-label="Toggle navigation">
@@ -91,7 +91,8 @@ acceptable.</p></dd>
 <li><p>Stops if on the default branch (<code><a href="https://docs.ropensci.org/gert/reference/git_branch.html" class="external-link">gert::git_branch()</a></code> <code>==</code> <code><a href="https://usethis.r-lib.org/reference/git-default-branch.html" class="external-link">usethis::git_default_branch()</a></code>)</p></li>
 <li><p>Opens a pull request with the title <code>"&lt;package&gt; &lt;version&gt;"</code> and the release notes in the body
 using <code><a href="https://gh.r-lib.org/reference/gh.html" class="external-link">gh::gh()</a></code></p></li>
-</ol></div>
+</ol><p><code>stage_release()</code> will open the pull request in the default browser when running interactively.</p>
+    </div>
     <div class="section level2">
     <h2 id="host">Host<a class="anchor" aria-label="anchor" href="#host"></a></h2>
 
