@@ -7,7 +7,7 @@
 
     <a class="navbar-brand me-2" href="../index.html">rdev</a>
 
-    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">1.19.1</small>
+    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">1.19.2</small>
 
 
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbar" aria-controls="navbar" aria-expanded="false" aria-label="Toggle navigation">
@@ -61,6 +61,7 @@
 <span>  extra <span class="op">=</span> <span class="cn">TRUE</span>,</span>
 <span>  spelling <span class="op">=</span> <span class="cn">TRUE</span>,</span>
 <span>  urls <span class="op">=</span> <span class="cn">TRUE</span>,</span>
+<span>  url_check_fail <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/options.html" class="external-link">getOption</a></span><span class="op">(</span><span class="st">"rdev.url_check.fail"</span>, default <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span>,</span>
 <span>  rcmdcheck <span class="op">=</span> <span class="cn">TRUE</span></span>
 <span><span class="op">)</span></span></code></pre></div>
     </div>
@@ -107,6 +108,11 @@
 
 <dt id="arg-urls">urls<a class="anchor" aria-label="anchor" href="#arg-urls"></a></dt>
 <dd><p>validate URLs with <code><a href="urlchecker-reexports.html">url_check()</a></code> and <code><a href="html_url_check.html">html_url_check()</a></code></p></dd>
+
+
+<dt id="arg-url-check-fail">url_check_fail<a class="anchor" aria-label="anchor" href="#arg-url-check-fail"></a></dt>
+<dd><p>throw an error and stop <code>ci()</code> when one or more URLs are flagged by
+<code><a href="urlchecker-reexports.html">url_check()</a></code></p></dd>
 
 
 <dt id="arg-rcmdcheck">rcmdcheck<a class="anchor" aria-label="anchor" href="#arg-rcmdcheck"></a></dt>
