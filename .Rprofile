@@ -1,5 +1,3 @@
-source("renv/activate.R")
-
 options(
   warnPartialMatchArgs = TRUE,
   warnPartialMatchAttr = TRUE,
@@ -9,6 +7,8 @@ options(
   rdev.license.copyright = "John Benninghoff",
   styler.cache_root = "styler-perm"
 )
+
+source("renv/activate.R")
 
 # attach devtools and set options per https://r-pkgs.org/setup.html
 if (interactive()) {
