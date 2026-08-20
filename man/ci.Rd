@@ -15,6 +15,7 @@ ci(
   extra = TRUE,
   spelling = TRUE,
   urls = TRUE,
+  url_check_fail = getOption("rdev.url_check.fail", default = TRUE),
   rcmdcheck = TRUE
 )
 }
@@ -38,6 +39,9 @@ ci(
 \item{spelling}{update spelling \code{\link[spelling:wordlist]{WORDLIST}}}
 
 \item{urls}{validate URLs with \code{\link[=url_check]{url_check()}} and \code{\link[=html_url_check]{html_url_check()}}}
+
+\item{url_check_fail}{throw an error and stop \code{ci()} when one or more URLs are flagged by
+\code{\link[=url_check]{url_check()}}}
 
 \item{rcmdcheck}{run \verb{R CMD check} using:
 \code{\link[rcmdcheck:rcmdcheck]{rcmdcheck::rcmdcheck(args = "--no-manual", error_on = "warning")}}}

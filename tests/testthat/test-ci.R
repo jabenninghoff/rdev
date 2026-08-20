@@ -211,6 +211,7 @@ test_that("ci validates arguments", {
   expect_error(ci(extra = NA), "'extra'")
   expect_error(ci(spelling = NA), "'spelling'")
   expect_error(ci(urls = NA), "'urls'")
+  expect_error(ci(url_check_fail = NA), "'url_check_fail'")
   expect_error(ci(rcmdcheck = NA), "'rcmdcheck'")
 })
 

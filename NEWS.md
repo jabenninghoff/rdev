@@ -1,6 +1,10 @@
+# rdev 1.19.2
+
+* Added parameter and option `rdev.url_check.fail` to `ci()` to control if `url_check()` throws an error
+
 # rdev 1.19.1
 
-* `stage_release()` now opens the newly created pull request in the default browser when running interactively.
+* `stage_release()` now opens the newly created pull request in the default browser when running interactively
 
 # rdev 1.19.0
 
