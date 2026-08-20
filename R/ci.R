@@ -307,7 +307,7 @@ ci <- function(renv = TRUE, # nolint: cyclocomp_linter.
 
   if (urls) {
     writeLines("url_check()")
-    url_check(progress = FALSE, fail = url_check_fail)
+    print_tbl(url_check(progress = FALSE, fail = url_check_fail))
     writeLines("html_url_check()")
     print_tbl(html_url_check(progress = FALSE))
     if (rcmdcheck) writeLines("")
