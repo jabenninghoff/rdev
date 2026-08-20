@@ -42,7 +42,7 @@ Imports:
     stringr,
     styler (>= 1.4.0),
     tibble,
-    urlchecker,
+    urlchecker (>= 2.0.0),
     usethis,
     utils,
     withr,
