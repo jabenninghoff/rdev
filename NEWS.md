@@ -1,3 +1,7 @@
+# rdev 1.19.3
+
+* Updated `ci()` to always print results of `url_check()`
+
 # rdev 1.19.2
 
 * Added parameter and option `rdev.url_check.fail` to `ci()` to control if `url_check()` throws an error
