@@ -181,6 +181,8 @@ print_tbl <- function(df) {
 #' @param extra run [extra_deps()]
 #' @param spelling update spelling [`WORDLIST`][spelling::wordlist]
 #' @param urls validate URLs with [url_check()] and [html_url_check()]
+#' @param url_check_fail throw an error and stop `ci()` when one or more URLs are flagged by
+#'   [url_check()]
 #' @param rcmdcheck run `R CMD check` using:
 #'   [`rcmdcheck::rcmdcheck(args = "--no-manual", error_on = "warning")`][rcmdcheck::rcmdcheck]
 #'
@@ -201,6 +203,7 @@ ci <- function(renv = TRUE, # nolint: cyclocomp_linter.
                extra = TRUE,
                spelling = TRUE,
                urls = TRUE,
+               url_check_fail = getOption("rdev.url_check.fail", default = TRUE),
                rcmdcheck = TRUE) {
   checkmate::assert_flag(renv)
   checkmate::assert_flag(missing)
@@ -212,6 +215,7 @@ ci <- function(renv = TRUE, # nolint: cyclocomp_linter.
   checkmate::assert_flag(extra)
   checkmate::assert_flag(spelling)
   checkmate::assert_flag(urls)
+  checkmate::assert_flag(url_check_fail)
   checkmate::assert_flag(rcmdcheck)
 
   if (renv) {
@@ -303,7 +307,7 @@ ci <- function(renv = TRUE, # nolint: cyclocomp_linter.
 
   if (urls) {
     writeLines("url_check()")
-    url_check(progress = FALSE)
+    url_check(progress = FALSE, fail = url_check_fail)
     writeLines("html_url_check()")
     print_tbl(html_url_check(progress = FALSE))
     if (rcmdcheck) writeLines("")
