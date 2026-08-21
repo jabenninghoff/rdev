@@ -25,7 +25,7 @@ website:
         href: index.xml
         aria-label: rss
       - icon: github
-        url: {{{ repo_url }}}
+        href: {{{ repo_url }}}
         aria-label: github
   page-footer:
     left: "Copyright {{{ year }}}, {{{ author }}}"

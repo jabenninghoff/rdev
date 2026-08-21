@@ -1,3 +1,7 @@
+# rdev 1.19.4
+
+* Fixed `_quarto.yml` template
+
 # rdev 1.19.3
 
 * Updated `ci()` to always print results of `url_check()`
