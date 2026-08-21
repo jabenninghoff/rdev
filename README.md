@@ -229,11 +229,28 @@ ci()
 #> ℹ Checking that VignetteBuilder package knitr is installed.
 #> ✔ VignetteBuilder package knitr is installed.
 #> html_url_check()
-#> # A tibble: 2 × 9
-#>   URL                        From  Status Message New   CRAN  Spaces R     root 
-#>   <chr>                      <nam> <chr>  <chr>   <chr> <chr> <chr>  <chr> <chr>
-#> 1 http://covr.r-lib.org/ref… <chr> 200    OK      http… ""    ""     ""    /Use…
-#> 2 http://r-lib.github.io/rc… <chr> 200    OK      http… ""    ""     ""    /Use…
+#> # A tibble: 19 × 9
+#>    URL                       From  Status Message New   CRAN  Spaces R     root 
+#>    <chr>                     <nam> <chr>  <chr>   <chr> <chr> <chr>  <chr> <chr>
+#>  1 http://covr.r-lib.org/re… <chr> 200    OK      "htt… ""    ""     ""    /Use…
+#>  2 http://r-lib.github.io/r… <chr> 200    OK      "htt… ""    ""     ""    /Use…
+#>  3 https://rdrr.io/r/base/c… <chr> 503    Servic… ""    ""    ""     ""    /Use…
+#>  4 https://rdrr.io/r/base/c… <chr> 503    Servic… ""    ""    ""     ""    /Use…
+#>  5 https://rdrr.io/r/base/d… <chr> 503    Servic… ""    ""    ""     ""    /Use…
+#>  6 https://rdrr.io/r/base/g… <chr> 503    Servic… ""    ""    ""     ""    /Use…
+#>  7 https://rdrr.io/r/base/i… <chr> 503    Servic… ""    ""    ""     ""    /Use…
+#>  8 https://rdrr.io/r/base/i… <chr> 503    Servic… ""    ""    ""     ""    /Use…
+#>  9 https://rdrr.io/r/base/l… <chr> 503    Servic… ""    ""    ""     ""    /Use…
+#> 10 https://rdrr.io/r/base/l… <chr> 503    Servic… ""    ""    ""     ""    /Use…
+#> 11 https://rdrr.io/r/base/o… <chr> 503    Servic… ""    ""    ""     ""    /Use…
+#> 12 https://rdrr.io/r/base/r… <chr> 503    Servic… ""    ""    ""     ""    /Use…
+#> 13 https://rdrr.io/r/base/s… <chr> 503    Servic… ""    ""    ""     ""    /Use…
+#> 14 https://rdrr.io/r/base/s… <chr> 503    Servic… ""    ""    ""     ""    /Use…
+#> 15 https://rdrr.io/r/base/s… <chr> 503    Servic… ""    ""    ""     ""    /Use…
+#> 16 https://rdrr.io/r/base/s… <chr> 503    Servic… ""    ""    ""     ""    /Use…
+#> 17 https://rdrr.io/r/base/w… <chr> 503    Servic… ""    ""    ""     ""    /Use…
+#> 18 https://rdrr.io/r/stats/… <chr> 503    Servic… ""    ""    ""     ""    /Use…
+#> 19 https://rdrr.io/r/utils/… <chr> 503    Servic… ""    ""    ""     ""    /Use…
 #> 
 #> Setting env vars: NOT_CRAN="true", CI="true"
 #> rcmdcheck::rcmdcheck(args = "--no-manual", error_on = "warning")
@@ -245,10 +262,10 @@ ci()
 #> * creating vignettes ... OK
 #> * checking for LF line-endings in source and make files and shell scripts
 #> * checking for empty or unneeded directories
-#> * building ‘rdev_1.19.4.tar.gz’
+#> * building ‘rdev_1.19.5.tar.gz’
 #> 
 #> ── R CMD check ─────────────────────────────────────────────────────────────────
-#> * using log directory ‘/private/var/folders/vn/cw5f9gws42v9m8mdsds_zbl00000gp/T/RtmpUG9CSa/filefa9a786bb596/rdev.Rcheck’
+#> * using log directory ‘/private/var/folders/vn/cw5f9gws42v9m8mdsds_zbl00000gp/T/RtmpNvPWQA/file1180b73065775/rdev.Rcheck’
 #> * using R version 4.6.1 (2026-06-24)
 #> * using platform: aarch64-apple-darwin23
 #> * R was compiled by
@@ -256,10 +273,10 @@ ci()
 #>     GNU Fortran (GCC) 14.2.0
 #> * running under: macOS Sequoia 15.7.9
 #> * using session charset: UTF-8
-#> * current time: 2026-08-21 04:54:41 UTC
+#> * current time: 2026-08-21 19:24:58 UTC
 #> * using option ‘--no-manual’
 #> * checking for file ‘rdev/DESCRIPTION’ ... OK
-#> * this is package ‘rdev’ version ‘1.19.4’
+#> * this is package ‘rdev’ version ‘1.19.5’
 #> * package encoding: UTF-8
 #> * checking package namespace information ... OK
 #> * checking package dependencies ... OK
@@ -312,10 +329,9 @@ ci()
 #> * checking package vignettes ... OK
 #> * checking re-building of vignette outputs ... OK
 #> * DONE
-#> 
 #> Status: OK
-#> ── R CMD check results ──────────────────────────────────────── rdev 1.19.4 ────
-#> Duration: 30.8s
+#> ── R CMD check results ──────────────────────────────────────── rdev 1.19.5 ────
+#> Duration: 29.6s
 #> 
 #> 0 errors ✔ | 0 warnings ✔ | 0 notes ✔
 ```
