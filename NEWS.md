@@ -1,3 +1,7 @@
+# rdev 1.19.5
+
+* `stage_release()` now updates the remote branch with `gert::git_push()` before opening the pull request
+
 # rdev 1.19.4
 
 * Fixed `_quarto.yml` template
