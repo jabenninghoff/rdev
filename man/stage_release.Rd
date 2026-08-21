@@ -35,6 +35,7 @@ When run, \code{stage_release()}:
 \item Verifies that version tag doesn't already exist using \code{\link[gert:git_tag_list]{gert::git_tag_list()}}
 \item Checks for uncommitted changes and stops if any exist using \code{\link[gert:git_status]{gert::git_status()}}
 \item Stops if on the default branch (\code{\link[gert:git_branch]{gert::git_branch()}} \code{==} \code{\link[usethis:git_default_branch]{usethis::git_default_branch()}})
+\item Updates the remote branch with \code{\link[gert:git_push]{gert::git_push()}}
 \item Opens a pull request with the title \code{"<package> <version>"} and the release notes in the body
 using \code{\link[gh:gh]{gh::gh()}}
 }

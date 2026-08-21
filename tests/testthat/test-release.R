@@ -359,7 +359,9 @@ test_that("stage_release validates arguments", {
   mockery::stub(stage_release, "usethis::git_default_branch", NULL)
   mockery::stub(stage_release, "gert::git_remote_info", NULL)
   mockery::stub(stage_release, "remotes::parse_github_url", NULL)
+  mockery::stub(stage_release, "gert::git_push", NULL)
   mockery::stub(stage_release, "gh::gh", NULL)
+  mockery::stub(stage_release, "view_url", NULL)
 
   expect_error(
     stage_release(pkg = "tpkg"), '^currently only stage_release\\(pkg = "\\."\\) is supported$'
@@ -380,6 +382,7 @@ test_that("stage_release stops on default branch", {
   mockery::stub(stage_release, "usethis::git_default_branch", "main")
   mockery::stub(stage_release, "gert::git_remote_info", NULL)
   mockery::stub(stage_release, "remotes::parse_github_url", NULL)
+  mockery::stub(stage_release, "gert::git_push", NULL)
   mockery::stub(stage_release, "gh::gh", NULL)
   mockery::stub(stage_release, "view_url", NULL)
 
@@ -400,6 +403,7 @@ test_that("stage_release returns pull request results", {
   mockery::stub(stage_release, "gert::git_branch_create", NULL)
   rem <- list(name = "origin", url = "https://github.com/example/test.git")
   mockery::stub(stage_release, "gert::git_remote_info", rem)
+  mockery::stub(stage_release, "gert::git_push", NULL)
   mockery::stub(stage_release, "gh::gh", "pull_request")
   mockery::stub(stage_release, "view_url", NULL)
 

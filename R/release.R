@@ -232,6 +232,7 @@ commit_build_release <- function(pkg, rel, unfreeze) {
 #' 1. Verifies that version tag doesn't already exist using [gert::git_tag_list()]
 #' 1. Checks for uncommitted changes and stops if any exist using [gert::git_status()]
 #' 1. Stops if on the default branch ([gert::git_branch()] `==` [usethis::git_default_branch()])
+#' 1. Updates the remote branch with [gert::git_push()]
 #' 1. Opens a pull request with the title `"<package> <version>"` and the release notes in the body
 #'   using [gh::gh()]
 #'
@@ -261,6 +262,8 @@ stage_release <- function(pkg = ".", filename = "NEWS.md", host = getOption("rde
   if (gert::git_branch() == usethis::git_default_branch()) {
     stop("on default branch", call. = FALSE)
   }
+
+  gert::git_push()
 
   gh_remote <- remotes::parse_github_url(gert::git_remote_info()$url)
   pr <- gh::gh(
