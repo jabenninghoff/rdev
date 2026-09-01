@@ -1,3 +1,7 @@
+# rdev 1.19.6
+
+* minor updates
+
 # rdev 1.19.5
 
 * `stage_release()` now updates the remote branch with `gert::git_push()` before opening the pull request
