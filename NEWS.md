@@ -1,6 +1,6 @@
 # rdev 1.19.6
 
-* minor updates
+* Update R-CMD-check to run on macOS only
 
 # rdev 1.19.5
 

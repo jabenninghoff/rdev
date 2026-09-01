@@ -61,7 +61,6 @@ rdev::create_github_repo("rdtest1", "rdev test package 1")
     - [ ] lint, GitHub Actions
     - [ ] macos-latest (release), GitHub Actions
     - [ ] missing-deps, GitHub Actions
-    - [ ] windows-latest (release), GitHub Actions
   - [ ] Require linear history
 - [ ] Code security and analysis:
   - [ ] Dependabot alerts
