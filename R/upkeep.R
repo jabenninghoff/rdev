@@ -162,6 +162,7 @@ upkeep_checklist <- function(last_upkeep = last_upkeep_year()) { # nolint: cyclo
     bullets,
     "### Recurring tasks",
     "",
+    todo("`rdev::use_rdev_package(quiet = FALSE)` (do this **first**)"),
     todo(
       "Consider changing default branch from `master` to `main`",
       usethis::git_default_branch() == "master"
@@ -175,7 +176,6 @@ upkeep_checklist <- function(last_upkeep = last_upkeep_year()) { # nolint: cyclo
       since {last_upkeep_date()}",
       desc::desc_get_field("Package") == "rdev"
     ),
-    todo("`rdev::use_rdev_package(quiet = FALSE)` (do this **first**)"),
     todo("`build_quarto_site(unfreeze = TRUE)`", ptype == "quarto"),
     todo(
       '`usethis::use_mit_license(copyright_holder = getOption("rdev.license.copyright"))`',
