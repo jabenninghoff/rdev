@@ -1,3 +1,7 @@
+# rdev 1.19.7
+
+* Updated `.Rprofile` for renv 1.3.2 (update `use_rprofile()`)
+
 # rdev 1.19.6
 
 * Update R-CMD-check to run on macOS only
