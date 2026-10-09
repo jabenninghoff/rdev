@@ -44,7 +44,7 @@ jobs:
           # disable default Posit Package Manager URL (https://packagemanager.posit.co/cran/latest)
           use-public-rspm: false
 
-      - uses: r-lib/actions/setup-renv@d3c5be51b12e724e68f33216ca3c148b66d5f0b6 # v2.12.1
+      - uses: r-lib/actions/setup-renv@f9a764fea8d5c63df6ef9a5c7795bf7deb5d7e05 # v2.14.0
 
       - uses: r-lib/actions/check-r-package@d3c5be51b12e724e68f33216ca3c148b66d5f0b6 # v2.12.1
         with:
