@@ -10,8 +10,8 @@ set -ex # halt script on error, echo on
 # arm64:  4.1 (oldrel/5) - 4.6 (release)
 # x86_64: 4.3 (oldrel/3) - 4.6 (release)
 
-# rig install oldrel --without-pak
-# rig install release --without-pak
+# rig install oldrel --without-pak --without-repos=p3m
+# rig install release --without-pak --without-repos=p3m
 # rig default release
 
 # fix rig permissions
