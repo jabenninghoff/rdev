@@ -102,7 +102,7 @@ check_renv()
 #> - The project has been cleaned.
 #> 
 #> renv::vulns(repos = "https://packagemanager.posit.co/cran/latest")
-#> 175 packages scanned, 0 vulnerable:
+#> 180 packages scanned, 0 vulnerable:
 #> []
 ```
 
@@ -115,7 +115,7 @@ ci()
 #> No issues found -- the project is in a consistent state.
 #> 
 #> renv::vulns(repos = "https://packagemanager.posit.co/cran/latest")
-#> 175 packages scanned, 0 vulnerable:
+#> 180 packages scanned, 0 vulnerable:
 #> []
 #> 
 #> missing_deps()
@@ -245,21 +245,21 @@ ci()
 #> * creating vignettes ... OK
 #> * checking for LF line-endings in source and make files and shell scripts
 #> * checking for empty or unneeded directories
-#> * building ‘rdev_1.19.8.tar.gz’
+#> * building ‘rdev_1.19.9.tar.gz’
 #> 
 #> ── R CMD check ─────────────────────────────────────────────────────────────────
-#> * using log directory ‘/private/var/folders/vn/cw5f9gws42v9m8mdsds_zbl00000gp/T/RtmpuZJwfq/file378b40a911fe/rdev.Rcheck’
-#> * using R version 4.6.1 (2026-06-24)
+#> * using log directory ‘/private/var/folders/vn/cw5f9gws42v9m8mdsds_zbl00000gp/T/RtmpGXNU0a/file55720f12e99/rdev.Rcheck’
+#> * using R version 4.6.2 (2026-10-29)
 #> * using platform: aarch64-apple-darwin23
 #> * R was compiled by
 #>     Apple clang version 17.0.0 (clang-1700.3.19.1)
 #>     GNU Fortran (GCC) 14.2.0
-#> * running under: macOS Sequoia 15.8.1
+#> * running under: macOS Sequoia 15.8.2
 #> * using session charset: UTF-8
-#> * current time: 2026-10-09 19:36:19 UTC
+#> * current time: 2026-10-31 18:20:02 UTC
 #> * using option ‘--no-manual’
 #> * checking for file ‘rdev/DESCRIPTION’ ... OK
-#> * this is package ‘rdev’ version ‘1.19.8’
+#> * this is package ‘rdev’ version ‘1.19.9’
 #> * package encoding: UTF-8
 #> * checking package namespace information ... OK
 #> * checking package dependencies ... OK
@@ -312,10 +312,9 @@ ci()
 #> * checking package vignettes ... OK
 #> * checking re-building of vignette outputs ... OK
 #> * DONE
-#> 
 #> Status: OK
-#> ── R CMD check results ──────────────────────────────────────── rdev 1.19.8 ────
-#> Duration: 31.6s
+#> ── R CMD check results ──────────────────────────────────────── rdev 1.19.9 ────
+#> Duration: 31.2s
 #> 
 #> 0 errors ✔ | 0 warnings ✔ | 0 notes ✔
 ```
