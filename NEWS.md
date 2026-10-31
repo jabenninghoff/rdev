@@ -1,3 +1,7 @@
+# rdev 1.19.9
+
+* Updated GitHub Actions (update `use_rdev_package()`)
+
 # rdev 1.19.8
 
 * Updated GitHub Actions (update `use_rdev_package()`, `use_codecov()`)
