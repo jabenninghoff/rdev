@@ -4,7 +4,7 @@
 \alias{update_ppm_snapshot}
 \title{Update Posit Package Manager Snapshot Date}
 \usage{
-update_ppm_snapshot(cooldown = 7, prompt = rlang::is_interactive())
+update_ppm_snapshot(cooldown = 3, prompt = rlang::is_interactive())
 }
 \arguments{
 \item{cooldown}{Number of days ago to set the PPM snapshot date.}
@@ -27,6 +27,6 @@ the PPM archived macOS and Windows binaries from that date, which will not be av
 \verb{https://packagemanager.posit.co/cran/latest} if newer versions have been published.
 \item The snapshot date can be used to implement a CRAN \href{https://cooldowns.dev}{dependency cooldown},
 which delays installing the latest version of packages unless they are at least N days old,
-(typically 7), providing some protection against supply chain attacks.
+(typically 3), providing some protection against supply chain attacks.
 }
 }

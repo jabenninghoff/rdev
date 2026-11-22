@@ -38,7 +38,7 @@ renv_vulns <- function(packages = NULL, quiet = FALSE) {
 #'   `https://packagemanager.posit.co/cran/latest` if newer versions have been published.
 #' - The snapshot date can be used to implement a CRAN [dependency cooldown](https://cooldowns.dev),
 #'   which delays installing the latest version of packages unless they are at least N days old,
-#'   (typically 7), providing some protection against supply chain attacks.
+#'   (typically 3), providing some protection against supply chain attacks.
 #'
 #' @param cooldown Number of days ago to set the PPM snapshot date.
 #' @param prompt Boolean; prompt the user before updating [renv::lockfiles]?
@@ -46,7 +46,7 @@ renv_vulns <- function(packages = NULL, quiet = FALSE) {
 #' @returns Results of [renv::lockfile_write()], invisibly
 #'
 #' @export
-update_ppm_snapshot <- function(cooldown = 7, prompt = rlang::is_interactive()) {
+update_ppm_snapshot <- function(cooldown = 3, prompt = rlang::is_interactive()) {
   checkmate::assert_int(cooldown, lower = 0)
   checkmate::assert_flag(prompt)
 
