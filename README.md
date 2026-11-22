@@ -229,11 +229,10 @@ ci()
 #> ℹ Checking that VignetteBuilder package knitr is installed.
 #> ✔ VignetteBuilder package knitr is installed.
 #> html_url_check()
-#> # A tibble: 2 × 9
+#> # A tibble: 1 × 9
 #>   URL                        From  Status Message New   CRAN  Spaces R     root 
 #>   <chr>                      <nam> <chr>  <chr>   <chr> <chr> <chr>  <chr> <chr>
-#> 1 http://covr.r-lib.org/ref… <chr> 200    OK      http… ""    ""     ""    /Use…
-#> 2 http://r-lib.github.io/rc… <chr> 200    OK      http… ""    ""     ""    /Use…
+#> 1 http://r-lib.github.io/rc… <chr> 200    OK      http… ""    ""     ""    /Use…
 #> 
 #> Setting env vars: NOT_CRAN="true", CI="true"
 #> rcmdcheck::rcmdcheck(args = "--no-manual", error_on = "warning")
@@ -245,21 +244,21 @@ ci()
 #> * creating vignettes ... OK
 #> * checking for LF line-endings in source and make files and shell scripts
 #> * checking for empty or unneeded directories
-#> * building ‘rdev_1.19.9.tar.gz’
+#> * building ‘rdev_1.19.10.tar.gz’
 #> 
 #> ── R CMD check ─────────────────────────────────────────────────────────────────
-#> * using log directory ‘/private/var/folders/vn/cw5f9gws42v9m8mdsds_zbl00000gp/T/RtmpGXNU0a/file55720f12e99/rdev.Rcheck’
+#> * using log directory ‘/private/var/folders/vn/cw5f9gws42v9m8mdsds_zbl00000gp/T/Rtmp5zy3Qv/file136d17692d11d/rdev.Rcheck’
 #> * using R version 4.6.2 (2026-10-29)
 #> * using platform: aarch64-apple-darwin23
 #> * R was compiled by
 #>     Apple clang version 17.0.0 (clang-1700.3.19.1)
 #>     GNU Fortran (GCC) 14.2.0
-#> * running under: macOS Sequoia 15.8.2
+#> * running under: macOS Sequoia 15.8.3
 #> * using session charset: UTF-8
-#> * current time: 2026-10-31 18:20:02 UTC
+#> * current time: 2026-11-22 15:59:17 UTC
 #> * using option ‘--no-manual’
 #> * checking for file ‘rdev/DESCRIPTION’ ... OK
-#> * this is package ‘rdev’ version ‘1.19.9’
+#> * this is package ‘rdev’ version ‘1.19.10’
 #> * package encoding: UTF-8
 #> * checking package namespace information ... OK
 #> * checking package dependencies ... OK
@@ -313,8 +312,8 @@ ci()
 #> * checking re-building of vignette outputs ... OK
 #> * DONE
 #> Status: OK
-#> ── R CMD check results ──────────────────────────────────────── rdev 1.19.9 ────
-#> Duration: 31.2s
+#> ── R CMD check results ─────────────────────────────────────── rdev 1.19.10 ────
+#> Duration: 30.9s
 #> 
 #> 0 errors ✔ | 0 warnings ✔ | 0 notes ✔
 ```

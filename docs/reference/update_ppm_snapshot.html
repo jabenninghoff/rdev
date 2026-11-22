@@ -11,7 +11,7 @@ for example, https://packagemanager.posit.co/cran/2026-08-04."><meta property="o
 
     <a class="navbar-brand me-2" href="../index.html">rdev</a>
 
-    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">1.19.9</small>
+    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">1.19.10</small>
 
 
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbar" aria-controls="navbar" aria-expanded="false" aria-label="Toggle navigation">
@@ -56,7 +56,7 @@ for example, <code>https://packagemanager.posit.co/cran/2026-08-04</code>.</p>
 
     <div class="section level2">
     <h2 id="ref-usage">Usage<a class="anchor" aria-label="anchor" href="#ref-usage"></a></h2>
-    <div class="sourceCode"><pre class="sourceCode r"><code><span><span class="fu">update_ppm_snapshot</span><span class="op">(</span>cooldown <span class="op">=</span> <span class="fl">7</span>, prompt <span class="op">=</span> <span class="fu">rlang</span><span class="fu">::</span><span class="fu"><a href="https://rlang.r-lib.org/reference/is_interactive.html" class="external-link">is_interactive</a></span><span class="op">(</span><span class="op">)</span><span class="op">)</span></span></code></pre></div>
+    <div class="sourceCode"><pre class="sourceCode r"><code><span><span class="fu">update_ppm_snapshot</span><span class="op">(</span>cooldown <span class="op">=</span> <span class="fl">3</span>, prompt <span class="op">=</span> <span class="fu">rlang</span><span class="fu">::</span><span class="fu"><a href="https://rlang.r-lib.org/reference/is_interactive.html" class="external-link">is_interactive</a></span><span class="op">(</span><span class="op">)</span><span class="op">)</span></span></code></pre></div>
     </div>
 
     <div class="section level2">
@@ -82,7 +82,7 @@ the PPM archived macOS and Windows binaries from that date, which will not be av
 <code>https://packagemanager.posit.co/cran/latest</code> if newer versions have been published.</p></li>
 <li><p>The snapshot date can be used to implement a CRAN <a href="https://cooldowns.dev" class="external-link">dependency cooldown</a>,
 which delays installing the latest version of packages unless they are at least N days old,
-(typically 7), providing some protection against supply chain attacks.</p></li>
+(typically 3), providing some protection against supply chain attacks.</p></li>
 </ul></div>
 
   </main><aside class="col-md-3"><nav id="toc" aria-label="Table of contents"><h2>On this page</h2>
