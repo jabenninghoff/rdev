@@ -1,3 +1,7 @@
+# rdev 1.19.10
+
+* Updated GitHub Actions to use [lockfiles](https://github.blog/changelog/2026-10-28-github-actions-workflow-lockfiles-are-generally-available/) (update `use_rdev_package()`, `gh actions-lock`)
+
 # rdev 1.19.9
 
 * Updated GitHub Actions (update `use_rdev_package()`)
